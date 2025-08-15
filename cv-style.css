@@ -1,32 +1,36 @@
-/* CV-specific styling to match the original design */
+/* CV-specific styling for better readability */
 .cv-container {
-    font-size: 11pt;
+    font-size: 14px;
+    line-height: 1.6;
 }
 
 .cv-header {
     text-align: center;
     margin-bottom: 40px;
     padding-bottom: 20px;
-    border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+    border-bottom: 2px solid #333;
 }
 
 .cv-name {
-    font-size: 2em;
-    font-weight: bold;
-    margin-bottom: 10px;
-    color: #333;
+    font-size: 2.2em;
+    font-weight: 700;
+    margin-bottom: 8px;
+    color: #000;
+    letter-spacing: 1px;
 }
 
 .cv-title {
-    font-size: 1.1em;
-    color: #666;
-    margin-bottom: 5px;
+    font-size: 1.2em;
+    color: #333;
+    margin-bottom: 3px;
+    font-weight: 500;
 }
 
 .cv-company {
-    font-size: 1.1em;
-    color: #666;
+    font-size: 1.2em;
+    color: #333;
     margin-bottom: 0;
+    font-weight: 500;
 }
 
 .education-entry, .experience-entry, .project-entry {
@@ -50,24 +54,39 @@
     min-width: 140px;
 }
 
+/* Override main site h2 styling for CV */
+.cv-section h2 {
+    font-size: 1.4em;
+    font-weight: 700;
+    margin-top: 30px;
+    margin-bottom: 15px;
+    color: #000;
+    border-bottom: 2px solid #000;
+    padding-bottom: 5px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
 .degree-title, .position-title, .project-title {
     font-weight: 600;
     margin-bottom: 5px;
-    color: #333;
-    font-size: 1.05em;
+    color: #000;
+    font-size: 1.1em;
 }
 
 .institution {
     margin-bottom: 5px;
-    color: #666;
-    font-size: 0.95em;
+    color: #333;
+    font-size: 1em;
+    font-weight: 400;
 }
 
 .thesis {
     font-style: italic;
     margin-top: 5px;
-    color: #777;
-    font-size: 0.9em;
+    color: #555;
+    font-size: 0.95em;
+    line-height: 1.5;
 }
 
 .research-list {
@@ -75,74 +94,91 @@
     list-style-type: disc;
 }
 
-.research-list li {
-    margin-bottom: 8px;
-    color: #555;
+.research-list li,
+.cv-section ul li {
+    margin-bottom: 6px;
+    color: #000;
+    font-size: 1em;
+    line-height: 1.6;
 }
 
 .project-description {
     margin-top: 8px;
     text-align: justify;
-    color: #555;
-    line-height: 1.6;
-    font-size: 0.95em;
+    color: #000;
+    line-height: 1.7;
+    font-size: 1em;
 }
 
 .tech-stack {
-    margin-top: 8px;
+    margin-top: 10px;
     font-style: italic;
-    color: #777;
-    font-size: 0.85em;
+    color: #555;
+    font-size: 0.9em;
+    line-height: 1.5;
 }
 
 .skills-line {
     margin-bottom: 12px;
     text-align: justify;
+    color: #000;
+    font-size: 1em;
+    line-height: 1.6;
 }
 
 .skill-category {
-    font-weight: 600;
+    font-weight: 700;
     display: inline;
-    color: #333;
+    color: #000;
 }
 
 /* Dark mode overrides for CV */
 [data-theme="dark"] .cv-header {
-    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    border-bottom: 2px solid #e0e0e0;
 }
 
 [data-theme="dark"] .cv-name {
-    color: #e0e0e0;
+    color: #ffffff;
 }
 
 [data-theme="dark"] .cv-title,
 [data-theme="dark"] .cv-company {
-    color: #b0b0b0;
+    color: #e0e0e0;
+}
+
+[data-theme="dark"] .cv-section h2 {
+    color: #ffffff;
+    border-bottom: 2px solid #ffffff;
 }
 
 [data-theme="dark"] .right-date {
-    color: #aaa;
+    color: #b0b0b0;
 }
 
 [data-theme="dark"] .degree-title,
 [data-theme="dark"] .position-title,
 [data-theme="dark"] .project-title,
 [data-theme="dark"] .skill-category {
-    color: #e0e0e0;
+    color: #ffffff;
 }
 
 [data-theme="dark"] .institution {
+    color: #e0e0e0;
+}
+
+[data-theme="dark"] .thesis {
     color: #b0b0b0;
 }
 
-[data-theme="dark"] .thesis,
 [data-theme="dark"] .tech-stack {
-    color: #999;
+    color: #b0b0b0;
 }
 
 [data-theme="dark"] .research-list li,
-[data-theme="dark"] .project-description {
-    color: #bbb;
+[data-theme="dark"] .cv-section ul li,
+[data-theme="dark"] .project-description,
+[data-theme="dark"] .skills-line {
+    color: #e0e0e0;
 }
 
 /* Responsive design for CV */
