@@ -50,6 +50,36 @@ header h1 {
     font-weight: 500;
 }
 
+.navigation {
+    text-align: center;
+    margin-bottom: 40px;
+    padding: 20px 0;
+    border-bottom: 1px solid rgba(139, 69, 19, 0.2);
+}
+
+.nav-link {
+    display: inline-block;
+    margin: 0 20px;
+    padding: 10px 20px;
+    color: #8B4513;
+    text-decoration: none;
+    font-weight: 500;
+    border-radius: 25px;
+    transition: all 0.3s ease;
+    background: rgba(139, 69, 19, 0.1);
+}
+
+.nav-link:hover {
+    background: rgba(139, 69, 19, 0.2);
+    transform: translateY(-2px);
+}
+
+.nav-link.active {
+    background: #8B4513;
+    color: white;
+    box-shadow: 0 4px 12px rgba(139, 69, 19, 0.3);
+}
+
 section {
     margin-bottom: 45px;
 }
@@ -123,11 +153,154 @@ footer {
     font-size: 0.9em;
 }
 
+/* CV-specific styles */
+.cv-container {
+    max-width: 800px;
+}
+
+.cv-section {
+    margin-bottom: 45px;
+}
+
+.position {
+    margin-bottom: 30px;
+    padding: 20px;
+    background: rgba(139, 69, 19, 0.05);
+    border-radius: 8px;
+    border-left: 3px solid #8B4513;
+}
+
+.position-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    margin-bottom: 8px;
+    flex-wrap: wrap;
+}
+
+.position-title {
+    font-weight: 600;
+    color: #8B4513;
+    font-size: 1.1em;
+}
+
+.position-date {
+    font-size: 0.9em;
+    color: #8B7355;
+    font-style: italic;
+}
+
+.company {
+    font-weight: 500;
+    color: #5D4E37;
+    margin-bottom: 10px;
+    font-size: 1.05em;
+}
+
+.description {
+    color: #2c2c2c;
+    line-height: 1.7;
+    margin-top: 10px;
+}
+
+.description ul {
+    margin-top: 10px;
+    padding-left: 20px;
+}
+
+.description li {
+    margin-bottom: 8px;
+    color: #2c2c2c;
+    line-height: 1.6;
+}
+
+.education-item {
+    margin-bottom: 20px;
+    padding: 15px;
+    background: rgba(210, 180, 140, 0.1);
+    border-radius: 8px;
+    border-left: 3px solid #D2B48C;
+}
+
+.degree {
+    font-weight: 600;
+    color: #8B4513;
+    font-size: 1.05em;
+    margin-bottom: 5px;
+}
+
+.school {
+    color: #5D4E37;
+    margin-bottom: 8px;
+}
+
+.thesis {
+    font-style: italic;
+    color: #8B7355;
+    font-size: 0.95em;
+    line-height: 1.5;
+}
+
+.project {
+    margin-bottom: 25px;
+    padding: 20px;
+    background: rgba(139, 69, 19, 0.05);
+    border-radius: 8px;
+    border-left: 3px solid #8B4513;
+}
+
+.project-title {
+    font-weight: 600;
+    color: #8B4513;
+    margin-bottom: 10px;
+    font-size: 1.05em;
+    line-height: 1.4;
+}
+
+.project-tech {
+    font-size: 0.9em;
+    color: #8B7355;
+    margin-top: 10px;
+    font-style: italic;
+    background: rgba(139, 69, 19, 0.1);
+    padding: 8px 12px;
+    border-radius: 5px;
+}
+
+.skills-section {
+    margin-top: 20px;
+}
+
+.skill-category {
+    margin-bottom: 15px;
+    padding: 12px;
+    background: rgba(210, 180, 140, 0.1);
+    border-radius: 6px;
+}
+
+.skill-label {
+    font-weight: 600;
+    color: #8B4513;
+    display: inline-block;
+    width: 140px;
+    vertical-align: top;
+}
+
+.skill-items {
+    display: inline;
+    color: #2c2c2c;
+    line-height: 1.6;
+}
+
 @media (max-width: 600px) {
     .container {
         margin: 20px;
         padding: 40px 25px;
         border-radius: 10px;
+    }
+    
+    .cv-container {
+        max-width: 100%;
     }
     
     header h1 {
@@ -138,7 +311,27 @@ footer {
         font-size: 1.4em;
     }
     
-    .project, .paper {
+    .project, .paper, .position, .education-item {
         padding: 15px;
+    }
+    
+    .position-header {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+    
+    .position-date {
+        margin-top: 5px;
+    }
+    
+    .skill-label {
+        width: 100%;
+        display: block;
+        margin-bottom: 5px;
+    }
+    
+    .nav-link {
+        margin: 0 10px;
+        padding: 8px 15px;
     }
 }
