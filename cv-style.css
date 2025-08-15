@@ -99,11 +99,11 @@
     font-weight: 700;
     margin-top: 40px;
     margin-bottom: 15px;
-    padding-top: 20px;
+    padding-top: 0;
     color: #000;
-    border-top: 2px solid #000;
-    border-bottom: none;
-    padding-bottom: 5px;
+    border-top: none;
+    border-bottom: 2px solid #000;
+    padding-bottom: 8px;
     text-transform: uppercase;
     letter-spacing: 1px;
 }
@@ -196,8 +196,8 @@
 
 [data-theme="dark"] .cv-section h2 {
     color: #ffffff;
-    border-top: 2px solid #ffffff;
-    border-bottom: none;
+    border-top: none;
+    border-bottom: 2px solid #ffffff;
 }
 
 [data-theme="dark"] .cv-section:first-child h2 {
