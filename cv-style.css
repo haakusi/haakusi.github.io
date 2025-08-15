@@ -1,0 +1,130 @@
+/* CV-specific styling to match the original design */
+.cv-container {
+    max-width: 850px;
+    font-size: 11pt;
+}
+
+.education-entry, .experience-entry, .project-entry {
+    margin-bottom: 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+}
+
+.left-content {
+    flex: 1;
+}
+
+.right-date {
+    text-align: right;
+    font-style: italic;
+    color: #666;
+    white-space: nowrap;
+    margin-left: 20px;
+    font-size: 0.9em;
+    min-width: 140px;
+}
+
+.degree-title, .position-title, .project-title {
+    font-weight: 600;
+    margin-bottom: 5px;
+    color: #333;
+    font-size: 1.05em;
+}
+
+.institution {
+    margin-bottom: 5px;
+    color: #666;
+    font-size: 0.95em;
+}
+
+.thesis {
+    font-style: italic;
+    margin-top: 5px;
+    color: #777;
+    font-size: 0.9em;
+}
+
+.research-list {
+    margin-left: 20px;
+    list-style-type: disc;
+}
+
+.research-list li {
+    margin-bottom: 8px;
+    color: #555;
+}
+
+.project-description {
+    margin-top: 8px;
+    text-align: justify;
+    color: #555;
+    line-height: 1.6;
+    font-size: 0.95em;
+}
+
+.tech-stack {
+    margin-top: 8px;
+    font-style: italic;
+    color: #777;
+    font-size: 0.85em;
+}
+
+.skills-line {
+    margin-bottom: 12px;
+    text-align: justify;
+}
+
+.skill-category {
+    font-weight: 600;
+    display: inline;
+    color: #333;
+}
+
+/* Dark mode overrides for CV */
+[data-theme="dark"] .right-date {
+    color: #aaa;
+}
+
+[data-theme="dark"] .degree-title,
+[data-theme="dark"] .position-title,
+[data-theme="dark"] .project-title,
+[data-theme="dark"] .skill-category {
+    color: #e0e0e0;
+}
+
+[data-theme="dark"] .institution {
+    color: #b0b0b0;
+}
+
+[data-theme="dark"] .thesis,
+[data-theme="dark"] .tech-stack {
+    color: #999;
+}
+
+[data-theme="dark"] .research-list li,
+[data-theme="dark"] .project-description {
+    color: #bbb;
+}
+
+/* Responsive design for CV */
+@media (max-width: 600px) {
+    .cv-container {
+        font-size: 10pt;
+    }
+    
+    .education-entry, .experience-entry, .project-entry {
+        flex-direction: column;
+    }
+    
+    .right-date {
+        text-align: left;
+        margin-left: 0;
+        margin-top: 5px;
+        min-width: auto;
+    }
+    
+    .project-description {
+        text-align: left;
+    }
+}

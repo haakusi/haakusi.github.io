@@ -5,147 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Sewon Park - CV</title>
     <link rel="stylesheet" type="text/css" href="style.css">
-    <style>
-        .cv-container {
-            max-width: 850px !important;
-        }
-        
-        .cv-header {
-            text-align: center;
-            margin-bottom: 30px;
-        }
-        
-        .cv-subtitle {
-            font-size: 1.1em;
-            color: #666;
-            margin-bottom: 5px;
-            font-weight: 300;
-        }
-        
-        .education-entry, .experience-entry, .project-entry {
-            margin-bottom: 20px;
-            display: flex;
-            justify-content: space-between;
-        }
-        
-        .left-content {
-            flex: 1;
-        }
-        
-        .right-date {
-            text-align: right;
-            font-style: italic;
-            color: #888;
-            white-space: nowrap;
-            margin-left: 20px;
-            font-size: 0.95em;
-        }
-        
-        .degree-title, .position-title, .project-title {
-            font-weight: 500;
-            margin-bottom: 5px;
-            color: #333;
-            font-size: 1.05em;
-        }
-        
-        .institution {
-            margin-bottom: 5px;
-            color: #666;
-        }
-        
-        .thesis {
-            font-style: italic;
-            margin-top: 5px;
-            margin-left: 20px;
-            color: #888;
-            font-size: 0.95em;
-        }
-        
-        .research-list {
-            margin-left: 20px;
-            list-style-type: disc;
-        }
-        
-        .project-description {
-            margin-top: 8px;
-            text-align: justify;
-            margin-left: 20px;
-            color: #666;
-            line-height: 1.8;
-        }
-        
-        .tech-stack {
-            margin-top: 8px;
-            font-style: italic;
-            color: #999;
-            margin-left: 20px;
-            font-size: 0.9em;
-        }
-        
-        .cv-section ul {
-            margin-left: 20px;
-            margin-top: 8px;
-            margin-bottom: 8px;
-        }
-        
-        .cv-section li {
-            margin-bottom: 5px;
-            text-align: justify;
-            color: #666;
-        }
-        
-        .skills-line {
-            margin-bottom: 10px;
-            text-align: justify;
-            color: #666;
-        }
-        
-        .skill-category {
-            font-weight: 500;
-            display: inline;
-            color: #333;
-        }
-        
-        /* Dark mode overrides */
-        [data-theme="dark"] .cv-subtitle {
-            color: #b0b0b0;
-        }
-        
-        [data-theme="dark"] .right-date {
-            color: #808080;
-        }
-        
-        [data-theme="dark"] .degree-title, 
-        [data-theme="dark"] .position-title, 
-        [data-theme="dark"] .project-title {
-            color: #e0e0e0;
-        }
-        
-        [data-theme="dark"] .institution {
-            color: #b0b0b0;
-        }
-        
-        [data-theme="dark"] .thesis {
-            color: #808080;
-        }
-        
-        [data-theme="dark"] .project-description,
-        [data-theme="dark"] .cv-section li {
-            color: #a0a0a0;
-        }
-        
-        [data-theme="dark"] .tech-stack {
-            color: #808080;
-        }
-        
-        [data-theme="dark"] .skills-line {
-            color: #a0a0a0;
-        }
-        
-        [data-theme="dark"] .skill-category {
-            color: #e0e0e0;
-        }
-    </style>
+    <link rel="stylesheet" type="text/css" href="cv-style.css">
 </head>
 <body>
     <button class="theme-toggle" onclick="toggleTheme()" aria-label="Toggle dark mode">🌙</button>
@@ -153,7 +13,8 @@
     <div class="container cv-container">
         <header>
             <h1>Sewon Park</h1>
-            <p class="subtitle">Senior Research Engineer | AI & Full-Stack Development</p>
+            <p class="subtitle">Senior Research Engineer</p>
+            <p class="subtitle">Suprema Inc.</p>
             <div class="social-links">
                 <a href="mailto:haakusi@gmail.com" aria-label="Email">
                     <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
@@ -184,12 +45,8 @@
             <a href="cv.html" class="nav-link active">CV</a>
         </nav>
 
-        <div class="cv-header">
-            <div class="cv-subtitle">Suprema Inc.</div>
-        </div>
-
         <section class="cv-section">
-            <h2>EDUCATION</h2>
+            <h2>Education</h2>
             
             <div class="education-entry">
                 <div class="left-content">
@@ -210,7 +67,7 @@
         </section>
 
         <section class="cv-section">
-            <h2>RESEARCH INTERESTS</h2>
+            <h2>Research Interests</h2>
             <ul class="research-list">
                 <li>Large Language Models (LLM) and Multi-Agent Systems</li>
                 <li>Artificial Intelligence and Data Science</li>
@@ -221,7 +78,7 @@
         </section>
 
         <section class="cv-section">
-            <h2>RESEARCH EXPERIENCE</h2>
+            <h2>Research Experience</h2>
             
             <div class="experience-entry">
                 <div class="left-content">
@@ -263,7 +120,7 @@
         </section>
 
         <section class="cv-section">
-            <h2>SELECTED PROJECTS</h2>
+            <h2>Selected Projects</h2>
             
             <div class="project-entry">
                 <div class="left-content">
@@ -345,7 +202,7 @@
         </section>
 
         <section class="cv-section">
-            <h2>PUBLICATIONS & PRESENTATIONS</h2>
+            <h2>Publications & Presentations</h2>
             <ul>
                 <li>HBrain, "Development of AI traffic safety element technology and integrated system", The Korean Society of 
                 Intelligent Transport Systems, Jeju, Korea (Oct. 2021) - Oral Presentation</li>
@@ -353,7 +210,7 @@
         </section>
 
         <section class="cv-section">
-            <h2>TECHNICAL SKILLS</h2>
+            <h2>Technical Skills</h2>
             
             <div class="skills-line">
                 <span class="skill-category">Programming Languages:</span> Python, Java, JavaScript, TypeScript, C++, Kotlin, SQL
@@ -385,7 +242,7 @@
         </section>
 
         <section class="cv-section">
-            <h2>LANGUAGES</h2>
+            <h2>Languages</h2>
             <ul>
                 <li>Korean: Native</li>
                 <li>English: Intermediate (TOEIC Speaking 130)</li>
@@ -393,7 +250,7 @@
         </section>
 
         <section class="cv-section">
-            <h2>MILITARY SERVICE</h2>
+            <h2>Military Service</h2>
             <p>Republic of Korea Army, Completed mandatory service (Jun. 2012 - Mar. 2014)</p>
         </section>
 
