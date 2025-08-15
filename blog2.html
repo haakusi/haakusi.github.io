@@ -50,15 +50,55 @@
             <p class="blog-date">August 2025</p>
             
             <div class="blog-content">
-                <p>The fundamental difference between Quantum Neural Networks (QNN) and classical machine learning lies in their computational space dimensionality and information processing paradigms. Classical machine learning operates within an n-dimensional Euclidean space, where feature vectors are processed through linear transformations and non-linear activation functions. In contrast, QNNs leverage quantum mechanical principles to operate in a 2ⁿ-dimensional Hilbert space, potentially offering exponential advantages in representing complex data relationships and patterns.</p>
+                <h3>The Quantum Advantage in Financial Sentiment Analysis</h3>
+                <p>Recent developments in quantum machine learning reveal compelling applications in financial market prediction, particularly for stablecoin depegging events. While traditional sentiment analysis relies on classical models like VADER or FinBERT, quantum neural networks (QNNs) demonstrate superior pattern recognition capabilities in high-dimensional sentiment spaces, offering new perspectives on market anomaly detection.</p>
                 
-                <p>Quantum neural networks utilize quantum gates as fundamental processing units, where qubits can exist in superposition states, enabling parallel computation across multiple probability amplitudes simultaneously. This quantum parallelism allows QNNs to explore vastly more solution spaces compared to classical networks, particularly beneficial for optimization problems and pattern recognition tasks involving high-dimensional data. The entanglement property of qubits further enables QNNs to capture correlations between distant features that might be computationally expensive for classical methods.</p>
+                <h3>NISQ-Era Reality Check</h3>
+                <p>Current quantum implementations operate within Noisy Intermediate-Scale Quantum (NISQ) constraints, limiting practical applications to specialized use cases. Our preliminary experiments on IBM Quantum's ibmq_lima and ibmq_belem devices show that while quantum circuits achieve competitive sentiment classification accuracy, hardware noise introduces performance degradation compared to ideal simulators. However, quantum sentiment features maintain statistical significance even in noisy environments.</p>
                 
-                <p>Performance comparisons reveal intriguing trade-offs between quantum and classical approaches. While classical deep learning excels in well-established domains with abundant training data and proven architectures, QNNs show promise in scenarios involving limited data samples, complex feature interactions, and problems requiring exploration of exponentially large search spaces. Current research demonstrates that QNNs can achieve competitive results with significantly fewer parameters than their classical counterparts, suggesting improved sample efficiency and generalization capabilities.</p>
+                <h3>Multi-Source Sentiment Integration</h3>
+                <p>Financial markets exhibit complex sentiment dynamics across multiple information channels. News articles provide institutional perspectives with regulatory implications, while social platforms like Reddit and Twitter capture real-time community sentiment and panic signals. The challenge lies in effectively combining these heterogeneous sentiment sources to predict rare but critical market events like stablecoin depegging.</p>
                 
-                <p>Hardware constraints currently limit practical QNN implementations, as quantum processors suffer from decoherence, noise, and limited qubit connectivity. Classical machine learning benefits from decades of optimized hardware acceleration through GPUs and specialized chips, while QNNs must contend with the current limitations of NISQ (Noisy Intermediate-Scale Quantum) devices. However, advances in quantum error correction and fault-tolerant quantum computing promise to unlock the full potential of quantum machine learning in the coming decades.</p>
+                <h3>Temporal Sentiment Dynamics</h3>
+                <p>Traditional sentiment models treat each text independently, missing crucial temporal patterns that precede market anomalies. Advanced approaches incorporate sentiment volatility (first and second derivatives), keyword entropy measures, and temporal attention weighting to capture the evolution of market sentiment over time. These features prove particularly valuable for early warning systems in cryptocurrency markets.</p>
                 
-                <p>The hybrid quantum-classical approach emerges as the most practical near-term solution, combining the strengths of both paradigms. In such architectures, quantum circuits handle specific computational bottlenecks or feature preprocessing tasks, while classical networks manage the overall learning process and output generation. This synergistic approach allows researchers to exploit quantum advantages while maintaining the reliability and scalability of classical systems, representing the most promising path forward for quantum-enhanced machine learning applications.</p>
+                <h3>Hybrid Architecture Benefits</h3>
+                <p>The most promising approach combines quantum sentiment feature extraction with classical prediction models. QNNs excel at capturing subtle sentiment patterns in sparse, high-dimensional text spaces, while robust classical algorithms like XGBoost handle the final prediction task. This hybrid methodology leverages quantum advantages where they matter most while maintaining practical reliability for real-world deployment.</p>
+                
+                <h3>Looking Forward</h3>
+                <p>As quantum hardware continues advancing toward fault-tolerant systems, we anticipate broader applications of quantum machine learning in financial risk assessment. Current research focuses on optimizing quantum circuits for sentiment analysis tasks and developing noise-resilient algorithms suitable for near-term quantum devices. The intersection of quantum computing and quantitative finance represents a rapidly evolving frontier with significant practical implications for market stability and risk management.</p>
+                
+                <h3>References</h3>
+                <div class="references-table">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>No</th>
+                                <th>Paper Title</th>
+                                <th>Year</th>
+                                <th>Keywords / Summary</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr><td>1</td><td>Quantum Self‑Attention Neural Networks for Text Classification (QSANN)</td><td>2022</td><td>QNN + Self-Attention / NLP</td></tr>
+                            <tr><td>2</td><td>QText: Quantum circuits for text classification</td><td>2022</td><td>Feature map → QNN sentiment classification</td></tr>
+                            <tr><td>3</td><td>A Multivariate Hawkes Process Model – Connor Oxenhorn</td><td>2022</td><td>BTC/USDT mutual stimulation relationship, depegging prediction</td></tr>
+                            <tr><td>4</td><td>Predicting Bitcoin Trends Through Machine Learning</td><td>2023 ***</td><td>Sentiment index + technical indicators → Bitcoin trend prediction</td></tr>
+                            <tr><td>5</td><td>Hybrid Quantum‑Classical ML for Sentiment Analysis</td><td>2023.10</td><td>VQC, Quantum Kernel + sentiment classification</td></tr>
+                            <tr><td>6</td><td>Quantum NLP using lambeq</td><td>2023.05</td><td>lambeq-based QNLP sentiment classification</td></tr>
+                            <tr><td>7</td><td>Quantum Kernel Methods for NLP Tasks</td><td>2023</td><td>Qiskit kernel → NLP classification</td></tr>
+                            <tr><td>8</td><td>QNLP for Finance – Stein et al.</td><td>2023</td><td>DisCoCat, QLSTM → sentiment analysis</td></tr>
+                            <tr><td>9</td><td>Quantum‑Inspired Interpretable Deep Learning</td><td>2024</td><td>Complex QNN + LSTM + CNN</td></tr>
+                            <tr><td>10</td><td>Applications of QML for Quantitative Finance</td><td>2024</td><td>QML introduction, comprehensive financial applications</td></tr>
+                            <tr><td>11</td><td>QFinance: Quantum NLP for Crypto Trading</td><td>2024</td><td>QNN sentiment index → trading strategy</td></tr>
+                            <tr><td>12</td><td>Deep-learning-based Stock Market Prediction...</td><td>2024 ***</td><td>FinBERT sentiment + technical indicators + Bi-LSTM</td></tr>
+                            <tr><td>13</td><td>Exploring Hype in the Metaverse (Reddit)</td><td>2024 ***</td><td>Sentiment time series + topic modeling + stock reaction analysis</td></tr>
+                            <tr><td>14</td><td>Stablecoin Depegging Risk Prediction – Earl Lee et al.</td><td>2025 scheduled</td><td>XGBoost + sentiment index + depegging prediction</td></tr>
+                            <tr><td>15</td><td>Contextual QNN for Stock Price Prediction</td><td>2025 scheduled</td><td>QNN-based stock price prediction</td></tr>
+                            <tr><td>16</td><td>Quantum Graph Transformer for NLP Sentiment Classification</td><td>2025 scheduled</td><td>Quantum Transformer + sentiment classification</td></tr>
+                        </tbody>
+                    </table>
+                </div>
             </div>
             
             <div class="blog-navigation">
