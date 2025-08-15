@@ -56,15 +56,11 @@ header h1 {
     text-align: center;
     margin-bottom: 60px;
     padding: 0;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    gap: 30px;
 }
 
 .nav-link {
     display: inline-block;
-    margin: 0;
+    margin: 0 30px;
     padding: 0;
     color: #999;
     text-decoration: none;
@@ -99,17 +95,24 @@ header h1 {
 }
 
 .theme-toggle {
-    background: none;
+    position: fixed;
+    top: 30px;
+    right: 30px;
+    background: rgba(255, 255, 255, 0.9);
     border: none;
-    font-size: 1.2em;
+    font-size: 1.3em;
     cursor: pointer;
-    padding: 5px;
+    padding: 12px;
     border-radius: 50%;
-    transition: transform 0.3s ease;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+    backdrop-filter: blur(10px);
+    z-index: 1000;
 }
 
 .theme-toggle:hover {
     transform: scale(1.1);
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15);
 }
 
 section {
@@ -342,8 +345,11 @@ footer {
         margin-bottom: 5px;
     }
     
-    .navigation {
-        gap: 20px;
+    .theme-toggle {
+        top: 20px;
+        right: 20px;
+        padding: 10px;
+        font-size: 1.1em;
     }
 }
 
@@ -447,4 +453,14 @@ footer {
 
 [data-theme="dark"] .paper {
     border-bottom: 1px solid #404040;
+}
+
+[data-theme="dark"] .theme-toggle {
+    background: rgba(30, 30, 30, 0.9);
+    color: #e0e0e0;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+}
+
+[data-theme="dark"] .theme-toggle:hover {
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.4);
 }
