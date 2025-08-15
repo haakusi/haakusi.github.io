@@ -830,9 +830,9 @@ footer {
 }
 
 [data-theme="dark"] .references-list ul li a {
-    color: #D2B48C;
+    color: #F0E68C;
 }
 
 [data-theme="dark"] .references-list ul li a:hover {
-    color: #F5DEB3;
+    color: #FFFF99;
 }
