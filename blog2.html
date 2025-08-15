@@ -3,7 +3,7 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Sewon Park - Blog</title>
+    <title>Quantum Neural Networks vs Classical Machine Learning - Sewon Park</title>
     <link rel="stylesheet" type="text/css" href="style.css">
 </head>
 <body>
@@ -40,23 +40,30 @@
 
         <nav class="navigation">
             <a href="index.html" class="nav-link">Home</a>
-            <a href="blog.html" class="nav-link active">Blog</a>
+            <a href="blog.html" class="nav-link">Blog</a>
             <a href="cv.html" class="nav-link">CV</a>
         </nav>
 
-        <section class="blog">
-            <div class="blog-post">
-                <h3><a href="blog2.html">Quantum Neural Networks vs Classical Machine Learning</a></h3>
-                <p class="blog-date">August 2025</p>
-                <p class="blog-excerpt">Comparing computational paradigms between QNNs operating in 2ⁿ-dimensional Hilbert space and classical ML in n-dimensional Euclidean space. Analysis of quantum advantages, hardware constraints, and hybrid approaches...</p>
+        <article class="blog-post-full">
+            <h1>Quantum Neural Networks vs Classical Machine Learning</h1>
+            <p class="blog-date">August 2025</p>
+            
+            <div class="blog-content">
+                <p>The fundamental difference between Quantum Neural Networks (QNN) and classical machine learning lies in their computational space dimensionality and information processing paradigms. Classical machine learning operates within an n-dimensional Euclidean space, where feature vectors are processed through linear transformations and non-linear activation functions. In contrast, QNNs leverage quantum mechanical principles to operate in a 2ⁿ-dimensional Hilbert space, potentially offering exponential advantages in representing complex data relationships and patterns.</p>
+                
+                <p>Quantum neural networks utilize quantum gates as fundamental processing units, where qubits can exist in superposition states, enabling parallel computation across multiple probability amplitudes simultaneously. This quantum parallelism allows QNNs to explore vastly more solution spaces compared to classical networks, particularly beneficial for optimization problems and pattern recognition tasks involving high-dimensional data. The entanglement property of qubits further enables QNNs to capture correlations between distant features that might be computationally expensive for classical methods.</p>
+                
+                <p>Performance comparisons reveal intriguing trade-offs between quantum and classical approaches. While classical deep learning excels in well-established domains with abundant training data and proven architectures, QNNs show promise in scenarios involving limited data samples, complex feature interactions, and problems requiring exploration of exponentially large search spaces. Current research demonstrates that QNNs can achieve competitive results with significantly fewer parameters than their classical counterparts, suggesting improved sample efficiency and generalization capabilities.</p>
+                
+                <p>Hardware constraints currently limit practical QNN implementations, as quantum processors suffer from decoherence, noise, and limited qubit connectivity. Classical machine learning benefits from decades of optimized hardware acceleration through GPUs and specialized chips, while QNNs must contend with the current limitations of NISQ (Noisy Intermediate-Scale Quantum) devices. However, advances in quantum error correction and fault-tolerant quantum computing promise to unlock the full potential of quantum machine learning in the coming decades.</p>
+                
+                <p>The hybrid quantum-classical approach emerges as the most practical near-term solution, combining the strengths of both paradigms. In such architectures, quantum circuits handle specific computational bottlenecks or feature preprocessing tasks, while classical networks manage the overall learning process and output generation. This synergistic approach allows researchers to exploit quantum advantages while maintaining the reliability and scalability of classical systems, representing the most promising path forward for quantum-enhanced machine learning applications.</p>
             </div>
             
-            <div class="blog-post">
-                <h3><a href="blog1.html">AI Agent System</a></h3>
-                <p class="blog-date">August 2025</p>
-                <p class="blog-excerpt">Exploring the architecture and implementation of multi-agent AI systems in enterprise environments. Discussion on MCP protocols, agent orchestration, and scalable AI service design...</p>
+            <div class="blog-navigation">
+                <a href="blog.html" class="back-to-blog">← Back to Blog</a>
             </div>
-        </section>
+        </article>
 
         <footer>
             <p>Last updated: August 2025</p>
