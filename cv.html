@@ -311,7 +311,7 @@
 
         // Load saved theme and language on page load
         document.addEventListener('DOMContentLoaded', function() {
-            const savedTheme = localStorage.getItem('theme') || 'light';
+            const savedTheme = localStorage.getItem('theme') || 'dark';
             document.documentElement.setAttribute('data-theme', savedTheme);
             
             const themeButton = document.querySelector('.theme-toggle');
