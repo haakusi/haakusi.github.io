@@ -96,23 +96,37 @@ header h1 {
 
 .theme-toggle {
     position: fixed;
-    top: 30px;
-    right: 30px;
-    background: rgba(255, 255, 255, 0.9);
-    border: none;
-    font-size: 1.3em;
+    top: 25px;
+    right: 25px;
+    background: rgba(255, 255, 255, 0.95);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    font-size: 1.4em;
     cursor: pointer;
-    padding: 12px;
+    padding: 15px;
     border-radius: 50%;
-    transition: all 0.3s ease;
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
-    backdrop-filter: blur(10px);
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    box-shadow: 
+        0 8px 32px rgba(0, 0, 0, 0.1),
+        0 2px 8px rgba(0, 0, 0, 0.05);
+    backdrop-filter: blur(20px);
     z-index: 1000;
+    width: 55px;
+    height: 55px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
 .theme-toggle:hover {
-    transform: scale(1.1);
-    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15);
+    transform: scale(1.05) translateY(-2px);
+    box-shadow: 
+        0 12px 40px rgba(0, 0, 0, 0.15),
+        0 4px 12px rgba(0, 0, 0, 0.1);
+    background: rgba(255, 255, 255, 1);
+}
+
+.theme-toggle:active {
+    transform: scale(0.95);
 }
 
 section {
@@ -348,8 +362,10 @@ footer {
     .theme-toggle {
         top: 20px;
         right: 20px;
-        padding: 10px;
-        font-size: 1.1em;
+        width: 50px;
+        height: 50px;
+        padding: 12px;
+        font-size: 1.2em;
     }
 }
 
@@ -456,11 +472,18 @@ footer {
 }
 
 [data-theme="dark"] .theme-toggle {
-    background: rgba(30, 30, 30, 0.9);
+    background: rgba(25, 25, 25, 0.95);
+    border: 1px solid rgba(255, 255, 255, 0.1);
     color: #e0e0e0;
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+    box-shadow: 
+        0 8px 32px rgba(0, 0, 0, 0.4),
+        0 2px 8px rgba(0, 0, 0, 0.2);
 }
 
 [data-theme="dark"] .theme-toggle:hover {
-    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.4);
+    background: rgba(35, 35, 35, 1);
+    box-shadow: 
+        0 12px 40px rgba(0, 0, 0, 0.5),
+        0 4px 12px rgba(0, 0, 0, 0.3);
+    border: 1px solid rgba(255, 255, 255, 0.2);
 }
