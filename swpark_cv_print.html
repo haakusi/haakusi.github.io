@@ -1,0 +1,389 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sewon Park - CV</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Times New Roman', 'Georgia', serif;
+            line-height: 1.5;
+            color: #000;
+            max-width: 850px;
+            margin: 0 auto;
+            padding: 30px 40px;
+            background: white;
+            font-size: 11pt;
+        }
+        
+        .header {
+            text-align: center;
+            margin-bottom: 30px;
+            padding-bottom: 20px;
+            border-bottom: 2px solid #000;
+        }
+        
+        h1 {
+            font-size: 24pt;
+            font-weight: bold;
+            margin-bottom: 8px;
+            color: #000;
+            letter-spacing: 1px;
+        }
+        
+        .subtitle {
+            font-size: 12pt;
+            color: #000;
+            margin-bottom: 3px;
+            font-weight: 500;
+        }
+        
+        h2 {
+            font-size: 14pt;
+            font-weight: bold;
+            margin-top: 25px;
+            margin-bottom: 10px;
+            padding-top: 15px;
+            color: #000;
+            border-top: 2px solid #000;
+            border-bottom: 2px solid #000;
+            padding-bottom: 3px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+        
+        .first-section h2 {
+            border-top: none;
+            margin-top: 20px;
+            padding-top: 0;
+        }
+        
+        h3 {
+            font-size: 11pt;
+            font-weight: bold;
+            margin-top: 15px;
+            margin-bottom: 8px;
+            color: #000;
+        }
+        
+        .education-entry, .experience-entry, .project-entry {
+            margin-bottom: 15px;
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+        }
+        
+        .left-content {
+            flex: 1;
+        }
+        
+        .right-date {
+            text-align: right;
+            font-style: italic;
+            color: #000;
+            white-space: nowrap;
+            margin-left: 20px;
+            font-size: 10pt;
+            min-width: 120px;
+        }
+        
+        .degree-title, .position-title, .project-title {
+            font-weight: bold;
+            margin-bottom: 3px;
+            color: #000;
+            font-size: 11pt;
+        }
+        
+        .institution {
+            margin-bottom: 3px;
+            color: #000;
+            font-size: 10pt;
+        }
+        
+        .thesis {
+            font-style: italic;
+            margin-top: 3px;
+            color: #000;
+            font-size: 10pt;
+            line-height: 1.4;
+        }
+        
+        ul {
+            margin-left: 20px;
+            margin-top: 5px;
+            margin-bottom: 5px;
+        }
+        
+        li {
+            margin-bottom: 3px;
+            text-align: justify;
+            color: #000;
+            font-size: 10pt;
+            line-height: 1.4;
+        }
+        
+        .skills-line {
+            margin-bottom: 8px;
+            text-align: justify;
+            color: #000;
+            font-size: 10pt;
+            line-height: 1.4;
+        }
+        
+        .skill-category {
+            font-weight: bold;
+            display: inline;
+            color: #000;
+        }
+        
+        .research-interests {
+            margin-top: 10px;
+        }
+        
+        .research-list {
+            margin-left: 20px;
+            list-style-type: disc;
+        }
+        
+        .project-description {
+            margin-top: 5px;
+            text-align: justify;
+            color: #000;
+            font-size: 10pt;
+            line-height: 1.4;
+        }
+        
+        .tech-stack {
+            margin-top: 3px;
+            font-style: italic;
+            color: #000;
+            font-size: 9pt;
+            line-height: 1.3;
+        }
+        
+        @media print {
+            body {
+                padding: 20px;
+                font-size: 10pt;
+            }
+            
+            h2 {
+                page-break-after: avoid;
+            }
+            
+            .education-entry, .experience-entry, .project-entry {
+                page-break-inside: avoid;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <h1>Sewon Park</h1>
+        <div class="subtitle">Senior Research Engineer</div>
+        <div class="subtitle">Suprema Inc.</div>
+    </div>
+
+    <div class="first-section">
+        <h2>Education</h2>
+        
+        <div class="education-entry">
+            <div class="left-content">
+                <div class="degree-title">M.S. in Applied Data Science</div>
+                <div class="institution">Sungkyunkwan University, Suwon, Korea</div>
+                <div class="thesis">Thesis: "Prediction of Blue House National Petition Response Targets Considering Data Imbalance"</div>
+            </div>
+            <div class="right-date">Sep. 2019 - Aug. 2021</div>
+        </div>
+        
+        <div class="education-entry">
+            <div class="left-content">
+                <div class="degree-title">B.S. in Maritime Police System</div>
+                <div class="institution">Gyeongsang National University, Jinju, Korea</div>
+            </div>
+            <div class="right-date">Mar. 2010 - Feb. 2017</div>
+        </div>
+    </div>
+
+    <h2>Research Interests</h2>
+    <ul class="research-list">
+        <li>Large Language Models (LLM) and Multi-Agent Systems</li>
+        <li>Artificial Intelligence and Data Science</li>
+        <li>Quantum Machine Learning (QML) and Quantum Neural Networks (QNN)</li>
+        <li>Social Network Analysis and Sentiment Propagation Dynamics</li>
+        <li>Distributed Systems and Microservices Architecture</li>
+    </ul>
+
+    <h2>Research Experience</h2>
+    
+    <div class="experience-entry">
+        <div class="left-content">
+            <div class="position-title">Senior Research Engineer</div>
+            <div class="institution">BSS Development Team, Suprema Inc., Korea</div>
+            <ul>
+                <li>Leading AI agent development and backend architecture for enterprise access control solutions</li>
+                <li>Specializing in NLP, deep learning, prompt engineering, and MCP-based multi-client architecture</li>
+                <li>Managing team of 3 interns for LLM-based automated testing solutions</li>
+            </ul>
+        </div>
+        <div class="right-date">Feb. 2021 - Present</div>
+    </div>
+    
+    <div class="experience-entry">
+        <div class="left-content">
+            <div class="position-title">Research Engineer</div>
+            <div class="institution">R&D Department, HBrain Inc., Korea</div>
+            <ul>
+                <li>Developed Smart AI traffic control services using radar and camera sensor fusion</li>
+                <li>Participated in government projects (Ministry of Interior, Ministry of Land)</li>
+            </ul>
+        </div>
+        <div class="right-date">Apr. 2020 - Jan. 2021</div>
+    </div>
+
+    <div class="experience-entry">
+        <div class="left-content">
+            <div class="position-title">Software Developer</div>
+            <div class="institution">Development Team, AtData Inc., Korea</div>
+            <ul>
+                <li>Contributed to SK Telecom TANGO 5G Project for web development and system maintenance</li>
+                <li>Developed IP configuration and transmission network management web applications</li>
+                <li>Implemented raw data analysis processing and Jenkins-based automated deployment</li>
+            </ul>
+        </div>
+        <div class="right-date">Oct. 2018 - Feb. 2020</div>
+    </div>
+
+    <h2>Selected Projects</h2>
+    
+    <div class="project-entry">
+        <div class="left-content">
+            <div class="project-title">Quantum ML-based Stablecoin Depegging Prediction Research (Personal Research)</div>
+            <div class="project-description">
+                Investigating whether sentiment analysis performed in quantum ML's 2ⁿ-dimensional Hilbert space 
+                outperforms classical ML's n-dimensional Euclidean space for stablecoin depegging prediction. 
+                Collected 7M+ Reddit posts and 2,246 news articles covering major events (LUNA collapse, FTX crisis, SVB crisis). 
+                Conducting comparative analysis across GPU vs QPU simulator vs NISQ hardware, implementing QNN for sentiment 
+                analysis and comparing with traditional models (VADER, XGBoost).
+            </div>
+            <div class="tech-stack">Technologies: Python, Qiskit, PennyLane, QNN, QSVM, Reddit API, Network Analysis, VADER, XGBoost</div>
+        </div>
+        <div class="right-date">Jul. 2025 - Ongoing</div>
+    </div>
+    
+    <div class="project-entry">
+        <div class="left-content">
+            <div class="project-title">Multi-Agent AI System Development with MCP Architecture (Suprema)</div>
+            <div class="project-description">
+                Designed and implemented comprehensive AI agent ecosystem including BioStar Copilot (product assistant) 
+                and Solis (internal support agent). Built MCP-based architecture supporting 80+ API tools with multi-client 
+                integration (BioStar X UI, Claude Desktop, WhatsApp Mobile). Currently transitioning to full multi-agent 
+                orchestration system for scalable AI services using function-calling and tool-based orchestration.
+            </div>
+            <div class="tech-stack">Technologies: Python, LLM, LangGraph, MCP, React, NLP, RAG, Prompt Engineering, Multi-Agent Architecture</div>
+        </div>
+        <div class="right-date">Feb. 2025 - Ongoing</div>
+    </div>
+    
+    <div class="project-entry">
+        <div class="left-content">
+            <div class="project-title">LLM-based Automated Unit Test Generation System (Suprema)</div>
+            <div class="project-description">
+                Led team of 3 interns to design LLM-based agent for automated backend/frontend unit test generation. 
+                Architected GitLab PR integration with MCP server and developed MCP client similar to Claude Desktop. 
+                Successfully deployed to internal development teams.
+            </div>
+            <div class="tech-stack">Technologies: Python, Java, LLM, LangGraph, Agentic RAG, GitLab CI/CD, Jacoco</div>
+        </div>
+        <div class="right-date">Feb. 2025 - Jun. 2025</div>
+    </div>
+    
+    <div class="project-entry">
+        <div class="left-content">
+            <div class="project-title">Spring Cloud MSA Architecture Migration (Suprema)</div>
+            <div class="project-description">
+                Transformed monolithic application to microservices architecture using Spring Cloud Gateway, 
+                implementing Circuit Breaker, Rate Limiter, and dynamic routing. Upgraded to SpringBoot 3.4.4 and JDK 21.
+            </div>
+            <div class="tech-stack">Technologies: Java, Spring Cloud, MSA, Kubernetes</div>
+        </div>
+        <div class="right-date">May 2024 - Oct. 2024</div>
+    </div>
+    
+    <div class="project-entry">
+        <div class="left-content">
+            <div class="project-title">Distributed Event Processing System (Suprema)</div>
+            <div class="project-description">
+                Enhanced real-time event log service performance using Apache Ignite and Zookeeper for distributed 
+                processing. Achieved significant performance improvements in handling concurrent device connections.
+            </div>
+            <div class="tech-stack">Technologies: Java, Apache Ignite, Zookeeper, gRPC, RabbitMQ</div>
+        </div>
+        <div class="right-date">Jan. 2023 - Apr. 2023</div>
+    </div>
+    
+    <div class="project-entry">
+        <div class="left-content">
+            <div class="project-title">AWS Cloud Integration for Remote Enrollment (Suprema)</div>
+            <div class="project-description">
+                Implemented serverless architecture for remote user registration using AWS Lambda and S3, 
+                enabling automated distribution and reducing operational costs.
+            </div>
+            <div class="tech-stack">Technologies: AWS Lambda, S3, REST API, Python</div>
+        </div>
+        <div class="right-date">Jul. 2021 - Oct. 2021</div>
+    </div>
+
+    <h2>Publications & Presentations</h2>
+    <ul>
+        <li>HBrain, "Development of AI traffic safety element technology and integrated system", The Korean Society of 
+        Intelligent Transport Systems, Jeju, Korea (Oct. 2021) - Oral Presentation</li>
+    </ul>
+
+    <h2>Technical Skills</h2>
+    
+    <div class="skills-line">
+        <span class="skill-category">Programming Languages:</span> Python, Java, JavaScript, TypeScript, C++, Kotlin, SQL
+    </div>
+    
+    <div class="skills-line">
+        <span class="skill-category">AI & Machine Learning:</span> LLM, NLP, Deep Learning, PyTorch, TensorFlow, Keras, RAG, Agentic RAG, LangGraph, MCP, Prompt Engineering, QML, QNN, QSVM
+    </div>
+    
+    <div class="skills-line">
+        <span class="skill-category">Frameworks & Tools:</span> Spring Framework, Spring Cloud, React, Angular, Node.js, FastAPI, Django
+    </div>
+    
+    <div class="skills-line">
+        <span class="skill-category">Databases & Infrastructure:</span> MySQL, MSSQL, MariaDB, PostgreSQL, Redis
+    </div>
+    
+    <div class="skills-line">
+        <span class="skill-category">Data Analysis & Research:</span> Network Analysis, Sentiment Analysis, Time Series Analysis, Statistical Modeling, Qiskit, PennyLane, VADER
+    </div>
+    
+    <div class="skills-line">
+        <span class="skill-category">Cloud & DevOps:</span> AWS (Lambda, S3, EC2), Docker, Kubernetes, Jenkins, GitLab CI/CD
+    </div>
+    
+    <div class="skills-line">
+        <span class="skill-category">Architecture & Methodologies:</span> Microservices (MSA), Agent Orchestration, Distributed Computing, RESTful API, gRPC, Test Automation, Agile/Scrum
+    </div>
+
+    <h2>Languages</h2>
+    <ul>
+        <li>Korean: Native</li>
+        <li>English: Intermediate (TOEIC Speaking 130)</li>
+    </ul>
+
+    <h2>Military Service</h2>
+    <p>Republic of Korea Army, Completed mandatory service (Jun. 2012 - Mar. 2014)</p>
+
+</body>
+</html>

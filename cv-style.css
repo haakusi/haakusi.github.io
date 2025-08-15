@@ -15,6 +15,33 @@
     font-weight: 300 !important;
 }
 
+/* PDF Download Button */
+.pdf-download-btn {
+    position: fixed;
+    top: 25px;
+    right: 90px;
+    background: rgba(255, 255, 255, 0.95);
+    border: 1px solid rgba(0, 0, 0, 0.2);
+    color: #333;
+    text-decoration: none;
+    font-size: 0.9em;
+    cursor: pointer;
+    padding: 8px 12px;
+    border-radius: 20px;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+    backdrop-filter: blur(10px);
+    z-index: 999;
+    font-weight: 500;
+}
+
+.pdf-download-btn:hover {
+    background: rgba(255, 255, 255, 1);
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15);
+    color: #000;
+}
+
 .cv-header {
     text-align: center;
     margin-bottom: 40px;
@@ -74,7 +101,7 @@
     padding-top: 20px;
     color: #000;
     border-top: 2px solid #000;
-    border-bottom: 2px solid #000;
+    border-bottom: none;
     padding-bottom: 5px;
     text-transform: uppercase;
     letter-spacing: 1px;
@@ -169,11 +196,22 @@
 [data-theme="dark"] .cv-section h2 {
     color: #ffffff;
     border-top: 2px solid #ffffff;
-    border-bottom: 2px solid #ffffff;
+    border-bottom: none;
 }
 
 [data-theme="dark"] .cv-section:first-child h2 {
     border-top: none;
+}
+
+[data-theme="dark"] .pdf-download-btn {
+    background: rgba(30, 30, 30, 0.95);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    color: #e0e0e0;
+}
+
+[data-theme="dark"] .pdf-download-btn:hover {
+    background: rgba(40, 40, 40, 1);
+    color: #ffffff;
 }
 
 [data-theme="dark"] .right-date {
