@@ -1,7 +1,32 @@
 /* CV-specific styling to match the original design */
 .cv-container {
-    max-width: 850px;
     font-size: 11pt;
+}
+
+.cv-header {
+    text-align: center;
+    margin-bottom: 40px;
+    padding-bottom: 20px;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+.cv-name {
+    font-size: 2em;
+    font-weight: bold;
+    margin-bottom: 10px;
+    color: #333;
+}
+
+.cv-title {
+    font-size: 1.1em;
+    color: #666;
+    margin-bottom: 5px;
+}
+
+.cv-company {
+    font-size: 1.1em;
+    color: #666;
+    margin-bottom: 0;
 }
 
 .education-entry, .experience-entry, .project-entry {
@@ -82,6 +107,19 @@
 }
 
 /* Dark mode overrides for CV */
+[data-theme="dark"] .cv-header {
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+[data-theme="dark"] .cv-name {
+    color: #e0e0e0;
+}
+
+[data-theme="dark"] .cv-title,
+[data-theme="dark"] .cv-company {
+    color: #b0b0b0;
+}
+
 [data-theme="dark"] .right-date {
     color: #aaa;
 }
