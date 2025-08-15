@@ -279,6 +279,23 @@ footer {
     margin-top: 40px;
     padding-top: 20px;
     border-top: 1px solid #f0f0f0;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.blog-nav-left,
+.blog-nav-right {
+    flex: 1;
+}
+
+.blog-nav-center {
+    flex: 1;
+    text-align: center;
+}
+
+.blog-nav-right {
+    text-align: right;
 }
 
 .back-to-blog {
@@ -291,6 +308,23 @@ footer {
 
 .back-to-blog:hover {
     color: #333;
+}
+
+.nav-article {
+    color: #666;
+    text-decoration: none;
+    font-size: 0.9em;
+    font-weight: 300;
+    transition: color 0.3s ease;
+}
+
+.nav-article:hover {
+    color: #333;
+}
+
+.nav-article.disabled {
+    color: #ccc;
+    cursor: not-allowed;
 }
 
 /* Dark mode for blog */
@@ -329,6 +363,18 @@ footer {
 
 [data-theme="dark"] .back-to-blog:hover {
     color: #e0e0e0;
+}
+
+[data-theme="dark"] .nav-article {
+    color: #a0a0a0;
+}
+
+[data-theme="dark"] .nav-article:hover {
+    color: #e0e0e0;
+}
+
+[data-theme="dark"] .nav-article.disabled {
+    color: #555;
 }
 
 /* CV-specific styles */
