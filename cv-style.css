@@ -46,7 +46,7 @@
     text-align: center;
     margin-bottom: 40px;
     padding-bottom: 20px;
-    border-bottom: 2px solid #333;
+    border-bottom: none;
     position: relative;
 }
 
@@ -182,7 +182,7 @@
 
 /* Dark mode overrides for CV */
 [data-theme="dark"] .cv-header {
-    border-bottom: 2px solid #e0e0e0;
+    border-bottom: none;
 }
 
 [data-theme="dark"] .cv-name {

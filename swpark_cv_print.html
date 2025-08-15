@@ -13,7 +13,7 @@
         
         body {
             font-family: 'Times New Roman', 'Georgia', serif;
-            line-height: 1.5;
+            line-height: 1.6;
             color: #000;
             max-width: 850px;
             margin: 0 auto;
@@ -25,23 +25,19 @@
         .header {
             text-align: center;
             margin-bottom: 30px;
-            padding-bottom: 20px;
-            border-bottom: 2px solid #000;
         }
         
         h1 {
             font-size: 24pt;
             font-weight: bold;
-            margin-bottom: 8px;
+            margin-bottom: 10px;
             color: #000;
-            letter-spacing: 1px;
         }
         
         .subtitle {
             font-size: 12pt;
-            color: #000;
-            margin-bottom: 3px;
-            font-weight: 500;
+            color: #333;
+            margin-bottom: 5px;
         }
         
         h2 {
@@ -49,19 +45,9 @@
             font-weight: bold;
             margin-top: 25px;
             margin-bottom: 10px;
-            padding-top: 15px;
             color: #000;
-            border-top: 2px solid #000;
             border-bottom: 2px solid #000;
             padding-bottom: 3px;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-        }
-        
-        .first-section h2 {
-            border-top: none;
-            margin-top: 20px;
-            padding-top: 0;
         }
         
         h3 {
@@ -76,7 +62,6 @@
             margin-bottom: 15px;
             display: flex;
             justify-content: space-between;
-            align-items: flex-start;
         }
         
         .left-content {
@@ -86,32 +71,28 @@
         .right-date {
             text-align: right;
             font-style: italic;
-            color: #000;
+            color: #333;
             white-space: nowrap;
             margin-left: 20px;
-            font-size: 10pt;
-            min-width: 120px;
         }
         
         .degree-title, .position-title, .project-title {
             font-weight: bold;
             margin-bottom: 3px;
-            color: #000;
-            font-size: 11pt;
         }
         
         .institution {
             margin-bottom: 3px;
-            color: #000;
-            font-size: 10pt;
         }
         
         .thesis {
             font-style: italic;
             margin-top: 3px;
-            color: #000;
-            font-size: 10pt;
-            line-height: 1.4;
+            margin-left: 20px;
+        }
+        
+        .gpa {
+            margin-top: 3px;
         }
         
         ul {
@@ -123,23 +104,16 @@
         li {
             margin-bottom: 3px;
             text-align: justify;
-            color: #000;
-            font-size: 10pt;
-            line-height: 1.4;
         }
         
         .skills-line {
             margin-bottom: 8px;
             text-align: justify;
-            color: #000;
-            font-size: 10pt;
-            line-height: 1.4;
         }
         
         .skill-category {
             font-weight: bold;
             display: inline;
-            color: #000;
         }
         
         .research-interests {
@@ -154,17 +128,14 @@
         .project-description {
             margin-top: 5px;
             text-align: justify;
-            color: #000;
-            font-size: 10pt;
-            line-height: 1.4;
+            margin-left: 20px;
         }
         
         .tech-stack {
             margin-top: 3px;
             font-style: italic;
-            color: #000;
-            font-size: 9pt;
-            line-height: 1.3;
+            color: #333;
+            margin-left: 20px;
         }
         
         @media print {
@@ -190,28 +161,26 @@
         <div class="subtitle">Suprema Inc.</div>
     </div>
 
-    <div class="first-section">
-        <h2>Education</h2>
-        
-        <div class="education-entry">
-            <div class="left-content">
-                <div class="degree-title">M.S. in Applied Data Science</div>
-                <div class="institution">Sungkyunkwan University, Suwon, Korea</div>
-                <div class="thesis">Thesis: "Prediction of Blue House National Petition Response Targets Considering Data Imbalance"</div>
-            </div>
-            <div class="right-date">Sep. 2019 - Aug. 2021</div>
+    <h2>EDUCATION</h2>
+    
+    <div class="education-entry">
+        <div class="left-content">
+            <div class="degree-title">M.S. in Applied Data Science</div>
+            <div class="institution">Sungkyunkwan University, Suwon, Korea</div>
+            <div class="thesis">Thesis: "Prediction of Blue House National Petition Response Targets Considering Data Imbalance"</div>
         </div>
-        
-        <div class="education-entry">
-            <div class="left-content">
-                <div class="degree-title">B.S. in Maritime Police System</div>
-                <div class="institution">Gyeongsang National University, Jinju, Korea</div>
-            </div>
-            <div class="right-date">Mar. 2010 - Feb. 2017</div>
+        <div class="right-date">Sep. 2019 - Aug. 2021</div>
+    </div>
+    
+    <div class="education-entry">
+        <div class="left-content">
+            <div class="degree-title">B.S. in Maritime Police System</div>
+            <div class="institution">Gyeongsang National University, Jinju, Korea</div>
         </div>
+        <div class="right-date">Mar. 2010 - Feb. 2017</div>
     </div>
 
-    <h2>Research Interests</h2>
+    <h2>RESEARCH INTERESTS</h2>
     <ul class="research-list">
         <li>Large Language Models (LLM) and Multi-Agent Systems</li>
         <li>Artificial Intelligence and Data Science</li>
@@ -220,7 +189,7 @@
         <li>Distributed Systems and Microservices Architecture</li>
     </ul>
 
-    <h2>Research Experience</h2>
+    <h2>RESEARCH EXPERIENCE</h2>
     
     <div class="experience-entry">
         <div class="left-content">
@@ -260,7 +229,7 @@
         <div class="right-date">Oct. 2018 - Feb. 2020</div>
     </div>
 
-    <h2>Selected Projects</h2>
+    <h2>SELECTED PROJECTS</h2>
     
     <div class="project-entry">
         <div class="left-content">
@@ -340,13 +309,13 @@
         <div class="right-date">Jul. 2021 - Oct. 2021</div>
     </div>
 
-    <h2>Publications & Presentations</h2>
+    <h2>PUBLICATIONS & PRESENTATIONS</h2>
     <ul>
         <li>HBrain, "Development of AI traffic safety element technology and integrated system", The Korean Society of 
         Intelligent Transport Systems, Jeju, Korea (Oct. 2021) - Oral Presentation</li>
     </ul>
 
-    <h2>Technical Skills</h2>
+    <h2>TECHNICAL SKILLS</h2>
     
     <div class="skills-line">
         <span class="skill-category">Programming Languages:</span> Python, Java, JavaScript, TypeScript, C++, Kotlin, SQL
@@ -376,13 +345,13 @@
         <span class="skill-category">Architecture & Methodologies:</span> Microservices (MSA), Agent Orchestration, Distributed Computing, RESTful API, gRPC, Test Automation, Agile/Scrum
     </div>
 
-    <h2>Languages</h2>
+    <h2>LANGUAGES</h2>
     <ul>
         <li>Korean: Native</li>
         <li>English: Intermediate (TOEIC Speaking 130)</li>
     </ul>
 
-    <h2>Military Service</h2>
+    <h2>MILITARY SERVICE</h2>
     <p>Republic of Korea Army, Completed mandatory service (Jun. 2012 - Mar. 2014)</p>
 
 </body>
