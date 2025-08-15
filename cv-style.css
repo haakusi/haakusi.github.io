@@ -4,6 +4,17 @@
     line-height: 1.6;
 }
 
+/* Ensure CV header matches home page header size */
+.cv-container header h1 {
+    font-size: 2.5em !important;
+    font-weight: 300 !important;
+}
+
+.cv-container .subtitle {
+    font-size: 1em !important;
+    font-weight: 300 !important;
+}
+
 .cv-header {
     text-align: center;
     margin-bottom: 40px;
@@ -58,13 +69,22 @@
 .cv-section h2 {
     font-size: 1.4em;
     font-weight: 700;
-    margin-top: 30px;
+    margin-top: 40px;
     margin-bottom: 15px;
+    padding-top: 20px;
     color: #000;
+    border-top: 2px solid #000;
     border-bottom: 2px solid #000;
     padding-bottom: 5px;
     text-transform: uppercase;
     letter-spacing: 1px;
+}
+
+/* First section doesn't need top border */
+.cv-section:first-child h2 {
+    border-top: none;
+    margin-top: 30px;
+    padding-top: 0;
 }
 
 .degree-title, .position-title, .project-title {
@@ -148,7 +168,12 @@
 
 [data-theme="dark"] .cv-section h2 {
     color: #ffffff;
+    border-top: 2px solid #ffffff;
     border-bottom: 2px solid #ffffff;
+}
+
+[data-theme="dark"] .cv-section:first-child h2 {
+    border-top: none;
 }
 
 [data-theme="dark"] .right-date {
