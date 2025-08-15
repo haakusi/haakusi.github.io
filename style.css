@@ -726,3 +726,113 @@ footer {
         0 4px 12px rgba(0, 0, 0, 0.3);
     border: 1px solid rgba(255, 255, 255, 0.2);
 }
+
+/* References table styling */
+.references-table {
+    margin: 30px 0;
+}
+
+.references-table table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 0;
+    font-size: 0.9em;
+}
+
+.references-table th {
+    background: rgba(139, 69, 19, 0.1);
+    color: #333;
+    font-weight: 500;
+    padding: 12px 8px;
+    border: 1px solid rgba(139, 69, 19, 0.2);
+    text-align: left;
+}
+
+.references-table td {
+    padding: 10px 8px;
+    border: 1px solid rgba(139, 69, 19, 0.1);
+    color: #555;
+    line-height: 1.4;
+}
+
+.references-table tr:nth-child(even) {
+    background: rgba(139, 69, 19, 0.03);
+}
+
+.references-table tr:hover {
+    background: rgba(139, 69, 19, 0.05);
+}
+
+/* References list styling */
+.references-list ul {
+    padding-left: 0;
+    list-style: none;
+}
+
+.references-list ul li {
+    margin-bottom: 15px;
+    padding: 12px 0;
+    border-bottom: 1px solid rgba(139, 69, 19, 0.1);
+    color: #555;
+    line-height: 1.6;
+}
+
+.references-list ul li:last-child {
+    border-bottom: none;
+}
+
+.references-list ul li strong {
+    color: #333;
+    font-weight: 500;
+}
+
+.references-list ul li a {
+    color: #8B4513;
+    text-decoration: none;
+}
+
+.references-list ul li a:hover {
+    color: #5D4E37;
+    text-decoration: underline;
+}
+
+/* Dark mode table styling */
+[data-theme="dark"] .references-table table {
+    color: #E5E5E5;
+}
+
+[data-theme="dark"] .references-table th {
+    background: rgba(139, 69, 19, 0.2);
+    color: #F5F5DC;
+    border-color: rgba(139, 69, 19, 0.4);
+}
+
+[data-theme="dark"] .references-table td {
+    color: #D5D5D5;
+    border-color: rgba(139, 69, 19, 0.2);
+}
+
+[data-theme="dark"] .references-table tr:nth-child(even) {
+    background: rgba(139, 69, 19, 0.05);
+}
+
+[data-theme="dark"] .references-table tr:hover {
+    background: rgba(139, 69, 19, 0.1);
+}
+
+[data-theme="dark"] .references-list ul li {
+    color: #D5D5D5;
+    border-color: rgba(139, 69, 19, 0.2);
+}
+
+[data-theme="dark"] .references-list ul li strong {
+    color: #F5F5DC;
+}
+
+[data-theme="dark"] .references-list ul li a {
+    color: #D2B48C;
+}
+
+[data-theme="dark"] .references-list ul li a:hover {
+    color: #F5DEB3;
+}
