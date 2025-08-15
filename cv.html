@@ -5,11 +5,152 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Sewon Park - CV</title>
     <link rel="stylesheet" type="text/css" href="style.css">
+    <style>
+        .cv-container {
+            max-width: 850px !important;
+        }
+        
+        .cv-header {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+        
+        .cv-subtitle {
+            font-size: 1.1em;
+            color: #666;
+            margin-bottom: 5px;
+            font-weight: 300;
+        }
+        
+        .education-entry, .experience-entry, .project-entry {
+            margin-bottom: 20px;
+            display: flex;
+            justify-content: space-between;
+        }
+        
+        .left-content {
+            flex: 1;
+        }
+        
+        .right-date {
+            text-align: right;
+            font-style: italic;
+            color: #888;
+            white-space: nowrap;
+            margin-left: 20px;
+            font-size: 0.95em;
+        }
+        
+        .degree-title, .position-title, .project-title {
+            font-weight: 500;
+            margin-bottom: 5px;
+            color: #333;
+            font-size: 1.05em;
+        }
+        
+        .institution {
+            margin-bottom: 5px;
+            color: #666;
+        }
+        
+        .thesis {
+            font-style: italic;
+            margin-top: 5px;
+            margin-left: 20px;
+            color: #888;
+            font-size: 0.95em;
+        }
+        
+        .research-list {
+            margin-left: 20px;
+            list-style-type: disc;
+        }
+        
+        .project-description {
+            margin-top: 8px;
+            text-align: justify;
+            margin-left: 20px;
+            color: #666;
+            line-height: 1.8;
+        }
+        
+        .tech-stack {
+            margin-top: 8px;
+            font-style: italic;
+            color: #999;
+            margin-left: 20px;
+            font-size: 0.9em;
+        }
+        
+        .cv-section ul {
+            margin-left: 20px;
+            margin-top: 8px;
+            margin-bottom: 8px;
+        }
+        
+        .cv-section li {
+            margin-bottom: 5px;
+            text-align: justify;
+            color: #666;
+        }
+        
+        .skills-line {
+            margin-bottom: 10px;
+            text-align: justify;
+            color: #666;
+        }
+        
+        .skill-category {
+            font-weight: 500;
+            display: inline;
+            color: #333;
+        }
+        
+        /* Dark mode overrides */
+        [data-theme="dark"] .cv-subtitle {
+            color: #b0b0b0;
+        }
+        
+        [data-theme="dark"] .right-date {
+            color: #808080;
+        }
+        
+        [data-theme="dark"] .degree-title, 
+        [data-theme="dark"] .position-title, 
+        [data-theme="dark"] .project-title {
+            color: #e0e0e0;
+        }
+        
+        [data-theme="dark"] .institution {
+            color: #b0b0b0;
+        }
+        
+        [data-theme="dark"] .thesis {
+            color: #808080;
+        }
+        
+        [data-theme="dark"] .project-description,
+        [data-theme="dark"] .cv-section li {
+            color: #a0a0a0;
+        }
+        
+        [data-theme="dark"] .tech-stack {
+            color: #808080;
+        }
+        
+        [data-theme="dark"] .skills-line {
+            color: #a0a0a0;
+        }
+        
+        [data-theme="dark"] .skill-category {
+            color: #e0e0e0;
+        }
+    </style>
 </head>
 <body>
     <button class="theme-toggle" onclick="toggleTheme()" aria-label="Toggle dark mode">🌙</button>
     
-    <div class="container">
+    <div class="container cv-container">
         <header>
             <h1>Sewon Park</h1>
             <p class="subtitle">Senior Research Engineer | AI & Full-Stack Development</p>
@@ -43,164 +184,217 @@
             <a href="cv.html" class="nav-link active">CV</a>
         </nav>
 
-        <section class="cv-section">
-            <h2>Professional Summary</h2>
-            <p class="description">
-                Experienced software engineer with 6+ years specializing in AI/ML development and full-stack solutions.
-                Expertise in NLP, deep learning, and enterprise software architecture with a proven track record of
-                delivering innovative access control and AI-powered solutions at Suprema Inc. Strong background in
-                MSA architecture, cloud technologies, and agile development methodologies.
-            </p>
-        </section>
+        <div class="cv-header">
+            <div class="cv-subtitle">Suprema Inc.</div>
+        </div>
 
         <section class="cv-section">
-            <h2>Education</h2>
-            <div class="education-item">
-                <div class="degree">M.S. in Data Science Convergence</div>
-                <div class="school">Sungkyunkwan University, South Korea (2019 - 2021)</div>
-                <div class="thesis">Thesis: "Prediction of Response Targets for Blue House National Petitions Considering Data Imbalance"</div>
-            </div>
-            <div class="education-item">
-                <div class="degree">B.S. in Maritime Police System</div>
-                <div class="school">Gyeongsang National University, South Korea (2010 - 2017)</div>
-            </div>
-        </section>
-
-        <section class="cv-section">
-            <h2>Professional Experience</h2>
+            <h2>EDUCATION</h2>
             
-            <div class="position">
-                <div class="position-header">
+            <div class="education-entry">
+                <div class="left-content">
+                    <div class="degree-title">M.S. in Applied Data Science</div>
+                    <div class="institution">Sungkyunkwan University, Suwon, Korea</div>
+                    <div class="thesis">Thesis: "Prediction of Blue House National Petition Response Targets Considering Data Imbalance"</div>
+                </div>
+                <div class="right-date">Sep. 2019 - Aug. 2021</div>
+            </div>
+            
+            <div class="education-entry">
+                <div class="left-content">
+                    <div class="degree-title">B.S. in Maritime Police System</div>
+                    <div class="institution">Gyeongsang National University, Jinju, Korea</div>
+                </div>
+                <div class="right-date">Mar. 2010 - Feb. 2017</div>
+            </div>
+        </section>
+
+        <section class="cv-section">
+            <h2>RESEARCH INTERESTS</h2>
+            <ul class="research-list">
+                <li>Large Language Models (LLM) and Multi-Agent Systems</li>
+                <li>Artificial Intelligence and Data Science</li>
+                <li>Quantum Machine Learning (QML) and Quantum Neural Networks (QNN)</li>
+                <li>Social Network Analysis and Sentiment Propagation Dynamics</li>
+                <li>Distributed Systems and Microservices Architecture</li>
+            </ul>
+        </section>
+
+        <section class="cv-section">
+            <h2>RESEARCH EXPERIENCE</h2>
+            
+            <div class="experience-entry">
+                <div class="left-content">
                     <div class="position-title">Senior Research Engineer</div>
-                    <div class="position-date">February 2021 - Present</div>
-                </div>
-                <div class="company">Suprema Inc. - BSS Development Team</div>
-                <div class="description">
-                    Leading backend and AI model development for enterprise access control solutions, focusing on NLP, preprocessing, fine-tuning, optimization, RAG, and prompt engineering.
+                    <div class="institution">BSS Development Team, Suprema Inc., Korea</div>
                     <ul>
-                        <li>Developed Agent AI-based API prompt system with NLP model fine-tuning and React-based prompt architecture</li>
-                        <li>Led Spring Cloud MSA transformation project, implementing Gateway, Circuit Breaker, and Rate Limiter</li>
-                        <li>Architected GitLab PR & MCP server integration for automated coverage and unit test generation using LLM</li>
-                        <li>Technologies: Java (Spring), Python, AWS (Lambda/S3), Kotlin, C++, Angular, React, MSSQL, MariaDB</li>
-                        <li>Practices: Agile/Scrum, Clean Code, Code Review, Unit Testing, Jenkins CI/CD, GitLab</li>
+                        <li>Leading AI agent development and backend architecture for enterprise access control solutions</li>
+                        <li>Specializing in NLP, deep learning, prompt engineering, and MCP-based multi-client architecture</li>
+                        <li>Managing team of 3 interns for LLM-based automated testing solutions</li>
                     </ul>
                 </div>
+                <div class="right-date">Feb. 2021 - Present</div>
             </div>
-
-            <div class="position">
-                <div class="position-header">
+            
+            <div class="experience-entry">
+                <div class="left-content">
                     <div class="position-title">Research Engineer</div>
-                    <div class="position-date">April 2020 - January 2021</div>
-                </div>
-                <div class="company">HBrain Inc. - R&D Department</div>
-                <div class="description">
-                    Developed Smart AI traffic control services through radar and camera sensor fusion technology.
+                    <div class="institution">R&D Department, HBrain Inc., Korea</div>
                     <ul>
-                        <li>Implemented ADAS radar and FPGA IoT-based pedestrian detection system using C, C++, MFC, OpenGL</li>
+                        <li>Developed Smart AI traffic control services using radar and camera sensor fusion</li>
                         <li>Participated in government projects (Ministry of Interior, Ministry of Land)</li>
-                        <li>Presented at IoT Traffic Conference special sessions</li>
                     </ul>
                 </div>
+                <div class="right-date">Apr. 2020 - Jan. 2021</div>
             </div>
 
-            <div class="position">
-                <div class="position-header">
+            <div class="experience-entry">
+                <div class="left-content">
                     <div class="position-title">Software Developer</div>
-                    <div class="position-date">October 2018 - February 2020</div>
-                </div>
-                <div class="company">AtData Inc. - Development Team</div>
-                <div class="description">
-                    Contributed to SK Telecom TANGO 5G Project including web development, CR, enhancement, and maintenance.
+                    <div class="institution">Development Team, AtData Inc., Korea</div>
                     <ul>
+                        <li>Contributed to SK Telecom TANGO 5G Project for web development and system maintenance</li>
                         <li>Developed IP configuration and transmission network management web applications</li>
                         <li>Implemented raw data analysis processing and Jenkins-based automated deployment</li>
-                        <li>Built network equipment configuration management and transmission visualization systems</li>
                     </ul>
                 </div>
+                <div class="right-date">Oct. 2018 - Feb. 2020</div>
             </div>
         </section>
 
         <section class="cv-section">
-            <h2>Key Projects</h2>
-
-            <div class="project">
-                <div class="project-title">1. Agent AI-based API Prompt Development with MCP Architecture (Suprema, 2025)</div>
-                <div class="description">
-                    Designed and implemented NLP-based fine-tuning system for optimal response generation with React-based prompt architecture
-                    integrated with BioStarX API for automated API generation. Built MCP-based architecture supporting multiple clients
-                    (BioStar X UI, Claude Desktop, WhatsApp Mobile) with over 80+ API tools integration.
+            <h2>SELECTED PROJECTS</h2>
+            
+            <div class="project-entry">
+                <div class="left-content">
+                    <div class="project-title">Quantum ML-based Stablecoin Depegging Prediction Research (Personal Research)</div>
+                    <div class="project-description">
+                        Investigating whether sentiment analysis performed in quantum ML's 2ⁿ-dimensional Hilbert space 
+                        outperforms classical ML's n-dimensional Euclidean space for stablecoin depegging prediction. 
+                        Collected 7M+ Reddit posts and 2,246 news articles covering major events (LUNA collapse, FTX crisis, SVB crisis). 
+                        Conducting comparative analysis across GPU vs QPU simulator vs NISQ hardware, implementing QNN for sentiment 
+                        analysis and comparing with traditional models (VADER, XGBoost).
+                    </div>
+                    <div class="tech-stack">Technologies: Python, Qiskit, PennyLane, QNN, QSVM, Reddit API, Network Analysis, VADER, XGBoost</div>
                 </div>
-                <div class="project-tech">Technologies: Python, LLM, PyTorch, ML, Deep Learning, Prompt Engineering, RAG, React, Java, NLP, MCP</div>
+                <div class="right-date">Jul. 2025 - Ongoing</div>
             </div>
-
-            <div class="project">
-                <div class="project-title">2. Spring Cloud MSA Architecture Migration (Suprema, 2024)</div>
-                <div class="description">
-                    Led R&D initiative to transform monolithic web application to domain-based MSA using Spring Cloud Gateway,
-                    Circuit Breaker, Rate Limiter, and dynamic routing. Upgraded to SpringBoot 3.4.4 and JDK 21 for enhanced security.
+            
+            <div class="project-entry">
+                <div class="left-content">
+                    <div class="project-title">Multi-Agent AI System Development with MCP Architecture (Suprema)</div>
+                    <div class="project-description">
+                        Designed and implemented comprehensive AI agent ecosystem including BioStar Copilot (product assistant) 
+                        and Solis (internal support agent). Built MCP-based architecture supporting 80+ API tools with multi-client 
+                        integration (BioStar X UI, Claude Desktop, WhatsApp Mobile). Currently transitioning to full multi-agent 
+                        orchestration system for scalable AI services using function-calling and tool-based orchestration.
+                    </div>
+                    <div class="tech-stack">Technologies: Python, LLM, LangGraph, MCP, React, NLP, RAG, Prompt Engineering, Multi-Agent Architecture</div>
                 </div>
-                <div class="project-tech">Technologies: Java, Spring Cloud Gateway, SpringBoot, MSA</div>
+                <div class="right-date">Feb. 2025 - Ongoing</div>
             </div>
-
-            <div class="project">
-                <div class="project-title">3. Multi-Agent System Development & MCP Server Implementation (Suprema, 2025)</div>
-                <div class="description">
-                    Architected automated unit test generation process integrating GitLab PR events with MCP server and LLM-based
-                    Python server. Currently developing MCP client similar to Claude Desktop and preparing multi-agent orchestration
-                    architecture for future scalability. Led team of 3 interns implementing complete data pipeline between
-                    MCP Java and Python servers.
+            
+            <div class="project-entry">
+                <div class="left-content">
+                    <div class="project-title">LLM-based Automated Unit Test Generation System (Suprema)</div>
+                    <div class="project-description">
+                        Led team of 3 interns to design LLM-based agent for automated backend/frontend unit test generation. 
+                        Architected GitLab PR integration with MCP server and developed MCP client similar to Claude Desktop. 
+                        Successfully deployed to internal development teams.
+                    </div>
+                    <div class="tech-stack">Technologies: Python, Java, LLM, LangGraph, Agentic RAG, GitLab CI/CD, Jacoco</div>
                 </div>
-                <div class="project-tech">Technologies: Python, Java, Prompt Engineering, LLM, MCP, GitLab, Jacoco, Multi-Agent Systems</div>
+                <div class="right-date">Feb. 2025 - Jun. 2025</div>
+            </div>
+            
+            <div class="project-entry">
+                <div class="left-content">
+                    <div class="project-title">Spring Cloud MSA Architecture Migration (Suprema)</div>
+                    <div class="project-description">
+                        Transformed monolithic application to microservices architecture using Spring Cloud Gateway, 
+                        implementing Circuit Breaker, Rate Limiter, and dynamic routing. Upgraded to SpringBoot 3.4.4 and JDK 21.
+                    </div>
+                    <div class="tech-stack">Technologies: Java, Spring Cloud, MSA, Kubernetes</div>
+                </div>
+                <div class="right-date">May 2024 - Oct. 2024</div>
+            </div>
+            
+            <div class="project-entry">
+                <div class="left-content">
+                    <div class="project-title">Distributed Event Processing System (Suprema)</div>
+                    <div class="project-description">
+                        Enhanced real-time event log service performance using Apache Ignite and Zookeeper for distributed 
+                        processing. Achieved significant performance improvements in handling concurrent device connections.
+                    </div>
+                    <div class="tech-stack">Technologies: Java, Apache Ignite, Zookeeper, gRPC, RabbitMQ</div>
+                </div>
+                <div class="right-date">Jan. 2023 - Apr. 2023</div>
+            </div>
+            
+            <div class="project-entry">
+                <div class="left-content">
+                    <div class="project-title">AWS Cloud Integration for Remote Enrollment (Suprema)</div>
+                    <div class="project-description">
+                        Implemented serverless architecture for remote user registration using AWS Lambda and S3, 
+                        enabling automated distribution and reducing operational costs.
+                    </div>
+                    <div class="tech-stack">Technologies: AWS Lambda, S3, REST API, Python</div>
+                </div>
+                <div class="right-date">Jul. 2021 - Oct. 2021</div>
             </div>
         </section>
 
         <section class="cv-section">
-            <h2>Technical Skills</h2>
-            <div class="skills-section">
-                <div class="skill-category">
-                    <span class="skill-label">Languages:</span>
-                    <span class="skill-items">Java, Python, Kotlin, C++, JavaScript, TypeScript, SQL</span>
-                </div>
-                <div class="skill-category">
-                    <span class="skill-label">Frameworks:</span>
-                    <span class="skill-items">Spring Framework, Spring Cloud, React, Angular, Node.js</span>
-                </div>
-                <div class="skill-category">
-                    <span class="skill-label">AI/ML:</span>
-                    <span class="skill-items">NLP, Deep Learning, PyTorch, LLM, RAG, Prompt Engineering, MCP</span>
-                </div>
-                <div class="skill-category">
-                    <span class="skill-label">Databases:</span>
-                    <span class="skill-items">MySQL, MSSQL, MariaDB, PostgreSQL, Redis</span>
-                </div>
-                <div class="skill-category">
-                    <span class="skill-label">Cloud & DevOps:</span>
-                    <span class="skill-items">AWS (Lambda, S3), Docker, Jenkins, GitLab CI/CD, Kubernetes basics</span>
-                </div>
-                <div class="skill-category">
-                    <span class="skill-label">Methodologies:</span>
-                    <span class="skill-items">Agile, Scrum, TDD, Clean Code, MSA, RESTful API Design</span>
-                </div>
+            <h2>PUBLICATIONS & PRESENTATIONS</h2>
+            <ul>
+                <li>HBrain, "Development of AI traffic safety element technology and integrated system", The Korean Society of 
+                Intelligent Transport Systems, Jeju, Korea (Oct. 2021) - Oral Presentation</li>
+            </ul>
+        </section>
+
+        <section class="cv-section">
+            <h2>TECHNICAL SKILLS</h2>
+            
+            <div class="skills-line">
+                <span class="skill-category">Programming Languages:</span> Python, Java, JavaScript, TypeScript, C++, Kotlin, SQL
+            </div>
+            
+            <div class="skills-line">
+                <span class="skill-category">AI & Machine Learning:</span> LLM, NLP, Deep Learning, PyTorch, TensorFlow, Keras, RAG, Agentic RAG, LangGraph, MCP, Prompt Engineering, QML, QNN, QSVM
+            </div>
+            
+            <div class="skills-line">
+                <span class="skill-category">Frameworks & Tools:</span> Spring Framework, Spring Cloud, React, Angular, Node.js, FastAPI, Django
+            </div>
+            
+            <div class="skills-line">
+                <span class="skill-category">Databases & Infrastructure:</span> MySQL, MSSQL, MariaDB, PostgreSQL, Redis
+            </div>
+            
+            <div class="skills-line">
+                <span class="skill-category">Data Analysis & Research:</span> Network Analysis, Sentiment Analysis, Time Series Analysis, Statistical Modeling, Qiskit, PennyLane, VADER
+            </div>
+            
+            <div class="skills-line">
+                <span class="skill-category">Cloud & DevOps:</span> AWS (Lambda, S3, EC2), Docker, Kubernetes, Jenkins, GitLab CI/CD
+            </div>
+            
+            <div class="skills-line">
+                <span class="skill-category">Architecture & Methodologies:</span> Microservices (MSA), Agent Orchestration, Distributed Computing, RESTful API, gRPC, Test Automation, Agile/Scrum
             </div>
         </section>
 
         <section class="cv-section">
-            <h2>Languages</h2>
-            <div class="skill-category">
-                <span class="skill-label">Korean:</span>
-                <span class="skill-items">Native</span>
-            </div>
-            <div class="skill-category">
-                <span class="skill-label">English:</span>
-                <span class="skill-items">Intermediate (TOEIC Speaking 130)</span>
-            </div>
+            <h2>LANGUAGES</h2>
+            <ul>
+                <li>Korean: Native</li>
+                <li>English: Intermediate (TOEIC Speaking 130)</li>
+            </ul>
         </section>
 
         <section class="cv-section">
-            <h2>Military Service</h2>
-            <p class="description">
-                Republic of Korea Army, Completed mandatory service (June 2012 - March 2014)
-            </p>
+            <h2>MILITARY SERVICE</h2>
+            <p>Republic of Korea Army, Completed mandatory service (Jun. 2012 - Mar. 2014)</p>
         </section>
 
         <footer>
