@@ -8,6 +8,7 @@
 </head>
 <body>
     <button class="theme-toggle" onclick="toggleTheme()" aria-label="Toggle dark mode">🌙</button>
+    <button class="lang-toggle" onclick="toggleLanguage()" aria-label="Toggle language">EN</button>
     
     <div class="container">
         <header>
@@ -39,9 +40,9 @@
         </header>
 
         <nav class="navigation">
-            <a href="index.html" class="nav-link">Home</a>
-            <a href="blog.html" class="nav-link active">Blog</a>
-            <a href="cv.html" class="nav-link">CV</a>
+            <a href="index.html" class="nav-link" data-en="Home" data-kr="홈">Home</a>
+            <a href="blog.html" class="nav-link active" data-en="Blog" data-kr="블로그">Blog</a>
+            <a href="cv.html" class="nav-link" data-en="CV" data-kr="이력서">CV</a>
         </nav>
 
         <section class="blog">
@@ -77,13 +78,48 @@
             button.textContent = newTheme === 'dark' ? '☀️' : '🌙';
         }
 
-        // Load saved theme on page load
+        function toggleLanguage() {
+            const html = document.documentElement;
+            const currentLang = html.getAttribute('data-lang') || 'en';
+            const newLang = currentLang === 'en' ? 'kr' : 'en';
+            
+            html.setAttribute('data-lang', newLang);
+            localStorage.setItem('language', newLang);
+            
+            // Update button text
+            const button = document.querySelector('.lang-toggle');
+            button.textContent = newLang === 'en' ? 'EN' : '한';
+            
+            // Update content
+            updateContent(newLang);
+        }
+
+        function updateContent(lang) {
+            const elements = document.querySelectorAll('[data-en][data-kr]');
+            elements.forEach(element => {
+                if (lang === 'kr' && element.getAttribute('data-kr')) {
+                    element.textContent = element.getAttribute('data-kr');
+                } else if (lang === 'en' && element.getAttribute('data-en')) {
+                    element.textContent = element.getAttribute('data-en');
+                }
+            });
+        }
+
+        // Load saved theme and language on page load
         document.addEventListener('DOMContentLoaded', function() {
             const savedTheme = localStorage.getItem('theme') || 'light';
             document.documentElement.setAttribute('data-theme', savedTheme);
             
-            const button = document.querySelector('.theme-toggle');
-            button.textContent = savedTheme === 'dark' ? '☀️' : '🌙';
+            const themeButton = document.querySelector('.theme-toggle');
+            themeButton.textContent = savedTheme === 'dark' ? '☀️' : '🌙';
+            
+            const savedLang = localStorage.getItem('language') || 'en';
+            document.documentElement.setAttribute('data-lang', savedLang);
+            
+            const langButton = document.querySelector('.lang-toggle');
+            langButton.textContent = savedLang === 'en' ? 'EN' : '한';
+            
+            updateContent(savedLang);
         });
     </script>
 </body>
