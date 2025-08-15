@@ -45,11 +45,31 @@ header h1 {
     letter-spacing: 1px;
 }
 
-.email {
+.social-links {
+    margin: 20px 0 0 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 20px;
+}
+
+.social-links a {
     color: #888;
-    font-size: 0.9em;
-    margin: 10px 0 0 0;
-    font-weight: 300;
+    text-decoration: none;
+    transition: all 0.3s ease;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.social-links a:hover {
+    color: #333;
+    transform: translateY(-2px);
+}
+
+.social-links svg {
+    width: 20px;
+    height: 20px;
 }
 
 .navigation {
@@ -393,8 +413,12 @@ footer {
     color: #b0b0b0;
 }
 
-[data-theme="dark"] .email {
+[data-theme="dark"] .social-links a {
     color: #888;
+}
+
+[data-theme="dark"] .social-links a:hover {
+    color: #e0e0e0;
 }
 
 [data-theme="dark"] h2 {
