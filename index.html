@@ -342,10 +342,10 @@
                     worldMap = null;
                 }
                 
-                // Initialize Leaflet map - Korea west-center with US continent visible
+                // Initialize Leaflet map - Korea far west for optimal continent balance
                 worldMap = L.map('world-map', {
                     zoomControl: false  // Remove +/- buttons
-                }).setView([37, 70], 1.5); // Korea latitude, moved west to show US continent on right
+                }).setView([37, 40], 1.5); // Korea latitude, moved much further west
                 
                 // Add OpenStreetMap tile layer
                 L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
