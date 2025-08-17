@@ -363,23 +363,24 @@
                 bounds: [[-90, -180], [90, 180]]
             }).addTo(worldMap);
             
-            // Set view to show entire world - use fitBounds for full world
-            const worldBounds = L.latLngBounds(
-                L.latLng(-60, -180),  // Southwest corner - full west
-                L.latLng(70, 180)     // Northeast corner - full east
-            );
+            // Set initial view to show entire world
+            worldMap.setView([0, 0], 1);
             
-            worldMap.fitBounds(worldBounds);
-            
-            // Force zoom to show entire world
+            // Use invalidateSize to ensure map fills container
             setTimeout(() => {
-                worldMap.setZoom(1);
-            }, 200);
-            
-            // Lock the view
-            worldMap.setMaxBounds(worldBounds);
-            worldMap.setMinZoom(worldMap.getZoom());
-            worldMap.setMaxZoom(worldMap.getZoom());
+                worldMap.invalidateSize();
+                
+                // Fit bounds to show entire world filling the rectangle
+                const worldBounds = L.latLngBounds(
+                    L.latLng(-85, -180),  // Southwest corner
+                    L.latLng(85, 180)     // Northeast corner
+                );
+                
+                worldMap.fitBounds(worldBounds, {
+                    padding: [0, 0],
+                    animate: false
+                });
+            }, 100);
             
             // Add visitor markers based on stored data
             addVisitorDots();
