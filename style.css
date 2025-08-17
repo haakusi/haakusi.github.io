@@ -845,44 +845,44 @@ footer {
 
 .visitor-content {
     display: grid;
-    grid-template-columns: 2fr 1fr;
-    gap: 40px;
+    grid-template-columns: 1.5fr 1fr;
+    gap: 25px;
     align-items: start;
 }
 
 .visitor-map {
     background: rgba(255, 255, 255, 0.5);
-    border-radius: 8px;
-    padding: 20px;
-    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+    border-radius: 6px;
+    padding: 15px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
     backdrop-filter: blur(10px);
 }
 
 .visitor-map svg {
     width: 100%;
     height: auto;
-    max-height: 300px;
+    max-height: 220px;
     border-radius: 4px;
 }
 
 .visitor-info {
     display: flex;
     flex-direction: column;
-    gap: 30px;
+    gap: 15px;
 }
 
 .visitor-counter {
     text-align: center;
     background: rgba(255, 255, 255, 0.5);
-    border-radius: 8px;
-    padding: 20px;
-    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+    border-radius: 6px;
+    padding: 12px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
     backdrop-filter: blur(10px);
 }
 
 .visitor-counter h3 {
-    margin: 0 0 15px 0;
-    font-size: 0.9em;
+    margin: 0 0 8px 0;
+    font-size: 0.75em;
     color: #555;
     text-transform: uppercase;
     letter-spacing: 1px;
@@ -890,17 +890,17 @@ footer {
 }
 
 .counter-display {
-    font-size: 2.5em;
+    font-size: 1.8em;
     font-weight: 200;
     color: #333;
-    margin: 10px 0;
-    letter-spacing: 2px;
+    margin: 5px 0;
+    letter-spacing: 1px;
 }
 
 .unique-counter {
-    font-size: 0.9em;
+    font-size: 0.75em;
     color: #666;
-    margin-top: 10px;
+    margin-top: 5px;
     text-align: center;
 }
 
@@ -911,15 +911,15 @@ footer {
 
 .country-stats {
     background: rgba(255, 255, 255, 0.5);
-    border-radius: 8px;
-    padding: 20px;
-    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+    border-radius: 6px;
+    padding: 12px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
     backdrop-filter: blur(10px);
 }
 
 .country-stats h3 {
-    margin: 0 0 20px 0;
-    font-size: 0.9em;
+    margin: 0 0 12px 0;
+    font-size: 0.75em;
     color: #555;
     text-transform: uppercase;
     letter-spacing: 1px;
@@ -930,9 +930,9 @@ footer {
     display: flex;
     align-items: center;
     justify-content: space-between;
-    padding: 8px 0;
+    padding: 4px 0;
     border-bottom: 1px solid rgba(0, 0, 0, 0.05);
-    font-size: 0.85em;
+    font-size: 0.75em;
 }
 
 .country-item:last-child {
@@ -940,9 +940,9 @@ footer {
 }
 
 .country-flag {
-    font-size: 1.2em;
-    margin-right: 10px;
-    width: 20px;
+    font-size: 1em;
+    margin-right: 6px;
+    width: 16px;
 }
 
 .country-name {
@@ -954,7 +954,7 @@ footer {
 .country-count {
     color: #333;
     font-weight: 400;
-    min-width: 30px;
+    min-width: 20px;
     text-align: right;
 }
 
@@ -1005,28 +1005,47 @@ footer {
     --accent-color: #8B4513;
 }
 
-/* Mobile responsive */
-@media (max-width: 768px) {
+/* Mobile responsive and improved vertical layout */
+@media (max-width: 1024px) {
     .visitor-content {
         grid-template-columns: 1fr;
         gap: 20px;
     }
     
     .visitor-info {
-        gap: 20px;
+        grid-template-columns: 1fr 1fr;
+        display: grid;
+        gap: 15px;
+    }
+}
+
+@media (max-width: 768px) {
+    .visitor-content {
+        grid-template-columns: 1fr;
+        gap: 15px;
+    }
+    
+    .visitor-info {
+        grid-template-columns: 1fr;
+        display: grid;
+        gap: 15px;
     }
     
     .visitor-map {
-        padding: 15px;
+        padding: 12px;
     }
     
     .visitor-counter,
     .country-stats {
-        padding: 15px;
+        padding: 10px;
     }
     
     .counter-display {
-        font-size: 2em;
+        font-size: 1.5em;
+    }
+    
+    .visitor-map svg {
+        max-height: 180px;
     }
 }
 
