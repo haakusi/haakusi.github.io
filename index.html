@@ -158,10 +158,10 @@
             // Initialize visitor tracking
             initializeVisitorTracking();
             
-            // Auto-refresh visitor data every 30 seconds for real-time updates
+            // Auto-refresh visitor data every 10 seconds for real-time updates
             setInterval(async () => {
                 await loadAndDisplayVisitorData();
-            }, 30000); // 30 seconds
+            }, 10000); // 10 seconds
             
             // Refresh data when page regains focus (user comes back to tab)
             window.addEventListener('focus', async () => {
@@ -352,16 +352,7 @@
                 localStorage.setItem('realVisitorData', JSON.stringify(globalData));
                 localStorage.setItem('cachedVisitorData', JSON.stringify(globalData));
                 
-                // Send visitor data to Google Sheets
-                
-                // Send to Google Apps Script
-                try {
-                    await addToGoogleSheets(country, countryCode, sessionId);
-                } catch (error) {
-                    // Silent error handling
-                }
-                
-                // Update local display (ensure numbers never go backwards)
+                // Update local display IMMEDIATELY (no waiting for Google Sheets)
                 const currentTotal = parseInt(document.getElementById('visitor-count').textContent) || 0;
                 const currentUnique = parseInt(document.getElementById('unique-count').textContent) || 0;
                 
@@ -369,12 +360,15 @@
                 document.getElementById('unique-count').textContent = Math.max(globalData.uniqueVisitors, currentUnique);
                 updateCountryList(globalData.countries);
                 
-                // Refresh the map dots
+                // Update map dots immediately
                 if (worldMap) {
-                    setTimeout(() => {
-                        addVisitorDots();
-                    }, 500);
+                    addVisitorDots();
                 }
+                
+                // Send to Google Apps Script in background (don't wait)
+                addToGoogleSheets(country, countryCode, sessionId).catch(() => {
+                    // Silent error handling - don't block UI updates
+                });
                 
                 return globalData;
                 
