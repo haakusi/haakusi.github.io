@@ -181,40 +181,29 @@
                 ['Australia', 'AU'],
                 ['Brazil', 'BR'],
                 ['Canada', 'CA'],
-                ['India', 'IN']
+                ['India', 'IN'],
+                ['China', 'CN'],
+                ['Russia', 'RU']
             ];
             
             demoCountries.forEach(([country, code]) => {
                 updateVisitorCount(country, code);
             });
             
-            alert('Demo visitor data added! 🌍 You should see green markers on the map!');
+            // Force refresh the map markers
+            setTimeout(() => {
+                if (worldMap) {
+                    addVisitorDots();
+                }
+            }, 500);
+            
+            alert('Demo visitor data added! 🌍 You should see green flag markers on the map!');
         }
 
-        // Test map centering on different countries
+        // Test map - just refresh to show entire world
         function testMapCenter() {
-            const testCountries = ['US', 'KR', 'JP', 'DE', 'GB', 'AU', 'BR'];
-            const randomCountry = testCountries[Math.floor(Math.random() * testCountries.length)];
-            
-            // Remove existing map
-            if (worldMap) {
-                worldMap.remove();
-            }
-            
-            // Create new map centered on random country
-            initializeWorldMap(randomCountry);
-            
-            const countryNames = {
-                'US': 'United States',
-                'KR': 'South Korea', 
-                'JP': 'Japan',
-                'DE': 'Germany',
-                'GB': 'United Kingdom',
-                'AU': 'Australia',
-                'BR': 'Brazil'
-            };
-            
-            alert(`Map centered on ${countryNames[randomCountry]}! 🎯`);
+            // Don't pan or zoom - just show the entire world
+            alert('Map shows entire world! 🌍 You can see US (left), EU (center), Asia (right), and all continents!');
         }
 
         // Visitor tracking functionality
@@ -232,13 +221,13 @@
                 // Update visitor count
                 updateVisitorCount(country, countryCode);
                 
-                // Initialize world map centered on visitor's country
-                initializeWorldMap(countryCode);
+                // Initialize world map - ALWAYS show entire world
+                initializeWorldMap();
                 
             } catch (error) {
                 console.log('Visitor tracking unavailable, using fallback');
-                // Fallback: center on South Korea and add demo data
-                initializeWorldMap('KR');
+                // Fallback: initialize map without specific centering
+                initializeWorldMap();
                 
                 // Add demo data if no visitors exist yet
                 const existingData = localStorage.getItem('visitorData');
@@ -354,42 +343,38 @@
             // Clear any existing content
             mapContainer.innerHTML = '';
             
-            // Get center coordinates for visitor's country
-            const countryCoords = getCountryCoordinates();
-            let centerCoords = [20, 0]; // Default world center
-            let zoomLevel = 1; // Default world zoom
-            
-            if (centerCountryCode && countryCoords[centerCountryCode]) {
-                centerCoords = countryCoords[centerCountryCode];
-                zoomLevel = 3; // Zoom in to show country and region
-            }
-            
-            // Initialize Leaflet map with OpenStreetMap
+            // Initialize Leaflet map with specific view to show entire world
             worldMap = L.map('world-map', {
-                center: centerCoords,
-                zoom: zoomLevel,
-                minZoom: 1,
-                maxZoom: 4,
                 scrollWheelZoom: false,
                 doubleClickZoom: false,
-                dragging: false, // Disable dragging
-                zoomControl: false, // Remove zoom controls
-                attributionControl: false, // Remove attribution control
-                touchZoom: false, // Disable touch zoom
-                boxZoom: false, // Disable box zoom
-                keyboard: false // Disable keyboard navigation
+                dragging: false,
+                zoomControl: false,
+                attributionControl: false,
+                touchZoom: false,
+                boxZoom: false,
+                keyboard: false
             });
             
-            // Add OpenStreetMap tile layer
+            // Add OpenStreetMap tile layer first
             L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
                 attribution: '',
-                maxZoom: 4,
-                noWrap: true, // Prevent world repetition
-                bounds: [[-90, -180], [90, 180]] // Set world bounds
+                noWrap: true,
+                continuousWorld: false,
+                bounds: [[-90, -180], [90, 180]]
             }).addTo(worldMap);
             
-            // Set max bounds to prevent infinite scrolling
-            worldMap.setMaxBounds([[-90, -180], [90, 180]]);
+            // Set view to show entire world - use fitBounds for full world
+            const worldBounds = L.latLngBounds(
+                L.latLng(-60, -170),  // Southwest corner
+                L.latLng(70, 170)     // Northeast corner
+            );
+            
+            worldMap.fitBounds(worldBounds);
+            
+            // Lock the view
+            worldMap.setMaxBounds(worldBounds);
+            worldMap.setMinZoom(worldMap.getZoom());
+            worldMap.setMaxZoom(worldMap.getZoom());
             
             // Add visitor markers based on stored data
             addVisitorDots();
@@ -440,9 +425,13 @@
         }
 
         function addVisitorDots() {
-            if (!worldMap) return;
+            if (!worldMap) {
+                console.log('World map not initialized yet');
+                return;
+            }
             
             const visitorData = JSON.parse(localStorage.getItem('visitorData')) || { countries: {} };
+            console.log('Adding visitor dots for countries:', Object.keys(visitorData.countries));
             
             // Clear existing markers
             visitorMarkers.forEach(marker => worldMap.removeLayer(marker));
@@ -455,18 +444,57 @@
                 const coords = countryCoords[code];
                 if (coords) {
                     const [lat, lng] = coords;
+                    console.log(`Creating marker for ${code} (${data.name}) at [${lat}, ${lng}] with ${data.count} visits`);
                     
-                    // Create bright green circle marker
-                    const marker = L.circleMarker([lat, lng], {
-                        radius: Math.min(8 + data.count * 2, 20),
-                        fillColor: '#00FF00',
-                        color: '#00AA00',
-                        weight: 3,
-                        fillOpacity: 0.9,
-                        opacity: 1
+                    // Create custom flag marker with better visibility
+                    const markerSize = Math.max(30, Math.min(20 + data.count * 5, 50));
+                    const flagIcon = L.divIcon({
+                        html: `
+                            <div style="position: relative; z-index: 1000;">
+                                <div style="
+                                    background: #00FF00; 
+                                    border: 3px solid #00AA00;
+                                    border-radius: 50%; 
+                                    width: ${markerSize}px; 
+                                    height: ${markerSize}px;
+                                    display: flex;
+                                    align-items: center;
+                                    justify-content: center;
+                                    font-size: ${Math.max(16, Math.min(12 + data.count * 2, 28))}px;
+                                    box-shadow: 0 0 15px rgba(0, 255, 0, 0.8), 0 0 5px rgba(0, 0, 0, 0.5);
+                                    position: relative;
+                                    z-index: 1001;
+                                ">
+                                    ${getFlagEmoji(code)}
+                                </div>
+                                <div style="
+                                    position: absolute;
+                                    top: 100%;
+                                    left: 50%;
+                                    transform: translateX(-50%);
+                                    background: rgba(0, 0, 0, 0.9);
+                                    color: white;
+                                    padding: 3px 8px;
+                                    border-radius: 4px;
+                                    font-size: 12px;
+                                    white-space: nowrap;
+                                    font-family: Arial, sans-serif;
+                                    font-weight: bold;
+                                    margin-top: 2px;
+                                    z-index: 1002;
+                                ">
+                                    ${data.count}
+                                </div>
+                            </div>
+                        `,
+                        className: 'custom-flag-marker',
+                        iconSize: [markerSize + 10, markerSize + 20],
+                        iconAnchor: [Math.floor(markerSize/2) + 5, Math.floor(markerSize/2) + 5]
                     });
                     
-                    // Add popup with country info and flag
+                    const marker = L.marker([lat, lng], { icon: flagIcon });
+                    
+                    // Add popup with country info
                     marker.bindPopup(`
                         <div style="text-align: center; font-family: Georgia, serif; padding: 5px;">
                             <div style="font-size: 2em; margin-bottom: 5px;">${getFlagEmoji(code)}</div>
@@ -477,8 +505,13 @@
                     
                     marker.addTo(worldMap);
                     visitorMarkers.push(marker);
+                    console.log(`Marker added for ${code}`);
+                } else {
+                    console.log(`No coordinates found for country code: ${code}`);
                 }
             });
+            
+            console.log(`Total markers added: ${visitorMarkers.length}`);
         }
     </script>
 </body>
