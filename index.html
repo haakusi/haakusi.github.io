@@ -363,36 +363,36 @@
                 
                 // Add visitor markers when ready
                 worldMap.whenReady(function() {
-                    // Force add some test visitor data if none exists
-                    let visitorData = JSON.parse(localStorage.getItem('visitorData')) || {
-                        totalVisits: 0,
-                        uniqueVisitors: 0,
-                        countries: {}
-                    };
+                    // Add test markers to verify functionality
+                    const testMarkerKR = L.circleMarker([37.5665, 126.9780], {
+                        color: '#FF0000',
+                        fillColor: '#FF0000',
+                        fillOpacity: 1,
+                        radius: 15,
+                        weight: 5
+                    }).addTo(worldMap);
+                    testMarkerKR.bindPopup('🇰🇷 Korea Test - Red');
                     
-                    // Add test data if no countries exist
-                    if (Object.keys(visitorData.countries).length === 0) {
-                        visitorData.countries = {
-                            'KR': { name: 'South Korea', count: 1 },
-                            'US': { name: 'United States', count: 1 },
-                            'JP': { name: 'Japan', count: 1 }
-                        };
-                        visitorData.totalVisits = 3;
-                        visitorData.uniqueVisitors = 3;
-                        localStorage.setItem('visitorData', JSON.stringify(visitorData));
-                        
-                        // Update display
-                        document.getElementById('visitor-count').textContent = visitorData.totalVisits;
-                        document.getElementById('unique-count').textContent = visitorData.uniqueVisitors;
-                        updateCountryList(visitorData.countries);
-                    }
+                    const testMarkerUS = L.circleMarker([39.8283, -98.5795], {
+                        color: '#0000FF',
+                        fillColor: '#0000FF', 
+                        fillOpacity: 1,
+                        radius: 15,
+                        weight: 5
+                    }).addTo(worldMap);
+                    testMarkerUS.bindPopup('🇺🇸 USA Test - Blue');
                     
+                    const testMarkerJP = L.circleMarker([36.2048, 138.2529], {
+                        color: '#FFFF00',
+                        fillColor: '#FFFF00',
+                        fillOpacity: 1,
+                        radius: 15,
+                        weight: 5
+                    }).addTo(worldMap);
+                    testMarkerJP.bindPopup('🇯🇵 Japan Test - Yellow');
+                    
+                    // Also try to add visitor dots
                     addVisitorDots();
-                    
-                    // Try again after delay
-                    setTimeout(() => {
-                        addVisitorDots();
-                    }, 1000);
                 });
                 
             } catch (error) {
