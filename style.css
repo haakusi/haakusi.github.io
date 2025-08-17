@@ -960,12 +960,39 @@ footer {
 
 /* SVG Map Styling */
 .visitor-map svg .continent {
-    transition: fill 0.3s ease;
+    transition: all 0.3s ease;
+    cursor: pointer;
 }
 
 .visitor-map svg .continent:hover {
-    fill: var(--text-primary);
-    opacity: 0.7;
+    fill: #A0956B;
+    opacity: 1;
+    stroke: #8B7355;
+    stroke-width: 1;
+}
+
+.visitor-map svg {
+    border: 1px solid var(--border-color);
+}
+
+/* Visitor dots animation */
+.visitor-map svg circle {
+    animation: pulse 2s infinite;
+}
+
+@keyframes pulse {
+    0% {
+        opacity: 0.9;
+        transform: scale(1);
+    }
+    50% {
+        opacity: 1;
+        transform: scale(1.1);
+    }
+    100% {
+        opacity: 0.9;
+        transform: scale(1);
+    }
 }
 
 /* CSS Variables for easier theming */

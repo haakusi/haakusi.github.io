@@ -215,6 +215,9 @@
             document.getElementById('visitor-count').textContent = visitorData.totalVisits;
             document.getElementById('unique-count').textContent = visitorData.uniqueVisitors;
             updateCountryList(visitorData.countries);
+            
+            // Refresh the map dots
+            addVisitorDots();
         }
 
         function updateCountryList(countries) {
@@ -243,17 +246,36 @@
         function initializeWorldMap() {
             const mapContainer = document.getElementById('world-map');
             
-            // Simple SVG world map
+            // Detailed SVG world map with real continent shapes
             const mapSVG = `
                 <svg viewBox="0 0 1000 500" xmlns="http://www.w3.org/2000/svg">
-                    <rect width="1000" height="500" fill="var(--bg-secondary)"/>
-                    <g fill="var(--text-secondary)" stroke="var(--border-color)" stroke-width="0.5">
-                        <!-- Simplified world map paths -->
-                        <path d="M200,200 L250,180 L300,190 L350,170 L400,180 L450,160 L500,170 L550,150 L600,160 L650,140 L700,150 L750,130 L800,140 L200,200 Z" class="continent"/>
-                        <path d="M150,250 L200,230 L250,240 L300,220 L350,230 L400,210 L450,220 L500,200 L550,210 L600,190 L650,200 L700,180 L750,190 L800,170 L150,250 Z" class="continent"/>
-                        <path d="M100,300 L150,280 L200,290 L250,270 L300,280 L350,260 L400,270 L450,250 L500,260 L550,240 L600,250 L650,230 L700,240 L750,220 L800,230 L100,300 Z" class="continent"/>
-                        <path d="M50,350 L100,330 L150,340 L200,320 L250,330 L300,310 L350,320 L400,300 L450,310 L500,290 L550,300 L600,280 L650,290 L700,270 L750,280 L800,260 L50,350 Z" class="continent"/>
+                    <!-- Ocean background -->
+                    <rect width="1000" height="500" fill="#4A90E2" opacity="0.1"/>
+                    
+                    <!-- World continents with simplified but recognizable shapes -->
+                    <g fill="#8B7355" stroke="#6B5B47" stroke-width="0.5" opacity="0.8">
+                        <!-- North America -->
+                        <path d="M50,120 Q80,100 120,110 L180,90 Q220,95 250,120 L290,130 Q320,140 340,160 L360,180 Q340,200 320,220 L280,240 Q250,250 220,240 L180,230 Q150,220 120,200 L80,180 Q60,150 50,120 Z" class="continent"/>
+                        
+                        <!-- South America -->
+                        <path d="M220,280 Q240,270 260,280 L280,300 Q290,340 285,380 L275,420 Q265,450 250,460 L230,450 Q215,430 210,400 L205,360 Q208,320 220,280 Z" class="continent"/>
+                        
+                        <!-- Europe -->
+                        <path d="M450,120 Q480,110 510,120 L540,130 Q560,140 570,160 L575,180 Q570,190 560,195 L540,190 Q520,185 500,180 L480,175 Q460,170 450,160 L445,140 Q450,130 450,120 Z" class="continent"/>
+                        
+                        <!-- Africa -->
+                        <path d="M460,200 Q490,190 520,200 L540,220 Q550,260 545,300 L540,340 Q535,380 525,400 L515,420 Q505,430 495,425 L485,415 Q475,395 470,375 L465,335 Q460,295 465,255 L460,225 Q460,210 460,200 Z" class="continent"/>
+                        
+                        <!-- Asia -->
+                        <path d="M580,100 Q620,90 660,100 L720,110 Q780,120 820,140 L860,160 Q880,180 875,200 L870,220 Q860,240 840,250 L800,260 Q760,265 720,260 L680,255 Q640,250 620,230 L600,210 Q585,190 580,170 L575,150 Q580,130 580,100 Z" class="continent"/>
+                        
+                        <!-- Australia -->
+                        <path d="M720,320 Q750,310 780,320 L810,330 Q830,340 835,355 L830,370 Q820,380 800,385 L770,380 Q750,375 730,370 L720,360 Q715,350 720,335 L720,320 Z" class="continent"/>
+                        
+                        <!-- Antarctica (bottom) -->
+                        <path d="M100,450 L900,450 Q920,460 900,470 L100,470 Q80,460 100,450 Z" class="continent"/>
                     </g>
+                    
                     <!-- Visitor dots will be added here dynamically -->
                     <g id="visitor-dots"></g>
                 </svg>
@@ -269,14 +291,38 @@
             const visitorData = JSON.parse(localStorage.getItem('visitorData')) || { countries: {} };
             const dotsContainer = document.querySelector('#visitor-dots');
             
-            // Simple country coordinates (approximate)
+            // Clear existing dots
+            dotsContainer.innerHTML = '';
+            
+            // Updated country coordinates to match the new world map
             const countryCoords = {
-                'US': [240, 200], 'CA': [200, 180], 'GB': [480, 170],
-                'DE': [520, 180], 'FR': [500, 190], 'IT': [530, 210],
-                'ES': [480, 220], 'RU': [600, 160], 'CN': [700, 200],
-                'JP': [780, 220], 'KR': [760, 210], 'IN': [650, 240],
-                'AU': [780, 320], 'BR': [300, 280], 'AR': [280, 340],
-                'ZA': [540, 320], 'EG': [540, 230], 'NG': [510, 260]
+                // North America
+                'US': [180, 160], 'CA': [150, 140], 'MX': [160, 200],
+                
+                // South America  
+                'BR': [240, 320], 'AR': [235, 400], 'CO': [220, 300], 'PE': [220, 340],
+                
+                // Europe
+                'GB': [460, 150], 'FR': [480, 160], 'DE': [500, 150], 'IT': [510, 170],
+                'ES': [450, 180], 'NL': [485, 145], 'SE': [510, 120], 'NO': [500, 110],
+                'PL': [520, 150], 'RU': [600, 140],
+                
+                // Africa
+                'ZA': [520, 390], 'NG': [485, 280], 'EG': [530, 220], 'KE': [545, 300],
+                'MA': [470, 220], 'ET': [550, 280],
+                
+                // Asia
+                'CN': [720, 180], 'IN': [650, 220], 'JP': [800, 190], 'KR': [780, 170],
+                'TH': [700, 230], 'VN': [710, 230], 'ID': [720, 270], 'MY': [705, 250],
+                'PH': [750, 240], 'SG': [705, 260], 'TR': [570, 180], 'IR': [610, 200],
+                'SA': [580, 220], 'AE': [610, 230], 'IL': [555, 200], 'PK': [640, 200],
+                
+                // Oceania
+                'AU': [775, 350], 'NZ': [825, 390],
+                
+                // Additional countries
+                'CH': [490, 155], 'AT': [505, 155], 'BE': [480, 150], 'DK': [495, 130],
+                'FI': [530, 110], 'IE': [440, 145], 'PT': [440, 185]
             };
             
             Object.entries(visitorData.countries).forEach(([code, data]) => {
@@ -286,10 +332,18 @@
                     const dot = document.createElementNS('http://www.w3.org/2000/svg', 'circle');
                     dot.setAttribute('cx', x);
                     dot.setAttribute('cy', y);
-                    dot.setAttribute('r', Math.min(3 + data.count, 8));
-                    dot.setAttribute('fill', 'var(--accent-color)');
-                    dot.setAttribute('opacity', '0.8');
-                    dot.innerHTML = `<title>${data.name}: ${data.count} visits</title>`;
+                    dot.setAttribute('r', Math.min(4 + data.count * 2, 12));
+                    dot.setAttribute('fill', '#22C55E'); // Green color
+                    dot.setAttribute('stroke', '#16A34A');
+                    dot.setAttribute('stroke-width', '1');
+                    dot.setAttribute('opacity', '0.9');
+                    dot.style.filter = 'drop-shadow(0 0 3px rgba(34, 197, 94, 0.6))';
+                    
+                    // Add tooltip
+                    const title = document.createElementNS('http://www.w3.org/2000/svg', 'title');
+                    title.textContent = `${data.name}: ${data.count} visitors`;
+                    dot.appendChild(title);
+                    
                     dotsContainer.appendChild(dot);
                 }
             });
