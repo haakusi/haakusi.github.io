@@ -348,15 +348,28 @@
                     worldMap = null;
                 }
                 
-                // Initialize Leaflet map - zoom out more to show USA and Australia fully
-                worldMap = L.map('world-map').setView([30, 120], 1); // Zoom out to level 1
+                // Initialize Leaflet map with clean bounds
+                worldMap = L.map('world-map', {
+                    center: [30, 60], // Center between Americas and Asia
+                    zoom: 2,
+                    worldCopyJump: false, // Prevent world copies
+                    maxBounds: [[-85, -180], [85, 180]],
+                    maxBoundsViscosity: 1.0
+                });
                 
                 // Add OpenStreetMap tile layer
-                L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-                    maxZoom: 1,
-                    minZoom: 1,
-                    attribution: ''
-                }).addTo(worldMap);
+                const tileLayer = L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+                    attribution: '',
+                    noWrap: true,
+                    bounds: [[-90, -180], [90, 180]]
+                });
+                
+                tileLayer.addTo(worldMap);
+                
+                // Wait for tiles to load properly
+                tileLayer.on('load', function() {
+                    console.log('Tiles loaded successfully');
+                });
                 
                 // Disable interactions
                 worldMap.dragging.disable();
