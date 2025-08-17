@@ -258,21 +258,28 @@
             
             // Initialize Leaflet map with OpenStreetMap
             worldMap = L.map('world-map', {
-                center: [20, 0], // Center on equator
-                zoom: 2,
+                center: [36.5, 127.8], // Center on South Korea
+                zoom: 3,
                 minZoom: 1,
                 maxZoom: 10,
                 scrollWheelZoom: false,
                 doubleClickZoom: false,
                 dragging: true,
-                zoomControl: true
+                zoomControl: true,
+                attributionControl: false // Remove attribution control
             });
             
             // Add OpenStreetMap tile layer
             L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-                attribution: '© OpenStreetMap contributors',
+                attribution: '',
                 maxZoom: 10
             }).addTo(worldMap);
+            
+            // Add minimal attribution in bottom corner
+            L.control.attribution({
+                position: 'bottomright',
+                prefix: false
+            }).addAttribution('OSM').addTo(worldMap);
             
             // Add visitor markers based on stored data
             addVisitorDots();

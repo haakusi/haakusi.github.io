@@ -844,10 +844,9 @@ footer {
 }
 
 .visitor-content {
-    display: grid;
-    grid-template-columns: 1.5fr 1fr;
-    gap: 25px;
-    align-items: start;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
 }
 
 .visitor-map {
@@ -872,41 +871,41 @@ footer {
 }
 
 .visitor-info {
-    display: flex;
-    flex-direction: column;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
     gap: 15px;
 }
 
 .visitor-counter {
     text-align: center;
     background: rgba(255, 255, 255, 0.5);
-    border-radius: 6px;
-    padding: 12px;
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+    border-radius: 4px;
+    padding: 8px;
+    box-shadow: 0 1px 4px rgba(0, 0, 0, 0.05);
     backdrop-filter: blur(10px);
 }
 
 .visitor-counter h3 {
-    margin: 0 0 8px 0;
-    font-size: 0.75em;
+    margin: 0 0 4px 0;
+    font-size: 0.65em;
     color: #555;
     text-transform: uppercase;
-    letter-spacing: 1px;
+    letter-spacing: 0.5px;
     font-weight: 300;
 }
 
 .counter-display {
-    font-size: 1.8em;
+    font-size: 1.4em;
     font-weight: 200;
     color: #333;
-    margin: 5px 0;
-    letter-spacing: 1px;
+    margin: 2px 0;
+    letter-spacing: 0.5px;
 }
 
 .unique-counter {
-    font-size: 0.75em;
+    font-size: 0.65em;
     color: #666;
-    margin-top: 5px;
+    margin-top: 2px;
     text-align: center;
 }
 
@@ -917,18 +916,18 @@ footer {
 
 .country-stats {
     background: rgba(255, 255, 255, 0.5);
-    border-radius: 6px;
-    padding: 12px;
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+    border-radius: 4px;
+    padding: 8px;
+    box-shadow: 0 1px 4px rgba(0, 0, 0, 0.05);
     backdrop-filter: blur(10px);
 }
 
 .country-stats h3 {
-    margin: 0 0 12px 0;
-    font-size: 0.75em;
+    margin: 0 0 6px 0;
+    font-size: 0.65em;
     color: #555;
     text-transform: uppercase;
-    letter-spacing: 1px;
+    letter-spacing: 0.5px;
     font-weight: 300;
 }
 
@@ -936,9 +935,9 @@ footer {
     display: flex;
     align-items: center;
     justify-content: space-between;
-    padding: 4px 0;
+    padding: 2px 0;
     border-bottom: 1px solid rgba(0, 0, 0, 0.05);
-    font-size: 0.75em;
+    font-size: 0.65em;
 }
 
 .country-item:last-child {
@@ -946,9 +945,9 @@ footer {
 }
 
 .country-flag {
-    font-size: 1em;
-    margin-right: 6px;
-    width: 16px;
+    font-size: 0.9em;
+    margin-right: 4px;
+    width: 14px;
 }
 
 .country-name {
@@ -960,13 +959,26 @@ footer {
 .country-count {
     color: #333;
     font-weight: 400;
-    min-width: 20px;
+    min-width: 16px;
     text-align: right;
 }
 
 /* Leaflet Map Styling */
 .visitor-map #world-map {
     border: 1px solid var(--border-color);
+}
+
+/* Minimize Leaflet attribution */
+.leaflet-control-attribution {
+    font-size: 8px !important;
+    background: rgba(255, 255, 255, 0.3) !important;
+    padding: 1px 3px !important;
+    opacity: 0.6 !important;
+}
+
+.leaflet-control-attribution a {
+    color: #666 !important;
+    text-decoration: none !important;
 }
 
 /* Leaflet markers animation */
@@ -999,47 +1011,32 @@ footer {
     --accent-color: #8B4513;
 }
 
-/* Mobile responsive and improved vertical layout */
-@media (max-width: 1024px) {
-    .visitor-content {
-        grid-template-columns: 1fr;
-        gap: 20px;
-    }
-    
-    .visitor-info {
-        grid-template-columns: 1fr 1fr;
-        display: grid;
-        gap: 15px;
-    }
-}
-
+/* Mobile responsive layout */
 @media (max-width: 768px) {
     .visitor-content {
-        grid-template-columns: 1fr;
         gap: 15px;
     }
     
     .visitor-info {
         grid-template-columns: 1fr;
-        display: grid;
-        gap: 15px;
+        gap: 10px;
     }
     
     .visitor-map {
-        padding: 12px;
+        padding: 10px;
+    }
+    
+    .visitor-map #world-map {
+        height: 180px;
     }
     
     .visitor-counter,
     .country-stats {
-        padding: 10px;
+        padding: 6px;
     }
     
     .counter-display {
-        font-size: 1.5em;
-    }
-    
-    .visitor-map svg {
-        max-height: 180px;
+        font-size: 1.2em;
     }
 }
 
