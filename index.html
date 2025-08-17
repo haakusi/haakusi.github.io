@@ -160,20 +160,17 @@
             
             // Auto-refresh visitor data every 30 seconds for real-time updates
             setInterval(async () => {
-                console.log('🔄 Auto-refreshing visitor data...');
                 await loadAndDisplayVisitorData();
             }, 30000); // 30 seconds
             
             // Refresh data when page regains focus (user comes back to tab)
             window.addEventListener('focus', async () => {
-                console.log('👁️ Page focused - refreshing visitor data...');
                 await loadAndDisplayVisitorData();
             });
             
             // Refresh data when page becomes visible (tab switching)
             document.addEventListener('visibilitychange', async () => {
                 if (!document.hidden) {
-                    console.log('👁️ Page visible - refreshing visitor data...');
                     await loadAndDisplayVisitorData();
                 }
             });
@@ -281,11 +278,9 @@
                 // 절대 감소 금지: 현재 표시된 값보다 높을 때만 업데이트
                 if (safeTotal > currentTotal) {
                     currentTotalElement.textContent = safeTotal;
-                    console.log(`📈 Total visits updated: ${currentTotal} → ${safeTotal}`);
                 }
                 if (safeUnique > currentUnique) {
                     currentUniqueElement.textContent = safeUnique;
-                    console.log(`📈 Unique visitors updated: ${currentUnique} → ${safeUnique}`);
                 }
                 
                 // 안전한 데이터를 캐시에 저장 (항상 증가만 하는 값)
@@ -309,7 +304,6 @@
                 return safeData;
                 
             } catch (e) {
-                console.log('⚠️ Loading visitor data failed, maintaining current display:', e);
                 // 에러 시에는 절대 화면을 건드리지 않음
                 return {};
             }
@@ -358,34 +352,13 @@
                 localStorage.setItem('realVisitorData', JSON.stringify(globalData));
                 localStorage.setItem('cachedVisitorData', JSON.stringify(globalData));
                 
-                // Log visitor data for Google Sheets
-                const timestamp = new Date().toISOString();
-                const newRow = `"${timestamp}","${country}","${countryCode}","${sessionId}"`;
-                
-                console.log('🎯 NEW VISITOR DETECTED!');
-                console.log('📊 Visitor Details:', {
-                    timestamp: timestamp,
-                    country: country,
-                    countryCode: countryCode,
-                    sessionId: sessionId,
-                    totalVisits: globalData.totalVisits,
-                    uniqueVisitors: globalData.uniqueVisitors
-                });
-                console.log('📋 Copy this line to Google Sheets:');
-                console.log(newRow);
-                console.log('🔗 Google Sheets URL: https://docs.google.com/spreadsheets/d/' + SHEET_ID + '/edit');
-                console.log('---');
+                // Send visitor data to Google Sheets
                 
                 // Send to Google Apps Script
                 try {
                     await addToGoogleSheets(country, countryCode, sessionId);
-                    console.log('✅ Visitor data sent to Google Sheets');
-                    
-                    // Immediately update display with current data (no delay)
-                    // The Google Sheets will be updated in background
-                    
                 } catch (error) {
-                    console.log('⚠️ Failed to send to Google Sheets:', error);
+                    // Silent error handling
                 }
                 
                 // Update local display (ensure numbers never go backwards)
@@ -406,7 +379,6 @@
                 return globalData;
                 
             } catch (error) {
-                console.log('Tracking failed:', error);
                 // Fallback to original localStorage method
                 return updateVisitorCount(country, countryCode);
             }
@@ -418,13 +390,10 @@
                 const response = await fetch(SHEET_CSV_URL);
                 if (response.ok) {
                     const csvText = await response.text();
-                    console.log('📊 Raw CSV data:', csvText.substring(0, 200) + '...');
-                    
                     const lines = csvText.split('\n').filter(line => line.trim());
                     
                     // Check if sheet is empty or has only header
                     if (lines.length <= 1) {
-                        console.log('📊 Google Sheets is empty, using demo data');
                         return getDemoVisitorData();
                     }
                     
@@ -465,11 +434,10 @@
                     };
                     
                     localStorage.setItem('cachedVisitorData', JSON.stringify(data));
-                    console.log('📊 Loaded data from Google Sheets:', data);
                     return data;
                 }
             } catch (e) {
-                console.log('Google Sheets load failed:', e);
+                // Silent error handling
             }
             
             // Return cached or demo data
@@ -478,7 +446,6 @@
                 return JSON.parse(cached);
             }
             
-            console.log('📊 Using demo visitor data');
             return getDemoVisitorData();
         }
         
@@ -519,8 +486,6 @@
                 cookieEnabled: navigator.cookieEnabled
             };
             
-            console.log('📤 Sending comprehensive visitor data:', visitorData);
-            
             try {
                 const response = await fetch(APPS_SCRIPT_URL, {
                     method: 'POST',
@@ -531,11 +496,9 @@
                     body: JSON.stringify(visitorData)
                 });
                 
-                console.log('✅ Comprehensive data sent to Google Sheets');
                 return true;
                 
             } catch (error) {
-                console.log('❌ Failed to send data to Google Sheets:', error);
                 throw error;
             }
         }
@@ -778,19 +741,14 @@
             const countryCoords = getCountryCoordinates();
             
             if (Object.keys(countries).length === 0) {
-                console.log('📍 No visitor data from Google Sheets yet - markers will appear when visitors are tracked');
                 return;
             }
-            
-            console.log('🗺️ Adding markers for countries from Google Sheets:', Object.keys(countries));
             
             // Add marker for each visited country using basic L.marker (like the working black lighthouse)
             Object.entries(countries).forEach(([code, data]) => {
                 const coords = countryCoords[code];
                 if (coords && code !== 'XX') { // Skip unknown locations
                     const [lat, lng] = coords;
-                    
-                    console.log(`📍 Adding marker for ${data.name} at [${lat}, ${lng}]`);
                     
                     // Create basic marker (same as working lighthouse markers)
                     const marker = L.marker([lat, lng]).addTo(worldMap);
@@ -806,8 +764,6 @@
                     `);
                 }
             });
-            
-            console.log(`✅ Added ${visitorMarkers.length} markers to map from Google Sheets data`);
         }
     </script>
 </body>
