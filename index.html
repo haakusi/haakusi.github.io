@@ -342,10 +342,10 @@
                     worldMap = null;
                 }
                 
-                // Initialize Leaflet map - Korea positioned with optimal zoom
+                // Initialize Leaflet map - Korea positioned with zoom 1.5
                 worldMap = L.map('world-map', {
                     zoomControl: false  // Remove +/- buttons
-                }).setView([37, 140], 1.4); // Korea latitude, optimal zoom level
+                }).setView([37, 140], 1.5); // Korea latitude, zoom 1.5 for best view
                 
                 // Add OpenStreetMap tile layer
                 L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
