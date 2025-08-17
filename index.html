@@ -88,6 +88,7 @@
                         <h3 data-en="Visitors by Country" data-kr="국가별 방문자">Visitors by Country</h3>
                         <div id="country-list"></div>
                         <button onclick="testVisitorCount()" style="margin-top: 8px; padding: 4px 8px; font-size: 0.6em; background: #22C55E; color: white; border: none; border-radius: 3px; cursor: pointer;">Test Count Me! 😄</button>
+                        <button onclick="addDemoData()" style="margin-top: 4px; padding: 4px 8px; font-size: 0.6em; background: #3B82F6; color: white; border: none; border-radius: 3px; cursor: pointer;">Add Demo Data 🌍</button>
                     </div>
                 </div>
             </div>
@@ -167,6 +168,28 @@
             alert('Test visitor added from South Korea! 🇰🇷');
         }
 
+        // Add demo visitor data to show the map features
+        function addDemoData() {
+            const demoCountries = [
+                ['United States', 'US'],
+                ['South Korea', 'KR'],
+                ['Japan', 'JP'],
+                ['Germany', 'DE'],
+                ['United Kingdom', 'GB'],
+                ['France', 'FR'],
+                ['Australia', 'AU'],
+                ['Brazil', 'BR'],
+                ['Canada', 'CA'],
+                ['India', 'IN']
+            ];
+            
+            demoCountries.forEach(([country, code]) => {
+                updateVisitorCount(country, code);
+            });
+            
+            alert('Demo visitor data added! 🌍 You should see green markers on the map!');
+        }
+
         // Visitor tracking functionality
         async function initializeVisitorTracking() {
             try {
@@ -187,9 +210,16 @@
                 
             } catch (error) {
                 console.log('Visitor tracking unavailable, using fallback');
-                // Fallback: assume South Korea for testing
-                updateVisitorCount('South Korea', 'KR');
+                // Fallback: add some demo data to show the feature
                 initializeWorldMap();
+                
+                // Add demo data if no visitors exist yet
+                const existingData = localStorage.getItem('visitorData');
+                if (!existingData) {
+                    setTimeout(() => {
+                        addDemoData();
+                    }, 1000);
+                }
             }
         }
 
@@ -384,21 +414,22 @@
                 if (coords) {
                     const [lat, lng] = coords;
                     
-                    // Create green circle marker
+                    // Create bright green circle marker
                     const marker = L.circleMarker([lat, lng], {
-                        radius: Math.min(5 + data.count * 3, 15),
-                        fillColor: '#22C55E',
-                        color: '#16A34A',
-                        weight: 2,
-                        fillOpacity: 0.8,
+                        radius: Math.min(8 + data.count * 2, 20),
+                        fillColor: '#00FF00',
+                        color: '#00AA00',
+                        weight: 3,
+                        fillOpacity: 0.9,
                         opacity: 1
                     });
                     
-                    // Add popup with country info
+                    // Add popup with country info and flag
                     marker.bindPopup(`
-                        <div style="text-align: center; font-family: Georgia, serif;">
-                            <div style="font-size: 1.2em; margin-bottom: 5px;">${getFlagEmoji(code)} ${data.name}</div>
-                            <div style="color: #666; font-size: 0.9em;">${data.count} visitors</div>
+                        <div style="text-align: center; font-family: Georgia, serif; padding: 5px;">
+                            <div style="font-size: 2em; margin-bottom: 5px;">${getFlagEmoji(code)}</div>
+                            <div style="font-size: 1.1em; font-weight: bold; margin-bottom: 3px;">${data.name}</div>
+                            <div style="color: #666; font-size: 0.9em;">${data.count} visitor${data.count > 1 ? 's' : ''}</div>
                         </div>
                     `);
                     
