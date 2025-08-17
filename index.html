@@ -162,26 +162,62 @@
 
         // Visitor tracking functionality
         async function initializeVisitorTracking() {
+            // Initialize world map first - always show
+            initializeWorldMap();
+            
             try {
-                // Get visitor's country using a free IP geolocation service
-                const response = await fetch('https://ipapi.co/json/');
-                const data = await response.json();
+                // Try multiple IP services as fallback
+                let data = null;
                 
-                const country = data.country_name || 'Unknown';
-                const countryCode = data.country_code || 'XX';
+                // Try ipinfo.io (no CORS issues, 50k free requests/month)
+                try {
+                    const response = await fetch('https://ipinfo.io/json?token=dummy');
+                    if (response.ok) {
+                        const ipData = await response.json();
+                        data = {
+                            country_name: ipData.country,
+                            country_code: ipData.country
+                        };
+                    }
+                } catch (e) {
+                    console.log('ipinfo.io failed, trying alternatives');
+                }
                 
-                console.log('Detected visitor from:', country, countryCode);
+                // If no data yet, try ip-api (no CORS, 45 requests/minute)
+                if (!data) {
+                    try {
+                        const response = await fetch('https://ip-api.com/json/');
+                        if (response.ok) {
+                            const ipData = await response.json();
+                            data = {
+                                country_name: ipData.country,
+                                country_code: ipData.countryCode
+                            };
+                        }
+                    } catch (e) {
+                        console.log('ip-api failed');
+                    }
+                }
                 
-                // Update visitor count
-                updateVisitorCount(country, countryCode);
-                
-                // Initialize world map - ALWAYS show entire world
-                initializeWorldMap();
+                // If we got location data, update visitor count
+                if (data) {
+                    const country = data.country_name || 'Unknown';
+                    const countryCode = data.country_code || 'XX';
+                    
+                    console.log('Detected visitor from:', country, countryCode);
+                    
+                    // Update visitor count
+                    updateVisitorCount(country, countryCode);
+                } else {
+                    // Fallback - just count as unknown visitor
+                    console.log('Could not detect location, counting as Unknown');
+                    updateVisitorCount('Unknown', 'XX');
+                }
                 
             } catch (error) {
-                console.log('Visitor tracking unavailable, using fallback');
-                // Fallback: initialize map without specific centering
-                initializeWorldMap();
+                console.log('Visitor tracking error:', error);
+                // Still count the visit even if location detection fails
+                updateVisitorCount('Unknown', 'XX');
             }
         }
 
@@ -331,6 +367,9 @@
         function getCountryCoordinates() {
             // Real geographical coordinates (latitude, longitude)
             return {
+                // Unknown location
+                'XX': [0, 0], // Center of map for unknown visitors
+                
                 // North America
                 'US': [39.8283, -98.5795], 'CA': [56.1304, -106.3468], 'MX': [23.6345, -102.5528],
                 
