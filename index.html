@@ -240,8 +240,6 @@
         }
 
         function updateVisitorCount(country, countryCode) {
-            console.log('Updating visitor count for:', country, countryCode);
-            
             // Get existing visitor data from localStorage
             let visitorData = JSON.parse(localStorage.getItem('visitorData')) || {
                 totalVisits: 0,
@@ -251,15 +249,12 @@
                 visitorId: null
             };
             
-            console.log('Current visitor data:', visitorData);
-            
             // Check if this is a new unique visitor
             const sessionId = sessionStorage.getItem('visitorSessionId');
             if (!sessionId) {
                 // New session - increment unique visitors
                 sessionStorage.setItem('visitorSessionId', Date.now().toString());
                 visitorData.uniqueVisitors = (visitorData.uniqueVisitors || 0) + 1;
-                console.log('New unique visitor, total unique:', visitorData.uniqueVisitors);
             }
             
             // Update country count
@@ -276,8 +271,6 @@
             visitorData.totalVisits++;
             visitorData.lastVisit = new Date().toISOString();
             
-            console.log('Updated visitor data:', visitorData);
-            
             // Save updated data
             localStorage.setItem('visitorData', JSON.stringify(visitorData));
             
@@ -286,9 +279,11 @@
             document.getElementById('unique-count').textContent = visitorData.uniqueVisitors;
             updateCountryList(visitorData.countries);
             
-            // Refresh the map dots
+            // Refresh the map dots with delay
             if (worldMap) {
-                addVisitorDots();
+                setTimeout(() => {
+                    addVisitorDots();
+                }, 500);
             }
         }
 
@@ -350,7 +345,7 @@
                 // Initialize Leaflet map - adjust center and zoom for better continent view
                 worldMap = L.map('world-map', {
                     zoomControl: false  // Remove +/- buttons
-                }).setView([25, 100], 1.8); // Lower latitude, more central longitude, slightly closer zoom
+                }).setView([35, 60], 1.6); // Higher latitude for Russia, westward for Europe/US balance, wider zoom
                 
                 // Add OpenStreetMap tile layer
                 L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
@@ -366,9 +361,24 @@
                 worldMap.keyboard.disable();
                 if (worldMap.tap) worldMap.tap.disable();
                 
-                // Add visitor markers when ready
+                // Add test marker and visitor markers when ready
                 worldMap.whenReady(function() {
+                    // Add a test marker at Korea to verify functionality
+                    const koreaMarker = L.circleMarker([37.5665, 126.9780], {
+                        color: '#FF0000',
+                        fillColor: '#FF0000',
+                        fillOpacity: 0.9,
+                        radius: 8,
+                        weight: 3
+                    }).addTo(worldMap);
+                    koreaMarker.bindPopup('🇰🇷 Korea (Test)');
+                    
                     addVisitorDots();
+                    
+                    // Try again after delay to ensure visitor data is loaded
+                    setTimeout(() => {
+                        addVisitorDots();
+                    }, 1000);
                 });
                 
             } catch (error) {
