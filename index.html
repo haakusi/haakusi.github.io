@@ -348,13 +348,13 @@
                     worldMap = null;
                 }
                 
-                // Initialize Leaflet map - show full world
-                worldMap = L.map('world-map').setView([30, 30], 1); // Lower zoom to show more
+                // Initialize Leaflet map - Korea center, Europe left, America right
+                worldMap = L.map('world-map').setView([35, 120], 2); // Center on Korea region
                 
                 // Add OpenStreetMap tile layer
                 L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-                    maxZoom: 1,
-                    minZoom: 1,
+                    maxZoom: 2,
+                    minZoom: 2,
                     attribution: ''
                 }).addTo(worldMap);
                 
@@ -374,10 +374,11 @@
                 
                 // Add visitor markers after map is fully loaded
                 worldMap.whenReady(function() {
-                    console.log('Map is ready, adding markers');
+                    console.log('Map is ready, waiting for tiles to load...');
                     setTimeout(() => {
+                        console.log('Adding visitor markers now...');
                         addVisitorDots();
-                    }, 100);
+                    }, 1000); // Wait longer for tiles to load
                 });
                 
             } catch (error) {
@@ -454,20 +455,34 @@
                     const [lat, lng] = coords;
                     console.log(`Creating marker for ${code} (${data.name}) at [${lat}, ${lng}] with ${data.count} visits`);
                     
-                    // Create red circle marker using CircleMarker (simpler and more reliable)
-                    console.log(`🔍 Creating red circle marker for ${code} at [${lat}, ${lng}]`);
+                    // Create simple red marker using default marker icon
+                    console.log(`🔍 Creating red marker for ${code} at [${lat}, ${lng}]`);
                     
-                    const marker = L.circleMarker([lat, lng], {
-                        color: '#FF0000',
-                        fillColor: '#FF0000',
-                        fillOpacity: 0.8,
-                        radius: 4,
-                        weight: 2
+                    // Create a custom red marker icon
+                    const redIcon = L.icon({
+                        iconUrl: 'data:image/svg+xml;base64,' + btoa(`
+                            <svg width="12" height="12" viewBox="0 0 12 12" xmlns="http://www.w3.org/2000/svg">
+                                <circle cx="6" cy="6" r="5" fill="#FF0000" stroke="#FFFFFF" stroke-width="1"/>
+                            </svg>
+                        `),
+                        iconSize: [12, 12],
+                        iconAnchor: [6, 6],
+                        popupAnchor: [0, -6]
+                    });
+                    
+                    const marker = L.marker([lat, lng], {
+                        icon: redIcon
                     });
                     
                     marker.addTo(worldMap);
                     visitorMarkers.push(marker);
-                    console.log(`🔴 Red circle marker added for ${code} (${data.name}) at [${lat}, ${lng}]`);
+                    console.log(`🔴 SVG marker added for ${code} (${data.name}) at [${lat}, ${lng}]`);
+                    
+                    // Force map to refresh and show markers
+                    setTimeout(() => {
+                        worldMap.invalidateSize();
+                        console.log(`♻️ Map refreshed for marker visibility`);
+                    }, 100);
                     
                     // Add popup with country info
                     marker.bindPopup(`
