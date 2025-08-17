@@ -253,16 +253,31 @@
         function updateCountryList(countries) {
             const countryList = document.getElementById('country-list');
             const sortedCountries = Object.entries(countries)
-                .sort(([,a], [,b]) => b.count - a.count)
-                .slice(0, 10); // Show top 10 countries
+                .sort(([,a], [,b]) => b.count - a.count);
             
-            countryList.innerHTML = sortedCountries.map(([code, data]) => 
+            const totalCountries = sortedCountries.length;
+            const showAll = totalCountries <= 10;
+            const displayCountries = showAll ? sortedCountries : sortedCountries.slice(0, 8);
+            
+            let html = displayCountries.map(([code, data]) => 
                 `<div class="country-item">
                     <span class="country-flag">${getFlagEmoji(code)}</span>
                     <span class="country-name">${data.name}</span>
                     <span class="country-count">${data.count}</span>
                 </div>`
             ).join('');
+            
+            // If more than 10 countries, show summary
+            if (!showAll) {
+                const remainingCount = totalCountries - 8;
+                html += `<div class="country-item country-more">
+                    <span class="country-flag">🌍</span>
+                    <span class="country-name">+${remainingCount} more countries</span>
+                    <span class="country-count">...</span>
+                </div>`;
+            }
+            
+            countryList.innerHTML = html;
         }
 
         function getFlagEmoji(countryCode) {
@@ -308,12 +323,6 @@
             
             // Set max bounds to prevent infinite scrolling
             worldMap.setMaxBounds([[-90, -180], [90, 180]]);
-            
-            // Add minimal attribution in bottom corner
-            L.control.attribution({
-                position: 'bottomright',
-                prefix: false
-            }).addAttribution('OSM').addTo(worldMap);
             
             // Add visitor markers based on stored data
             addVisitorDots();
