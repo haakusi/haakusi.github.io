@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html data-theme="dark">
+<html data-theme="dark" data-lang="en">
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -299,10 +299,10 @@
             
             // Initialize Leaflet map with OpenStreetMap
             worldMap = L.map('world-map', {
-                center: [20, 20], // Center on world view
-                zoom: 2,
-                minZoom: 2,
-                maxZoom: 2,
+                center: [20, 0], // Center on world view
+                zoom: 1,
+                minZoom: 1,
+                maxZoom: 1,
                 scrollWheelZoom: false,
                 doubleClickZoom: false,
                 dragging: false, // Disable dragging
@@ -316,7 +316,7 @@
             // Add OpenStreetMap tile layer
             L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
                 attribution: '',
-                maxZoom: 2,
+                maxZoom: 1,
                 noWrap: true, // Prevent world repetition
                 bounds: [[-90, -180], [90, 180]] // Set world bounds
             }).addTo(worldMap);
