@@ -148,13 +148,13 @@
             const themeButton = document.querySelector('.theme-toggle');
             themeButton.textContent = savedTheme === 'dark' ? '☀️' : '🌙';
             
-            const savedLang = localStorage.getItem('language') || 'en';
-            document.documentElement.setAttribute('data-lang', savedLang);
+            const savedLang = localStorage.getItem('language') || 'en'; // Default to English
+            document.documentElement.setAttribute('data-lang', 'en'); // Force English default
             
             const langButton = document.querySelector('.lang-toggle');
-            langButton.textContent = savedLang === 'en' ? 'EN' : '한';
+            langButton.textContent = 'EN'; // Default to EN
             
-            updateContent(savedLang);
+            updateContent('en'); // Force English content
             
             // Initialize visitor tracking
             initializeVisitorTracking();
@@ -299,10 +299,10 @@
             
             // Initialize Leaflet map with OpenStreetMap
             worldMap = L.map('world-map', {
-                center: [36.5, 127.8], // Center on South Korea
-                zoom: 3,
-                minZoom: 3,
-                maxZoom: 3,
+                center: [20, 20], // Center on world view
+                zoom: 2,
+                minZoom: 2,
+                maxZoom: 2,
                 scrollWheelZoom: false,
                 doubleClickZoom: false,
                 dragging: false, // Disable dragging
@@ -316,7 +316,7 @@
             // Add OpenStreetMap tile layer
             L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
                 attribution: '',
-                maxZoom: 3,
+                maxZoom: 2,
                 noWrap: true, // Prevent world repetition
                 bounds: [[-90, -180], [90, 180]] // Set world bounds
             }).addTo(worldMap);
