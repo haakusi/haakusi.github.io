@@ -260,51 +260,58 @@
             }
         }
         
-        // Load visitor data from Google Sheets CSV
+        // Load visitor data from Google Sheets CSV - with bulletproof counter protection
         async function loadAndDisplayVisitorData() {
             try {
                 const globalData = await loadGlobalVisitorData();
                 
-                // Get current displayed counts to prevent going backwards
+                // 현재 화면에 표시된 숫자들을 절대 기준으로 사용
                 const currentTotalElement = document.getElementById('visitor-count');
                 const currentUniqueElement = document.getElementById('unique-count');
                 const currentTotal = parseInt(currentTotalElement.textContent) || 0;
                 const currentUnique = parseInt(currentUniqueElement.textContent) || 0;
                 
-                // Only update if new data is higher (never go backwards)
-                const newTotal = Math.max(globalData.totalVisits || 0, currentTotal);
-                const newUnique = Math.max(globalData.uniqueVisitors || 0, currentUnique);
+                // 로컬 저장소의 실제 방문자 데이터도 확인
+                const localData = JSON.parse(localStorage.getItem('realVisitorData')) || { totalVisits: 0, uniqueVisitors: 0 };
                 
-                // Update display only if numbers increased
-                if (newTotal > currentTotal) {
-                    currentTotalElement.textContent = newTotal;
+                // 세 값 중 가장 높은 값을 사용 (화면 표시, 로컬 저장소, Google Sheets)
+                const safeTotal = Math.max(currentTotal, localData.totalVisits, globalData.totalVisits || 0);
+                const safeUnique = Math.max(currentUnique, localData.uniqueVisitors, globalData.uniqueVisitors || 0);
+                
+                // 절대 감소 금지: 현재 표시된 값보다 높을 때만 업데이트
+                if (safeTotal > currentTotal) {
+                    currentTotalElement.textContent = safeTotal;
+                    console.log(`📈 Total visits updated: ${currentTotal} → ${safeTotal}`);
                 }
-                if (newUnique > currentUnique) {
-                    currentUniqueElement.textContent = newUnique;
+                if (safeUnique > currentUnique) {
+                    currentUniqueElement.textContent = safeUnique;
+                    console.log(`📈 Unique visitors updated: ${currentUnique} → ${safeUnique}`);
                 }
                 
-                // Always update countries and map (but preserve count logic)
+                // 안전한 데이터를 캐시에 저장 (항상 증가만 하는 값)
+                const safeData = {
+                    totalVisits: safeTotal,
+                    uniqueVisitors: safeUnique,
+                    countries: globalData.countries || {},
+                    lastUpdate: new Date().toISOString()
+                };
+                localStorage.setItem('cachedVisitorData', JSON.stringify(safeData));
+                
+                // 국가 목록과 지도 업데이트
                 updateCountryList(globalData.countries || {});
                 
-                // Update map
                 if (worldMap) {
                     setTimeout(() => {
                         addVisitorDots();
                     }, 500);
                 }
                 
-                return globalData;
+                return safeData;
                 
             } catch (e) {
-                console.log('Loading visitor data failed:', e);
-                // Don't update display on error to prevent count drops
-                const cachedData = JSON.parse(localStorage.getItem('cachedVisitorData')) || {
-                    totalVisits: 0,
-                    uniqueVisitors: 0,
-                    countries: {}
-                };
-                
-                return cachedData;
+                console.log('⚠️ Loading visitor data failed, maintaining current display:', e);
+                // 에러 시에는 절대 화면을 건드리지 않음
+                return {};
             }
         }
         
@@ -475,17 +482,44 @@
             return getDemoVisitorData();
         }
         
-        // Add visitor data to Google Sheets using Google Apps Script
+        // Add comprehensive visitor data to Google Sheets using Google Apps Script
         async function addToGoogleSheets(country, countryCode, sessionId) {
             const timestamp = new Date().toISOString();
+            
+            // 포괄적인 방문자 데이터 수집
             const visitorData = {
                 timestamp: timestamp,
                 country: country,
                 countryCode: countryCode,
-                sessionId: sessionId
+                sessionId: sessionId,
+                // 브라우저 정보
+                userAgent: navigator.userAgent,
+                language: navigator.language || navigator.userLanguage,
+                platform: navigator.platform,
+                // 화면 정보
+                screenWidth: screen.width,
+                screenHeight: screen.height,
+                screenColorDepth: screen.colorDepth,
+                // 뷰포트 정보
+                viewportWidth: window.innerWidth,
+                viewportHeight: window.innerHeight,
+                // 시간대 정보
+                timezone: Intl.DateTimeFormat().resolvedOptions().timeZone,
+                timezoneOffset: new Date().getTimezoneOffset(),
+                // 유입 경로
+                referrer: document.referrer || 'Direct',
+                // 페이지 정보
+                pageUrl: window.location.href,
+                pageTitle: document.title,
+                // 연결 정보 (지원되는 경우)
+                connectionType: navigator.connection ? navigator.connection.effectiveType : 'Unknown',
+                // 터치 지원 여부
+                touchSupport: 'ontouchstart' in window,
+                // 쿠키 지원 여부
+                cookieEnabled: navigator.cookieEnabled
             };
             
-            console.log('📤 Sending data to Google Apps Script:', visitorData);
+            console.log('📤 Sending comprehensive visitor data:', visitorData);
             
             try {
                 const response = await fetch(APPS_SCRIPT_URL, {
@@ -497,8 +531,7 @@
                     body: JSON.stringify(visitorData)
                 });
                 
-                // no-cors mode means we can't read the response, but if no error is thrown, it probably worked
-                console.log('✅ Data sent to Google Sheets successfully');
+                console.log('✅ Comprehensive data sent to Google Sheets');
                 return true;
                 
             } catch (error) {
