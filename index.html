@@ -342,10 +342,10 @@
                     worldMap = null;
                 }
                 
-                // Initialize Leaflet map - Korea positioned slightly more east
+                // Initialize Leaflet map - Korea positioned with wider zoom view
                 worldMap = L.map('world-map', {
                     zoomControl: false  // Remove +/- buttons
-                }).setView([37, 140], 1.5); // Korea latitude, moved 20 degrees more east
+                }).setView([37, 140], 1.3); // Korea latitude, reduced zoom for wider view
                 
                 // Add OpenStreetMap tile layer
                 L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
