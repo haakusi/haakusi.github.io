@@ -361,21 +361,35 @@
                 worldMap.keyboard.disable();
                 if (worldMap.tap) worldMap.tap.disable();
                 
-                // Add test marker and visitor markers when ready
+                // Add visitor markers when ready
                 worldMap.whenReady(function() {
-                    // Add a test marker at Korea to verify functionality
-                    const koreaMarker = L.circleMarker([37.5665, 126.9780], {
-                        color: '#FF0000',
-                        fillColor: '#FF0000',
-                        fillOpacity: 0.9,
-                        radius: 8,
-                        weight: 3
-                    }).addTo(worldMap);
-                    koreaMarker.bindPopup('🇰🇷 Korea (Test)');
+                    // Force add some test visitor data if none exists
+                    let visitorData = JSON.parse(localStorage.getItem('visitorData')) || {
+                        totalVisits: 0,
+                        uniqueVisitors: 0,
+                        countries: {}
+                    };
+                    
+                    // Add test data if no countries exist
+                    if (Object.keys(visitorData.countries).length === 0) {
+                        visitorData.countries = {
+                            'KR': { name: 'South Korea', count: 1 },
+                            'US': { name: 'United States', count: 1 },
+                            'JP': { name: 'Japan', count: 1 }
+                        };
+                        visitorData.totalVisits = 3;
+                        visitorData.uniqueVisitors = 3;
+                        localStorage.setItem('visitorData', JSON.stringify(visitorData));
+                        
+                        // Update display
+                        document.getElementById('visitor-count').textContent = visitorData.totalVisits;
+                        document.getElementById('unique-count').textContent = visitorData.uniqueVisitors;
+                        updateCountryList(visitorData.countries);
+                    }
                     
                     addVisitorDots();
                     
-                    // Try again after delay to ensure visitor data is loaded
+                    // Try again after delay
                     setTimeout(() => {
                         addVisitorDots();
                     }, 1000);
@@ -440,38 +454,43 @@
             
             const visitorData = JSON.parse(localStorage.getItem('visitorData')) || { countries: {} };
             
-            // Clear existing markers
+            // Clear existing visitor markers
             visitorMarkers.forEach(marker => worldMap.removeLayer(marker));
             visitorMarkers = [];
             
             // Get country coordinates
             const countryCoords = getCountryCoordinates();
             
+            // Add green dots for each visited country
             Object.entries(visitorData.countries).forEach(([code, data]) => {
                 const coords = countryCoords[code];
                 if (coords && code !== 'XX') { // Skip unknown locations
                     const [lat, lng] = coords;
                     
-                    // Create green circle marker
+                    // Create bright green circle marker
                     const marker = L.circleMarker([lat, lng], {
                         color: '#00FF00',
                         fillColor: '#00FF00',
-                        fillOpacity: 0.8,
-                        radius: 6,
-                        weight: 2
+                        fillOpacity: 0.9,
+                        radius: 8,
+                        weight: 3,
+                        pane: 'markerPane' // Ensure it's on top
                     });
                     
+                    // Add to map immediately
                     marker.addTo(worldMap);
                     visitorMarkers.push(marker);
                     
                     // Add popup with country info
                     marker.bindPopup(`
-                        <div style="text-align: center; font-family: Georgia, serif; padding: 5px;">
-                            <div style="font-size: 2em; margin-bottom: 5px;">${getFlagEmoji(code)}</div>
-                            <div style="font-size: 1.1em; font-weight: bold; margin-bottom: 3px;">${data.name}</div>
-                            <div style="color: #666; font-size: 0.9em;">${data.count} visitor${data.count > 1 ? 's' : ''}</div>
+                        <div style="text-align: center; font-family: Georgia, serif; padding: 8px;">
+                            <div style="font-size: 2.5em; margin-bottom: 8px;">${getFlagEmoji(code)}</div>
+                            <div style="font-size: 1.2em; font-weight: bold; margin-bottom: 5px; color: #333;">${data.name}</div>
+                            <div style="color: #666; font-size: 1em;">${data.count} visit${data.count > 1 ? 's' : ''}</div>
                         </div>
-                    `);
+                    `, {
+                        offset: [0, -10]
+                    });
                 }
             });
         }
