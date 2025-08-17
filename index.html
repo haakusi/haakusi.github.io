@@ -456,24 +456,14 @@
             // Get country coordinates
             const countryCoords = getCountryCoordinates();
             
-            // Add green dots for each visited country
+            // Add marker for each visited country using basic L.marker (like the working black lighthouse)
             Object.entries(visitorData.countries).forEach(([code, data]) => {
                 const coords = countryCoords[code];
                 if (coords && code !== 'XX') { // Skip unknown locations
                     const [lat, lng] = coords;
                     
-                    // Create bright green circle marker
-                    const marker = L.circleMarker([lat, lng], {
-                        color: '#00FF00',
-                        fillColor: '#00FF00',
-                        fillOpacity: 0.9,
-                        radius: 8,
-                        weight: 3,
-                        pane: 'markerPane' // Ensure it's on top
-                    });
-                    
-                    // Add to map immediately
-                    marker.addTo(worldMap);
+                    // Create basic marker (same as working lighthouse markers)
+                    const marker = L.marker([lat, lng]).addTo(worldMap);
                     visitorMarkers.push(marker);
                     
                     // Add popup with country info
@@ -483,9 +473,7 @@
                             <div style="font-size: 1.2em; font-weight: bold; margin-bottom: 5px; color: #333;">${data.name}</div>
                             <div style="color: #666; font-size: 1em;">${data.count} visit${data.count > 1 ? 's' : ''}</div>
                         </div>
-                    `, {
-                        offset: [0, -10]
-                    });
+                    `);
                 }
             });
         }
