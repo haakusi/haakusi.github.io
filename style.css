@@ -1026,7 +1026,7 @@ footer {
     pointer-events: none;
 }
 
-/* Leaflet markers - force visibility */
+/* Leaflet markers - force visibility and color */
 .leaflet-marker-icon,
 .leaflet-interactive {
     z-index: 1000 !important;
@@ -1034,6 +1034,7 @@ footer {
     visibility: visible !important;
     opacity: 1 !important;
     pointer-events: auto !important;
+    filter: hue-rotate(120deg) saturate(150%) brightness(1.2) !important;
 }
 
 /* Leaflet markers animation */

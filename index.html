@@ -365,38 +365,15 @@
                 worldMap.whenReady(function() {
                     // Force DOM and tile loading to complete
                     setTimeout(() => {
-                        // Try regular marker with custom icon
-                        const redIcon = L.divIcon({
-                            className: 'custom-red-marker',
-                            html: '<div style="background-color: #FF0000; width: 20px; height: 20px; border-radius: 50%; border: 3px solid white; box-shadow: 0 0 5px rgba(0,0,0,0.5);"></div>',
-                            iconSize: [20, 20],
-                            iconAnchor: [10, 10]
-                        });
+                        // Use basic markers that work properly at correct coordinates
+                        const koreaMarker = L.marker([37.5665, 126.9780]).addTo(worldMap);
+                        koreaMarker.bindPopup('🇰🇷 Korea');
                         
-                        const regularMarker = L.marker([37.5665, 126.9780], {icon: redIcon}).addTo(worldMap);
-                        regularMarker.bindPopup('🇰🇷 Korea - Red Marker');
+                        const usaMarker = L.marker([39.8283, -98.5795]).addTo(worldMap);
+                        usaMarker.bindPopup('🇺🇸 USA');
                         
-                        // Add green circle marker for US
-                        const greenIcon = L.divIcon({
-                            className: 'custom-green-marker',
-                            html: '<div style="background-color: #00FF00; width: 18px; height: 18px; border-radius: 50%; border: 2px solid white; box-shadow: 0 0 3px rgba(0,0,0,0.5);"></div>',
-                            iconSize: [18, 18],
-                            iconAnchor: [9, 9]
-                        });
-                        
-                        const usMarker = L.marker([39.8283, -98.5795], {icon: greenIcon}).addTo(worldMap);
-                        usMarker.bindPopup('🇺🇸 USA - Green Marker');
-                        
-                        // Add blue marker for Japan
-                        const blueIcon = L.divIcon({
-                            className: 'custom-blue-marker',
-                            html: '<div style="background-color: #0000FF; width: 18px; height: 18px; border-radius: 50%; border: 2px solid white; box-shadow: 0 0 3px rgba(0,0,0,0.5);"></div>',
-                            iconSize: [18, 18],
-                            iconAnchor: [9, 9]
-                        });
-                        
-                        const jpMarker = L.marker([36.2048, 138.2529], {icon: blueIcon}).addTo(worldMap);
-                        jpMarker.bindPopup('🇯🇵 Japan - Blue Marker');
+                        const japanMarker = L.marker([36.2048, 138.2529]).addTo(worldMap);
+                        japanMarker.bindPopup('🇯🇵 Japan');
                         
                         // Force marker to be visible with direct DOM manipulation
                         setTimeout(() => {
