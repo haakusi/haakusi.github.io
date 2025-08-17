@@ -160,8 +160,9 @@
         });
 
 
-        // Firebase Realtime Database for true global sync
-        const FIREBASE_URL = 'https://haakusi-visitor-tracker-default-rtdb.firebaseio.com/visitors.json';
+        // Use CountAPI.xyz for simple global counter (actually works!)
+        const VISIT_COUNTER_URL = 'https://api.countapi.xyz/hit/haakusi.github.io/visits';
+        const UNIQUE_COUNTER_URL = 'https://api.countapi.xyz/hit/haakusi.github.io/unique-visits';
         
         // Visitor tracking functionality with GitHub Gist storage
         async function initializeVisitorTracking() {
@@ -289,35 +290,60 @@
             };
         }
         
-        // Update visitor count with real-time Firebase storage
+        // Update visitor count with CountAPI.xyz global counters
         async function updateVisitorCountWithGist(country, countryCode) {
             try {
-                // Load current global data from Firebase
-                const currentData = await loadGlobalVisitorData();
+                // Always increment total visits counter
+                const visitResponse = await fetch(VISIT_COUNTER_URL);
+                let totalVisits = 0;
                 
-                // Check if this is a new unique visitor
-                const sessionId = sessionStorage.getItem('visitorSessionId');
-                if (!sessionId) {
-                    // New session - increment unique visitors
-                    sessionStorage.setItem('visitorSessionId', Date.now().toString());
-                    currentData.uniqueVisitors = (currentData.uniqueVisitors || 0) + 1;
+                if (visitResponse.ok) {
+                    const visitData = await visitResponse.json();
+                    totalVisits = visitData.value || 0;
                 }
                 
-                // Update country count
-                if (currentData.countries[countryCode]) {
-                    currentData.countries[countryCode].count++;
+                // Check if this is a new unique visitor
+                let uniqueVisitors = 0;
+                const sessionId = sessionStorage.getItem('visitorSessionId');
+                if (!sessionId) {
+                    // New session - increment unique visitors counter
+                    sessionStorage.setItem('visitorSessionId', Date.now().toString());
+                    
+                    const uniqueResponse = await fetch(UNIQUE_COUNTER_URL);
+                    if (uniqueResponse.ok) {
+                        const uniqueData = await uniqueResponse.json();
+                        uniqueVisitors = uniqueData.value || 0;
+                    }
                 } else {
-                    currentData.countries[countryCode] = {
+                    // Existing session - just get current unique count
+                    const uniqueResponse = await fetch('https://api.countapi.xyz/get/haakusi.github.io/unique-visits');
+                    if (uniqueResponse.ok) {
+                        const uniqueData = await uniqueResponse.json();
+                        uniqueVisitors = uniqueData.value || 0;
+                    }
+                }
+                
+                // Load current country data
+                const countries = JSON.parse(localStorage.getItem('globalCountries') || '{}');
+                
+                // Update country count
+                if (countries[countryCode]) {
+                    countries[countryCode].count++;
+                } else {
+                    countries[countryCode] = {
                         name: country,
                         count: 1
                     };
                 }
                 
-                // Always increment total visits
-                currentData.totalVisits = (currentData.totalVisits || 0) + 1;
-                currentData.lastUpdate = new Date().toISOString();
+                const currentData = {
+                    totalVisits: totalVisits,
+                    uniqueVisitors: uniqueVisitors,
+                    countries: countries,
+                    lastUpdate: new Date().toISOString()
+                };
                 
-                // Save to Firebase immediately
+                // Save data
                 await saveGlobalVisitorData(currentData);
                 
                 // Update local display
@@ -341,19 +367,41 @@
             }
         }
         
-        // Load global visitor data from Firebase
+        // Load global visitor data from CountAPI.xyz and localStorage for countries
         async function loadGlobalVisitorData() {
             try {
-                const response = await fetch(FIREBASE_URL);
-                if (response.ok) {
-                    const data = await response.json();
-                    if (data) {
-                        localStorage.setItem('cachedVisitorData', JSON.stringify(data));
-                        return data;
-                    }
+                // Get total visits from CountAPI
+                const visitsResponse = await fetch('https://api.countapi.xyz/get/haakusi.github.io/visits');
+                const uniqueResponse = await fetch('https://api.countapi.xyz/get/haakusi.github.io/unique-visits');
+                
+                let totalVisits = 0;
+                let uniqueVisitors = 0;
+                
+                if (visitsResponse.ok) {
+                    const visitsData = await visitsResponse.json();
+                    totalVisits = visitsData.value || 0;
                 }
+                
+                if (uniqueResponse.ok) {
+                    const uniqueData = await uniqueResponse.json();
+                    uniqueVisitors = uniqueData.value || 0;
+                }
+                
+                // Get countries from localStorage (will sync this separately)
+                const countries = JSON.parse(localStorage.getItem('globalCountries') || '{}');
+                
+                const data = {
+                    totalVisits: totalVisits,
+                    uniqueVisitors: uniqueVisitors,
+                    countries: countries,
+                    lastUpdate: new Date().toISOString()
+                };
+                
+                localStorage.setItem('cachedVisitorData', JSON.stringify(data));
+                return data;
+                
             } catch (e) {
-                console.log('Firebase load failed:', e);
+                console.log('CountAPI load failed:', e);
             }
             
             // Return cached or default data
@@ -370,27 +418,16 @@
             };
         }
         
-        // Save global visitor data to Firebase
+        // Save global visitor data
         async function saveGlobalVisitorData(data) {
             try {
-                const response = await fetch(FIREBASE_URL, {
-                    method: 'PUT',
-                    headers: {
-                        'Content-Type': 'application/json'
-                    },
-                    body: JSON.stringify(data)
-                });
-                
-                if (response.ok) {
-                    localStorage.setItem('cachedVisitorData', JSON.stringify(data));
-                    return true;
-                }
-            } catch (e) {
-                console.log('Firebase save failed:', e);
+                // Save countries to localStorage
+                localStorage.setItem('globalCountries', JSON.stringify(data.countries));
                 localStorage.setItem('cachedVisitorData', JSON.stringify(data));
+                return true;
+            } catch (e) {
+                return false;
             }
-            
-            return false;
         }
 
         function updateVisitorCount(country, countryCode) {
