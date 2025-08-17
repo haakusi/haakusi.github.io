@@ -897,6 +897,18 @@ footer {
     letter-spacing: 2px;
 }
 
+.unique-counter {
+    font-size: 0.9em;
+    color: #666;
+    margin-top: 10px;
+    text-align: center;
+}
+
+.unique-counter span {
+    font-weight: 500;
+    color: #333;
+}
+
 .country-stats {
     background: rgba(255, 255, 255, 0.5);
     border-radius: 8px;
@@ -1014,6 +1026,14 @@ footer {
 }
 
 [data-theme="dark"] .counter-display {
+    color: var(--text-primary);
+}
+
+[data-theme="dark"] .unique-counter {
+    color: var(--text-secondary);
+}
+
+[data-theme="dark"] .unique-counter span {
     color: var(--text-primary);
 }
 

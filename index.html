@@ -71,9 +71,13 @@
                 </div>
                 <div class="visitor-info">
                     <div class="visitor-counter">
-                        <h3 data-en="Total Visitors" data-kr="총 방문자">Total Visitors</h3>
+                        <h3 data-en="Total Visits" data-kr="총 방문 수">Total Visits</h3>
                         <div class="counter-display">
                             <span id="visitor-count">0</span>
+                        </div>
+                        <div class="unique-counter">
+                            <small data-en="Unique Visitors: " data-kr="순 방문자: ">Unique Visitors: </small>
+                            <span id="unique-count">0</span>
                         </div>
                     </div>
                     <div class="country-stats">
@@ -178,19 +182,18 @@
             // Get existing visitor data from localStorage
             let visitorData = JSON.parse(localStorage.getItem('visitorData')) || {
                 totalVisits: 0,
+                uniqueVisitors: 0,
                 countries: {},
-                lastVisit: null
+                lastVisit: null,
+                visitorId: null
             };
             
-            // Check if this is a new visit (not from the same day)
-            const today = new Date().toDateString();
-            const isNewVisit = visitorData.lastVisit !== today;
-            
-            if (isNewVisit) {
-                visitorData.totalVisits++;
-                visitorData.lastVisit = today;
+            // Generate unique visitor ID if not exists
+            if (!visitorData.visitorId) {
+                visitorData.visitorId = 'visitor_' + Date.now() + '_' + Math.random().toString(36).substr(2, 9);
+                visitorData.uniqueVisitors++;
                 
-                // Update country count
+                // Update country count for unique visitors
                 if (visitorData.countries[countryCode]) {
                     visitorData.countries[countryCode].count++;
                 } else {
@@ -199,13 +202,18 @@
                         count: 1
                     };
                 }
-                
-                // Save updated data
-                localStorage.setItem('visitorData', JSON.stringify(visitorData));
             }
             
-            // Update display
+            // Always increment total visits
+            visitorData.totalVisits++;
+            visitorData.lastVisit = new Date().toISOString();
+            
+            // Save updated data
+            localStorage.setItem('visitorData', JSON.stringify(visitorData));
+            
+            // Update display with total visits (all visits from this browser)
             document.getElementById('visitor-count').textContent = visitorData.totalVisits;
+            document.getElementById('unique-count').textContent = visitorData.uniqueVisitors;
             updateCountryList(visitorData.countries);
         }
 
