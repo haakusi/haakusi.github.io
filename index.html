@@ -89,6 +89,7 @@
                         <div id="country-list"></div>
                         <button onclick="testVisitorCount()" style="margin-top: 8px; padding: 4px 8px; font-size: 0.6em; background: #22C55E; color: white; border: none; border-radius: 3px; cursor: pointer;">Test Count Me! 😄</button>
                         <button onclick="addDemoData()" style="margin-top: 4px; padding: 4px 8px; font-size: 0.6em; background: #3B82F6; color: white; border: none; border-radius: 3px; cursor: pointer;">Add Demo Data 🌍</button>
+                        <button onclick="testMapCenter()" style="margin-top: 4px; padding: 4px 8px; font-size: 0.6em; background: #F59E0B; color: white; border: none; border-radius: 3px; cursor: pointer;">Test Map Center 🎯</button>
                     </div>
                 </div>
             </div>
@@ -190,6 +191,32 @@
             alert('Demo visitor data added! 🌍 You should see green markers on the map!');
         }
 
+        // Test map centering on different countries
+        function testMapCenter() {
+            const testCountries = ['US', 'KR', 'JP', 'DE', 'GB', 'AU', 'BR'];
+            const randomCountry = testCountries[Math.floor(Math.random() * testCountries.length)];
+            
+            // Remove existing map
+            if (worldMap) {
+                worldMap.remove();
+            }
+            
+            // Create new map centered on random country
+            initializeWorldMap(randomCountry);
+            
+            const countryNames = {
+                'US': 'United States',
+                'KR': 'South Korea', 
+                'JP': 'Japan',
+                'DE': 'Germany',
+                'GB': 'United Kingdom',
+                'AU': 'Australia',
+                'BR': 'Brazil'
+            };
+            
+            alert(`Map centered on ${countryNames[randomCountry]}! 🎯`);
+        }
+
         // Visitor tracking functionality
         async function initializeVisitorTracking() {
             try {
@@ -205,13 +232,13 @@
                 // Update visitor count
                 updateVisitorCount(country, countryCode);
                 
-                // Initialize world map
-                initializeWorldMap();
+                // Initialize world map centered on visitor's country
+                initializeWorldMap(countryCode);
                 
             } catch (error) {
                 console.log('Visitor tracking unavailable, using fallback');
-                // Fallback: add some demo data to show the feature
-                initializeWorldMap();
+                // Fallback: center on South Korea and add demo data
+                initializeWorldMap('KR');
                 
                 // Add demo data if no visitors exist yet
                 const existingData = localStorage.getItem('visitorData');
@@ -321,18 +348,28 @@
         let worldMap = null;
         let visitorMarkers = [];
 
-        function initializeWorldMap() {
+        function initializeWorldMap(centerCountryCode = null) {
             const mapContainer = document.getElementById('world-map');
             
             // Clear any existing content
             mapContainer.innerHTML = '';
             
+            // Get center coordinates for visitor's country
+            const countryCoords = getCountryCoordinates();
+            let centerCoords = [20, 0]; // Default world center
+            let zoomLevel = 1; // Default world zoom
+            
+            if (centerCountryCode && countryCoords[centerCountryCode]) {
+                centerCoords = countryCoords[centerCountryCode];
+                zoomLevel = 3; // Zoom in to show country and region
+            }
+            
             // Initialize Leaflet map with OpenStreetMap
             worldMap = L.map('world-map', {
-                center: [20, 0], // Center on world view
-                zoom: 1,
+                center: centerCoords,
+                zoom: zoomLevel,
                 minZoom: 1,
-                maxZoom: 1,
+                maxZoom: 4,
                 scrollWheelZoom: false,
                 doubleClickZoom: false,
                 dragging: false, // Disable dragging
@@ -346,7 +383,7 @@
             // Add OpenStreetMap tile layer
             L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
                 attribution: '',
-                maxZoom: 1,
+                maxZoom: 4,
                 noWrap: true, // Prevent world repetition
                 bounds: [[-90, -180], [90, 180]] // Set world bounds
             }).addTo(worldMap);
@@ -358,17 +395,9 @@
             addVisitorDots();
         }
 
-        function addVisitorDots() {
-            if (!worldMap) return;
-            
-            const visitorData = JSON.parse(localStorage.getItem('visitorData')) || { countries: {} };
-            
-            // Clear existing markers
-            visitorMarkers.forEach(marker => worldMap.removeLayer(marker));
-            visitorMarkers = [];
-            
+        function getCountryCoordinates() {
             // Real geographical coordinates (latitude, longitude)
-            const countryCoords = {
+            return {
                 // North America
                 'US': [39.8283, -98.5795], 'CA': [56.1304, -106.3468], 'MX': [23.6345, -102.5528],
                 
@@ -408,6 +437,19 @@
                 'AU': [-25.2744, 133.7751], 'NZ': [-40.9006, 174.8860], 'PG': [-6.3150, 143.9555], 
                 'FJ': [-16.5780, 179.4144]
             };
+        }
+
+        function addVisitorDots() {
+            if (!worldMap) return;
+            
+            const visitorData = JSON.parse(localStorage.getItem('visitorData')) || { countries: {} };
+            
+            // Clear existing markers
+            visitorMarkers.forEach(marker => worldMap.removeLayer(marker));
+            visitorMarkers = [];
+            
+            // Get country coordinates
+            const countryCoords = getCountryCoordinates();
             
             Object.entries(visitorData.countries).forEach(([code, data]) => {
                 const coords = countryCoords[code];
