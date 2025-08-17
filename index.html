@@ -713,9 +713,19 @@
                 return;
             }
             
-            // Use cached visitor data from Google Sheets
-            const globalData = JSON.parse(localStorage.getItem('cachedVisitorData')) || {};
-            const visitorData = globalData.countries ? globalData : {};
+            // Use cached visitor data from Google Sheets or localStorage
+            let globalData = JSON.parse(localStorage.getItem('cachedVisitorData')) || {};
+            let countries = globalData.countries || {};
+            
+            // If no real visitor data exists, add some test markers for demo
+            if (Object.keys(countries).length === 0) {
+                console.log('📍 No visitor data yet, showing test markers');
+                countries = {
+                    'KR': { name: 'South Korea', count: 1 },
+                    'US': { name: 'United States', count: 1 },
+                    'CA': { name: 'Canada', count: 1 }
+                };
+            }
             
             // Clear existing visitor markers
             visitorMarkers.forEach(marker => worldMap.removeLayer(marker));
@@ -724,11 +734,15 @@
             // Get country coordinates
             const countryCoords = getCountryCoordinates();
             
+            console.log('🗺️ Adding markers for countries:', Object.keys(countries));
+            
             // Add marker for each visited country using basic L.marker (like the working black lighthouse)
-            Object.entries(visitorData.countries || {}).forEach(([code, data]) => {
+            Object.entries(countries).forEach(([code, data]) => {
                 const coords = countryCoords[code];
                 if (coords && code !== 'XX') { // Skip unknown locations
                     const [lat, lng] = coords;
+                    
+                    console.log(`📍 Adding marker for ${data.name} at [${lat}, ${lng}]`);
                     
                     // Create basic marker (same as working lighthouse markers)
                     const marker = L.marker([lat, lng]).addTo(worldMap);
@@ -744,6 +758,8 @@
                     `);
                 }
             });
+            
+            console.log(`✅ Added ${visitorMarkers.length} markers to map`);
         }
     </script>
 </body>
