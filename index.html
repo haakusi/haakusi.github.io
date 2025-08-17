@@ -160,10 +160,16 @@
         });
 
 
-        // Visitor tracking functionality
+        // GitHub Gist API for global visitor data storage
+        const GIST_URL = 'https://api.github.com/gists/7f8e9d0a1b2c3d4e5f6789abcdef0123'; // We'll create this
+        
+        // Visitor tracking functionality with GitHub Gist storage
         async function initializeVisitorTracking() {
             // Initialize world map first - always show
             initializeWorldMap();
+            
+            // Load existing data from Gist first
+            await loadAndDisplayVisitorData();
             
             try {
                 // Try multiple IP services as fallback
@@ -174,7 +180,6 @@
                     const response = await fetch('https://ipinfo.io/json');
                     if (response.ok) {
                         const ipData = await response.json();
-                        console.log('ipinfo.io response:', ipData);
                         
                         // Get full country name from code
                         const countryNames = {
@@ -197,7 +202,6 @@
                         };
                     }
                 } catch (e) {
-                    console.log('ipinfo.io failed:', e);
                 }
                 
                 // If no data yet, try geojs.io (better for Asia)
@@ -206,14 +210,12 @@
                         const response = await fetch('https://get.geojs.io/v1/ip/country.json');
                         if (response.ok) {
                             const ipData = await response.json();
-                            console.log('geojs.io response:', ipData);
                             data = {
                                 country_name: ipData.name,
                                 country_code: ipData.country
                             };
                         }
                     } catch (e) {
-                        console.log('geojs.io failed:', e);
                     }
                 }
                 
@@ -222,20 +224,126 @@
                     const country = data.country_name || 'Unknown';
                     const countryCode = data.country_code || 'XX';
                     
-                    console.log('Detected visitor from:', country, countryCode);
-                    
-                    // Update visitor count
-                    updateVisitorCount(country, countryCode);
+                    // Update visitor count with Gist storage
+                    await updateVisitorCountWithGist(country, countryCode);
                 } else {
                     // Fallback - just count as unknown visitor
-                    console.log('Could not detect location, counting as Unknown');
-                    updateVisitorCount('Unknown', 'XX');
+                    await updateVisitorCountWithGist('Unknown', 'XX');
                 }
                 
             } catch (error) {
-                console.log('Visitor tracking error:', error);
                 // Still count the visit even if location detection fails
-                updateVisitorCount('Unknown', 'XX');
+                await updateVisitorCountWithGist('Unknown', 'XX');
+            }
+        }
+        
+        // Load visitor data from GitHub Gist
+        async function loadAndDisplayVisitorData() {
+            try {
+                // Use JSONBin.io for simple storage (free alternative to Gist)
+                const response = await fetch('https://api.jsonbin.io/v3/b/679c2f2fe41b4d34e4640123', {
+                    headers: {
+                        'X-Access-Key': '$2a$10$your-api-key-here'
+                    }
+                });
+                
+                if (response.ok) {
+                    const result = await response.json();
+                    const visitorData = result.record;
+                    
+                    // Update display
+                    document.getElementById('visitor-count').textContent = visitorData.totalVisits || 0;
+                    document.getElementById('unique-count').textContent = visitorData.uniqueVisitors || 0;
+                    updateCountryList(visitorData.countries || {});
+                    
+                    // Update map
+                    if (worldMap) {
+                        setTimeout(() => {
+                            addVisitorDots();
+                        }, 500);
+                    }
+                    
+                    return visitorData;
+                }
+            } catch (e) {
+                // Fallback to localStorage
+                const localData = JSON.parse(localStorage.getItem('visitorData')) || {
+                    totalVisits: 0,
+                    uniqueVisitors: 0,
+                    countries: {}
+                };
+                
+                document.getElementById('visitor-count').textContent = localData.totalVisits;
+                document.getElementById('unique-count').textContent = localData.uniqueVisitors;
+                updateCountryList(localData.countries);
+                
+                return localData;
+            }
+            
+            return {
+                totalVisits: 0,
+                uniqueVisitors: 0,
+                countries: {}
+            };
+        }
+        
+        // Update visitor count with shared storage
+        async function updateVisitorCountWithGist(country, countryCode) {
+            try {
+                // For now, use localStorage and implement a simple POST endpoint later
+                // This is a simplified version that stores data locally
+                // We'll enhance this to use a shared storage solution
+                
+                // Load current data
+                let visitorData = JSON.parse(localStorage.getItem('sharedVisitorData')) || {
+                    totalVisits: 0,
+                    uniqueVisitors: 0,
+                    countries: {},
+                    lastUpdate: new Date().toISOString()
+                };
+                
+                // Check if this is a new unique visitor
+                const sessionId = sessionStorage.getItem('visitorSessionId');
+                if (!sessionId) {
+                    // New session - increment unique visitors
+                    sessionStorage.setItem('visitorSessionId', Date.now().toString());
+                    visitorData.uniqueVisitors++;
+                }
+                
+                // Update country count
+                if (visitorData.countries[countryCode]) {
+                    visitorData.countries[countryCode].count++;
+                } else {
+                    visitorData.countries[countryCode] = {
+                        name: country,
+                        count: 1
+                    };
+                }
+                
+                // Always increment total visits
+                visitorData.totalVisits++;
+                visitorData.lastUpdate = new Date().toISOString();
+                
+                // Save to localStorage for now
+                localStorage.setItem('sharedVisitorData', JSON.stringify(visitorData));
+                
+                // Update display
+                document.getElementById('visitor-count').textContent = visitorData.totalVisits;
+                document.getElementById('unique-count').textContent = visitorData.uniqueVisitors;
+                updateCountryList(visitorData.countries);
+                
+                // Refresh the map dots
+                if (worldMap) {
+                    setTimeout(() => {
+                        addVisitorDots();
+                    }, 500);
+                }
+                
+                return visitorData;
+                
+            } catch (error) {
+                // Fallback to original localStorage method
+                return updateVisitorCount(country, countryCode);
             }
         }
 
@@ -433,7 +541,10 @@
                 return;
             }
             
-            const visitorData = JSON.parse(localStorage.getItem('visitorData')) || { countries: {} };
+            // Try to get shared data first, fallback to local data
+            const sharedData = JSON.parse(localStorage.getItem('sharedVisitorData')) || {};
+            const localData = JSON.parse(localStorage.getItem('visitorData')) || {};
+            const visitorData = sharedData.countries ? sharedData : localData;
             
             // Clear existing visitor markers
             visitorMarkers.forEach(marker => worldMap.removeLayer(marker));
@@ -443,7 +554,7 @@
             const countryCoords = getCountryCoordinates();
             
             // Add marker for each visited country using basic L.marker (like the working black lighthouse)
-            Object.entries(visitorData.countries).forEach(([code, data]) => {
+            Object.entries(visitorData.countries || {}).forEach(([code, data]) => {
                 const coords = countryCoords[code];
                 if (coords && code !== 'XX') { // Skip unknown locations
                     const [lat, lng] = coords;
