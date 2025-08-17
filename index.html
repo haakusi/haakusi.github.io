@@ -348,13 +348,13 @@
                     worldMap = null;
                 }
                 
-                // Initialize Leaflet map - Korea center, US on right
-                worldMap = L.map('world-map').setView([35, 100], 2); // Korea more centered, US visible on right
+                // Initialize Leaflet map - show full world
+                worldMap = L.map('world-map').setView([30, 30], 1); // Lower zoom to show more
                 
                 // Add OpenStreetMap tile layer
                 L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-                    maxZoom: 2,
-                    minZoom: 2,
+                    maxZoom: 1,
+                    minZoom: 1,
                     attribution: ''
                 }).addTo(worldMap);
                 
@@ -454,52 +454,29 @@
                     const [lat, lng] = coords;
                     console.log(`Creating marker for ${code} (${data.name}) at [${lat}, ${lng}] with ${data.count} visits`);
                     
-                    // Create simple red circle marker
-                    const markerSize = 8;
-                    const flagIcon = L.divIcon({
-                        html: `<div style="
-                            background: #FF0000; 
-                            border: 2px solid #FFFFFF;
-                            border-radius: 50%; 
-                            width: ${markerSize}px; 
-                            height: ${markerSize}px;
-                            box-shadow: 0 0 4px rgba(0, 0, 0, 0.5);
-                            position: relative;
-                        "></div>`,
-                        className: 'simple-red-marker',
-                        iconSize: [markerSize, markerSize],
-                        iconAnchor: [markerSize/2, markerSize/2]
+                    // Create red circle marker using CircleMarker (simpler and more reliable)
+                    console.log(`🔍 Creating red circle marker for ${code} at [${lat}, ${lng}]`);
+                    
+                    const marker = L.circleMarker([lat, lng], {
+                        color: '#FF0000',
+                        fillColor: '#FF0000',
+                        fillOpacity: 0.8,
+                        radius: 4,
+                        weight: 2
                     });
                     
-                    // Create marker - test with both custom icon and default
-                    console.log(`🔍 Testing marker for ${code} at [${lat}, ${lng}]`);
+                    marker.addTo(worldMap);
+                    visitorMarkers.push(marker);
+                    console.log(`🔴 Red circle marker added for ${code} (${data.name}) at [${lat}, ${lng}]`);
                     
-                    // First try with default marker to test coordinates
-                    const testMarker = L.marker([lat, lng]).addTo(worldMap);
-                    console.log(`📍 Default marker added for ${code} at [${lat}, ${lng}]`);
-                    
-                    // Remove default and add custom
-                    setTimeout(() => {
-                        worldMap.removeLayer(testMarker);
-                        
-                        const marker = L.marker([lat, lng], { 
-                            icon: flagIcon,
-                            zIndexOffset: 1000
-                        });
-                        
-                        marker.addTo(worldMap);
-                        visitorMarkers.push(marker);
-                        console.log(`🔴 Custom red marker added for ${code}`);
-                        
-                        // Add popup with country info
-                        marker.bindPopup(`
-                            <div style="text-align: center; font-family: Georgia, serif; padding: 5px;">
-                                <div style="font-size: 2em; margin-bottom: 5px;">${getFlagEmoji(code)}</div>
-                                <div style="font-size: 1.1em; font-weight: bold; margin-bottom: 3px;">${data.name}</div>
-                                <div style="color: #666; font-size: 0.9em;">${data.count} visitor${data.count > 1 ? 's' : ''}</div>
-                            </div>
-                        `);
-                    }, 1000); // Wait 1 second to see default marker first
+                    // Add popup with country info
+                    marker.bindPopup(`
+                        <div style="text-align: center; font-family: Georgia, serif; padding: 5px;">
+                            <div style="font-size: 2em; margin-bottom: 5px;">${getFlagEmoji(code)}</div>
+                            <div style="font-size: 1.1em; font-weight: bold; margin-bottom: 3px;">${data.name}</div>
+                            <div style="color: #666; font-size: 0.9em;">${data.count} visitor${data.count > 1 ? 's' : ''}</div>
+                        </div>
+                    `);
                 } else {
                     console.log(`No coordinates found for country code: ${code}`);
                 }
