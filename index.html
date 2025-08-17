@@ -160,9 +160,8 @@
         });
 
 
-        // JSONBin.io for real-time global visitor data storage  
-        const JSONBIN_BIN_ID = '679c42fee41b4d34e464abc3';
-        const JSONBIN_API_KEY = '$2a$10$QN2TQD8l8O4ZHhqWnFM4mOK5Pw8gLzr2JdR6Y7nE3Tx9KvF5sP1aC'; // Public access key
+        // Firebase Realtime Database for true global sync
+        const FIREBASE_URL = 'https://haakusi-visitor-tracker-default-rtdb.firebaseio.com/visitors.json';
         
         // Visitor tracking functionality with GitHub Gist storage
         async function initializeVisitorTracking() {
@@ -290,18 +289,18 @@
             };
         }
         
-        // Update visitor count with real-time global storage
+        // Update visitor count with real-time Firebase storage
         async function updateVisitorCountWithGist(country, countryCode) {
             try {
-                // First load current global data
+                // Load current global data from Firebase
                 const currentData = await loadGlobalVisitorData();
                 
-                // Check if this is a new unique visitor (still use session for this)
+                // Check if this is a new unique visitor
                 const sessionId = sessionStorage.getItem('visitorSessionId');
                 if (!sessionId) {
                     // New session - increment unique visitors
                     sessionStorage.setItem('visitorSessionId', Date.now().toString());
-                    currentData.uniqueVisitors++;
+                    currentData.uniqueVisitors = (currentData.uniqueVisitors || 0) + 1;
                 }
                 
                 // Update country count
@@ -315,10 +314,10 @@
                 }
                 
                 // Always increment total visits
-                currentData.totalVisits++;
+                currentData.totalVisits = (currentData.totalVisits || 0) + 1;
                 currentData.lastUpdate = new Date().toISOString();
                 
-                // Save to global storage (JSONBin.io)
+                // Save to Firebase immediately
                 await saveGlobalVisitorData(currentData);
                 
                 // Update local display
@@ -336,26 +335,31 @@
                 return currentData;
                 
             } catch (error) {
+                console.log('Global tracking failed:', error);
                 // Fallback to original localStorage method
                 return updateVisitorCount(country, countryCode);
             }
         }
         
-        // Load global visitor data from JSONBin.io
+        // Load global visitor data from Firebase
         async function loadGlobalVisitorData() {
             try {
-                const response = await fetch(`https://api.jsonbin.io/v3/b/${JSONBIN_BIN_ID}/latest`, {
-                    headers: {
-                        'X-Access-Key': JSONBIN_API_KEY
-                    }
-                });
-                
+                const response = await fetch(FIREBASE_URL);
                 if (response.ok) {
-                    const result = await response.json();
-                    return result.record;
+                    const data = await response.json();
+                    if (data) {
+                        localStorage.setItem('cachedVisitorData', JSON.stringify(data));
+                        return data;
+                    }
                 }
             } catch (e) {
-                // Return default structure if failed
+                console.log('Firebase load failed:', e);
+            }
+            
+            // Return cached or default data
+            const cached = localStorage.getItem('cachedVisitorData');
+            if (cached) {
+                return JSON.parse(cached);
             }
             
             return {
@@ -366,25 +370,23 @@
             };
         }
         
-        // Save global visitor data to JSONBin.io
+        // Save global visitor data to Firebase
         async function saveGlobalVisitorData(data) {
             try {
-                const response = await fetch(`https://api.jsonbin.io/v3/b/${JSONBIN_BIN_ID}`, {
+                const response = await fetch(FIREBASE_URL, {
                     method: 'PUT',
                     headers: {
-                        'Content-Type': 'application/json',
-                        'X-Access-Key': JSONBIN_API_KEY
+                        'Content-Type': 'application/json'
                     },
                     body: JSON.stringify(data)
                 });
                 
                 if (response.ok) {
-                    // Also cache locally
                     localStorage.setItem('cachedVisitorData', JSON.stringify(data));
                     return true;
                 }
             } catch (e) {
-                // Save to localStorage as fallback
+                console.log('Firebase save failed:', e);
                 localStorage.setItem('cachedVisitorData', JSON.stringify(data));
             }
             
