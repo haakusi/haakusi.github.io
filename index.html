@@ -265,9 +265,25 @@
             try {
                 const globalData = await loadGlobalVisitorData();
                 
-                // Update display
-                document.getElementById('visitor-count').textContent = globalData.totalVisits || 0;
-                document.getElementById('unique-count').textContent = globalData.uniqueVisitors || 0;
+                // Get current displayed counts to prevent going backwards
+                const currentTotalElement = document.getElementById('visitor-count');
+                const currentUniqueElement = document.getElementById('unique-count');
+                const currentTotal = parseInt(currentTotalElement.textContent) || 0;
+                const currentUnique = parseInt(currentUniqueElement.textContent) || 0;
+                
+                // Only update if new data is higher (never go backwards)
+                const newTotal = Math.max(globalData.totalVisits || 0, currentTotal);
+                const newUnique = Math.max(globalData.uniqueVisitors || 0, currentUnique);
+                
+                // Update display only if numbers increased
+                if (newTotal > currentTotal) {
+                    currentTotalElement.textContent = newTotal;
+                }
+                if (newUnique > currentUnique) {
+                    currentUniqueElement.textContent = newUnique;
+                }
+                
+                // Always update countries and map (but preserve count logic)
                 updateCountryList(globalData.countries || {});
                 
                 // Update map
@@ -281,16 +297,12 @@
                 
             } catch (e) {
                 console.log('Loading visitor data failed:', e);
-                // Fallback to cached data
+                // Don't update display on error to prevent count drops
                 const cachedData = JSON.parse(localStorage.getItem('cachedVisitorData')) || {
                     totalVisits: 0,
                     uniqueVisitors: 0,
                     countries: {}
                 };
-                
-                document.getElementById('visitor-count').textContent = cachedData.totalVisits;
-                document.getElementById('unique-count').textContent = cachedData.uniqueVisitors;
-                updateCountryList(cachedData.countries);
                 
                 return cachedData;
             }
@@ -369,9 +381,12 @@
                     console.log('⚠️ Failed to send to Google Sheets:', error);
                 }
                 
-                // Update local display
-                document.getElementById('visitor-count').textContent = globalData.totalVisits;
-                document.getElementById('unique-count').textContent = globalData.uniqueVisitors;
+                // Update local display (ensure numbers never go backwards)
+                const currentTotal = parseInt(document.getElementById('visitor-count').textContent) || 0;
+                const currentUnique = parseInt(document.getElementById('unique-count').textContent) || 0;
+                
+                document.getElementById('visitor-count').textContent = Math.max(globalData.totalVisits, currentTotal);
+                document.getElementById('unique-count').textContent = Math.max(globalData.uniqueVisitors, currentUnique);
                 updateCountryList(globalData.countries);
                 
                 // Refresh the map dots
@@ -492,12 +507,17 @@
             }
         }
         
-        // Demo data for testing markers and display
+        // Get safe visitor data that never decreases
         function getDemoVisitorData() {
-            // Only use demo data if Google Sheets is truly empty
+            // Check if we have any existing count displayed
+            const currentTotalElement = document.getElementById('visitor-count');
+            const currentUniqueElement = document.getElementById('unique-count');
+            const currentTotal = parseInt(currentTotalElement?.textContent) || 0;
+            const currentUnique = parseInt(currentUniqueElement?.textContent) || 0;
+            
             const demoData = {
-                totalVisits: 0, // Start with 0 so real visits count up
-                uniqueVisitors: 0,
+                totalVisits: Math.max(0, currentTotal), // Never go below current display
+                uniqueVisitors: Math.max(0, currentUnique),
                 countries: {},
                 lastUpdate: new Date().toISOString()
             };
