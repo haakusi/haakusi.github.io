@@ -348,8 +348,8 @@
                     worldMap = null;
                 }
                 
-                // Initialize Leaflet map - simple version
-                worldMap = L.map('world-map').setView([0, 0], 2);
+                // Initialize Leaflet map - center on Asia-Pacific to show Korea in middle
+                worldMap = L.map('world-map').setView([30, 120], 2); // Center on Korea region
                 
                 // Add OpenStreetMap tile layer
                 L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
@@ -372,10 +372,13 @@
                 
                 console.log('Map initialized');
                 
-                // Add visitor markers
-                setTimeout(() => {
-                    addVisitorDots();
-                }, 500);
+                // Add visitor markers after map is fully loaded
+                worldMap.whenReady(function() {
+                    console.log('Map is ready, adding markers');
+                    setTimeout(() => {
+                        addVisitorDots();
+                    }, 100);
+                });
                 
             } catch (error) {
                 console.error('Error initializing map:', error);
@@ -413,7 +416,7 @@
                 
                 // Asia
                 'CN': [35.8617, 104.1954], 'IN': [20.5937, 78.9629], 'JP': [36.2048, 138.2529], 
-                'KR': [35.9078, 127.7669], 'TH': [15.8700, 100.9925], 'VN': [14.0583, 108.2772], 
+                'KR': [37.5665, 126.9780], 'TH': [15.8700, 100.9925], 'VN': [14.0583, 108.2772], // Seoul coordinates for Korea 
                 'ID': [-0.7893, 113.9213], 'MY': [4.2105, 101.9758], 'PH': [12.8797, 121.7740], 
                 'SG': [1.3521, 103.8198], 'TR': [38.9637, 35.2433], 'IR': [32.4279, 53.6880], 
                 'SA': [23.8859, 45.0792], 'AE': [23.4241, 53.8478], 'IL': [31.0461, 34.8516], 
@@ -494,10 +497,16 @@
                         iconAnchor: [markerSize/2, markerSize/2] // Center the marker on coordinates
                     });
                     
-                    // Create marker at exact coordinates
+                    // Create marker at exact coordinates with proper positioning
+                    console.log(`Placing marker at exact coordinates: [${lat}, ${lng}]`);
                     const marker = L.marker([lat, lng], { 
                         icon: flagIcon,
                         zIndexOffset: 1000 // Ensure markers appear on top
+                    });
+                    
+                    // Verify marker position
+                    marker.on('add', function() {
+                        console.log(`Marker added for ${code} at position:`, marker.getLatLng());
                     });
                     
                     // Add popup with country info
