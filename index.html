@@ -345,7 +345,15 @@
                 const response = await fetch(SHEET_CSV_URL);
                 if (response.ok) {
                     const csvText = await response.text();
+                    console.log('📊 Raw CSV data:', csvText.substring(0, 200) + '...');
+                    
                     const lines = csvText.split('\n').filter(line => line.trim());
+                    
+                    // Check if sheet is empty or has only header
+                    if (lines.length <= 1) {
+                        console.log('📊 Google Sheets is empty, using demo data');
+                        return getDemoVisitorData();
+                    }
                     
                     // Skip header row if exists
                     const dataLines = lines.slice(1);
@@ -384,24 +392,46 @@
                     };
                     
                     localStorage.setItem('cachedVisitorData', JSON.stringify(data));
+                    console.log('📊 Loaded data from Google Sheets:', data);
                     return data;
                 }
             } catch (e) {
                 console.log('Google Sheets load failed:', e);
             }
             
-            // Return cached or default data
+            // Return cached or demo data
             const cached = localStorage.getItem('cachedVisitorData');
             if (cached) {
                 return JSON.parse(cached);
             }
             
-            return {
-                totalVisits: 0,
-                uniqueVisitors: 0,
-                countries: {},
+            console.log('📊 Using demo visitor data');
+            return getDemoVisitorData();
+        }
+        
+        // Demo data for testing markers and display
+        function getDemoVisitorData() {
+            const demoData = {
+                totalVisits: 47,
+                uniqueVisitors: 23,
+                countries: {
+                    'KR': { name: 'South Korea', count: 15 },
+                    'US': { name: 'United States', count: 8 },
+                    'JP': { name: 'Japan', count: 6 },
+                    'DE': { name: 'Germany', count: 4 },
+                    'GB': { name: 'United Kingdom', count: 3 },
+                    'CA': { name: 'Canada', count: 3 },
+                    'FR': { name: 'France', count: 2 },
+                    'AU': { name: 'Australia', count: 2 },
+                    'IN': { name: 'India', count: 2 },
+                    'BR': { name: 'Brazil', count: 1 },
+                    'SG': { name: 'Singapore', count: 1 }
+                },
                 lastUpdate: new Date().toISOString()
             };
+            
+            localStorage.setItem('cachedVisitorData', JSON.stringify(demoData));
+            return demoData;
         }
         
         
