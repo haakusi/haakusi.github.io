@@ -1014,12 +1014,15 @@ footer {
 }
 
 /* Custom flag marker styling */
-.custom-flag-marker {
+.custom-flag-marker,
+.simple-red-marker {
     background: transparent !important;
     border: none !important;
+    box-shadow: none !important;
 }
 
-.custom-flag-marker div {
+.custom-flag-marker div,
+.simple-red-marker div {
     pointer-events: none;
 }
 

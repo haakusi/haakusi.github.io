@@ -348,8 +348,8 @@
                     worldMap = null;
                 }
                 
-                // Initialize Leaflet map - balance between Korea and Americas
-                worldMap = L.map('world-map').setView([30, 60], 2); // Center to show both Americas and Asia
+                // Initialize Leaflet map - Korea center, US on right
+                worldMap = L.map('world-map').setView([35, 100], 2); // Korea more centered, US visible on right
                 
                 // Add OpenStreetMap tile layer
                 L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
@@ -454,81 +454,52 @@
                     const [lat, lng] = coords;
                     console.log(`Creating marker for ${code} (${data.name}) at [${lat}, ${lng}] with ${data.count} visits`);
                     
-                    // Create tiny flag marker (1/100 of original size)
-                    const markerSize = 6; // Very small size for precise location
+                    // Create simple red circle marker
+                    const markerSize = 8;
                     const flagIcon = L.divIcon({
-                        html: `
-                            <div style="position: relative;">
-                                <div style="
-                                    background: #FF0000; 
-                                    border: 1px solid #AA0000;
-                                    border-radius: 50%; 
-                                    width: ${markerSize}px; 
-                                    height: ${markerSize}px;
-                                    display: flex;
-                                    align-items: center;
-                                    justify-content: center;
-                                    font-size: 4px;
-                                    box-shadow: 0 0 6px rgba(255, 0, 0, 1);
-                                    animation: pulse 2s infinite;
-                                ">
-                                    🔴
-                                </div>
-                                <div style="
-                                    position: absolute;
-                                    top: 100%;
-                                    left: 50%;
-                                    transform: translateX(-50%);
-                                    background: rgba(0, 0, 0, 0.9);
-                                    color: white;
-                                    padding: 0px 2px;
-                                    border-radius: 1px;
-                                    font-size: 6px;
-                                    white-space: nowrap;
-                                    font-family: Arial, sans-serif;
-                                    margin-top: 0px;
-                                ">
-                                    ${data.count}
-                                </div>
-                            </div>
-                        `,
-                        className: 'custom-flag-marker',
+                        html: `<div style="
+                            background: #FF0000; 
+                            border: 2px solid #FFFFFF;
+                            border-radius: 50%; 
+                            width: ${markerSize}px; 
+                            height: ${markerSize}px;
+                            box-shadow: 0 0 4px rgba(0, 0, 0, 0.5);
+                            position: relative;
+                        "></div>`,
+                        className: 'simple-red-marker',
                         iconSize: [markerSize, markerSize],
-                        iconAnchor: [markerSize/2, markerSize/2] // Center the marker on coordinates
+                        iconAnchor: [markerSize/2, markerSize/2]
                     });
                     
-                    // Create marker at exact coordinates with proper positioning
-                    console.log(`Placing marker at exact coordinates: [${lat}, ${lng}]`);
-                    const marker = L.marker([lat, lng], { 
-                        icon: flagIcon,
-                        zIndexOffset: 1000 // Ensure markers appear on top
-                    });
+                    // Create marker - test with both custom icon and default
+                    console.log(`🔍 Testing marker for ${code} at [${lat}, ${lng}]`);
                     
-                    // Verify marker position
-                    marker.on('add', function() {
-                        console.log(`Marker added for ${code} at position:`, marker.getLatLng());
-                    });
+                    // First try with default marker to test coordinates
+                    const testMarker = L.marker([lat, lng]).addTo(worldMap);
+                    console.log(`📍 Default marker added for ${code} at [${lat}, ${lng}]`);
                     
-                    // Add popup with country info
-                    marker.bindPopup(`
-                        <div style="text-align: center; font-family: Georgia, serif; padding: 5px;">
-                            <div style="font-size: 2em; margin-bottom: 5px;">${getFlagEmoji(code)}</div>
-                            <div style="font-size: 1.1em; font-weight: bold; margin-bottom: 3px;">${data.name}</div>
-                            <div style="color: #666; font-size: 0.9em;">${data.count} visitor${data.count > 1 ? 's' : ''}</div>
-                        </div>
-                    `);
-                    
-                    marker.addTo(worldMap);
-                    visitorMarkers.push(marker);
-                    console.log(`✅ RED marker added for ${code} (${data.name}) at [${lat}, ${lng}]`);
-                    
-                    // Force marker to be visible
+                    // Remove default and add custom
                     setTimeout(() => {
-                        if (marker._icon) {
-                            marker._icon.style.zIndex = '9999';
-                            console.log(`🎯 Marker icon for ${code} positioned with z-index 9999`);
-                        }
-                    }, 100);
+                        worldMap.removeLayer(testMarker);
+                        
+                        const marker = L.marker([lat, lng], { 
+                            icon: flagIcon,
+                            zIndexOffset: 1000
+                        });
+                        
+                        marker.addTo(worldMap);
+                        visitorMarkers.push(marker);
+                        console.log(`🔴 Custom red marker added for ${code}`);
+                        
+                        // Add popup with country info
+                        marker.bindPopup(`
+                            <div style="text-align: center; font-family: Georgia, serif; padding: 5px;">
+                                <div style="font-size: 2em; margin-bottom: 5px;">${getFlagEmoji(code)}</div>
+                                <div style="font-size: 1.1em; font-weight: bold; margin-bottom: 3px;">${data.name}</div>
+                                <div style="color: #666; font-size: 0.9em;">${data.count} visitor${data.count > 1 ? 's' : ''}</div>
+                            </div>
+                        `);
+                    }, 1000); // Wait 1 second to see default marker first
                 } else {
                     console.log(`No coordinates found for country code: ${code}`);
                 }
