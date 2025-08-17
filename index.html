@@ -288,46 +288,40 @@
                     return;
                 }
                 
-                // Clear any existing content
-                mapContainer.innerHTML = '';
+                // Clear any existing map
+                if (worldMap) {
+                    worldMap.remove();
+                    worldMap = null;
+                }
                 
-                // Initialize Leaflet map with specific view to show entire world
-                worldMap = L.map('world-map', {
-                    center: [20, 0],
-                    zoom: 1,
-                    minZoom: 1,
-                    maxZoom: 1,
-                    scrollWheelZoom: false,
-                    doubleClickZoom: false,
-                    dragging: false,
-                    zoomControl: false,
-                    attributionControl: false,
-                    touchZoom: false,
-                    boxZoom: false,
-                    keyboard: false
-                });
-                
-                console.log('Map initialized successfully');
+                // Initialize Leaflet map - simple version
+                worldMap = L.map('world-map').setView([0, 0], 2);
                 
                 // Add OpenStreetMap tile layer
                 L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-                    attribution: '',
-                    noWrap: true,
-                    bounds: [[-90, -180], [90, 180]]
+                    maxZoom: 2,
+                    minZoom: 2,
+                    attribution: ''
                 }).addTo(worldMap);
                 
-                console.log('Tile layer added successfully');
+                // Disable interactions
+                worldMap.dragging.disable();
+                worldMap.touchZoom.disable();
+                worldMap.doubleClickZoom.disable();
+                worldMap.scrollWheelZoom.disable();
+                worldMap.boxZoom.disable();
+                worldMap.keyboard.disable();
+                if (worldMap.tap) worldMap.tap.disable();
                 
-                // Ensure map renders properly
+                // Remove zoom control
+                worldMap.zoomControl.remove();
+                
+                console.log('Map initialized');
+                
+                // Add visitor markers
                 setTimeout(() => {
-                    worldMap.invalidateSize();
-                    // Force a re-render
-                    worldMap.setView([20, 0], 1);
-                    console.log('Map view set');
-                }, 200);
-                
-                // Add visitor markers based on stored data
-                addVisitorDots();
+                    addVisitorDots();
+                }, 500);
                 
             } catch (error) {
                 console.error('Error initializing map:', error);
