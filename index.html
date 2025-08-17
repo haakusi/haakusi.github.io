@@ -365,11 +365,16 @@
             
             // Set view to show entire world - use fitBounds for full world
             const worldBounds = L.latLngBounds(
-                L.latLng(-60, -170),  // Southwest corner
-                L.latLng(70, 170)     // Northeast corner
+                L.latLng(-60, -180),  // Southwest corner - full west
+                L.latLng(70, 180)     // Northeast corner - full east
             );
             
             worldMap.fitBounds(worldBounds);
+            
+            // Force zoom to show entire world
+            setTimeout(() => {
+                worldMap.setZoom(1);
+            }, 200);
             
             // Lock the view
             worldMap.setMaxBounds(worldBounds);
