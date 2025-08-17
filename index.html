@@ -338,7 +338,6 @@
                 const mapContainer = document.getElementById('world-map');
                 
                 if (!mapContainer) {
-                    console.error('Map container not found!');
                     return;
                 }
                 
@@ -348,15 +347,17 @@
                     worldMap = null;
                 }
                 
-                // Initialize Leaflet map - simple and free
-                worldMap = L.map('world-map').setView([35, 127], 2); // Korea center, zoom 2
+                // Initialize Leaflet map - adjust center and zoom for better continent view
+                worldMap = L.map('world-map', {
+                    zoomControl: false  // Remove +/- buttons
+                }).setView([25, 100], 1.8); // Lower latitude, more central longitude, slightly closer zoom
                 
-                // Add OpenStreetMap tile layer - completely free
+                // Add OpenStreetMap tile layer
                 L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
                     attribution: ''
                 }).addTo(worldMap);
                 
-                // Keep zoom controls but disable other interactions
+                // Disable all interactions for static map
                 worldMap.dragging.disable();
                 worldMap.touchZoom.disable();
                 worldMap.doubleClickZoom.disable();
@@ -365,36 +366,13 @@
                 worldMap.keyboard.disable();
                 if (worldMap.tap) worldMap.tap.disable();
                 
-                // Keep zoom control visible for +/- buttons
-                // worldMap.zoomControl is enabled by default
-                
-                console.log('Map initialized');
-                
-                // Add test marker immediately to verify Leaflet is working
-                const testMarker = L.circleMarker([37.5665, 126.9780], {  // Seoul coordinates
-                    color: '#FF0000',
-                    fillColor: '#FF0000', 
-                    fillOpacity: 0.8,
-                    radius: 12,
-                    weight: 4
-                }).addTo(worldMap);
-                testMarker.bindPopup('🇰🇷 Test Marker - Seoul');
-                console.log('✅ Test marker added at Seoul:', testMarker);
-                
-                // Add visitor markers after map is fully loaded
+                // Add visitor markers when ready
                 worldMap.whenReady(function() {
-                    console.log('Map is ready, adding visitor markers...');
                     addVisitorDots();
-                    
-                    // Also try again after a delay
-                    setTimeout(() => {
-                        console.log('Adding visitor markers again after delay...');
-                        addVisitorDots();
-                    }, 2000);
                 });
                 
             } catch (error) {
-                console.error('Error initializing map:', error);
+                // Silent error handling
             }
         }
 
@@ -446,56 +424,35 @@
         }
 
         function addVisitorDots() {
-            console.log('🎯 addVisitorDots function called');
-            
             if (!worldMap) {
-                console.log('❌ World map not initialized yet');
                 return;
             }
             
             const visitorData = JSON.parse(localStorage.getItem('visitorData')) || { countries: {} };
-            console.log('📊 Visitor data:', visitorData);
-            console.log('🌍 Countries to mark:', Object.keys(visitorData.countries));
             
             // Clear existing markers
-            console.log(`🧹 Clearing ${visitorMarkers.length} existing markers`);
             visitorMarkers.forEach(marker => worldMap.removeLayer(marker));
             visitorMarkers = [];
             
             // Get country coordinates
             const countryCoords = getCountryCoordinates();
-            console.log('📍 Available country coordinates:', Object.keys(countryCoords).length);
             
             Object.entries(visitorData.countries).forEach(([code, data]) => {
                 const coords = countryCoords[code];
-                if (coords) {
+                if (coords && code !== 'XX') { // Skip unknown locations
                     const [lat, lng] = coords;
-                    console.log(`Creating marker for ${code} (${data.name}) at [${lat}, ${lng}] with ${data.count} visits`);
                     
-                    // Create simple GREEN circle at exact coordinates
-                    console.log(`🔍 Creating marker for ${code} at [${lat}, ${lng}]`);
-                    
+                    // Create green circle marker
                     const marker = L.circleMarker([lat, lng], {
                         color: '#00FF00',
                         fillColor: '#00FF00',
-                        fillOpacity: 0.9,
-                        radius: 8,
-                        weight: 3
+                        fillOpacity: 0.8,
+                        radius: 6,
+                        weight: 2
                     });
                     
-                    console.log(`➕ Adding marker to map...`);
                     marker.addTo(worldMap);
                     visitorMarkers.push(marker);
-                    
-                    console.log(`✅ Marker added! Total markers: ${visitorMarkers.length}`);
-                    
-                    // Force marker to be visible
-                    setTimeout(() => {
-                        if (marker._path) {
-                            marker._path.style.display = 'block';
-                            console.log(`👀 Forced marker visibility for ${code}`);
-                        }
-                    }, 100);
                     
                     // Add popup with country info
                     marker.bindPopup(`
@@ -505,12 +462,8 @@
                             <div style="color: #666; font-size: 0.9em;">${data.count} visitor${data.count > 1 ? 's' : ''}</div>
                         </div>
                     `);
-                } else {
-                    console.log(`No coordinates found for country code: ${code}`);
                 }
             });
-            
-            console.log(`Total markers added: ${visitorMarkers.length}`);
         }
     </script>
 </body>
