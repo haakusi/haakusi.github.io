@@ -363,36 +363,37 @@
                 
                 // Add visitor markers when ready
                 worldMap.whenReady(function() {
-                    // Add test markers to verify functionality
-                    const testMarkerKR = L.circleMarker([37.5665, 126.9780], {
-                        color: '#FF0000',
-                        fillColor: '#FF0000',
-                        fillOpacity: 1,
-                        radius: 15,
-                        weight: 5
-                    }).addTo(worldMap);
-                    testMarkerKR.bindPopup('🇰🇷 Korea Test - Red');
-                    
-                    const testMarkerUS = L.circleMarker([39.8283, -98.5795], {
-                        color: '#0000FF',
-                        fillColor: '#0000FF', 
-                        fillOpacity: 1,
-                        radius: 15,
-                        weight: 5
-                    }).addTo(worldMap);
-                    testMarkerUS.bindPopup('🇺🇸 USA Test - Blue');
-                    
-                    const testMarkerJP = L.circleMarker([36.2048, 138.2529], {
-                        color: '#FFFF00',
-                        fillColor: '#FFFF00',
-                        fillOpacity: 1,
-                        radius: 15,
-                        weight: 5
-                    }).addTo(worldMap);
-                    testMarkerJP.bindPopup('🇯🇵 Japan Test - Yellow');
-                    
-                    // Also try to add visitor dots
-                    addVisitorDots();
+                    // Force DOM and tile loading to complete
+                    setTimeout(() => {
+                        // Try regular marker first
+                        const regularMarker = L.marker([37.5665, 126.9780]).addTo(worldMap);
+                        regularMarker.bindPopup('🇰🇷 Regular Marker Test');
+                        
+                        // Try circle marker with forced styles
+                        const testMarker = L.circleMarker([39.8283, -98.5795], {
+                            color: '#FF0000',
+                            fillColor: '#FF0000',
+                            fillOpacity: 1,
+                            radius: 20,
+                            weight: 8,
+                            interactive: true
+                        });
+                        testMarker.addTo(worldMap);
+                        testMarker.bindPopup('🇺🇸 Circle Test');
+                        
+                        // Force marker to be visible with direct DOM manipulation
+                        setTimeout(() => {
+                            const markerElements = document.querySelectorAll('.leaflet-marker-icon, .leaflet-interactive');
+                            markerElements.forEach(element => {
+                                element.style.zIndex = '1000 !important';
+                                element.style.display = 'block !important';
+                                element.style.visibility = 'visible !important';
+                                element.style.opacity = '1 !important';
+                            });
+                        }, 100);
+                        
+                        addVisitorDots();
+                    }, 500);
                 });
                 
             } catch (error) {
