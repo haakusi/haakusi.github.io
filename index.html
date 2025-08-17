@@ -163,8 +163,8 @@
         // Google Sheets as database - your shared sheet for visitor tracking
         const SHEET_ID = '1gwAK8MgiOqEE9RK8rXT3QN4zRoTPLEeGjpHTDmXCwIA';
         const SHEET_CSV_URL = `https://docs.google.com/spreadsheets/d/${SHEET_ID}/export?format=csv&gid=0`;
-        // Google Apps Script webhook URL - you'll need to create this
-        const APPS_SCRIPT_URL = 'https://script.google.com/macros/s/YOUR_SCRIPT_ID/exec';
+        // Google Apps Script webhook URL - replace with your actual script URL
+        const APPS_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbxJQQR6YZL1QHnGJTWx2OGVvJKhA5J2QGqnWn8iX5kEXAMPLEID/exec';
         
         // Visitor tracking functionality with GitHub Gist storage
         async function initializeVisitorTracking() {
@@ -319,22 +319,30 @@
                 localStorage.setItem('realVisitorData', JSON.stringify(globalData));
                 localStorage.setItem('cachedVisitorData', JSON.stringify(globalData));
                 
-                // Try to automatically add data to Google Sheets
+                // Log visitor data for Google Sheets
+                const timestamp = new Date().toISOString();
+                const newRow = `"${timestamp}","${country}","${countryCode}","${sessionId}"`;
+                
+                console.log('🎯 NEW VISITOR DETECTED!');
+                console.log('📊 Visitor Details:', {
+                    timestamp: timestamp,
+                    country: country,
+                    countryCode: countryCode,
+                    sessionId: sessionId,
+                    totalVisits: globalData.totalVisits,
+                    uniqueVisitors: globalData.uniqueVisitors
+                });
+                console.log('📋 Copy this line to Google Sheets:');
+                console.log(newRow);
+                console.log('🔗 Google Sheets URL: https://docs.google.com/spreadsheets/d/' + SHEET_ID + '/edit');
+                console.log('---');
+                
+                // Try to send to Google Apps Script if available
                 try {
                     await addToGoogleSheets(country, countryCode, sessionId);
-                    console.log('✅ Successfully logged visitor data');
+                    console.log('✅ Data sent to Google Apps Script');
                 } catch (error) {
-                    // Show the actual data being collected
-                    const newRow = `"${new Date().toISOString()}","${country}","${countryCode}","${sessionId}"`;
-                    console.log('📊 New visitor recorded:', {
-                        timestamp: new Date().toISOString(),
-                        country: country,
-                        countryCode: countryCode,
-                        totalVisits: globalData.totalVisits,
-                        uniqueVisitors: globalData.uniqueVisitors
-                    });
-                    console.log('📋 CSV format for Google Sheets:', newRow);
-                    console.log('🔗 Add to: https://docs.google.com/spreadsheets/d/' + SHEET_ID + '/edit');
+                    console.log('⚠️ Auto-sync failed, manual entry needed');
                 }
                 
                 // Update local display
