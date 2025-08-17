@@ -363,31 +363,17 @@
                 
                 // Add visitor markers when ready
                 worldMap.whenReady(function() {
-                    // Force DOM and tile loading to complete
-                    setTimeout(() => {
-                        // Use basic markers that work properly at correct coordinates
-                        const koreaMarker = L.marker([37.5665, 126.9780]).addTo(worldMap);
-                        koreaMarker.bindPopup('🇰🇷 Korea');
-                        
-                        const usaMarker = L.marker([39.8283, -98.5795]).addTo(worldMap);
-                        usaMarker.bindPopup('🇺🇸 USA');
-                        
-                        const japanMarker = L.marker([36.2048, 138.2529]).addTo(worldMap);
-                        japanMarker.bindPopup('🇯🇵 Japan');
-                        
-                        // Force marker to be visible with direct DOM manipulation
-                        setTimeout(() => {
-                            const markerElements = document.querySelectorAll('.leaflet-marker-icon, .leaflet-interactive');
-                            markerElements.forEach(element => {
-                                element.style.zIndex = '1000 !important';
-                                element.style.display = 'block !important';
-                                element.style.visibility = 'visible !important';
-                                element.style.opacity = '1 !important';
-                            });
-                        }, 100);
-                        
-                        addVisitorDots();
-                    }, 500);
+                    // Clear all existing visitor data for fresh start
+                    localStorage.removeItem('visitorData');
+                    sessionStorage.removeItem('visitorSessionId');
+                    
+                    // Reset display counters
+                    document.getElementById('visitor-count').textContent = '0';
+                    document.getElementById('unique-count').textContent = '0';
+                    document.getElementById('country-list').innerHTML = '';
+                    
+                    // Start fresh visitor tracking
+                    addVisitorDots();
                 });
                 
             } catch (error) {
