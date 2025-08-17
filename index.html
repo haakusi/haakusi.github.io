@@ -87,9 +87,6 @@
                     <div class="country-stats">
                         <h3 data-en="Visitors by Country" data-kr="국가별 방문자">Visitors by Country</h3>
                         <div id="country-list"></div>
-                        <button onclick="testVisitorCount()" style="margin-top: 8px; padding: 4px 8px; font-size: 0.6em; background: #22C55E; color: white; border: none; border-radius: 3px; cursor: pointer;">Test Count Me! 😄</button>
-                        <button onclick="addDemoData()" style="margin-top: 4px; padding: 4px 8px; font-size: 0.6em; background: #3B82F6; color: white; border: none; border-radius: 3px; cursor: pointer;">Add Demo Data 🌍</button>
-                        <button onclick="testMapCenter()" style="margin-top: 4px; padding: 4px 8px; font-size: 0.6em; background: #F59E0B; color: white; border: none; border-radius: 3px; cursor: pointer;">Test Map Center 🎯</button>
                     </div>
                 </div>
             </div>
@@ -162,49 +159,6 @@
             initializeVisitorTracking();
         });
 
-        // Test function to manually count a visit
-        function testVisitorCount() {
-            // Simulate a visit from South Korea
-            updateVisitorCount('South Korea', 'KR');
-            alert('Test visitor added from South Korea! 🇰🇷');
-        }
-
-        // Add demo visitor data to show the map features
-        function addDemoData() {
-            const demoCountries = [
-                ['United States', 'US'],
-                ['South Korea', 'KR'],
-                ['Japan', 'JP'],
-                ['Germany', 'DE'],
-                ['United Kingdom', 'GB'],
-                ['France', 'FR'],
-                ['Australia', 'AU'],
-                ['Brazil', 'BR'],
-                ['Canada', 'CA'],
-                ['India', 'IN'],
-                ['China', 'CN'],
-                ['Russia', 'RU']
-            ];
-            
-            demoCountries.forEach(([country, code]) => {
-                updateVisitorCount(country, code);
-            });
-            
-            // Force refresh the map markers
-            setTimeout(() => {
-                if (worldMap) {
-                    addVisitorDots();
-                }
-            }, 500);
-            
-            alert('Demo visitor data added! 🌍 You should see green flag markers on the map!');
-        }
-
-        // Test map - just refresh to show entire world
-        function testMapCenter() {
-            // Don't pan or zoom - just show the entire world
-            alert('Map shows entire world! 🌍 You can see US (left), EU (center), Asia (right), and all continents!');
-        }
 
         // Visitor tracking functionality
         async function initializeVisitorTracking() {
@@ -228,14 +182,6 @@
                 console.log('Visitor tracking unavailable, using fallback');
                 // Fallback: initialize map without specific centering
                 initializeWorldMap();
-                
-                // Add demo data if no visitors exist yet
-                const existingData = localStorage.getItem('visitorData');
-                if (!existingData) {
-                    setTimeout(() => {
-                        addDemoData();
-                    }, 1000);
-                }
             }
         }
 
@@ -253,27 +199,23 @@
             
             console.log('Current visitor data:', visitorData);
             
-            // Generate unique visitor ID if not exists
-            if (!visitorData.visitorId) {
-                visitorData.visitorId = 'visitor_' + Date.now() + '_' + Math.random().toString(36).substr(2, 9);
-                visitorData.uniqueVisitors = 1; // Set to 1 for first visit
-                console.log('New visitor ID created:', visitorData.visitorId);
-                
-                // Initialize country count for unique visitors
+            // Check if this is a new unique visitor
+            const sessionId = sessionStorage.getItem('visitorSessionId');
+            if (!sessionId) {
+                // New session - increment unique visitors
+                sessionStorage.setItem('visitorSessionId', Date.now().toString());
+                visitorData.uniqueVisitors = (visitorData.uniqueVisitors || 0) + 1;
+                console.log('New unique visitor, total unique:', visitorData.uniqueVisitors);
+            }
+            
+            // Update country count
+            if (visitorData.countries[countryCode]) {
+                visitorData.countries[countryCode].count++;
+            } else {
                 visitorData.countries[countryCode] = {
                     name: country,
                     count: 1
                 };
-            } else {
-                // Existing visitor - update country count
-                if (visitorData.countries[countryCode]) {
-                    visitorData.countries[countryCode].count++;
-                } else {
-                    visitorData.countries[countryCode] = {
-                        name: country,
-                        count: 1
-                    };
-                }
             }
             
             // Always increment total visits
@@ -363,23 +305,12 @@
                 bounds: [[-90, -180], [90, 180]]
             }).addTo(worldMap);
             
-            // Set initial view to show entire world
-            worldMap.setView([0, 0], 1);
+            // Set view to show entire world properly
+            worldMap.setView([20, 0], 1.5);
             
-            // Use invalidateSize to ensure map fills container
+            // Ensure map fills container and shows all continents
             setTimeout(() => {
                 worldMap.invalidateSize();
-                
-                // Fit bounds to show entire world filling the rectangle
-                const worldBounds = L.latLngBounds(
-                    L.latLng(-85, -180),  // Southwest corner
-                    L.latLng(85, 180)     // Northeast corner
-                );
-                
-                worldMap.fitBounds(worldBounds, {
-                    padding: [0, 0],
-                    animate: false
-                });
             }, 100);
             
             // Add visitor markers based on stored data
@@ -498,7 +429,11 @@
                         iconAnchor: [Math.floor(markerSize/2) + 5, Math.floor(markerSize/2) + 5]
                     });
                     
-                    const marker = L.marker([lat, lng], { icon: flagIcon });
+                    // Create marker at exact coordinates
+                    const marker = L.marker([lat, lng], { 
+                        icon: flagIcon,
+                        zIndexOffset: 1000 // Ensure markers appear on top
+                    });
                     
                     // Add popup with country info
                     marker.bindPopup(`
