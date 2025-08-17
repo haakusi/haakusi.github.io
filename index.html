@@ -160,9 +160,8 @@
         });
 
 
-        // Use CountAPI.xyz for simple global counter (actually works!)
-        const VISIT_COUNTER_URL = 'https://api.countapi.xyz/hit/haakusi.github.io/visits';
-        const UNIQUE_COUNTER_URL = 'https://api.countapi.xyz/hit/haakusi.github.io/unique-visits';
+        // Use Formspree.io for simple visitor tracking
+        const FORMSPREE_ENDPOINT = 'https://formspree.io/f/xwpkgvbl'; // Free form endpoint
         
         // Visitor tracking functionality with GitHub Gist storage
         async function initializeVisitorTracking() {
@@ -290,66 +289,69 @@
             };
         }
         
-        // Update visitor count with CountAPI.xyz global counters
+        // Update visitor count with simple increment tracking
         async function updateVisitorCountWithGist(country, countryCode) {
             try {
-                // Always increment total visits counter
-                const visitResponse = await fetch(VISIT_COUNTER_URL);
-                let totalVisits = 0;
+                // Send visitor data to Formspree for tracking
+                const visitorData = {
+                    country: country,
+                    countryCode: countryCode,
+                    timestamp: new Date().toISOString(),
+                    userAgent: navigator.userAgent,
+                    sessionId: sessionStorage.getItem('visitorSessionId') || 'new'
+                };
                 
-                if (visitResponse.ok) {
-                    const visitData = await visitResponse.json();
-                    totalVisits = visitData.value || 0;
-                }
+                // Send to Formspree (fire and forget)
+                fetch(FORMSPREE_ENDPOINT, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify(visitorData)
+                }).catch(() => {}); // Silent fail
+                
+                // Use simple localStorage-based counting with incremental IDs
+                let globalStats = JSON.parse(localStorage.getItem('globalVisitorStats')) || {
+                    totalVisits: 0,
+                    uniqueVisitors: 0,
+                    countries: {},
+                    visitIds: new Set()
+                };
+                
+                // Always increment total visits
+                globalStats.totalVisits++;
                 
                 // Check if this is a new unique visitor
-                let uniqueVisitors = 0;
                 const sessionId = sessionStorage.getItem('visitorSessionId');
                 if (!sessionId) {
-                    // New session - increment unique visitors counter
-                    sessionStorage.setItem('visitorSessionId', Date.now().toString());
-                    
-                    const uniqueResponse = await fetch(UNIQUE_COUNTER_URL);
-                    if (uniqueResponse.ok) {
-                        const uniqueData = await uniqueResponse.json();
-                        uniqueVisitors = uniqueData.value || 0;
-                    }
-                } else {
-                    // Existing session - just get current unique count
-                    const uniqueResponse = await fetch('https://api.countapi.xyz/get/haakusi.github.io/unique-visits');
-                    if (uniqueResponse.ok) {
-                        const uniqueData = await uniqueResponse.json();
-                        uniqueVisitors = uniqueData.value || 0;
-                    }
+                    // New session - increment unique visitors
+                    const newSessionId = Date.now().toString() + Math.random().toString(36);
+                    sessionStorage.setItem('visitorSessionId', newSessionId);
+                    globalStats.uniqueVisitors++;
                 }
                 
-                // Load current country data
-                const countries = JSON.parse(localStorage.getItem('globalCountries') || '{}');
-                
                 // Update country count
-                if (countries[countryCode]) {
-                    countries[countryCode].count++;
+                if (globalStats.countries[countryCode]) {
+                    globalStats.countries[countryCode].count++;
                 } else {
-                    countries[countryCode] = {
+                    globalStats.countries[countryCode] = {
                         name: country,
                         count: 1
                     };
                 }
                 
-                const currentData = {
-                    totalVisits: totalVisits,
-                    uniqueVisitors: uniqueVisitors,
-                    countries: countries,
-                    lastUpdate: new Date().toISOString()
-                };
+                globalStats.lastUpdate = new Date().toISOString();
                 
-                // Save data
-                await saveGlobalVisitorData(currentData);
+                // Save to localStorage
+                localStorage.setItem('globalVisitorStats', JSON.stringify({
+                    ...globalStats,
+                    visitIds: Array.from(globalStats.visitIds || [])
+                }));
                 
                 // Update local display
-                document.getElementById('visitor-count').textContent = currentData.totalVisits;
-                document.getElementById('unique-count').textContent = currentData.uniqueVisitors;
-                updateCountryList(currentData.countries);
+                document.getElementById('visitor-count').textContent = globalStats.totalVisits;
+                document.getElementById('unique-count').textContent = globalStats.uniqueVisitors;
+                updateCountryList(globalStats.countries);
                 
                 // Refresh the map dots
                 if (worldMap) {
@@ -358,10 +360,10 @@
                     }, 500);
                 }
                 
-                return currentData;
+                return globalStats;
                 
             } catch (error) {
-                console.log('Global tracking failed:', error);
+                console.log('Tracking failed:', error);
                 // Fallback to original localStorage method
                 return updateVisitorCount(country, countryCode);
             }
@@ -624,9 +626,9 @@
                 return;
             }
             
-            // Use cached global data from JSONBin.io
-            const globalData = JSON.parse(localStorage.getItem('cachedVisitorData')) || {};
-            const visitorData = globalData.countries ? globalData : {};
+            // Use globalVisitorStats data
+            const globalStats = JSON.parse(localStorage.getItem('globalVisitorStats')) || {};
+            const visitorData = globalStats.countries ? globalStats : {};
             
             // Clear existing visitor markers
             visitorMarkers.forEach(marker => worldMap.removeLayer(marker));
