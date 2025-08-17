@@ -5,6 +5,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Sewon Park</title>
     <link rel="stylesheet" type="text/css" href="style.css">
+    <!-- Leaflet CSS -->
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin=""/>
+    <!-- Leaflet JS -->
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
 </head>
 <body>
     <button class="theme-toggle" onclick="toggleTheme()" aria-label="Toggle dark mode">☀️</button>
@@ -243,132 +247,113 @@
             return String.fromCodePoint(...codePoints);
         }
 
+        let worldMap = null;
+        let visitorMarkers = [];
+
         function initializeWorldMap() {
             const mapContainer = document.getElementById('world-map');
             
-            // Real world map SVG with accurate country boundaries
-            const mapSVG = `
-                <svg viewBox="0 0 1000 500" xmlns="http://www.w3.org/2000/svg">
-                    <!-- Ocean background -->
-                    <rect width="1000" height="500" fill="#E8F4FD"/>
-                    
-                    <!-- Real world map paths -->
-                    <g fill="#C4B5A0" stroke="#A0956B" stroke-width="0.3">
-                        <!-- United States -->
-                        <path d="M158,206 L158,196 L162,194 L168,190 L172,188 L178,186 L186,184 L194,186 L202,188 L208,190 L214,194 L218,198 L220,204 L218,210 L214,214 L208,218 L202,220 L194,218 L186,216 L178,214 L172,212 L168,210 L162,208 L158,206 Z" class="country"/>
-                        
-                        <!-- Canada -->
-                        <path d="M145,140 L245,140 L245,185 L238,185 L230,183 L222,181 L214,179 L206,177 L198,175 L190,173 L182,171 L174,169 L166,167 L158,165 L150,163 L145,160 L145,140 Z" class="country"/>
-                        
-                        <!-- Brazil -->
-                        <path d="M280,320 L305,315 L315,325 L320,340 L318,355 L315,370 L310,385 L300,395 L285,400 L270,395 L260,385 L255,370 L258,355 L265,340 L275,325 L280,320 Z" class="country"/>
-                        
-                        <!-- Russia -->
-                        <path d="M520,140 L720,140 L720,180 L715,185 L710,190 L700,195 L690,200 L680,195 L670,190 L660,185 L650,180 L640,175 L630,170 L620,165 L610,160 L600,155 L590,150 L580,145 L570,140 L560,138 L550,136 L540,138 L530,140 L520,140 Z" class="country"/>
-                        
-                        <!-- China -->
-                        <path d="M680,180 L750,180 L750,220 L745,225 L740,230 L730,235 L720,240 L710,235 L700,230 L690,225 L685,220 L680,215 L678,210 L676,205 L678,200 L680,195 L682,190 L680,185 L680,180 Z" class="country"/>
-                        
-                        <!-- India -->
-                        <path d="M620,220 L650,220 L655,230 L660,240 L658,250 L655,260 L650,270 L645,275 L640,280 L630,278 L620,275 L615,270 L610,260 L612,250 L615,240 L618,230 L620,220 Z" class="country"/>
-                        
-                        <!-- Australia -->
-                        <path d="M740,350 L800,350 L800,385 L795,390 L790,395 L780,398 L770,395 L760,390 L750,385 L745,380 L742,375 L740,370 L738,365 L740,360 L742,355 L740,350 Z" class="country"/>
-                        
-                        <!-- Europe -->
-                        <path d="M450,150 L520,150 L520,190 L515,195 L510,200 L500,205 L490,200 L480,195 L470,190 L460,185 L455,180 L452,175 L450,170 L448,165 L450,160 L452,155 L450,150 Z" class="country"/>
-                        
-                        <!-- Africa -->
-                        <path d="M480,220 L540,220 L540,380 L535,385 L530,390 L520,395 L510,398 L500,395 L490,390 L485,385 L480,380 L478,370 L476,360 L478,350 L480,340 L478,330 L476,320 L478,310 L480,300 L478,290 L476,280 L478,270 L480,260 L478,250 L476,240 L478,230 L480,220 Z" class="country"/>
-                        
-                        <!-- Japan -->
-                        <path d="M790,185 L800,185 L805,190 L808,195 L810,200 L808,205 L805,210 L800,215 L795,218 L790,215 L785,210 L782,205 L780,200 L782,195 L785,190 L790,185 Z" class="country"/>
-                        
-                        <!-- South Korea -->
-                        <path d="M770,200 L780,200 L782,205 L785,210 L782,215 L780,220 L775,222 L770,220 L768,215 L766,210 L768,205 L770,200 Z" class="country"/>
-                        
-                        <!-- United Kingdom -->
-                        <path d="M450,165 L465,165 L467,170 L470,175 L467,180 L465,185 L460,187 L455,185 L450,180 L448,175 L446,170 L448,165 L450,165 Z" class="country"/>
-                        
-                        <!-- Germany -->
-                        <path d="M480,165 L495,165 L497,170 L500,175 L497,180 L495,185 L490,187 L485,185 L480,180 L478,175 L476,170 L478,165 L480,165 Z" class="country"/>
-                        
-                        <!-- France -->
-                        <path d="M465,175 L480,175 L482,180 L485,185 L482,190 L480,195 L475,197 L470,195 L465,190 L463,185 L461,180 L463,175 L465,175 Z" class="country"/>
-                    </g>
-                    
-                    <!-- Visitor dots will be added here dynamically -->
-                    <g id="visitor-dots"></g>
-                </svg>
-            `;
+            // Clear any existing content
+            mapContainer.innerHTML = '';
             
-            mapContainer.innerHTML = mapSVG;
+            // Initialize Leaflet map with OpenStreetMap
+            worldMap = L.map('world-map', {
+                center: [20, 0], // Center on equator
+                zoom: 2,
+                minZoom: 1,
+                maxZoom: 10,
+                scrollWheelZoom: false,
+                doubleClickZoom: false,
+                dragging: true,
+                zoomControl: true
+            });
             
-            // Add visitor dots based on stored data
+            // Add OpenStreetMap tile layer
+            L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+                attribution: '© OpenStreetMap contributors',
+                maxZoom: 10
+            }).addTo(worldMap);
+            
+            // Add visitor markers based on stored data
             addVisitorDots();
         }
 
         function addVisitorDots() {
+            if (!worldMap) return;
+            
             const visitorData = JSON.parse(localStorage.getItem('visitorData')) || { countries: {} };
-            const dotsContainer = document.querySelector('#visitor-dots');
             
-            // Clear existing dots
-            dotsContainer.innerHTML = '';
+            // Clear existing markers
+            visitorMarkers.forEach(marker => worldMap.removeLayer(marker));
+            visitorMarkers = [];
             
-            // Country coordinates matching the real world map
+            // Real geographical coordinates (latitude, longitude)
             const countryCoords = {
                 // North America
-                'US': [188, 200], 'CA': [195, 162], 'MX': [170, 230],
+                'US': [39.8283, -98.5795], 'CA': [56.1304, -106.3468], 'MX': [23.6345, -102.5528],
                 
                 // South America  
-                'BR': [290, 360], 'AR': [275, 420], 'CO': [250, 300], 'PE': [260, 350],
-                'CL': [270, 400], 'VE': [260, 280], 'UY': [285, 430],
+                'BR': [-14.2350, -51.9253], 'AR': [-38.4161, -63.6167], 'CO': [4.5709, -74.2973], 
+                'PE': [-9.1900, -75.0152], 'CL': [-35.6751, -71.5430], 'VE': [6.4238, -66.5897], 
+                'UY': [-32.5228, -55.7658],
                 
                 // Europe
-                'GB': [457, 175], 'FR': [472, 185], 'DE': [487, 175], 'IT': [495, 195],
-                'ES': [455, 195], 'NL': [485, 170], 'SE': [500, 150], 'NO': [490, 140],
-                'PL': [500, 170], 'RU': [620, 160], 'PT': [445, 195], 'CH': [485, 180],
-                'AT': [495, 180], 'BE': [480, 175], 'DK': [490, 165], 'FI': [510, 145],
-                'IE': [445, 170], 'CZ': [495, 175], 'HU': [505, 180],
+                'GB': [55.3781, -3.4360], 'FR': [46.6034, 1.8883], 'DE': [51.1657, 10.4515], 
+                'IT': [41.8719, 12.5674], 'ES': [40.4637, -3.7492], 'NL': [52.1326, 5.2913], 
+                'SE': [60.1282, 18.6435], 'NO': [60.4720, 8.4689], 'PL': [51.9194, 19.1451], 
+                'RU': [61.5240, 105.3188], 'PT': [39.3999, -8.2245], 'CH': [46.8182, 8.2275],
+                'AT': [47.5162, 14.5501], 'BE': [50.5039, 4.4699], 'DK': [56.2639, 9.5018], 
+                'FI': [61.9241, 25.7482], 'IE': [53.1424, -7.6921], 'CZ': [49.8175, 15.4730], 
+                'HU': [47.1625, 19.5033],
                 
                 // Africa
-                'ZA': [520, 380], 'NG': [500, 280], 'EG': [525, 240], 'KE': [535, 300],
-                'MA': [475, 230], 'ET': [540, 280], 'DZ': [485, 240], 'LY': [505, 240],
-                'GH': [490, 290], 'TN': [495, 230],
+                'ZA': [-30.5595, 22.9375], 'NG': [9.0820, 8.6753], 'EG': [26.0975, 31.1351], 
+                'KE': [-0.0236, 37.9062], 'MA': [31.7917, -7.0926], 'ET': [9.1450, 40.4897], 
+                'DZ': [28.0339, 1.6596], 'LY': [26.3351, 17.2283], 'GH': [7.9465, -1.0232], 
+                'TN': [33.8869, 9.5375],
                 
                 // Asia
-                'CN': [715, 200], 'IN': [635, 250], 'JP': [797, 200], 'KR': [775, 210],
-                'TH': [685, 250], 'VN': [700, 250], 'ID': [720, 290], 'MY': [695, 270],
-                'PH': [740, 250], 'SG': [695, 275], 'TR': [540, 185], 'IR': [590, 210],
-                'SA': [560, 240], 'AE': [590, 250], 'IL': [535, 205], 'PK': [615, 230],
-                'BD': [650, 240], 'MM': [670, 250], 'LK': [645, 280], 'AF': [605, 220],
-                'IQ': [570, 205], 'SY': [555, 200], 'JO': [545, 210], 'LB': [550, 200],
-                'KW': [575, 225], 'QA': [585, 245], 'OM': [600, 255], 'YE': [570, 260],
+                'CN': [35.8617, 104.1954], 'IN': [20.5937, 78.9629], 'JP': [36.2048, 138.2529], 
+                'KR': [35.9078, 127.7669], 'TH': [15.8700, 100.9925], 'VN': [14.0583, 108.2772], 
+                'ID': [-0.7893, 113.9213], 'MY': [4.2105, 101.9758], 'PH': [12.8797, 121.7740], 
+                'SG': [1.3521, 103.8198], 'TR': [38.9637, 35.2433], 'IR': [32.4279, 53.6880], 
+                'SA': [23.8859, 45.0792], 'AE': [23.4241, 53.8478], 'IL': [31.0461, 34.8516], 
+                'PK': [30.3753, 69.3451], 'BD': [23.6850, 90.3563], 'MM': [21.9162, 95.9560], 
+                'LK': [7.8731, 80.7718], 'AF': [33.9391, 67.7100], 'IQ': [33.2232, 43.6793], 
+                'SY': [34.8021, 38.9968], 'JO': [30.5852, 36.2384], 'LB': [33.8547, 35.8623],
+                'KW': [29.3117, 47.4818], 'QA': [25.3548, 51.1839], 'OM': [21.4735, 55.9754], 
+                'YE': [15.5527, 48.5164],
                 
                 // Oceania
-                'AU': [770, 367], 'NZ': [820, 410], 'PG': [760, 290], 'FJ': [820, 320]
+                'AU': [-25.2744, 133.7751], 'NZ': [-40.9006, 174.8860], 'PG': [-6.3150, 143.9555], 
+                'FJ': [-16.5780, 179.4144]
             };
             
             Object.entries(visitorData.countries).forEach(([code, data]) => {
                 const coords = countryCoords[code];
                 if (coords) {
-                    const [x, y] = coords;
-                    const dot = document.createElementNS('http://www.w3.org/2000/svg', 'circle');
-                    dot.setAttribute('cx', x);
-                    dot.setAttribute('cy', y);
-                    dot.setAttribute('r', Math.min(4 + data.count * 2, 12));
-                    dot.setAttribute('fill', '#22C55E'); // Green color
-                    dot.setAttribute('stroke', '#16A34A');
-                    dot.setAttribute('stroke-width', '1');
-                    dot.setAttribute('opacity', '0.9');
-                    dot.style.filter = 'drop-shadow(0 0 3px rgba(34, 197, 94, 0.6))';
+                    const [lat, lng] = coords;
                     
-                    // Add tooltip
-                    const title = document.createElementNS('http://www.w3.org/2000/svg', 'title');
-                    title.textContent = `${data.name}: ${data.count} visitors`;
-                    dot.appendChild(title);
+                    // Create green circle marker
+                    const marker = L.circleMarker([lat, lng], {
+                        radius: Math.min(5 + data.count * 3, 15),
+                        fillColor: '#22C55E',
+                        color: '#16A34A',
+                        weight: 2,
+                        fillOpacity: 0.8,
+                        opacity: 1
+                    });
                     
-                    dotsContainer.appendChild(dot);
+                    // Add popup with country info
+                    marker.bindPopup(`
+                        <div style="text-align: center; font-family: Georgia, serif;">
+                            <div style="font-size: 1.2em; margin-bottom: 5px;">${getFlagEmoji(code)} ${data.name}</div>
+                            <div style="color: #666; font-size: 0.9em;">${data.count} visitors</div>
+                        </div>
+                    `);
+                    
+                    marker.addTo(worldMap);
+                    visitorMarkers.push(marker);
                 }
             });
         }
