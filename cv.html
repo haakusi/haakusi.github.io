@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html data-theme="dark">
+<html data-theme="dark" data-lang="kr">
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -284,15 +284,15 @@
 
         function toggleLanguage() {
             const html = document.documentElement;
-            const currentLang = html.getAttribute('data-lang') || 'en';
+            const currentLang = html.getAttribute('data-lang') || 'kr';
             const newLang = currentLang === 'en' ? 'kr' : 'en';
-            
+
             html.setAttribute('data-lang', newLang);
             localStorage.setItem('language', newLang);
-            
+
             // Update button text
             const button = document.querySelector('.lang-toggle');
-            button.textContent = newLang === 'en' ? 'EN' : '한';
+            button.textContent = newLang === 'en' ? '한' : 'EN';
             
             // Update content
             updateContent(newLang);
@@ -316,12 +316,12 @@
             
             const themeButton = document.querySelector('.theme-toggle');
             themeButton.textContent = savedTheme === 'dark' ? '☀️' : '🌙';
-            
-            const savedLang = localStorage.getItem('language') || 'en';
+
+            const savedLang = localStorage.getItem('language') || 'kr';
             document.documentElement.setAttribute('data-lang', savedLang);
-            
+
             const langButton = document.querySelector('.lang-toggle');
-            langButton.textContent = savedLang === 'en' ? 'EN' : '한';
+            langButton.textContent = savedLang === 'en' ? '한' : 'EN';
             
             updateContent(savedLang);
         });
