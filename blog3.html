@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html data-theme="dark">
+<html data-theme="dark" data-lang="kr">
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -48,6 +48,15 @@
         .image-modal-close:hover {
             color: #bbb;
         }
+
+        /* Language switching */
+        [data-lang="kr"] .lang-en {
+            display: none;
+        }
+
+        [data-lang="en"] .lang-kr {
+            display: none;
+        }
     </style>
 </head>
 <body>
@@ -90,10 +99,11 @@
         </nav>
 
         <article class="blog-post-full">
-            <h1>AI Engineering 개발자로서의 전방위 커버리지</h1>
+            <h1 class="lang-kr">AI Engineering 개발자로서의 전방위 커버리지</h1>
+            <h1 class="lang-en">Full-Stack Coverage as an AI Engineer</h1>
             <p class="blog-date">December 11, 2025</p>
 
-            <div class="blog-content">
+            <div class="blog-content lang-kr">
                 <h3>Introduction: MCP Universal Platform</h3>
                 <p>최신 AI 엔지니어링에서 요구되는 역량은 단순히 코드 작성을 넘어 기획부터 배포까지 전체 생명주기를 아우르는 포괄적 이해입니다. 본 글에서는 MCP Universal Platform 프로젝트를 통해 AI Engineer로서 어떻게 전방위적 개발 커버리지를 달성했는지 공유하고자 합니다. 180개 이상의 분석 도구를 14개 데이터 도메인으로 체계화하고, 도메인 주도 아키텍처(DDD)를 통해 AI 컨텍스트 관리 최적화를 실현한 실무 사례를 다룹니다.</p>
 
@@ -356,6 +366,269 @@
                 <p>AI Engineering은 단순히 AI 모델을 다루는 것이 아닌, 전체 시스템을 이해하고 설계할 수 있는 포괄적 역량을 요구합니다. MCP Universal Platform 프로젝트를 통해 기획부터 배포까지 전 과정을 커버하며, AI 컨텍스트 관리 전략, 도메인 기반 아키텍처, RAG 시스템 구축, 자동화 테스트, 문서화 체계 등 AI Engineer로서 갖춰야 할 핵심 역량을 실증했습니다. 이러한 전방위 커버리지는 단순히 다양한 기술을 아는 것을 넘어, 각 요소가 어떻게 유기적으로 연결되어 하나의 완성된 시스템을 이루는지 이해하고 설계할 수 있는 능력을 의미합니다. AI 시대의 엔지니어는 코드를 넘어 전체 그림을 그릴 수 있어야 하며, 본 프로젝트는 그러한 비전의 구체적 실현 사례입니다.</p>
             </div>
 
+            <div class="blog-content lang-en">
+                <h3>Introduction: MCP Universal Platform</h3>
+                <p>Modern AI engineering requires comprehensive understanding beyond just code writing—spanning the entire lifecycle from planning to deployment. This article shares how I achieved full-stack development coverage as an AI Engineer through the MCP Universal Platform project. It covers real-world practices of organizing 180+ analysis tools into 14 data domains and optimizing AI context management through Domain-Driven Architecture (DDA).</p>
+
+                <h3>Project Structure</h3>
+                <pre style="background-color: #1e1e1e; color: #d4d4d4; padding: 20px; border-radius: 8px; overflow-x: auto; font-size: 0.85em; line-height: 1.6; border: 1px solid #333;"><code>mcp-universal-platform/
+│
+├── 📂 core/                            # [Backend Development - Domain-Driven Architecture]
+│   ├── handlers/                       # 14 data domain handlers (180+ analysis tools)
+│   │   ├── base_handler.py             # Common handler logic (auth, error handling, audit logs)
+│   │   ├── data_source_handler.py      # Data source connection domain
+│   │   ├── entity_handler.py           # Entity data management domain
+│   │   ├── relationship_handler.py     # Relationship analysis domain
+│   │   ├── analytics_handler.py        # Analytics query domain
+│   │   ├── timeline_handler.py         # Timeline data domain
+│   │   ├── geospatial_handler.py       # Geospatial data domain
+│   │   ├── investigation_handler.py    # Investigation case management domain
+│   │   ├── notification_handler.py     # Notification & monitoring domain
+│   │   ├── report_handler.py           # Report generation domain
+│   │   ├── collaboration_handler.py    # Team collaboration domain
+│   │   ├── audit_handler.py            # Audit trail domain
+│   │   └── ... (14 handlers)           # Independent management per domain
+│   │
+│   ├── schemas/                        # [Data Validation - Pydantic]
+│   │   ├── tool_response.py            # Analysis response schema
+│   │   ├── entity_schema.py            # Entity data schema
+│   │   ├── relationship_schema.py      # Relationship data schema
+│   │   ├── analytics_schema.py         # Analytics result schema
+│   │   └── ...                         # Domain-separated schemas
+│   │
+│   ├── tools/                          # [MCP Tool Definitions]
+│   │   ├── categories.py               # Analysis tool categorization system
+│   │   ├── data_source_tools.py        # Data source tool definitions
+│   │   ├── entity_tools.py             # Entity analysis tool definitions
+│   │   ├── relationship_tools.py       # Relationship analysis tool definitions
+│   │   ├── analytics_tools.py          # Advanced analytics tool definitions
+│   │   └── ...                         # Domain-specific tool definitions
+│   │
+│   ├── utils/                          # [Infrastructure Utilities]
+│   │   ├── graph_db.py                 # Graph DB management (entity-relationship analysis)
+│   │   ├── knowledge_base.py           # Knowledge base management (RAG)
+│   │   ├── search_engine.py            # Advanced search utilities
+│   │   ├── indexing.py                 # Data indexing strategies
+│   │   ├── geocoding.py                # Geospatial coordinate transformation
+│   │   └── crypto.py                   # Encryption & security
+│   │
+│   ├── session.py                      # Session management & access control
+│   ├── tool_manager.py                 # Dynamic analysis tool loading system
+│   └── config.py                       # Platform configuration management
+│
+├── 📂 platform_manager.py              # [AI Server Management - PyQt5]
+│   └── GUI-based platform management tool
+│       - Data source management
+│       - Real-time analysis monitoring
+│       - User permission management UI
+│       - Workflow configuration
+│
+├── 📂 analysis_server.py               # [Backend Development - FastAPI]
+│   └── REST API server
+│       - LLM integration (Claude/Gemini/OpenAI)
+│       - Analysis tool execution loop
+│       - Context & state management
+│       - Real-time result streaming
+│
+├── 📂 scripts/                         # [DevOps & Automation]
+│   ├── rebuild_knowledge_base.py       # Knowledge base rebuild automation
+│   ├── validate_data_integrity.py      # Data validation scripts
+│   ├── sync_data_sources.py            # Data source synchronization
+│   └── test_*.py                       # Integration test automation
+│
+├── 📂 build.bat, START_SERVER.bat      # [DevOps - Build Automation]
+│   └── Build and deployment automation scripts
+│
+├── 📂 installer/                       # [DevOps - Packaging & Distribution]
+│   ├── installer.iss                   # InnoSetup installer script
+│   ├── build_installer.ps1             # Installer build automation
+│   ├── assets/                         # Installer resources
+│   └── service_manager/                # Windows service management tool
+│
+├── 📂 docs/                            # [Documentation - Platform Architecture]
+│   ├── development/                    # Development guides (24 documents)
+│   │   ├── TOOL_DEVELOPMENT_GUIDE.md   # Analysis tool development guide
+│   │   ├── HANDLER_DEVELOPMENT.md      # Handler development guide
+│   │   ├── SCHEMA_VALIDATION.md        # Pydantic schema design guide
+│   │   └── DOMAIN_ARCHITECTURE.md      # Domain classification & architecture
+│   │
+│   ├── guides/                         # User & analyst guides
+│   ├── api_documentation/              # Analysis API documentation
+│   ├── knowledge_base/                 # Knowledge base architecture (18 documents)
+│   │   ├── KNOWLEDGE_BASE_DESIGN.md    # Knowledge base design philosophy
+│   │   ├── ENTITY_RELATIONSHIP.md      # Entity-relationship model definition
+│   │   └── SEARCH_STRATEGY.md          # Search & query strategy
+│   └── mcp/                            # MCP protocol & integration docs
+│
+├── 📂 prompts/                         # [AI Engineering - Context Management]
+│   ├── system_prompts/                 # LLM system prompts
+│   ├── analysis_templates/             # Analysis templates & descriptions
+│   │   └── TOOL_ADDITION_TEMPLATE.md   # New analysis tool addition template
+│   └── workflow_prompts/               # Workflow automation prompts
+│
+├── 📂 data/                            # [Data Engineering]
+│   ├── graph_database/                 # Neo4j graph database
+│   ├── knowledge_index/                # ChromaDB vector index
+│   └── cache/                          # Analysis result cache
+│
+├── 📂 lmops/                           # [MLOps & Testing]
+│   ├── src/                            # LLM analysis testing framework
+│   ├── docker-compose.yml              # Docker containerization
+│   ├── test-cases/                     # Analysis accuracy test cases
+│   └── evaluation/                     # Performance evaluation tools
+│
+└── 📂 requirements*.txt                # [Dependency Management]
+    └── Python package dependency management</code></pre>
+
+                <h3>Domain-Driven Architecture: AI Context Management Strategy</h3>
+                <p>One of the biggest challenges in AI-based development is managing vast contexts. Massive monolithic contexts degrade AI accuracy and make modifications difficult. To address this, the project was divided into 14 independent domains. Each domain consists of Handler (business logic), Schema (Pydantic-based data validation), Tools (MCP tool definitions), and Documentation (development guides), operating as independent development units. This Microservices Architecture-level separation enables AI to focus only on necessary contexts, minimizes maintenance impact scope, and facilitates onboarding for new developers.</p>
+
+                <h3>Platform Architecture</h3>
+                <p>MCP Universal Platform adopts a layered architecture consisting of Presentation Layer, Application Layer, Domain Layer, Infrastructure Layer, and Integration Layer. The Presentation Layer supports various client interfaces including MCP Client, Web Client, and Mobile App. The Application Layer's MCP Server Core manages LLM integration and tool execution loops. In the Domain Layer, 14 handlers and 180+ tools are categorized, while the Infrastructure Layer handles RAG support through Vector DB (ChromaDB) and session management. All components integrate with external systems via REST API and MCP protocol.</p>
+
+                <div style="text-align: center; margin: 30px 0;">
+                    <img src="platform_architecture.png" alt="Platform Architecture Diagram" style="max-width: 100%; height: auto; border: 1px solid #333; border-radius: 8px; cursor: pointer;" onclick="openImageModal(this)">
+                    <p style="font-size: 0.9em; color: #aaa; margin-top: 10px;">MCP Universal Platform Architecture Diagram (Click to enlarge)</p>
+                </div>
+
+                <h3>📊 Full-Stack Coverage Matrix</h3>
+                <p>An AI Engineer's competency isn't limited to specific tech stacks. The following full-stack coverage has been realized throughout the project:</p>
+
+                <div style="overflow-x: auto; margin: 20px 0;">
+                    <table style="width: 100%; border-collapse: collapse; background-color: #1a1a1a; border-radius: 8px; overflow: hidden;">
+                        <thead>
+                            <tr style="background-color: #2d2d2d;">
+                                <th style="padding: 12px; text-align: left; border-bottom: 2px solid #444; color: #fff; font-weight: bold;">Domain</th>
+                                <th style="padding: 12px; text-align: left; border-bottom: 2px solid #444; color: #fff; font-weight: bold;">Responsibilities</th>
+                                <th style="padding: 12px; text-align: left; border-bottom: 2px solid #444; color: #fff; font-weight: bold;">Key Files/Folders</th>
+                                <th style="padding: 12px; text-align: left; border-bottom: 2px solid #444; color: #fff; font-weight: bold;">AI Development Strengths</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr style="border-bottom: 1px solid #333;">
+                                <td style="padding: 12px; color: #fff; font-weight: bold;">Planning</td>
+                                <td style="padding: 12px; color: #d4d4d4;">Requirements analysis, Architecture design</td>
+                                <td style="padding: 12px; color: #d4d4d4;"><code style="background-color: #2d2d2d; padding: 2px 6px; border-radius: 3px;">docs/development/</code></td>
+                                <td style="padding: 12px; color: #d4d4d4;">AI context optimization design</td>
+                            </tr>
+                            <tr style="border-bottom: 1px solid #333;">
+                                <td style="padding: 12px; color: #fff; font-weight: bold;">Backend</td>
+                                <td style="padding: 12px; color: #d4d4d4;">FastAPI server, MCP protocol</td>
+                                <td style="padding: 12px; color: #d4d4d4;"><code style="background-color: #2d2d2d; padding: 2px 6px; border-radius: 3px;">mcp_server.py</code>, <code style="background-color: #2d2d2d; padding: 2px 6px; border-radius: 3px;">core/</code></td>
+                                <td style="padding: 12px; color: #d4d4d4;">Easy AI context management via domain separation</td>
+                            </tr>
+                            <tr style="border-bottom: 1px solid #333;">
+                                <td style="padding: 12px; color: #fff; font-weight: bold;">Domain Architecture</td>
+                                <td style="padding: 12px; color: #d4d4d4;">Handler, Schema, Tool separation</td>
+                                <td style="padding: 12px; color: #d4d4d4;"><code style="background-color: #2d2d2d; padding: 2px 6px; border-radius: 3px;">core/handlers/</code>, <code style="background-color: #2d2d2d; padding: 2px 6px; border-radius: 3px;">core/schemas/</code>, <code style="background-color: #2d2d2d; padding: 2px 6px; border-radius: 3px;">core/tools/</code></td>
+                                <td style="padding: 12px; color: #d4d4d4;">Improved AI development instruction accuracy through systematic separation</td>
+                            </tr>
+                            <tr style="border-bottom: 1px solid #333;">
+                                <td style="padding: 12px; color: #fff; font-weight: bold;">AI Server Management</td>
+                                <td style="padding: 12px; color: #d4d4d4;">PyQt5 GUI, Service management</td>
+                                <td style="padding: 12px; color: #d4d4d4;"><code style="background-color: #2d2d2d; padding: 2px 6px; border-radius: 3px;">agent_manager.py</code></td>
+                                <td style="padding: 12px; color: #d4d4d4;">Server status monitoring & control</td>
+                            </tr>
+                            <tr style="border-bottom: 1px solid #333;">
+                                <td style="padding: 12px; color: #fff; font-weight: bold;">AI/ML Engineering</td>
+                                <td style="padding: 12px; color: #d4d4d4;">LLM integration, Vector DB, RAG</td>
+                                <td style="padding: 12px; color: #d4d4d4;"><code style="background-color: #2d2d2d; padding: 2px 6px; border-radius: 3px;">prompts/</code>, <code style="background-color: #2d2d2d; padding: 2px 6px; border-radius: 3px;">core/utils/vector_db.py</code></td>
+                                <td style="padding: 12px; color: #d4d4d4;">Context-based RAG strategy</td>
+                            </tr>
+                            <tr style="border-bottom: 1px solid #333;">
+                                <td style="padding: 12px; color: #fff; font-weight: bold;">DevOps</td>
+                                <td style="padding: 12px; color: #d4d4d4;">Build, Deployment, Service management</td>
+                                <td style="padding: 12px; color: #d4d4d4;"><code style="background-color: #2d2d2d; padding: 2px 6px; border-radius: 3px;">build.bat</code>, <code style="background-color: #2d2d2d; padding: 2px 6px; border-radius: 3px;">installer/</code>, <code style="background-color: #2d2d2d; padding: 2px 6px; border-radius: 3px;">scripts/</code></td>
+                                <td style="padding: 12px; color: #d4d4d4;">Automation scripts</td>
+                            </tr>
+                            <tr style="border-bottom: 1px solid #333;">
+                                <td style="padding: 12px; color: #fff; font-weight: bold;">Packaging</td>
+                                <td style="padding: 12px; color: #d4d4d4;">Windows installer, Executables</td>
+                                <td style="padding: 12px; color: #d4d4d4;"><code style="background-color: #2d2d2d; padding: 2px 6px; border-radius: 3px;">installer/installer.iss</code>, <code style="background-color: #2d2d2d; padding: 2px 6px; border-radius: 3px;">dist/</code></td>
+                                <td style="padding: 12px; color: #d4d4d4;">Deployment packaging</td>
+                            </tr>
+                            <tr style="border-bottom: 1px solid #333;">
+                                <td style="padding: 12px; color: #fff; font-weight: bold;">Documentation</td>
+                                <td style="padding: 12px; color: #d4d4d4;">Technical docs, AI development guides</td>
+                                <td style="padding: 12px; color: #d4d4d4;"><code style="background-color: #2d2d2d; padding: 2px 6px; border-radius: 3px;">docs/</code> (50+ documents)</td>
+                                <td style="padding: 12px; color: #d4d4d4;">Systematized AI development instruction docs</td>
+                            </tr>
+                            <tr style="border-bottom: 1px solid #333;">
+                                <td style="padding: 12px; color: #fff; font-weight: bold;">Testing</td>
+                                <td style="padding: 12px; color: #d4d4d4;">Test automation, LLM testing</td>
+                                <td style="padding: 12px; color: #d4d4d4;"><code style="background-color: #2d2d2d; padding: 2px 6px; border-radius: 3px;">lmops/tests/</code>, <code style="background-color: #2d2d2d; padding: 2px 6px; border-radius: 3px;">scripts/test_*.py</code></td>
+                                <td style="padding: 12px; color: #d4d4d4;">LLM testing framework</td>
+                            </tr>
+                            <tr>
+                                <td style="padding: 12px; color: #fff; font-weight: bold;">Design</td>
+                                <td style="padding: 12px; color: #d4d4d4;">UI/UX, Presentations</td>
+                                <td style="padding: 12px; color: #d4d4d4;"><code style="background-color: #2d2d2d; padding: 2px 6px; border-radius: 3px;">presentation/</code>, <code style="background-color: #2d2d2d; padding: 2px 6px; border-radius: 3px;">installer/assets/</code></td>
+                                <td style="padding: 12px; color: #d4d4d4;">Visual architecture representation</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <h3>📚 AI-Driven Development Documentation Strategy</h3>
+                <p>Systematic documentation strategy is essential for effective AI-based development. The four core elements required when adding tools—API Payload (Request/Response structure), URL & Method (endpoints), Description (tool description), and Required Fields (mandatory parameters)—were standardized, providing independent guide documents for each development layer. TOOL_DEVELOPMENT_GUIDE.md covers the complete tool addition guide, HANDLER_DEVELOPMENT.md covers handler development patterns, SCHEMA_VALIDATION.md covers Pydantic schema writing, and CATEGORY_MANAGEMENT.md covers categorization strategies. This documentation system is designed to enable AI to reference only necessary contexts and generate accurate development instructions.</p>
+
+                <pre style="background-color: #1e1e1e; color: #d4d4d4; padding: 20px; border-radius: 8px; overflow-x: auto; font-size: 0.85em; line-height: 1.6; border: 1px solid #333; margin: 20px 0;"><code>docs/development/
+├── TOOL_DEVELOPMENT_GUIDE.md      # Complete tool addition guide
+│   ├── API Payload writing method
+│   ├── URL & Method definition
+│   ├── Description writing guide
+│   └── Required Fields specification
+│
+├── HANDLER_DEVELOPMENT.md         # Handler development guide
+│   ├── BaseHandler inheritance method
+│   ├── Error handling patterns
+│   └── API call standards
+│
+├── SCHEMA_VALIDATION.md           # Pydantic schema guide
+│   ├── Request Schema writing
+│   ├── Response Schema writing
+│   └── Validation rules
+│
+└── CATEGORY_MANAGEMENT.md         # Category classification guide
+    ├── Category addition method
+    └── Tool-Category mapping</code></pre>
+
+                <h3>Vector Database Strategy for RAG</h3>
+                <p>The Knowledge Base architecture is designed for LLMs to naturally learn tool usage. Documents are stored separately by 14 categories, and related tools are recommended through Semantic Search. The Vector Indexing strategy using ChromaDB provides accurate context during development instructions, and maintains the knowledge base up-to-date through automated rebuild scripts when tools are added. This goes beyond simple search—it's the core mechanism enabling AI to internalize project domain knowledge.</p>
+
+                <h3>🔄 Development Workflow: Adding New Tools</h3>
+                <p>The workflow for adding new analysis tools is systematized as follows. Each step is independent yet interconnected, structured so AI can follow accurate instructions step by step.</p>
+
+                <pre style="background-color: #1e1e1e; color: #d4d4d4; padding: 20px; border-radius: 8px; overflow-x: auto; font-size: 0.85em; line-height: 1.6; border: 1px solid #333; margin: 20px 0;"><code>1. Check API Specification
+   └─> Reference docs/api_documentation/
+
+2. Handler Development
+   └─> Reference docs/development/HANDLER_DEVELOPMENT.md
+   └─> Modify core/handlers/{domain}_handler.py
+
+3. Schema Definition
+   └─> Reference docs/development/SCHEMA_VALIDATION.md
+   └─> Add Pydantic model to core/schemas/{domain}.py
+
+4. Tool Definition
+   └─> Reference docs/development/TOOL_DEVELOPMENT_GUIDE.md
+   └─> Add Tool to core/tools/{domain}.py
+
+5. Category Classification
+   └─> Reference docs/development/CATEGORY_MANAGEMENT.md
+   └─> Add mapping to core/tools/categories.py
+
+6. Documentation Update
+   └─> Add descriptions to prompts/tool_descriptions/
+   └─> Rebuild Vector DB (run automation script)</code></pre>
+
+                <h3>Core Strengths: From Planning to Deployment</h3>
+                <p>This project covers the entire product lifecycle beyond simple coding. In requirements analysis and architecture design phases, domain separation strategies were established considering AI context optimization. In Backend and Frontend development, servers and management tools were implemented using FastAPI and PyQt5. In DevOps, Windows installers based on InnoSetup, build automation scripts, and service management tools were developed. In Testing, LLM evaluation frameworks and automated test systems were built. Through writing 50+ technical documents, project sustainability and scalability were secured, and technical achievements were effectively communicated through presentation materials.</p>
+
+                <h3>Conclusion: AI Engineer's Holistic Competency</h3>
+                <p>AI Engineering requires comprehensive competency to understand and design entire systems, not just working with AI models. Through the MCP Universal Platform project, I covered the entire process from planning to deployment, demonstrating core competencies AI Engineers should possess: AI context management strategy, domain-based architecture, RAG system construction, automated testing, and documentation systems. This full-stack coverage means more than just knowing various technologies—it means the ability to understand and design how each element organically connects to form a complete system. Engineers in the AI era must be able to paint the entire picture beyond code, and this project is a concrete realization of that vision.</p>
+            </div>
+
             <div class="blog-navigation">
                 <div class="blog-nav-left">
                     <a href="blog2.html" class="nav-article">← Previous Article</a>
@@ -408,7 +681,7 @@
 
         function toggleLanguage() {
             const html = document.documentElement;
-            const currentLang = html.getAttribute('data-lang') || 'en';
+            const currentLang = html.getAttribute('data-lang') || 'kr';
             const newLang = currentLang === 'en' ? 'kr' : 'en';
 
             html.setAttribute('data-lang', newLang);
@@ -416,7 +689,7 @@
 
             // Update button text
             const button = document.querySelector('.lang-toggle');
-            button.textContent = newLang === 'en' ? 'EN' : '한';
+            button.textContent = newLang === 'en' ? '한' : 'EN';
 
             // Update content
             updateContent(newLang);
@@ -441,11 +714,11 @@
             const themeButton = document.querySelector('.theme-toggle');
             themeButton.textContent = savedTheme === 'dark' ? '☀️' : '🌙';
 
-            const savedLang = localStorage.getItem('language') || 'en';
+            const savedLang = localStorage.getItem('language') || 'kr';
             document.documentElement.setAttribute('data-lang', savedLang);
 
             const langButton = document.querySelector('.lang-toggle');
-            langButton.textContent = savedLang === 'en' ? 'EN' : '한';
+            langButton.textContent = savedLang === 'en' ? '한' : 'EN';
 
             updateContent(savedLang);
         });
