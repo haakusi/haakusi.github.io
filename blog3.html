@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html data-theme="dark">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>AI Engineering 개발자로서의 전방위 커버리지 - Sewon Park</title>
+    <link rel="stylesheet" type="text/css" href="style.css">
+</head>
+<body>
+    <button class="theme-toggle" onclick="toggleTheme()" aria-label="Toggle dark mode">☀️</button>
+    <button class="lang-toggle" onclick="toggleLanguage()" aria-label="Toggle language">EN</button>
+
+    <div class="container">
+        <header>
+            <h1 data-en="Sewon Park" data-kr="박세원">Sewon Park</h1>
+            <p class="subtitle" data-en="Senior Research Engineer | AI & Full-Stack Development" data-kr="선임 연구원 | AI 및 풀스택 개발">Senior Research Engineer | AI & Full-Stack Development</p>
+            <div class="social-links">
+                <a href="mailto:haakusi@gmail.com" aria-label="Email">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <rect x="2" y="4" width="20" height="16" rx="2"/>
+                        <path d="m22 7-10 5L2 7"/>
+                    </svg>
+                </a>
+                <a href="https://github.com/haakusi" target="_blank" aria-label="GitHub">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+                        <path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/>
+                    </svg>
+                </a>
+                <a href="https://www.linkedin.com/in/sewon-p-38009a1a7/" target="_blank" aria-label="LinkedIn">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+                        <path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/>
+                    </svg>
+                </a>
+                <a href="https://twitter.com/haakusi_" target="_blank" aria-label="X (Twitter)">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+                        <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/>
+                    </svg>
+                </a>
+            </div>
+        </header>
+
+        <nav class="navigation">
+            <a href="index.html" class="nav-link" data-en="Home" data-kr="홈">Home</a>
+            <a href="blog.html" class="nav-link" data-en="Blog" data-kr="블로그">Blog</a>
+            <a href="cv.html" class="nav-link" data-en="CV" data-kr="이력서">CV</a>
+        </nav>
+
+        <article class="blog-post-full">
+            <h1>AI Engineering 개발자로서의 전방위 커버리지</h1>
+            <p class="blog-date">December 11, 2025</p>
+
+            <div class="blog-content">
+                <h3>Introduction: MCP Universal Platform</h3>
+                <p>현대 AI 엔지니어링에서 요구되는 역량은 단순히 코드 작성을 넘어 기획부터 배포까지 전체 생명주기를 아우르는 포괄적 이해입니다. 본 글에서는 MCP Universal Platform 프로젝트를 통해 AI Engineer로서 어떻게 전방위적 개발 커버리지를 달성했는지 공유하고자 합니다. 180개 이상의 분석 도구를 14개 데이터 도메인으로 체계화하고, 도메인 주도 아키텍처(DDD)를 통해 AI 컨텍스트 관리 최적화를 실현한 실무 사례를 다룹니다.</p>
+
+                <h3>Domain-Driven Architecture: AI Context Management Strategy</h3>
+                <p>AI 기반 개발의 가장 큰 과제 중 하나는 방대한 컨텍스트 관리입니다. 거대한 단일 컨텍스트는 AI의 정확도를 저하시키고 수정과 실행을 어렵게 만듭니다. 이를 해결하기 위해 프로젝트를 14개의 독립적 도메인으로 분리했습니다. 각 도메인은 Handler(비즈니스 로직), Schema(Pydantic 기반 데이터 검증), Tools(MCP 도구 정의), Documentation(개발 가이드)로 구성되어 독립적 개발 단위로 동작합니다. 이러한 Microservices Architecture 수준의 분리는 AI가 필요한 컨텍스트만 집중할 수 있게 하며, 유지보수 시 영향 범위를 최소화하고 신규 개발자 온보딩을 용이하게 합니다.</p>
+
+                <h3>Platform Architecture</h3>
+                <p>MCP Universal Platform은 Presentation Layer, Application Layer, Domain Layer, Infrastructure Layer, Integration Layer로 구성된 계층형 아키텍처를 채택했습니다. Presentation Layer는 MCP Client, Web Client, Mobile App 등 다양한 클라이언트 인터페이스를 지원하며, Application Layer의 MCP Server Core가 LLM 통합 및 도구 실행 루프를 관리합니다. Domain Layer에서는 14개의 핸들러와 180개 이상의 도구가 카테고리별로 분류되어 있으며, Infrastructure Layer는 Vector DB(ChromaDB)를 통한 RAG 지원과 세션 관리를 담당합니다. 이 모든 컴포넌트는 REST API 및 MCP 프로토콜을 통해 외부 시스템과 통합됩니다.</p>
+
+                <div style="text-align: center; margin: 30px 0;">
+                    <img src="platform_architecture.png" alt="Platform Architecture Diagram" style="max-width: 100%; height: auto; border: 1px solid #333; border-radius: 8px;">
+                    <p style="font-size: 0.9em; color: #666; margin-top: 10px;">MCP Universal Platform Architecture Diagram</p>
+                </div>
+
+                <h3>Development Coverage Matrix</h3>
+                <p>AI Engineer로서의 역량은 특정 기술 스택에 국한되지 않습니다. 프로젝트 전반에 걸쳐 다음과 같은 전방위 커버리지를 실현했습니다:</p>
+                <ul>
+                    <li><strong>기획 & 아키텍처 설계:</strong> AI 컨텍스트 최적화를 고려한 시스템 설계 및 요구사항 분석 (docs/development/ 50+ 문서)</li>
+                    <li><strong>Backend Development:</strong> FastAPI 기반 REST API 서버 구현 및 MCP 프로토콜 통합 (core/, mcp_server.py)</li>
+                    <li><strong>AI/ML Engineering:</strong> Claude/Gemini/OpenAI LLM 통합, ChromaDB 기반 RAG 시스템, Vector DB 전략 수립 (prompts/, core/utils/vector_db.py)</li>
+                    <li><strong>AI Server Management:</strong> PyQt5 기반 GUI 관리 도구 개발, 실시간 모니터링 및 서비스 제어 (agent_manager.py)</li>
+                    <li><strong>DevOps & Automation:</strong> 빌드 자동화, 배포 파이프라인 구축, Windows 서비스화 (build.bat, installer/, scripts/)</li>
+                    <li><strong>Testing & Quality:</strong> LLM 테스트 프레임워크 구축, 자동화 테스트 시스템 (lmops/tests/, scripts/test_*.py)</li>
+                    <li><strong>Documentation:</strong> 50개 이상의 기술 문서 작성, AI 개발 가이드 체계화 (docs/)</li>
+                    <li><strong>Design & Presentation:</strong> 프레젠테이션 자료 제작, 인스톨러 UI/UX 디자인 (presentation/, installer/assets/)</li>
+                </ul>
+
+                <h3>AI-Driven Development Documentation Strategy</h3>
+                <p>효과적인 AI 기반 개발을 위해서는 체계적인 문서화 전략이 필수입니다. 도구 추가 시 필요한 4대 핵심 요소—API Payload(Request/Response 구조), URL & Method(엔드포인트), Description(도구 설명), Required Fields(필수 파라미터)—를 표준화하고, 각 개발 레이어별로 독립적인 가이드 문서를 제공했습니다. TOOL_DEVELOPMENT_GUIDE.md는 도구 추가 전체 가이드를, HANDLER_DEVELOPMENT.md는 핸들러 개발 패턴을, SCHEMA_VALIDATION.md는 Pydantic 스키마 작성법을, CATEGORY_MANAGEMENT.md는 카테고리 분류 전략을 다룹니다. 이러한 문서 체계는 AI가 필요한 컨텍스트만 참조하여 정확한 개발 지시를 생성할 수 있게 설계되었습니다.</p>
+
+                <h3>Vector Database Strategy for RAG</h3>
+                <p>Knowledge Base 아키텍처는 LLM이 도구 사용법을 자연스럽게 학습하도록 설계되었습니다. 14개 카테고리별로 문서를 분리 저장하고, 의미 기반 검색(Semantic Search)을 통해 관련 도구를 추천합니다. ChromaDB를 활용한 Vector Indexing 전략은 개발 지시 시 정확한 컨텍스트를 제공하며, 도구 추가 시 자동화된 재구축 스크립트를 통해 지식 베이스를 최신 상태로 유지합니다. 이는 단순한 검색을 넘어 AI가 프로젝트의 도메인 지식을 체득하도록 하는 핵심 메커니즘입니다.</p>
+
+                <h3>Development Workflow: Adding New Tools</h3>
+                <p>새로운 분석 도구를 추가하는 워크플로우는 다음과 같이 체계화되어 있습니다: 1) API 스펙 확인 (docs/api_documentation/ 참조), 2) Handler 개발 (HANDLER_DEVELOPMENT.md 참조하여 core/handlers/{domain}_handler.py 수정), 3) Schema 정의 (SCHEMA_VALIDATION.md 참조하여 core/schemas/{domain}.py에 Pydantic 모델 추가), 4) Tool 정의 (TOOL_DEVELOPMENT_GUIDE.md 참조하여 core/tools/{domain}.py에 Tool 추가), 5) Category 분류 (CATEGORY_MANAGEMENT.md 참조하여 core/tools/categories.py에 매핑 추가), 6) 문서 업데이트 및 Vector DB 재구축. 각 단계는 독립적이면서도 상호 연결되어, AI가 단계별로 정확한 지시를 따를 수 있도록 구조화되었습니다.</p>
+
+                <h3>Core Strengths: From Planning to Deployment</h3>
+                <p>본 프로젝트는 단순한 코딩 작업을 넘어 전체 제품 생명주기를 커버합니다. 요구사항 분석 및 아키텍처 설계 단계에서 AI 컨텍스트 최적화를 고려한 도메인 분리 전략을 수립했으며, Backend 및 Frontend 개발에서는 FastAPI, PyQt5를 활용한 서버 및 관리 도구를 구현했습니다. DevOps 측면에서는 InnoSetup 기반 Windows 인스톨러 제작, 빌드 자동화 스크립트, 서비스 관리 도구를 개발했으며, Testing에서는 LLM 평가 프레임워크와 자동화 테스트 시스템을 구축했습니다. 50개 이상의 기술 문서 작성을 통해 프로젝트의 지속 가능성과 확장성을 확보했으며, 프레젠테이션 자료 제작을 통해 기술적 성과를 효과적으로 전달했습니다.</p>
+
+                <h3>Conclusion: AI Engineer's Holistic Competency</h3>
+                <p>AI Engineering은 단순히 AI 모델을 다루는 것이 아닌, 전체 시스템을 이해하고 설계할 수 있는 포괄적 역량을 요구합니다. MCP Universal Platform 프로젝트를 통해 기획부터 배포까지 전 과정을 커버하며, AI 컨텍스트 관리 전략, 도메인 기반 아키텍처, RAG 시스템 구축, 자동화 테스트, 문서화 체계 등 AI Engineer로서 갖춰야 할 핵심 역량을 실증했습니다. 이러한 전방위 커버리지는 단순히 다양한 기술을 아는 것을 넘어, 각 요소가 어떻게 유기적으로 연결되어 하나의 완성된 시스템을 이루는지 이해하고 설계할 수 있는 능력을 의미합니다. AI 시대의 엔지니어는 코드를 넘어 전체 그림을 그릴 수 있어야 하며, 본 프로젝트는 그러한 비전의 구체적 실현 사례입니다.</p>
+            </div>
+
+            <div class="blog-navigation">
+                <div class="blog-nav-left">
+                    <a href="blog2.html" class="nav-article">← Previous Article</a>
+                </div>
+                <div class="blog-nav-center">
+                    <a href="blog.html" class="back-to-blog">Back to Blog</a>
+                </div>
+                <div class="blog-nav-right">
+                    <span class="nav-article disabled">Next Article →</span>
+                </div>
+            </div>
+        </article>
+
+        <footer>
+            <p>Last updated: December 2025</p>
+        </footer>
+    </div>
+
+    <script>
+        function toggleTheme() {
+            const html = document.documentElement;
+            const currentTheme = html.getAttribute('data-theme');
+            const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
+
+            html.setAttribute('data-theme', newTheme);
+            localStorage.setItem('theme', newTheme);
+
+            // Update button icon
+            const button = document.querySelector('.theme-toggle');
+            button.textContent = newTheme === 'dark' ? '☀️' : '🌙';
+        }
+
+        function toggleLanguage() {
+            const html = document.documentElement;
+            const currentLang = html.getAttribute('data-lang') || 'en';
+            const newLang = currentLang === 'en' ? 'kr' : 'en';
+
+            html.setAttribute('data-lang', newLang);
+            localStorage.setItem('language', newLang);
+
+            // Update button text
+            const button = document.querySelector('.lang-toggle');
+            button.textContent = newLang === 'en' ? 'EN' : '한';
+
+            // Update content
+            updateContent(newLang);
+        }
+
+        function updateContent(lang) {
+            const elements = document.querySelectorAll('[data-en][data-kr]');
+            elements.forEach(element => {
+                if (lang === 'kr' && element.getAttribute('data-kr')) {
+                    element.textContent = element.getAttribute('data-kr');
+                } else if (lang === 'en' && element.getAttribute('data-en')) {
+                    element.textContent = element.getAttribute('data-en');
+                }
+            });
+        }
+
+        // Load saved theme and language on page load
+        document.addEventListener('DOMContentLoaded', function() {
+            const savedTheme = localStorage.getItem('theme') || 'dark';
+            document.documentElement.setAttribute('data-theme', savedTheme);
+
+            const themeButton = document.querySelector('.theme-toggle');
+            themeButton.textContent = savedTheme === 'dark' ? '☀️' : '🌙';
+
+            const savedLang = localStorage.getItem('language') || 'en';
+            document.documentElement.setAttribute('data-lang', savedLang);
+
+            const langButton = document.querySelector('.lang-toggle');
+            langButton.textContent = savedLang === 'en' ? 'EN' : '한';
+
+            updateContent(savedLang);
+        });
+    </script>
+</body>
+</html>
