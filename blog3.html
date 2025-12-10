@@ -5,6 +5,50 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>AI Engineering 개발자로서의 전방위 커버리지 - Sewon Park</title>
     <link rel="stylesheet" type="text/css" href="style.css">
+    <style>
+        .image-modal {
+            display: none;
+            position: fixed;
+            z-index: 9999;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.9);
+            cursor: pointer;
+        }
+
+        .image-modal-content {
+            margin: auto;
+            display: block;
+            max-width: 95%;
+            max-height: 95%;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            animation: zoom 0.3s;
+        }
+
+        @keyframes zoom {
+            from {transform: translate(-50%, -50%) scale(0.8)}
+            to {transform: translate(-50%, -50%) scale(1)}
+        }
+
+        .image-modal-close {
+            position: absolute;
+            top: 20px;
+            right: 35px;
+            color: #f1f1f1;
+            font-size: 40px;
+            font-weight: bold;
+            cursor: pointer;
+        }
+
+        .image-modal-close:hover {
+            color: #bbb;
+        }
+    </style>
 </head>
 <body>
     <button class="theme-toggle" onclick="toggleTheme()" aria-label="Toggle dark mode">☀️</button>
@@ -51,7 +95,117 @@
 
             <div class="blog-content">
                 <h3>Introduction: MCP Universal Platform</h3>
-                <p>현대 AI 엔지니어링에서 요구되는 역량은 단순히 코드 작성을 넘어 기획부터 배포까지 전체 생명주기를 아우르는 포괄적 이해입니다. 본 글에서는 MCP Universal Platform 프로젝트를 통해 AI Engineer로서 어떻게 전방위적 개발 커버리지를 달성했는지 공유하고자 합니다. 180개 이상의 분석 도구를 14개 데이터 도메인으로 체계화하고, 도메인 주도 아키텍처(DDD)를 통해 AI 컨텍스트 관리 최적화를 실현한 실무 사례를 다룹니다.</p>
+                <p>최신 AI 엔지니어링에서 요구되는 역량은 단순히 코드 작성을 넘어 기획부터 배포까지 전체 생명주기를 아우르는 포괄적 이해입니다. 본 글에서는 MCP Universal Platform 프로젝트를 통해 AI Engineer로서 어떻게 전방위적 개발 커버리지를 달성했는지 공유하고자 합니다. 180개 이상의 분석 도구를 14개 데이터 도메인으로 체계화하고, 도메인 주도 아키텍처(DDD)를 통해 AI 컨텍스트 관리 최적화를 실현한 실무 사례를 다룹니다.</p>
+
+                <h3>프로젝트 구조</h3>
+                <pre style="background-color: #1e1e1e; color: #d4d4d4; padding: 20px; border-radius: 8px; overflow-x: auto; font-size: 0.85em; line-height: 1.6; border: 1px solid #333;"><code>mcp-universal-platform/
+│
+├── 📂 core/                            # [Backend Development - Domain-Driven Architecture]
+│   ├── handlers/                       # 14개 데이터 도메인 핸들러 (180+ analysis tools)
+│   │   ├── base_handler.py             # 공통 핸들러 로직 (인증, 에러 처리, 감사 로그)
+│   │   ├── data_source_handler.py      # 데이터 소스 연결 도메인
+│   │   ├── entity_handler.py           # 개체 데이터 관리 도메인
+│   │   ├── relationship_handler.py     # 관계 분석 도메인
+│   │   ├── analytics_handler.py        # 분석 쿼리 도메인
+│   │   ├── timeline_handler.py         # 시간순 데이터 도메인
+│   │   ├── geospatial_handler.py       # 지리공간 데이터 도메인
+│   │   ├── investigation_handler.py    # 조사 케이스 관리 도메인
+│   │   ├── notification_handler.py     # 알림 및 모니터링 도메인
+│   │   ├── report_handler.py           # 보고서 생성 도메인
+│   │   ├── collaboration_handler.py    # 팀 협업 도메인
+│   │   ├── audit_handler.py            # 감사 추적 도메인
+│   │   └── ... (14개 핸들러)           # 각 도메인별 독립적 관리
+│   │
+│   ├── schemas/                        # [Data Validation - Pydantic]
+│   │   ├── tool_response.py            # 분석 응답 스키마
+│   │   ├── entity_schema.py            # 개체 데이터 스키마
+│   │   ├── relationship_schema.py      # 관계 데이터 스키마
+│   │   ├── analytics_schema.py         # 분석 결과 스키마
+│   │   └── ...                         # 도메인별 스키마 분리
+│   │
+│   ├── tools/                          # [MCP Tool Definitions]
+│   │   ├── categories.py               # 분석 도구 카테고리 분류 시스템
+│   │   ├── data_source_tools.py        # 데이터 소스 관련 도구 정의
+│   │   ├── entity_tools.py             # 개체 분석 도구 정의
+│   │   ├── relationship_tools.py       # 관계 분석 도구 정의
+│   │   ├── analytics_tools.py          # 고급 분석 도구 정의
+│   │   └── ...                         # 도메인별 도구 정의
+│   │
+│   ├── utils/                          # [Infrastructure Utilities]
+│   │   ├── graph_db.py                 # Graph DB 관리 (개체-관계 분석)
+│   │   ├── knowledge_base.py           # 지식 베이스 관리 (RAG)
+│   │   ├── search_engine.py            # 고급 검색 유틸리티
+│   │   ├── indexing.py                 # 데이터 인덱싱 전략
+│   │   ├── geocoding.py                # 지리공간 좌표 변환
+│   │   └── crypto.py                   # 암호화 및 보안
+│   │
+│   ├── session.py                      # 세션 관리 및 접근 제어
+│   ├── tool_manager.py                 # 동적 분석 도구 로딩 시스템
+│   └── config.py                       # 플랫폼 설정 관리
+│
+├── 📂 platform_manager.py              # [AI Server Management - PyQt5]
+│   └── GUI 기반 플랫폼 관리 도구
+│       - 데이터 소스 관리
+│       - 실시간 분석 모니터링
+│       - 사용자 권한 관리 UI
+│       - 워크플로우 구성
+│
+├── 📂 analysis_server.py               # [Backend Development - FastAPI]
+│   └── REST API 서버
+│       - LLM 통합 (Claude/Gemini/OpenAI)
+│       - 분석 도구 실행 루프
+│       - 컨텍스트 및 상태 관리
+│       - 실시간 결과 스트리밍
+│
+├── 📂 scripts/                         # [DevOps & Automation]
+│   ├── rebuild_knowledge_base.py       # 지식 베이스 재구축 자동화
+│   ├── validate_data_integrity.py      # 데이터 검증 스크립트
+│   ├── sync_data_sources.py            # 데이터 소스 동기화
+│   └── test_*.py                       # 통합 테스트 자동화
+│
+├── 📂 build.bat, START_SERVER.bat      # [DevOps - Build Automation]
+│   └── 빌드 및 배포 자동화 스크립트
+│
+├── 📂 installer/                       # [DevOps - Packaging & Distribution]
+│   ├── installer.iss                   # InnoSetup 인스톨러 스크립트
+│   ├── build_installer.ps1             # 인스톨러 빌드 자동화
+│   ├── assets/                         # 인스톨러 리소스
+│   └── service_manager/                # 윈도우 서비스 관리 도구
+│
+├── 📂 docs/                            # [Documentation - Platform Architecture]
+│   ├── development/                    # 개발 가이드 (24개 문서)
+│   │   ├── TOOL_DEVELOPMENT_GUIDE.md   # 분석 도구 개발 지시서
+│   │   ├── HANDLER_DEVELOPMENT.md      # 핸들러 개발 가이드
+│   │   ├── SCHEMA_VALIDATION.md        # Pydantic 스키마 설계 가이드
+│   │   └── DOMAIN_ARCHITECTURE.md      # 도메인 분류 및 아키텍처
+│   │
+│   ├── guides/                         # 사용자 및 분석가 가이드
+│   ├── api_documentation/              # 분석 API 문서
+│   ├── knowledge_base/                 # 지식 베이스 아키텍처 (18개 문서)
+│   │   ├── KNOWLEDGE_BASE_DESIGN.md    # 지식 베이스 설계 철학
+│   │   ├── ENTITY_RELATIONSHIP.md      # 개체-관계 모델 정의
+│   │   └── SEARCH_STRATEGY.md          # 검색 및 질의 전략
+│   └── mcp/                            # MCP 프로토콜 및 통합 문서
+│
+├── 📂 prompts/                         # [AI Engineering - Context Management]
+│   ├── system_prompts/                 # LLM 시스템 프롬프트
+│   ├── analysis_templates/             # 분석 템플릿 및 설명
+│   │   └── TOOL_ADDITION_TEMPLATE.md   # 새로운 분석 도구 추가 템플릿
+│   └── workflow_prompts/               # 워크플로우 자동화 프롬프트
+│
+├── 📂 data/                            # [Data Engineering]
+│   ├── graph_database/                 # Neo4j 그래프 데이터베이스
+│   ├── knowledge_index/                # ChromaDB 벡터 인덱스
+│   └── cache/                          # 분석 결과 캐시
+│
+├── 📂 lmops/                           # [MLOps & Testing]
+│   ├── src/                            # LLM 분석 테스트 프레임워크
+│   ├── docker-compose.yml              # Docker 컨테이너화
+│   ├── test-cases/                     # 분석 정확도 테스트 케이스
+│   └── evaluation/                     # 성능 평가 도구
+│
+└── 📂 requirements*.txt                # [Dependency Management]
+    └── 파이썬 패키지 의존성 관리</code></pre>
 
                 <h3>Domain-Driven Architecture: AI Context Management Strategy</h3>
                 <p>AI 기반 개발의 가장 큰 과제 중 하나는 방대한 컨텍스트 관리입니다. 거대한 단일 컨텍스트는 AI의 정확도를 저하시키고 수정과 실행을 어렵게 만듭니다. 이를 해결하기 위해 프로젝트를 14개의 독립적 도메인으로 분리했습니다. 각 도메인은 Handler(비즈니스 로직), Schema(Pydantic 기반 데이터 검증), Tools(MCP 도구 정의), Documentation(개발 가이드)로 구성되어 독립적 개발 단위로 동작합니다. 이러한 Microservices Architecture 수준의 분리는 AI가 필요한 컨텍스트만 집중할 수 있게 하며, 유지보수 시 영향 범위를 최소화하고 신규 개발자 온보딩을 용이하게 합니다.</p>
@@ -60,31 +214,140 @@
                 <p>MCP Universal Platform은 Presentation Layer, Application Layer, Domain Layer, Infrastructure Layer, Integration Layer로 구성된 계층형 아키텍처를 채택했습니다. Presentation Layer는 MCP Client, Web Client, Mobile App 등 다양한 클라이언트 인터페이스를 지원하며, Application Layer의 MCP Server Core가 LLM 통합 및 도구 실행 루프를 관리합니다. Domain Layer에서는 14개의 핸들러와 180개 이상의 도구가 카테고리별로 분류되어 있으며, Infrastructure Layer는 Vector DB(ChromaDB)를 통한 RAG 지원과 세션 관리를 담당합니다. 이 모든 컴포넌트는 REST API 및 MCP 프로토콜을 통해 외부 시스템과 통합됩니다.</p>
 
                 <div style="text-align: center; margin: 30px 0;">
-                    <img src="platform_architecture.png" alt="Platform Architecture Diagram" style="max-width: 100%; height: auto; border: 1px solid #333; border-radius: 8px;">
-                    <p style="font-size: 0.9em; color: #666; margin-top: 10px;">MCP Universal Platform Architecture Diagram</p>
+                    <img src="platform_architecture.png" alt="Platform Architecture Diagram" style="max-width: 100%; height: auto; border: 1px solid #333; border-radius: 8px; cursor: pointer;" onclick="openImageModal(this)">
+                    <p style="font-size: 0.9em; color: #aaa; margin-top: 10px;">MCP Universal Platform Architecture Diagram (Click to enlarge)</p>
                 </div>
 
-                <h3>Development Coverage Matrix</h3>
+                <h3>📊 전방위 커버리지 매트릭스</h3>
                 <p>AI Engineer로서의 역량은 특정 기술 스택에 국한되지 않습니다. 프로젝트 전반에 걸쳐 다음과 같은 전방위 커버리지를 실현했습니다:</p>
-                <ul>
-                    <li><strong>기획 & 아키텍처 설계:</strong> AI 컨텍스트 최적화를 고려한 시스템 설계 및 요구사항 분석 (docs/development/ 50+ 문서)</li>
-                    <li><strong>Backend Development:</strong> FastAPI 기반 REST API 서버 구현 및 MCP 프로토콜 통합 (core/, mcp_server.py)</li>
-                    <li><strong>AI/ML Engineering:</strong> Claude/Gemini/OpenAI LLM 통합, ChromaDB 기반 RAG 시스템, Vector DB 전략 수립 (prompts/, core/utils/vector_db.py)</li>
-                    <li><strong>AI Server Management:</strong> PyQt5 기반 GUI 관리 도구 개발, 실시간 모니터링 및 서비스 제어 (agent_manager.py)</li>
-                    <li><strong>DevOps & Automation:</strong> 빌드 자동화, 배포 파이프라인 구축, Windows 서비스화 (build.bat, installer/, scripts/)</li>
-                    <li><strong>Testing & Quality:</strong> LLM 테스트 프레임워크 구축, 자동화 테스트 시스템 (lmops/tests/, scripts/test_*.py)</li>
-                    <li><strong>Documentation:</strong> 50개 이상의 기술 문서 작성, AI 개발 가이드 체계화 (docs/)</li>
-                    <li><strong>Design & Presentation:</strong> 프레젠테이션 자료 제작, 인스톨러 UI/UX 디자인 (presentation/, installer/assets/)</li>
-                </ul>
 
-                <h3>AI-Driven Development Documentation Strategy</h3>
+                <div style="overflow-x: auto; margin: 20px 0;">
+                    <table style="width: 100%; border-collapse: collapse; background-color: #1a1a1a; border-radius: 8px; overflow: hidden;">
+                        <thead>
+                            <tr style="background-color: #2d2d2d;">
+                                <th style="padding: 12px; text-align: left; border-bottom: 2px solid #444; color: #fff; font-weight: bold;">영역</th>
+                                <th style="padding: 12px; text-align: left; border-bottom: 2px solid #444; color: #fff; font-weight: bold;">담당 작업</th>
+                                <th style="padding: 12px; text-align: left; border-bottom: 2px solid #444; color: #fff; font-weight: bold;">주요 파일/폴더</th>
+                                <th style="padding: 12px; text-align: left; border-bottom: 2px solid #444; color: #fff; font-weight: bold;">AI 개발 강점</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr style="border-bottom: 1px solid #333;">
+                                <td style="padding: 12px; color: #fff; font-weight: bold;">기획</td>
+                                <td style="padding: 12px; color: #d4d4d4;">요구사항 분석, 아키텍처 설계</td>
+                                <td style="padding: 12px; color: #d4d4d4;"><code style="background-color: #2d2d2d; padding: 2px 6px; border-radius: 3px;">docs/development/</code></td>
+                                <td style="padding: 12px; color: #d4d4d4;">AI 컨텍스트 최적화 설계</td>
+                            </tr>
+                            <tr style="border-bottom: 1px solid #333;">
+                                <td style="padding: 12px; color: #fff; font-weight: bold;">Backend</td>
+                                <td style="padding: 12px; color: #d4d4d4;">FastAPI 서버, MCP 프로토콜</td>
+                                <td style="padding: 12px; color: #d4d4d4;"><code style="background-color: #2d2d2d; padding: 2px 6px; border-radius: 3px;">mcp_server.py</code>, <code style="background-color: #2d2d2d; padding: 2px 6px; border-radius: 3px;">core/</code></td>
+                                <td style="padding: 12px; color: #d4d4d4;">도메인 기반 분리로 AI 컨텍스트 관리 용이</td>
+                            </tr>
+                            <tr style="border-bottom: 1px solid #333;">
+                                <td style="padding: 12px; color: #fff; font-weight: bold;">Domain Architecture</td>
+                                <td style="padding: 12px; color: #d4d4d4;">핸들러, 스키마, 도구 분리</td>
+                                <td style="padding: 12px; color: #d4d4d4;"><code style="background-color: #2d2d2d; padding: 2px 6px; border-radius: 3px;">core/handlers/</code>, <code style="background-color: #2d2d2d; padding: 2px 6px; border-radius: 3px;">core/schemas/</code>, <code style="background-color: #2d2d2d; padding: 2px 6px; border-radius: 3px;">core/tools/</code></td>
+                                <td style="padding: 12px; color: #d4d4d4;">체계적 분리로 AI 개발 지시 정확도 향상</td>
+                            </tr>
+                            <tr style="border-bottom: 1px solid #333;">
+                                <td style="padding: 12px; color: #fff; font-weight: bold;">AI Server Management</td>
+                                <td style="padding: 12px; color: #d4d4d4;">PyQt5 GUI, 서비스 관리</td>
+                                <td style="padding: 12px; color: #d4d4d4;"><code style="background-color: #2d2d2d; padding: 2px 6px; border-radius: 3px;">agent_manager.py</code></td>
+                                <td style="padding: 12px; color: #d4d4d4;">서버 상태 모니터링 및 제어</td>
+                            </tr>
+                            <tr style="border-bottom: 1px solid #333;">
+                                <td style="padding: 12px; color: #fff; font-weight: bold;">AI/ML Engineering</td>
+                                <td style="padding: 12px; color: #d4d4d4;">LLM 통합, Vector DB, RAG</td>
+                                <td style="padding: 12px; color: #d4d4d4;"><code style="background-color: #2d2d2d; padding: 2px 6px; border-radius: 3px;">prompts/</code>, <code style="background-color: #2d2d2d; padding: 2px 6px; border-radius: 3px;">core/utils/vector_db.py</code></td>
+                                <td style="padding: 12px; color: #d4d4d4;">컨텍스트 기반 RAG 전략</td>
+                            </tr>
+                            <tr style="border-bottom: 1px solid #333;">
+                                <td style="padding: 12px; color: #fff; font-weight: bold;">DevOps</td>
+                                <td style="padding: 12px; color: #d4d4d4;">빌드, 배포, 서비스화</td>
+                                <td style="padding: 12px; color: #d4d4d4;"><code style="background-color: #2d2d2d; padding: 2px 6px; border-radius: 3px;">build.bat</code>, <code style="background-color: #2d2d2d; padding: 2px 6px; border-radius: 3px;">installer/</code>, <code style="background-color: #2d2d2d; padding: 2px 6px; border-radius: 3px;">scripts/</code></td>
+                                <td style="padding: 12px; color: #d4d4d4;">자동화 스크립트</td>
+                            </tr>
+                            <tr style="border-bottom: 1px solid #333;">
+                                <td style="padding: 12px; color: #fff; font-weight: bold;">Packaging</td>
+                                <td style="padding: 12px; color: #d4d4d4;">Windows 인스톨러, 실행 파일</td>
+                                <td style="padding: 12px; color: #d4d4d4;"><code style="background-color: #2d2d2d; padding: 2px 6px; border-radius: 3px;">installer/installer.iss</code>, <code style="background-color: #2d2d2d; padding: 2px 6px; border-radius: 3px;">dist/</code></td>
+                                <td style="padding: 12px; color: #d4d4d4;">배포 패키징</td>
+                            </tr>
+                            <tr style="border-bottom: 1px solid #333;">
+                                <td style="padding: 12px; color: #fff; font-weight: bold;">Documentation</td>
+                                <td style="padding: 12px; color: #d4d4d4;">기술 문서, AI 개발 가이드</td>
+                                <td style="padding: 12px; color: #d4d4d4;"><code style="background-color: #2d2d2d; padding: 2px 6px; border-radius: 3px;">docs/</code> (50+ 문서)</td>
+                                <td style="padding: 12px; color: #d4d4d4;">AI 개발 지시 문서 체계화</td>
+                            </tr>
+                            <tr style="border-bottom: 1px solid #333;">
+                                <td style="padding: 12px; color: #fff; font-weight: bold;">Testing</td>
+                                <td style="padding: 12px; color: #d4d4d4;">자동화 테스트, LLM 테스트</td>
+                                <td style="padding: 12px; color: #d4d4d4;"><code style="background-color: #2d2d2d; padding: 2px 6px; border-radius: 3px;">lmops/tests/</code>, <code style="background-color: #2d2d2d; padding: 2px 6px; border-radius: 3px;">scripts/test_*.py</code></td>
+                                <td style="padding: 12px; color: #d4d4d4;">LLM 테스트 프레임워크</td>
+                            </tr>
+                            <tr>
+                                <td style="padding: 12px; color: #fff; font-weight: bold;">Design</td>
+                                <td style="padding: 12px; color: #d4d4d4;">UI/UX, 프레젠테이션</td>
+                                <td style="padding: 12px; color: #d4d4d4;"><code style="background-color: #2d2d2d; padding: 2px 6px; border-radius: 3px;">presentation/</code>, <code style="background-color: #2d2d2d; padding: 2px 6px; border-radius: 3px;">installer/assets/</code></td>
+                                <td style="padding: 12px; color: #d4d4d4;">시각적 아키텍처 표현</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <h3>📚 AI-Driven Development Documentation Strategy</h3>
                 <p>효과적인 AI 기반 개발을 위해서는 체계적인 문서화 전략이 필수입니다. 도구 추가 시 필요한 4대 핵심 요소—API Payload(Request/Response 구조), URL & Method(엔드포인트), Description(도구 설명), Required Fields(필수 파라미터)—를 표준화하고, 각 개발 레이어별로 독립적인 가이드 문서를 제공했습니다. TOOL_DEVELOPMENT_GUIDE.md는 도구 추가 전체 가이드를, HANDLER_DEVELOPMENT.md는 핸들러 개발 패턴을, SCHEMA_VALIDATION.md는 Pydantic 스키마 작성법을, CATEGORY_MANAGEMENT.md는 카테고리 분류 전략을 다룹니다. 이러한 문서 체계는 AI가 필요한 컨텍스트만 참조하여 정확한 개발 지시를 생성할 수 있게 설계되었습니다.</p>
+
+                <pre style="background-color: #1e1e1e; color: #d4d4d4; padding: 20px; border-radius: 8px; overflow-x: auto; font-size: 0.85em; line-height: 1.6; border: 1px solid #333; margin: 20px 0;"><code>docs/development/
+├── TOOL_DEVELOPMENT_GUIDE.md      # 도구 추가 전체 가이드
+│   ├── API Payload 작성법
+│   ├── URL & Method 정의
+│   ├── Description 작성 가이드
+│   └── Required Fields 명시
+│
+├── HANDLER_DEVELOPMENT.md         # 핸들러 개발 가이드
+│   ├── BaseHandler 상속 방법
+│   ├── 에러 처리 패턴
+│   └── API 호출 표준
+│
+├── SCHEMA_VALIDATION.md           # Pydantic 스키마 가이드
+│   ├── Request Schema 작성
+│   ├── Response Schema 작성
+│   └── Validation 규칙
+│
+└── CATEGORY_MANAGEMENT.md         # 카테고리 분류 가이드
+    ├── 카테고리 추가 방법
+    └── Tool-Category 매핑</code></pre>
 
                 <h3>Vector Database Strategy for RAG</h3>
                 <p>Knowledge Base 아키텍처는 LLM이 도구 사용법을 자연스럽게 학습하도록 설계되었습니다. 14개 카테고리별로 문서를 분리 저장하고, 의미 기반 검색(Semantic Search)을 통해 관련 도구를 추천합니다. ChromaDB를 활용한 Vector Indexing 전략은 개발 지시 시 정확한 컨텍스트를 제공하며, 도구 추가 시 자동화된 재구축 스크립트를 통해 지식 베이스를 최신 상태로 유지합니다. 이는 단순한 검색을 넘어 AI가 프로젝트의 도메인 지식을 체득하도록 하는 핵심 메커니즘입니다.</p>
 
-                <h3>Development Workflow: Adding New Tools</h3>
-                <p>새로운 분석 도구를 추가하는 워크플로우는 다음과 같이 체계화되어 있습니다: 1) API 스펙 확인 (docs/api_documentation/ 참조), 2) Handler 개발 (HANDLER_DEVELOPMENT.md 참조하여 core/handlers/{domain}_handler.py 수정), 3) Schema 정의 (SCHEMA_VALIDATION.md 참조하여 core/schemas/{domain}.py에 Pydantic 모델 추가), 4) Tool 정의 (TOOL_DEVELOPMENT_GUIDE.md 참조하여 core/tools/{domain}.py에 Tool 추가), 5) Category 분류 (CATEGORY_MANAGEMENT.md 참조하여 core/tools/categories.py에 매핑 추가), 6) 문서 업데이트 및 Vector DB 재구축. 각 단계는 독립적이면서도 상호 연결되어, AI가 단계별로 정확한 지시를 따를 수 있도록 구조화되었습니다.</p>
+                <h3>🔄 Development Workflow: Adding New Tools</h3>
+                <p>새로운 분석 도구를 추가하는 워크플로우는 다음과 같이 체계화되어 있습니다. 각 단계는 독립적이면서도 상호 연결되어, AI가 단계별로 정확한 지시를 따를 수 있도록 구조화되었습니다.</p>
+
+                <pre style="background-color: #1e1e1e; color: #d4d4d4; padding: 20px; border-radius: 8px; overflow-x: auto; font-size: 0.85em; line-height: 1.6; border: 1px solid #333; margin: 20px 0;"><code>1. API 스펙 확인
+   └─> docs/api_documentation/ 참조
+
+2. Handler 개발
+   └─> docs/development/HANDLER_DEVELOPMENT.md 참조
+   └─> core/handlers/{domain}_handler.py 수정
+
+3. Schema 정의
+   └─> docs/development/SCHEMA_VALIDATION.md 참조
+   └─> core/schemas/{domain}.py에 Pydantic 모델 추가
+
+4. Tool 정의
+   └─> docs/development/TOOL_DEVELOPMENT_GUIDE.md 참조
+   └─> core/tools/{domain}.py에 Tool 추가
+
+5. Category 분류
+   └─> docs/development/CATEGORY_MANAGEMENT.md 참조
+   └─> core/tools/categories.py에 매핑 추가
+
+6. 문서 업데이트
+   └─> prompts/tool_descriptions/에 설명 추가
+   └─> Vector DB 재구축 (자동화 스크립트 실행)</code></pre>
 
                 <h3>Core Strengths: From Planning to Deployment</h3>
                 <p>본 프로젝트는 단순한 코딩 작업을 넘어 전체 제품 생명주기를 커버합니다. 요구사항 분석 및 아키텍처 설계 단계에서 AI 컨텍스트 최적화를 고려한 도메인 분리 전략을 수립했으며, Backend 및 Frontend 개발에서는 FastAPI, PyQt5를 활용한 서버 및 관리 도구를 구현했습니다. DevOps 측면에서는 InnoSetup 기반 Windows 인스톨러 제작, 빌드 자동화 스크립트, 서비스 관리 도구를 개발했으며, Testing에서는 LLM 평가 프레임워크와 자동화 테스트 시스템을 구축했습니다. 50개 이상의 기술 문서 작성을 통해 프로젝트의 지속 가능성과 확장성을 확보했으며, 프레젠테이션 자료 제작을 통해 기술적 성과를 효과적으로 전달했습니다.</p>
@@ -111,7 +374,25 @@
         </footer>
     </div>
 
+    <!-- Image Modal -->
+    <div id="imageModal" class="image-modal" onclick="closeImageModal()">
+        <span class="image-modal-close">&times;</span>
+        <img class="image-modal-content" id="modalImage">
+    </div>
+
     <script>
+        function openImageModal(img) {
+            const modal = document.getElementById('imageModal');
+            const modalImg = document.getElementById('modalImage');
+            modal.style.display = 'block';
+            modalImg.src = img.src;
+        }
+
+        function closeImageModal() {
+            const modal = document.getElementById('imageModal');
+            modal.style.display = 'none';
+        }
+
         function toggleTheme() {
             const html = document.documentElement;
             const currentTheme = html.getAttribute('data-theme');
