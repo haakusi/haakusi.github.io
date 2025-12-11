@@ -3,7 +3,7 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Next Generation AI: 데이터 기반 선제적 자동화가 가능한 이유 - Sewon Park</title>
+    <title>Next Generation AI: 데이터 기반 선제적 자동화 시스템에 대하여 - Sewon Park</title>
     <link rel="stylesheet" type="text/css" href="style.css">
     <style>
         /* Language switching */
@@ -126,8 +126,8 @@
         </nav>
 
         <article class="blog-post-full">
-            <h1 class="lang-kr">Next Generation AI: 데이터 기반 선제적 자동화가 가능한 이유</h1>
-            <h1 class="lang-en">Next Generation AI: Why Data-Driven Proactive Automation is Possible</h1>
+            <h1 class="lang-kr">Next Generation AI: 데이터 기반 선제적 자동화 시스템에 대하여</h1>
+            <h1 class="lang-en">Next Generation AI: About Data-Driven Proactive Automation System</h1>
             <p class="blog-date">December 11, 2025</p>
 
             <div class="blog-content lang-kr">
@@ -302,34 +302,49 @@
         </footer>
     </div>
 
-    <!-- Enlarged view modal -->
-    <div id="enlargedModal" class="enlarged-modal" onclick="closeEnlargedView(event)">
+    <!-- Enlarged view modals - preloaded -->
+    <div id="enlargedModalPalan" class="enlarged-modal" onclick="closeEnlargedView(event, 'palan')">
         <div class="modal-content" onclick="event.stopPropagation()">
-            <span class="close-btn" onclick="closeEnlargedView(event)">&times;</span>
-            <iframe id="modalIframe" src=""></iframe>
+            <span class="close-btn" onclick="closeEnlargedView(event, 'palan')">&times;</span>
+            <iframe src="palan.html"></iframe>
+        </div>
+    </div>
+
+    <div id="enlargedModalDataPalan" class="enlarged-modal" onclick="closeEnlargedView(event, 'data_palan')">
+        <div class="modal-content" onclick="event.stopPropagation()">
+            <span class="close-btn" onclick="closeEnlargedView(event, 'data_palan')">&times;</span>
+            <iframe src="data_palan.html"></iframe>
         </div>
     </div>
 
     <script>
         function openEnlargedView(type) {
-            const modal = document.getElementById('enlargedModal');
-            const iframe = document.getElementById('modalIframe');
-
+            let modal;
             if (type === 'palan') {
-                iframe.src = 'palan.html';
+                modal = document.getElementById('enlargedModalPalan');
             } else if (type === 'data_palan') {
-                iframe.src = 'data_palan.html';
+                modal = document.getElementById('enlargedModalDataPalan');
             }
 
-            modal.classList.add('active');
-            document.body.style.overflow = 'hidden';
+            if (modal) {
+                modal.classList.add('active');
+                document.body.style.overflow = 'hidden';
+            }
         }
 
-        function closeEnlargedView(event) {
+        function closeEnlargedView(event, type) {
             if (event) event.stopPropagation();
-            const modal = document.getElementById('enlargedModal');
-            modal.classList.remove('active');
-            document.body.style.overflow = '';
+            let modal;
+            if (type === 'palan') {
+                modal = document.getElementById('enlargedModalPalan');
+            } else if (type === 'data_palan') {
+                modal = document.getElementById('enlargedModalDataPalan');
+            }
+
+            if (modal) {
+                modal.classList.remove('active');
+                document.body.style.overflow = '';
+            }
         }
     </script>
     <script>
