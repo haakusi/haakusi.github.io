@@ -1,0 +1,266 @@
+<!DOCTYPE html>
+<html data-theme="dark" data-lang="kr">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Next Generation AI: 데이터 기반 선제적 자동화가 가능한 이유 - Sewon Park</title>
+    <link rel="stylesheet" type="text/css" href="style.css">
+    <style>
+        /* Language switching */
+        [data-lang="kr"] .lang-en {
+            display: none;
+        }
+
+        [data-lang="en"] .lang-kr {
+            display: none;
+        }
+    </style>
+</head>
+<body>
+    <button class="theme-toggle" onclick="toggleTheme()" aria-label="Toggle dark mode">☀️</button>
+    <button class="lang-toggle" onclick="toggleLanguage()" aria-label="Toggle language">EN</button>
+
+    <div class="container">
+        <header>
+            <h1 data-en="Sewon Park" data-kr="박세원">Sewon Park</h1>
+            <p class="subtitle" data-en="Senior Research Engineer | AI & Full-Stack Development" data-kr="선임 연구원 | AI 및 풀스택 개발">Senior Research Engineer | AI & Full-Stack Development</p>
+            <div class="social-links">
+                <a href="mailto:haakusi@gmail.com" aria-label="Email">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <rect x="2" y="4" width="20" height="16" rx="2"/>
+                        <path d="m22 7-10 5L2 7"/>
+                    </svg>
+                </a>
+                <a href="https://github.com/haakusi" target="_blank" aria-label="GitHub">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+                        <path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/>
+                    </svg>
+                </a>
+                <a href="https://www.linkedin.com/in/sewon-p-38009a1a7/" target="_blank" aria-label="LinkedIn">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+                        <path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/>
+                    </svg>
+                </a>
+                <a href="https://twitter.com/haakusi_" target="_blank" aria-label="X (Twitter)">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+                        <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/>
+                    </svg>
+                </a>
+            </div>
+        </header>
+
+        <nav class="navigation">
+            <a href="index.html" class="nav-link" data-en="Home" data-kr="홈">Home</a>
+            <a href="blog.html" class="nav-link" data-en="Blog" data-kr="블로그">Blog</a>
+            <a href="cv.html" class="nav-link" data-en="CV" data-kr="이력서">CV</a>
+        </nav>
+
+        <article class="blog-post-full">
+            <h1 class="lang-kr">Next Generation AI: 데이터 기반 선제적 자동화가 가능한 이유</h1>
+            <h1 class="lang-en">Next Generation AI: Why Data-Driven Proactive Automation is Possible</h1>
+            <p class="blog-date">December 11, 2025</p>
+
+            <div class="blog-content lang-kr">
+                <h3>패러다임의 전환: 반응형에서 선제적 자동화로</h3>
+                <p>전통적인 AI 시스템은 사용자의 명시적 요청에 반응하는 수동적 구조였습니다. 사용자가 질문을 입력하면 시스템이 응답을 생성하는 단순한 Request-Response 패턴이었죠. 하지만 180개 이상의 MCP Function Calling 도구가 유기적으로 연결된 시스템에서는 완전히 다른 패러다임이 가능합니다. 시스템이 내부 데이터를 지속적으로 수집하고 분석하여 사용자가 요청하기 전에 먼저 제안하고, 패턴을 학습하여 자동으로 실행하는 선제적 자동화 시스템으로의 진화입니다.</p>
+
+                <p style="font-style: italic; color: #888; margin: 20px 0; padding: 10px; border-left: 3px solid #555; background-color: #1a1a1a;">*아래 내용은 실프로젝트가 아니며, 이해를 돕기위해 팔란티어 타겟으로 재구성 하였습니다.</p>
+
+                <h3>왜 Function Calling이 핵심 기술인가</h3>
+                <p>MCP Function Calling은 AI가 단순히 텍스트 응답을 생성하는 것을 넘어 실제 시스템을 제어할 수 있게 합니다. 180개 이상의 도구가 유기적으로 연결되어 있을 때, AI는 데이터 수집, 패턴 분석, 이상 감지, 자동 조치까지 전체 사이클을 독립적으로 실행할 수 있습니다. 이는 단순한 추론 모델이 아닌 실행 가능한 자동화 시스템으로 변모시키는 핵심 기술입니다.</p>
+
+                <h3>데이터 수집: 핵심 IP 구축 전략</h3>
+                <p>선제적 자동화의 첫 단계는 체계적인 데이터 수집입니다. 시스템은 사용자 입력, AI 응답, 내부 처리 과정, 시스템 메트릭을 실시간으로 수집합니다. 중요한 점은 사용자 목적을 자동으로 분류한다는 것입니다. 문제 해결 목적인지, 인사이트 리포트 생성인지, 데이터 분석인지, 컴플라이언스 점검인지, 정책 최적화인지를 자동으로 라벨링하여 고객사별 사용 패턴을 세그멘테이션합니다. 의도 실패율 데이터를 추적하여 목표 달성 여부, 재요청 횟수, 응답 만족도를 분석하고 자동화가 필요한 기능을 식별합니다.</p>
+
+                <pre style="background-color: #1e1e1e; color: #d4d4d4; padding: 20px; border-radius: 8px; overflow-x: auto; font-size: 0.85em; line-height: 1.6; border: 1px solid #333; margin: 20px 0;"><code>수집 데이터 구조:
+├── 기본 실행 로그
+│   ├── User Input (사용자 질문/요청)
+│   ├── AI Response (AI 응답 결과)
+│   ├── Internal Thinking/React (처리 과정)
+│   └── System Metrics (CPU, 메모리, 디스크)
+│
+├── 사용자 목적 분류 (자동 라벨링)
+│   ├── 문제 해결 목적 (35%)
+│   ├── 인사이트 리포트 생성 (28%)
+│   ├── 데이터 분석 목적 (22%)
+│   ├── 컴플라이언스 점검 (10%)
+│   └── 정책 최적화 목적 (5%)
+│
+└── 의도 실패율 데이터
+    ├── 목표 달성 여부 (YES/NO)
+    ├── 재요청/수정/반복 횟수
+    ├── 응답 만족도 추적
+    └── 실패 원인 분석</code></pre>
+
+                <h3>데이터 분석: 인사이트 도출 전략</h3>
+                <p>수집된 데이터에서 실행 가능한 인사이트를 도출합니다. 도구 사용 빈도를 분석하여 query-identities가 850회, analyze-intelligence-feed가 720회 호출되었다면 가장 자주 사용되는 기능에 대한 자동화 스크립트를 우선 제공합니다. 카테고리별 요청 분포를 파악하여 Identity Management가 40%, Intelligence Analysis가 20%라면 우선순위 기반 기능 개선 로드맵을 수립합니다. 사용자 목적 자동 분류를 통해 "이 고객사는 인사이트 리포트 자동화 중심", "이 고객사는 실시간 인텔리전스 모니터링 중심"으로 세그멘테이션하여 맞춤형 서비스를 제공합니다.</p>
+
+                <h3>선제적 자동화 시나리오 1: 인기 기능 자동화</h3>
+                <p>특정 도구와 인자 조합이 하루 10회 이상 반복되면 시스템이 자동으로 감지합니다. 예를 들어 query-identities + {"active": true}가 하루 15회 호출되면 "이 작업을 매일 자동 실행하시겠습니까?" 배너를 표시합니다. 사용자가 승인하면 스케줄을 자동 생성하고, 매일 오전 9시에 query-identities를 실행하여 활성 엔티티 목록 리포트를 이메일이나 슬랙으로 발송합니다. 이는 사용자가 반복 작업을 인식하기도 전에 시스템이 먼저 제안하는 선제적 접근입니다.</p>
+
+                <h3>선제적 자동화 시나리오 2: 패턴 기반 자동 정책 생성</h3>
+                <p>시스템은 평일 09:00-18:00 정상 행동 패턴을 학습하고, 이후 접근 시도의 대부분이 실패한다는 것을 감지합니다. 그러면 "18시 이후 접근은 관리자 승인만 허용할까요?"라는 정책 최적화를 자동으로 추천하고, 사용자 승인 시 update-authorization-policy 도구를 자동 호출하여 time_restriction="after_18:00", require_admin_approval=True 정책을 실제로 적용합니다. AI가 단순히 제안만 하는 것이 아니라 Function Calling을 통해 실제 시스템을 변경합니다.</p>
+
+                <h3>선제적 자동화 시나리오 3: 이상행동 보안 알림</h3>
+                <p>평소 패턴 대비 특정 시간대의 접근 이벤트가 급증하거나, 실패/거부 비율이 급증하거나, 야간/휴일 특정 엔티티 접근 빈도가 갑자기 증가하면 시스템이 자동으로 대응합니다. analyze-intelligence-feed로 이상 패턴을 상세 조회하고, query-identity-registry로 엔티티 정보를 확인하며, update-authorization-policy로 임시 접근을 자동 제한하고, control-access-point로 특정 접근 지점을 임시 잠금합니다. 동시에 보안 담당자에게 즉시 알림과 상세 리포트를 자동 생성합니다. 사용자 개입 없이 탐지 → 분석 → 조치가 자동으로 실행됩니다.</p>
+
+                <h3>선제적 자동화 시나리오 4: 오류 패턴 기반 선제적 조치</h3>
+                <p>auth_error가 지난 1시간 동안 10회 이상 발생하고 특정 사용자에게 반복되면, 시스템은 사용자에게 "세션 만료가 가까워집니다. 재로그인 하시겠습니까?" 알림을 표시하고, 관리자에게는 슬랙/이메일로 "이 IP 대역에서 인증 오류 급증" 리포트를 자동 발송하며, 시스템 레벨에서는 자동 재시도 정책 적용과 rate limit 조정을 제안합니다. 오류가 발생한 후 대응이 아닌 오류가 발생하기 전 예방입니다.</p>
+
+                <h3>선제적 자동화 시나리오 5: 성능 최적화 자동 제안</h3>
+                <p>평균 응답 시간이 1시간 이동평균 기준 임계값 이상으로 증가하거나 특정 도구에서 latency가 급증하면, 대시보드에 "성능 이슈 감지" 배너를 표시하고 캐싱 후보를 자동 추천합니다. "query-identities 최근 1시간 120회 호출 → 캐시 TTL 5분 적용 추천"과 같은 구체적 제안을 하고, 관리 UI에서 "캐시 적용" 버튼 하나로 설정을 즉시 변경할 수 있게 합니다.</p>
+
+                <h3>데이터 → 인사이트 → 자동화 플로우</h3>
+                <p>구체적인 동작 흐름을 살펴봅시다. 백그라운드 모니터링이 매 시간마다 데이터 스트림을 분석하다가 "비정상 접근 시도 40회 (평소 10회 대비 300% 증가)"를 감지합니다. 임계값 200%를 초과하여 자동 트리거가 발생하고, LLM이 수집된 인텔리전스 데이터를 컨텍스트로 받아 원인을 분석합니다. "신규 엔티티 프로비저닝 누락" 또는 "권한 정책 설정 오류"로 진단하고, 대시보드에 "자동 엔티티 프로비저닝" 또는 "권한 정책 재검토" 버튼을 표시합니다. 사용자가 클릭하면 provision-identity, update-authorization-policy 등 MCP 도구가 자동으로 호출되어 문제를 해결합니다. 전체 과정이 데이터 기반으로 자동화됩니다.</p>
+
+                <h3>서비스 진화 단계</h3>
+                <p>Phase 1은 API Wrapper 기반 인터페이스로 UI와 MCP 도구를 Claude/GPT/Gemini에 연결하여 기본 기능을 제공합니다. Phase 2는 사용량 분석 단계로 로그 수집, 통계 시각화, 함수 호출 분석을 수행합니다. Phase 3은 AI 지원 자동화로 자동 리포트, 주기 실행, 자동 알림을 구현합니다. Phase 4는 행동 기반 ML로 사용 패턴 모델링, 예측 기반 자동화, 추천 엔진을 도입합니다. Phase 5는 자율 보안 자동화로 이상 행동 탐지, 비정상 접근 자동 대응, 정책 자동 최적화를 실현합니다.</p>
+
+                <h3>핵심 차별화 포인트</h3>
+                <p>첫째, 데이터 소유권입니다. 외부 시스템 API로부터 직접적인 접점 없이 모든 데이터를 우리가 소유하며 이것이 핵심 IP가 됩니다. 둘째, Function Calling 기반 실행입니다. AI가 분석만 하는 것이 아니라 MCP Tools를 통해 실제로 조치를 실행하고 시스템을 직접 제어하여 사용자 개입을 최소화합니다. 셋째, 선제적 자동화입니다. 문제가 발생한 후 대응이 아닌 문제 발생 전 예방, 패턴 기반 예측 분석, 자동 트리거 및 실행을 구현합니다. 넷째, 인사이트 중심입니다. 단순 추론이 아닌 데이터 기반 인사이트를 제공하고, 고객사별 세그멘테이션과 맞춤형 서비스를 제공합니다.</p>
+
+                <h3>결론: GPU 없이 구현하는 차세대 AI 자동화</h3>
+                <p>MCP Function Calling을 기반으로 한 선제적 자동화 시스템은 GPU 투자 없이도 강력한 AI 제품을 만들 수 있음을 보여줍니다. 핵심은 추론 모델이 아닌 데이터 수집과 인사이트 도출입니다. 180개 이상의 도구가 유기적으로 연결된 시스템에서 데이터 수집으로 핵심 IP를 구축하고, 데이터 분석으로 인사이트를 도출하며, Function Calling으로 실제 시스템을 제어하여 선제적 자동화를 구현하는 완전한 AI 기반 엔터프라이즈 인텔리전스 자동화 플랫폼이 가능합니다. 이는 반응형 AI에서 선제적 AI로의 패러다임 전환이며, 데이터 기반 자동화의 미래를 보여주는 구체적 사례입니다.</p>
+            </div>
+
+            <div class="blog-content lang-en">
+                <h3>Paradigm Shift: From Reactive to Proactive Automation</h3>
+                <p>Traditional AI systems were passive structures that reacted to explicit user requests. It was a simple Request-Response pattern where the system generated responses when users entered questions. However, in a system where 180+ MCP Function Calling tools are organically connected, a completely different paradigm becomes possible. The evolution to a proactive automation system where the system continuously collects and analyzes internal data to suggest before users request, learns patterns to execute automatically.</p>
+
+                <p style="font-style: italic; color: #888; margin: 20px 0; padding: 10px; border-left: 3px solid #555; background-color: #1a1a1a;">*This content is not an actual project and has been restructured targeting Palantir for better understanding.</p>
+
+                <h3>Why Function Calling is the Core Technology</h3>
+                <p>MCP Function Calling enables AI to go beyond generating text responses to actually controlling real systems. When 180+ tools are organically connected, AI can independently execute the entire cycle from data collection, pattern analysis, anomaly detection to automatic actions. This is the core technology that transforms it from a simple inference model into an executable automation system.</p>
+
+                <h3>Data Collection: Core IP Building Strategy</h3>
+                <p>The first step of proactive automation is systematic data collection. The system collects user input, AI responses, internal processing, and system metrics in real-time. Importantly, it automatically classifies user purposes. Whether it's problem-solving, insight report generation, data analysis, compliance checking, or policy optimization is automatically labeled to segment usage patterns by customer. Intent failure rate data tracks goal achievement, retry counts, response satisfaction to identify features needing automation.</p>
+
+                <pre style="background-color: #1e1e1e; color: #d4d4d4; padding: 20px; border-radius: 8px; overflow-x: auto; font-size: 0.85em; line-height: 1.6; border: 1px solid #333; margin: 20px 0;"><code>Data Collection Structure:
+├── Basic Execution Logs
+│   ├── User Input (questions/requests)
+│   ├── AI Response (response results)
+│   ├── Internal Thinking/React (processing)
+│   └── System Metrics (CPU, memory, disk)
+│
+├── User Purpose Classification (auto-labeling)
+│   ├── Problem Solving (35%)
+│   ├── Insight Report Generation (28%)
+│   ├── Data Analysis (22%)
+│   ├── Compliance Checking (10%)
+│   └── Policy Optimization (5%)
+│
+└── Intent Failure Rate Data
+    ├── Goal Achievement (YES/NO)
+    ├── Retry/Modification Count
+    ├── Response Satisfaction Tracking
+    └── Failure Cause Analysis</code></pre>
+
+                <h3>Data Analysis: Insight Derivation Strategy</h3>
+                <p>Actionable insights are derived from collected data. By analyzing tool usage frequency, if query-identities was called 850 times and analyze-intelligence-feed 720 times, automation scripts are prioritized for the most frequently used features. Understanding category-wise request distribution, if Identity Management is 40% and Intelligence Analysis is 20%, feature improvement roadmaps are established based on priority. Through automatic user purpose classification, customers are segmented as "this customer focuses on insight report automation" or "this customer focuses on real-time intelligence monitoring" to provide customized services.</p>
+
+                <h3>Proactive Automation Scenario 1: Popular Feature Automation</h3>
+                <p>When a specific tool and argument combination repeats more than 10 times per day, the system automatically detects it. For example, if query-identities + {"active": true} is called 15 times daily, a banner displays "Would you like to automate this task daily?" Upon user approval, a schedule is automatically created to execute query-identities every morning at 9 AM and send active entity list reports via email or Slack. This is a proactive approach where the system suggests before users even recognize the repetitive task.</p>
+
+                <h3>Proactive Automation Scenario 2: Pattern-Based Auto Policy Generation</h3>
+                <p>The system learns normal behavior patterns during weekdays 09:00-18:00 and detects that most access attempts afterward fail. It then automatically recommends policy optimization: "Allow access after 6 PM only with admin approval?" Upon user approval, it automatically calls the update-authorization-policy tool to apply the policy with time_restriction="after_18:00" and require_admin_approval=True. AI doesn't just suggest—it actually changes the real system through Function Calling.</p>
+
+                <h3>Proactive Automation Scenario 3: Anomaly Behavior Security Alerts</h3>
+                <p>When access events surge during specific times compared to usual patterns, failure/rejection rates spike, or specific entity access frequency suddenly increases at night/holidays, the system automatically responds. It queries anomaly patterns in detail with analyze-intelligence-feed, verifies entity information with query-identity-registry, automatically restricts temporary access with update-authorization-policy, and temporarily locks specific access points with control-access-point. Simultaneously, it automatically generates alerts and detailed reports for security personnel. Detection → Analysis → Action executes automatically without user intervention.</p>
+
+                <h3>Proactive Automation Scenario 4: Error Pattern-Based Proactive Actions</h3>
+                <p>When auth_error occurs more than 10 times in the past hour and repeatedly for specific users, the system displays "Session expiring soon. Would you like to re-login?" to users, automatically sends Slack/email reports to admins about "authentication error surge from this IP range," and at the system level suggests applying automatic retry policies and rate limit adjustments. This is prevention before errors occur, not response after they happen.</p>
+
+                <h3>Proactive Automation Scenario 5: Performance Optimization Auto Suggestions</h3>
+                <p>When average response time increases above threshold based on 1-hour moving average or latency spikes for specific tools, the dashboard displays a "Performance Issue Detected" banner and automatically recommends caching candidates. It provides specific suggestions like "query-identities called 120 times in the last hour → recommend applying 5-minute cache TTL" and enables immediate configuration changes with a single "Apply Cache" button in the admin UI.</p>
+
+                <h3>Data → Insight → Automation Flow</h3>
+                <p>Let's examine the specific operation flow. Background monitoring analyzes data streams every hour and detects "40 abnormal access attempts (300% increase from usual 10)." Exceeding the 200% threshold triggers automatic activation, and the LLM receives collected intelligence data as context to analyze the cause. It diagnoses "new entity provisioning missing" or "permission policy configuration error" and displays "Auto Entity Provisioning" or "Review Permission Policy" buttons on the dashboard. When users click, MCP tools like provision-identity and update-authorization-policy are automatically called to resolve the issue. The entire process is data-driven automation.</p>
+
+                <h3>Service Evolution Stages</h3>
+                <p>Phase 1 is an API Wrapper-based interface connecting UI and MCP tools to Claude/GPT/Gemini providing basic functionality. Phase 2 is the usage analytics stage performing log collection, statistics visualization, and function call analysis. Phase 3 is AI-assisted automation implementing automatic reports, periodic execution, and automatic notifications. Phase 4 is behavioral ML introducing usage pattern modeling, prediction-based automation, and recommendation engines. Phase 5 is autonomous security automation realizing anomaly behavior detection, abnormal access automatic response, and policy auto-optimization.</p>
+
+                <h3>Key Differentiators</h3>
+                <p>First, data ownership. We own all data without direct touchpoints from external system APIs, making this our core IP. Second, Function Calling-based execution. AI doesn't just analyze—it executes actions through MCP Tools, directly controls systems, and minimizes user intervention. Third, proactive automation. Prevention before problems occur, not response after, implementing pattern-based predictive analysis and automatic triggering and execution. Fourth, insight-centric. Providing data-based insights not simple inference, customer segmentation, and customized services.</p>
+
+                <h3>Conclusion: Next-Gen AI Automation Without GPUs</h3>
+                <p>The proactive automation system based on MCP Function Calling demonstrates that powerful AI products can be created without GPU investment. The key is not inference models but data collection and insight derivation. In a system where 180+ tools are organically connected, building core IP through data collection, deriving insights through data analysis, controlling real systems through Function Calling to implement proactive automation—a complete AI-based enterprise intelligence automation platform is possible. This is a paradigm shift from reactive AI to proactive AI, a concrete example showing the future of data-driven automation.</p>
+            </div>
+
+            <div class="blog-navigation">
+                <div class="blog-nav-left">
+                    <a href="blog3.html" class="nav-article" data-en="← Previous Article" data-kr="← 이전 글">← Previous Article</a>
+                </div>
+                <div class="blog-nav-center">
+                    <a href="blog.html" class="back-to-blog" data-en="Back to Blog" data-kr="블로그로 돌아가기">Back to Blog</a>
+                </div>
+                <div class="blog-nav-right">
+                    <span class="nav-article disabled" data-en="Next Article →" data-kr="다음 글 →">Next Article →</span>
+                </div>
+            </div>
+        </article>
+
+        <footer>
+            <p>Last updated: December 2025</p>
+        </footer>
+    </div>
+
+    <script>
+        function toggleTheme() {
+            const html = document.documentElement;
+            const currentTheme = html.getAttribute('data-theme');
+            const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
+
+            html.setAttribute('data-theme', newTheme);
+            localStorage.setItem('theme', newTheme);
+
+            // Update button icon
+            const button = document.querySelector('.theme-toggle');
+            button.textContent = newTheme === 'dark' ? '☀️' : '🌙';
+        }
+
+        function toggleLanguage() {
+            const html = document.documentElement;
+            const currentLang = html.getAttribute('data-lang') || 'kr';
+            const newLang = currentLang === 'en' ? 'kr' : 'en';
+
+            html.setAttribute('data-lang', newLang);
+            localStorage.setItem('language', newLang);
+
+            // Update button text
+            const button = document.querySelector('.lang-toggle');
+            button.textContent = newLang === 'en' ? '한' : 'EN';
+
+            // Update content
+            updateContent(newLang);
+        }
+
+        function updateContent(lang) {
+            const elements = document.querySelectorAll('[data-en][data-kr]');
+            elements.forEach(element => {
+                if (lang === 'kr' && element.getAttribute('data-kr')) {
+                    element.textContent = element.getAttribute('data-kr');
+                } else if (lang === 'en' && element.getAttribute('data-en')) {
+                    element.textContent = element.getAttribute('data-en');
+                }
+            });
+        }
+
+        // Load saved theme and language on page load
+        document.addEventListener('DOMContentLoaded', function() {
+            const savedTheme = localStorage.getItem('theme') || 'dark';
+            document.documentElement.setAttribute('data-theme', savedTheme);
+
+            const themeButton = document.querySelector('.theme-toggle');
+            themeButton.textContent = savedTheme === 'dark' ? '☀️' : '🌙';
+
+            const savedLang = localStorage.getItem('language') || 'kr';
+            document.documentElement.setAttribute('data-lang', savedLang);
+
+            const langButton = document.querySelector('.lang-toggle');
+            langButton.textContent = savedLang === 'en' ? '한' : 'EN';
+
+            updateContent(savedLang);
+        });
+    </script>
+</body>
+</html>
