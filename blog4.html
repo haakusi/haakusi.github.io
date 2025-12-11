@@ -15,33 +15,54 @@
             display: none;
         }
 
-        /* Fullscreen modal */
-        .fullscreen-modal {
+        /* Enlarged view modal */
+        .enlarged-modal {
             display: none;
             position: fixed;
             top: 0;
             left: 0;
             width: 100%;
             height: 100%;
-            background-color: rgba(0, 0, 0, 0.95);
+            background-color: rgba(0, 0, 0, 0.9);
             z-index: 9999;
-            overflow: hidden;
-        }
-
-        .fullscreen-modal.active {
-            display: flex;
             align-items: center;
             justify-content: center;
+            opacity: 0;
+            transition: opacity 0.3s ease;
         }
 
-        .fullscreen-modal iframe {
-            width: 95%;
-            height: 95%;
-            border: none;
+        .enlarged-modal.active {
+            display: flex;
+            opacity: 1;
+        }
+
+        .enlarged-modal .modal-content {
+            position: relative;
+            width: 90%;
+            max-width: 1400px;
+            height: auto;
+            max-height: 90vh;
+            background-color: #0a0e27;
+            border: 2px solid #333;
             border-radius: 10px;
+            overflow: hidden;
+            transform: scale(0.8);
+            transition: transform 0.3s ease;
         }
 
-        .fullscreen-modal .close-btn {
+        .enlarged-modal.active .modal-content {
+            transform: scale(1);
+        }
+
+        .enlarged-modal iframe {
+            width: 1920px;
+            height: 1080px;
+            border: none;
+            transform: scale(0.7292);
+            transform-origin: 0 0;
+        }
+
+        .enlarged-modal .close-btn {
             position: absolute;
             top: 20px;
             right: 30px;
@@ -59,7 +80,7 @@
             transition: all 0.3s ease;
         }
 
-        .fullscreen-modal .close-btn:hover {
+        .enlarged-modal .close-btn:hover {
             background: rgba(255, 255, 255, 0.2);
             transform: scale(1.1);
         }
@@ -113,9 +134,9 @@
                 <h3>패러다임의 전환: 반응형에서 선제적 자동화로</h3>
                 <p>전통적인 AI 시스템은 사용자의 명시적 요청에 반응하는 수동적 구조였습니다. 사용자가 질문을 입력하면 시스템이 응답을 생성하는 단순한 Request-Response 패턴이었죠. 하지만 180개 이상의 MCP Function Calling 도구가 유기적으로 연결된 시스템에서는 완전히 다른 패러다임이 가능합니다. 시스템이 내부 데이터를 지속적으로 수집하고 분석하여 사용자가 요청하기 전에 먼저 제안하고, 패턴을 학습하여 자동으로 실행하는 선제적 자동화 시스템으로의 진화입니다.</p>
 
-                <div style="position: relative; width: 1152px; height: 648px; margin: 40px auto; overflow: hidden; border: 2px solid #333; border-radius: 10px; background-color: #0a0e27;">
-                    <iframe id="palanFrame" src="palan.html" style="width: 1920px; height: 1080px; border: none; transform: scale(0.6); transform-origin: 0 0; cursor: pointer; pointer-events: auto;" onclick="openFullscreen()"></iframe>
-                    <div style="position: absolute; top: 10px; right: 15px; font-size: 0.85em; color: #aaa; background: rgba(0, 0, 0, 0.7); padding: 8px 12px; border-radius: 6px; pointer-events: none; z-index: 10;">클릭하여 전체화면</div>
+                <div style="position: relative; width: 100%; max-width: 800px; height: 450px; margin: 40px auto; overflow: hidden; border: 2px solid #333; border-radius: 10px; background-color: #0a0e27; cursor: pointer;" onclick="openEnlargedView()">
+                    <iframe id="palanFrame" src="palan.html" style="width: 1920px; height: 1080px; border: none; transform: scale(0.416); transform-origin: 0 0; pointer-events: none;"></iframe>
+                    <div style="position: absolute; top: 10px; right: 15px; font-size: 0.85em; color: #aaa; background: rgba(0, 0, 0, 0.7); padding: 8px 12px; border-radius: 6px; pointer-events: none; z-index: 10;">클릭하여 확대</div>
                 </div>
 
                 <h3>왜 Function Calling이 핵심 기술인가</h3>
@@ -179,9 +200,9 @@
                 <h3>Paradigm Shift: From Reactive to Proactive Automation</h3>
                 <p>Traditional AI systems were passive structures that reacted to explicit user requests. It was a simple Request-Response pattern where the system generated responses when users entered questions. However, in a system where 180+ MCP Function Calling tools are organically connected, a completely different paradigm becomes possible. The evolution to a proactive automation system where the system continuously collects and analyzes internal data to suggest before users request, learns patterns to execute automatically.</p>
 
-                <div style="position: relative; width: 1152px; height: 648px; margin: 40px auto; overflow: hidden; border: 2px solid #333; border-radius: 10px; background-color: #0a0e27;">
-                    <iframe id="palanFrameEn" src="palan.html" style="width: 1920px; height: 1080px; border: none; transform: scale(0.6); transform-origin: 0 0; cursor: pointer; pointer-events: auto;" onclick="openFullscreen()"></iframe>
-                    <div style="position: absolute; top: 10px; right: 15px; font-size: 0.85em; color: #aaa; background: rgba(0, 0, 0, 0.7); padding: 8px 12px; border-radius: 6px; pointer-events: none; z-index: 10;">Click for fullscreen</div>
+                <div style="position: relative; width: 100%; max-width: 800px; height: 450px; margin: 40px auto; overflow: hidden; border: 2px solid #333; border-radius: 10px; background-color: #0a0e27; cursor: pointer;" onclick="openEnlargedView()">
+                    <iframe id="palanFrameEn" src="palan.html" style="width: 1920px; height: 1080px; border: none; transform: scale(0.416); transform-origin: 0 0; pointer-events: none;"></iframe>
+                    <div style="position: absolute; top: 10px; right: 15px; font-size: 0.85em; color: #aaa; background: rgba(0, 0, 0, 0.7); padding: 8px 12px; border-radius: 6px; pointer-events: none; z-index: 10;">Click to enlarge</div>
                 </div>
 
                 <h3>Why Function Calling is the Core Technology</h3>
@@ -259,21 +280,25 @@
         </footer>
     </div>
 
-    <!-- Fullscreen modal -->
-    <div id="fullscreenModal" class="fullscreen-modal" onclick="closeFullscreen()">
-        <span class="close-btn" onclick="closeFullscreen()">&times;</span>
-        <iframe src="palan.html"></iframe>
+    <!-- Enlarged view modal -->
+    <div id="enlargedModal" class="enlarged-modal" onclick="closeEnlargedView(event)">
+        <div class="modal-content" onclick="event.stopPropagation()">
+            <span class="close-btn" onclick="closeEnlargedView(event)">&times;</span>
+            <iframe src="palan.html"></iframe>
+        </div>
     </div>
 
     <script>
-        function openFullscreen() {
-            event.stopPropagation();
-            document.getElementById('fullscreenModal').classList.add('active');
+        function openEnlargedView() {
+            const modal = document.getElementById('enlargedModal');
+            modal.classList.add('active');
             document.body.style.overflow = 'hidden';
         }
 
-        function closeFullscreen() {
-            document.getElementById('fullscreenModal').classList.remove('active');
+        function closeEnlargedView(event) {
+            if (event) event.stopPropagation();
+            const modal = document.getElementById('enlargedModal');
+            modal.classList.remove('active');
             document.body.style.overflow = '';
         }
     </script>
