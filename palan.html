@@ -1,0 +1,1038 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <title>Palantir MCP Platform - 180+ Analysis Tools Flow Animation</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            background: #0a0e27;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            overflow: hidden;
+            width: 100vw;
+            height: 100vh;
+        }
+
+        .container {
+            position: fixed;
+            width: 100%;
+            height: 100%;
+            top: 0;
+            left: 0;
+        }
+
+        svg {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 50;
+        }
+
+        .connection-line {
+            stroke: #4facfe;
+            stroke-width: 2;
+            fill: none;
+            opacity: 0;
+            stroke-dasharray: 1000;
+            stroke-dashoffset: 1000;
+            filter: drop-shadow(0 0 5px #4facfe);
+            transition: opacity 0.8s ease;
+        }
+
+        .connection-line.active {
+            opacity: 0.7;
+            animation: drawLine 0.8s ease-out forwards;
+        }
+
+        .connection-line.finale {
+            opacity: 0.6;
+            stroke: #9b59b6;
+            filter: drop-shadow(0 0 8px #9b59b6) drop-shadow(0 0 15px #8e44ad);
+            animation: lightning 0.1s ease-in-out infinite;
+        }
+
+        @keyframes lightning {
+            0%, 100% { opacity: 0.6; }
+            50% { opacity: 0.9; }
+        }
+
+        .connection-line.fadeout {
+            opacity: 0;
+        }
+
+        @keyframes drawLine {
+            to {
+                stroke-dashoffset: 0;
+            }
+        }
+
+        .center-hub {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 200px;
+            height: 200px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            color: white;
+            font-weight: bold;
+            font-size: 14px;
+            box-shadow: 0 0 50px rgba(102, 126, 234, 0.5);
+            z-index: 100;
+            animation: pulse 2s infinite;
+            transition: all 0.3s ease;
+        }
+
+        .center-hub.executing {
+            animation: executeCommand 0.6s ease-out;
+            box-shadow: 0 0 100px rgba(102, 126, 234, 1);
+        }
+
+        @keyframes pulse {
+            0%, 100% { transform: translate(-50%, -50%) scale(1); }
+            50% { transform: translate(-50%, -50%) scale(1.05); }
+        }
+
+        @keyframes executeCommand {
+            0% {
+                transform: translate(-50%, -50%) scale(1);
+                box-shadow: 0 0 50px rgba(102, 126, 234, 0.5);
+            }
+            50% {
+                transform: translate(-50%, -50%) scale(1.15);
+                box-shadow: 0 0 150px rgba(102, 126, 234, 1);
+            }
+            100% {
+                transform: translate(-50%, -50%) scale(1);
+                box-shadow: 0 0 50px rgba(102, 126, 234, 0.5);
+            }
+        }
+
+        .x-burst {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            width: 4px;
+            height: 80px;
+            background: linear-gradient(to bottom, rgba(79, 172, 254, 0.8), transparent);
+            transform-origin: center center;
+            margin-left: -2px;
+            margin-top: -40px;
+            opacity: 0;
+            filter: blur(1px);
+            box-shadow: 0 0 20px #4facfe;
+            z-index: 90;
+        }
+
+        .x-burst.active {
+            animation: xBurst 0.8s ease-out forwards;
+        }
+
+        @keyframes xBurst {
+            0% {
+                opacity: 1;
+                height: 0px;
+                filter: blur(0px);
+                margin-top: 0px;
+            }
+            50% {
+                opacity: 0.8;
+                filter: blur(2px);
+            }
+            100% {
+                opacity: 0;
+                height: 200px;
+                margin-top: -100px;
+                filter: blur(4px);
+            }
+        }
+
+        .x-ring {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            width: 200px;
+            height: 200px;
+            margin-left: -100px;
+            margin-top: -100px;
+            border: 3px solid transparent;
+            border-radius: 50%;
+            border-top-color: rgba(79, 172, 254, 0.8);
+            border-right-color: rgba(102, 126, 234, 0.8);
+            border-bottom-color: rgba(240, 147, 251, 0.8);
+            border-left-color: rgba(118, 75, 162, 0.8);
+            opacity: 0;
+            transform: rotate(0deg) scale(1);
+            z-index: 90;
+        }
+
+        .x-ring.active {
+            animation: ringExpand 1s ease-out forwards;
+        }
+
+        @keyframes ringExpand {
+            0% {
+                opacity: 1;
+                transform: rotate(0deg) scale(1);
+            }
+            100% {
+                opacity: 0;
+                transform: rotate(180deg) scale(2.5);
+            }
+        }
+
+        .domain {
+            position: fixed;
+            padding: 10px 18px;
+            background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+            border-radius: 8px;
+            color: white;
+            font-weight: bold;
+            font-size: 12px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+            opacity: 0;
+            transform: translate(-50%, -50%) scale(0.95);
+            transition: all 0.8s ease;
+            z-index: 60;
+            white-space: nowrap;
+        }
+
+        .domain.dimmed {
+            opacity: 0.4;
+        }
+
+        .domain.active {
+            opacity: 1;
+            transform: translate(-50%, -50%) scale(1.05);
+            box-shadow: 0 5px 15px rgba(240, 147, 251, 0.4);
+        }
+
+        .domain.fadeout {
+            opacity: 0;
+            transform: translate(-50%, -50%) scale(0.8);
+        }
+
+        .tool {
+            position: fixed;
+            padding: 5px 10px;
+            background: #ffd93d;
+            border-radius: 4px;
+            color: #333;
+            font-size: 9px;
+            opacity: 0;
+            transform: translate(-50%, -50%) scale(0.7);
+            transition: all 0.8s ease;
+            box-shadow: 0 3px 10px rgba(0,0,0,0.2);
+            z-index: 70;
+            white-space: nowrap;
+        }
+
+        .tool.active {
+            opacity: 1;
+            transform: translate(-50%, -50%) scale(1.08);
+            background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
+            color: white;
+            box-shadow: 0 6px 25px rgba(79, 172, 254, 0.7);
+            font-weight: 600;
+        }
+
+        .tool.fadeout {
+            opacity: 0;
+            transform: translate(-50%, -50%) scale(0.7);
+        }
+
+        .spark {
+            position: fixed;
+            width: 8px;
+            height: 8px;
+            background: #fff;
+            border-radius: 50%;
+            box-shadow: 0 0 10px #4facfe, 0 0 20px #4facfe;
+            z-index: 99;
+            pointer-events: none;
+            transform: translate(-50%, -50%);
+        }
+
+
+        .prompt-input {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, calc(-50% - 180px));
+            width: 600px;
+            padding: 12px 18px;
+            background: rgba(255, 255, 255, 0.08);
+            border: 2px solid rgba(255, 255, 255, 0.2);
+            border-radius: 10px;
+            color: rgba(255, 255, 255, 0.7);
+            font-size: 14px;
+            backdrop-filter: blur(10px);
+            z-index: 200;
+            text-align: center;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.2);
+        }
+
+        .info-box {
+            position: fixed;
+            bottom: 20px;
+            left: 20px;
+            background: rgba(255, 255, 255, 0.1);
+            padding: 12px 18px;
+            border-radius: 10px;
+            color: white;
+            backdrop-filter: blur(10px);
+            z-index: 200;
+            font-size: 13px;
+        }
+
+        .status {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, calc(-50% - 130px));
+            color: #4facfe;
+            font-size: 15px;
+            font-weight: bold;
+            opacity: 0;
+            transition: opacity 0.3s;
+            text-shadow: 0 0 10px rgba(79, 172, 254, 0.8);
+            z-index: 200;
+        }
+
+        .status.active {
+            opacity: 1;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="prompt-input" id="promptInput">Palantir MCP Platform Analysis Scenario...</div>
+
+        <div class="status" id="status"></div>
+
+        <svg id="connectionSvg"></svg>
+
+        <div class="center-hub" id="centerHub">
+            🎯 Palantir MCP Platform<br/>
+            180+ Analysis Tools<br/>
+            Data Intelligence
+        </div>
+
+        <div class="info-box">
+            <div id="toolCount">🔧 Activated Tools: 0/180+</div>
+        </div>
+    </div>
+
+    <script>
+        const centerX = 50;
+        const centerY = 50;
+
+        const domains = [
+            {
+                name: "🔌 Data Sources (15)",
+                angle: 313,
+                distance: 50,
+                tools: ["connect-database", "connect-api", "connect-file-system", "connect-cloud-storage", "sync-data-source", "validate-connection", "test-data-source", "get-data-source-info", "list-data-sources", "update-data-source", "disconnect-source", "schedule-sync", "monitor-data-quality", "detect-schema-changes", "backup-data-source"],
+                keywords: ["데이터소스", "연결", "database", "api", "파일", "클라우드", "동기화", "검증", "스키마", "백업", "data source", "connection", "sync"]
+            },
+            {
+                name: "👤 Entities (18)",
+                angle: 59,
+                distance: 35,
+                tools: ["create-entity", "update-entity", "delete-entity", "search-entities", "get-entity-details", "merge-entities", "split-entity", "tag-entity", "link-entities", "get-entity-history", "export-entities", "bulk-create-entities", "validate-entity-data", "enrich-entity", "get-entity-relationships", "set-entity-properties", "get-entity-timeline", "classify-entity"],
+                keywords: ["엔티티", "개체", "entity", "생성", "수정", "삭제", "검색", "병합", "분할", "태그", "링크", "히스토리", "분류", "속성"]
+            },
+            {
+                name: "🔗 Relationships (16)",
+                angle: 200,
+                distance: 39,
+                tools: ["create-relationship", "analyze-relationships", "find-path-between-entities", "detect-communities", "identify-key-players", "map-relationship-network", "calculate-relationship-strength", "visualize-connections", "find-common-connections", "detect-anomalies-in-network", "export-relationship-graph", "filter-relationships", "get-relationship-details", "update-relationship", "delete-relationship", "analyze-relationship-patterns"],
+                keywords: ["관계", "연결", "relationship", "네트워크", "경로", "커뮤니티", "중심인물", "그래프", "시각화", "이상", "패턴", "분석"]
+            },
+            {
+                name: "📊 Analytics (20)",
+                angle: 100,
+                distance: 33,
+                tools: ["run-analytics-query", "create-custom-query", "execute-statistical-analysis", "perform-clustering", "detect-outliers", "calculate-correlations", "run-machine-learning-model", "predict-trends", "analyze-time-series", "compare-datasets", "generate-insights", "create-data-profile", "analyze-distribution", "perform-regression", "calculate-metrics", "aggregate-data", "filter-and-transform", "join-datasets", "export-analysis-results", "schedule-analytics-job"],
+                keywords: ["분석", "쿼리", "analytics", "query", "통계", "클러스터링", "이상치", "상관관계", "머신러닝", "예측", "트렌드", "인사이트", "프로파일", "회귀", "메트릭"]
+            },
+            {
+                name: "⏱️ Timeline (12)",
+                angle: 138,
+                distance: 43,
+                tools: ["create-timeline", "add-timeline-event", "analyze-temporal-patterns", "detect-timeline-anomalies", "compare-timelines", "filter-by-time-range", "visualize-timeline", "export-timeline-data", "get-timeline-events", "merge-timelines", "calculate-time-differences", "identify-temporal-correlations"],
+                keywords: ["타임라인", "시간", "timeline", "시간순", "이벤트", "패턴", "이상", "비교", "시각화", "상관관계", "temporal", "time"]
+            },
+            {
+                name: "🗺️ Geospatial (14)",
+                angle: 172,
+                distance: 38,
+                tools: ["geocode-address", "reverse-geocode", "calculate-distance", "find-nearby-entities", "create-geofence", "analyze-spatial-patterns", "visualize-on-map", "detect-spatial-clusters", "analyze-movement-patterns", "export-geospatial-data", "filter-by-location", "get-location-history", "set-coordinates", "analyze-geographic-distribution"],
+                keywords: ["지리공간", "지도", "geospatial", "geographic", "좌표", "위치", "거리", "지오펜스", "클러스터", "이동", "분포", "지오코딩", "location"]
+            },
+            {
+                name: "🔍 Investigation (22)",
+                angle: 220,
+                distance: 46,
+                tools: ["create-investigation-case", "add-evidence-to-case", "link-entities-to-case", "add-notes-to-case", "assign-case-investigator", "update-case-status", "search-cases", "get-case-details", "export-case-report", "merge-cases", "close-case", "reopen-case", "add-timeline-to-case", "create-case-hypothesis", "validate-hypothesis", "generate-case-summary", "share-case-with-team", "set-case-priority", "add-case-tags", "get-case-timeline", "analyze-case-connections", "create-case-visualization"],
+                keywords: ["조사", "케이스", "investigation", "case", "증거", "증인", "가설", "검증", "리포트", "요약", "우선순위", "태그", "팀", "시각화"]
+            },
+            {
+                name: "📢 Notifications (10)",
+                angle: 235,
+                distance: 37,
+                tools: ["create-alert-rule", "subscribe-to-events", "send-notification", "get-notification-history", "update-alert-rule", "delete-alert-rule", "test-notification", "configure-notification-channel", "get-alert-statistics", "mute-notifications"],
+                keywords: ["알림", "모니터링", "notification", "alert", "알람", "구독", "이벤트", "채널", "통계", "음소거", "monitoring"]
+            },
+            {
+                name: "📄 Reports (15)",
+                angle: 294,
+                distance: 41,
+                tools: ["create-report", "generate-standard-report", "export-report-pdf", "export-report-excel", "schedule-report", "share-report", "get-report-history", "update-report-template", "create-custom-report", "add-charts-to-report", "filter-report-data", "format-report", "publish-report", "archive-report", "get-report-analytics"],
+                keywords: ["보고서", "리포트", "report", "생성", "내보내기", "pdf", "excel", "스케줄", "공유", "템플릿", "차트", "포맷", "발행", "아카이브"]
+            },
+            {
+                name: "🤝 Collaboration (11)",
+                angle: 270,
+                distance: 40,
+                tools: ["create-workspace", "invite-team-member", "share-analysis", "add-comments", "create-bookmark", "follow-entity", "create-shared-dashboard", "assign-task", "get-team-activity", "export-collaboration-log", "manage-permissions"],
+                keywords: ["협업", "팀", "collaboration", "team", "워크스페이스", "공유", "댓글", "북마크", "대시보드", "작업", "권한", "활동"]
+            },
+            {
+                name: "🔐 Security (13)",
+                angle: 345,
+                distance: 27,
+                tools: ["authenticate-user", "authorize-action", "audit-user-activity", "detect-security-threats", "analyze-access-patterns", "enforce-data-governance", "mask-sensitive-data", "encrypt-data", "decrypt-data", "manage-api-keys", "rotate-credentials", "get-security-alerts", "generate-security-report"],
+                keywords: ["보안", "인증", "권한", "security", "authentication", "authorization", "위협", "감사", "거버넌스", "암호화", "마스킹", "api키", "자격증명"]
+            },
+            {
+                name: "📈 Visualization (12)",
+                angle: 33,
+                distance: 26,
+                tools: ["create-chart", "create-graph", "create-map-visualization", "create-network-diagram", "create-timeline-view", "create-dashboard", "export-visualization", "share-visualization", "update-visualization", "get-visualization-templates", "apply-visualization-style", "interactive-exploration"],
+                keywords: ["시각화", "차트", "그래프", "visualization", "chart", "graph", "지도", "네트워크", "대시보드", "템플릿", "스타일", "탐색"]
+            },
+            {
+                name: "📝 Audit Trail (10)",
+                angle: 36,
+                distance: 48,
+                tools: ["search-audit-logs", "filter-audit-by-user", "filter-audit-by-action", "filter-audit-by-date", "export-audit-report", "get-audit-summary", "detect-audit-anomalies", "track-data-changes", "monitor-compliance", "generate-compliance-report"],
+                keywords: ["감사", "추적", "audit", "trail", "로그", "변경", "컴플라이언스", "이상", "요약", "리포트", "compliance"]
+            }
+        ];
+
+        const container = document.querySelector('.container');
+        const svg = document.getElementById('connectionSvg');
+
+        domains.forEach((domain, idx) => {
+            const domainEl = document.createElement('div');
+            domainEl.className = 'domain';
+            domainEl.textContent = domain.name;
+
+            const angle = (domain.angle * Math.PI) / 180;
+            const domainX = centerX + Math.cos(angle) * domain.distance;
+            const domainY = centerY + Math.sin(angle) * domain.distance;
+
+            domainEl.style.left = domainX + 'vw';
+            domainEl.style.top = domainY + 'vh';
+            container.appendChild(domainEl);
+
+            domain.element = domainEl;
+            domain.vx = domainX;
+            domain.vy = domainY;
+
+            const toolCount = domain.tools.length;
+            const minDistance = 10; // 최소 거리 (vw) - 증가 (9 → 10)
+            const maxAttempts = 100; // 최대 시도 횟수 증가
+
+            domain.toolElements = [];
+
+            // 모든 도구의 위치를 저장할 배열
+            const allToolPositions = [];
+
+            domain.tools.forEach((tool, toolIdx) => {
+                const toolEl = document.createElement('div');
+                toolEl.className = 'tool';
+                toolEl.textContent = tool;
+
+                let toolX, toolY;
+                let validPosition = false;
+                let attempts = 0;
+
+                // 뉴럴 네트워크 시냅스처럼 방사형으로 배치
+                while (!validPosition && attempts < maxAttempts) {
+                    // 원형 레이어 방식 배치
+                    const layerIndex = Math.floor(toolIdx / 8); // 8개씩 한 레이어
+                    const positionInLayer = toolIdx % 8;
+
+                    // 기본 각도 (균등 분배)
+                    const baseAngle = (positionInLayer / 8) * Math.PI * 2 + (layerIndex * 0.3);
+                    const angleVariation = (Math.random() - 0.5) * 0.4; // 약간의 변화
+                    const finalAngle = baseAngle + angleVariation;
+
+                    // 거리 (레이어별로 멀어짐) - 80% 축소
+                    const baseRadius = 9.6 + (layerIndex * 3.2); // 9.6, 12.8, 16, 19.2vw... (80%)
+                    const radiusVariation = (Math.random() - 0.5) * 1.6; // 약간의 변화 (80%)
+                    const finalRadius = baseRadius + radiusVariation;
+
+                    toolX = domainX + Math.cos(finalAngle) * finalRadius;
+                    toolY = domainY + Math.sin(finalAngle) * finalRadius;
+
+                    // 화면 경계 체크 (8% ~ 92% 범위 내 - 더 안전하게)
+                    if (toolX < 8 || toolX > 92 || toolY < 8 || toolY > 92) {
+                        validPosition = false;
+                        attempts++;
+                        continue;
+                    }
+
+                    // 모든 핸들러와의 거리 체크 (최소 13vw)
+                    let tooCloseToHandler = false;
+                    domains.forEach(otherDomain => {
+                        const dxFromHandler = toolX - otherDomain.vx;
+                        const dyFromHandler = toolY - otherDomain.vy;
+                        const distanceFromHandler = Math.sqrt(dxFromHandler * dxFromHandler + dyFromHandler * dyFromHandler);
+
+                        if (distanceFromHandler < 13) { // 모든 핸들러로부터 13vw 이상
+                            tooCloseToHandler = true;
+                        }
+                    });
+
+                    if (tooCloseToHandler) {
+                        validPosition = false;
+                        attempts++;
+                        continue;
+                    }
+
+                    // 다른 도구들과의 거리 체크
+                    validPosition = true;
+                    for (const pos of allToolPositions) {
+                        const dx = toolX - pos.x;
+                        const dy = toolY - pos.y;
+                        const distance = Math.sqrt(dx * dx + dy * dy);
+
+                        if (distance < minDistance) {
+                            validPosition = false;
+                            break;
+                        }
+                    }
+
+                    attempts++;
+                }
+
+                // 위치 저장
+                allToolPositions.push({ x: toolX, y: toolY });
+
+                toolEl.style.left = toolX + 'vw';
+                toolEl.style.top = toolY + 'vh';
+                container.appendChild(toolEl);
+
+                domain.toolElements.push({
+                    element: toolEl,
+                    vx: toolX,
+                    vy: toolY
+                });
+            });
+        });
+
+        function createLine(x1, y1, x2, y2) {
+            const line = document.createElementNS('http://www.w3.org/2000/svg', 'line');
+            line.setAttribute('x1', x1 + '%');
+            line.setAttribute('y1', y1 + '%');
+            line.setAttribute('x2', x2 + '%');
+            line.setAttribute('y2', y2 + '%');
+            line.setAttribute('class', 'connection-line');
+            svg.appendChild(line);
+            return line;
+        }
+
+        function createSpark(x, y) {
+            const spark = document.createElement('div');
+            spark.className = 'spark';
+            spark.style.left = x + 'vw';
+            spark.style.top = y + 'vh';
+            container.appendChild(spark);
+
+            setTimeout(() => {
+                spark.style.transition = 'all 0.3s ease-out';
+                spark.style.transform = 'translate(-50%, -50%) scale(2)';
+                spark.style.opacity = '0';
+            }, 50);
+
+            setTimeout(() => spark.remove(), 400);
+        }
+
+
+        function createXBurst() {
+            const angles = [45, 135, 225, 315];
+
+            angles.forEach((angle, idx) => {
+                setTimeout(() => {
+                    const burst = document.createElement('div');
+                    burst.className = 'x-burst';
+                    burst.style.transform = `rotate(${angle}deg)`;
+                    container.appendChild(burst);
+
+                    setTimeout(() => burst.classList.add('active'), 10);
+                    setTimeout(() => burst.remove(), 1000);
+                }, idx * 50);
+            });
+        }
+
+        function createXRing() {
+            const ring = document.createElement('div');
+            ring.className = 'x-ring';
+            container.appendChild(ring);
+
+            setTimeout(() => ring.classList.add('active'), 10);
+            setTimeout(() => ring.remove(), 1200);
+        }
+
+        function animateFlow(prompt) {
+            const status = document.getElementById('status');
+            const toolCount = document.getElementById('toolCount');
+            let activatedTools = 0;
+
+            svg.innerHTML = '';
+
+            // 모든 도구와 도메인 초기화
+            document.querySelectorAll('.tool').forEach(el => {
+                el.classList.remove('active');
+            });
+
+            // 모든 도구 연하게 (시나리오마다 초기화, 핸들러는 어두운 상태)
+            domains.forEach(domain => {
+                domain.element.classList.remove('active');
+                domain.element.classList.add('dimmed'); // 핸들러는 어두운 상태 (0.4)
+                domain.toolElements.forEach(tool => {
+                    // visibility는 visible로 유지, opacity 아주 연하게
+                    tool.element.style.visibility = 'visible';
+                    tool.element.style.opacity = '0.15'; // 0 → 0.15 (아주 연하게)
+                    tool.element.classList.remove('active');
+                });
+            });
+
+            document.getElementById('centerHub').classList.add('executing');
+            setTimeout(() => document.getElementById('centerHub').classList.remove('executing'), 600);
+
+            createXBurst();
+            createXRing();
+
+            status.textContent = '⚡ Processing...';
+            status.classList.add('active');
+            status.style.opacity = '1'; // 확실히 보이게
+
+            // 시나리오별 정확한 도메인 매핑
+            let matchedDomains = [];
+
+            // 현재 시나리오 인덱스 찾기
+            const scenarioIndex = scenarios.indexOf(prompt);
+
+            switch(scenarioIndex) {
+                case 0: // "Hi. Who are you?"
+                    matchedDomains = domains.filter(d =>
+                        d.name.includes('Security') || d.name.includes('Collaboration')
+                    );
+                    break;
+                case 1: // "Analyze the relationship network..."
+                    matchedDomains = domains.filter(d =>
+                        d.name.includes('Relationships') || d.name.includes('Entities') ||
+                        d.name.includes('Analytics') || d.name.includes('Visualization') ||
+                        d.name.includes('Investigation')
+                    );
+                    break;
+                case 2: // "Show me the entity details..."
+                    matchedDomains = domains.filter(d =>
+                        d.name.includes('Entities') || d.name.includes('Timeline')
+                    );
+                    break;
+                case 3: // "Create a report of the investigation..."
+                    matchedDomains = domains.filter(d =>
+                        d.name.includes('Reports') || d.name.includes('Investigation')
+                    );
+                    break;
+                case 4: // "Detect anomalies in the data..."
+                    matchedDomains = domains.filter(d =>
+                        d.name.includes('Analytics') || d.name.includes('Notifications')
+                    );
+                    break;
+                case 5: // "Investigate the connections between..."
+                    matchedDomains = domains.filter(d =>
+                        d.name.includes('Investigation') || d.name.includes('Relationships') ||
+                        d.name.includes('Geospatial') || d.name.includes('Timeline') ||
+                        d.name.includes('Reports')
+                    );
+                    break;
+                default:
+                    // 키워드 매칭 폴백
+                    matchedDomains = domains.filter(domain =>
+                        domain.keywords.some(keyword =>
+                            prompt.toLowerCase().includes(keyword.toLowerCase())
+                        )
+                    );
+            }
+
+            if (matchedDomains.length === 0) {
+                matchedDomains.push(...domains.slice(0, 3));
+            }
+
+            matchedDomains.forEach((domain, idx) => {
+                setTimeout(() => {
+                    const line1 = createLine(centerX, centerY, domain.vx, domain.vy);
+                    setTimeout(() => line1.classList.add('active'), 75);
+
+                    setTimeout(() => {
+                        domain.element.classList.add('active');
+                        createSpark(domain.vx, domain.vy);
+                    }, 225); // 450 / 2
+
+                    // 모든 도구 표시
+                    domain.toolElements.forEach((tool, toolIdx) => {
+                        setTimeout(() => {
+                            const line2 = createLine(domain.vx, domain.vy, tool.vx, tool.vy);
+                            setTimeout(() => line2.classList.add('active'), 75);
+
+                            setTimeout(() => {
+                                tool.element.style.visibility = 'visible';
+                                tool.element.style.opacity = '1';
+                                tool.element.classList.add('active');
+                                createSpark(tool.vx, tool.vy);
+                                activatedTools++;
+                                toolCount.textContent = `🔧 Activated Tools: ${activatedTools}/180+`;
+                            }, 225); // 450 / 2
+                        }, toolIdx * 60); // 120 / 2
+                    });
+                }, idx * 375 + 300); // 750 / 2 + 600 / 2
+            });
+
+            const maxTools = Math.max(...matchedDomains.map(d => d.tools.length));
+            const totalTime = 300 + (matchedDomains.length * 375) + (maxTools * 60) + 600; // 모두 2배 빠르게
+
+            // 애니메이션 완료 후 바로 Done으로 변경
+            setTimeout(() => {
+                status.textContent = '✅ Done!';
+                status.style.opacity = '1';
+
+                // Done 표시 후 0.7초 대기
+                setTimeout(() => {
+                        // Done도 함께 fade-out
+                        status.style.transition = 'opacity 0.8s ease';
+                        status.style.opacity = '0';
+
+                        // 라인들도 동시에 fade-out
+                        document.querySelectorAll('.connection-line').forEach(line => {
+                            line.style.transition = 'opacity 0.8s ease';
+                            line.style.opacity = '0';
+                        });
+
+                        // 도구들과 핸들러 동시에 연하게 돌아감
+                        matchedDomains.forEach(domain => {
+                            // 핸들러도 동시에 연하게
+                            domain.element.style.transition = 'opacity 0.8s ease, transform 0.8s ease, box-shadow 0.8s ease';
+                            domain.element.classList.remove('active');
+                            domain.element.classList.add('dimmed');
+
+                            domain.toolElements.forEach(tool => {
+                                if (tool.element.classList.contains('active')) {
+                                    tool.element.style.transition = 'opacity 0.8s ease';
+                                    tool.element.style.opacity = '0.15'; // 0 → 0.15 (연하게)
+                                    tool.element.classList.remove('active');
+                                }
+                            });
+                        });
+
+                        // 800ms 후 라인 완전히 제거하고 status 초기화
+                        setTimeout(() => {
+                            svg.innerHTML = '';
+                            status.classList.remove('active');
+                            // opacity는 다음 시나리오 시작 시 자동으로 설정됨
+                        }, 800);
+                }, 700); // Done 표시 후 0.7초 대기
+            }, totalTime);
+
+            return totalTime; // Processing 없이 바로 Done
+        }
+
+        function grandFinale() {
+            document.getElementById('promptInput').textContent = '🎆 All Analysis Systems Activated!';
+
+            const status = document.getElementById('status');
+            status.textContent = 'All 180+ Analysis Tools Ready! 🌟';
+            status.classList.add('active');
+
+            svg.innerHTML = '';
+
+            document.querySelectorAll('.domain, .tool').forEach(el => {
+                el.classList.remove('active');
+            });
+
+            // 1단계: 연한 노란색으로 3초간 서서히 모든 도구 켜기
+            domains.forEach((domain, idx) => {
+                setTimeout(() => {
+                    domain.element.classList.add('dimmed'); // 핸들러는 어두운 상태
+
+                    domain.toolElements.forEach((tool, toolIdx) => {
+                        setTimeout(() => {
+                            tool.element.style.transition = 'opacity 1s ease';
+                            tool.element.style.opacity = '0.35';
+                            tool.element.style.visibility = 'visible';
+                        }, toolIdx * 35);
+                    });
+                }, idx * 120);
+            });
+
+            // 2단계: 5초 대기 후 중앙 파동 → 3번에 나뉘어 번개처럼 활성화
+            setTimeout(() => {
+                const toolCount = document.getElementById('toolCount');
+                let activatedTools = 0;
+
+                // 3개 파동으로 특정 핸들러 그룹 지정
+                const groups = [
+                    // 1파동: Data Sources, Entities, Relationships
+                    domains.filter(d =>
+                        d.name.includes('Data Sources') ||
+                        d.name.includes('Entities') ||
+                        d.name.includes('Relationships')
+                    ),
+                    // 2파동: Analytics, Investigation, Timeline
+                    domains.filter(d =>
+                        d.name.includes('Analytics') ||
+                        d.name.includes('Investigation') ||
+                        d.name.includes('Timeline')
+                    ),
+                    // 3파동: 나머지 (Geospatial, Reports, Collaboration, Security, Visualization, Audit Trail, Notifications)
+                    domains.filter(d =>
+                        d.name.includes('Geospatial') ||
+                        d.name.includes('Reports') ||
+                        d.name.includes('Collaboration') ||
+                        d.name.includes('Security') ||
+                        d.name.includes('Visualization') ||
+                        d.name.includes('Audit Trail') ||
+                        d.name.includes('Notifications')
+                    )
+                ];
+
+                // 3번의 파동 - 1.5초 간격으로 고정, 선은 비동기로 처리
+                const waveMessages = [
+                    "⚡ Activating Core Systems...",
+                    "⚡ Security Modules Online...",
+                    "⚡ Full Integration Complete!"
+                ];
+
+                groups.forEach((group, groupIdx) => {
+                    setTimeout(() => {
+                        // 파동별 상태 메시지 표시
+                        status.textContent = waveMessages[groupIdx];
+                        status.style.opacity = '1';
+
+                        // 중앙에서 파동 효과 🌊
+                        createXBurst();
+                        createXRing();
+
+                        // 그룹 내 핸들러들 병렬로 활성화 (비동기로 바로바로!)
+                        group.forEach((domain, domainIdx) => {
+                            setTimeout(() => {
+                                // 중앙에서 핸들러로 선 그리기
+                                const line1 = createLine(centerX, centerY, domain.vx, domain.vy);
+                                setTimeout(() => line1.classList.add('active'), 75);
+
+                                setTimeout(() => {
+                                    domain.element.classList.remove('dimmed');
+                                    domain.element.classList.add('active');
+                                    createSpark(domain.vx, domain.vy);
+                                }, 450);
+
+                                // 핸들러에서 도구들로 병렬 확산
+                                domain.toolElements.forEach((tool, toolIdx) => {
+                                    setTimeout(() => {
+                                        const line2 = createLine(domain.vx, domain.vy, tool.vx, tool.vy);
+                                        setTimeout(() => line2.classList.add('active'), 75);
+
+                                        setTimeout(() => {
+                                            tool.element.style.opacity = '1'; // 진하게!
+                                            tool.element.classList.add('active');
+                                            createSpark(tool.vx, tool.vy);
+
+                                            // 도구 카운트 증가
+                                            activatedTools++;
+                                            toolCount.textContent = `🔧 Activated Tools: ${activatedTools}/180+`;
+                                        }, 450);
+                                    }, toolIdx * 100); // 50 → 100 (2배)
+                                });
+                            }, domainIdx * 160); // 80 → 160 (2배)
+                        });
+
+                    }, groupIdx * 1500); // 파동 간격: 1.5초!
+                });
+
+                // 3파동 완료 (4.5초) 후 2초 뒤 Thank you와 함께 천천히 사라지기
+                setTimeout(() => {
+                    // Thank you 메시지 표시
+                    status.textContent = 'Thank you! 👋';
+                    status.style.opacity = '1';
+
+                    // 2초간 Thank you 유지 후 페이드아웃 시작
+                    setTimeout(() => {
+                        // 모든 요소 천천히 사라지기 (2초간)
+                        // 1. 선 먼저 사라지기
+                        document.querySelectorAll('.connection-line').forEach(line => {
+                            line.style.transition = 'opacity 2s ease';
+                            line.style.opacity = '0';
+                        });
+
+                        // 2. 노드들도 함께 사라지기
+                        setTimeout(() => {
+                            domains.forEach((domain) => {
+                                domain.element.style.transition = 'opacity 2s ease';
+                                domain.element.style.opacity = '0';
+
+                                domain.toolElements.forEach((tool) => {
+                                    tool.element.style.transition = 'opacity 2s ease';
+                                    tool.element.style.opacity = '0';
+                                });
+                            });
+                        }, 200);
+
+                        // 3. Thank you 메시지도 함께 사라지기
+                        setTimeout(() => {
+                            status.style.transition = 'opacity 2s ease';
+                            status.style.opacity = '0';
+                        }, 1000);
+
+                        // 4. 프롬프트와 Tool Count(info-box)도 함께 사라지기
+                        setTimeout(() => {
+                            const promptInput = document.getElementById('promptInput');
+                            const infoBox = document.querySelector('.info-box');
+                            promptInput.style.transition = 'opacity 2s ease';
+                            promptInput.style.opacity = '0';
+                            infoBox.style.transition = 'opacity 2s ease';
+                            infoBox.style.opacity = '0';
+                        }, 500);
+
+                        // 5. 완전히 정리
+                        setTimeout(() => {
+                            document.querySelectorAll('.connection-line').forEach(line => line.remove());
+                        }, 4000);
+                    }, 2000); // 2초간 Thank you 유지
+                }, 6500); // 3파동(4.5초) + 2초 대기
+            }, 5000);
+        }
+
+        const scenarios = [
+            "Hi. Who are you?",
+            "Analyze the relationship network between entities involved in the financial investigation case.",
+            "Show me the entity details and timeline for all persons of interest in the case.",
+            "Create a comprehensive report of the investigation findings and export it as PDF.",
+            "Detect anomalies in the transaction data and identify suspicious patterns.",
+            "Investigate the connections between entities across different locations and time periods. Generate a geospatial visualization and timeline analysis."
+        ];
+
+        let currentScenario = 0;
+
+        function runNextScenario() {
+            if (currentScenario >= scenarios.length) {
+                // 마지막 시나리오도 프롬프트 연하게 하고 피날레로
+                const promptInput = document.getElementById('promptInput');
+                promptInput.style.transition = 'opacity 0.8s ease';
+                promptInput.style.opacity = '0.3';
+
+                setTimeout(grandFinale, 1000);
+                return;
+            }
+
+            const prompt = scenarios[currentScenario];
+            const promptInput = document.getElementById('promptInput');
+
+            // 새 프롬프트 페이드인
+            promptInput.style.transition = 'opacity 0.5s ease';
+            promptInput.style.opacity = '1';
+            promptInput.textContent = prompt;
+
+            const duration = animateFlow(prompt);
+            currentScenario++;
+
+            // Done과 선들이 사라질 때 프롬프트는 연하게 유지 (0.3) & Tools 0으로 리셋
+            setTimeout(() => {
+                const toolCount = document.getElementById('toolCount');
+                promptInput.style.transition = 'opacity 0.8s ease';
+                promptInput.style.opacity = '0.3';
+                // Tools도 0으로 리셋
+                toolCount.textContent = '🔧 Activated Tools: 0/180+';
+            }, duration + 700); // Done 표시와 동시에 연해지기 시작
+
+            setTimeout(runNextScenario, duration + 2500); // Done 0.7초 + 페이드아웃 0.8초 + 1초 대기
+        }
+
+        // 초기 프리뷰 애니메이션
+        function initialPreview() {
+            const status = document.getElementById('status');
+
+            // 0~1초: 중앙 원만 켜진 상태 (2배 빠르게)
+            status.textContent = '⚡ Initializing...';
+            status.classList.add('active');
+
+            // 1~2.5초: 주황색 핸들러 노드들 서서히 켜지기
+            setTimeout(() => {
+                status.textContent = '🔧 Loading Handlers...';
+                domains.forEach((domain, idx) => {
+                    setTimeout(() => {
+                        domain.element.style.transition = 'opacity 0.75s ease'; // 1.5 / 2
+                        domain.element.classList.add('active');
+                        createSpark(domain.vx, domain.vy);
+                    }, idx * 125); // 250 / 2
+                });
+            }, 1000); // 2000 / 2
+
+            // 핸들러 다 뜬 후 1초 대기 후 노란색 시작 (약 3.5초)
+            setTimeout(() => {
+                status.textContent = 'All 180+ Tools Ready! 🌟';
+                domains.forEach((domain) => {
+                    domain.toolElements.forEach((tool, toolIdx) => {
+                        setTimeout(() => {
+                            tool.element.style.transition = 'opacity 1s ease'; // 2 / 2
+                            tool.element.style.opacity = '0.35'; // 연하게
+                            tool.element.style.visibility = 'visible';
+                        }, toolIdx * 12.5); // 25 / 2
+                    });
+                });
+            }, 3500); // 7000 / 2
+
+            // 6~7초: 노란색만 opacity 0, 핸들러는 어두운 상태로
+            setTimeout(() => {
+                domains.forEach((domain) => {
+                    // 핸들러는 어두운 상태로
+                    domain.element.classList.remove('active');
+                    domain.element.classList.add('dimmed');
+
+                    // 도구는 연하게 유지 (평상시에도 보이게)
+                    domain.toolElements.forEach((tool) => {
+                        tool.element.style.transition = 'opacity 0.4s ease'; // 0.8 / 2
+                        tool.element.style.opacity = '0.15'; // 0 → 0.15 (평상시에도 연하게 보임)
+                        tool.element.style.visibility = 'visible';
+                    });
+                });
+
+                status.classList.remove('active');
+
+                // 시나리오 시작
+                setTimeout(() => {
+                    runNextScenario();
+                }, 1000); // 2000 / 2
+            }, 6000); // 12000 / 2
+        }
+
+        setTimeout(() => {
+            initialPreview();
+        }, 1000);
+    </script>
+</body>
+</html>
+
