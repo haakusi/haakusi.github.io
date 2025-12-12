@@ -1258,7 +1258,11 @@ footer {
 }
 
 [data-theme="dark"] .blog-thumbnail {
-    background: rgba(40, 40, 40, 0.7);
+    background: rgba(30, 30, 30, 0.8);
+}
+
+[data-theme="dark"] .blog-thumbnail-video {
+    background: rgba(30, 30, 30, 0.8);
 }
 
 [data-theme="dark"] .blog-info h3 {
