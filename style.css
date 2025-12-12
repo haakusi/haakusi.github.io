@@ -1201,12 +1201,14 @@ footer {
     background: #0a0e27;
     position: relative;
     overflow: hidden;
-    width: 120px;
-    height: 67.5px;
+    width: 120px !important;
+    height: 80px !important;
 }
 
 .blog-thumbnail-video iframe {
-    display: block;
+    position: absolute;
+    top: 0;
+    left: 0;
     width: 1920px;
     height: 1080px;
     border: none;
