@@ -1201,18 +1201,17 @@ footer {
     background: #0a0e27;
     position: relative;
     overflow: hidden;
+    width: 120px;
+    height: 67.5px;
 }
 
 .blog-thumbnail-video iframe {
     display: block;
-    position: absolute;
-    top: 0;
-    left: 0;
     width: 1920px;
     height: 1080px;
     border: none;
     transform: scale(0.0625);
-    transform-origin: top left;
+    transform-origin: 0 0;
     pointer-events: none;
 }
 
