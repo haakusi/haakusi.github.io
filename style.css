@@ -1197,6 +1197,14 @@ footer {
     height: 100%;
 }
 
+.blog-thumbnail-video {
+    background: #0a0e27;
+}
+
+.blog-thumbnail-video iframe {
+    display: block;
+}
+
 .blog-info {
     flex: 1;
     min-width: 0;
