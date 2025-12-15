@@ -223,7 +223,6 @@
                 <p>AI 기반 개발의 가장 큰 과제 중 하나는 방대한 컨텍스트 관리입니다. 거대한 단일 컨텍스트는 AI의 정확도를 저하시키고 수정과 실행을 어렵게 만듭니다. 이를 해결하기 위해 프로젝트를 n개의 독립적 도메인으로 분리했습니다. 각 도메인은 Handler(비즈니스 로직), Schema(Pydantic 기반 데이터 검증), Tools(MCP 도구 정의), Documentation(개발 가이드)로 구성되어 독립적 개발 단위로 동작합니다. 이러한 Microservices Architecture 수준의 분리는 AI가 필요한 컨텍스트만 집중할 수 있게 하며, 유지보수 시 영향 범위를 최소화하고 신규 개발자 온보딩을 용이하게 합니다.</p>
 
                 <h3>Platform Architecture</h3>
-                <p>MCP Universal Platform은 Presentation Layer, Application Layer, Domain Layer, Infrastructure Layer, Integration Layer로 구성된 계층형 아키텍처를 채택했습니다. Presentation Layer는 MCP Client, Web Client, Mobile App 등 다양한 클라이언트 인터페이스를 지원하며, Application Layer의 MCP Server Core가 LLM 통합 및 도구 실행 루프를 관리합니다. Domain Layer에서는 핸들러와 도구가 카테고리별로 분류되어 있으며, Infrastructure Layer는 Vector DB(ChromaDB)를 통한 RAG 지원과 세션 관리를 담당합니다. 이 모든 컴포넌트는 REST API 및 MCP 프로토콜을 통해 외부 시스템과 통합됩니다.</p>
 
                 <div style="text-align: center; margin: 30px 0;">
                     <img src="platform_architectures.png" alt="Platform Architecture Diagram" style="max-width: 100%; height: auto; border: 1px solid #333; border-radius: 8px; cursor: pointer;" onclick="openImageModal(this)">
@@ -488,7 +487,6 @@
                 <p>One of the biggest challenges in AI-based development is managing vast contexts. Massive monolithic contexts degrade AI accuracy and make modifications difficult. To address this, the project was divided into n independent domains. Each domain consists of Handler (business logic), Schema (Pydantic-based data validation), Tools (MCP tool definitions), and Documentation (development guides), operating as independent development units. This Microservices Architecture-level separation enables AI to focus only on necessary contexts, minimizes maintenance impact scope, and facilitates onboarding for new developers.</p>
 
                 <h3>Platform Architecture</h3>
-                <p>MCP Universal Platform adopts a layered architecture consisting of Presentation Layer, Application Layer, Domain Layer, Infrastructure Layer, and Integration Layer. The Presentation Layer supports various client interfaces including MCP Client, Web Client, and Mobile App. The Application Layer's MCP Server Core manages LLM integration and tool execution loops. In the Domain Layer, handlers and tools are categorized, while the Infrastructure Layer handles RAG support through Vector DB (ChromaDB) and session management. All components integrate with external systems via REST API and MCP protocol.</p>
 
                 <div style="text-align: center; margin: 30px 0;">
                     <img src="platform_architectures.png" alt="Platform Architecture Diagram" style="max-width: 100%; height: auto; border: 1px solid #333; border-radius: 8px; cursor: pointer;" onclick="openImageModal(this)">
