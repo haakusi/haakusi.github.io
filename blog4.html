@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html data-theme="dark" data-lang="kr">
+<html data-theme="dark" data-lang="en">
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -7,7 +7,7 @@
     <link rel="stylesheet" type="text/css" href="style.css">
     <style>
         /* Language switching */
-        [data-lang="kr"] .lang-en {
+        [data-lang="en"] .lang-en {
             display: none;
         }
 
@@ -396,7 +396,7 @@
             const themeButton = document.querySelector('.theme-toggle');
             themeButton.textContent = savedTheme === 'dark' ? '☀️' : '🌙';
 
-            const savedLang = localStorage.getItem('language') || 'kr';
+            const savedLang = localStorage.getItem('language') || 'en';
             document.documentElement.setAttribute('data-lang', savedLang);
 
             const langButton = document.querySelector('.lang-toggle');

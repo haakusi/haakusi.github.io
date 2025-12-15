@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html data-theme="dark" data-lang="kr">
+<html data-theme="dark" data-lang="en">
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -51,7 +51,7 @@
 
             <div class="blog-content">
                 <h3 data-en="MCP-Based Multi-Client Architecture" data-kr="MCP 기반 멀티 클라이언트 아키텍처">MCP-Based Multi-Client Architecture</h3>
-                <p data-en="We've architected a comprehensive AI agent ecosystem built on the Model Context Protocol (MCP), supporting over 80+ specialized API tools across diverse client interfaces. Our implementation demonstrates how standardized protocols enable rapid development and seamless multi-client scalability, supporting Web UI, Claude Desktop, and Mobile clients through a unified MCP server layer." data-kr="모델 컨텍스트 프로토콜(MCP)을 기반으로 구축된 포괄적인 AI 에이전트 생태계를 설계하여, 다양한 클라이언트 인터페이스에서 80개 이상의 전문화된 API 도구를 지원합니다. 우리의 구현은 표준화된 프로토콜이 어떻게 빠른 개발과 원활한 멀티 클라이언트 확장성을 가능하게 하는지 보여주며, 통합된 MCP 서버 계층을 통해 Web UI, Claude Desktop, Mobile 클라이언트를 지원합니다.">We've architected a comprehensive AI agent ecosystem built on the Model Context Protocol (MCP), supporting over 80+ specialized API tools across diverse client interfaces. Our implementation demonstrates how standardized protocols enable rapid development and seamless multi-client scalability, supporting Web UI, Claude Desktop, and Mobile clients through a unified MCP server layer.</p>
+                <p data-en="We've architected a comprehensive AI agent ecosystem built on the Model Context Protocol (MCP), supporting multiple specialized API tools across diverse client interfaces. Our implementation demonstrates how standardized protocols enable rapid development and seamless multi-client scalability, supporting Web UI, Claude Desktop, and Mobile clients through a unified MCP server layer." data-kr="모델 컨텍스트 프로토콜(MCP)을 기반으로 구축된 포괄적인 AI 에이전트 생태계를 설계하여, 다양한 클라이언트 인터페이스에서 다수의 전문화된 API 도구를 지원합니다. 우리의 구현은 표준화된 프로토콜이 어떻게 빠른 개발과 원활한 멀티 클라이언트 확장성을 가능하게 하는지 보여주며, 통합된 MCP 서버 계층을 통해 Web UI, Claude Desktop, Mobile 클라이언트를 지원합니다.">We've architected a comprehensive AI agent ecosystem built on the Model Context Protocol (MCP), supporting multiple specialized API tools across diverse client interfaces. Our implementation demonstrates how standardized protocols enable rapid development and seamless multi-client scalability, supporting Web UI, Claude Desktop, and Mobile clients through a unified MCP server layer.</p>
 
                 <h3 data-en="Tool Categorization and External API Integration" data-kr="도구 분류 및 외부 API 통합">Tool Categorization and External API Integration</h3>
                 <p data-en="The system organizes functionality into multiple core tool categories: Vehicle Control Tools, Charging Management Tools, Climate Control Tools, Navigation Tools, Security Tools, Energy Management Tools, and Diagnostics Tools. Each category interfaces with external APIs, enabling comprehensive system management. This modular approach allows for independent development and scaling of tool categories while maintaining consistent API contracts across all client interfaces." data-kr="시스템은 기능을 다수의 핵심 도구 카테고리로 구성합니다: Vehicle Control Tools (차량 제어), Charging Management Tools (충전 관리), Climate Control Tools (공조 시스템), Navigation Tools (내비게이션), Security Tools (보안), Energy Management Tools (에너지 관리), Diagnostics Tools (진단). 각 카테고리는 외부 API와 인터페이스하여 포괄적인 시스템 관리를 가능하게 합니다. 이러한 모듈식 접근 방식은 모든 클라이언트 인터페이스에서 일관된 API 계약을 유지하면서 도구 카테고리의 독립적인 개발과 확장을 허용합니다.</p>
@@ -168,7 +168,7 @@
             const themeButton = document.querySelector('.theme-toggle');
             themeButton.textContent = savedTheme === 'dark' ? '☀️' : '🌙';
 
-            const savedLang = localStorage.getItem('language') || 'kr';
+            const savedLang = localStorage.getItem('language') || 'en';
             document.documentElement.setAttribute('data-lang', savedLang);
 
             const langButton = document.querySelector('.lang-toggle');
