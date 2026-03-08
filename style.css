@@ -1528,8 +1528,126 @@ footer {
     font-size: 0.92em;
     font-weight: 300;
     line-height: 1.7;
-    margin: 0;
+    margin: 0 0 12px 0;
     font-style: italic;
+}
+
+/* Book card with cover image */
+.book-card-top {
+    display: flex;
+    gap: 16px;
+    margin-bottom: 12px;
+}
+
+.book-cover {
+    width: 80px;
+    height: 110px;
+    object-fit: cover;
+    border-radius: 4px;
+    cursor: pointer;
+    flex-shrink: 0;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.15);
+    transition: transform 0.2s;
+}
+
+.book-cover:hover {
+    transform: scale(1.05);
+}
+
+.book-card-info {
+    flex: 1;
+    min-width: 0;
+}
+
+/* Book detail (expandable) */
+.book-detail {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.4s ease;
+}
+
+.book-detail.expanded {
+    max-height: 5000px;
+}
+
+.book-detail h4 {
+    font-size: 0.95em;
+    color: #444;
+    margin: 20px 0 8px 0;
+    font-weight: 500;
+}
+
+.book-detail p {
+    color: #666;
+    font-size: 0.9em;
+    font-weight: 300;
+    line-height: 1.8;
+    margin: 0 0 12px 0;
+}
+
+.book-detail ul {
+    padding-left: 20px;
+    margin: 10px 0;
+}
+
+.book-detail li {
+    color: #666;
+    font-size: 0.9em;
+    font-weight: 300;
+    line-height: 1.7;
+    margin-bottom: 6px;
+}
+
+.book-detail-toggle {
+    padding: 5px 14px;
+    border: 1px solid #ddd;
+    border-radius: 16px;
+    background: transparent;
+    color: #999;
+    font-family: 'Georgia', serif;
+    font-size: 0.82em;
+    font-weight: 300;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    margin-bottom: 8px;
+}
+
+.book-detail-toggle:hover {
+    border-color: #8B4513;
+    color: #8B4513;
+}
+
+/* Book cover modal */
+.book-modal {
+    display: none;
+    position: fixed;
+    z-index: 9999;
+    left: 0; top: 0;
+    width: 100%; height: 100%;
+    background: rgba(0,0,0,0.9);
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+}
+
+.book-modal-content {
+    max-width: 90%;
+    max-height: 90%;
+    border-radius: 8px;
+    animation: bookZoom 0.3s;
+}
+
+@keyframes bookZoom {
+    from { transform: scale(0.8); opacity: 0; }
+    to { transform: scale(1); opacity: 1; }
+}
+
+.book-modal-close {
+    position: absolute;
+    top: 20px; right: 30px;
+    color: #f1f1f1;
+    font-size: 40px;
+    cursor: pointer;
 }
 
 /* Dark mode — Reading */
@@ -1579,6 +1697,29 @@ footer {
     color: #a0a0a0;
 }
 
+[data-theme="dark"] .book-cover {
+    box-shadow: 0 2px 8px rgba(0,0,0,0.4);
+}
+
+[data-theme="dark"] .book-detail h4 {
+    color: #d0d0d0;
+}
+
+[data-theme="dark"] .book-detail p,
+[data-theme="dark"] .book-detail li {
+    color: #a0a0a0;
+}
+
+[data-theme="dark"] .book-detail-toggle {
+    border-color: #404040;
+    color: #808080;
+}
+
+[data-theme="dark"] .book-detail-toggle:hover {
+    border-color: #F0E68C;
+    color: #F0E68C;
+}
+
 /* ========================================
    Mobile — Lectures & Reading
    ======================================== */
@@ -1599,6 +1740,15 @@ footer {
     .filter-btn {
         padding: 4px 10px;
         font-size: 0.78em;
+    }
+
+    .book-card-top {
+        gap: 12px;
+    }
+
+    .book-cover {
+        width: 65px;
+        height: 90px;
     }
 }
 /* Blog Posts Table Styles */
