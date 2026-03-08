@@ -1333,6 +1333,15 @@ footer {
     line-height: 1.7;
 }
 
+.week-references {
+    font-size: 0.85em;
+    color: #999;
+    font-weight: 300;
+    margin-bottom: 20px;
+    padding-bottom: 12px;
+    border-bottom: 1px solid #f0f0f0;
+}
+
 .empty-state {
     color: #bbb;
     font-style: italic;
@@ -1414,6 +1423,11 @@ footer {
 
 [data-theme="dark"] .week-content h3 {
     color: #c0c0c0;
+}
+
+[data-theme="dark"] .week-references {
+    color: #707070;
+    border-bottom-color: #404040;
 }
 
 [data-theme="dark"] .empty-state {
