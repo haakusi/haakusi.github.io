@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html data-theme="dark" data-lang="en">
 <head>
     <meta charset="utf-8">
@@ -22,7 +22,7 @@
 
         <section class="reading-stats">
             <div class="stats-bar">
-                <span class="stat-item" data-en="2026: 1 book" data-kr="2026: 1권">2026: 1 book</span>
+                <span class="stat-item" data-en="2026: 2 books" data-kr="2026: 2권">2026: 2 books</span>
             </div>
         </section>
 
@@ -91,6 +91,28 @@
                     </ul>
                 </div>
             </div>
+            <div class="book-card" data-category="other">
+                <div class="book-card-top">
+                    <img src="images/books/실리콘밸리 프로세스의 힘.jpg"
+                         alt="실리콘밸리 프로세스의 힘"
+                         class="book-cover"
+                         onclick="openBookModal(this)">
+                    <div class="book-card-info">
+                        <h3 data-en="The Power of Silicon Valley Processes" data-kr="실리콘밸리 프로세스의 힘">실리콘밸리 프로세스의 힘</h3>
+                        <span class="book-meta" data-en="Jae-eun Shin | Business/Operations | ★★★★★" data-kr="신재은 | 경영/오퍼레이션 | ★★★★★">신재은 | 경영/오퍼레이션 | ★★★★★</span>
+                        <p class="book-date">2026-03-13</p>
+                    </div>
+                </div>
+                <p class="book-insight"
+                   data-en="Charisma can start momentum, but repeatable success is built by process design, operator discipline, customer-centered execution, and detail-level operational rigor."
+                   data-kr="카리스마는 시작을 만들 수 있지만, 반복 가능한 성과는 프로세스 설계와 오퍼레이터의 실행, 고객 중심 운영, 디테일 관리에서 나온다.">
+                   카리스마는 시작을 만들 수 있지만, 반복 가능한 성과는 프로세스 설계와 오퍼레이터의 실행, 고객 중심 운영, 디테일 관리에서 나온다.
+                </p>
+                <button class="book-detail-toggle"
+                        onclick="location.href='reading-book-02-silicon-valley-process.html'"
+                        data-en="Open notes"
+                        data-kr="노트 보기">노트 보기</button>
+            </div>
         </section>
 
         <div id="site-footer"></div>
@@ -144,3 +166,4 @@
     <script src="common.js"></script>
 </body>
 </html>
+
