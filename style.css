@@ -1553,6 +1553,12 @@ footer {
     line-height: 1.7;
     margin: 0 0 12px 0;
     font-style: italic;
+    cursor: pointer;
+    transition: color 0.2s ease;
+}
+
+.book-insight:hover {
+    color: #444;
 }
 
 /* Book card with cover image */
