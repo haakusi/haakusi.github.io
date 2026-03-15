@@ -1,0 +1,419 @@
+<!DOCTYPE html>
+<html data-theme="dark" data-lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Intro to Statistics - Week 1 - Sewon Park</title>
+    <link rel="stylesheet" type="text/css" href="../../../style.css">
+    <link rel="stylesheet" type="text/css" href="../../../assets/css/lectures.css">
+    <script src="../../../assets/js/mathjax-config.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js" async></script>
+</head>
+<body>
+    <button class="theme-toggle" onclick="toggleTheme()" aria-label="Toggle dark mode"></button>
+    <button class="lang-toggle" onclick="toggleLanguage()" aria-label="Toggle language">EN</button>
+
+    <div class="container">
+        <div id="site-header"></div>
+        <div id="site-nav"></div>
+
+        <article class="course-page">
+            <div class="course-header">
+                <h1 data-en="Intro to Statistics" data-kr="기초통계">Intro to Statistics</h1>
+                <p class="course-meta" data-en="2026 Spring | Fri 19:00-22:00" data-kr="2026 봄학기 | 금요일 19:00-22:00">2026 Spring | Fri 19:00-22:00</p>
+            </div>
+
+            <div class="course-nav">
+                <a href="../../../lectures.html" class="back-to-lectures" data-en="Back to Lectures" data-kr="강의 목록으로">Back to Lectures</a>
+                <span class="nav-separator">/</span>
+                <a href="./index.html" class="back-to-course" data-en="Course Home" data-kr="과목 홈">Course Home</a>
+            </div>
+
+            <div class="week-nav">
+                <span data-en="Weeks:" data-kr="주차:">Weeks:</span>
+                <a href="week-01.html" class="week-link current">W1</a>
+                <a href="week-02.html" class="week-link">W2</a>
+            </div>
+
+            <section class="week-section" id="week-01">
+                <h2 data-en="Week 1" data-kr="1주차">Week 1</h2>
+                <p class="week-date">2026-03-06</p>
+                <div class="week-content">
+
+                    <p data-en="This week was about establishing the most fundamental language and structure of statistics. Before diving into point estimation, degrees of freedom, and inference, we needed to grasp what statistics studies, what values it works with, and what it tries to infer."
+                       data-kr="이번 주차는 통계학의 가장 기본적인 언어와 구조를 잡는 시간에 가까웠다. 점추정, 자유도, 추론 파트에 본격적으로 들어가기 전에, 통계학이 무엇을 대상으로 하고, 어떤 값으로 무엇을 추론하려는 학문인지 큰 흐름을 잡아야 하는 주차였다.">이번 주차는 통계학의 가장 기본적인 언어와 구조를 잡는 시간에 가까웠다. 점추정, 자유도, 추론 파트에 본격적으로 들어가기 전에, 통계학이 무엇을 대상으로 하고, 어떤 값으로 무엇을 추론하려는 학문인지 큰 흐름을 잡아야 하는 주차였다.</p>
+
+                    <!-- 1. Population & Sample -->
+                    <h3 data-en="1. The Big Picture: Population, Sample, Parameter, Statistic" data-kr="1. 통계학의 큰 구조: 모집단, 표본, 모수, 통계량">1. 통계학의 큰 구조: 모집단, 표본, 모수, 통계량</h3>
+                    <p data-en="First, distinguish population from sample. The population is the entire group we want to know about. The sample is the subset we actually observe. Population size is written as N, sample size as n."
+                       data-kr="통계학에서는 먼저 모집단(population)과 표본(sample)을 구분해야 한다. 모집단은 우리가 알고 싶어 하는 전체 대상이고, 표본은 모집단에서 실제로 관측한 일부 데이터다. 모집단의 크기는 N, 표본의 크기는 n으로 쓴다.">통계학에서는 먼저 모집단(population)과 표본(sample)을 구분해야 한다. 모집단은 우리가 알고 싶어 하는 전체 대상이고, 표본은 모집단에서 실제로 관측한 일부 데이터다. 모집단의 크기는 N, 표본의 크기는 n으로 쓴다.</p>
+
+                    <p data-en="For example, if you want to know the salary structure of all 10,000 employees in a company, those 10,000 are the population. If you survey 300 of them, those 300 are the sample. Populations can be finite (countable elements) or infinite (theoretically idealized for probability distributions)."
+                       data-kr="예를 들어 회사 전체 직원 10,000명의 연봉 구조를 알고 싶다면, 그 전체 직원 집합이 모집단이다. 그중 300명을 뽑아 조사했다면, 그 300명이 표본이다. 모집단은 유한모집단(원소가 유한)과 무한모집단(확률분포를 위해 이상화)으로 나뉜다.">예를 들어 회사 전체 직원 10,000명의 연봉 구조를 알고 싶다면, 그 전체 직원 집합이 모집단이다. 그중 300명을 뽑아 조사했다면, 그 300명이 표본이다. 모집단은 유한모집단(원소가 유한)과 무한모집단(확률분포를 위해 이상화)으로 나뉜다.</p>
+
+                    <!-- Diagram: Population → Sample flow -->
+                    <div class="stat-chart">
+                        <svg width="500" height="160" viewBox="0 0 500 160">
+                            <!-- Population circle -->
+                            <ellipse cx="120" cy="80" rx="100" ry="65" fill="rgba(139,69,19,0.08)" stroke="#8B4513" stroke-width="1.5"/>
+                            <text x="120" y="45" text-anchor="middle" fill="#8B4513" font-weight="400" font-size="13">Population (N)</text>
+                            <text x="120" y="65" text-anchor="middle" fill="#666" font-size="11">μ, σ², p</text>
+                            <text x="120" y="82" text-anchor="middle" fill="#999" font-size="10">(parameters)</text>
+                            <!-- Sample circle -->
+                            <ellipse cx="380" cy="80" rx="80" ry="55" fill="rgba(70,130,180,0.08)" stroke="#4682B4" stroke-width="1.5"/>
+                            <text x="380" y="50" text-anchor="middle" fill="#4682B4" font-weight="400" font-size="13">Sample (n)</text>
+                            <text x="380" y="70" text-anchor="middle" fill="#666" font-size="11">x̄, s², p̂</text>
+                            <text x="380" y="87" text-anchor="middle" fill="#999" font-size="10">(statistics)</text>
+                            <!-- Arrow: sampling -->
+                            <line x1="220" y1="60" x2="295" y2="60" stroke="#888" stroke-width="1.5" marker-end="url(#arrowhead)"/>
+                            <text x="258" y="53" text-anchor="middle" fill="#888" font-size="10">sampling</text>
+                            <!-- Arrow: inference -->
+                            <line x1="295" y1="100" x2="220" y2="100" stroke="#8B4513" stroke-width="1.5" stroke-dasharray="4,3" marker-end="url(#arrowhead2)"/>
+                            <text x="258" y="118" text-anchor="middle" fill="#8B4513" font-size="10">inference</text>
+                            <defs>
+                                <marker id="arrowhead" markerWidth="8" markerHeight="6" refX="8" refY="3" orient="auto"><path d="M0,0 L8,3 L0,6" fill="#888"/></marker>
+                                <marker id="arrowhead2" markerWidth="8" markerHeight="6" refX="8" refY="3" orient="auto"><path d="M0,0 L8,3 L0,6" fill="#8B4513"/></marker>
+                            </defs>
+                        </svg>
+                        <p class="stat-chart-caption" data-en="The core mechanism: sample from the population, then infer back to the parameter." data-kr="핵심 메커니즘: 모집단에서 표본을 추출하고, 통계량으로 모수를 추론한다.">핵심 메커니즘: 모집단에서 표본을 추출하고, 통계량으로 모수를 추론한다.</p>
+                    </div>
+
+                    <!-- 2. Parameter & Statistic -->
+                    <h3 data-en="2. Parameters vs. Statistics" data-kr="2. 모수와 통계량">2. 모수와 통계량</h3>
+                    <p data-en="The core flow: the population has true values (parameters) → we can't know them all → so we draw samples → we compute statistics from samples → we infer the parameters."
+                       data-kr="통계학의 핵심 흐름: 모집단에는 진짜 값(모수)이 있다 → 그 값을 전부 알기 어렵다 → 그래서 표본을 뽑는다 → 표본에서 계산한 값(통계량)을 바탕으로 모수를 추론한다.">통계학의 핵심 흐름: 모집단에는 진짜 값(모수)이 있다 → 그 값을 전부 알기 어렵다 → 그래서 표본을 뽑는다 → 표본에서 계산한 값(통계량)을 바탕으로 모수를 추론한다.</p>
+
+                    <table class="stat-table">
+                        <tr>
+                            <th></th>
+                            <th data-en="Parameter (Population)" data-kr="모수 (모집단)">모수 (모집단)</th>
+                            <th data-en="Statistic (Sample)" data-kr="통계량 (표본)">통계량 (표본)</th>
+                        </tr>
+                        <tr>
+                            <td data-en="Mean" data-kr="평균">평균</td>
+                            <td>$\mu$</td>
+                            <td>$\bar{x}$</td>
+                        </tr>
+                        <tr>
+                            <td data-en="Variance" data-kr="분산">분산</td>
+                            <td>$\sigma^2$</td>
+                            <td>$s^2$</td>
+                        </tr>
+                        <tr>
+                            <td data-en="Std Dev" data-kr="표준편차">표준편차</td>
+                            <td>$\sigma$</td>
+                            <td>$s$</td>
+                        </tr>
+                        <tr>
+                            <td data-en="Proportion" data-kr="비율">비율</td>
+                            <td>$p$</td>
+                            <td>$\hat{p}$</td>
+                        </tr>
+                    </table>
+
+                    <p data-en="Parameters are the population's intrinsic characteristics — things we want to know but usually can't access directly. Statistics are what we compute from samples to estimate those parameters."
+                       data-kr="모수는 모집단의 본질적 특성값으로, 우리가 알고 싶지만 직접 알기 어려운 값이다. 통계량은 표본에서 실제로 계산 가능한 값이고, 이 통계량으로 모수를 추론하겠다는 것이 통계학의 핵심 메커니즘이다.">모수는 모집단의 본질적 특성값으로, 우리가 알고 싶지만 직접 알기 어려운 값이다. 통계량은 표본에서 실제로 계산 가능한 값이고, 이 통계량으로 모수를 추론하겠다는 것이 통계학의 핵심 메커니즘이다.</p>
+
+                    <!-- 3. Theta -->
+                    <h3 data-en="3. Why θ (Theta) Matters" data-kr="3. θ(세타)는 왜 중요한가">3. θ(세타)는 왜 중요한가</h3>
+                    <p data-en="θ (theta) is a general symbol for an unknown parameter. If the mean is unknown, θ = μ. If the success probability is unknown, θ = p. It represents 'the true value that exists as a single constant but we don't know.' Even if the sample changes, the parameter itself is one fixed value."
+                       data-kr="θ(theta, 세타)는 미지의 모수를 일반적으로 나타낼 때 쓰는 기호다. 평균만 모르면 θ = μ, 성공확률이 모르면 θ = p. '우리가 모르는, 그러나 하나의 상수로 존재하는 진짜 값'이라는 느낌으로 이해하면 된다. 표본이 바뀌어도 모수 자체는 하나의 고정된 값이다.">θ(theta, 세타)는 미지의 모수를 일반적으로 나타낼 때 쓰는 기호다. 평균만 모르면 θ = μ, 성공확률이 모르면 θ = p. '우리가 모르는, 그러나 하나의 상수로 존재하는 진짜 값'이라는 느낌으로 이해하면 된다. 표본이 바뀌어도 모수 자체는 하나의 고정된 값이다.</p>
+
+                    <!-- 4. Data types -->
+                    <h3 data-en="4. Types of Data: Discrete vs. Continuous" data-kr="4. 자료의 종류: 이산형과 연속형">4. 자료의 종류: 이산형과 연속형</h3>
+                    <div class="stat-comparison">
+                        <div class="stat-comparison-item">
+                            <h4 data-en="Discrete Data" data-kr="이산형 자료">이산형 자료</h4>
+                            <p data-en="Countable values. Examples: number of children, defective items, visits, absent days. Values are separated — count-based." data-kr="셀 수 있는 자료. 예: 자녀 수, 불량품 개수, 방문 횟수, 결석 일수. 값이 하나하나 떨어져 있다. Count 중심.">셀 수 있는 자료. 예: 자녀 수, 불량품 개수, 방문 횟수, 결석 일수. 값이 하나하나 떨어져 있다. Count 중심.</p>
+                        </div>
+                        <div class="stat-comparison-item">
+                            <h4 data-en="Continuous Data" data-kr="연속형 자료">연속형 자료</h4>
+                            <p data-en="Measured on continuous intervals. Examples: height, weight, time, temperature, distance. Theoretically divisible infinitely. Measurement-based." data-kr="연속적인 구간에서 측정되는 자료. 예: 키, 몸무게, 시간, 온도, 거리. 이론적으로 소수점 아래로 계속 나눌 수 있다. Measurement 중심.">연속적인 구간에서 측정되는 자료. 예: 키, 몸무게, 시간, 온도, 거리. 이론적으로 소수점 아래로 계속 나눌 수 있다. Measurement 중심.</p>
+                        </div>
+                    </div>
+                    <p data-en="This distinction affects probability distributions, graph types, and summary methods later on."
+                       data-kr="이 구분은 뒤에서 확률분포, 그래프, 요약 방식에도 영향을 준다.">이 구분은 뒤에서 확률분포, 그래프, 요약 방식에도 영향을 준다.</p>
+
+                    <!-- 5. Sigma notation -->
+                    <h3 data-en="5. Summation Notation: Σ" data-kr="5. 시그마(Σ) 표기법">5. 시그마(Σ) 표기법</h3>
+                    <p data-en="Summation (Σ) is the most fundamental notation in statistics. Almost everything involves adding data, averaging, squaring differences, and summing again."
+                       data-kr="통계에서 매우 자주 나오는 기호가 서메이션(Σ)이다. 통계학은 데이터를 더하고, 평균을 내고, 차이를 제곱하고, 다시 합치는 일이 많기 때문에 기본 문법처럼 익숙해져야 한다.">통계에서 매우 자주 나오는 기호가 서메이션(Σ)이다. 통계학은 데이터를 더하고, 평균을 내고, 차이를 제곱하고, 다시 합치는 일이 많기 때문에 기본 문법처럼 익숙해져야 한다.</p>
+                    <div class="stat-formula">
+                        $$\sum_{i=1}^{n} x_i = x_1 + x_2 + \cdots + x_n$$
+                    </div>
+                    <div class="stat-formula">
+                        $$\bar{x} = \frac{1}{n}\sum_{i=1}^{n} x_i$$
+                    </div>
+
+                    <!-- 6. Outliers -->
+                    <h3 data-en="6. Always Watch for Outliers" data-kr="6. 이상치(outlier)를 반드시 의식해야 한다">6. 이상치(outlier)를 반드시 의식해야 한다</h3>
+                    <p data-en="An outlier is an observation that is unusually large or small. For example, if most salaries are 40-80M KRW and one person earns 5B, that value can severely distort the mean. Outliers can distort the mean, inflate variance and standard deviation, or be data entry errors — but they might also be genuinely important events. Don't remove them blindly. Judge: is it an error? A meaningful real value? Should it be kept for the analysis purpose?"
+                       data-kr="이상치(outlier)는 다른 값들에 비해 유난히 크거나 작은 관측값이다. 대부분 연봉이 4천만~8천만 원인데 한 명만 50억이면, 평균을 심하게 끌어올릴 수 있다. 이상치는 평균을 왜곡하고, 분산과 표준편차를 크게 만들 수 있고, 데이터 입력 실수일 수도 있지만, 실제로 중요한 사건일 수도 있다. 무조건 제거하는 것이 아니라, 오류인지, 의미 있는 실제값인지, 분석 목적상 유지해야 하는지를 판단해야 한다.">이상치(outlier)는 다른 값들에 비해 유난히 크거나 작은 관측값이다. 대부분 연봉이 4천만~8천만 원인데 한 명만 50억이면, 평균을 심하게 끌어올릴 수 있다. 이상치는 평균을 왜곡하고, 분산과 표준편차를 크게 만들 수 있고, 데이터 입력 실수일 수도 있지만, 실제로 중요한 사건일 수도 있다. 무조건 제거하는 것이 아니라, 오류인지, 의미 있는 실제값인지, 분석 목적상 유지해야 하는지를 판단해야 한다.</p>
+
+                    <!-- 7. Measures of Central Tendency: 3M -->
+                    <h3 data-en="7. Measures of Center: The 3M" data-kr="7. 대표값: 평균, 중앙값, 최빈값 (3M)">7. 대표값: 평균, 중앙값, 최빈값 (3M)</h3>
+
+                    <table class="stat-table">
+                        <tr>
+                            <th data-en="Measure" data-kr="대표값">대표값</th>
+                            <th data-en="Strengths" data-kr="장점">장점</th>
+                            <th data-en="Weaknesses" data-kr="단점">단점</th>
+                        </tr>
+                        <tr>
+                            <td><strong>Mean</strong> <span data-en="(average)" data-kr="(평균)">(평균)</span></td>
+                            <td data-en="Easy to compute, mathematically tractable, central in inference" data-kr="계산이 쉽고, 수학적으로 다루기 좋고, 추론통계에서 중심 역할">계산이 쉽고, 수학적으로 다루기 좋고, 추론통계에서 중심 역할</td>
+                            <td data-en="Very sensitive to outliers" data-kr="이상치에 매우 민감">이상치에 매우 민감</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Median</strong> <span data-en="(middle value)" data-kr="(중앙값)">(중앙값)</span></td>
+                            <td data-en="Robust to outliers, useful for skewed data (income, house prices)" data-kr="이상치 영향을 덜 받음, 소득/집값처럼 꼬리가 긴 데이터에 유용">이상치 영향을 덜 받음, 소득/집값처럼 꼬리가 긴 데이터에 유용</td>
+                            <td data-en="Less mathematically versatile than mean" data-kr="평균보다 수학적 활용성이 제한적">평균보다 수학적 활용성이 제한적</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Mode</strong> <span data-en="(most frequent)" data-kr="(최빈값)">(최빈값)</span></td>
+                            <td data-en="Works for categorical data, shows most common type" data-kr="범주형 자료에서도 사용 가능, 가장 흔한 유형을 보여줌">범주형 자료에서도 사용 가능, 가장 흔한 유형을 보여줌</td>
+                            <td data-en="May have multiple modes or none clearly defined" data-kr="여러 개일 수도 있고 뚜렷하지 않을 수 있음">여러 개일 수도 있고 뚜렷하지 않을 수 있음</td>
+                        </tr>
+                    </table>
+
+                    <p data-en="In skewed real-world data with outliers, the median is often more realistic than the mean — but this isn't an absolute rule."
+                       data-kr="왜도가 크거나 이상치가 많은 현실 데이터에서는 중앙값이 더 현실적일 때가 많다. 다만 이것이 절대 명제는 아니다.">왜도가 크거나 이상치가 많은 현실 데이터에서는 중앙값이 더 현실적일 때가 많다. 다만 이것이 절대 명제는 아니다.</p>
+
+                    <!-- 8. Dispersion -->
+                    <h3 data-en="8. Dispersion: Why Spread Matters" data-kr="8. 산포: 통계에서 정말 중요한 개념">8. 산포: 통계에서 정말 중요한 개념</h3>
+                    <p data-en="You must look at dispersion alongside central tendency. Same mean, very different stories: values clustered near the mean = stable and consistent. Values spread wide = unstable and heterogeneous. Lower dispersion generally means higher predictability and consistency — but high dispersion isn't always bad. Research may require diversity, or risk-taking for greater opportunity."
+                       data-kr="대표값만 보면 안 되고, 반드시 산포(dispersion)를 봐야 한다. 같은 평균이라도 값들이 평균 근처에 몰려 있으면 안정적이고, 넓게 흩어져 있으면 불안정하고 이질적이다. 같은 평균이라면 산포가 낮을수록 예측 가능성과 일관성이 높다. 다만 산포가 큰 것이 꼭 나쁜 것만은 아니다. 연구 주제에 따라 다양성이 중요할 수도 있고, 리스크를 감수하는 상황일 수도 있다.">대표값만 보면 안 되고, 반드시 산포(dispersion)를 봐야 한다. 같은 평균이라도 값들이 평균 근처에 몰려 있으면 안정적이고, 넓게 흩어져 있으면 불안정하고 이질적이다. 같은 평균이라면 산포가 낮을수록 예측 가능성과 일관성이 높다. 다만 산포가 큰 것이 꼭 나쁜 것만은 아니다. 연구 주제에 따라 다양성이 중요할 수도 있고, 리스크를 감수하는 상황일 수도 있다.</p>
+
+                    <!-- 9. Variance & Std Dev -->
+                    <h3 data-en="9. Variance & Standard Deviation" data-kr="9. 분산과 표준편차">9. 분산과 표준편차</h3>
+                    <p data-en="Variance measures how far each data point deviates from the mean (squared, then averaged). Standard deviation is its square root — same unit as the original data, more intuitive."
+                       data-kr="분산은 각 데이터가 평균에서 얼마나 떨어져 있는지를 제곱해서 평균낸 값이다. 표준편차는 분산에 루트를 씌운 값으로, 원래 데이터와 같은 단위를 가지므로 더 직관적이다.">분산은 각 데이터가 평균에서 얼마나 떨어져 있는지를 제곱해서 평균낸 값이다. 표준편차는 분산에 루트를 씌운 값으로, 원래 데이터와 같은 단위를 가지므로 더 직관적이다.</p>
+
+                    <div class="stat-formula">
+                        <p data-en="Population variance:" data-kr="모집단 분산:" style="margin:0 0 4px 0;font-size:0.85em;color:#999;">모집단 분산:</p>
+                        $$\sigma^2 = \frac{1}{N}\sum_{i=1}^{N}(x_i - \mu)^2$$
+                    </div>
+                    <div class="stat-formula">
+                        <p data-en="Sample variance (n−1 for degrees of freedom):" data-kr="표본분산 (자유도 보정으로 n−1):" style="margin:0 0 4px 0;font-size:0.85em;color:#999;">표본분산 (자유도 보정으로 n−1):</p>
+                        $$s^2 = \frac{1}{n-1}\sum_{i=1}^{n}(x_i - \bar{x})^2$$
+                    </div>
+                    <div class="stat-formula">
+                        <p data-en="Standard deviation:" data-kr="표준편차:" style="margin:0 0 4px 0;font-size:0.85em;color:#999;">표준편차:</p>
+                        $$\sigma = \sqrt{\sigma^2}, \quad s = \sqrt{s^2}$$
+                    </div>
+
+                    <p data-en="Example: if average salary is 100M KRW with std dev of 5M, it's relatively stable. With std dev of 50M, there's huge variation."
+                       data-kr="예를 들어 평균 연봉이 1억이고 표준편차가 500만 원이면 비교적 안정적이고, 표준편차가 5천만 원이면 편차가 큰 구조다.">예를 들어 평균 연봉이 1억이고 표준편차가 500만 원이면 비교적 안정적이고, 표준편차가 5천만 원이면 편차가 큰 구조다.</p>
+
+                    <!-- 10. Dispersion visualization -->
+                    <h3 data-en="10. Low vs. High Dispersion" data-kr="10. 산포가 작은 분포 vs 큰 분포">10. 산포가 작은 분포 vs 큰 분포</h3>
+
+                    <div class="stat-chart">
+                        <svg width="500" height="200" viewBox="0 0 500 200">
+                            <!-- Axis -->
+                            <line x1="50" y1="170" x2="450" y2="170" stroke="#999" stroke-width="1" class="axis-line"/>
+                            <text x="250" y="195" text-anchor="middle" fill="#999" font-size="11">x</text>
+                            <!-- Low dispersion (narrow bell) -->
+                            <path d="M150,168 Q170,165 190,150 Q210,120 230,60 Q240,30 250,25 Q260,30 270,60 Q290,120 310,150 Q330,165 350,168" fill="rgba(70,130,180,0.15)" stroke="#4682B4" stroke-width="2" fill-opacity="0.4"/>
+                            <text x="250" y="15" text-anchor="middle" fill="#4682B4" font-size="11" font-weight="400" data-en="Low σ (stable)" data-kr="낮은 σ (안정적)">낮은 σ (안정적)</text>
+                            <!-- High dispersion (wide bell) -->
+                            <path d="M80,168 Q110,165 140,155 Q180,140 210,120 Q230,105 250,100 Q270,105 290,120 Q320,140 360,155 Q390,165 420,168" fill="rgba(139,69,19,0.1)" stroke="#8B4513" stroke-width="2" stroke-dasharray="5,3" fill-opacity="0.3"/>
+                            <text x="420" y="140" text-anchor="start" fill="#8B4513" font-size="11" font-weight="400" data-en="High σ (volatile)" data-kr="높은 σ (변동적)">높은 σ</text>
+                            <!-- Mean line -->
+                            <line x1="250" y1="20" x2="250" y2="170" stroke="#999" stroke-width="1" stroke-dasharray="3,3"/>
+                            <text x="250" y="185" text-anchor="middle" fill="#999" font-size="10">μ</text>
+                        </svg>
+                        <p class="stat-chart-caption" data-en="Same mean, different dispersions. The blue curve is stable; the brown curve is volatile." data-kr="같은 평균이라도 산포는 전혀 다를 수 있다. 파란색은 안정적, 갈색은 변동적.">같은 평균이라도 산포는 전혀 다를 수 있다. 파란색은 안정적, 갈색은 변동적.</p>
+                    </div>
+
+                    <!-- 11. Practical example -->
+                    <h3 data-en="11. Mean 10B, Dispersion 100B vs. 1B" data-kr="11. 평균 10억, 산포 100억 vs 1억">11. 평균 10억, 산포 100억 vs 1억</h3>
+
+                    <div class="stat-comparison">
+                        <div class="stat-comparison-item">
+                            <h4 data-en="Company A: Mean 10B, σ = 100B" data-kr="기업 A: 평균 10억, 산포 100억">기업 A: 평균 10억, 산포 100억</h4>
+                            <p data-en="High risk, high variance. Someone may get extremely good or extremely bad outcomes. For risk-seekers willing to gamble on high-reward." data-kr="고위험, 고분산. 누군가는 매우 좋은 값을, 누군가는 매우 나쁜 값을 얻을 수 있다. 고위험 고수익을 감수할 수 있는 경우.">고위험, 고분산. 누군가는 매우 좋은 값을, 누군가는 매우 나쁜 값을 얻을 수 있다. 고위험 고수익을 감수할 수 있는 경우.</p>
+                        </div>
+                        <div class="stat-comparison-item">
+                            <h4 data-en="Company B: Mean 10B, σ = 1B" data-kr="기업 B: 평균 10억, 산포 1억">기업 B: 평균 10억, 산포 1억</h4>
+                            <p data-en="Stable, predictable. Results cluster near the mean. Statistically, lower volatility = higher manageability." data-kr="안정적, 예측 가능. 평균 근처 결과가 나올 가능성이 높다. 통계적으로 변동성이 낮은 쪽이 관리 가능성이 높다.">안정적, 예측 가능. 평균 근처 결과가 나올 가능성이 높다. 통계적으로 변동성이 낮은 쪽이 관리 가능성이 높다.</p>
+                        </div>
+                    </div>
+                    <p data-en="The core message: don't look at the mean alone — always check volatility too."
+                       data-kr="핵심 메시지: 평균만 보지 말고 변동성도 함께 봐야 한다.">핵심 메시지: 평균만 보지 말고 변동성도 함께 봐야 한다.</p>
+
+                    <!-- 12. IQR -->
+                    <h3 data-en="12. Quartiles & IQR" data-kr="12. 사분위수와 IQR(사분위범위)">12. 사분위수와 IQR(사분위범위)</h3>
+                    <p data-en="Quartiles divide sorted data into four parts. Q1 = 25th percentile, Q2 = median (50th), Q3 = 75th percentile."
+                       data-kr="사분위수는 데이터를 크기 순으로 정렬했을 때 나누는 기준점이다. Q1 = 1사분위수(25%), Q2 = 중앙값(50%), Q3 = 3사분위수(75%).">사분위수는 데이터를 크기 순으로 정렬했을 때 나누는 기준점이다. Q1 = 1사분위수(25%), Q2 = 중앙값(50%), Q3 = 3사분위수(75%).</p>
+                    <div class="stat-formula">
+                        $$IQR = Q3 - Q1$$
+                    </div>
+                    <p data-en="IQR shows how spread the middle 50% of data is. It's robust to outliers, reveals central dispersion, and is the core ingredient of box plots."
+                       data-kr="IQR은 가운데 50% 데이터가 얼마나 퍼져 있는지를 보여주는 지표다. 이상치의 영향을 덜 받고, 데이터의 중심부 산포를 파악할 수 있으며, box plot의 핵심 재료다.">IQR은 가운데 50% 데이터가 얼마나 퍼져 있는지를 보여주는 지표다. 이상치의 영향을 덜 받고, 데이터의 중심부 산포를 파악할 수 있으며, box plot의 핵심 재료다.</p>
+
+                    <!-- 13. CV -->
+                    <h3 data-en="13. Coefficient of Variation (CV)" data-kr="13. 변동계수(CV)">13. 변동계수(CV)</h3>
+                    <div class="stat-formula">
+                        $$CV = \frac{s}{\bar{x}} \times 100\%$$
+                    </div>
+                    <p data-en="CV is especially useful when comparing dispersion across data with different units or scales. Example: mean 100, std dev 10 → CV = 10%. Mean 10, std dev 10 → CV = 100%. Same absolute spread, completely different relative spread."
+                       data-kr="변동계수는 단위가 다른 데이터끼리 산포를 비교할 때 유용하다. 예: 평균 100, 표준편차 10이면 CV = 10%. 평균 10, 표준편차 10이면 CV = 100%. 둘 다 표준편차는 10이지만, 평균 대비 흔들림은 완전히 다르다. 절대적 흔들림이 아니라 상대적 흔들림을 보여준다.">변동계수는 단위가 다른 데이터끼리 산포를 비교할 때 유용하다. 예: 평균 100, 표준편차 10이면 CV = 10%. 평균 10, 표준편차 10이면 CV = 100%. 둘 다 표준편차는 10이지만, 평균 대비 흔들림은 완전히 다르다. 절대적 흔들림이 아니라 상대적 흔들림을 보여준다.</p>
+
+                    <!-- 14. Skewness & Kurtosis -->
+                    <h3 data-en="14. Skewness & Kurtosis" data-kr="14. 왜도와 첨도">14. 왜도와 첨도</h3>
+
+                    <div class="stat-chart">
+                        <svg width="500" height="180" viewBox="0 0 500 180">
+                            <!-- Axis -->
+                            <line x1="30" y1="150" x2="470" y2="150" stroke="#999" stroke-width="1" class="axis-line"/>
+                            <!-- Symmetric -->
+                            <path d="M60,148 Q80,140 100,110 Q115,70 130,45 Q140,35 148,33 Q156,35 166,45 Q181,70 196,110 Q216,140 236,148" fill="rgba(70,130,180,0.12)" stroke="#4682B4" stroke-width="1.5"/>
+                            <text x="148" y="25" text-anchor="middle" fill="#4682B4" font-size="10" data-en="Symmetric (sk≈0)" data-kr="대칭 (sk≈0)">대칭 (sk≈0)</text>
+                            <!-- Positive skew -->
+                            <path d="M270,148 Q280,145 290,135 Q300,110 310,70 Q315,45 318,40 Q325,50 340,80 Q360,115 390,135 Q420,145 460,148" fill="rgba(139,69,19,0.1)" stroke="#8B4513" stroke-width="1.5"/>
+                            <text x="370" y="25" text-anchor="middle" fill="#8B4513" font-size="10" data-en="Right-skewed (+)" data-kr="양의 왜도 (오른쪽 꼬리)">양의 왜도 (+)</text>
+                            <!-- Labels -->
+                            <text x="148" y="168" text-anchor="middle" fill="#999" font-size="10" data-en="e.g. test scores" data-kr="예: 시험 점수">예: 시험 점수</text>
+                            <text x="370" y="168" text-anchor="middle" fill="#999" font-size="10" data-en="e.g. income" data-kr="예: 소득 분포">예: 소득 분포</text>
+                        </svg>
+                        <p class="stat-chart-caption" data-en="Skewness shows asymmetry. Income distributions are typically right-skewed." data-kr="왜도는 분포의 비대칭을 보여준다. 소득 분포는 대개 오른쪽 꼬리가 길다.">왜도는 분포의 비대칭을 보여준다. 소득 분포는 대개 오른쪽 꼬리가 길다.</p>
+                    </div>
+
+                    <p data-en="Kurtosis measures how peaked the center is and how thick the tails are. High kurtosis = sharper peak or more extreme values. Low kurtosis = flatter distribution. Skewness and kurtosis explain the shape of the distribution — things mean and variance alone can't show."
+                       data-kr="첨도는 분포가 얼마나 뾰족한지, 꼬리가 얼마나 두꺼운지를 나타낸다. 첨도가 높으면 중심이 뾰족하거나 극단값이 자주 나올 수 있고, 낮으면 더 평평한 분포다. 왜도와 첨도는 단순 평균/분산만으로는 안 보이는 분포의 모양 자체를 설명하는 데 중요하다.">첨도는 분포가 얼마나 뾰족한지, 꼬리가 얼마나 두꺼운지를 나타낸다. 첨도가 높으면 중심이 뾰족하거나 극단값이 자주 나올 수 있고, 낮으면 더 평평한 분포다. 왜도와 첨도는 단순 평균/분산만으로는 안 보이는 분포의 모양 자체를 설명하는 데 중요하다.</p>
+
+                    <!-- 15. MGF -->
+                    <h3 data-en="15. Moment Generating Function (MGF)" data-kr="15. 적률생성함수(MGF)">15. 적률생성함수(MGF)</h3>
+                    <div class="stat-formula">
+                        $$M_X(t) = E[e^{tX}]$$
+                    </div>
+                    <p data-en="MGF can extract moments (mean, variance, etc.) of a probability distribution mathematically. For now, think of it as 'a function that can generate characteristics like mean and variance.' Its importance grows in distribution theory later."
+                       data-kr="적률생성함수는 확률변수의 적률(moment), 즉 평균, 분산 등의 정보를 수학적으로 끌어낼 수 있는 도구다. 초반에는 '평균과 분산 같은 특성을 생성해낼 수 있는 함수' 정도로 잡아도 충분하다. 나중에 분포 이론으로 가면 중요성이 더 커진다.">적률생성함수는 확률변수의 적률(moment), 즉 평균, 분산 등의 정보를 수학적으로 끌어낼 수 있는 도구다. 초반에는 '평균과 분산 같은 특성을 생성해낼 수 있는 함수' 정도로 잡아도 충분하다. 나중에 분포 이론으로 가면 중요성이 더 커진다.</p>
+
+                    <!-- 16. Bar Chart vs Histogram -->
+                    <h3 data-en="16. Bar Chart vs. Histogram" data-kr="16. 막대그래프와 히스토그램의 차이">16. 막대그래프와 히스토그램의 차이</h3>
+
+                    <div class="stat-chart">
+                        <svg width="500" height="200" viewBox="0 0 500 200">
+                            <!-- Bar Chart (left) -->
+                            <text x="120" y="15" text-anchor="middle" fill="#4682B4" font-size="12" font-weight="400" data-en="Bar Chart" data-kr="막대그래프">막대그래프</text>
+                            <line x1="40" y1="170" x2="200" y2="170" stroke="#999" stroke-width="1" class="axis-line"/>
+                            <line x1="40" y1="30" x2="40" y2="170" stroke="#999" stroke-width="1" class="axis-line"/>
+                            <rect x="55" y="70" width="25" height="100" fill="rgba(70,130,180,0.4)" stroke="#4682B4" rx="2"/>
+                            <rect x="95" y="45" width="25" height="125" fill="rgba(70,130,180,0.4)" stroke="#4682B4" rx="2"/>
+                            <rect x="135" y="90" width="25" height="80" fill="rgba(70,130,180,0.4)" stroke="#4682B4" rx="2"/>
+                            <rect x="175" y="110" width="25" height="60" fill="rgba(70,130,180,0.4)" stroke="#4682B4" rx="2"/>
+                            <text x="67" y="185" text-anchor="middle" fill="#999" font-size="9">A</text>
+                            <text x="107" y="185" text-anchor="middle" fill="#999" font-size="9">B</text>
+                            <text x="147" y="185" text-anchor="middle" fill="#999" font-size="9">C</text>
+                            <text x="187" y="185" text-anchor="middle" fill="#999" font-size="9">D</text>
+
+                            <!-- Histogram (right) -->
+                            <text x="370" y="15" text-anchor="middle" fill="#8B4513" font-size="12" font-weight="400" data-en="Histogram" data-kr="히스토그램">히스토그램</text>
+                            <line x1="280" y1="170" x2="460" y2="170" stroke="#999" stroke-width="1" class="axis-line"/>
+                            <line x1="280" y1="30" x2="280" y2="170" stroke="#999" stroke-width="1" class="axis-line"/>
+                            <rect x="280" y="140" width="30" height="30" fill="rgba(139,69,19,0.3)" stroke="#8B4513"/>
+                            <rect x="310" y="110" width="30" height="60" fill="rgba(139,69,19,0.3)" stroke="#8B4513"/>
+                            <rect x="340" y="55" width="30" height="115" fill="rgba(139,69,19,0.3)" stroke="#8B4513"/>
+                            <rect x="370" y="70" width="30" height="100" fill="rgba(139,69,19,0.3)" stroke="#8B4513"/>
+                            <rect x="400" y="120" width="30" height="50" fill="rgba(139,69,19,0.3)" stroke="#8B4513"/>
+                            <rect x="430" y="150" width="30" height="20" fill="rgba(139,69,19,0.3)" stroke="#8B4513"/>
+                            <text x="370" y="185" text-anchor="middle" fill="#999" font-size="9" data-en="continuous bins →" data-kr="연속 구간 →">연속 구간 →</text>
+                        </svg>
+                        <p class="stat-chart-caption" data-en="Bar chart: categorical comparison (bars separated). Histogram: distribution of continuous data (bars touching)." data-kr="막대그래프: 범주 비교 (막대가 떨어져 있음). 히스토그램: 연속형 자료의 분포 (막대가 붙어 있음).">막대그래프: 범주 비교 (막대가 떨어져 있음). 히스토그램: 연속형 자료의 분포 (막대가 붙어 있음).</p>
+                    </div>
+
+                    <p data-en="Watch out for bar charts with truncated y-axes — a 1-2% difference can look enormous. Always check where the vertical axis starts. In histograms, look beyond height: check which bins have the most data, whether the distribution is symmetric, whether there's skewness, and whether multiple peaks exist."
+                       data-kr="막대그래프에서 y축을 잘라서 차이를 과장하는 함정을 조심해야 한다. 1~2% 차이도 아주 큰 차이처럼 보이게 만들 수 있으므로 세로축 범위가 어디서 시작하는지 꼭 확인할 것. 히스토그램에서는 단순 높이뿐 아니라, 어떤 구간에 데이터가 몰려 있는지, 분포가 대칭인지, 왜도가 있는지, 여러 봉우리가 있는지를 봐야 한다.">막대그래프에서 y축을 잘라서 차이를 과장하는 함정을 조심해야 한다. 1~2% 차이도 아주 큰 차이처럼 보이게 만들 수 있으므로 세로축 범위가 어디서 시작하는지 꼭 확인할 것. 히스토그램에서는 단순 높이뿐 아니라, 어떤 구간에 데이터가 몰려 있는지, 분포가 대칭인지, 왜도가 있는지, 여러 봉우리가 있는지를 봐야 한다.</p>
+
+                    <!-- 17. Trap of the Mean -->
+                    <h3 data-en="17. The Trap of the Mean" data-kr="17. 평균의 함정">17. 평균의 함정</h3>
+                    <p data-en="The mean is convenient but has traps. A group's high average income doesn't mean most people are well-off — a few ultra-high earners can pull the mean up. With heavily skewed distributions, the mean loses representativeness. Always check alongside: median, dispersion, outlier presence, distribution shape, box plot or histogram."
+                       data-kr="평균은 편리하지만 함정이 있다. 어떤 집단의 평균 소득이 높다고 해서 대부분이 잘 사는 것은 아닐 수 있다. 극소수의 초고소득자가 평균을 끌어올릴 수 있고, 분포가 심하게 치우쳐 있으면 평균은 대표성이 약해진다. 반드시 함께 봐야 하는 것: 중앙값, 산포, 이상치 존재 여부, 분포 모양, box plot이나 히스토그램.">평균은 편리하지만 함정이 있다. 어떤 집단의 평균 소득이 높다고 해서 대부분이 잘 사는 것은 아닐 수 있다. 극소수의 초고소득자가 평균을 끌어올릴 수 있고, 분포가 심하게 치우쳐 있으면 평균은 대표성이 약해진다. 반드시 함께 봐야 하는 것: 중앙값, 산포, 이상치 존재 여부, 분포 모양, box plot이나 히스토그램.</p>
+
+                    <!-- 18. Box Plot -->
+                    <h3 data-en="18. Why Box Plots Matter" data-kr="18. Box Plot은 왜 중요한가">18. Box Plot은 왜 중요한가</h3>
+
+                    <div class="stat-chart">
+                        <svg width="500" height="180" viewBox="0 0 500 180">
+                            <!-- Axis -->
+                            <line x1="60" y1="90" x2="440" y2="90" stroke="#ddd" stroke-width="0.5" class="grid-line"/>
+                            <!-- Box -->
+                            <rect x="180" y="55" width="140" height="70" fill="rgba(70,130,180,0.12)" stroke="#4682B4" stroke-width="1.5" rx="2"/>
+                            <!-- Median -->
+                            <line x1="260" y1="55" x2="260" y2="125" stroke="#4682B4" stroke-width="2.5"/>
+                            <!-- Whiskers -->
+                            <line x1="100" y1="90" x2="180" y2="90" stroke="#4682B4" stroke-width="1.5"/>
+                            <line x1="320" y1="90" x2="400" y2="90" stroke="#4682B4" stroke-width="1.5"/>
+                            <line x1="100" y1="75" x2="100" y2="105" stroke="#4682B4" stroke-width="1.5"/>
+                            <line x1="400" y1="75" x2="400" y2="105" stroke="#4682B4" stroke-width="1.5"/>
+                            <!-- Outlier -->
+                            <circle cx="435" cy="90" r="5" fill="none" stroke="#cc3333" stroke-width="1.5"/>
+                            <!-- Labels -->
+                            <text x="100" y="140" text-anchor="middle" fill="#999" font-size="10" data-en="Min" data-kr="최솟값">최솟값</text>
+                            <text x="180" y="140" text-anchor="middle" fill="#4682B4" font-size="10">Q1</text>
+                            <text x="260" y="140" text-anchor="middle" fill="#4682B4" font-size="10" font-weight="500" data-en="Median" data-kr="중앙값">중앙값</text>
+                            <text x="320" y="140" text-anchor="middle" fill="#4682B4" font-size="10">Q3</text>
+                            <text x="400" y="140" text-anchor="middle" fill="#999" font-size="10" data-en="Max" data-kr="최댓값">최댓값</text>
+                            <text x="435" y="140" text-anchor="middle" fill="#cc3333" font-size="10" data-en="Outlier" data-kr="이상치">이상치</text>
+                            <!-- IQR bracket -->
+                            <line x1="180" y1="38" x2="320" y2="38" stroke="#8B4513" stroke-width="1"/>
+                            <line x1="180" y1="35" x2="180" y2="41" stroke="#8B4513" stroke-width="1"/>
+                            <line x1="320" y1="35" x2="320" y2="41" stroke="#8B4513" stroke-width="1"/>
+                            <text x="250" y="32" text-anchor="middle" fill="#8B4513" font-size="11" font-weight="400">IQR</text>
+                        </svg>
+                        <p class="stat-chart-caption" data-en="Box plot structure: box = middle 50% (IQR), whiskers extend to fence limits, dots = outliers." data-kr="Box plot 구조: 상자 = 가운데 50% (IQR), 수염은 울타리 한계까지, 점 = 이상치.">Box plot 구조: 상자 = 가운데 50% (IQR), 수염은 울타리 한계까지, 점 = 이상치.</p>
+                    </div>
+
+                    <p data-en="Outlier detection formula:" data-kr="이상치 판정 기준:">이상치 판정 기준:</p>
+                    <div class="stat-formula">
+                        $$\text{Lower fence} = Q1 - 1.5 \times IQR$$
+                        $$\text{Upper fence} = Q3 + 1.5 \times IQR$$
+                    </div>
+                    <p data-en="What to read from a box plot: Is the median centered in the box? Is one whisker longer? Are there many outliers? Is the IQR wide or narrow? When comparing groups, which is more stable? Note: box plots look similar to candlestick charts but are completely different — candlesticks show open/close/high/low prices."
+                       data-kr="Box plot에서 볼 포인트: 중앙값이 상자 가운데에 있는가, 한쪽 수염이 더 긴가, 이상치가 많은가, IQR이 넓은가 좁은가, 여러 집단을 비교할 때 어느 쪽이 더 안정적인가. 참고: 캔들차트와 모양이 비슷해 보이지만 완전히 다른 그래프다. 캔들차트는 시가/종가/고가/저가 중심의 금융 차트이고, box plot은 분포 요약 그래프다.">Box plot에서 볼 포인트: 중앙값이 상자 가운데에 있는가, 한쪽 수염이 더 긴가, 이상치가 많은가, IQR이 넓은가 좁은가, 여러 집단을 비교할 때 어느 쪽이 더 안정적인가. 참고: 캔들차트와 모양이 비슷해 보이지만 완전히 다른 그래프다. 캔들차트는 시가/종가/고가/저가 중심의 금융 차트이고, box plot은 분포 요약 그래프다.</p>
+
+                    <!-- 19. Statistical Literacy -->
+                    <h3 data-en="19. Attitude Toward Interpreting Data" data-kr="19. 정보 해석에서 중요한 태도">19. 정보 해석에서 중요한 태도</h3>
+                    <p data-en="Statistics is not just formula memorization. It's about seeing what numbers hide and what they exaggerate. It's training in reading the structure, distribution, traps, and context of numbers."
+                       data-kr="통계는 단순히 계산 공식 암기가 아니라, 숫자가 무엇을 숨기고 있고 무엇을 과장하고 있는지 보는 태도가 중요하다. 숫자의 구조와 분포, 함정과 맥락을 읽는 훈련에 가깝다.">통계는 단순히 계산 공식 암기가 아니라, 숫자가 무엇을 숨기고 있고 무엇을 과장하고 있는지 보는 태도가 중요하다. 숫자의 구조와 분포, 함정과 맥락을 읽는 훈련에 가깝다.</p>
+
+                    <!-- 20. Key Takeaways -->
+                    <h3 data-en="20. Key Takeaways" data-kr="20. 이번 주차에서 잡은 핵심 문장들">20. 이번 주차에서 잡은 핵심 문장들</h3>
+                    <ul>
+                        <li data-en="Statistics infers population parameters from sample statistics." data-kr="통계학은 표본으로 모집단의 모수를 추론하는 학문이다.">통계학은 표본으로 모집단의 모수를 추론하는 학문이다.</li>
+                        <li data-en="Population = N, Sample = n." data-kr="모집단은 N, 표본은 n으로 쓴다.">모집단은 N, 표본은 n으로 쓴다.</li>
+                        <li data-en="Parameters are population characteristics; statistics are sample characteristics." data-kr="모수는 모집단의 특성값, 통계량은 표본의 특성값이다.">모수는 모집단의 특성값, 통계량은 표본의 특성값이다.</li>
+                        <li data-en="Remember the 3M: Mean, Median, Mode." data-kr="대표값은 평균, 중앙값, 최빈값의 3M으로 기억해야 한다.">대표값은 평균, 중앙값, 최빈값의 3M으로 기억해야 한다.</li>
+                        <li data-en="Never look at the mean alone — always check dispersion." data-kr="평균만 보면 안 되고 산포를 반드시 같이 봐야 한다.">평균만 보면 안 되고 산포를 반드시 같이 봐야 한다.</li>
+                        <li data-en="High variance means high heterogeneity and volatility." data-kr="분산이 크면 이질성과 변동성이 크다.">분산이 크면 이질성과 변동성이 크다.</li>
+                        <li data-en="IQR and box plots are crucial for reading outliers and distributions." data-kr="IQR과 box plot은 이상치와 분포를 읽는 데 매우 중요하다.">IQR과 box plot은 이상치와 분포를 읽는 데 매우 중요하다.</li>
+                        <li data-en="Bar charts compare categories; histograms reveal distributions." data-kr="막대그래프와 히스토그램은 목적이 다르다.">막대그래프와 히스토그램은 목적이 다르다.</li>
+                        <li data-en="Statistical graphs can always have visual traps — check axes and distributions." data-kr="통계 그래프는 항상 시각적 함정이 있을 수 있으니 축과 분포를 같이 봐야 한다.">통계 그래프는 항상 시각적 함정이 있을 수 있으니 축과 분포를 같이 봐야 한다.</li>
+                        <li data-en="Statistics is about understanding what to infer and what to be wary of — more than formulas." data-kr="통계는 공식보다도, 무엇을 추론하고 무엇을 경계해야 하는지를 이해하는 것이 중요하다.">통계는 공식보다도, 무엇을 추론하고 무엇을 경계해야 하는지를 이해하는 것이 중요하다.</li>
+                    </ul>
+
+                    <!-- Statistical Traps -->
+                    <h3 data-en="Statistical Traps to Watch For" data-kr="조심해서 볼 통계적 함정들">조심해서 볼 통계적 함정들</h3>
+                    <ul>
+                        <li data-en="Don't be fooled by the mean alone — always ask about the median and distribution shape." data-kr="평균만 보고 속지 말 것 — 반드시 중앙값과 분포 모양을 함께 확인할 것.">평균만 보고 속지 말 것 — 반드시 중앙값과 분포 모양을 함께 확인할 것.</li>
+                        <li data-en="Watch for bar charts with truncated y-axes that exaggerate tiny differences." data-kr="축이 잘린 막대그래프에서 미세한 차이가 과장되는 것을 조심할 것.">축이 잘린 막대그래프에서 미세한 차이가 과장되는 것을 조심할 것.</li>
+                        <li data-en="Always check dispersion alongside any central tendency measure." data-kr="어떤 대표값을 보든 반드시 산포를 함께 볼 것.">어떤 대표값을 보든 반드시 산포를 함께 볼 것.</li>
+                        <li data-en="Be conscious of outliers — don't remove them blindly, but don't ignore them either." data-kr="이상치를 의식할 것 — 무조건 제거하지도, 무시하지도 말 것.">이상치를 의식할 것 — 무조건 제거하지도, 무시하지도 말 것.</li>
+                        <li data-en="In histograms, read the flow of bin intervals and areas, not just bar heights." data-kr="히스토그램에서는 막대 높이만이 아니라 x축 구간과 면적의 흐름을 볼 것.">히스토그램에서는 막대 높이만이 아니라 x축 구간과 면적의 흐름을 볼 것.</li>
+                        <li data-en="In box plots, read quartiles and outliers — don't confuse them with candlestick charts." data-kr="Box plot에서 사분위수와 이상치를 읽을 것 — 캔들차트와 혼동하지 말 것.">Box plot에서 사분위수와 이상치를 읽을 것 — 캔들차트와 혼동하지 말 것.</li>
+                        <li data-en="Same standard deviation, different means → use CV to compare relative spread." data-kr="같은 표준편차라도 평균이 다르면 → 변동계수(CV)로 상대적 산포를 비교할 것.">같은 표준편차라도 평균이 다르면 → 변동계수(CV)로 상대적 산포를 비교할 것.</li>
+                    </ul>
+
+                </div>
+            </section>
+
+        </article>
+
+        <div id="site-footer"></div>
+    </div>
+
+    <script src="../../../common.js"></script>
+</body>
+</html>
