@@ -135,6 +135,15 @@
                 el.textContent = el.getAttribute('data-en');
             }
         });
+
+        document.querySelectorAll('.lang-en, .lang-kr').forEach(function (el) {
+            if (el.classList.contains('lang-en')) {
+                el.hidden = lang !== 'en';
+            }
+            if (el.classList.contains('lang-kr')) {
+                el.hidden = lang !== 'kr';
+            }
+        });
     };
 
     // ===== INIT ON DOM READY =====

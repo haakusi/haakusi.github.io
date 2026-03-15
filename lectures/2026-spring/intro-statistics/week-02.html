@@ -39,6 +39,7 @@
                 <h2 data-en="Week 2" data-kr="2주차">Week 2</h2>
                 <p class="week-date">2026-03-13</p>
                 <div class="week-content">
+                    <div class="lang-kr" hidden>
 
                     <p>이번 주차는 3장 확률의 출발점이었다. 다만 단순히 공식을 외우는 시간이 아니라, 왜 확률이 실제 데이터 해석과 예측에서 중요한지, 그리고 조건부확률과 베이즈 정리로 이어지는 흐름을 잡는 데 초점이 있었다.</p>
 
@@ -481,7 +482,449 @@
                         <li><strong>숙제 2.</strong> 몬티홀 딜레마를 읽고, 왜 문을 바꾸는 것이 유리한지 조건부확률 관점에서 정리해보기.</li>
                         <li><strong>다음 시간.</strong> 베이즈 정리를 본격적으로 다룬다.</li>
                     </ul>
+                    </div>
 
+                    <div class="lang-en">
+                        <p>This week marked the real beginning of Chapter 3 on probability. The point was not to memorize formulas, but to understand why probability matters for interpreting real data, making predictions, and preparing for conditional probability and Bayes' theorem.</p>
+
+                        <div class="lecture-note">
+                            <p><strong>Note.</strong> A paper does not become stronger just because it is filled with difficult symbols and complicated sentences. It is far more important to understand the core principles clearly and then apply them to one's own field and research problem.</p>
+                        </div>
+
+                        <h3>1. Why Study Probability: Data, Forecasting, and Shock Response</h3>
+                        <p>Probability is a language for organizing uncertainty. This matters especially in time-series data, where we want to read not only average level but also fluctuation, external shock, and recovery speed. When wars, financial crises, or pandemics occur, the graph often moves sharply. The statistical questions then become the following.</p>
+
+                        <table class="stat-table">
+                            <tr>
+                                <th>Situation</th>
+                                <th>Question to ask statistically</th>
+                                <th>Meaning</th>
+                            </tr>
+                            <tr>
+                                <td>Normal upward trend</td>
+                                <td>Does the long-term trend continue?</td>
+                                <td>Estimate baseline growth and trend</td>
+                            </tr>
+                            <tr>
+                                <td>External shock such as war</td>
+                                <td>How large is the shock response?</td>
+                                <td>Measure drops, rises, and volatility</td>
+                            </tr>
+                            <tr>
+                                <td>Recovery after the shock</td>
+                                <td>How long does instability last?</td>
+                                <td>Track duration, recovery speed, and structural change</td>
+                            </tr>
+                        </table>
+
+                        <p>If those responses are collected into a database, similar future situations can be judged with better estimates of expected size and duration. Probability and statistics are therefore not magic tools that perfectly know the future; they are tools for making better decisions under uncertainty.</p>
+
+                        <p>Data quantity matters, but quality often matters more. Large but noisy or biased data can mislead. Smaller but better targeted data can be far more informative. Data should also not be reduced to surface categories such as numbers, text, or images. What matters is how the data is processed, connected, and interpreted. Survival data, for example, becomes meaningful only when we ask questions like "How long does something last?" and "When does the event occur?"</p>
+
+                        <div class="lecture-note">
+                            <p><strong>Note.</strong> Companies such as Google are powerful not merely because they collect data, but because they control technologies for processing and connecting it. Data itself is not enough; value is created by the structure imposed on it.</p>
+                        </div>
+
+                        <h3>2. Sample Space, Events, and Complements</h3>
+                        <p>To talk about probability, we first distinguish sample space and event.</p>
+                        <ul>
+                            <li><strong>Sample space</strong> \(S\): the set of all possible elementary outcomes</li>
+                            <li><strong>Event</strong> \(A\): a subset of the sample space</li>
+                            <li><strong>Complement</strong> \(A^c\): the event that \(A\) does not occur</li>
+                        </ul>
+
+                        <table class="stat-table">
+                            <tr>
+                                <th>Experiment</th>
+                                <th>Sample space \(S\)</th>
+                                <th>Example event</th>
+                                <th>Probability</th>
+                            </tr>
+                            <tr>
+                                <td>Tossing one coin</td>
+                                <td>\(\{H, T\}\)</td>
+                                <td>\(A=\{H\}\)</td>
+                                <td>\(P(A)=\frac{1}{2}\), \(P(A^c)=\frac{1}{2}\)</td>
+                            </tr>
+                            <tr>
+                                <td>Rolling one die</td>
+                                <td>\(\{1,2,3,4,5,6\}\)</td>
+                                <td>\(A=\{1\}\)</td>
+                                <td>\(P(A)=\frac{1}{6}\)</td>
+                            </tr>
+                            <tr>
+                                <td>Rolling two dice</td>
+                                <td>\(\{(1,1), \ldots, (6,6)\}\)</td>
+                                <td>\(A=\{\text{sum is } 7\}\)</td>
+                                <td>\(P(A)=\frac{6}{36}=\frac{1}{6}\)</td>
+                            </tr>
+                        </table>
+
+                        <div class="stat-formula">
+                            $$P(S)=1$$
+                            $$P(A)=\frac{N(A)}{N(S)} \quad \text{(when all outcomes are assumed equally likely)}$$
+                        </div>
+
+                        <p>The probability of the entire sample space is always 1. Since the complement means "everything else," the following always holds.</p>
+
+                        <div class="stat-formula">
+                            $$P(A^c)=1-P(A)$$
+                        </div>
+
+                        <h3>3. Three Interpretations of Probability</h3>
+                        <p>Probability can be interpreted in more than one way. The same symbol \(P(A)\) can be read through different philosophical lenses.</p>
+
+                        <table class="stat-table">
+                            <tr>
+                                <th>View</th>
+                                <th>Main idea</th>
+                                <th>Example</th>
+                            </tr>
+                            <tr>
+                                <td>Classical probability</td>
+                                <td>When outcomes are equally likely, use the ratio of cases</td>
+                                <td>A fair die gives \(P(1)=1/6\)</td>
+                            </tr>
+                            <tr>
+                                <td>Frequentist probability</td>
+                                <td>Relative frequency converges in repeated trials</td>
+                                <td>The more coin tosses we perform, the closer the fraction of heads gets to \(1/2\)</td>
+                            </tr>
+                            <tr>
+                                <td>Subjective probability</td>
+                                <td>Probability reflects available information and belief</td>
+                                <td>The prior probability used in Bayesian inference</td>
+                            </tr>
+                        </table>
+
+                        <p>Classically, the probability of heads is \(1/2\). But in a short run, ten heads in ten tosses is still possible. The frequentist view therefore stresses long-run convergence.</p>
+
+                        <div class="stat-formula">
+                            $$\lim_{n \to \infty}\frac{\text{number of heads}}{n} = \frac{1}{2}$$
+                        </div>
+
+                        <p>Subjective probability brings in prior knowledge, background beliefs, and personal information. It becomes especially important in Bayesian reasoning. Historically, Pascal, Fermat, and Laplace form part of this philosophical background.</p>
+
+                        <div class="lecture-note">
+                            <p><strong>Historical note.</strong> Pascal and Fermat addressed problems of fair division in gambling, while Laplace systematized probability as a mathematical language. That is why philosophical reflections on probability remain important.</p>
+                        </div>
+
+                        <h3>4. Pascal's Problem of Division</h3>
+                        <p>Suppose two players contribute 100 won each, so the prize pool is 200 won. They are playing a best-of-five match, and the game stops when player \(A\) leads 2 wins to 1 over player \(B\). How should the money be divided fairly?</p>
+
+                        <p>The remaining possible outcomes are as follows.</p>
+                        <table class="stat-table">
+                            <tr>
+                                <th>Remaining path</th>
+                                <th>Probability</th>
+                                <th>Final winner</th>
+                            </tr>
+                            <tr>
+                                <td>\(A\) wins game 4</td>
+                                <td>\(\frac{1}{2}\)</td>
+                                <td>\(A\)</td>
+                            </tr>
+                            <tr>
+                                <td>\(B\) wins game 4, then \(A\) wins game 5</td>
+                                <td>\(\frac{1}{2}\times\frac{1}{2}=\frac{1}{4}\)</td>
+                                <td>\(A\)</td>
+                            </tr>
+                            <tr>
+                                <td>\(B\) wins both games 4 and 5</td>
+                                <td>\(\frac{1}{2}\times\frac{1}{2}=\frac{1}{4}\)</td>
+                                <td>\(B\)</td>
+                            </tr>
+                        </table>
+
+                        <div class="stat-formula">
+                            $$P(A\text{ wins})=\frac{1}{2}+\frac{1}{4}=\frac{3}{4}, \qquad P(B\text{ wins})=\frac{1}{4}$$
+                        </div>
+
+                        <p>The fair division is therefore 150 won for \(A\) and 50 won for \(B\). Probability can serve not only as calculation but also as a criterion for fair decision-making under uncertainty.</p>
+
+                        <h3>5. Axioms of Probability</h3>
+                        <p>A probability measure must satisfy the following three axioms.</p>
+                        <ol>
+                            <li>\(0 \le P(A) \le 1\)</li>
+                            <li>\(P(S)=1\)</li>
+                            <li>If \(A_1, A_2, \ldots\) are mutually exclusive, then
+                                \(P(A_1 \cup A_2 \cup \cdots)=\sum_{i=1}^{\infty}P(A_i)\)</li>
+                        </ol>
+
+                        <p>Mutually exclusive means the events have no overlap. From these three axioms, many standard results follow.</p>
+
+                        <div class="stat-formula">
+                            $$P(\varnothing)=0$$
+                            $$P(A^c)=1-P(A)$$
+                            $$A \cap B = \varnothing \Rightarrow P(A \cup B)=P(A)+P(B)$$
+                        </div>
+
+                        <div class="lecture-note">
+                            <p><strong>Note.</strong> In real life, events with probability exactly 0 or exactly 1 are rarer than we think. Most important problems lie somewhere in between, which is why probabilistic thinking matters.</p>
+                        </div>
+
+                        <h3>6. Conditional Probability</h3>
+                        <p>Conditional probability is the probability recalculated after new information is given. It is the basis of Bayes' theorem and often the key to solving problems.</p>
+
+                        <div class="stat-formula">
+                            $$P(B \mid A) = \frac{P(A \cap B)}{P(A)} \qquad (P(A)&gt;0)$$
+                            $$P(A \mid B) = \frac{P(A \cap B)}{P(B)} \qquad (P(B)&gt;0)$$
+                        </div>
+
+                        <p>The important point is that the same intersection probability \(P(A \cap B)\) can be written in two equivalent ways.</p>
+
+                        <div class="stat-formula">
+                            $$P(A \cap B)=P(B)\times P(A \mid B)$$
+                            $$P(A \cap B)=P(A)\times P(B \mid A)$$
+                        </div>
+
+                        <p>Consider drawing the ace of spades from a 52-card deck. The first person's probability is \(1/52\), and the second person's probability is also the same.</p>
+
+                        <div class="stat-formula">
+                            $$P(\text{the second person gets the ace of spades}) = \frac{51}{52}\times\frac{1}{51}=\frac{1}{52}$$
+                        </div>
+
+                        <p>Given that the first person did not draw the ace of spades, one such card remains among 51 cards, so the conditional probability becomes \(1/51\). In the end, each position in the line has the same overall chance. This is a useful way to feel what conditional probability does: it updates the calculation while preserving the larger structure.</p>
+
+                        <h3>7. Independence of Events</h3>
+                        <p>If the occurrence of \(A\) does not affect the occurrence of \(B\), the two events are independent. For independent events, the joint probability is the product of the separate probabilities.</p>
+
+                        <div class="stat-formula">
+                            $$P(A \cap B)=P(A)P(B)$$
+                        </div>
+
+                        <p>For two events \(A\) and \(B\), the following are equivalent conditions for independence.</p>
+                        <ul>
+                            <li>\(P(A \mid B)=P(A)\), provided \(P(B)&gt;0\)</li>
+                            <li>\(P(B \mid A)=P(B)\), provided \(P(A)&gt;0\)</li>
+                            <li>\(P(A \cap B)=P(A)P(B)\)</li>
+                        </ul>
+
+                        <p>For \(n\) events \(A_1, A_2, \ldots, A_n\), mutual independence is stronger than pairwise independence. Every nontrivial intersection must factor into the product of probabilities.</p>
+
+                        <div class="stat-formula">
+                            $$P\left(\bigcap_{j \in J} A_j\right)=\prod_{j \in J} P(A_j)\quad \text{for every } J \subseteq \{1,\dots,n\},\; |J|\ge 2$$
+                        </div>
+
+                        <p>A classic counterexample uses two coin tosses with sample space \(S=\{HH, HT, TH, TT\}\), and the events:</p>
+                        <ul>
+                            <li>\(A=\{\text{first toss is heads}\}=\{HH, HT\}\)</li>
+                            <li>\(B=\{\text{second toss is heads}\}=\{HH, TH\}\)</li>
+                            <li>\(C=\{\text{the two outcomes are equal}\}=\{HH, TT\}\)</li>
+                        </ul>
+
+                        <p>Each event has probability \(1/2\), and every pair has intersection probability \(1/4\), so the events are pairwise independent. But</p>
+
+                        <div class="stat-formula">
+                            $$P(A \cap B \cap C)=P(\{HH\})=\frac{1}{4}\neq \frac{1}{8}=P(A)P(B)P(C)$$
+                        </div>
+
+                        <p>So the three events are not mutually independent. This is exactly the kind of example assigned in homework 1.</p>
+
+                        <h3>8. The Monty Hall Dilemma</h3>
+                        <p>There are three doors. One hides a car, and the other two hide goats. Suppose you choose door 1. The host knows where the car is and always opens one of the other doors to reveal a goat. Should you switch?</p>
+
+                        <p>The answer is yes: switching is better.</p>
+
+                        <table class="stat-table">
+                            <tr>
+                                <th>Initial state</th>
+                                <th>Probability</th>
+                                <th>If you stay</th>
+                                <th>If you switch</th>
+                            </tr>
+                            <tr>
+                                <td>You initially picked the car</td>
+                                <td>\(\frac{1}{3}\)</td>
+                                <td>Win</td>
+                                <td>Lose</td>
+                            </tr>
+                            <tr>
+                                <td>You initially picked a goat</td>
+                                <td>\(\frac{2}{3}\)</td>
+                                <td>Lose</td>
+                                <td>Win</td>
+                            </tr>
+                        </table>
+
+                        <div class="stat-formula">
+                            $$P(\text{win by staying})=\frac{1}{3}, \qquad P(\text{win by switching})=\frac{2}{3}$$
+                        </div>
+
+                        <p>The host did not open a random door; the host deliberately opened a goat door. That new information changes the conditional structure. Understanding why switching doubles the chance is a good test of whether conditional probability has really clicked.</p>
+
+                        <h3>9. Background to Bayes' Theorem: Which Factory Produced the Defect?</h3>
+                        <p>Bayes' theorem is about revising the probability of causes after observing an outcome. Suppose factories \(A, B,\) and \(C\) produce 50%, 30%, and 20% of total output, with defect rates 0.2%, 0.15%, and 0.1%, respectively.</p>
+
+                        <table class="stat-table">
+                            <tr>
+                                <th>Factory</th>
+                                <th>Prior probability</th>
+                                <th>Defect rate</th>
+                                <th>Notation</th>
+                            </tr>
+                            <tr>
+                                <td>A</td>
+                                <td>50%</td>
+                                <td>0.2%</td>
+                                <td>\(P(A)=0.5,\; P(F \mid A)=0.002\)</td>
+                            </tr>
+                            <tr>
+                                <td>B</td>
+                                <td>30%</td>
+                                <td>0.15%</td>
+                                <td>\(P(B)=0.3,\; P(F \mid B)=0.0015\)</td>
+                            </tr>
+                            <tr>
+                                <td>C</td>
+                                <td>20%</td>
+                                <td>0.1%</td>
+                                <td>\(P(C)=0.2,\; P(F \mid C)=0.001\)</td>
+                            </tr>
+                        </table>
+
+                        <p>The total probability of a defect is obtained by the law of total probability.</p>
+
+                        <div class="stat-formula">
+                            $$P(F)=P(F \mid A)P(A)+P(F \mid B)P(B)+P(F \mid C)P(C)$$
+                            $$=0.002 \times 0.5 + 0.0015 \times 0.3 + 0.001 \times 0.2 = 0.00165$$
+                        </div>
+
+                        <p>Once a defect has been observed, the posterior probabilities are:</p>
+
+                        <div class="stat-formula">
+                            $$P(A \mid F)=\frac{P(F \mid A)P(A)}{P(F)}=\frac{0.002 \times 0.5}{0.00165}\approx 0.6061$$
+                            $$P(B \mid F)=\frac{0.0015 \times 0.3}{0.00165}\approx 0.2727$$
+                            $$P(C \mid F)=\frac{0.001 \times 0.2}{0.00165}\approx 0.1212$$
+                        </div>
+
+                        <table class="stat-table">
+                            <tr>
+                                <th>Question</th>
+                                <th>Result</th>
+                                <th>Interpretation</th>
+                            </tr>
+                            <tr>
+                                <td>\(P(A \mid F)\)</td>
+                                <td>About 60.61%</td>
+                                <td>If a defect appears, factory A is the most likely source</td>
+                            </tr>
+                            <tr>
+                                <td>\(P(B \mid F)\)</td>
+                                <td>About 27.27%</td>
+                                <td>Factory B is possible, but less likely than A</td>
+                            </tr>
+                            <tr>
+                                <td>\(P(C \mid F)\)</td>
+                                <td>About 12.12%</td>
+                                <td>Factory C is the least urgent target</td>
+                            </tr>
+                        </table>
+
+                        <p>So if product returns continue despite efforts like Six Sigma, Bayes' theorem helps determine which production line should be checked first. The original 50%, 30%, and 20% are priors, and the updated values are posteriors.</p>
+
+                        <h3>10. Normal Distribution and Six Sigma</h3>
+                        <p>The normal distribution, or Gaussian distribution, is the familiar symmetric bell-shaped curve. If the mean is \(\mu\) and the standard deviation is \(\sigma\), we write:</p>
+
+                        <div class="stat-formula">
+                            $$X \sim N(\mu, \sigma^2)$$
+                        </div>
+
+                        <p>The empirical rule for the normal distribution is:</p>
+
+                        <table class="stat-table">
+                            <tr>
+                                <th>Interval</th>
+                                <th>Meaning</th>
+                                <th>Approximate proportion</th>
+                            </tr>
+                            <tr>
+                                <td>\(\mu \pm 1\sigma\)</td>
+                                <td>Within one standard deviation of the mean</td>
+                                <td>About 68%</td>
+                            </tr>
+                            <tr>
+                                <td>\(\mu \pm 2\sigma\)</td>
+                                <td>Within two standard deviations of the mean</td>
+                                <td>About 95%</td>
+                            </tr>
+                            <tr>
+                                <td>\(\mu \pm 3\sigma\)</td>
+                                <td>Within three standard deviations of the mean</td>
+                                <td>About 99.7%</td>
+                            </tr>
+                        </table>
+
+                        <p>That is why values within three standard deviations of the mean are often treated as "almost all" of the data. Here \(\sigma\) measures spread around the average.</p>
+
+                        <div class="lecture-note">
+                            <p><strong>Six Sigma note.</strong> The industrial slogan "3.4 defects per million at six sigma" includes more than the pure mathematical region \(\mu \pm 6\sigma\). It usually assumes a long-term process shift of about \(1.5\sigma\), so the practical interpretation is not exactly the same as the idealized mathematical one.</p>
+                        </div>
+
+                        <p>The lecture also emphasized that statistical quality control alone does not guarantee long-term survival. Markets, technology, climate, and supply chains change quickly. Numbers matter, but the ability to read context matters just as much.</p>
+
+                        <h3>11. Final Lecture Notes Beyond Statistics</h3>
+                        <p>The class closed by stepping beyond technical statistics into questions of education and life. A university should not be only a credential machine; it should be a place where people learn from earlier generations' ideas and mistakes in order to grow into larger human beings.</p>
+
+                        <table class="stat-table">
+                            <tr>
+                                <th>Thinker</th>
+                                <th>Keyword</th>
+                                <th>Short note</th>
+                            </tr>
+                            <tr>
+                                <td>Laozi</td>
+                                <td>Wu wei, naturalness</td>
+                                <td>A way of following the flow rather than forcing everything</td>
+                            </tr>
+                            <tr>
+                                <td>Confucius</td>
+                                <td>Ren</td>
+                                <td>Live with humanity and humaneness</td>
+                            </tr>
+                            <tr>
+                                <td>Mencius</td>
+                                <td>Yi, human goodness</td>
+                                <td>Protect what is right and fitting</td>
+                            </tr>
+                            <tr>
+                                <td>Xunzi</td>
+                                <td>Li, disciplined order</td>
+                                <td>Self-cultivation through order and ritual</td>
+                            </tr>
+                            <tr>
+                                <td>Han Fei</td>
+                                <td>Law</td>
+                                <td>Institutions and rules as operating principles</td>
+                            </tr>
+                        </table>
+
+                        <div class="lecture-note">
+                            <p><strong>Note.</strong> A school should help people climb one level at a time. If failure processes are recorded and shared honestly, the next generation does not have to repeat the same mistakes. That shared record becomes a rope that helps others climb further.</p>
+                        </div>
+
+                        <p>The reference to Sungkyunkwan University fit this line of thought: a school is not only a practical institution but also a place standing on a long tradition of learning and values.</p>
+
+                        <h3>12. Main Takeaways from This Week</h3>
+                        <ul>
+                            <li>Probability is the language used to interpret fluctuation, shock, and recovery in real data.</li>
+                            <li>Sample space \(S\), event \(A\), and complement \(A^c\) are the basic grammar of probability.</li>
+                            <li>Classical, frequentist, and subjective probability are different interpretive frameworks.</li>
+                            <li>Conditional probability formalizes the idea that probability changes when information changes.</li>
+                            <li>Independence must be checked mathematically through \(P(A \cap B)=P(A)P(B)\), not only by intuition.</li>
+                            <li>Pairwise independence and mutual independence are not the same thing.</li>
+                            <li>Bayes' theorem updates the probability of causes after an outcome is observed.</li>
+                            <li>Normal distribution and standard deviation are core tools for quality control, anomaly detection, and prediction.</li>
+                            <li>The quality and processing of data can matter even more than the raw amount of data.</li>
+                        </ul>
+
+                        <h3>13. Homework and Next Class</h3>
+                        <ul>
+                            <li><strong>Homework 1.</strong> Find an example that is pairwise independent but not mutually independent, and explain why.</li>
+                            <li><strong>Homework 2.</strong> Read the Monty Hall dilemma and explain, using conditional probability, why switching is advantageous.</li>
+                            <li><strong>Next class.</strong> Bayes' theorem will be covered in earnest.</li>
+                        </ul>
+                    </div>
                 </div>
             </section>
         </article>
