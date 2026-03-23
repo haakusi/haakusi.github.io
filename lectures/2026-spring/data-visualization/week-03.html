@@ -1,0 +1,926 @@
+<!DOCTYPE html>
+<html data-theme="dark" data-lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Info Design & Data Viz - Week 3 - Sewon Park</title>
+    <link rel="stylesheet" type="text/css" href="../../../style.css">
+    <link rel="stylesheet" type="text/css" href="../../../assets/css/lectures.css">
+</head>
+<body>
+    <button class="theme-toggle" onclick="toggleTheme()" aria-label="Toggle dark mode"></button>
+    <button class="lang-toggle" onclick="toggleLanguage()" aria-label="Toggle language">EN</button>
+
+    <div class="container">
+        <div id="site-header"></div>
+        <div id="site-nav"></div>
+
+        <article class="course-page">
+            <div class="course-header">
+                <h1 data-en="Info Design & Data Viz" data-kr="정보디자인데이터시각화">Info Design & Data Viz</h1>
+                <p class="course-meta" data-en="2026 Spring | Sat 12:00-15:00" data-kr="2026 봄학기 | 토요일 12:00-15:00">2026 Spring | Sat 12:00-15:00</p>
+            </div>
+
+            <div class="course-nav">
+                <a href="../../../lectures.html" class="back-to-lectures" data-en="Back to Lectures" data-kr="강의 목록으로">Back to Lectures</a>
+                <span class="nav-separator">/</span>
+                <a href="./index.html" class="back-to-course" data-en="Course Home" data-kr="과목 홈">Course Home</a>
+            </div>
+
+            <div class="week-nav">
+                <span data-en="Weeks:" data-kr="주차:">Weeks:</span>
+                <a href="week-01.html" class="week-link">W1</a>
+                <a href="week-02.html" class="week-link">W2</a>
+                <a href="week-03.html" class="week-link current">W3</a>
+            </div>
+
+            <section class="week-section" id="week-03">
+                <h2 data-en="Week 3" data-kr="3주차">Week 3</h2>
+                <p class="week-date">2026-03-21</p>
+                <div class="week-content">
+                    <div class="lang-kr" hidden>
+                        <p class="week-references"><em>Keywords: Five Ultimate Hat Racks, LATCH, 1st-5th order information, Marshall McLuhan, hot media, cool media, data-information-knowledge-wisdom, integrating messages, self-ethnography</em></p>
+
+                        <p>이번 3주차는 정보를 단순히 모으는 수준을 넘어서, <strong>어떤 관점과 위계로 다시 조직할 것인가</strong>를 더 깊게 파고든 시간이었다. 같은 데이터도 어떤 질서로 묶고 어떤 메시지로 재배치하느냐에 따라 완전히 다른 이야기로 바뀔 수 있고, 그 과정 자체가 정보디자인의 핵심이라는 점이 반복해서 강조되었다.</p>
+
+                        <div class="lecture-note">
+                            <p><strong>메모.</strong> 이번 주의 큰 흐름은 세 가지였다. 첫째, Richard Saul Wurman의 LATCH와 1차~5차 정보 체계로 데이터를 조직하는 법. 둘째, Marshall McLuhan의 미디어론을 통해 정보와 매체의 성격을 읽는 법. 셋째, 개인 데이터를 다룰 때 단순 요약이 아니라 총체적 해석과 자기 민족지(self-ethnography)로 들어가야 한다는 점이다.</p>
+                        </div>
+
+                        <h3>1. 같은 컬렉션도 위계가 달라지면 완전히 다른 전시가 된다</h3>
+                        <p>수업은 피카소 전시 사례로 시작했다. 로마가 늘 같은 천 점의 피카소 컬렉션을 가지고 있어도, 그 해 어떤 관점으로 전시를 짜느냐에 따라 첫 번째 방, 두 번째 방, 세 번째 방의 얼개가 완전히 달라진다는 이야기였다. 즉 콘텐츠의 양이 아니라, <strong>어떤 질서로 보여주느냐</strong>가 전시의 메시지를 만든다.</p>
+
+                        <table class="stat-table">
+                            <tr>
+                                <th>큐레이션 관점</th>
+                                <th>전시가 읽히는 방식</th>
+                                <th>핵심 메시지</th>
+                            </tr>
+                            <tr>
+                                <td>색의 시대</td>
+                                <td>Blue, Yellow, Green, Red 같은 색의 흐름으로 분류</td>
+                                <td>작품을 색의 정서와 시기로 읽게 만든다</td>
+                            </tr>
+                            <tr>
+                                <td>생애의 흐름</td>
+                                <td>어린이에서 어른이 되기까지를 층과 방의 순서로 배치</td>
+                                <td>작품을 성장과 시간의 서사로 읽게 만든다</td>
+                            </tr>
+                            <tr>
+                                <td>관계의 위계</td>
+                                <td>피카소와 일곱 여인처럼 영향 관계를 1~7의 위계로 제시</td>
+                                <td>작품을 사람과 영향 관계의 구조로 읽게 만든다</td>
+                            </tr>
+                        </table>
+
+                        <p>같은 천 점의 작품도 어떤 위계 관점으로 조직하느냐에 따라 완전히 달라진다. 이 논리는 그대로 자기 데이터에도 적용된다. 결국 “내 데이터를 무엇으로 보여줄 것인가”보다 먼저 “내 데이터를 어떤 관점의 위계로 읽게 할 것인가”가 선행되어야 한다.</p>
+
+                        <h3>2. Richard Saul Wurman의 Five Ultimate Hat Racks와 LATCH</h3>
+                        <p>이번 주 핵심 프레임은 Richard Saul Wurman의 Five Ultimate Hat Racks, 즉 LATCH였다. 값은 단순히 숫자로만 정해지는 것이 아니라, 어떤 언어와 정리 원리로 위치와 관계를 정의하느냐에 따라 달라진다. 정보는 분류의 언어를 얻는 순간 의미를 갖기 시작한다.</p>
+
+                        <div class="stat-formula">
+                            LATCH = Location + Alphabet + Time + Category + Hierarchy
+                        </div>
+
+                        <table class="stat-table">
+                            <tr>
+                                <th>분류 방식</th>
+                                <th>핵심 질문</th>
+                                <th>수업 맥락</th>
+                            </tr>
+                            <tr>
+                                <td>Location</td>
+                                <td>어디에서 일어나는가?</td>
+                                <td>공간, 지역, 배치의 맥락으로 정보 읽기</td>
+                            </tr>
+                            <tr>
+                                <td>Alphabet</td>
+                                <td>무슨 이름과 표기 체계로 정리할 것인가?</td>
+                                <td>인덱스, 사전식 배열, 언어적 라벨링</td>
+                            </tr>
+                            <tr>
+                                <td>Time</td>
+                                <td>언제 일어나고 어떤 흐름을 가지는가?</td>
+                                <td>일대기, 시간대, 기간, 시계열 구조</td>
+                            </tr>
+                            <tr>
+                                <td>Category</td>
+                                <td>무엇과 무엇을 같은 그룹으로 묶을 것인가?</td>
+                                <td>제품군, 상황군, 활동군, 사람군</td>
+                            </tr>
+                            <tr>
+                                <td>Hierarchy</td>
+                                <td>무엇이 더 중요하고 강한가?</td>
+                                <td>영향력, 크기, 우선순위, 감정 강도</td>
+                            </tr>
+                        </table>
+
+                        <p>LATCH는 딱딱한 분류표가 아니라, 데이터에 질문을 던지는 기본 손잡이다. 내 데이터를 시간으로 먼저 읽을지, 장소로 먼저 읽을지, 관계의 위계로 먼저 읽을지에 따라 같은 재료가 다른 메시지가 된다.</p>
+
+                        <h3>3. 1차 정보부터 5차 정보까지: 가까운 정보에서 문화적 정보까지</h3>
+                        <p>수업에서는 단순 분류를 넘어 1차 정보에서 5차 정보까지 레이어를 짜서 오라는 요구가 나왔다. 예를 들어 “피카소와 일곱 여인”이 1차 정보라면, 지역과 공간은 2차 정보가 될 수 있고, 3차 정보는 레퍼런스처럼 가까운 주변 정보, 4차 정보는 그 작업을 둘러싼 뉴스와 시대 맥락, 5차 정보는 문화적 레이어가 된다.</p>
+
+                        <div class="stat-chart">
+                            <svg width="520" height="220" viewBox="0 0 520 220" role="img" aria-label="Five layers of information">
+                                <rect x="120" y="20" width="280" height="30" rx="8" fill="rgba(139,69,19,0.14)" stroke="#8B4513"></rect>
+                                <rect x="105" y="58" width="310" height="30" rx="8" fill="rgba(139,69,19,0.12)" stroke="#8B4513"></rect>
+                                <rect x="90" y="96" width="340" height="30" rx="8" fill="rgba(139,69,19,0.10)" stroke="#8B4513"></rect>
+                                <rect x="75" y="134" width="370" height="30" rx="8" fill="rgba(139,69,19,0.08)" stroke="#8B4513"></rect>
+                                <rect x="60" y="172" width="400" height="30" rx="8" fill="rgba(139,69,19,0.06)" stroke="#8B4513"></rect>
+                                <text x="260" y="40" text-anchor="middle">1차 정보: 핵심 메시지 / 가장 먼저 보일 것</text>
+                                <text x="260" y="78" text-anchor="middle">2차 정보: 장소, 대상, 구조 같은 짝 정보</text>
+                                <text x="260" y="116" text-anchor="middle">3차 정보: Reference Information</text>
+                                <text x="260" y="154" text-anchor="middle">4차 정보: News / World Information</text>
+                                <text x="260" y="192" text-anchor="middle">5차 정보: Cultural Information</text>
+                            </svg>
+                            <p class="stat-chart-caption">가까운 핵심 정보에서 주변 세계와 문화적 정보로 갈수록 레이어가 넓어진다.</p>
+                        </div>
+
+                        <table class="stat-table">
+                            <tr>
+                                <th>레이어</th>
+                                <th>의미</th>
+                                <th>이번 과제에서의 역할</th>
+                            </tr>
+                            <tr>
+                                <td>1차 정보</td>
+                                <td>내가 제일 먼저 보여주고 싶은 핵심</td>
+                                <td>가설이 응축된 메시지</td>
+                            </tr>
+                            <tr>
+                                <td>2차 정보</td>
+                                <td>1차 정보를 지지하는 짝 정보</td>
+                                <td>동전의 양면처럼 붙어 다니는 구조</td>
+                            </tr>
+                            <tr>
+                                <td>3차 정보</td>
+                                <td>레퍼런스 정보, 가까운 주변 맥락</td>
+                                <td>이야기에 흥미와 설득력 추가</td>
+                            </tr>
+                            <tr>
+                                <td>4차 정보</td>
+                                <td>뉴스, 시대, 세계의 정보</td>
+                                <td>내 데이터를 더 넓은 현실과 연결</td>
+                            </tr>
+                            <tr>
+                                <td>5차 정보</td>
+                                <td>문화적 레이어</td>
+                                <td>의미를 더 큰 해석 틀로 확장</td>
+                            </tr>
+                        </table>
+
+                        <p>수업의 포인트는 단지 1차와 2차를 맞추는 것에서 끝나지 않았다. 3차에서는 어디까지 말해야 더 관심을 끌 수 있는지, 4차와 5차에서는 시대와 세계에 맞는 맥락을 어떻게 붙일지까지 고민해야 한다는 점이 중요했다.</p>
+
+                        <h3>4. 텍스트 수집, 텍스트 분석, 가설, 위계, 메시지 재정의</h3>
+                        <p>지금 단계는 여전히 텍스트와 수치 정보를 수집하는 단계다. 하지만 수업은 그 데이터를 바로 도식화하지 말고, 텍스트 분석과 가설 수립을 먼저 하라고 요구했다. 정보디자인은 눈앞의 표를 정리하는 작업이 아니라, 분석이 깊어질수록 처음 세운 가설이 흔들리고, 메시지가 다시 정의되는 과정을 포함한다.</p>
+
+                        <div class="stat-comparison">
+                            <div class="stat-comparison-item">
+                                <h4>분석 전</h4>
+                                <p>“내 데이터는 아마 이럴 것이다”라는 가설을 세운다. 이때의 메시지는 임시적이다.</p>
+                            </div>
+                            <div class="stat-comparison-item">
+                                <h4>분석 후</h4>
+                                <p>실제로 데이터를 위계화하고 다시 읽다 보면 예상과 다르게 나오기도 하고, 메시지가 다시 정의된다.</p>
+                            </div>
+                        </div>
+
+                        <table class="stat-table">
+                            <tr>
+                                <th>단계</th>
+                                <th>핵심 질문</th>
+                            </tr>
+                            <tr>
+                                <td>텍스트 정보 수집</td>
+                                <td>내 데이터는 무엇을 말할 수 있는가?</td>
+                            </tr>
+                            <tr>
+                                <td>텍스트 분석</td>
+                                <td>숨어 있는 의미와 연결 구조는 무엇인가?</td>
+                            </tr>
+                            <tr>
+                                <td>가설 수립</td>
+                                <td>나는 무엇이 핵심 메시지일 것이라 예상하는가?</td>
+                            </tr>
+                            <tr>
+                                <td>위계 질서</td>
+                                <td>무엇을 1차 정보로, 무엇을 2차 이후 정보로 둘 것인가?</td>
+                            </tr>
+                            <tr>
+                                <td>메시지 재정의</td>
+                                <td>분석 이후에도 같은 메시지가 유지되는가, 아니면 달라지는가?</td>
+                            </tr>
+                        </table>
+
+                        <p>결국 정보디자인은 “처음 생각했던 결론을 예쁘게 꾸미는 일”이 아니다. 오히려 분석을 제대로 하면 할수록 처음의 생각이 바뀌고, 더 정교한 메시지로 재정의되는 순환 구조에 가깝다.</p>
+
+                        <h3>5. Visual language와 visual concept: 감성과 논리의 동시 설계</h3>
+                        <p>수업은 visual language를 information graphics로 보면서, 텍스트 수집과 분석 이후에 visual concept을 붙여야 한다고 설명했다. 이때 중요한 것은 감성적이거나 논리적인 한쪽만이 아니라, 둘을 어떤 비율로 결합할지를 정하는 일이다.</p>
+
+                        <table class="stat-table">
+                            <tr>
+                                <th>설계 축</th>
+                                <th>질문</th>
+                                <th>예시</th>
+                            </tr>
+                            <tr>
+                                <td>Visual concept</td>
+                                <td>감성적으로 갈 것인가, 논리적으로 갈 것인가?</td>
+                                <td>차갑고 분석적인 톤 vs 친밀하고 서사적인 톤</td>
+                            </tr>
+                            <tr>
+                                <td>시각적 구조 선택</td>
+                                <td>온유, 비유, 상징, 설명 중 어디에 가까운가?</td>
+                                <td>메타포형 포스터 vs 설명형 차트</td>
+                            </tr>
+                            <tr>
+                                <td>시각 매체 선택</td>
+                                <td>어떤 미디어가 이 메시지에 맞는가?</td>
+                                <td>포스터, 카드, 아코디언 폴드, 프린트</td>
+                            </tr>
+                            <tr>
+                                <td>시각적 위계</td>
+                                <td>unit system을 어떻게 설계할 것인가?</td>
+                                <td>크기, 두께, 색상, 배열 규칙</td>
+                            </tr>
+                            <tr>
+                                <td>평가</td>
+                                <td>말하지 않아도 메시지가 전달되는가?</td>
+                                <td>첫인상, 읽기 경로, 자기 설명성</td>
+                            </tr>
+                        </table>
+
+                        <p>여기에는 positive / negative, 구체적 / 감성적 컨셉을 단계적으로 다루는 일도 포함된다. 모든 요소를 하나하나 따로 그리기보다, 비슷한 방법으로 위계를 짜고 그것을 family처럼 묶어 시스템화하는 사고가 필요하다는 설명도 이어졌다.</p>
+
+                        <p>수업에서 나온 “의자는 의자가 아니다”라는 말은, 우리가 이미 알고 있다고 생각한 대상도 정보로 분석하고 재정의하면 전혀 다른 구조로 읽히게 된다는 뜻으로 이해할 수 있었다. 정보디자인은 익숙한 것을 다시 낯설게 읽게 만드는 작업이기도 하다.</p>
+
+                        <h3>6. 레이아웃도 정보값이다: 그리드, 히트맵, 네거티브 스페이스, 아일</h3>
+                        <p>이번 주차에서 특히 인상적이었던 부분은 <strong>레이아웃 자체도 LATCH에서 출발할 수 있다</strong>는 설명이었다. 예를 들어 x축을 월화수목금토일, y축을 1일에서 31일까지 두고 월별 데이터를 깔면, 이미 그 배경 그리드 자체가 시간과 카테고리 정보를 품게 된다. 흐린 눈으로 보면 흰색 구멍이 보이고, 그 빈 공간조차도 정보 구조가 된다.</p>
+
+                        <div class="stat-chart">
+                            <svg width="520" height="250" viewBox="0 0 520 250" role="img" aria-label="Grid and aisle concept">
+                                <text x="260" y="25" text-anchor="middle">월 단위 / 일 단위 그리드와 아일 개념</text>
+                                <text x="70" y="55">월</text>
+                                <text x="125" y="55">화</text>
+                                <text x="190" y="55">수</text>
+                                <text x="265" y="55">목</text>
+                                <text x="350" y="55">금</text>
+                                <text x="430" y="55">토 / 일</text>
+                                <rect x="55" y="70" width="42" height="140" fill="rgba(70,130,180,0.12)" stroke="#4682B4"></rect>
+                                <rect x="112" y="70" width="42" height="140" fill="rgba(70,130,180,0.12)" stroke="#4682B4"></rect>
+                                <rect x="184" y="70" width="42" height="140" fill="rgba(139,69,19,0.12)" stroke="#8B4513"></rect>
+                                <rect x="271" y="70" width="42" height="140" fill="rgba(139,69,19,0.12)" stroke="#8B4513"></rect>
+                                <rect x="373" y="70" width="42" height="140" fill="rgba(34,139,34,0.10)" stroke="#2E8B57"></rect>
+                                <rect x="465" y="70" width="35" height="140" fill="rgba(34,139,34,0.08)" stroke="#2E8B57"></rect>
+                                <line x1="104" y1="70" x2="104" y2="210" stroke="#cfcfcf" stroke-width="10"></line>
+                                <line x1="171" y1="70" x2="171" y2="210" stroke="#cfcfcf" stroke-width="18"></line>
+                                <line x1="255" y1="70" x2="255" y2="210" stroke="#cfcfcf" stroke-width="26"></line>
+                                <line x1="349" y1="70" x2="349" y2="210" stroke="#cfcfcf" stroke-width="32"></line>
+                                <text x="260" y="232" text-anchor="middle">요일 간격과 복도의 폭이 커질수록 심리적 여유도 설계 요소가 된다</text>
+                            </svg>
+                            <p class="stat-chart-caption">월요일에서 목요일로 갈수록 아일(복도)을 일부러 넓히면, 레이아웃만으로도 심리적 여유와 리듬을 전달할 수 있다.</p>
+                        </div>
+
+                        <p>수요일과 목요일 사이의 흰 공간이 더 넓어질 수 있고, 그 흰색 공간은 단지 비어 있는 곳이 아니라 리듬과 정서를 만드는 장치가 된다. 디자이너가 일부러 복도를 넓혀 마음의 여유를 느끼게 할 수도 있다는 설명은, 네거티브 스페이스와 레이아웃이 정보값이 될 수 있음을 잘 보여준다.</p>
+
+                        <div class="lecture-note">
+                            <p><strong>메모.</strong> 다단 히트맵도 결국 이런 배경 그리드 위에서 작동한다. 즉 x축과 y축, 비어 있는 공간, 간격, 밀도 자체가 이미 메시지다. 정보를 무엇으로 놓을지뿐 아니라, 어디에 어떤 간격으로 놓을지도 정보 설계의 일부다.</p>
+                        </div>
+
+                        <h3>7. Marshall McLuhan: 미디어는 인간 감각의 확장이다</h3>
+                        <p>이번 주차는 Marshall McLuhan의 <em>Understanding Media</em>로도 확장되었다. 미디어를 정의한 사람으로 소개되었고, 정보디자인에서 미디어의 성격을 읽는 감각이 왜 중요한지도 함께 연결되었다.</p>
+
+                        <div class="stat-formula">
+                            Media = extensions of human senses
+                        </div>
+
+                        <table class="stat-table">
+                            <tr>
+                                <th>미디어</th>
+                                <th>어떤 감각의 확장인가</th>
+                                <th>수업의 포인트</th>
+                            </tr>
+                            <tr>
+                                <td>신문</td>
+                                <td>눈</td>
+                                <td>시각적, 저장성이 강하고 일방향적</td>
+                            </tr>
+                            <tr>
+                                <td>라디오</td>
+                                <td>귀</td>
+                                <td>청각 중심, 음성의 밀도와 즉시성</td>
+                            </tr>
+                            <tr>
+                                <td>TV</td>
+                                <td>눈 + 귀</td>
+                                <td>복합 감각, 동시에 여러 채널로 작동</td>
+                            </tr>
+                            <tr>
+                                <td>망원경 / 현미경</td>
+                                <td>감각의 범위 확대</td>
+                                <td>하나의 감각을 극단적으로 확장</td>
+                            </tr>
+                            <tr>
+                                <td>실시간 채팅, 책, 패키지</td>
+                                <td>감각과 소통 방식의 결합</td>
+                                <td>정보를 담는 모든 것이 미디어가 될 수 있다</td>
+                            </tr>
+                        </table>
+
+                        <p>미디어는 어디까지일까라는 질문에 대해, 정보를 담고 있는 모든 것이 미디어라고 설명했다. 유튜브 실시간 채팅도, 책도, 음료 패키지도, 인간의 감각과 소통 방식을 확장하는 구조물이라는 점에서 미디어다.</p>
+
+                        <div class="stat-comparison">
+                            <div class="stat-comparison-item">
+                                <h4>Hot Media</h4>
+                                <p>신문, 책처럼 저장성이 강하고 일방향적으로 주어지는 매체다. 전통성, 고정성, 안정감이 강하다.</p>
+                            </div>
+                            <div class="stat-comparison-item">
+                                <h4>Cool Media</h4>
+                                <p>저장성은 약하지만 참여와 상호작용이 강하다. 양방향성과 다중 플레이어, 깊은 개입이 중요하다.</p>
+                            </div>
+                        </div>
+
+                        <p>또 하나의 포인트는 초기 미디어를 “아날로그적 단계”, 즉 하나의 감각을 중심으로 통제적으로 확장하는 단계로 읽는 방식이었다. 여기에 convergence가 들어오면 서로 분명하던 감각 채널이 합쳐지고, 정보의 성격도 더 가변적이고 시간 친화적으로 바뀐다.</p>
+
+                        <p>이 감각을 알고 있으면 어떤 정보는 영상으로, 어떤 정보는 에디토리얼로, 어떤 정보는 포스터나 인터랙티브 구조로 가야 하는지 더 분명하게 판단할 수 있다. 무엇을 꼭 넣고 무엇을 빼야 하는지도 매체 특성과 연결해 정할 수 있다.</p>
+
+                        <h3>8. 데이터, 정보, 지식, 지혜: DIKW와 경험 설계</h3>
+                        <p>수업은 Data, Information, Knowledge, Wisdom의 흐름도 짚었다. 중요한 포인트는 데이터와 정보는 다르며, 상호작용이 개입하는 순간부터 경험 설계가 시작된다는 점이다.</p>
+
+                        <div class="stat-chart">
+                            <svg width="520" height="120" viewBox="0 0 520 120" role="img" aria-label="DIKW flow">
+                                <rect x="20" y="35" width="100" height="42" rx="10" fill="rgba(70,130,180,0.12)" stroke="#4682B4"></rect>
+                                <rect x="145" y="35" width="100" height="42" rx="10" fill="rgba(139,69,19,0.12)" stroke="#8B4513"></rect>
+                                <rect x="270" y="35" width="100" height="42" rx="10" fill="rgba(34,139,34,0.12)" stroke="#2E8B57"></rect>
+                                <rect x="395" y="35" width="100" height="42" rx="10" fill="rgba(123,104,238,0.12)" stroke="#6A5ACD"></rect>
+                                <text x="70" y="60" text-anchor="middle">Data</text>
+                                <text x="195" y="60" text-anchor="middle">Information</text>
+                                <text x="320" y="60" text-anchor="middle">Knowledge</text>
+                                <text x="445" y="60" text-anchor="middle">Wisdom</text>
+                                <line x1="120" y1="56" x2="145" y2="56" stroke="#999" stroke-width="2"></line>
+                                <line x1="245" y1="56" x2="270" y2="56" stroke="#999" stroke-width="2"></line>
+                                <line x1="370" y1="56" x2="395" y2="56" stroke="#999" stroke-width="2"></line>
+                                <text x="258" y="98" text-anchor="middle">Interaction과 experience가 개입할수록 정보는 지식과 지혜로 확장된다</text>
+                            </svg>
+                            <p class="stat-chart-caption">DIKW는 정적인 보관 구조가 아니라, 참여와 경험이 들어오며 성격이 달라지는 흐름으로 이해하는 것이 중요하다.</p>
+                        </div>
+
+                        <table class="stat-table">
+                            <tr>
+                                <th>단계</th>
+                                <th>정의</th>
+                                <th>수업 포인트</th>
+                            </tr>
+                            <tr>
+                                <td>Data</td>
+                                <td>가공 전 수치와 기록</td>
+                                <td>과제에서 먼저 가져오라고 한 것은 데이터지, 정보가 아니다</td>
+                            </tr>
+                            <tr>
+                                <td>Information</td>
+                                <td>의도와 위계를 갖고 소통되도록 정리된 것</td>
+                                <td>프로바이더가 설계한 구조, 저장성이 강하다</td>
+                            </tr>
+                            <tr>
+                                <td>Knowledge</td>
+                                <td>사용자 상호작용과 탐색으로 파생된 이해</td>
+                                <td>리뷰, 비교, 경험을 통해 생기며 완전히 디자인할 수는 없다</td>
+                            </tr>
+                            <tr>
+                                <td>Wisdom</td>
+                                <td>지식이 축적되고 공동체화된 상태</td>
+                                <td>커뮤니티와 축적된 판단이 생길 때 형성된다</td>
+                            </tr>
+                        </table>
+
+                        <p>수업에서는 삼성이나 기관, 정부처럼 프로바이더가 단순히 “우리가 가진 데이터를 보여줄 테니 알아서 해석하세요”라고 던져서는 안 된다는 말도 나왔다. 데이터는 돈이자 자산이며, 어떤 목표와 이슈를 위해 어떤 위계로 조직해 보여줄지까지 책임 있게 설계해야 한다는 뜻이다. 이 맥락에서 ATL, BTL 같은 커뮤니케이션 체계의 기본 어휘도 함께 떠올릴 수 있었다.</p>
+
+                        <p>예를 들어 기업이 원하는 위계로 제품을 보여주는 것은 정보 단계에 가깝다. 그러나 사용자가 더 찾아보고, 리뷰를 보고, 비교하고, 경험을 쌓으며 스스로 의미를 형성하면 그것은 지식 단계로 넘어간다. 그래서 interaction이 들어간 순간부터는 “정보를 배치한다”가 아니라 “경험을 설계한다”는 말이 맞아진다.</p>
+
+                        <h3>9. 과제 구조: 1차~5차 정보와 Dear Numbers</h3>
+                        <p>첫 번째 과제에서는 1차에서 5차 정보가 어떤 의미와 관련성을 가지는지, 그리고 DIKW를 알고 작업하는 것이 중요하다고 했다. 두 번째 과제에서는 <em>Dear Numbers</em>처럼 숫자를 가지고 셀프 분석으로 들어갈 수도 있다. 이때 “Number in Form &amp; Color”, “Information in Unit &amp; System”이라는 관점도 함께 요구된다.</p>
+
+                        <table class="stat-table">
+                            <tr>
+                                <th>과제 단계</th>
+                                <th>무엇을 해야 하는가</th>
+                            </tr>
+                            <tr>
+                                <td>1. 리서치하기</td>
+                                <td>두 종류의 수치정보 그룹을 준비하고, 퍼센티지가 아니라 실제 수치로 변환하며, 공적 수치정보와 개인적 수치정보를 함께 고려한다.</td>
+                            </tr>
+                            <tr>
+                                <td>2. 분석하고 이해하기</td>
+                                <td>데이터가 내포하는 의미를 분석하고, 감성적/이성적 관점 가운데 무엇을 보여줄지 정하며, 관점에 따라 정보를 재구성하고 위계 질서를 세운다.</td>
+                            </tr>
+                            <tr>
+                                <td>3. 스케치와 구현</td>
+                                <td>시각적 컨셉 브레인스토밍, 시각적 위계 설계, 타이포그래피·컬러·형태·사이즈·두께의 타겟 사용, 매체 선택까지 이어간다.</td>
+                            </tr>
+                        </table>
+
+                        <div class="lecture-note">
+                            <p><strong>체크리스트.</strong> 이번 과제를 준비할 때 최소한 네 가지 프레임은 손에 쥐고 있어야 한다고 느껴졌다. 정보 분류의 5가지 방법(LATCH), 정보의 5가지 위계(1차~5차), 컬러의 4가지 기능, 정보디자인의 시각적 구성요소다. 이 프레임이 빠지면 관점이 없는 수집으로 끝나기 쉽다.</p>
+                        </div>
+
+                        <p>즉 다음 주까지는 2번까지, 곧 정보를 재구성하고 1차~5차 설정 정보를 잡아서 가져가야 한다. 여기서 핵심은 목표지향적으로 LATCH를 적용해서 컨셉을 잡는 것이다. 세계 정보도 넣을 수 있다. 예를 들어 날씨를 넣는다면 출퇴근과 수면 패턴에 영향을 주는 식으로 연결될 수 있다.</p>
+
+                        <h3>10. Richard Saul Wurman의 Integrating Messages</h3>
+                        <p>후반부에는 Richard Saul Wurman의 <em>Integrating Messages</em> 원칙도 소개되었다. 이 기준은 발표, 이력서, 정보 패널처럼 “무엇을 어떻게 전달할 것인가”가 중요한 모든 작업에 적용할 수 있다.</p>
+
+                        <table class="stat-table">
+                            <tr>
+                                <th>원칙</th>
+                                <th>의미</th>
+                            </tr>
+                            <tr>
+                                <td>1. Making our own connections first</td>
+                                <td>이 정보와 나 사이의 가장 가까운 연결을 먼저 생각해야 한다.</td>
+                            </tr>
+                            <tr>
+                                <td>2. Remembering what it's like not to know</td>
+                                <td>내가 몰랐을 때를 떠올려야 한다. 알기 전과 후의 차이가 없다면 아직 진짜 인사이트가 아니다.</td>
+                            </tr>
+                            <tr>
+                                <td>3. Creating interests</td>
+                                <td>작업의 첫인상에서 무엇이 흥미를 끌 것인지 설계해야 한다.</td>
+                            </tr>
+                            <tr>
+                                <td>4. Making a path of interests</td>
+                                <td>1차부터 5차 정보까지 관심이 이동하는 경로를 만들어야 한다.</td>
+                            </tr>
+                            <tr>
+                                <td>5. Keeping your main information from channel conflicts</td>
+                                <td>주된 정보가 다른 채널과 충돌하며 흐려지지 않도록 관리해야 한다.</td>
+                            </tr>
+                            <tr>
+                                <td>6. Tell it by itself, show it by itself</td>
+                                <td>말하지 않아도, 따로 설명하지 않아도 정보가 스스로 전달되어야 한다.</td>
+                            </tr>
+                        </table>
+
+                        <p>수업의 표현을 빌리면, “이게 특별한데?”, “finding이 있네?”라는 반응이 나와야 진짜 분석이다. 그렇지 않다면 아직 분석이 덜 된 것이다.</p>
+
+                        <h3>11. 개인 데이터 분석의 방향: 감정, 관계, 일정, 위치, 소비를 함께 읽기</h3>
+                        <p>이제 개인 데이터로 다시 돌아오면, 분석은 단순한 집계가 아니라 관계와 이유를 의심하는 과정이 된다. 스트레스 상황이나 이벤트, 출퇴근, 중요한 10일 정도의 특정 구간을 떼어 깊게 보는 방식, 카드값과 감정의 관계, 소비의 대상과 그때의 기분, 카카오톡에서 시작된 인간관계 분석, 늦은 밤 컴퓨터 사용 기록과 검색 카테고리의 관계까지 모두 분석 재료가 될 수 있다.</p>
+
+                        <table class="stat-table">
+                            <tr>
+                                <th>분석 관점</th>
+                                <th>질문</th>
+                                <th>가능한 메시지</th>
+                            </tr>
+                            <tr>
+                                <td>스트레스와 소비</td>
+                                <td>스트레스가 높을 때 돈을 더 쓰는가, 오히려 안 쓰는가?</td>
+                                <td>감정과 지출의 방향성이 예상과 다를 수 있다</td>
+                            </tr>
+                            <tr>
+                                <td>시간과 장소</td>
+                                <td>언제, 어디서 일어났는가?</td>
+                                <td>경험을 묻는 데 가장 기본적인 축은 시간과 장소다</td>
+                            </tr>
+                            <tr>
+                                <td>나를 위한 소비 vs 타인을 위한 소비</td>
+                                <td>이 지출은 누구를 위한 것이었는가?</td>
+                                <td>내 데이터라도 타인의 영향이 핵심 원인일 수 있다</td>
+                            </tr>
+                            <tr>
+                                <td>업무 / 성장 / 협업</td>
+                                <td>내 시간이 정말 내 성장을 위한 것이었나, 조직을 위한 것이었나?</td>
+                                <td>생각보다 혼자 일하는 사람인지, 협업 중심인지 드러날 수 있다</td>
+                            </tr>
+                            <tr>
+                                <td>심야 컴퓨터 사용</td>
+                                <td>새벽까지 켜 둔 날엔 어떤 활동을 했는가?</td>
+                                <td>개발, 논문 리서치, 검색 카테고리와 연결될 수 있다</td>
+                            </tr>
+                            <tr>
+                                <td>관계와 대화</td>
+                                <td>누구와 있었는지가 드러나는가?</td>
+                                <td>혼자 하는 일인지, 집단을 위한 일인지 읽힐 수 있다</td>
+                            </tr>
+                        </table>
+
+                        <p>특히 흥미로웠던 예시는 “엄마의 화가 나의 쓴 돈에 반비례한다”는 관찰이었다. 값이 큰 돈을 크게 보여주는 대신, 편의점에서 몇천 원을 썼을 때처럼 적게 쓴 돈을 크게, 좋은 음식처럼 큰돈은 작게 보여주면, 금액 크기가 아니라 감정 위계를 1차 정보로 만들 수 있다. 즉 hierarchy는 수치의 절대 크기만 따르는 것이 아니라, <strong>메시지를 드러내기 위해 수치의 시각적 비중을 의도적으로 재배분하는 것</strong>이 될 수 있다.</p>
+
+                        <div class="lecture-note">
+                            <p><strong>메모.</strong> 나의 셀프 에스노그라피이기 때문에 한 단계 더 깊게 들어가야 한다는 말이 인상적이었다. 예를 들어 “나를 위한 소비가 없다”는 결론으로 끝내지 말고, 장바구니에는 백 개가 쌓여 있다든지, 실제 지출로 이어지지 않은 욕망과 망설임까지 함께 봐야 더 정확한 자기 분석이 된다는 뜻이다.</p>
+                        </div>
+
+                        <p>또한 LATCH는 기본적으로 이성적 분석에 가까우나, 그 위에 감성적 분석도 같이 얹는 것이 좋다고 했다. 감정은 꼭 1차 정보에 직접 드러나지 않아도 되고, 오히려 2차나 3차 정보에서 더 강하게 드러날 수도 있다. 색상도 여기에 중요한 역할을 할 수 있다.</p>
+
+                        <p>그래서 “본인을 보여주는 것이 무엇인지”를 묻는 일이 중요해진다. 샘플을 보다 보면 내가 이타적인 사람인지, 공감 능력이 실제로 어떤지, 내 시간이 나를 위한 것인지 남을 위한 것인지처럼 자기 인식이 수정될 수도 있다. 수업은 이런 발견이야말로 개인 데이터 분석의 진짜 재미라고 보는 듯했다.</p>
+
+                        <div class="lecture-note">
+                            <p><strong>확장 메모.</strong> 수업에서는 고전적 2차원, 3차원 데이터 분석 외에 “양자컴퓨팅적 사고처럼 한 번에 거시적 통찰을 얻을 수 있다면?”이라는 상상도 잠깐 나왔다. 말 그대로 기술 제안을 한 것은 아니지만, 데이터를 너무 평면적으로만 보지 말고 여러 관계를 동시에 조망하는 시각을 가져보라는 자극으로 읽을 수 있었다.</p>
+                        </div>
+
+                        <h3>12. 피드백과 결론: 우리는 서머리가 아니라 토털을 본다</h3>
+                        <p>내 데이터에 대한 피드백으로는 “어떤 사람과 함께 있었는지가 안 보인다”, “오롯이 나를 위한 일인지 집단을 위한 일인지 더 읽히면 좋겠다”, “개발자이자 대학원생으로 정말 일을 많이 한 것이 맞는지, 아니면 생각보다 남을 위한 일을 더 많이 한 것인지 분석해보라”는 방향이 나왔다. 관계 속 성장이라 생각했는데 실제로는 혼자 있는 시간이 훨씬 길 수도 있고, 그 안에 내가 아직 모르는 숨겨진 데이터가 있을 수 있다는 것이다.</p>
+
+                        <p>결국 가장 핵심적인 메시지는 분명했다. 우리는 단순 summary를 만드는 것이 아니라, 전체를 보는 total view를 만들어야 한다. 정보디자인은 한 줄 요약을 위한 예쁜 포장지가 아니라, 전체를 통찰하고 관계를 드러내는 구조 설계다.</p>
+
+                        <ul>
+                            <li>같은 데이터도 위계와 관점이 달라지면 전혀 다른 메시지가 된다.</li>
+                            <li>LATCH는 정보를 정리하는 기본 언어이며, 레이아웃도 그 언어 안에서 설계할 수 있다.</li>
+                            <li>1차에서 5차 정보까지의 레이어를 구성해야 메시지가 깊어진다.</li>
+                            <li>텍스트 분석과 가설 수립을 거치며 메시지는 다시 정의된다.</li>
+                            <li>미디어는 감각의 확장이며, 매체 특성에 따라 정보 설계 방식도 달라져야 한다.</li>
+                            <li>Data에서 Wisdom으로 갈수록 interaction과 experience의 비중이 커진다.</li>
+                            <li>개인 데이터 분석은 숫자 요약이 아니라, 관계와 감정, 시간과 장소, 이유를 의심하는 자기 탐구여야 한다.</li>
+                            <li>결론은 summary가 아니라 total이다.</li>
+                        </ul>
+                    </div>
+
+                    <div class="lang-en">
+                        <p class="week-references"><em>Keywords: Five Ultimate Hat Racks, LATCH, 1st-5th order information, Marshall McLuhan, hot media, cool media, data-information-knowledge-wisdom, integrating messages, self-ethnography</em></p>
+
+                        <p>This third week pushed information design beyond data collection into a deeper question: <strong>by what hierarchy and perspective should the same material be reorganized?</strong> The lecture kept returning to the point that identical data can produce entirely different stories depending on how it is grouped, ordered, layered, and narrated.</p>
+
+                        <div class="lecture-note">
+                            <p><strong>Note.</strong> The session revolved around three connected frameworks. First, Richard Saul Wurman's LATCH and the logic of 1st-to-5th order information. Second, Marshall McLuhan's theory of media and why the nature of a medium changes how information should be designed. Third, the idea that personal data should not stop at summary, but move toward total interpretation and self-ethnography.</p>
+                        </div>
+
+                        <h3>1. The Same Collection Can Tell Different Stories</h3>
+                        <p>The class opened with Picasso exhibitions. A city may hold the same thousand works year after year, yet each exhibition can feel entirely different depending on the conceptual frame used to organize them.</p>
+
+                        <table class="stat-table">
+                            <tr>
+                                <th>Curatorial lens</th>
+                                <th>How the exhibition reads</th>
+                                <th>Main effect</th>
+                            </tr>
+                            <tr>
+                                <td>Color periods</td>
+                                <td>Blue, Yellow, Green, Red, and so on</td>
+                                <td>The works are read through mood and color-based eras</td>
+                            </tr>
+                            <tr>
+                                <td>Life trajectory</td>
+                                <td>From childhood to adulthood across rooms and floors</td>
+                                <td>The works become a narrative of time and growth</td>
+                            </tr>
+                            <tr>
+                                <td>Relational hierarchy</td>
+                                <td>Picasso and the seven women, ordered by influence</td>
+                                <td>The works are read through human relationships and impact</td>
+                            </tr>
+                        </table>
+
+                        <p>The implication for personal data is direct: the point is not only what data one has, but by what hierarchy it is made visible.</p>
+
+                        <h3>2. Richard Saul Wurman and the Five Ultimate Hat Racks</h3>
+                        <p>The organizing framework of the week was Richard Saul Wurman's Five Ultimate Hat Racks, usually remembered as LATCH. Value is not determined by numbers alone. It also depends on the language through which location, relation, order, and meaning are defined.</p>
+
+                        <div class="stat-formula">
+                            LATCH = Location + Alphabet + Time + Category + Hierarchy
+                        </div>
+
+                        <table class="stat-table">
+                            <tr>
+                                <th>Method</th>
+                                <th>Main question</th>
+                                <th>Meaning in practice</th>
+                            </tr>
+                            <tr>
+                                <td>Location</td>
+                                <td>Where does it happen?</td>
+                                <td>Space, region, placement, spatial context</td>
+                            </tr>
+                            <tr>
+                                <td>Alphabet</td>
+                                <td>How is it named and indexed?</td>
+                                <td>Language, labels, alphabetical ordering</td>
+                            </tr>
+                            <tr>
+                                <td>Time</td>
+                                <td>When does it happen?</td>
+                                <td>Sequence, duration, timeline, evolution</td>
+                            </tr>
+                            <tr>
+                                <td>Category</td>
+                                <td>What belongs with what?</td>
+                                <td>Grouping by type, activity, subject, class</td>
+                            </tr>
+                            <tr>
+                                <td>Hierarchy</td>
+                                <td>What matters more?</td>
+                                <td>Priority, strength, value, influence, intensity</td>
+                            </tr>
+                        </table>
+
+                        <p>LATCH works as a language for asking questions of a dataset. The same material can be transformed depending on whether it is read first through time, place, category, or hierarchy.</p>
+
+                        <h3>3. From 1st-Order to 5th-Order Information</h3>
+                        <p>The lecture then moved from basic organization to layered meaning. If “Picasso and the seven women” is the 1st-order information, place may become 2nd-order information, references may become 3rd-order information, surrounding news and world context may become 4th-order information, and wider cultural framing may become 5th-order information.</p>
+
+                        <table class="stat-table">
+                            <tr>
+                                <th>Layer</th>
+                                <th>Meaning</th>
+                                <th>Role in design</th>
+                            </tr>
+                            <tr>
+                                <td>1st-order information</td>
+                                <td>The main claim or message</td>
+                                <td>What should be perceived first</td>
+                            </tr>
+                            <tr>
+                                <td>2nd-order information</td>
+                                <td>The closest supporting pair</td>
+                                <td>The “other side of the coin” that stabilizes the main claim</td>
+                            </tr>
+                            <tr>
+                                <td>3rd-order information</td>
+                                <td>Reference information</td>
+                                <td>Nearby supporting context that increases interest</td>
+                            </tr>
+                            <tr>
+                                <td>4th-order information</td>
+                                <td>News or world information</td>
+                                <td>Connects the work to its broader present context</td>
+                            </tr>
+                            <tr>
+                                <td>5th-order information</td>
+                                <td>Cultural information</td>
+                                <td>Pushes the work into larger interpretation</td>
+                            </tr>
+                        </table>
+
+                        <p>The important point was not just to define the first two layers, but to think carefully about how far the third layer should go to create interest, and how the fourth and fifth layers should connect the work to its time and culture.</p>
+
+                        <h3>4. Text Collection, Hypothesis, Hierarchy, and Redefined Message</h3>
+                        <p>The class stressed that this stage is still about collecting text and numeric information. But information design is not about visualizing raw findings too early. One must first analyze the text, form a hypothesis, build a hierarchy, and then be ready for the message to change after analysis.</p>
+
+                        <div class="stat-comparison">
+                            <div class="stat-comparison-item">
+                                <h4>Before analysis</h4>
+                                <p>You may say, “My data will probably show this.” The message is provisional.</p>
+                            </div>
+                            <div class="stat-comparison-item">
+                                <h4>After analysis</h4>
+                                <p>Once the hierarchy is built and the dataset is read properly, the message may come out quite differently and need to be redefined.</p>
+                            </div>
+                        </div>
+
+                        <p>In that sense, information design is not decoration of a finished conclusion. It is a recursive analytical process in which the conclusion itself is refined.</p>
+
+                        <h3>5. Visual Language, Visual Concept, and Media Choice</h3>
+                        <p>Visual language was framed as information graphics, but only after text collection, analysis, and hypothesis-building. The lecture repeatedly asked how emotional and logical approaches should be balanced.</p>
+
+                        <table class="stat-table">
+                            <tr>
+                                <th>Design axis</th>
+                                <th>Question</th>
+                                <th>Examples</th>
+                            </tr>
+                            <tr>
+                                <td>Visual concept</td>
+                                <td>Should the work lean emotional or logical?</td>
+                                <td>Cold analytic tone vs intimate narrative tone</td>
+                            </tr>
+                            <tr>
+                                <td>Visual structure</td>
+                                <td>Should it be gentle, metaphorical, symbolic, explanatory?</td>
+                                <td>Metaphoric poster vs explanatory chart system</td>
+                            </tr>
+                            <tr>
+                                <td>Medium</td>
+                                <td>What medium fits the message?</td>
+                                <td>Poster, card, accordion fold, printed object</td>
+                            </tr>
+                            <tr>
+                                <td>Unit system</td>
+                                <td>How will hierarchy be structured visually?</td>
+                                <td>Rules of size, thickness, color, spacing</td>
+                            </tr>
+                            <tr>
+                                <td>Evaluation</td>
+                                <td>Does the work communicate without explanation?</td>
+                                <td>First impression, reading path, self-explanation</td>
+                            </tr>
+                        </table>
+
+                        <p>This also includes thinking through positive versus negative framing, and concrete versus emotional concepts. Rather than drawing every element separately, the lecture suggested building hierarchies through related methods and organizing them as families within one system.</p>
+
+                        <p>The lecture's phrase “a chair is not a chair” suggested that once something is reanalyzed as information, it can be reconstructed into a new conceptual system.</p>
+
+                        <h3>6. Layout Is Also Information</h3>
+                        <p>One of the strongest ideas of the week was that layout itself can emerge from LATCH. If the x-axis is Monday to Sunday and the y-axis is day 1 to day 31, then the background grid itself already contains time and category information. White gaps and empty spaces are not neutral; they become part of the information value.</p>
+
+                        <p>The lecture described how even widening aisles between columns can produce emotional spaciousness. In other words, the negative space between units can shape how a viewer feels, not just what they read.</p>
+
+                        <h3>7. Marshall McLuhan: Media as Extensions of Human Senses</h3>
+                        <p>The class then moved into Marshall McLuhan's <em>Understanding Media</em>. Media was defined broadly as anything that carries and communicates information, and more deeply as an extension of human sensory organs.</p>
+
+                        <table class="stat-table">
+                            <tr>
+                                <th>Medium</th>
+                                <th>Extension of what?</th>
+                                <th>Main reading</th>
+                            </tr>
+                            <tr>
+                                <td>Newspaper</td>
+                                <td>Eye</td>
+                                <td>Visually oriented, archival, one-directional</td>
+                            </tr>
+                            <tr>
+                                <td>Radio</td>
+                                <td>Ear</td>
+                                <td>Auditory, immediate, voice-centered</td>
+                            </tr>
+                            <tr>
+                                <td>Television</td>
+                                <td>Eye + ear</td>
+                                <td>Composite and multi-sensory</td>
+                            </tr>
+                            <tr>
+                                <td>Telescope / microscope</td>
+                                <td>Amplified single sense</td>
+                                <td>Extreme extensions of seeing</td>
+                            </tr>
+                        </table>
+
+                        <div class="stat-comparison">
+                            <div class="stat-comparison-item">
+                                <h4>Hot Media</h4>
+                                <p>Books and newspapers were described as strong in storage, fixed, one-directional, and traditional.</p>
+                            </div>
+                            <div class="stat-comparison-item">
+                                <h4>Cool Media</h4>
+                                <p>Cool media were described as weaker in storage but stronger in participation, interactivity, and multi-user engagement.</p>
+                            </div>
+                        </div>
+
+                        <p>Another key point was that early media can be thought of as analog stages, each extending one sense in a relatively controlled way. Once convergence enters, distinct channels merge, and information becomes more variable, interactive, and time-sensitive.</p>
+
+                        <p>This matters for information design because medium choice changes what should be shown, what must be omitted, and what kind of participation is possible.</p>
+
+                        <h3>8. Data, Information, Knowledge, Wisdom</h3>
+                        <p>The lecture explicitly distinguished data from information, then connected both to knowledge and wisdom. Interaction was the turning point.</p>
+
+                        <table class="stat-table">
+                            <tr>
+                                <th>Stage</th>
+                                <th>Definition</th>
+                                <th>Main implication</th>
+                            </tr>
+                            <tr>
+                                <td>Data</td>
+                                <td>Raw numerical records</td>
+                                <td>The assignment asks for data first, not yet information</td>
+                            </tr>
+                            <tr>
+                                <td>Information</td>
+                                <td>Meaningful structure with intent and hierarchy</td>
+                                <td>Provider-driven, relatively stable</td>
+                            </tr>
+                            <tr>
+                                <td>Knowledge</td>
+                                <td>Understanding formed through interaction and additional searching</td>
+                                <td>Cannot be fully designed in advance</td>
+                            </tr>
+                            <tr>
+                                <td>Wisdom</td>
+                                <td>Knowledge accumulated into communal judgment</td>
+                                <td>Emerges through larger participation and time</td>
+                            </tr>
+                        </table>
+
+                        <p>The lecture also warned that a provider such as a company, institution, or government should not simply dump data and tell people to interpret it on their own. Data is an asset, and it should be organized intentionally around goals and issues. In that context, even basic communication frameworks such as ATL and BTL were implicitly part of the same design vocabulary.</p>
+
+                        <p>Once interaction enters, the task becomes experience design rather than simple information delivery.</p>
+
+                        <h3>9. Assignment Structure and Dear Numbers</h3>
+                        <p>The first assignment asks students to understand the meaning and relations of 1st-to-5th order information and to work knowingly within the data-information-knowledge-wisdom framework. The second assignment may bring in numbers more directly through a “Dear Numbers” perspective.</p>
+
+                        <table class="stat-table">
+                            <tr>
+                                <th>Step</th>
+                                <th>What to do</th>
+                            </tr>
+                            <tr>
+                                <td>1. Research</td>
+                                <td>Prepare two groups of numeric data, convert percentages into actual numbers, and include both public and personal datasets.</td>
+                            </tr>
+                            <tr>
+                                <td>2. Analyze and set perspective</td>
+                                <td>Interpret what the numbers imply, choose an emotional or rational perspective, and rebuild the hierarchy accordingly.</td>
+                            </tr>
+                            <tr>
+                                <td>3. Sketch and implement</td>
+                                <td>Develop visual concepts, hierarchy, and targeted use of typography, color, form, size, and thickness across chosen media.</td>
+                            </tr>
+                        </table>
+
+                        <div class="lecture-note">
+                            <p><strong>Checklist.</strong> The assignment implicitly asks students to keep at least four frameworks in hand at once: the five methods of information classification, the five levels of information hierarchy, the four functions of color, and the core visual components of information design.</p>
+                        </div>
+
+                        <p>Weather, commuting, and sleep patterns were given as examples of how world information could be linked back into personal data.</p>
+
+                        <h3>10. Integrating Messages by Richard Saul Wurman</h3>
+                        <p>The lecture also introduced six principles for integrating messages. These apply not only to course projects, but also to presentations, portfolios, and resumes.</p>
+
+                        <table class="stat-table">
+                            <tr>
+                                <th>Principle</th>
+                                <th>Interpretation</th>
+                            </tr>
+                            <tr>
+                                <td>Making our own connections first</td>
+                                <td>Start from the nearest connection between the information and oneself.</td>
+                            </tr>
+                            <tr>
+                                <td>Remembering what it's like not to know</td>
+                                <td>If the difference between not knowing and knowing is small, then the finding is not strong enough yet.</td>
+                            </tr>
+                            <tr>
+                                <td>Creating interests</td>
+                                <td>The first impression must generate curiosity.</td>
+                            </tr>
+                            <tr>
+                                <td>Making a path of interests</td>
+                                <td>Interest should move through the layers of information.</td>
+                            </tr>
+                            <tr>
+                                <td>Keeping your main information from channel conflicts</td>
+                                <td>The main message must not be blurred by competing channels.</td>
+                            </tr>
+                            <tr>
+                                <td>Tell it by itself, show it by itself</td>
+                                <td>The work should communicate even without verbal support.</td>
+                            </tr>
+                        </table>
+
+                        <h3>11. Personal Data, Emotion, Relationships, and Hidden Causes</h3>
+                        <p>The lecture spent significant time on how personal data should be analyzed. Stress events, commuting, short ten-day slices, spending under emotional pressure, late-night computer use, Kakao-based relationship traces, whether time was spent for oneself or for others, and whether one's work was for personal growth or for an organization were all suggested as viable analytical directions.</p>
+
+                        <table class="stat-table">
+                            <tr>
+                                <th>Analytical angle</th>
+                                <th>Main question</th>
+                                <th>Possible finding</th>
+                            </tr>
+                            <tr>
+                                <td>Stress and spending</td>
+                                <td>Do I spend more under stress, or less?</td>
+                                <td>The direction may be counterintuitive</td>
+                            </tr>
+                            <tr>
+                                <td>Time and place</td>
+                                <td>When and where did it happen?</td>
+                                <td>Experience is often anchored first in time and place</td>
+                            </tr>
+                            <tr>
+                                <td>Self vs others</td>
+                                <td>Was this really for me, or for someone else?</td>
+                                <td>“My” data may actually be shaped by others</td>
+                            </tr>
+                            <tr>
+                                <td>Work and contribution</td>
+                                <td>Was I working for my own growth, my company, or someone else's needs?</td>
+                                <td>The answer may differ from self-image</td>
+                            </tr>
+                            <tr>
+                                <td>Late-night computer use</td>
+                                <td>What kinds of tasks kept me up?</td>
+                                <td>Development, research, and search categories may explain the pattern</td>
+                            </tr>
+                        </table>
+
+                        <p>A memorable example suggested visualizing small convenience-store purchases as larger and expensive good meals as smaller, in order to show that a mother's anger was inversely related to the money spent. The point was not numerical accuracy in size, but using hierarchy to make the real message visible.</p>
+
+                        <div class="lecture-note">
+                            <p><strong>Note.</strong> Because this is self-ethnography, the instruction was to go one layer deeper. “There was no spending for myself” may not be enough if desire remains visible elsewhere, such as in a cart full of items never purchased. Hidden motives and suspended actions may matter as much as visible spending.</p>
+                        </div>
+
+                        <p>The lecture also briefly imagined whether analysis could one day move beyond conventional 2D or 3D methods toward more simultaneous, large-scale insight, almost in a quantum-computing-like metaphorical sense. The broader point was to avoid reading data too flatly.</p>
+
+                        <p>This is also why the lecture kept asking what kind of person the data reveals one to be. Is this person more altruistic than expected? Less empathic than imagined? More solitary? More company-oriented than self-development-oriented? The goal was not self-flattery, but honest reinterpretation.</p>
+
+                        <h3>12. Final Point: Not Summary, but Total View</h3>
+                        <p>The final feedback stressed that the goal is not summary but total view. A good information design project does not merely compress data. It reveals relationships, tensions, causes, absences, and hidden structures across the whole field.</p>
+
+                        <ul>
+                            <li>The same data can become entirely different depending on hierarchy and perspective.</li>
+                            <li>LATCH is a practical language for organization, and layout itself can emerge from it.</li>
+                            <li>1st-to-5th order information creates depth beyond immediate facts.</li>
+                            <li>Analysis can and should redefine the original hypothesis.</li>
+                            <li>Media choice matters because media changes the mode of communication and participation.</li>
+                            <li>From data to wisdom, interaction becomes increasingly central.</li>
+                            <li>Personal data analysis should question relationships, emotions, time, place, and hidden causes.</li>
+                            <li>The goal is not a summary sentence, but a total structure of understanding.</li>
+                        </ul>
+                    </div>
+                </div>
+            </section>
+        </article>
+
+        <div id="site-footer"></div>
+    </div>
+
+    <script src="../../../common.js"></script>
+</body>
+</html>
