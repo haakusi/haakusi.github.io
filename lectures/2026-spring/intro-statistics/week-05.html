@@ -1,0 +1,645 @@
+<!DOCTYPE html>
+<html data-theme="dark" data-lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Intro to Statistics - Week 5 - Sewon Park</title>
+    <link rel="stylesheet" type="text/css" href="../../../style.css">
+    <link rel="stylesheet" type="text/css" href="../../../assets/css/lectures.css">
+    <script src="../../../assets/js/mathjax-config.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js" async></script>
+</head>
+<body>
+    <button class="theme-toggle" onclick="toggleTheme()" aria-label="Toggle dark mode"></button>
+    <button class="lang-toggle" onclick="toggleLanguage()" aria-label="Toggle language">EN</button>
+
+    <div class="container">
+        <div id="site-header"></div>
+        <div id="site-nav"></div>
+
+        <article class="course-page">
+            <div class="course-header">
+                <h1 data-en="Intro to Statistics" data-kr="기초통계">Intro to Statistics</h1>
+                <p class="course-meta" data-en="2026 Spring | Fri 19:00-22:00" data-kr="2026 봄학기 | 금요일 19:00-22:00">2026 Spring | Fri 19:00-22:00</p>
+            </div>
+
+            <div class="course-nav">
+                <a href="../../../lectures.html" class="back-to-lectures" data-en="Back to Lectures" data-kr="강의 목록으로">Back to Lectures</a>
+                <span class="nav-separator">/</span>
+                <a href="./index.html" class="back-to-course" data-en="Course Home" data-kr="과목 홈">Course Home</a>
+            </div>
+
+            <div class="week-nav">
+                <span data-en="Weeks:" data-kr="주차:">Weeks:</span>
+                <a href="week-01.html" class="week-link">W1</a>
+                <a href="week-02.html" class="week-link">W2</a>
+                <a href="week-03.html" class="week-link">W3</a>
+                <a href="week-04.html" class="week-link">W4</a>
+                <a href="week-05.html" class="week-link current">W5</a>
+            </div>
+
+            <section class="week-section" id="week-05">
+                <h2 data-en="Week 5" data-kr="5주차">Week 5</h2>
+                <p class="week-date">2026-04-03</p>
+                <div class="week-content">
+                    <div class="lang-kr" hidden>
+                        <p class="week-references"><em>Keywords: probability distributions, normal distribution, hypergeometric distribution, geometric distribution, negative binomial distribution, Poisson distribution, finite population correction, binomial approximation</em></p>
+
+                        <p>이번 5주차는 5장 확률분포를 본격적으로 다루면서, “어떤 상황이 어떤 모집단 구조와 분포를 전제하는가”를 읽는 감각을 키우는 시간이었다. 수업의 핵심은 공식을 외우는 데 있지 않고, 문제를 보자마자 이항분포인지, 초기하분포인지, 기하분포인지, 포아송분포인지 <strong>상황에 맞는 확률모형을 먼저 판단하는 힘</strong>에 있었다. 이 판단력이 결국 실력이라는 말이 가장 크게 남았다.</p>
+
+                        <div class="lecture-note">
+                            <p><strong>메모.</strong> 수업에서는 실무적으로 정규분포가 매우 중심적이며 많은 현상을 정규근사로 설명하려는 태도가 중요하다고 했다. 다만 이것을 “모든 분포가 문자 그대로 정규분포”라고 이해하면 과하다. 더 정확하게는, <strong>합, 평균, 오차, 큰 시행횟수에서 나타나는 집단적 패턴</strong>이 정규분포와 강하게 연결된다고 이해하는 편이 좋다.</p>
+                        </div>
+
+                        <h3>1. 정규분포는 왜 중심에 놓이는가</h3>
+                        <p>정규분포(normal distribution)는 연속형 확률분포이고, 평균 \(\mu\)를 중심으로 좌우 대칭인 종 모양을 가진다. 보통</p>
+
+                        <div class="stat-formula">
+                            $$X \sim N(\mu, \sigma^2)$$
+                        </div>
+
+                        <p>처럼 쓰며, \(\sigma\)가 커지면 더 넓고 완만한 모양이 되고, \(\sigma\)가 작아지면 평균 주변에 더 뾰족하게 몰린다. 즉 평균은 중심을 정하고, 분산 또는 표준편차는 퍼짐의 폭을 정한다.</p>
+
+                        <div class="stat-formula">
+                            $$f(x)=\frac{1}{\sqrt{2\pi}\sigma}\exp\left(-\frac{1}{2}\left(\frac{x-\mu}{\sigma}\right)^2\right)$$
+                        </div>
+
+                        <table class="stat-table">
+                            <tr>
+                                <th>요소</th>
+                                <th>역할</th>
+                                <th>직관</th>
+                            </tr>
+                            <tr>
+                                <td>\(\mu\)</td>
+                                <td>중심 위치</td>
+                                <td>그래프의 가운데가 어디인가를 정한다</td>
+                            </tr>
+                            <tr>
+                                <td>\(\sigma\)</td>
+                                <td>표준편차, 퍼짐의 크기</td>
+                                <td>크면 넓어지고, 작으면 가운데에 더 모인다</td>
+                            </tr>
+                            <tr>
+                                <td>\(\sigma^2\)</td>
+                                <td>분산</td>
+                                <td>퍼짐을 제곱 단위로 측정한다</td>
+                            </tr>
+                        </table>
+
+                        <p>수업에서 갈턴 보드(Galton board) 이야기가 나온 것도 이 때문이다. 위에서 구슬을 떨어뜨리면 왼쪽 또는 오른쪽으로 조금씩 흔들리다가 가운데 근처로 가장 많이 쌓이고, 양 끝으로 갈수록 드물어진다. 만약 왼쪽/오른쪽으로 기울어지는 확률 \(p\)가 한쪽으로 더 크면 분포도 그 방향으로 치우친다. 즉 갈턴 보드는 이항적 선택이 많이 반복될 때 왜 정규분포 비슷한 종 모양이 나타나는지를 보여주는 시각적 비유다.</p>
+
+                        <h3>2. 이산형 분포와 연속형 분포를 먼저 구분해야 한다</h3>
+                        <p>이번 주차에서 계속 강조된 기준은, 문제를 보자마자 “이산형(discrete)인가, 연속형(continuous)인가”를 먼저 묻는 것이다. 이산형 분포는 값이 하나씩 끊어져 있고, 연속형 분포는 구간 전체에서 값을 가진다.</p>
+
+                        <table class="stat-table">
+                            <tr>
+                                <th>구분</th>
+                                <th>대표 분포</th>
+                                <th>수학적 처리</th>
+                                <th>핵심 함수</th>
+                            </tr>
+                            <tr>
+                                <td>이산형</td>
+                                <td>이항, 초기하, 기하, 음이항, 포아송</td>
+                                <td>합으로 계산</td>
+                                <td>PMF \(p(x)\)</td>
+                            </tr>
+                            <tr>
+                                <td>연속형</td>
+                                <td>정규, 지수, 감마</td>
+                                <td>적분으로 계산</td>
+                                <td>PDF \(f(x)\)</td>
+                            </tr>
+                        </table>
+
+                        <p>즉 이번 주까지는 이산형 확률분포가 중심이고, 다음 시간부터는 정규분포와 표준정규분포 같은 연속형 확률분포로 넘어간다. 수업 말미의 “이산형은 서메이션, 연속형은 인테그랄”이라는 문장이 전체 구조를 잘 요약한다.</p>
+
+                        <h3>3. 이항분포: 성공/실패를 \(n\)번 반복할 때의 성공 횟수</h3>
+                        <p>이항분포는 각 시행이 성공 또는 실패 두 결과만을 가지고, 성공확률 \(p\)가 일정하며, 각 시행이 서로 독립일 때 사용한다. 즉 0 또는 1의 베르누이 시행을 \(n\)번 반복한 총 성공 횟수의 분포다.</p>
+
+                        <div class="stat-formula">
+                            $$X \sim \mathrm{Binomial}(n,p)$$
+                            $$P(X=x)=\binom{n}{x}p^x(1-p)^{n-x}, \qquad x=0,1,2,\ldots,n$$
+                        </div>
+
+                        <div class="stat-formula">
+                            $$E(X)=np, \qquad V(X)=np(1-p)$$
+                        </div>
+
+                        <p>성공확률이 \(p=0.5\)인 동전을 여러 번 던질수록 성공 횟수의 분포는 가운데를 중심으로 가장 높아지고 좌우 대칭에 가까워진다. 이것이 이항분포가 정규분포와 연결되는 첫 번째 중요한 직관이다.</p>
+
+                        <table class="stat-table">
+                            <tr>
+                                <th>이항분포를 쓸 조건</th>
+                                <th>의미</th>
+                            </tr>
+                            <tr>
+                                <td>시행 횟수 \(n\)이 고정</td>
+                                <td>몇 번 반복할지 미리 정해져 있다</td>
+                            </tr>
+                            <tr>
+                                <td>각 시행은 성공/실패 두 결과</td>
+                                <td>0 또는 1의 베르누이 구조다</td>
+                            </tr>
+                            <tr>
+                                <td>성공확률 \(p\) 일정</td>
+                                <td>시행마다 성공확률이 변하지 않는다</td>
+                            </tr>
+                            <tr>
+                                <td>독립 시행</td>
+                                <td>이전 결과가 다음 결과에 영향을 주지 않는다</td>
+                            </tr>
+                        </table>
+
+                        <h3>4. 초기하분포: 비복원추출에서는 이항분포가 아니라 초기하다</h3>
+                        <p>이번 주차에서 가장 중요한 구분 중 하나는, 모집단에서 표본을 뽑을 때 <strong>복원추출인지 비복원추출인지</strong>에 따라 분포가 달라진다는 점이었다. 모집단 크기가 \(N\), 그중 성공 상태가 \(M\), 실패 상태가 \(N-M\), 표본크기가 \(n\)이고, 표본 안의 성공 개수를 \(X\)라고 하면 초기하분포를 쓴다.</p>
+
+                        <div class="stat-formula">
+                            $$X \sim \mathrm{Hypergeometric}(N,M,n)$$
+                            $$P(X=x)=\frac{\binom{M}{x}\binom{N-M}{n-x}}{\binom{N}{n}}$$
+                        </div>
+
+                        <div class="stat-formula">
+                            $$E(X)=n\frac{M}{N}$$
+                            $$V(X)=n\frac{M}{N}\left(1-\frac{M}{N}\right)\frac{N-n}{N-1}$$
+                        </div>
+
+                        <p>여기서 마지막에 붙는</p>
+
+                        <div class="stat-formula">
+                            $$\frac{N-n}{N-1}$$
+                        </div>
+
+                        <p>이 바로 유한모집단 수정계수(finite population correction)다. 표본비율이 커질수록 비복원추출의 영향이 무시되지 않기 때문에 분산이 줄어든다. 반대로 \(N\)이 매우 크고 \(n\)이 상대적으로 작으면 이 값은 거의 1에 가까워져 초기하분포를 이항분포로 근사해도 괜찮아진다.</p>
+
+                        <div class="stat-formula">
+                            $$\frac{N-n}{N-1}\approx 1 \qquad (N \gg n)$$
+                        </div>
+
+                        <p>수업에서 나온 예제 5-9의 구조가 바로 이것이다. \(N=10000\), \(M=100\), \(n=200\)일 때 표본에서 성공이 3명 이하일 확률은</p>
+
+                        <div class="stat-formula">
+                            $$P(X\le 3)=\sum_{x=0}^{3}\frac{\binom{100}{x}\binom{9900}{200-x}}{\binom{10000}{200}}$$
+                        </div>
+
+                        <p>처럼 계산한다. 그런데 이때 성공비율이 \(p=\frac{100}{10000}=0.01\)이고 모집단이 매우 크므로, 초기하분포 대신 이항분포 \(X \sim \mathrm{Binomial}(200,0.01)\)로 근사해서</p>
+
+                        <div class="stat-formula">
+                            $$P(X\le 3)\approx \sum_{x=0}^{3}\binom{200}{x}(0.01)^x(0.99)^{200-x}$$
+                        </div>
+
+                        <p>로 계산할 수도 있다. 실제 실무에서는 정확한 초기하분포를 써야 하는지, 이항근사로 충분한지를 판단하는 것이 중요하다.</p>
+
+                        <h3>5. 기하분포와 음이항분포: “몇 번 실패한 뒤 성공하는가”를 묻는 분포</h3>
+                        <p>기하분포와 음이항분포는 모두 “성공이 나올 때까지 기다리는 구조”를 다룬다. 다만 무엇을 확률변수로 두느냐를 정확히 정해야 혼동이 없다. 이번 메모에서는 수업에서 나온 방식대로 \(X\)를 <strong>성공 전까지의 실패 횟수</strong>로 두겠다.</p>
+
+                        <h4>5-1. 기하분포</h4>
+                        <p>기하분포는 첫 번째 성공이 나오기 전까지 몇 번 실패하는지를 본다. 즉 음이항분포에서 \(r=1\)인 특수한 경우다.</p>
+
+                        <div class="stat-formula">
+                            $$X \sim \mathrm{Geometric}(p)$$
+                            $$P(X=x)=p(1-p)^x, \qquad x=0,1,2,\ldots$$
+                        </div>
+
+                        <div class="stat-formula">
+                            $$E(X)=\frac{1-p}{p}, \qquad V(X)=\frac{1-p}{p^2}$$
+                        </div>
+
+                        <p>여기서 총 시행횟수는 실패 횟수에 마지막 성공 1회를 더한 \(X+1\)이다. 따라서 총 시행횟수의 기댓값은</p>
+
+                        <div class="stat-formula">
+                            $$E(X+1)=\frac{1}{p}$$
+                        </div>
+
+                        <p>가 된다. 예를 들어 동전 던지기에서 앞면 확률이 \(p=\frac{1}{2}\)라면, 처음 앞면이 나올 때까지의 평균 총 시행횟수는 2번이다. 이것이 “성공확률의 역수가 평균 기다리는 시행횟수”라는 문장의 정확한 뜻이다.</p>
+
+                        <h4>5-2. 음이항분포</h4>
+                        <p>음이항분포는 \(r\)번째 성공이 나올 때까지의 실패 횟수를 모델링한다.</p>
+
+                        <div class="stat-formula">
+                            $$X \sim \mathrm{NegativeBinomial}(r,p)$$
+                            $$P(X=x)=\binom{x+r-1}{x}p^r(1-p)^x, \qquad x=0,1,2,\ldots$$
+                        </div>
+
+                        <div class="stat-formula">
+                            $$E(X)=\frac{r(1-p)}{p}, \qquad V(X)=\frac{r(1-p)}{p^2}$$
+                        </div>
+
+                        <p>즉 음이항분포는 “\(r\)번 성공할 때까지 몇 번 실패하는가”를 보고, 기하분포는 그중 \(r=1\)인 경우라고 이해하면 된다.</p>
+
+                        <table class="stat-table">
+                            <tr>
+                                <th>분포</th>
+                                <th>확률변수의 의미</th>
+                                <th>핵심 질문</th>
+                            </tr>
+                            <tr>
+                                <td>기하분포</td>
+                                <td>첫 성공 전까지의 실패 횟수</td>
+                                <td>처음 성공하려면 몇 번 실패하는가?</td>
+                            </tr>
+                            <tr>
+                                <td>음이항분포</td>
+                                <td>\(r\)번째 성공 전까지의 실패 횟수</td>
+                                <td>\(r\)번 성공하려면 몇 번 실패하는가?</td>
+                            </tr>
+                        </table>
+
+                        <h3>6. 기하분포와 지수분포의 공통 특징: 무기억성(memoryless property)</h3>
+                        <p>수업에서 “기하분포와 지수분포의 특징이 똑같다”라고 한 부분의 핵심은 무기억성이다. 기하분포는 이미 여러 번 실패했더라도, 앞으로 얼마나 더 기다려야 하는지의 분포가 처음 시작할 때와 똑같다.</p>
+
+                        <div class="stat-formula">
+                            $$P(X\ge i+j \mid X\ge i)=P(X\ge j)$$
+                        </div>
+
+                        <p>즉 \(i\)번 실패했다고 해서 앞으로 기다릴 구조가 달라지지 않는다. 연속형 분포인 지수분포도 같은 성질을 가진다. 그래서 “고장률이 일정하다”고 가정하는 전등, 부품, 전자제품 수명 모델에 지수분포가 자주 쓰인다. 이미 오래 썼다고 해서 그 자체만으로 다음 순간의 고장 확률 구조가 달라지지 않는다는 이상화된 가정이다.</p>
+
+                        <div class="lecture-note">
+                            <p><strong>주의.</strong> 현실의 모든 가전제품 수명이 정확히 지수분포를 따른다고 단정하면 과하다. 더 정확히는, <strong>고장률이 일정하다고 보는 단순 수명모형</strong>에서 지수분포가 좋은 출발점이 된다고 이해하는 편이 맞다. 감마분포는 이런 시간을 \(r\)번째 사건까지 확장한 연속형 버전으로 볼 수 있다.</p>
+                        </div>
+
+                        <p>예제 5-12처럼 아주 작은 당첨확률 \(p=0.00015\)을 가진 사건에서는, 1년(52주) 안에 적어도 한 번 당첨될 확률은 기하분포 구조로 생각할 수 있고, 평균 총 대기 주수는</p>
+
+                        <div class="stat-formula">
+                            $$E(X+1)=\frac{1}{p}=\frac{1}{0.00015}\approx 6666.667$$
+                        </div>
+
+                        <p>주가 된다. 이를 연으로 바꾸면 약 128년 수준이다. 즉 확률이 매우 작으면 “평균 대기시간”은 직관보다 훨씬 길어진다.</p>
+
+                        <h3>7. 포아송분포: 단위당 사건 횟수를 세면 먼저 떠올려야 하는 분포</h3>
+                        <p>포아송분포는 단위 시간, 단위 공간, 단위 길이, 단위 페이지 같은 구간 안에서 특정 사건이 몇 번 일어나는지를 모델링할 때 가장 먼저 떠올릴 분포다. 예를 들어 페이지당 오타 수, 1km 도로 구간당 차량 사고 수, 1분당 콜센터 전화 수 같은 유형이다.</p>
+
+                        <div class="stat-formula">
+                            $$X \sim \mathrm{Poisson}(\lambda)$$
+                            $$P(X=x)=\frac{e^{-\lambda}\lambda^x}{x!}, \qquad x=0,1,2,\ldots$$
+                        </div>
+
+                        <div class="stat-formula">
+                            $$E(X)=\lambda, \qquad V(X)=\lambda$$
+                        </div>
+
+                        <table class="stat-table">
+                            <tr>
+                                <th>문제 표현</th>
+                                <th>포아송 여부를 떠올리는 이유</th>
+                            </tr>
+                            <tr>
+                                <td>한 페이지당 오타 수</td>
+                                <td>단위 페이지 안의 사건 횟수</td>
+                            </tr>
+                            <tr>
+                                <td>1km 구간당 차 대수</td>
+                                <td>단위 길이 안의 사건 횟수</td>
+                            </tr>
+                            <tr>
+                                <td>1시간당 고객 도착 수</td>
+                                <td>단위 시간 안의 사건 횟수</td>
+                            </tr>
+                        </table>
+
+                        <p>예제 5-16, 5-17류의 문제는 문장 속에 이런 “단위당 횟수” 구조가 보이면 먼저 포아송분포를 의심하면 된다. 그다음 누적포아송분포표를 쓰거나 직접 \(P(X\le k)\), \(P(X\ge k)\)를 계산하면 된다.</p>
+
+                        <h3>8. 이항분포에서 포아송분포로: \(n\)은 매우 크고 \(p\)는 매우 작을 때</h3>
+                        <p>이번 주의 또 다른 큰 포인트는, 이항분포가 특정한 극한에서 포아송분포로 이어진다는 점이었다. \(X \sim \mathrm{Binomial}(n,p)\)에서 시행횟수 \(n\)이 매우 크고 성공확률 \(p\)는 매우 작지만, 평균 성공 횟수 \(np\)는 일정한 \(\lambda\)로 유지된다고 하자.</p>
+
+                        <div class="stat-formula">
+                            $$np=\lambda, \qquad p=\frac{\lambda}{n}$$
+                        </div>
+
+                        <p>그러면 이항분포의 PMF는</p>
+
+                        <div class="stat-formula">
+                            $$P(X=x)=\binom{n}{x}\left(\frac{\lambda}{n}\right)^x\left(1-\frac{\lambda}{n}\right)^{n-x}$$
+                        </div>
+
+                        <p>로 쓸 수 있고, \(n\to\infty\) 극한을 보내면 결국</p>
+
+                        <div class="stat-formula">
+                            $$\lim_{n\to\infty}P(X=x)=\frac{e^{-\lambda}\lambda^x}{x!}$$
+                        </div>
+
+                        <p>가 되어 포아송분포가 나온다. 이 유도에서 핵심은</p>
+
+                        <div class="stat-formula">
+                            $$\left(1-\frac{\lambda}{n}\right)^n \to e^{-\lambda}$$
+                        </div>
+
+                        <p>이고, 이는 자연상수 \(e\)의 정의</p>
+
+                        <div class="stat-formula">
+                            $$e=\lim_{n\to\infty}\left(1+\frac{1}{n}\right)^n$$
+                            $$e^{\lambda}=\sum_{x=0}^{\infty}\frac{\lambda^x}{x!}$$
+                        </div>
+
+                        <p>와 직접 연결된다. 따라서 “시행횟수가 아주 많고 성공확률이 아주 작을 때, 드문 사건의 횟수”는 포아송분포로 근사하는 것이 자연스럽다.</p>
+
+                        <h3>9. 표본평균과 모집단 분포를 구분해서 봐야 한다</h3>
+                        <p>이번 메모에서 특히 보강해둘 부분은 표본평균의 분포와 원래 확률변수의 분포를 혼동하지 않는 것이다. 예를 들어 1부터 45까지가 모두 같은 확률인 이산형 균일분포라면 원래 확률변수 \(X\)의 평균은</p>
+
+                        <div class="stat-formula">
+                            $$E(X)=\frac{1+45}{2}=23$$
+                        </div>
+
+                        <p>이다. 그런데 표본평균 \(\bar{X}\)는 또 다른 확률변수다. \(\bar{X}\)의 분포는 원래 \(X\)의 분포와 다르며, 여러 번 평균을 내면 23 근처로 훨씬 더 모이게 된다. 다만 그 기댓값은 여전히 모집단 평균과 같다.</p>
+
+                        <div class="stat-formula">
+                            $$E(\bar{X})=\mu$$
+                        </div>
+
+                        <p>즉 정확한 문장은 “표본평균의 <strong>분포 모양</strong>은 원래 모집단 분포와 다를 수 있지만, 표본평균의 <strong>기댓값</strong>은 모집단 평균과 같다”이다. 이후 중심극한정리에서 이 점이 매우 중요해진다. 원래 모집단이 균일분포나 다른 형태여도, 표본평균은 점점 정규분포에 가까워진다.</p>
+
+                        <h3>10. 이번 주차를 한 장으로 묶으면</h3>
+                        <p>이번 5주차는 각 확률분포의 공식을 개별적으로 외우는 시간이 아니라, 문제 상황을 보고 어떤 분포를 선택해야 하는지 판단하는 훈련에 가까웠다. 정규분포는 앞으로의 연속형 분포와 중심극한정리의 중심축이고, 이항분포는 성공/실패 반복, 초기하분포는 비복원추출, 기하분포와 음이항분포는 성공이 나올 때까지의 대기 구조, 포아송분포는 단위당 사건 횟수라는 식으로 역할을 구분해서 기억하는 것이 중요하다.</p>
+
+                        <ul>
+                            <li>정규분포는 연속형이고, 평균과 표준편차가 중심과 퍼짐을 결정한다.</li>
+                            <li>실무에서는 많은 집단적 패턴이 정규근사와 연결되지만, 모든 분포가 문자 그대로 정규분포인 것은 아니다.</li>
+                            <li>이항분포는 독립적인 성공/실패 반복에서 성공 횟수를 센다.</li>
+                            <li>초기하분포는 비복원추출이고, 유한모집단 수정계수 \(\frac{N-n}{N-1}\)가 분산에 들어간다.</li>
+                            <li>\(N\)이 크고 \(n\)이 작으면 초기하분포를 이항분포로 근사할 수 있다.</li>
+                            <li>기하분포는 첫 성공 전까지 실패 횟수, 음이항분포는 \(r\)번째 성공 전까지 실패 횟수다.</li>
+                            <li>기하분포와 지수분포는 무기억성이라는 공통 성질을 가진다.</li>
+                            <li>포아송분포는 단위당 사건 횟수를 다루는 대표 분포이고 평균과 분산이 모두 \(\lambda\)다.</li>
+                            <li>이항분포에서 \(n\to\infty\), \(p\to 0\), \(np=\lambda\)이면 포아송분포로 이어진다.</li>
+                            <li>표본평균의 분포는 원래 분포와 다를 수 있지만, \(E(\bar{X})=\mu\)는 유지된다.</li>
+                            <li>다음 흐름에서는 연속형 확률분포, 특히 정규분포와 표준정규분포, 그리고 이후 중심극한정리와 추정으로 넘어간다.</li>
+                        </ul>
+                    </div>
+
+                    <div class="lang-en">
+                        <p class="week-references"><em>Keywords: probability distributions, normal distribution, hypergeometric distribution, geometric distribution, negative binomial distribution, Poisson distribution, finite population correction, binomial approximation</em></p>
+
+                        <p>Week 5 focused on probability distributions in earnest, and the main lesson was not just memorizing formulas but learning to recognize <strong>which population structure and which distribution fit a given situation</strong>. That identification step is the real skill. The week connected normal distribution, binomial, hypergeometric, geometric, negative binomial, and Poisson models into one larger map.</p>
+
+                        <div class="lecture-note">
+                            <p><strong>Note.</strong> The class emphasized that the normal distribution is central in practice. A more precise way to say that is not that every distribution is literally normal, but that many aggregate patterns, averages, and error structures are strongly linked to normal approximation.</p>
+                        </div>
+
+                        <h3>1. Why the Normal Distribution Sits at the Center</h3>
+                        <p>The normal distribution is a continuous distribution, symmetric around its mean \(\mu\), usually written as</p>
+
+                        <div class="stat-formula">
+                            $$X \sim N(\mu, \sigma^2)$$
+                        </div>
+
+                        <p>Its density is</p>
+
+                        <div class="stat-formula">
+                            $$f(x)=\frac{1}{\sqrt{2\pi}\sigma}\exp\left(-\frac{1}{2}\left(\frac{x-\mu}{\sigma}\right)^2\right)$$
+                        </div>
+
+                        <table class="stat-table">
+                            <tr>
+                                <th>Element</th>
+                                <th>Role</th>
+                                <th>Intuition</th>
+                            </tr>
+                            <tr>
+                                <td>\(\mu\)</td>
+                                <td>Center</td>
+                                <td>It determines where the distribution is located</td>
+                            </tr>
+                            <tr>
+                                <td>\(\sigma\)</td>
+                                <td>Standard deviation</td>
+                                <td>Larger means wider, smaller means more concentrated</td>
+                            </tr>
+                            <tr>
+                                <td>\(\sigma^2\)</td>
+                                <td>Variance</td>
+                                <td>It measures spread in squared units</td>
+                            </tr>
+                        </table>
+
+                        <p>The Galton board story fits here. Repeated left-right random choices pile up most often near the center, producing a bell-like pattern. If the left-right probability is biased, the shape shifts. This gives an intuitive link from repeated binomial choice to a normal-like curve.</p>
+
+                        <h3>2. First Distinguish Discrete and Continuous Distributions</h3>
+                        <p>A first practical question is whether the variable is discrete or continuous.</p>
+
+                        <table class="stat-table">
+                            <tr>
+                                <th>Type</th>
+                                <th>Main examples</th>
+                                <th>Mathematical tool</th>
+                                <th>Main function</th>
+                            </tr>
+                            <tr>
+                                <td>Discrete</td>
+                                <td>Binomial, hypergeometric, geometric, negative binomial, Poisson</td>
+                                <td>Summation</td>
+                                <td>PMF \(p(x)\)</td>
+                            </tr>
+                            <tr>
+                                <td>Continuous</td>
+                                <td>Normal, exponential, gamma</td>
+                                <td>Integration</td>
+                                <td>PDF \(f(x)\)</td>
+                            </tr>
+                        </table>
+
+                        <p>So this week stayed mostly with discrete distributions, while the next stage moves into continuous distributions such as the normal and standard normal.</p>
+
+                        <h3>3. Binomial Distribution</h3>
+                        <p>The binomial distribution models the number of successes in \(n\) independent Bernoulli trials with fixed success probability \(p\).</p>
+
+                        <div class="stat-formula">
+                            $$X \sim \mathrm{Binomial}(n,p)$$
+                            $$P(X=x)=\binom{n}{x}p^x(1-p)^{n-x}, \qquad x=0,1,\ldots,n$$
+                        </div>
+
+                        <div class="stat-formula">
+                            $$E(X)=np, \qquad V(X)=np(1-p)$$
+                        </div>
+
+                        <p>When \(p=0.5\) and \(n\) grows, the shape becomes increasingly symmetric and bell-like.</p>
+
+                        <h3>4. Hypergeometric Distribution</h3>
+                        <p>If sampling is done <strong>without replacement</strong> from a finite population, the correct model is hypergeometric, not binomial. If the population size is \(N\), the number of success states is \(M\), the sample size is \(n\), and \(X\) counts sample successes, then</p>
+
+                        <div class="stat-formula">
+                            $$X \sim \mathrm{Hypergeometric}(N,M,n)$$
+                            $$P(X=x)=\frac{\binom{M}{x}\binom{N-M}{n-x}}{\binom{N}{n}}$$
+                        </div>
+
+                        <div class="stat-formula">
+                            $$E(X)=n\frac{M}{N}$$
+                            $$V(X)=n\frac{M}{N}\left(1-\frac{M}{N}\right)\frac{N-n}{N-1}$$
+                        </div>
+
+                        <p>The factor \(\frac{N-n}{N-1}\) is the finite population correction. When \(N\) is much larger than \(n\), it is close to 1, so hypergeometric can often be approximated by binomial.</p>
+
+                        <div class="stat-formula">
+                            $$\frac{N-n}{N-1}\approx 1 \qquad (N \gg n)$$
+                        </div>
+
+                        <p>The structure from example 5-9, with \(N=10000\), \(M=100\), and \(n=200\), is a hypergeometric setup. The exact probability of at most three successes is</p>
+
+                        <div class="stat-formula">
+                            $$P(X\le 3)=\sum_{x=0}^{3}\frac{\binom{100}{x}\binom{9900}{200-x}}{\binom{10000}{200}}$$
+                        </div>
+
+                        <p>Since \(p=M/N=0.01\) is small and the population is large, one can also approximate with \(X \sim \mathrm{Binomial}(200,0.01)\).</p>
+
+                        <div class="stat-formula">
+                            $$P(X\le 3)\approx \sum_{x=0}^{3}\binom{200}{x}(0.01)^x(0.99)^{200-x}$$
+                        </div>
+
+                        <h3>5. Geometric and Negative Binomial Distributions</h3>
+                        <p>These distributions model waiting until success. To keep notation consistent with the class notes, let \(X\) count the number of failures before success.</p>
+
+                        <h4>5-1. Geometric Distribution</h4>
+                        <div class="stat-formula">
+                            $$X \sim \mathrm{Geometric}(p)$$
+                            $$P(X=x)=p(1-p)^x, \qquad x=0,1,2,\ldots$$
+                        </div>
+
+                        <div class="stat-formula">
+                            $$E(X)=\frac{1-p}{p}, \qquad V(X)=\frac{1-p}{p^2}$$
+                        </div>
+
+                        <p>If \(X\) is failures before first success, then total trials are \(X+1\), so</p>
+
+                        <div class="stat-formula">
+                            $$E(X+1)=\frac{1}{p}$$
+                        </div>
+
+                        <p>For a fair coin, the expected total number of trials until the first head is 2.</p>
+
+                        <h4>5-2. Negative Binomial Distribution</h4>
+                        <p>This extends the same idea to the number of failures before the \(r\)th success.</p>
+
+                        <div class="stat-formula">
+                            $$X \sim \mathrm{NegativeBinomial}(r,p)$$
+                            $$P(X=x)=\binom{x+r-1}{x}p^r(1-p)^x, \qquad x=0,1,2,\ldots$$
+                        </div>
+
+                        <div class="stat-formula">
+                            $$E(X)=\frac{r(1-p)}{p}, \qquad V(X)=\frac{r(1-p)}{p^2}$$
+                        </div>
+
+                        <p>The geometric distribution is the special case \(r=1\).</p>
+
+                        <h3>6. The Shared Feature of Geometric and Exponential Distributions</h3>
+                        <p>The key shared feature is memorylessness.</p>
+
+                        <div class="stat-formula">
+                            $$P(X\ge i+j \mid X\ge i)=P(X\ge j)$$
+                        </div>
+
+                        <p>So after already waiting \(i\) failures, the remaining waiting structure is the same as at the beginning. Exponential distributions have the same property in continuous time, which is why they often appear in idealized lifetime models with constant hazard.</p>
+
+                        <p>In example 5-12 with a tiny success probability \(p=0.00015\), the expected total waiting time is</p>
+
+                        <div class="stat-formula">
+                            $$E(X+1)=\frac{1}{p}=\frac{1}{0.00015}\approx 6666.667$$
+                        </div>
+
+                        <p>which is extremely long. Rare events imply long average waiting times.</p>
+
+                        <h3>7. Poisson Distribution</h3>
+                        <p>The Poisson distribution is the first model to suspect when a problem asks about the number of events per unit time, space, length, page, and so on.</p>
+
+                        <div class="stat-formula">
+                            $$X \sim \mathrm{Poisson}(\lambda)$$
+                            $$P(X=x)=\frac{e^{-\lambda}\lambda^x}{x!}, \qquad x=0,1,2,\ldots$$
+                        </div>
+
+                        <div class="stat-formula">
+                            $$E(X)=\lambda, \qquad V(X)=\lambda$$
+                        </div>
+
+                        <table class="stat-table">
+                            <tr>
+                                <th>Problem wording</th>
+                                <th>Why Poisson is natural</th>
+                            </tr>
+                            <tr>
+                                <td>Typos per page</td>
+                                <td>Event count per page</td>
+                            </tr>
+                            <tr>
+                                <td>Cars per road segment</td>
+                                <td>Event count per length unit</td>
+                            </tr>
+                            <tr>
+                                <td>Calls per minute</td>
+                                <td>Event count per time unit</td>
+                            </tr>
+                        </table>
+
+                        <h3>8. From Binomial to Poisson</h3>
+                        <p>One of the most important theoretical links this week was the limit from binomial to Poisson. If \(X \sim \mathrm{Binomial}(n,p)\), \(n\) is large, \(p\) is small, and \(np=\lambda\) stays fixed, then</p>
+
+                        <div class="stat-formula">
+                            $$np=\lambda, \qquad p=\frac{\lambda}{n}$$
+                        </div>
+
+                        <p>and</p>
+
+                        <div class="stat-formula">
+                            $$P(X=x)=\binom{n}{x}\left(\frac{\lambda}{n}\right)^x\left(1-\frac{\lambda}{n}\right)^{n-x}$$
+                        </div>
+
+                        <p>converges to</p>
+
+                        <div class="stat-formula">
+                            $$\lim_{n\to\infty}P(X=x)=\frac{e^{-\lambda}\lambda^x}{x!}$$
+                        </div>
+
+                        <p>The critical limit is</p>
+
+                        <div class="stat-formula">
+                            $$\left(1-\frac{\lambda}{n}\right)^n \to e^{-\lambda}$$
+                        </div>
+
+                        <p>which comes from the definition of \(e\).</p>
+
+                        <div class="stat-formula">
+                            $$e=\lim_{n\to\infty}\left(1+\frac{1}{n}\right)^n$$
+                            $$e^{\lambda}=\sum_{x=0}^{\infty}\frac{\lambda^x}{x!}$$
+                        </div>
+
+                        <p>This is why rare-event binomial settings are often approximated by Poisson.</p>
+
+                        <h3>9. Population Mean vs. Sample Mean Distribution</h3>
+                        <p>A subtle but important point is that the distribution of the sample mean is not the same as the original population distribution. For example, if \(X\) is discrete uniform on \(\{1,\ldots,45\}\), then</p>
+
+                        <div class="stat-formula">
+                            $$E(X)=\frac{1+45}{2}=23$$
+                        </div>
+
+                        <p>But the sample mean \(\bar{X}\) is a different random variable. Its distribution becomes more concentrated around 23, even though its expectation still equals the population mean.</p>
+
+                        <div class="stat-formula">
+                            $$E(\bar{X})=\mu$$
+                        </div>
+
+                        <p>This distinction becomes central in the next stage, when sample means move toward the normal distribution under the central limit theorem.</p>
+
+                        <h3>10. What This Week Adds Up To</h3>
+                        <p>This week was really about model selection. The normal distribution previews the continuous side and later central-limit ideas; the binomial handles repeated success/failure; the hypergeometric handles sampling without replacement; the geometric and negative binomial handle waiting for success; and the Poisson handles event counts per unit.</p>
+
+                        <ul>
+                            <li>The normal distribution is continuous, with mean and standard deviation controlling center and spread.</li>
+                            <li>Many practical aggregate patterns connect to normal approximation, but not every raw distribution is literally normal.</li>
+                            <li>The binomial distribution counts successes across repeated independent Bernoulli trials.</li>
+                            <li>The hypergeometric distribution models sampling without replacement and includes the finite population correction.</li>
+                            <li>When \(N\) is large and \(n\) is small, hypergeometric can be approximated by binomial.</li>
+                            <li>The geometric distribution counts failures before the first success; the negative binomial extends this to the \(r\)th success.</li>
+                            <li>The geometric and exponential distributions share the memoryless property.</li>
+                            <li>The Poisson distribution models event counts per unit and has mean and variance both equal to \(\lambda\).</li>
+                            <li>If \(n\to\infty\), \(p\to 0\), and \(np=\lambda\), the binomial distribution approaches the Poisson distribution.</li>
+                            <li>The sample mean has its own distribution, even though its expectation equals the population mean.</li>
+                        </ul>
+                    </div>
+                </div>
+            </section>
+        </article>
+
+        <div id="site-footer"></div>
+    </div>
+
+    <script src="../../../common.js"></script>
+</body>
+</html>
