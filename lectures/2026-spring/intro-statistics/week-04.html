@@ -1,0 +1,554 @@
+<!DOCTYPE html>
+<html data-theme="dark" data-lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Intro to Statistics - Week 4 - Sewon Park</title>
+    <link rel="stylesheet" type="text/css" href="../../../style.css">
+    <link rel="stylesheet" type="text/css" href="../../../assets/css/lectures.css">
+    <script src="../../../assets/js/mathjax-config.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js" async></script>
+</head>
+<body>
+    <button class="theme-toggle" onclick="toggleTheme()" aria-label="Toggle dark mode"></button>
+    <button class="lang-toggle" onclick="toggleLanguage()" aria-label="Toggle language">EN</button>
+
+    <div class="container">
+        <div id="site-header"></div>
+        <div id="site-nav"></div>
+
+        <article class="course-page">
+            <div class="course-header">
+                <h1 data-en="Intro to Statistics" data-kr="기초통계">Intro to Statistics</h1>
+                <p class="course-meta" data-en="2026 Spring | Fri 19:00-22:00" data-kr="2026 봄학기 | 금요일 19:00-22:00">2026 Spring | Fri 19:00-22:00</p>
+            </div>
+
+            <div class="course-nav">
+                <a href="../../../lectures.html" class="back-to-lectures" data-en="Back to Lectures" data-kr="강의 목록으로">Back to Lectures</a>
+                <span class="nav-separator">/</span>
+                <a href="./index.html" class="back-to-course" data-en="Course Home" data-kr="과목 홈">Course Home</a>
+            </div>
+
+            <div class="week-nav">
+                <span data-en="Weeks:" data-kr="주차:">Weeks:</span>
+                <a href="week-01.html" class="week-link">W1</a>
+                <a href="week-02.html" class="week-link">W2</a>
+                <a href="week-03.html" class="week-link">W3</a>
+                <a href="week-04.html" class="week-link current">W4</a>
+            </div>
+
+            <section class="week-section" id="week-04">
+                <h2 data-en="Week 4" data-kr="4주차">Week 4</h2>
+                <p class="week-date">2026-03-27</p>
+                <div class="week-content">
+                    <div class="lang-kr" hidden>
+                        <p class="week-references"><em>Keywords: moments, moment generating function, expectation, variance, Chebyshev inequality, discrete uniform distribution, Bernoulli distribution, binomial distribution</em></p>
+
+                        <p>이번 4주차는 온라인 녹화 수업으로 진행되었고, 확률변수의 수치적 요약을 한 단계 더 구조화하는 내용이 중심이었다. 핵심은 기댓값과 분산을 단순 계산으로만 보지 않고, 적률(moment), 적률생성함수(MGF), 체비셰프 부등식, 그리고 대표적인 이산형 분포들까지 하나의 흐름으로 연결해서 보는 데 있었다. 즉 “확률변수를 어떻게 요약하고, 그 요약값이 어떤 분포 구조를 암시하는가”를 정리하는 주차였다.</p>
+
+                        <div class="lecture-note">
+                            <p><strong>메모.</strong> 이번 주는 대면 수업이 아니라 온라인 녹화 강의였기 때문에, 현장 질문이나 토론보다 공식을 멈춰가며 확인하는 방식으로 복습하기 좋았다. 그래서 이번 기록도 세부 예제보다 <strong>핵심 개념과 공식의 연결</strong> 위주로 정리한다.</p>
+                        </div>
+
+                        <h3>1. 큰 흐름: 적률, 기댓값, 분산은 확률변수의 요약 언어다</h3>
+                        <p>확률변수 \(X\)를 알기 위해 모든 값을 하나하나 다 외울 필요는 없다. 대신 그 분포를 요약해주는 몇 개의 대표값을 보면 훨씬 많은 것을 알 수 있다. 가장 대표적인 것이 기댓값과 분산이고, 이것을 더 일반화한 개념이 적률(moment)이다.</p>
+
+                        <table class="stat-table">
+                            <tr>
+                                <th>개념</th>
+                                <th>의미</th>
+                                <th>핵심 수식</th>
+                            </tr>
+                            <tr>
+                                <td>기댓값</td>
+                                <td>분포의 중심, 평균적 위치</td>
+                                <td>\(E[X]\)</td>
+                            </tr>
+                            <tr>
+                                <td>분산</td>
+                                <td>평균 주변에서 얼마나 퍼져 있는가</td>
+                                <td>\(\mathrm{Var}(X)=E[(X-\mu)^2]\)</td>
+                            </tr>
+                            <tr>
+                                <td>원점 적률</td>
+                                <td>원점 0을 기준으로 한 \(r\)차 요약량</td>
+                                <td>\(\mu_r' = E[X^r]\)</td>
+                            </tr>
+                            <tr>
+                                <td>중심 적률</td>
+                                <td>평균 \(\mu\)를 기준으로 한 \(r\)차 요약량</td>
+                                <td>\(\mu_r = E[(X-\mu)^r]\)</td>
+                            </tr>
+                        </table>
+
+                        <p>즉 기댓값은 1차 원점 적률이고, 분산은 2차 중심 적률이다. 통계학에서 적률을 배우는 이유는 단순히 공식을 늘리기 위해서가 아니라, 평균과 퍼짐, 더 나아가 왜도와 첨도까지 하나의 언어 체계로 묶어 이해하기 위해서다.</p>
+
+                        <div class="stat-formula">
+                            $$\mu_1' = E[X], \qquad \mu_2 = E[(X-\mu)^2] = \mathrm{Var}(X)$$
+                        </div>
+
+                        <h3>2. 기댓값과 분산의 기본 성질</h3>
+                        <p>이번 주차에서 가장 실용적으로 중요한 것은 역시 기댓값과 분산의 계산 규칙이다. 기댓값은 선형(linear)이고, 분산은 선형이 아니라 제곱 스케일로 반응한다는 점이 특히 중요하다.</p>
+
+                        <div class="stat-formula">
+                            $$E[aX+b]=aE[X]+b$$
+                            $$\mathrm{Var}(aX+b)=a^2\mathrm{Var}(X)$$
+                        </div>
+
+                        <table class="stat-table">
+                            <tr>
+                                <th>변환</th>
+                                <th>기댓값</th>
+                                <th>분산</th>
+                            </tr>
+                            <tr>
+                                <td>\(X+b\)</td>
+                                <td>평균이 \(b\)만큼 이동</td>
+                                <td>변하지 않음</td>
+                            </tr>
+                            <tr>
+                                <td>\(aX\)</td>
+                                <td>평균이 \(a\)배</td>
+                                <td>분산은 \(a^2\)배</td>
+                            </tr>
+                            <tr>
+                                <td>\(aX+b\)</td>
+                                <td>이동과 확대/축소가 함께 반영</td>
+                                <td>위치는 상관없고 스케일만 반영됨</td>
+                            </tr>
+                        </table>
+
+                        <p>분산에 \(b\)가 영향을 주지 않는 이유는 분산이 “평균으로부터의 거리”를 보는 값이기 때문이다. 전체를 통째로 옮겨도 퍼짐 자체는 변하지 않는다. 반대로 스케일을 두 배로 키우면 거리도 두 배가 되고, 제곱 때문에 분산은 네 배가 된다.</p>
+
+                        <h3>3. 적률생성함수(MGF): 한 함수 안에 적률을 담는 방식</h3>
+                        <p>적률생성함수(moment generating function)는 확률변수의 적률을 한 함수 안에 묶어 담는 도구다. 정의는 다음과 같다.</p>
+
+                        <div class="stat-formula">
+                            $$M_X(t)=E[e^{tX}]$$
+                        </div>
+
+                        <p>이 함수가 중요한 이유는 \(t=0\)에서 미분하면 적률이 나온다는 점이다. 즉 하나의 함수만 알면 평균, 제곱의 기댓값, 더 높은 차수의 적률까지 체계적으로 얻을 수 있다.</p>
+
+                        <div class="stat-formula">
+                            $$M_X'(0)=E[X]$$
+                            $$M_X''(0)=E[X^2]$$
+                            $$M_X^{(r)}(0)=E[X^r]$$
+                        </div>
+
+                        <p>기댓값과 분산도 MGF로 다시 쓸 수 있다.</p>
+
+                        <div class="stat-formula">
+                            $$E[X]=M_X'(0), \qquad \mathrm{Var}(X)=M_X''(0)-\left(M_X'(0)\right)^2$$
+                        </div>
+
+                        <div class="lecture-note">
+                            <p><strong>핵심 포인트.</strong> MGF는 적률을 뽑아내는 도구일 뿐 아니라, 서로 독립인 확률변수의 합을 다룰 때 특히 편하다. 독립이면 곱으로 분리되기 때문이다.</p>
+                        </div>
+
+                        <div class="stat-formula">
+                            $$X, Y \text{ independent} \Rightarrow M_{X+Y}(t)=M_X(t)M_Y(t)$$
+                        </div>
+
+                        <p>이 성질 때문에 베르누이 확률변수가 여러 번 더해졌을 때 왜 이항분포가 되는지도 MGF로 매우 깔끔하게 설명할 수 있다.</p>
+
+                        <h3>4. 체비셰프 부등식: 분포를 몰라도 퍼짐을 통제할 수 있는 최소한의 안전장치</h3>
+                        <p>체비셰프 부등식은 분포의 정확한 모양을 몰라도, 평균과 분산만 알면 확률변수가 평균에서 얼마나 멀리 벗어날 수 있는지 상한을 줄 수 있다는 점에서 중요하다.</p>
+
+                        <div class="stat-formula">
+                            $$P(|X-\mu|\ge k\sigma)\le \frac{1}{k^2}, \qquad k>0$$
+                        </div>
+
+                        <p>같은 말을 안쪽 구간으로 쓰면 다음과 같다.</p>
+
+                        <div class="stat-formula">
+                            $$P(|X-\mu| < k\sigma)\ge 1-\frac{1}{k^2}$$
+                        </div>
+
+                        <table class="stat-table">
+                            <tr>
+                                <th>\(k\)</th>
+                                <th>최소한 보장되는 범위 내부 확률</th>
+                                <th>의미</th>
+                            </tr>
+                            <tr>
+                                <td>2</td>
+                                <td>\(\ge 1-\frac{1}{4}=0.75\)</td>
+                                <td>적어도 75%는 평균에서 2표준편차 안에 있다</td>
+                            </tr>
+                            <tr>
+                                <td>3</td>
+                                <td>\(\ge 1-\frac{1}{9}=\frac{8}{9}\approx 0.8889\)</td>
+                                <td>적어도 약 88.89%는 평균에서 3표준편차 안에 있다</td>
+                            </tr>
+                        </table>
+
+                        <p>정규분포처럼 특정한 형태를 가정하면 더 강한 결과를 말할 수 있지만, 체비셰프 부등식은 그런 분포 가정 없이도 항상 성립한다는 점에서 보수적이지만 매우 일반적인 도구다.</p>
+
+                        <h3>5. 이산형 균일분포: 모든 값이 같은 확률을 갖는 가장 기본적인 이산분포</h3>
+                        <p>이산형 균일분포(discrete uniform distribution)는 가능한 값들이 모두 같은 확률을 갖는 분포다. 가장 익숙한 예시는 공정한 주사위다. \(X \sim \mathrm{DU}\{1,2,\ldots,n\}\)이라면 각 값의 확률은 모두 \(\frac{1}{n}\)이다.</p>
+
+                        <div class="stat-formula">
+                            $$P(X=x)=\frac{1}{n}, \qquad x=1,2,\ldots,n$$
+                        </div>
+
+                        <p>이때 기댓값과 분산은 다음과 같이 정리된다.</p>
+
+                        <div class="stat-formula">
+                            $$E[X]=\frac{n+1}{2}$$
+                            $$\mathrm{Var}(X)=\frac{n^2-1}{12}$$
+                        </div>
+
+                        <table class="stat-table">
+                            <tr>
+                                <th>예시</th>
+                                <th>분포</th>
+                                <th>기댓값</th>
+                                <th>분산</th>
+                            </tr>
+                            <tr>
+                                <td>공정한 6면체 주사위</td>
+                                <td>\(\{1,2,3,4,5,6\}\)</td>
+                                <td>\(\frac{7}{2}=3.5\)</td>
+                                <td>\(\frac{35}{12}\)</td>
+                            </tr>
+                        </table>
+
+                        <p>이산형 균일분포는 단순하지만, “모든 경우가 같은 가능성”이라는 고전적 확률의 기본 직관을 가장 잘 보여주는 분포다.</p>
+
+                        <h3>6. 베르누이분포: 성공/실패 한 번의 실험을 모델링하는 분포</h3>
+                        <p>베르누이분포는 결과가 0 또는 1, 즉 실패 또는 성공 두 가지뿐인 단일 시행을 모델링한다. 성공확률을 \(p\)라고 하면 다음과 같이 쓴다.</p>
+
+                        <div class="stat-formula">
+                            $$X \sim \mathrm{Bernoulli}(p), \qquad P(X=1)=p,\quad P(X=0)=1-p$$
+                        </div>
+
+                        <p>확률질량함수(PMF)는 다음처럼 간단하게 쓸 수 있다.</p>
+
+                        <div class="stat-formula">
+                            $$P(X=x)=p^x(1-p)^{1-x}, \qquad x\in\{0,1\}$$
+                        </div>
+
+                        <p>기댓값, 분산, MGF는 모두 꼭 기억할 만하다.</p>
+
+                        <div class="stat-formula">
+                            $$E[X]=p$$
+                            $$\mathrm{Var}(X)=p(1-p)$$
+                            $$M_X(t)=E[e^{tX}]=(1-p)+pe^t$$
+                        </div>
+
+                        <p>성공확률이 \(p\)인 동전을 한 번 던질 때 앞면이면 1, 뒷면이면 0으로 두는 모델이 가장 대표적이다. 이 분포는 이후 이항분포의 기본 블록이 된다.</p>
+
+                        <h3>7. 이항분포: 베르누이 시행을 \(n\)번 반복한 성공 횟수</h3>
+                        <p>독립인 베르누이 시행을 \(n\)번 반복했을 때 성공 횟수의 분포가 바로 이항분포다. \(X \sim \mathrm{Binomial}(n,p)\)라면 \(X\)는 \(n\)번 중 성공한 횟수를 뜻한다.</p>
+
+                        <div class="stat-formula">
+                            $$P(X=x)=\binom{n}{x}p^x(1-p)^{n-x}, \qquad x=0,1,\ldots,n$$
+                        </div>
+
+                        <p>기댓값과 분산은 베르누이분포를 \(n\)번 더한 결과와 자연스럽게 연결된다.</p>
+
+                        <div class="stat-formula">
+                            $$E[X]=np$$
+                            $$\mathrm{Var}(X)=np(1-p)$$
+                            $$M_X(t)=(1-p+pe^t)^n$$
+                        </div>
+
+                        <table class="stat-table">
+                            <tr>
+                                <th>모델</th>
+                                <th>질문</th>
+                                <th>예시</th>
+                            </tr>
+                            <tr>
+                                <td>베르누이분포</td>
+                                <td>한 번의 시행이 성공인가 실패인가?</td>
+                                <td>동전 한 번 던지기, 제품 하나의 합격/불합격</td>
+                            </tr>
+                            <tr>
+                                <td>이항분포</td>
+                                <td>\(n\)번 중 몇 번 성공하는가?</td>
+                                <td>동전 10번 중 앞면 개수, 20개 제품 중 불량 개수</td>
+                            </tr>
+                        </table>
+
+                        <p>이항분포는 \(X_1,\ldots,X_n\)이 서로 독립이고 각각 \(\mathrm{Bernoulli}(p)\)일 때 \(X=\sum_{i=1}^{n}X_i\)로 생각할 수 있다. 그래서 평균은 \(np\), 분산은 \(np(1-p)\)가 된다. MGF도 곱으로 바로 나온다.</p>
+
+                        <div class="stat-formula">
+                            $$X_i \sim \mathrm{Bernoulli}(p), \quad X=\sum_{i=1}^{n}X_i \Rightarrow M_X(t)=\prod_{i=1}^{n}M_{X_i}(t)=(1-p+pe^t)^n$$
+                        </div>
+
+                        <h3>8. 이번 주차를 한 장으로 묶으면</h3>
+                        <p>이번 주 내용을 한 줄로 정리하면, 확률변수는 기댓값과 분산 같은 요약값으로 읽을 수 있고, 적률과 적률생성함수는 그 요약을 더 일반화해서 다루게 해주며, 체비셰프 부등식은 분포를 몰라도 퍼짐을 통제할 수 있는 최소한의 일반 법칙을 제공하고, 이산형 균일분포·베르누이분포·이항분포는 그 개념들이 실제로 어떻게 구현되는지를 보여주는 대표 사례였다.</p>
+
+                        <ul>
+                            <li>적률은 기댓값과 분산을 포함하는 더 일반적인 요약 언어다.</li>
+                            <li>1차 원점 적률은 기댓값이고, 2차 중심 적률은 분산이다.</li>
+                            <li>MGF는 미분을 통해 적률을 뽑아낼 수 있고, 독립 합의 분포를 다룰 때 특히 유용하다.</li>
+                            <li>분산은 위치 이동에는 영향을 받지 않고, 스케일 변화에는 제곱으로 반응한다.</li>
+                            <li>체비셰프 부등식은 분포 형태를 몰라도 평균 주변 퍼짐의 상한을 준다.</li>
+                            <li>이산형 균일분포는 모든 값이 같은 확률을 갖는 가장 기본적인 이산분포다.</li>
+                            <li>베르누이분포는 0/1 한 번의 시행, 이항분포는 그 시행의 반복된 성공 횟수다.</li>
+                            <li>이항분포는 베르누이분포의 합으로 이해하면 평균, 분산, MGF가 자연스럽게 연결된다.</li>
+                        </ul>
+                    </div>
+
+                    <div class="lang-en">
+                        <p class="week-references"><em>Keywords: moments, moment generating function, expectation, variance, Chebyshev inequality, discrete uniform distribution, Bernoulli distribution, binomial distribution</em></p>
+
+                        <p>Week 4 was delivered as an online recorded lecture, and the main theme was how to summarize random variables more systematically. The key was to connect expectation and variance with moments, moment generating functions, Chebyshev's inequality, and several representative discrete distributions. In short, this week asked how a distribution can be described through a small set of meaningful summaries.</p>
+
+                        <div class="lecture-note">
+                            <p><strong>Note.</strong> Because this was a recorded online lecture, it worked especially well as a formula-centered review session. So this page is organized around the core conceptual links rather than fine-grained classroom anecdotes.</p>
+                        </div>
+
+                        <h3>1. The Big Flow: Moments, Expectation, and Variance Are the Language of Summary</h3>
+                        <p>We do not need to memorize every value of a random variable one by one. Instead, statistics uses representative summaries. The most familiar are expectation and variance, and the broader concept that contains them is the moment.</p>
+
+                        <table class="stat-table">
+                            <tr>
+                                <th>Concept</th>
+                                <th>Meaning</th>
+                                <th>Core formula</th>
+                            </tr>
+                            <tr>
+                                <td>Expectation</td>
+                                <td>The center or average location of a distribution</td>
+                                <td>\(E[X]\)</td>
+                            </tr>
+                            <tr>
+                                <td>Variance</td>
+                                <td>How far values spread around the mean</td>
+                                <td>\(\mathrm{Var}(X)=E[(X-\mu)^2]\)</td>
+                            </tr>
+                            <tr>
+                                <td>Raw moment</td>
+                                <td>The \(r\)th summary measured from the origin 0</td>
+                                <td>\(\mu_r' = E[X^r]\)</td>
+                            </tr>
+                            <tr>
+                                <td>Central moment</td>
+                                <td>The \(r\)th summary measured from the mean \(\mu\)</td>
+                                <td>\(\mu_r = E[(X-\mu)^r]\)</td>
+                            </tr>
+                        </table>
+
+                        <p>Expectation is the first raw moment, and variance is the second central moment. Moments matter because they give a unified language for center, spread, and eventually higher-order shape as well.</p>
+
+                        <div class="stat-formula">
+                            $$\mu_1' = E[X], \qquad \mu_2 = E[(X-\mu)^2] = \mathrm{Var}(X)$$
+                        </div>
+
+                        <h3>2. Basic Properties of Expectation and Variance</h3>
+                        <p>The most practical part is the transformation rule. Expectation is linear, while variance is not linear and responds quadratically to scaling.</p>
+
+                        <div class="stat-formula">
+                            $$E[aX+b]=aE[X]+b$$
+                            $$\mathrm{Var}(aX+b)=a^2\mathrm{Var}(X)$$
+                        </div>
+
+                        <table class="stat-table">
+                            <tr>
+                                <th>Transformation</th>
+                                <th>Expectation</th>
+                                <th>Variance</th>
+                            </tr>
+                            <tr>
+                                <td>\(X+b\)</td>
+                                <td>The mean shifts by \(b\)</td>
+                                <td>Unchanged</td>
+                            </tr>
+                            <tr>
+                                <td>\(aX\)</td>
+                                <td>The mean becomes \(a\) times larger</td>
+                                <td>The variance becomes \(a^2\) times larger</td>
+                            </tr>
+                            <tr>
+                                <td>\(aX+b\)</td>
+                                <td>Shift and scaling both affect the mean</td>
+                                <td>Only scaling affects the variance</td>
+                            </tr>
+                        </table>
+
+                        <p>Variance ignores pure location shifts because it measures distance from the mean. But scaling changes distance itself, and squaring makes the effect quadratic.</p>
+
+                        <h3>3. Moment Generating Function: Putting Moments into One Function</h3>
+                        <p>The moment generating function (MGF) stores moments in one functional object. It is defined by</p>
+
+                        <div class="stat-formula">
+                            $$M_X(t)=E[e^{tX}]$$
+                        </div>
+
+                        <p>Its main value is that derivatives at \(t=0\) generate raw moments.</p>
+
+                        <div class="stat-formula">
+                            $$M_X'(0)=E[X]$$
+                            $$M_X''(0)=E[X^2]$$
+                            $$M_X^{(r)}(0)=E[X^r]$$
+                        </div>
+
+                        <p>So expectation and variance can be recovered through MGF derivatives as well.</p>
+
+                        <div class="stat-formula">
+                            $$E[X]=M_X'(0), \qquad \mathrm{Var}(X)=M_X''(0)-\left(M_X'(0)\right)^2$$
+                        </div>
+
+                        <div class="lecture-note">
+                            <p><strong>Key point.</strong> MGF becomes especially convenient for sums of independent random variables.</p>
+                        </div>
+
+                        <div class="stat-formula">
+                            $$X, Y \text{ independent} \Rightarrow M_{X+Y}(t)=M_X(t)M_Y(t)$$
+                        </div>
+
+                        <p>This is one of the cleanest ways to explain why repeated Bernoulli trials lead to the binomial distribution.</p>
+
+                        <h3>4. Chebyshev's Inequality: A Conservative Bound Without Knowing the Exact Shape</h3>
+                        <p>Chebyshev's inequality matters because it gives a guaranteed bound using only the mean and variance, without assuming a specific distributional shape.</p>
+
+                        <div class="stat-formula">
+                            $$P(|X-\mu|\ge k\sigma)\le \frac{1}{k^2}, \qquad k>0$$
+                        </div>
+
+                        <p>Equivalently, one can write it as an inside-probability statement.</p>
+
+                        <div class="stat-formula">
+                            $$P(|X-\mu| < k\sigma)\ge 1-\frac{1}{k^2}$$
+                        </div>
+
+                        <table class="stat-table">
+                            <tr>
+                                <th>\(k\)</th>
+                                <th>Minimum guaranteed probability inside the band</th>
+                                <th>Interpretation</th>
+                            </tr>
+                            <tr>
+                                <td>2</td>
+                                <td>\(\ge 0.75\)</td>
+                                <td>At least 75% lies within two standard deviations of the mean</td>
+                            </tr>
+                            <tr>
+                                <td>3</td>
+                                <td>\(\ge \frac{8}{9}\approx 0.8889\)</td>
+                                <td>At least about 88.89% lies within three standard deviations of the mean</td>
+                            </tr>
+                        </table>
+
+                        <p>It is more conservative than normal-distribution rules, but it works far more generally.</p>
+
+                        <h3>5. Discrete Uniform Distribution</h3>
+                        <p>The discrete uniform distribution is the simplest discrete model in which every possible value has the same probability. A fair die is the classic example. If \(X \sim \mathrm{DU}\{1,2,\ldots,n\}\), then</p>
+
+                        <div class="stat-formula">
+                            $$P(X=x)=\frac{1}{n}, \qquad x=1,2,\ldots,n$$
+                        </div>
+
+                        <p>Its expectation and variance are</p>
+
+                        <div class="stat-formula">
+                            $$E[X]=\frac{n+1}{2}$$
+                            $$\mathrm{Var}(X)=\frac{n^2-1}{12}$$
+                        </div>
+
+                        <table class="stat-table">
+                            <tr>
+                                <th>Example</th>
+                                <th>Distribution</th>
+                                <th>Expectation</th>
+                                <th>Variance</th>
+                            </tr>
+                            <tr>
+                                <td>Fair six-sided die</td>
+                                <td>\(\{1,2,3,4,5,6\}\)</td>
+                                <td>\(3.5\)</td>
+                                <td>\(\frac{35}{12}\)</td>
+                            </tr>
+                        </table>
+
+                        <p>This distribution expresses the basic classical-probability idea that all outcomes are equally likely.</p>
+
+                        <h3>6. Bernoulli Distribution</h3>
+                        <p>The Bernoulli distribution models one trial with only two outcomes: success or failure, coded as 1 and 0. If success probability is \(p\), then</p>
+
+                        <div class="stat-formula">
+                            $$X \sim \mathrm{Bernoulli}(p), \qquad P(X=1)=p,\quad P(X=0)=1-p$$
+                        </div>
+
+                        <p>Its PMF can be written compactly as</p>
+
+                        <div class="stat-formula">
+                            $$P(X=x)=p^x(1-p)^{1-x}, \qquad x\in\{0,1\}$$
+                        </div>
+
+                        <p>The expectation, variance, and MGF are all worth remembering.</p>
+
+                        <div class="stat-formula">
+                            $$E[X]=p$$
+                            $$\mathrm{Var}(X)=p(1-p)$$
+                            $$M_X(t)=(1-p)+pe^t$$
+                        </div>
+
+                        <p>A single coin flip coded as head = 1 and tail = 0 is the basic intuition.</p>
+
+                        <h3>7. Binomial Distribution</h3>
+                        <p>The binomial distribution counts the number of successes in \(n\) independent Bernoulli trials. If \(X \sim \mathrm{Binomial}(n,p)\), then</p>
+
+                        <div class="stat-formula">
+                            $$P(X=x)=\binom{n}{x}p^x(1-p)^{n-x}, \qquad x=0,1,\ldots,n$$
+                        </div>
+
+                        <p>Its expectation, variance, and MGF are</p>
+
+                        <div class="stat-formula">
+                            $$E[X]=np$$
+                            $$\mathrm{Var}(X)=np(1-p)$$
+                            $$M_X(t)=(1-p+pe^t)^n$$
+                        </div>
+
+                        <table class="stat-table">
+                            <tr>
+                                <th>Model</th>
+                                <th>Main question</th>
+                                <th>Example</th>
+                            </tr>
+                            <tr>
+                                <td>Bernoulli</td>
+                                <td>Is one trial a success or failure?</td>
+                                <td>One coin flip, one item pass/fail</td>
+                            </tr>
+                            <tr>
+                                <td>Binomial</td>
+                                <td>How many successes occur in \(n\) trials?</td>
+                                <td>Heads in 10 flips, defects in 20 items</td>
+                            </tr>
+                        </table>
+
+                        <p>Because a binomial variable can be written as a sum of independent Bernoulli variables, its mean, variance, and MGF follow naturally.</p>
+
+                        <div class="stat-formula">
+                            $$X_i \sim \mathrm{Bernoulli}(p), \quad X=\sum_{i=1}^{n}X_i \Rightarrow M_X(t)=\prod_{i=1}^{n}M_{X_i}(t)=(1-p+pe^t)^n$$
+                        </div>
+
+                        <h3>8. What This Week Adds Up To</h3>
+                        <p>The most compact summary is this: expectation and variance are the basic summaries of a random variable; moments and the MGF generalize that summary structure; Chebyshev's inequality gives a safe distribution-free bound; and the discrete uniform, Bernoulli, and binomial distributions provide concrete examples where those summaries can be computed and interpreted cleanly.</p>
+
+                        <ul>
+                            <li>Moments give a more general language that includes expectation and variance.</li>
+                            <li>The first raw moment is expectation, and the second central moment is variance.</li>
+                            <li>The MGF generates moments through differentiation and is especially useful for sums of independent variables.</li>
+                            <li>Variance ignores pure shifts and reacts quadratically to scaling.</li>
+                            <li>Chebyshev's inequality bounds spread without assuming a specific shape.</li>
+                            <li>The discrete uniform distribution is the simplest equal-probability discrete model.</li>
+                            <li>The Bernoulli distribution models one 0/1 trial, and the binomial distribution models repeated Bernoulli successes.</li>
+                            <li>The binomial distribution is most naturally understood as a sum of Bernoulli variables.</li>
+                        </ul>
+                    </div>
+                </div>
+            </section>
+        </article>
+
+        <div id="site-footer"></div>
+    </div>
+
+    <script src="../../../common.js"></script>
+</body>
+</html>
