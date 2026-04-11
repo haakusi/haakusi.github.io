@@ -1,0 +1,504 @@
+<!DOCTYPE html>
+<html data-theme="dark" data-lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Info Design & Data Viz - Week 6 - Sewon Park</title>
+    <link rel="stylesheet" type="text/css" href="../../../style.css">
+    <link rel="stylesheet" type="text/css" href="../../../assets/css/lectures.css">
+</head>
+<body>
+    <button class="theme-toggle" onclick="toggleTheme()" aria-label="Toggle dark mode"></button>
+    <button class="lang-toggle" onclick="toggleLanguage()" aria-label="Toggle language">EN</button>
+
+    <div class="container">
+        <div id="site-header"></div>
+        <div id="site-nav"></div>
+
+        <article class="course-page">
+            <div class="course-header">
+                <h1 data-en="Info Design & Data Viz" data-kr="정보디자인데이터시각화">Info Design & Data Viz</h1>
+                <p class="course-meta" data-en="2026 Spring | Sat 12:00-15:00" data-kr="2026 봄학기 | 토요일 12:00-15:00">2026 Spring | Sat 12:00-15:00</p>
+            </div>
+
+            <div class="course-nav">
+                <a href="../../../lectures.html" class="back-to-lectures" data-en="Back to Lectures" data-kr="강의 목록으로">Back to Lectures</a>
+                <span class="nav-separator">/</span>
+                <a href="./index.html" class="back-to-course" data-en="Course Home" data-kr="과목 홈">Course Home</a>
+            </div>
+
+            <div class="week-nav">
+                <span data-en="Weeks:" data-kr="주차:">Weeks:</span>
+                <a href="week-01.html" class="week-link">W1</a>
+                <a href="week-02.html" class="week-link">W2</a>
+                <a href="week-03.html" class="week-link">W3</a>
+                <a href="week-04.html" class="week-link">W4</a>
+                <a href="week-05.html" class="week-link">W5</a>
+                <a href="week-06.html" class="week-link current">W6</a>
+            </div>
+
+            <section class="week-section" id="week-06">
+                <h2 data-en="Week 6" data-kr="6주차">Week 6</h2>
+                <p class="week-date">2026-04-11</p>
+                <div class="week-content">
+                    <div class="lang-kr" hidden>
+                        <p class="week-references"><em>Keywords: 1:1 feedback, information goal, information stage, persona, storytelling, form-color-type, sketch, layout rationale, final print, public data, Steven Heller, Rick Landers</em></p>
+
+                        <p>이번 6주차는 새로운 이론을 길게 듣는 시간이라기보다, 지금까지 진행한 개인 프로젝트를 기준으로 <strong>정보 목표와 정보 단계를 얼마나 분명히 세웠는지</strong>를 하나씩 점검받는 시간에 가까웠다. 오늘은 개인별 1:1 실습 피드백이 중심이었고, 페르소나와 정보 스토리텔링을 어떻게 붙일지, 시각 컨셉과 스케치를 어떤 근거로 가져가야 할지에 대한 코멘트가 이어졌다.</p>
+
+                        <div class="lecture-note">
+                            <p><strong>메모.</strong> 이번 주의 핵심은 "무엇을 예쁘게 만들 것인가"보다 <strong>무엇을 목표로 삼고, 어떤 단계의 정보를 먼저 드러내며, 왜 이런 형식으로 배치하는가를 설명할 수 있어야 한다</strong>는 점이었다. 설명 없는 취향은 설득력이 약하고, 이유 있는 선택만이 디자인 언어가 된다.</p>
+                        </div>
+
+                        <h3>1. 이번 주는 개인별 1:1 피드백 체크포인트였다</h3>
+                        <p>4월 11일 수업에서는 각자 진행 중인 프로젝트를 바탕으로 정보 목표와 정보 단계가 얼마나 정리되었는지 공유했다. 필요하다면 페르소나와 정보 스토리텔링도 함께 설명할 수 있어야 했다. 그래서 이번 주는 결과물을 더 만드는 시간이라기보다, <strong>지금까지 잡아놓은 방향이 설득 가능한 구조인가</strong>를 확인하는 중간 점검에 가까웠다.</p>
+
+                        <table class="stat-table">
+                            <tr>
+                                <th>이번 주 확인한 것</th>
+                                <th>질문 형태로 바꾸면</th>
+                                <th>왜 중요한가</th>
+                            </tr>
+                            <tr>
+                                <td>정보 목표</td>
+                                <td>이 프로젝트가 가장 먼저 말하려는 것은 무엇인가?</td>
+                                <td>1차 정보가 흔들리면 나머지 구조도 흔들리기 때문이다.</td>
+                            </tr>
+                            <tr>
+                                <td>정보 단계</td>
+                                <td>무엇이 먼저 보이고, 무엇이 나중에 이해되어야 하는가?</td>
+                                <td>위계 없는 시각화는 읽기 순서를 잃기 때문이다.</td>
+                            </tr>
+                            <tr>
+                                <td>페르소나</td>
+                                <td>이 작업은 누구를 염두에 두고 있는가?</td>
+                                <td>같은 정보도 대상자에 따라 전달 방식이 달라지기 때문이다.</td>
+                            </tr>
+                            <tr>
+                                <td>정보 스토리텔링</td>
+                                <td>이 데이터를 어떤 이야기 구조로 읽게 할 것인가?</td>
+                                <td>정보는 단순 배열이 아니라 읽기 경험으로 완성되기 때문이다.</td>
+                            </tr>
+                        </table>
+
+                        <h3>2. 지금부터 5월 초까지의 일정이 한 번에 연결됐다</h3>
+                        <p>이번 주에는 당장 오늘 피드백만 본 것이 아니라, 4월 중순부터 5월 초까지 이어지는 프로젝트 흐름도 함께 정리되었다. 영문 타이포그래피 강의, 한글 타이포그래피 강의, 시각 컨셉과 스케치 공유, 파이널 출력과 발표, 그리고 2번째 팀 프로젝트까지 한 덩어리로 이어졌다.</p>
+
+                        <table class="stat-table">
+                            <tr>
+                                <th>날짜</th>
+                                <th>수업 / 공유 내용</th>
+                                <th>이번 주와의 연결</th>
+                            </tr>
+                            <tr>
+                                <td>4/4</td>
+                                <td>영문 타이포그래피 강의, 개인 공유: 정보 목표, 정보 단계</td>
+                                <td>이번 주 피드백의 바로 전 단계로 연결된다.</td>
+                            </tr>
+                            <tr>
+                                <td>4/11</td>
+                                <td>개인 공유: 정보 목표, 정보 단계, 필요 시 페르소나와 정보 스토리텔링</td>
+                                <td>오늘은 개인별 1:1 실습 피드백이 중심이었다.</td>
+                            </tr>
+                            <tr>
+                                <td>4/18</td>
+                                <td>한글 타이포그래피 강의, 시각 컨셉 및 스케치 단계 공유</td>
+                                <td>다음 주까지 시각 요소와 스케치를 들고 가야 한다.</td>
+                            </tr>
+                            <tr>
+                                <td>4/25</td>
+                                <td>파이널 출력 및 공유(발표), 컬러 출력, 글로시/매트, 톤앤매너 컬러 고려</td>
+                                <td>1번째 프로젝트를 실제 출력물 기준으로 마무리하는 주차다.</td>
+                            </tr>
+                            <tr>
+                                <td>5/2</td>
+                                <td>2번째 프로젝트 개요 및 강의, 팀 배정</td>
+                                <td>이 시점부터는 분석 중심의 팀 프로젝트로 넘어간다.</td>
+                            </tr>
+                        </table>
+
+                        <h3>3. 시각 컨셉은 form, color, type 세 축으로 정리해야 했다</h3>
+                        <p>이번 주에 가장 직접적으로 정리된 프레임은 시각 컨셉의 세 축이었다. <strong>form, color, type</strong>을 어떻게 정할 것인지, 그리고 왜 그렇게 정했는지를 설명해야 했다. 단순히 마음에 든다고 고르는 것이 아니라, 정보 목표와 이야기 구조에 맞는 시각 언어를 선택하는 방식이다.</p>
+
+                        <table class="stat-table">
+                            <tr>
+                                <th>축</th>
+                                <th>수업에서 나온 대비</th>
+                                <th>생각해야 하는 질문</th>
+                            </tr>
+                            <tr>
+                                <td>Form</td>
+                                <td>각진 형태 / 동그라미</td>
+                                <td>이 정보는 날카롭고 단단하게 읽혀야 하는가, 유연하고 부드럽게 읽혀야 하는가?</td>
+                            </tr>
+                            <tr>
+                                <td>Color</td>
+                                <td>단조로움 / 컬러풀</td>
+                                <td>절제된 톤이 맞는가, 다층적인 정보 차이를 색으로 적극 드러낼 것인가?</td>
+                            </tr>
+                            <tr>
+                                <td>Type</td>
+                                <td>명조(세리프) / 고딕(산세리프)</td>
+                                <td>역사감과 무게감을 줄 것인가, 현대적이고 기능적으로 갈 것인가?</td>
+                            </tr>
+                        </table>
+
+                        <p>결국 폼, 컬러, 타입은 따로 고르는 재료가 아니라 하나의 톤앤매너를 이루는 세 축이었다. 어떤 정보를 어떤 태도로 읽히게 할 것인지가 먼저 있고, 그 다음에야 각진지 둥근지, 명조인지 고딕인지, 절제된 색인지 다채로운 색인지가 따라온다.</p>
+
+                        <h3>4. 스토리텔링은 What과 How로 나누어야 한다</h3>
+                        <p>스토리텔링도 단순히 이야기가 있느냐 없느냐가 아니라 두 층으로 나뉘어 정리되었다. 하나는 <strong>What</strong>, 즉 어떤 이야기를 할 것인가이고, 다른 하나는 <strong>How</strong>, 즉 그것을 어떤 tone &amp; manner로 보여줄 것인가이다. 정보 목표와 정보 단계가 서 있더라도, 이 두 층이 분리되어 있지 않으면 스케치 단계에서 쉽게 흐려질 수 있다.</p>
+
+                        <div class="stat-comparison">
+                            <div class="stat-comparison-item">
+                                <h4>What</h4>
+                                <p>어떤 이야기를 하려는가. 무엇을 1차 정보로 삼고, 어떤 메시지를 남기려는가의 문제다.</p>
+                            </div>
+                            <div class="stat-comparison-item">
+                                <h4>How / Tone &amp; Manner</h4>
+                                <p>그 이야기를 어떤 분위기와 시각적 태도로 전달할 것인가. 형태, 색, 타이포그래피, 밀도, 여백, 리듬까지 모두 포함된다.</p>
+                            </div>
+                        </div>
+
+                        <p>그래서 페르소나를 공유할 수 있다는 말도 중요하게 들렸다. 누가 이 정보를 읽고 어떤 감정과 이해를 거쳐야 하는지까지 잡혀 있어야 What과 How가 실제 디자인으로 연결되기 때문이다.</p>
+
+                        <h3>5. 스케치는 손으로 해도 되고, 일러로 해도 되고, AI를 써도 된다</h3>
+                        <p>다음 단계는 시각적인 요소와 디자인 스케치를 실제로 진행해 오는 것이다. 방법은 고정되어 있지 않았다. 손으로 빠르게 그려도 되고, 일러스트레이터로 그려도 되고, AI에게 시켜도 된다. 중요한 것은 도구가 아니라 <strong>적어도 1-2개의 스케치를 통해 시각 컨셉을 시험해보는 것</strong>이다.</p>
+
+                        <div class="lecture-note">
+                            <p><strong>메모.</strong> 스케치 단계에서 나올 수 있는 질문은 꽤 직접적이다. 예를 들어 동그라미 안에 왜 또 하나의 동그라미를 넣었는지, 왜 이런 형태를 겹치게 되었는지 물을 수 있다. 즉 형태에는 반드시 설명 가능한 이유가 붙어야 한다.</p>
+                        </div>
+
+                        <table class="stat-table">
+                            <tr>
+                                <th>스케치 방식</th>
+                                <th>가능 여부</th>
+                                <th>핵심 조건</th>
+                            </tr>
+                            <tr>
+                                <td>손 스케치</td>
+                                <td>가능</td>
+                                <td>빠르게 구조와 관계를 시험할 수 있어야 한다.</td>
+                            </tr>
+                            <tr>
+                                <td>일러스트레이터</td>
+                                <td>가능</td>
+                                <td>형태와 배열을 좀 더 정교하게 점검할 수 있어야 한다.</td>
+                            </tr>
+                            <tr>
+                                <td>AI 생성</td>
+                                <td>가능</td>
+                                <td>결과물을 그대로 쓰기보다 컨셉 테스트 도구로 써야 한다.</td>
+                            </tr>
+                        </table>
+
+                        <p>또 하나 흥미로웠던 피드백은, <strong>차이가 거의 없는 날짜들의 일주일</strong>과 <strong>굴곡이 많은 날짜들의 일주일</strong>을 각각 넣어보라는 제안이었다. 이렇게 두 구간을 비교해보면, 어떤 컬러와 형태 체계가 실제로 더 잘 들어오는지 테스트할 수 있다. 이론적으로 괜찮아 보이는 형식이 실제 데이터에서는 전혀 다르게 읽힐 수 있기 때문이다.</p>
+
+                        <div class="stat-formula">
+                            변화가 적은 1주
+                            <br>
+                            vs
+                            <br>
+                            굴곡이 큰 1주
+                            <br>
+                            -> 어떤 색 / 형태 시스템이 더 잘 보이는가 테스트
+                        </div>
+
+                        <h3>6. 레이아웃은 "예뻐서"가 아니라 이유로 설명되어야 한다</h3>
+                        <p>이번 주 피드백에서 가장 단호했던 지점 중 하나는 레이아웃 설명이었다. 어떻게 레이아웃을 나눌 것인지, 왜 그렇게 선택했는지를 말할 수 있어야 하고, "예뻐서요"는 충분한 답이 되지 않는다. 만약 아름다운 배열을 찾아냈다면, 그것이 왜 아름다운지, 왜 기능적으로도 맞는지를 함께 설명해야 한다.</p>
+
+                        <table class="stat-table">
+                            <tr>
+                                <th>설명해야 하는 요소</th>
+                                <th>피해야 하는 답</th>
+                                <th>필요한 답</th>
+                            </tr>
+                            <tr>
+                                <td>레이아웃 분할</td>
+                                <td>그냥 보기 좋아서</td>
+                                <td>정보 위계와 읽기 순서에 맞기 때문에</td>
+                            </tr>
+                            <tr>
+                                <td>형태 반복</td>
+                                <td>동그라미가 예뻐 보여서</td>
+                                <td>이 정보의 톤과 관계 구조를 가장 잘 드러내기 때문에</td>
+                            </tr>
+                            <tr>
+                                <td>컬러 선택</td>
+                                <td>컬러풀이 좋아서</td>
+                                <td>차이와 변화를 가장 명확히 구분할 수 있기 때문에</td>
+                            </tr>
+                            <tr>
+                                <td>서체 선택</td>
+                                <td>무난해 보여서</td>
+                                <td>이 작업의 분위기와 가독성 목표에 맞기 때문에</td>
+                            </tr>
+                        </table>
+
+                        <p>배경 유닛의 x, y값을 알고 있으면, 각 위치가 왜 거기에 놓였는지 스스로 설명할 수 있고 보는 사람도 짐작할 수 있다는 말도 이어졌다. 시간이나 연도 같은 구체적 라벨을 모두 읽지 않아도, 좌표와 배열 논리가 서 있으면 대략적인 구조와 이유를 추측할 수 있다는 뜻이다.</p>
+
+                        <div class="stat-formula">
+                            배경 유닛의 x, y 값
+                            <br>
+                            -> 각 위치의 이유
+                            <br>
+                            -> 라벨을 다 읽지 않아도 구조를 짐작 가능
+                        </div>
+
+                        <p>결국 아쉬운 경우는 펑션과 아름다움 둘 중 하나만 겨우 잡은 경우다. 이번 피드백은 둘 다 놓치지 말라는 요구에 가까웠다.</p>
+
+                        <h3>7. 이론적으로 아는 것과 실제로 적용하는 것은 꽤 다르다</h3>
+                        <p>수업에서는 머리로 생각하는 것과 실제로 적용해보는 것이 아주 다를 수 있다는 점도 다시 짚었다. 이론적으로는 각진 폼이 맞고, 컬러풀한 구조가 맞고, 고딕이 기능적으로 맞는다고 느껴질 수 있다. 하지만 실제 데이터와 실제 배열에 얹어보면 전혀 다른 결과가 나올 수 있다. 그래서 스케치와 비교 실험이 필요하다.</p>
+
+                        <p>이 지점에서 <em>Steven Heller + Rick Landers, Infographic Designers' Sketchbooks</em>가 레퍼런스로 언급된 것도 자연스러웠다. 스케치북은 완성된 결과보다, 어떤 형태와 정보 문법이 실제로 시험되고 조정되는지를 보여주기 때문이다.</p>
+
+                        <h3>8. 다음 주까지 가져가야 할 것, 그리고 5월 이후의 방향</h3>
+                        <p>다음 주에는 시각적인 요소와 디자인 스케치를 가지고 다시 보게 된다. 즉 form, color, type을 어떻게 정했는지, What과 How를 어떤 톤앤매너로 엮었는지, 그리고 그 선택이 실제 데이터 위에서 어떻게 보이는지를 시험한 결과가 필요하다.</p>
+
+                        <p>또한 5월 2일부터는 팀 프로젝트로 넘어가며, 분석한다는 느낌으로 접근하면 좋겠다는 말도 남았다. 공적 데이터, 공공 데이터를 기준으로 뽑고, 정보의 위계와 목표를 설정해서 진행해보자는 방향이었다. 개인 프로젝트가 자기 데이터의 구조를 정리하는 단계였다면, 다음 프로젝트는 보다 분석적이고 공적인 데이터 문법으로 넘어가는 셈이다.</p>
+
+                        <ul>
+                            <li>이번 주는 개인별 1:1 피드백을 통해 정보 목표와 정보 단계를 더 분명히 하는 중간 점검이었다.</li>
+                            <li>스토리텔링은 What과 How, 즉 이야기 자체와 tone &amp; manner를 분리해 생각해야 한다.</li>
+                            <li>시각 컨셉은 form, color, type 세 축으로 정리하고 이유를 설명할 수 있어야 한다.</li>
+                            <li>스케치는 손, 일러, AI 어느 방식이든 가능하지만 1-2개 안으로 실제 테스트가 필요하다.</li>
+                            <li>차이가 적은 주간과 굴곡이 큰 주간을 비교해 어떤 색과 형태가 더 잘 읽히는지 보는 것이 유효하다.</li>
+                            <li>레이아웃은 "예뻐서"가 아니라 위계와 기능의 이유로 설명되어야 한다.</li>
+                            <li>좋은 결과는 펑션과 아름다움을 함께 잡은 경우다.</li>
+                            <li>5월 2일부터는 공공 데이터를 바탕으로 한 분석 중심의 팀 프로젝트로 넘어간다.</li>
+                        </ul>
+                    </div>
+
+                    <div class="lang-en">
+                        <p class="week-references"><em>Keywords: 1:1 feedback, information goal, information stage, persona, storytelling, form-color-type, sketch, layout rationale, final print, public data, Steven Heller, Rick Landers</em></p>
+
+                        <p>Week 6 was less about a long new theory lecture and more about checking, one by one, whether each project had a clear <strong>information goal and information hierarchy</strong>. The class was centered on individual one-to-one feedback. We discussed how persona and information storytelling could be attached to the work, and what kind of reasons should support visual concept and sketch decisions.</p>
+
+                        <div class="lecture-note">
+                            <p><strong>Note.</strong> The strongest message this week was that the real task is not simply to make something attractive. One must be able to explain <strong>what the project is trying to say, what stage of information should appear first, and why the layout, form, color, and type were chosen</strong>. Taste without explanation is weak; reasoned choice becomes design language.</p>
+                        </div>
+
+                        <h3>1. Week 6 Functioned as a One-to-One Project Checkpoint</h3>
+                        <p>On April 11, each person shared the current state of the project through information goals and information stages. Persona and information storytelling could also be presented when relevant. So this week was closer to a midpoint review than to a production sprint. The key question was whether the direction already set could be defended as a coherent structure.</p>
+
+                        <table class="stat-table">
+                            <tr>
+                                <th>What was checked</th>
+                                <th>Reframed as a question</th>
+                                <th>Why it matters</th>
+                            </tr>
+                            <tr>
+                                <td>Information goal</td>
+                                <td>What is this project trying to say first?</td>
+                                <td>If primary information is unstable, the whole structure becomes unstable.</td>
+                            </tr>
+                            <tr>
+                                <td>Information stage</td>
+                                <td>What should be seen first, and what should be understood later?</td>
+                                <td>Without hierarchy, the reading order collapses.</td>
+                            </tr>
+                            <tr>
+                                <td>Persona</td>
+                                <td>Who is this really for?</td>
+                                <td>The same information requires different delivery grammar for different viewers.</td>
+                            </tr>
+                            <tr>
+                                <td>Information storytelling</td>
+                                <td>What narrative structure should carry this data?</td>
+                                <td>Information becomes complete only as a reading experience.</td>
+                            </tr>
+                        </table>
+
+                        <h3>2. The Schedule from Mid-April to Early May Became a Single Flow</h3>
+                        <p>This week also clarified the larger project timeline connecting English typography, Korean typography, visual concept and sketch sharing, final print presentation, and then the second team project.</p>
+
+                        <table class="stat-table">
+                            <tr>
+                                <th>Date</th>
+                                <th>Class / sharing</th>
+                                <th>Why it matters now</th>
+                            </tr>
+                            <tr>
+                                <td>4/4</td>
+                                <td>English typography lecture, personal sharing of information goal and stage</td>
+                                <td>This was the direct lead-in to the current feedback stage.</td>
+                            </tr>
+                            <tr>
+                                <td>4/11</td>
+                                <td>Personal sharing of information goal and stage, with persona and storytelling when useful</td>
+                                <td>Today focused mainly on one-to-one project feedback.</td>
+                            </tr>
+                            <tr>
+                                <td>4/18</td>
+                                <td>Korean typography lecture, sharing of visual concept and sketch stage</td>
+                                <td>By next week, visual elements and sketches need to be brought in.</td>
+                            </tr>
+                            <tr>
+                                <td>4/25</td>
+                                <td>Final print output and presentation, with color print and print tone considerations such as glossy or matte</td>
+                                <td>This is the completion point of the first project.</td>
+                            </tr>
+                            <tr>
+                                <td>5/2</td>
+                                <td>Second project briefing, lecture, and team assignment</td>
+                                <td>From there the course shifts toward a team-based analytical project.</td>
+                            </tr>
+                        </table>
+
+                        <h3>3. Visual Concept Had to Be Organized Through Form, Color, and Type</h3>
+                        <p>The most concrete framework this week was the three-axis structure of visual concept: <strong>form, color, and type</strong>. Each had to be selected with reasons, not simply by preference.</p>
+
+                        <table class="stat-table">
+                            <tr>
+                                <th>Axis</th>
+                                <th>Contrast mentioned in class</th>
+                                <th>Underlying question</th>
+                            </tr>
+                            <tr>
+                                <td>Form</td>
+                                <td>Angular / circular</td>
+                                <td>Should the information feel sharp and rigid, or soft and continuous?</td>
+                            </tr>
+                            <tr>
+                                <td>Color</td>
+                                <td>Monotone / colorful</td>
+                                <td>Should the mood stay restrained, or should differences be actively exposed through color?</td>
+                            </tr>
+                            <tr>
+                                <td>Type</td>
+                                <td>Myungjo (serif) / Gothic (sans-serif)</td>
+                                <td>Should the tone lean toward historical weight or functional modern clarity?</td>
+                            </tr>
+                        </table>
+
+                        <p>Form, color, and type were not treated as separate decorative choices. They operate together as one tone and manner built from the information goal.</p>
+
+                        <h3>4. Storytelling Had to Be Split into What and How</h3>
+                        <p>Storytelling was divided into two layers. One is <strong>What</strong>, the story itself. The other is <strong>How</strong>, the tone and manner through which that story becomes visible. Even if the information goal is clear, sketching becomes unstable if these two layers are not separated.</p>
+
+                        <div class="stat-comparison">
+                            <div class="stat-comparison-item">
+                                <h4>What</h4>
+                                <p>What story is being told? What is primary information, and what message should remain?</p>
+                            </div>
+                            <div class="stat-comparison-item">
+                                <h4>How / Tone &amp; Manner</h4>
+                                <p>How should that story be delivered? Form, color, typography, spacing, density, and rhythm all belong here.</p>
+                            </div>
+                        </div>
+
+                        <p>This is also why persona matters. Once the intended reader and their expected emotional path are clear, What and How can connect to actual design choices.</p>
+
+                        <h3>5. Sketches Can Be Hand-Drawn, Illustrated, or AI-Assisted</h3>
+                        <p>The next step is to bring actual visual elements and design sketches. The tool is flexible. One can sketch by hand, use Illustrator, or even generate drafts with AI. What matters is to test the concept through at least one or two sketches.</p>
+
+                        <div class="lecture-note">
+                            <p><strong>Note.</strong> Questions at the sketch stage can be blunt in a useful way: why place another circle inside a circle, why overlap these forms, why repeat this shape? Form must carry an explainable reason.</p>
+                        </div>
+
+                        <table class="stat-table">
+                            <tr>
+                                <th>Sketch method</th>
+                                <th>Allowed?</th>
+                                <th>Key condition</th>
+                            </tr>
+                            <tr>
+                                <td>Hand sketch</td>
+                                <td>Yes</td>
+                                <td>It should allow quick testing of structure and relation.</td>
+                            </tr>
+                            <tr>
+                                <td>Illustrator</td>
+                                <td>Yes</td>
+                                <td>It should help refine form and arrangement.</td>
+                            </tr>
+                            <tr>
+                                <td>AI-assisted draft</td>
+                                <td>Yes</td>
+                                <td>It should be used as a concept-testing tool, not as unquestioned output.</td>
+                            </tr>
+                        </table>
+
+                        <p>One practical suggestion was to compare a week with little variation and a week with strong bends or fluctuations. That contrast can reveal which form and color system actually works once real data enters the design.</p>
+
+                        <div class="stat-formula">
+                            A relatively flat week
+                            <br>
+                            vs
+                            <br>
+                            A highly curved or variable week
+                            <br>
+                            -> test which color / form system reads better
+                        </div>
+
+                        <h3>6. Layout Must Be Explained Through Reasons, Not Through Taste Alone</h3>
+                        <p>One of the clearest critiques this week was about layout. It is not enough to say that a layout is beautiful. One must explain why it was divided that way, why that arrangement was chosen, and how it supports both hierarchy and reading order. If a beautiful arrangement has been found, the designer must still be able to explain why it is beautiful and why it functions.</p>
+
+                        <table class="stat-table">
+                            <tr>
+                                <th>Element to explain</th>
+                                <th>Weak answer</th>
+                                <th>Better answer</th>
+                            </tr>
+                            <tr>
+                                <td>Layout division</td>
+                                <td>Because it looked nice</td>
+                                <td>Because it matches hierarchy and reading sequence</td>
+                            </tr>
+                            <tr>
+                                <td>Repeated form</td>
+                                <td>Because circles looked pretty</td>
+                                <td>Because this form best expresses tone and relation</td>
+                            </tr>
+                            <tr>
+                                <td>Color choice</td>
+                                <td>Because colorful looked better</td>
+                                <td>Because it distinguishes variation most clearly</td>
+                            </tr>
+                            <tr>
+                                <td>Typeface choice</td>
+                                <td>Because it felt safe</td>
+                                <td>Because it fits mood and legibility goals</td>
+                            </tr>
+                        </table>
+
+                        <p>The class also pointed out that if the x and y logic of background units is clear, the reasons for placement become readable even without explaining every label directly. A viewer may not know the exact year or time, but can still infer the structure through positional logic.</p>
+
+                        <div class="stat-formula">
+                            Background unit x and y values
+                            <br>
+                            -> reasons for position
+                            <br>
+                            -> structural inference even without reading every label
+                        </div>
+
+                        <p>The disappointing case is when either function or beauty is missing. The demand this week was to keep both in play.</p>
+
+                        <h3>7. Thinking in Theory and Applying in Reality Are Often Very Different</h3>
+                        <p>The class again stressed that theoretical decisions and actual application can diverge sharply. A concept may sound correct in the head, but once real data and real arrangement are involved, the result may behave differently. That is why sketches and comparisons are necessary. In that context, <em>Steven Heller + Rick Landers, Infographic Designers' Sketchbooks</em> was a fitting reference: the value lies in seeing how visual systems are tested and adjusted before becoming final.</p>
+
+                        <h3>8. What Needs to Be Ready Next Week, and Where the Course Goes After May 2</h3>
+                        <p>By next week, visual elements and design sketches need to be ready. Form, color, and type should already have provisional reasons, and the What / How structure should be visible in sketch form. The choices also need to be tested on actual data.</p>
+
+                        <p>Another important direction was the shift after May 2. The second project will be team-based and should move with a stronger analytical mood, ideally using public or civic data. If the first project organized personal data into an information structure, the next project seems set to move toward a more analytical and public data grammar.</p>
+
+                        <ul>
+                            <li>Week 6 was mainly a one-to-one midpoint review for clarifying information goal and information stage.</li>
+                            <li>Storytelling should be separated into What and How, or content and tone-and-manner.</li>
+                            <li>Visual concept must be explained through form, color, and type.</li>
+                            <li>Sketches can be hand-made, illustrated, or AI-assisted, but at least one or two real tests are needed.</li>
+                            <li>Comparing a flat week and a highly varied week is a useful way to test whether a visual system actually works.</li>
+                            <li>Layout cannot be defended by "it looks nice"; it must be explained through hierarchy and function.</li>
+                            <li>The strongest result is the one that keeps both function and beauty.</li>
+                            <li>From May 2, the course moves toward an analytical team project built on public data.</li>
+                        </ul>
+                    </div>
+                </div>
+            </section>
+        </article>
+
+        <div id="site-footer"></div>
+    </div>
+
+    <script src="../../../common.js"></script>
+</body>
+</html>
