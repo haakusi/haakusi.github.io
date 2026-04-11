@@ -1,0 +1,570 @@
+<!DOCTYPE html>
+<html data-theme="dark" data-lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Intro to Statistics - Week 6 - Sewon Park</title>
+    <link rel="stylesheet" type="text/css" href="../../../style.css">
+    <link rel="stylesheet" type="text/css" href="../../../assets/css/lectures.css">
+    <script src="../../../assets/js/mathjax-config.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js" async></script>
+</head>
+<body>
+    <button class="theme-toggle" onclick="toggleTheme()" aria-label="Toggle dark mode"></button>
+    <button class="lang-toggle" onclick="toggleLanguage()" aria-label="Toggle language">EN</button>
+
+    <div class="container">
+        <div id="site-header"></div>
+        <div id="site-nav"></div>
+
+        <article class="course-page">
+            <div class="course-header">
+                <h1 data-en="Intro to Statistics" data-kr="기초통계">Intro to Statistics</h1>
+                <p class="course-meta" data-en="2026 Spring | Fri 19:00-22:00" data-kr="2026 봄학기 | 금요일 19:00-22:00">2026 Spring | Fri 19:00-22:00</p>
+            </div>
+
+            <div class="course-nav">
+                <a href="../../../lectures.html" class="back-to-lectures" data-en="Back to Lectures" data-kr="강의 목록으로">Back to Lectures</a>
+                <span class="nav-separator">/</span>
+                <a href="./index.html" class="back-to-course" data-en="Course Home" data-kr="과목 홈">Course Home</a>
+            </div>
+
+            <div class="week-nav">
+                <span data-en="Weeks:" data-kr="주차:">Weeks:</span>
+                <a href="week-01.html" class="week-link">W1</a>
+                <a href="week-02.html" class="week-link">W2</a>
+                <a href="week-03.html" class="week-link">W3</a>
+                <a href="week-04.html" class="week-link">W4</a>
+                <a href="week-05.html" class="week-link">W5</a>
+                <a href="week-06.html" class="week-link current">W6</a>
+            </div>
+
+            <section class="week-section" id="week-06">
+                <h2 data-en="Week 6" data-kr="6주차">Week 6</h2>
+                <p class="week-date">2026-04-10</p>
+                <div class="week-content">
+                    <div class="lang-kr" hidden>
+                        <p class="week-references"><em>Keywords: standard normal distribution, z-score, normal table, percentile, continuity correction, exponential distribution, gamma distribution, chi-square distribution, degrees of freedom</em></p>
+
+                        <p>이번 6주차는 두 갈래가 함께 들어온 시간이었다. 한 갈래는 삶의 태도와 공부 습관에 대한 이야기였고, 다른 한 갈래는 정규분포를 실제 계산에 쓰기 위해 <strong>표준화, 표준정규분포표, 분위수 기준점, 정규근사</strong>를 읽는 법이었다. 뒤쪽에서는 지수분포, 감마분포, 카이제곱분포까지 이어지면서 “분포들이 서로 어떻게 연결되는가”라는 큰 그림도 함께 잡아주었다.</p>
+
+                        <div class="lecture-note">
+                            <p><strong>메모.</strong> 수업 첫머리에서 통계 공식보다 먼저 나온 주제는 마음가짐이었다. 여유, 긍정성, 집중, 습관의 변화가 결국 사고방식과 행동을 바꾸고, 그 행동의 누적이 삶의 방향을 바꾼다는 이야기였다. 통계를 배우는 태도와도 연결된다. 숫자를 조급하게 외우기보다, 문제를 천천히 읽고 구조를 바르게 보는 습관이 실력을 만든다.</p>
+                        </div>
+
+                        <h3>1. 수업의 첫머리: 마음, 집중, 습관</h3>
+                        <p>이번 주 메모에는 통계 공식 못지않게 인상적인 문장이 많았다. “정신일도 하사불성”처럼, 정신을 한곳에 모으면 이루지 못할 일이 없다는 말이 나왔지만, 동시에 <strong>심성이 꼬여 있으면 집중 자체가 제대로 작동하지 않는다</strong>는 보완도 함께 붙었다. 즉 공부의 출발점은 단순히 오래 앉아 있는 것이 아니라, 세상을 보는 시각을 너무 급하고 왜곡된 상태로 두지 않는 것이다.</p>
+
+                        <ul>
+                            <li>생각이 바뀌면 행동이 바뀌고, 행동이 바뀌면 생활패턴과 습관이 바뀐다.</li>
+                            <li>습관이 바뀌면 결국 자기 삶의 궤적도 달라질 수 있다.</li>
+                            <li>따라서 “왜 이렇게 무기력한가”만 반복하기보다, 한 단계 위에서 사고방식을 먼저 점검하는 것이 중요하다.</li>
+                        </ul>
+
+                        <p>통계 공부에서도 이 태도는 그대로 이어진다. 문제를 보자마자 불안하게 식부터 끌어오지 말고, 이 문제가 이산형인지 연속형인지, 정규분포인지 이항분포인지, 표준화가 필요한지 차분히 판단하는 습관이 우선이다.</p>
+
+                        <h3>2. 정규분포에서 표준정규분포로: 왜 표준화가 필요한가</h3>
+                        <p>정규분포는 평균 \(\mu\)와 분산 \(\sigma^2\)를 가진 연속형 분포이고, 보통 다음처럼 쓴다.</p>
+
+                        <div class="stat-formula">
+                            $$X \sim N(\mu,\sigma^2)$$
+                            $$f(x)=\frac{1}{\sqrt{2\pi}\sigma}\exp\left(-\frac{1}{2}\left(\frac{x-\mu}{\sigma}\right)^2\right)$$
+                        </div>
+
+                        <p>하지만 실제 계산에서는 이 식을 직접 적분하기보다, 먼저 확률변수를 표준화해서 평균이 0이고 분산이 1인 표준정규분포로 바꾼다.</p>
+
+                        <div class="stat-formula">
+                            $$Z=\frac{X-\mu}{\sigma} \sim N(0,1)$$
+                        </div>
+
+                        <table class="stat-table">
+                            <tr>
+                                <th>질문</th>
+                                <th>표준화의 역할</th>
+                                <th>해석</th>
+                            </tr>
+                            <tr>
+                                <td>값이 평균보다 얼마나 큰가</td>
+                                <td>\(X-\mu\)</td>
+                                <td>평균에서의 거리</td>
+                            </tr>
+                            <tr>
+                                <td>그 거리가 퍼짐 대비 얼마나 큰가</td>
+                                <td>\(\frac{X-\mu}{\sigma}\)</td>
+                                <td>표준편차 단위로 환산한 값</td>
+                            </tr>
+                            <tr>
+                                <td>다른 정규분포와 비교 가능한가</td>
+                                <td>\(Z\)-score</td>
+                                <td>모든 정규분포를 하나의 공통 표로 읽을 수 있다</td>
+                            </tr>
+                        </table>
+
+                        <p>이제부터는 “정규분포 자체를 푼다”기보다 <strong>무엇이든 표준화해서 표준정규분포표를 읽는다</strong>는 감각이 핵심이 된다. 수업에서 언급된 교재 뒤쪽 표준정규분포표와 153페이지의 표 사용법이 바로 이 지점이다.</p>
+
+                        <h3>3. 표준정규분포표 읽기</h3>
+                        <p>표준정규분포표는 보통 누적확률 \(\Phi(z)=P(Z\le z)\)를 준다. 따라서 구간확률은 표 값을 빼서 계산한다.</p>
+
+                        <div class="stat-formula">
+                            $$P(1<Z<2)=\Phi(2)-\Phi(1)=0.9772-0.8413=0.1359$$
+                        </div>
+
+                        <p>즉 표를 읽을 때는 “왼쪽 누적확률”을 먼저 찾고, 원하는 구간으로 바꾸기 위해 뺄셈이나 여사건을 쓴다. 이것이 정규분포 문제를 푸는 기본 루틴이다.</p>
+
+                        <div class="lecture-note">
+                            <p><strong>요점.</strong> 정규분포의 밀도함수 자체를 매번 손으로 적분하는 것이 아니라, 표준화한 뒤 \(\Phi(z)\) 표를 읽는 것이 실전적인 방법이다.</p>
+                        </div>
+
+                        <h3>4. 예제: 점수 구간 확률과 상위 20% 기준점</h3>
+                        <p>수업 예제에서는 시험점수가 정규분포를 따른다고 두고 계산했다.</p>
+
+                        <div class="stat-formula">
+                            $$X \sim N(75,15^2)$$
+                        </div>
+
+                        <p>먼저 60점과 85점 사이에 있을 확률은</p>
+
+                        <div class="stat-formula">
+                            $$P(60<X<85)=P\left(\frac{60-75}{15}<Z<\frac{85-75}{15}\right)$$
+                            $$=P(-1<Z<0.67)=\Phi(0.67)-\Phi(-1)$$
+                            $$\approx 0.7486-0.1587=0.5899$$
+                        </div>
+
+                        <p>이므로 약 59.0%다. 즉 평균보다 1표준편차 아래에서 평균보다 0.67표준편차 위까지의 구간에 대략 10명 중 6명 정도가 들어간다는 뜻이다.</p>
+
+                        <p>다음으로 상위 20% 안에 들기 위한 기준점 \(x_0\)를 구하면</p>
+
+                        <div class="stat-formula">
+                            $$P(X\ge x_0)=0.2$$
+                            $$P\left(Z\ge \frac{x_0-75}{15}\right)=0.2$$
+                        </div>
+
+                        <p>이때 왼쪽 누적확률은 0.8이므로, 표에서 대응하는 \(z\)값은 약 0.84다. 따라서</p>
+
+                        <div class="stat-formula">
+                            $$\frac{x_0-75}{15}\approx 0.84$$
+                            $$x_0 \approx 75+15(0.84)=87.6$$
+                        </div>
+
+                        <p>즉 대략 87.6점 이상이면 상위 20%에 해당한다. 이런 문제는 “확률을 구하는 문제”에서 한 걸음 더 나아가, <strong>주어진 확률에 맞는 기준값을 역으로 찾는 분위수(percentile) 문제</strong>라는 점이 중요하다.</p>
+
+                        <table class="stat-table">
+                            <tr>
+                                <th>질문</th>
+                                <th>표준화 후 형태</th>
+                                <th>결과</th>
+                            </tr>
+                            <tr>
+                                <td>\(P(60<X<85)\)</td>
+                                <td>\(P(-1<Z<0.67)\)</td>
+                                <td>\(\approx 0.5899\)</td>
+                            </tr>
+                            <tr>
+                                <td>상위 20% 기준점</td>
+                                <td>\(P(Z\ge z_0)=0.2\)</td>
+                                <td>\(x_0 \approx 87.6\)</td>
+                            </tr>
+                        </table>
+
+                        <h3>5. 평균과 중앙값: 숫자 하나만으로는 위치를 다 말할 수 없다</h3>
+                        <p>수업 중 “평균은 못 믿을 놈이다”라는 다소 강한 표현이 나온 이유는, 평균만으로는 개인의 상대적 위치를 바로 알 수 없기 때문이다. 평균점수를 들어도 내 점수가 어느 정도 위치인지 알기 어렵지만, 중앙값을 알면 적어도 절반보다 위인지 아래인지는 판단할 수 있다.</p>
+
+                        <ul>
+                            <li>평균(mean)은 전체 값을 모두 반영하므로 극단값의 영향을 크게 받을 수 있다.</li>
+                            <li>중앙값(median)은 순서상 가운데 값이므로 위치 해석에 더 직접적일 때가 많다.</li>
+                            <li>따라서 어떤 상황에서는 평균보다 중앙값이 분포의 체감적 중심을 더 잘 보여준다.</li>
+                        </ul>
+
+                        <p>즉 평균이 쓸모없다는 뜻이 아니라, <strong>무엇을 알고 싶은지에 따라 평균과 중앙값의 역할을 구분해야 한다</strong>는 메시지로 이해하는 것이 맞다.</p>
+
+                        <h3>6. 이항분포의 정규근사와 연속성 수정</h3>
+                        <p>이번 주는 정규분포를 직접 쓰는 것뿐 아니라, 이항분포를 정규분포로 근사하는 방법도 정리했다. \(X \sim B(n,p)\)이면 평균과 분산은</p>
+
+                        <div class="stat-formula">
+                            $$E(X)=np, \qquad V(X)=np(1-p)$$
+                        </div>
+
+                        <p>이고, 따라서 표준편차는 \(\sqrt{np(1-p)}\)다. 예를 들어</p>
+
+                        <div class="stat-formula">
+                            $$X \sim B(100,0.1)$$
+                            $$\mu=np=10,\qquad \sigma=\sqrt{100\cdot 0.1\cdot 0.9}=3$$
+                        </div>
+
+                        <p>에서 정확한 확률 \(P(X\le 1)\)는</p>
+
+                        <div class="stat-formula">
+                            $$P(X\le 1)=\binom{100}{0}(0.1)^0(0.9)^{100}+\binom{100}{1}(0.1)^1(0.9)^{99}$$
+                            $$\approx 0.0003217$$
+                        </div>
+
+                        <p>이다. 그런데 이산형 분포를 연속형 정규분포 \(Y \sim N(10,9)\)로 근사할 때는 포함 경계를 맞추기 위해 <strong>연속성 수정(continuity correction)</strong>을 한다. 그래서 \(P(X\le 1)\)를 \(P(Y\le 1.5)\)로 바꿔 계산한다.</p>
+
+                        <div class="stat-formula">
+                            $$P(X\le 1)\approx P(Y\le 1.5)=P\left(Z\le \frac{1.5-10}{3}\right)=P(Z\le -2.83)$$
+                        </div>
+
+                        <p>이때 근사가 완벽하지 않은 이유는 \(p=0.1\)이 0.5에서 멀고, 보고 있는 영역이 극단적인 왼쪽 꼬리이기 때문이다. 수업에서 강조된 것처럼, 정규근사는 만능이 아니라 <strong>\(p\)가 0.5에 가까울수록, 그리고 \(n\)이 충분할수록</strong> 더 잘 맞는다.</p>
+
+                        <p>같은 맥락에서</p>
+
+                        <div class="stat-formula">
+                            $$P(X=8)=\binom{25}{8}(0.5)^8(0.5)^{17}=\binom{25}{8}(0.5)^{25}\approx 0.032$$
+                        </div>
+
+                        <p>처럼 \(p=0.5\)인 이항분포 예제는 정규근사가 훨씬 자연스럽게 작동하는 편이다.</p>
+
+                        <table class="stat-table">
+                            <tr>
+                                <th>점검 항목</th>
+                                <th>근사 판단</th>
+                            </tr>
+                            <tr>
+                                <td>\(np\), \(n(1-p)\)가 충분히 큰가</td>
+                                <td>너무 작으면 정규근사가 거칠어진다</td>
+                            </tr>
+                            <tr>
+                                <td>\(p\)가 0.5에 가까운가</td>
+                                <td>가까울수록 대칭성이 좋아져 근사가 개선된다</td>
+                            </tr>
+                            <tr>
+                                <td>꼬리 확률을 보는가</td>
+                                <td>중앙부보다 꼬리에서 오차가 더 커질 수 있다</td>
+                            </tr>
+                            <tr>
+                                <td>연속성 수정을 했는가</td>
+                                <td>이산형 경계를 연속형으로 옮길 때 필요하다</td>
+                            </tr>
+                        </table>
+
+                        <h3>7. 시간의 분포: 지수분포와 감마분포</h3>
+                        <p>뒤쪽 메모는 사건이 일어날 때까지의 시간 분포로 넘어간다. 지수분포(exponential distribution)는 첫 사건이 발생할 때까지의 대기시간을 다루고, 감마분포(gamma distribution)는 그 구조를 \(r\)번째 사건까지 확장한 형태로 이해할 수 있다. 수업 메모 기준으로 \(\lambda\)는 단위시간당 평균 발생률(rate), \(r\)은 사건 발생 횟수와 연결된 형태모수다.</p>
+
+                        <p>지수분포의 밀도함수와 누적분포함수는 다음과 같다.</p>
+
+                        <div class="stat-formula">
+                            $$f(x)=\lambda e^{-\lambda x}, \qquad x>0$$
+                            $$F(x)=\int_0^x \lambda e^{-\lambda t}\,dt=1-e^{-\lambda x}$$
+                        </div>
+
+                        <p>\(e^0=1\)이므로 \(F(0)=0\)이 자연스럽게 맞고, 시간이 길어질수록 누적확률은 1에 가까워진다. 감마분포는 이를 더 일반화해서</p>
+
+                        <div class="stat-formula">
+                            $$X \sim \Gamma(r,\lambda), \qquad f(x)=\frac{\lambda^r}{\Gamma(r)}x^{r-1}e^{-\lambda x}, \qquad x>0$$
+                        </div>
+
+                        <p>처럼 쓸 수 있다. \(r=1\)이면 지수분포가 된다. 또한 감마분포는 여러 지수 대기시간의 합으로 볼 수 있기 때문에, 형태모수 \(r\)가 커질수록 더 대칭적인 모양을 띠며 정규분포와 가까워지는 방향을 보인다.</p>
+
+                        <div class="lecture-note">
+                            <p><strong>연결.</strong> 기하분포와 지수분포는 각각 이산형과 연속형 영역에서 같은 구조를 공유한다. 둘 다 무기억성(memorylessness)을 가진다는 점이 핵심이다.</p>
+                        </div>
+
+                        <div class="stat-formula">
+                            $$P(X>s+t \mid X>s)=P(X>t)$$
+                        </div>
+
+                        <p>즉 이미 얼마를 기다렸는지가 앞으로의 대기 구조를 바꾸지 않는다는 뜻이다. 기하분포는 시행 횟수에서, 지수분포는 시간 축에서 이 성질을 가진다.</p>
+
+                        <h3>8. 카이제곱분포와 자유도</h3>
+                        <p>마지막 메모는 11장 카이제곱분포로 이어진다. 카이제곱분포는 적합도 검정, 독립성 검정, 그리고 정규모집단에서의 모분산 추론 같은 주제와 연결된다. 출발점은 표준정규확률변수의 제곱합이다.</p>
+
+                        <div class="stat-formula">
+                            $$Z_1,Z_2,\ldots,Z_k \stackrel{\text{iid}}{\sim} N(0,1)$$
+                            $$Z_1^2+Z_2^2+\cdots+Z_k^2 \sim \chi_k^2$$
+                        </div>
+
+                        <p>여기서 iid는 independent and identically distributed, 즉 서로 독립이고 동일한 분포를 따른다는 뜻이다. 만약 \(X_1,\ldots,X_n\)이 정규모집단 \(N(\mu,\sigma^2)\)에서 왔다면</p>
+
+                        <div class="stat-formula">
+                            $$\sum_{i=1}^{n}\left(\frac{X_i-\mu}{\sigma}\right)^2 \sim \chi_n^2$$
+                        </div>
+
+                        <p>가 된다. 이 구조가 나중에 표본분산의 분포와 검정통계량으로 이어진다.</p>
+
+                        <p>자유도(degrees of freedom)는 수업 메모에 나온 문장 그대로 정리하면 다음과 같다.</p>
+
+                        <div class="lecture-note">
+                            <p><strong>D.F.</strong> Total number of independent cells minus number of parameters to be estimated.</p>
+                        </div>
+
+                        <p>즉 자유롭게 움직일 수 있는 정보의 개수에서, 이미 추정 때문에 소모된 제약을 뺀 값이다. 피자 비유가 좋은 이유도 여기에 있다. 8조각 피자의 합이 이미 정해져 있다면, 앞의 7조각을 정하면 마지막 1조각은 자동으로 결정되므로 자유도는 7이 된다.</p>
+
+                        <h3>9. 이번 주차를 한 장으로 묶으면</h3>
+                        <ul>
+                            <li>여유와 긍정성, 그리고 집중의 질이 공부 습관과 사고방식을 바꾼다는 메시지로 수업이 시작되었다.</li>
+                            <li>정규분포 문제는 표준화 \(Z=\frac{X-\mu}{\sigma}\)를 통해 표준정규분포표로 읽는 것이 기본이다.</li>
+                            <li>구간확률은 \(\Phi(z)\) 값의 차이로 계산하고, 분위수 문제는 원하는 확률에 맞는 \(z\)를 역으로 찾는다.</li>
+                            <li>\(X \sim N(75,15^2)\) 예제에서는 \(P(60<X<85)\approx 0.5899\), 상위 20% 기준점은 약 87.6점이었다.</li>
+                            <li>평균과 중앙값은 역할이 다르며, 상대적 위치를 알고 싶을 때는 중앙값이 더 직접적인 기준이 되기도 한다.</li>
+                            <li>이항분포의 정규근사에서는 \(\mu=np\), \(\sigma=\sqrt{np(1-p)}\)를 쓰고, 연속성 수정을 반드시 점검해야 한다.</li>
+                            <li>\(p\)가 0.5에 가까울수록 이항분포의 정규근사는 대체로 더 잘 맞는다.</li>
+                            <li>지수분포와 감마분포는 시간에 대한 분포이고, 기하분포와 지수분포는 무기억성이라는 공통 성질을 가진다.</li>
+                            <li>카이제곱분포는 표준정규확률변수 제곱합에서 나오며, 적합도·독립성·분산 추론과 연결된다.</li>
+                            <li>자유도는 독립적인 정보 개수에서 추정으로 소모된 제약을 뺀 값이다.</li>
+                        </ul>
+                    </div>
+
+                    <div class="lang-en">
+                        <p class="week-references"><em>Keywords: standard normal distribution, z-score, normal table, percentile, continuity correction, exponential distribution, gamma distribution, chi-square distribution, degrees of freedom</em></p>
+
+                        <p>Week 6 had two threads at once. One was about mindset, habit, and the quality of attention. The other was about using the normal distribution in practice through <strong>standardization, the standard normal table, percentile cutoffs, and normal approximation</strong>. The week then extended toward exponential, gamma, and chi-square distributions, showing how these families connect rather than standing apart as isolated formulas.</p>
+
+                        <div class="lecture-note">
+                            <p><strong>Note.</strong> The opening message of the class was that changing thought patterns changes behavior, behavior changes habits, and habits reshape direction over time. The statistical version of that advice is simple: do not rush to formulas. First read the structure of the problem correctly.</p>
+                        </div>
+
+                        <h3>1. Mindset, Attention, and Study Habit</h3>
+                        <p>The class began with the idea that concentration matters, but concentration alone is not enough if one's mental posture is twisted or rushed. A relaxed and clear perspective leads to better choices, and repeated choices turn into habits. That applies directly to statistics: skill comes from calmly identifying the model before computing.</p>
+
+                        <ul>
+                            <li>Thought changes behavior.</li>
+                            <li>Behavior changes routine and habit.</li>
+                            <li>Habit accumulates into long-run outcomes.</li>
+                        </ul>
+
+                        <p>So when facing a problem, the first move is not to grab a formula but to ask whether the setting is discrete or continuous, whether standardization is needed, and what distribution actually fits.</p>
+
+                        <h3>2. From the Normal Distribution to the Standard Normal Distribution</h3>
+                        <p>A normal random variable is written as</p>
+
+                        <div class="stat-formula">
+                            $$X \sim N(\mu,\sigma^2)$$
+                            $$f(x)=\frac{1}{\sqrt{2\pi}\sigma}\exp\left(-\frac{1}{2}\left(\frac{x-\mu}{\sigma}\right)^2\right)$$
+                        </div>
+
+                        <p>But in practice we usually standardize it into</p>
+
+                        <div class="stat-formula">
+                            $$Z=\frac{X-\mu}{\sigma} \sim N(0,1)$$
+                        </div>
+
+                        <table class="stat-table">
+                            <tr>
+                                <th>Question</th>
+                                <th>Standardization step</th>
+                                <th>Interpretation</th>
+                            </tr>
+                            <tr>
+                                <td>How far is \(X\) from the mean?</td>
+                                <td>\(X-\mu\)</td>
+                                <td>Raw distance from the center</td>
+                            </tr>
+                            <tr>
+                                <td>How large is that distance relative to spread?</td>
+                                <td>\(\frac{X-\mu}{\sigma}\)</td>
+                                <td>Distance measured in standard deviations</td>
+                            </tr>
+                            <tr>
+                                <td>Can different normal models share one table?</td>
+                                <td>\(Z\)-score</td>
+                                <td>Yes, after standardization they all reduce to the same reference table</td>
+                            </tr>
+                        </table>
+
+                        <p>This is why normal-distribution problems are usually solved by converting them to the standard normal distribution and then reading the table.</p>
+
+                        <h3>3. Reading the Standard Normal Table</h3>
+                        <p>The standard normal table usually gives the cumulative probability \(\Phi(z)=P(Z\le z)\). So interval probabilities are obtained by subtraction:</p>
+
+                        <div class="stat-formula">
+                            $$P(1<Z<2)=\Phi(2)-\Phi(1)=0.9772-0.8413=0.1359$$
+                        </div>
+
+                        <p>The basic routine is always the same: standardize, read left-tail probabilities, then subtract or complement as needed.</p>
+
+                        <div class="lecture-note">
+                            <p><strong>Key point.</strong> In practice, we do not integrate the normal density by hand each time. We standardize and read \(\Phi(z)\).</p>
+                        </div>
+
+                        <h3>4. Example: Interval Probability and the Top 20% Cutoff</h3>
+                        <p>Suppose test scores follow</p>
+
+                        <div class="stat-formula">
+                            $$X \sim N(75,15^2)$$
+                        </div>
+
+                        <p>Then</p>
+
+                        <div class="stat-formula">
+                            $$P(60<X<85)=P\left(\frac{60-75}{15}<Z<\frac{85-75}{15}\right)$$
+                            $$=P(-1<Z<0.67)=\Phi(0.67)-\Phi(-1)$$
+                            $$\approx 0.7486-0.1587=0.5899$$
+                        </div>
+
+                        <p>So the probability is about 59.0%.</p>
+
+                        <p>To find the cutoff \(x_0\) for the top 20%, solve</p>
+
+                        <div class="stat-formula">
+                            $$P(X\ge x_0)=0.2$$
+                            $$P\left(Z\ge \frac{x_0-75}{15}\right)=0.2$$
+                        </div>
+
+                        <p>That means the left-tail probability is 0.8, which corresponds to about \(z=0.84\). Hence</p>
+
+                        <div class="stat-formula">
+                            $$\frac{x_0-75}{15}\approx 0.84$$
+                            $$x_0 \approx 75+15(0.84)=87.6$$
+                        </div>
+
+                        <p>This is a percentile problem: we move from probability to the score threshold.</p>
+
+                        <table class="stat-table">
+                            <tr>
+                                <th>Question</th>
+                                <th>Standardized form</th>
+                                <th>Answer</th>
+                            </tr>
+                            <tr>
+                                <td>\(P(60<X<85)\)</td>
+                                <td>\(P(-1<Z<0.67)\)</td>
+                                <td>\(\approx 0.5899\)</td>
+                            </tr>
+                            <tr>
+                                <td>Top 20% cutoff</td>
+                                <td>\(P(Z\ge z_0)=0.2\)</td>
+                                <td>\(x_0 \approx 87.6\)</td>
+                            </tr>
+                        </table>
+
+                        <h3>5. Mean and Median</h3>
+                        <p>The class made a memorable point that the mean alone does not always tell you where you stand. Knowing the average score does not immediately tell you your relative position, but the median at least reveals whether you are above or below the midpoint of the group.</p>
+
+                        <ul>
+                            <li>The mean reflects every value and can be sensitive to outliers.</li>
+                            <li>The median is a positional measure and often gives a clearer sense of relative standing.</li>
+                            <li>The right summary depends on the question being asked.</li>
+                        </ul>
+
+                        <p>So the real lesson is not that the mean is useless, but that mean and median serve different purposes.</p>
+
+                        <h3>6. Normal Approximation to the Binomial and Continuity Correction</h3>
+                        <p>If \(X \sim B(n,p)\), then</p>
+
+                        <div class="stat-formula">
+                            $$E(X)=np, \qquad V(X)=np(1-p)$$
+                        </div>
+
+                        <p>For</p>
+
+                        <div class="stat-formula">
+                            $$X \sim B(100,0.1)$$
+                            $$\mu=np=10,\qquad \sigma=\sqrt{100\cdot 0.1\cdot 0.9}=3$$
+                        </div>
+
+                        <p>the exact probability is</p>
+
+                        <div class="stat-formula">
+                            $$P(X\le 1)=\binom{100}{0}(0.1)^0(0.9)^{100}+\binom{100}{1}(0.1)^1(0.9)^{99}$$
+                            $$\approx 0.0003217$$
+                        </div>
+
+                        <p>When approximating the discrete binomial distribution by the continuous normal variable \(Y \sim N(10,9)\), we apply the continuity correction:</p>
+
+                        <div class="stat-formula">
+                            $$P(X\le 1)\approx P(Y\le 1.5)=P\left(Z\le \frac{1.5-10}{3}\right)=P(Z\le -2.83)$$
+                        </div>
+
+                        <p>This approximation is still rough because \(p=0.1\) is far from 0.5 and the event lies deep in the tail. That is why the class emphasized that normal approximation works better when \(p\) is closer to 0.5 and \(n\) is large enough.</p>
+
+                        <div class="stat-formula">
+                            $$P(X=8)=\binom{25}{8}(0.5)^8(0.5)^{17}=\binom{25}{8}(0.5)^{25}\approx 0.032$$
+                        </div>
+
+                        <p>In a case like \(B(25,0.5)\), the normal approximation is much more natural because the distribution is more symmetric.</p>
+
+                        <table class="stat-table">
+                            <tr>
+                                <th>Checkpoint</th>
+                                <th>Implication</th>
+                            </tr>
+                            <tr>
+                                <td>\(np\) and \(n(1-p)\) are reasonably large</td>
+                                <td>Normal approximation is more stable</td>
+                            </tr>
+                            <tr>
+                                <td>\(p\) is close to 0.5</td>
+                                <td>The binomial shape is more symmetric</td>
+                            </tr>
+                            <tr>
+                                <td>The event is in the tail</td>
+                                <td>Approximation error can be larger</td>
+                            </tr>
+                            <tr>
+                                <td>Continuity correction is used</td>
+                                <td>Discrete boundaries are handled more carefully</td>
+                            </tr>
+                        </table>
+
+                        <h3>7. Time Distributions: Exponential and Gamma</h3>
+                        <p>The notes then moved to waiting-time models. The exponential distribution describes the waiting time until the first event, while the gamma distribution extends that idea to the waiting time until the \(r\)th event. In the lecture's notation, \(\lambda\) is the rate and \(r\) is the shape parameter tied to event count.</p>
+
+                        <div class="stat-formula">
+                            $$f(x)=\lambda e^{-\lambda x}, \qquad x>0$$
+                            $$F(x)=\int_0^x \lambda e^{-\lambda t}\,dt=1-e^{-\lambda x}$$
+                        </div>
+
+                        <p>The gamma distribution can be written as</p>
+
+                        <div class="stat-formula">
+                            $$X \sim \Gamma(r,\lambda), \qquad f(x)=\frac{\lambda^r}{\Gamma(r)}x^{r-1}e^{-\lambda x}, \qquad x>0$$
+                        </div>
+
+                        <p>When \(r=1\), it reduces to the exponential distribution. Since gamma variables can be viewed as sums of exponential waiting times, larger shape values produce more symmetric behavior and lead toward a normal-like pattern.</p>
+
+                        <div class="lecture-note">
+                            <p><strong>Connection.</strong> Geometric and exponential distributions share the same structural idea in discrete and continuous settings: memorylessness.</p>
+                        </div>
+
+                        <div class="stat-formula">
+                            $$P(X>s+t \mid X>s)=P(X>t)$$
+                        </div>
+
+                        <p>Already having waited does not change the remaining waiting structure.</p>
+
+                        <h3>8. Chi-Square Distribution and Degrees of Freedom</h3>
+                        <p>The final part pointed toward Chapter 11. The chi-square distribution appears in goodness-of-fit tests, independence tests, and variance inference under normal sampling. Its basic definition starts from squared standard normal variables:</p>
+
+                        <div class="stat-formula">
+                            $$Z_1,Z_2,\ldots,Z_k \stackrel{\text{iid}}{\sim} N(0,1)$$
+                            $$Z_1^2+Z_2^2+\cdots+Z_k^2 \sim \chi_k^2$$
+                        </div>
+
+                        <p>Here iid means independent and identically distributed. If \(X_1,\ldots,X_n\) come from \(N(\mu,\sigma^2)\), then</p>
+
+                        <div class="stat-formula">
+                            $$\sum_{i=1}^{n}\left(\frac{X_i-\mu}{\sigma}\right)^2 \sim \chi_n^2$$
+                        </div>
+
+                        <p>which becomes the basis for later variance results and test statistics.</p>
+
+                        <div class="lecture-note">
+                            <p><strong>D.F.</strong> Total number of independent cells minus number of parameters to be estimated.</p>
+                        </div>
+
+                        <p>That is why the pizza analogy works well: if the total size is fixed, once all but the last slice are chosen, the final slice is already determined. One constraint removes one degree of freedom.</p>
+
+                        <h3>9. What This Week Adds Up To</h3>
+                        <ul>
+                            <li>The week began by linking mindset, attention, and habit to disciplined study.</li>
+                            <li>Normal problems are handled by standardizing to \(Z=\frac{X-\mu}{\sigma}\) and reading the standard normal table.</li>
+                            <li>Interval probabilities come from differences of \(\Phi(z)\), and percentile problems reverse the process to find cutoffs.</li>
+                            <li>For \(X \sim N(75,15^2)\), \(P(60<X<85)\approx 0.5899\) and the top-20% cutoff is about 87.6.</li>
+                            <li>Mean and median answer different questions, especially when relative position matters.</li>
+                            <li>Binomial normal approximation uses \(\mu=np\) and \(\sigma=\sqrt{np(1-p)}\), together with continuity correction.</li>
+                            <li>The approximation is usually better when \(p\) is nearer to 0.5 and the sample size is larger.</li>
+                            <li>Exponential and gamma distributions model waiting time, and geometric and exponential share memorylessness.</li>
+                            <li>Chi-square distributions arise from sums of squared standard normal variables and connect to goodness-of-fit, independence, and variance inference.</li>
+                            <li>Degrees of freedom measure how much independent information remains after constraints or estimation.</li>
+                        </ul>
+                    </div>
+                </div>
+            </section>
+        </article>
+
+        <div id="site-footer"></div>
+    </div>
+
+    <script src="../../../common.js"></script>
+</body>
+</html>
