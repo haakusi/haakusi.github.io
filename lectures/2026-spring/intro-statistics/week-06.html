@@ -106,7 +106,7 @@
                         <p>표준정규분포표는 보통 누적확률 \(\Phi(z)=P(Z\le z)\)를 준다. 따라서 구간확률은 표 값을 빼서 계산한다.</p>
 
                         <div class="stat-formula">
-                            $$P(1<Z<2)=\Phi(2)-\Phi(1)=0.9772-0.8413=0.1359$$
+                            $$P(1 \lt Z \lt 2)=\Phi(2)-\Phi(1)=0.9772-0.8413=0.1359$$
                         </div>
 
                         <p>즉 표를 읽을 때는 “왼쪽 누적확률”을 먼저 찾고, 원하는 구간으로 바꾸기 위해 뺄셈이나 여사건을 쓴다. 이것이 정규분포 문제를 푸는 기본 루틴이다.</p>
@@ -125,8 +125,8 @@
                         <p>먼저 60점과 85점 사이에 있을 확률은</p>
 
                         <div class="stat-formula">
-                            $$P(60<X<85)=P\left(\frac{60-75}{15}<Z<\frac{85-75}{15}\right)$$
-                            $$=P(-1<Z<0.67)=\Phi(0.67)-\Phi(-1)$$
+                            $$P(60 \lt X \lt 85)=P\left(\frac{60-75}{15} \lt Z \lt \frac{85-75}{15}\right)$$
+                            $$=P(-1 \lt Z \lt 0.67)=\Phi(0.67)-\Phi(-1)$$
                             $$\approx 0.7486-0.1587=0.5899$$
                         </div>
 
@@ -155,8 +155,8 @@
                                 <th>결과</th>
                             </tr>
                             <tr>
-                                <td>\(P(60<X<85)\)</td>
-                                <td>\(P(-1<Z<0.67)\)</td>
+                                <td>\(P(60 \lt X \lt 85)\)</td>
+                                <td>\(P(-1 \lt Z \lt 0.67)\)</td>
                                 <td>\(\approx 0.5899\)</td>
                             </tr>
                             <tr>
@@ -243,14 +243,14 @@
                         <p>지수분포의 밀도함수와 누적분포함수는 다음과 같다.</p>
 
                         <div class="stat-formula">
-                            $$f(x)=\lambda e^{-\lambda x}, \qquad x>0$$
+                            $$f(x)=\lambda e^{-\lambda x}, \qquad x \gt 0$$
                             $$F(x)=\int_0^x \lambda e^{-\lambda t}\,dt=1-e^{-\lambda x}$$
                         </div>
 
                         <p>\(e^0=1\)이므로 \(F(0)=0\)이 자연스럽게 맞고, 시간이 길어질수록 누적확률은 1에 가까워진다. 감마분포는 이를 더 일반화해서</p>
 
                         <div class="stat-formula">
-                            $$X \sim \Gamma(r,\lambda), \qquad f(x)=\frac{\lambda^r}{\Gamma(r)}x^{r-1}e^{-\lambda x}, \qquad x>0$$
+                            $$X \sim \Gamma(r,\lambda), \qquad f(x)=\frac{\lambda^r}{\Gamma(r)}x^{r-1}e^{-\lambda x}, \qquad x \gt 0$$
                         </div>
 
                         <p>처럼 쓸 수 있다. \(r=1\)이면 지수분포가 된다. 또한 감마분포는 여러 지수 대기시간의 합으로 볼 수 있기 때문에, 형태모수 \(r\)가 커질수록 더 대칭적인 모양을 띠며 정규분포와 가까워지는 방향을 보인다.</p>
@@ -260,7 +260,7 @@
                         </div>
 
                         <div class="stat-formula">
-                            $$P(X>s+t \mid X>s)=P(X>t)$$
+                            $$P(X \gt s+t \mid X \gt s)=P(X \gt t)$$
                         </div>
 
                         <p>즉 이미 얼마를 기다렸는지가 앞으로의 대기 구조를 바꾸지 않는다는 뜻이다. 기하분포는 시행 횟수에서, 지수분포는 시간 축에서 이 성질을 가진다.</p>
@@ -294,7 +294,7 @@
                             <li>여유와 긍정성, 그리고 집중의 질이 공부 습관과 사고방식을 바꾼다는 메시지로 수업이 시작되었다.</li>
                             <li>정규분포 문제는 표준화 \(Z=\frac{X-\mu}{\sigma}\)를 통해 표준정규분포표로 읽는 것이 기본이다.</li>
                             <li>구간확률은 \(\Phi(z)\) 값의 차이로 계산하고, 분위수 문제는 원하는 확률에 맞는 \(z\)를 역으로 찾는다.</li>
-                            <li>\(X \sim N(75,15^2)\) 예제에서는 \(P(60<X<85)\approx 0.5899\), 상위 20% 기준점은 약 87.6점이었다.</li>
+                            <li>\(X \sim N(75,15^2)\) 예제에서는 \(P(60 \lt X \lt 85)\approx 0.5899\), 상위 20% 기준점은 약 87.6점이었다.</li>
                             <li>평균과 중앙값은 역할이 다르며, 상대적 위치를 알고 싶을 때는 중앙값이 더 직접적인 기준이 되기도 한다.</li>
                             <li>이항분포의 정규근사에서는 \(\mu=np\), \(\sigma=\sqrt{np(1-p)}\)를 쓰고, 연속성 수정을 반드시 점검해야 한다.</li>
                             <li>\(p\)가 0.5에 가까울수록 이항분포의 정규근사는 대체로 더 잘 맞는다.</li>
@@ -367,7 +367,7 @@
                         <p>The standard normal table usually gives the cumulative probability \(\Phi(z)=P(Z\le z)\). So interval probabilities are obtained by subtraction:</p>
 
                         <div class="stat-formula">
-                            $$P(1<Z<2)=\Phi(2)-\Phi(1)=0.9772-0.8413=0.1359$$
+                            $$P(1 \lt Z \lt 2)=\Phi(2)-\Phi(1)=0.9772-0.8413=0.1359$$
                         </div>
 
                         <p>The basic routine is always the same: standardize, read left-tail probabilities, then subtract or complement as needed.</p>
@@ -386,8 +386,8 @@
                         <p>Then</p>
 
                         <div class="stat-formula">
-                            $$P(60<X<85)=P\left(\frac{60-75}{15}<Z<\frac{85-75}{15}\right)$$
-                            $$=P(-1<Z<0.67)=\Phi(0.67)-\Phi(-1)$$
+                            $$P(60 \lt X \lt 85)=P\left(\frac{60-75}{15} \lt Z \lt \frac{85-75}{15}\right)$$
+                            $$=P(-1 \lt Z \lt 0.67)=\Phi(0.67)-\Phi(-1)$$
                             $$\approx 0.7486-0.1587=0.5899$$
                         </div>
 
@@ -416,8 +416,8 @@
                                 <th>Answer</th>
                             </tr>
                             <tr>
-                                <td>\(P(60<X<85)\)</td>
-                                <td>\(P(-1<Z<0.67)\)</td>
+                                <td>\(P(60 \lt X \lt 85)\)</td>
+                                <td>\(P(-1 \lt Z \lt 0.67)\)</td>
                                 <td>\(\approx 0.5899\)</td>
                             </tr>
                             <tr>
@@ -500,14 +500,14 @@
                         <p>The notes then moved to waiting-time models. The exponential distribution describes the waiting time until the first event, while the gamma distribution extends that idea to the waiting time until the \(r\)th event. In the lecture's notation, \(\lambda\) is the rate and \(r\) is the shape parameter tied to event count.</p>
 
                         <div class="stat-formula">
-                            $$f(x)=\lambda e^{-\lambda x}, \qquad x>0$$
+                            $$f(x)=\lambda e^{-\lambda x}, \qquad x \gt 0$$
                             $$F(x)=\int_0^x \lambda e^{-\lambda t}\,dt=1-e^{-\lambda x}$$
                         </div>
 
                         <p>The gamma distribution can be written as</p>
 
                         <div class="stat-formula">
-                            $$X \sim \Gamma(r,\lambda), \qquad f(x)=\frac{\lambda^r}{\Gamma(r)}x^{r-1}e^{-\lambda x}, \qquad x>0$$
+                            $$X \sim \Gamma(r,\lambda), \qquad f(x)=\frac{\lambda^r}{\Gamma(r)}x^{r-1}e^{-\lambda x}, \qquad x \gt 0$$
                         </div>
 
                         <p>When \(r=1\), it reduces to the exponential distribution. Since gamma variables can be viewed as sums of exponential waiting times, larger shape values produce more symmetric behavior and lead toward a normal-like pattern.</p>
@@ -517,7 +517,7 @@
                         </div>
 
                         <div class="stat-formula">
-                            $$P(X>s+t \mid X>s)=P(X>t)$$
+                            $$P(X \gt s+t \mid X \gt s)=P(X \gt t)$$
                         </div>
 
                         <p>Already having waited does not change the remaining waiting structure.</p>
@@ -549,7 +549,7 @@
                             <li>The week began by linking mindset, attention, and habit to disciplined study.</li>
                             <li>Normal problems are handled by standardizing to \(Z=\frac{X-\mu}{\sigma}\) and reading the standard normal table.</li>
                             <li>Interval probabilities come from differences of \(\Phi(z)\), and percentile problems reverse the process to find cutoffs.</li>
-                            <li>For \(X \sim N(75,15^2)\), \(P(60<X<85)\approx 0.5899\) and the top-20% cutoff is about 87.6.</li>
+                            <li>For \(X \sim N(75,15^2)\), \(P(60 \lt X \lt 85)\approx 0.5899\) and the top-20% cutoff is about 87.6.</li>
                             <li>Mean and median answer different questions, especially when relative position matters.</li>
                             <li>Binomial normal approximation uses \(\mu=np\) and \(\sigma=\sqrt{np(1-p)}\), together with continuity correction.</li>
                             <li>The approximation is usually better when \(p\) is nearer to 0.5 and the sample size is larger.</li>
