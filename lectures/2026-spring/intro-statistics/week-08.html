@@ -1,0 +1,584 @@
+<!DOCTYPE html>
+<html data-theme="dark" data-lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Intro to Statistics - Week 8 - Sewon Park</title>
+    <link rel="stylesheet" type="text/css" href="../../../style.css">
+    <link rel="stylesheet" type="text/css" href="../../../assets/css/lectures.css">
+    <script src="../../../assets/js/mathjax-config.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js" async></script>
+</head>
+<body>
+    <button class="theme-toggle" onclick="toggleTheme()" aria-label="Toggle dark mode"></button>
+    <button class="lang-toggle" onclick="toggleLanguage()" aria-label="Toggle language">EN</button>
+
+    <div class="container">
+        <div id="site-header"></div>
+        <div id="site-nav"></div>
+
+        <article class="course-page">
+            <div class="course-header">
+                <h1 data-en="Intro to Statistics" data-kr="기초통계">Intro to Statistics</h1>
+                <p class="course-meta" data-en="2026 Spring | Fri 19:00-22:00" data-kr="2026 봄학기 | 금요일 19:00-22:00">2026 Spring | Fri 19:00-22:00</p>
+            </div>
+
+            <div class="course-nav">
+                <a href="../../../lectures.html" class="back-to-lectures" data-en="Back to Lectures" data-kr="강의 목록으로">Back to Lectures</a>
+                <span class="nav-separator">/</span>
+                <a href="./index.html" class="back-to-course" data-en="Course Home" data-kr="과목 홈">Course Home</a>
+            </div>
+
+            <div class="week-nav">
+                <span data-en="Weeks:" data-kr="주차:">Weeks:</span>
+                <a href="week-01.html" class="week-link">W1</a>
+                <a href="week-02.html" class="week-link">W2</a>
+                <a href="week-03.html" class="week-link">W3</a>
+                <a href="week-04.html" class="week-link">W4</a>
+                <a href="week-05.html" class="week-link">W5</a>
+                <a href="week-06.html" class="week-link">W6</a>
+                <a href="week-07.html" class="week-link">W7</a>
+                <a href="week-08.html" class="week-link current">W8</a>
+            </div>
+
+            <section class="week-section" id="week-08">
+                <h2 data-en="Week 8" data-kr="8주차">Week 8</h2>
+                <p class="week-date">2026-04-24 · Midterm checkpoint</p>
+                <div class="week-content">
+                    <span class="assignment-chip" data-en="Midterm Review" data-kr="중간 점검">Midterm Review</span>
+
+                    <div class="lang-kr" hidden>
+                        <p class="week-references"><em>Keywords: event algebra, complements, independence, probability density function, cumulative distribution function, expectation, variance, probability mass function, geometric series, total probability, Bayes theorem, Chebyshev inequality, sample space, pairwise independence</em></p>
+
+                        <p>8주차는 중간고사가 진행된 주차였다. 범위는 지금까지 배운 기초통계의 핵심 개념들이었고, 특정 계산 절차를 외우는 것보다 <strong>상황을 만나기 전에 이미 알고 있어야 하는 사전 지식</strong>을 얼마나 정확히 갖고 있는지가 중요했다. 그래서 이번 주 노트는 개별 풀이가 아니라, 지금까지 반드시 알고 넘어가야 할 통계 지식의 구조를 정리하는 방식으로 남긴다.</p>
+
+                        <div class="lecture-note">
+                            <p><strong>메모.</strong> 중간 점검에서 중요한 것은 "답을 낸다"보다 "무엇을 보고 어떤 개념을 꺼내야 하는지 안다"에 가깝다. 독립이면 곱셈 법칙을 떠올리고, 밀도함수라면 전체 면적 1을 떠올리고, 양성/음성처럼 조건이 뒤집히면 베이즈 정리를 떠올리는 식의 반응 속도가 필요하다.</p>
+                        </div>
+
+                        <h3>1. 사건 연산과 여사건: 확률 계산의 가장 기본 언어</h3>
+                        <p>확률 문제의 출발점은 사건을 정확히 읽는 것이다. 사건 \(A\)가 일어나는 경우, \(A^c\)는 \(A\)가 일어나지 않는 경우다. 두 사건 \(A\), \(B\)에 대해 \(A\cap B\)는 둘 다 일어나는 경우이고, \(A\cup B\)는 적어도 하나가 일어나는 경우다.</p>
+
+                        <div class="stat-formula">
+                            $$P(A^c)=1-P(A)$$
+                            $$P(A\cup B)=P(A)+P(B)-P(A\cap B)$$
+                            $$(A\cup B)^c=A^c\cap B^c$$
+                        </div>
+
+                        <p>여사건은 단순히 반대 사건이라는 뜻을 넘어, 계산을 쉽게 만드는 핵심 도구다. 직접 세기 어려운 사건은 전체에서 반대 사건을 빼면 쉬워질 때가 많다. 특히 조건부확률이나 독립성 문제에서는 \(A^c\), \(B^c\), \(A^c\cap B^c\) 같은 형태가 자연스럽게 등장한다.</p>
+
+                        <table class="stat-table">
+                            <tr>
+                                <th>표현</th>
+                                <th>읽는 법</th>
+                                <th>계산할 때의 역할</th>
+                            </tr>
+                            <tr>
+                                <td>\(A^c\)</td>
+                                <td>\(A\)가 일어나지 않음</td>
+                                <td>전체 1에서 \(P(A)\)를 뺀다</td>
+                            </tr>
+                            <tr>
+                                <td>\(A\cap B\)</td>
+                                <td>\(A\)와 \(B\)가 동시에 일어남</td>
+                                <td>독립이면 \(P(A)P(B)\)로 바뀔 수 있다</td>
+                            </tr>
+                            <tr>
+                                <td>\(A\cup B\)</td>
+                                <td>\(A\) 또는 \(B\)가 일어남</td>
+                                <td>겹친 부분 \(P(A\cap B)\)를 한 번 빼야 한다</td>
+                            </tr>
+                            <tr>
+                                <td>\(A^c\cap B^c\)</td>
+                                <td>둘 다 일어나지 않음</td>
+                                <td>\((A\cup B)^c\)로 바꾸어 계산할 수 있다</td>
+                            </tr>
+                        </table>
+
+                        <p>이 단계에서 실수하면 뒤의 계산은 모두 흔들린다. 그래서 확률 문제를 풀 때는 먼저 말로 사건을 읽고, 그 다음 수식으로 옮기는 습관이 중요하다.</p>
+
+                        <h3>2. 조건부확률과 독립: 정보가 들어왔을 때 확률이 바뀌는가</h3>
+                        <p>조건부확률은 어떤 정보가 주어진 뒤의 확률이다. \(B\)가 일어났다는 조건 아래에서 \(A\)가 일어날 확률은 다음처럼 정의한다.</p>
+
+                        <div class="stat-formula">
+                            $$P(A\mid B)=\frac{P(A\cap B)}{P(B)},\qquad P(B)>0$$
+                        </div>
+
+                        <p>독립은 한 사건이 일어났다는 정보가 다른 사건의 확률을 바꾸지 않는다는 뜻이다. 수식으로는 아래 두 표현이 같은 의미를 갖는다.</p>
+
+                        <div class="stat-formula">
+                            $$P(A\cap B)=P(A)P(B)$$
+                            $$P(A\mid B)=P(A)$$
+                        </div>
+
+                        <p>여기서 중요한 확장은 여사건이다. \(A\)와 \(B\)가 독립이면 \(A^c\)와 \(B\), \(A\)와 \(B^c\), \(A^c\)와 \(B^c\)도 독립으로 이어진다. 이를 보려면 드모르간 법칙과 곱셈 법칙을 함께 쓰면 된다.</p>
+
+                        <div class="stat-formula">
+                            $$P(A^c\cap B^c)=1-P(A\cup B)$$
+                            $$=1-P(A)-P(B)+P(A)P(B)$$
+                            $$=(1-P(A))(1-P(B))=P(A^c)P(B^c)$$
+                        </div>
+
+                        <p>따라서 조건이 여사건으로 바뀌어도, 독립이라는 구조가 유지되는지 먼저 의심해볼 수 있다. 단, 조건부확률은 항상 분모가 0이 아니어야 하므로 \(P(B)>0\), \(P(B^c)>0\) 같은 조건도 함께 확인해야 한다.</p>
+
+                        <h3>3. 연속형 확률변수: PDF는 높이가 아니라 면적이다</h3>
+                        <p>연속형 확률변수에서는 한 점의 확률이 아니라 구간의 확률을 본다. 확률밀도함수 \(f(x)\)는 확률 자체가 아니라, 구간 확률을 적분으로 구하게 해주는 함수다.</p>
+
+                        <div class="stat-formula">
+                            $$f(x)\ge 0$$
+                            $$\int_{-\infty}^{\infty}f(x)\,dx=1$$
+                            $$P(a\le X\le b)=\int_a^b f(x)\,dx$$
+                        </div>
+
+                        <p>연속형 문제에서 가장 먼저 해야 할 일은 주어진 함수가 정말 확률밀도함수가 되도록 상수를 정하는 것이다. 조각별로 정의된 함수라면 각 구간의 면적을 더해 1이 되게 한다. 이 과정은 단순 계산처럼 보이지만, 사실상 “전체 확률이 1이어야 한다”는 가장 중요한 원칙을 확인하는 단계다.</p>
+
+                        <table class="stat-table">
+                            <tr>
+                                <th>확인할 것</th>
+                                <th>왜 중요한가</th>
+                                <th>자주 하는 실수</th>
+                            </tr>
+                            <tr>
+                                <td>정의역</td>
+                                <td>어디서 밀도가 양수인지 알아야 적분 구간을 정할 수 있다</td>
+                                <td>otherwise 구간을 무시하지 않거나, 반대로 필요한 구간을 빠뜨린다</td>
+                            </tr>
+                            <tr>
+                                <td>전체 면적</td>
+                                <td>확률의 총합은 반드시 1이어야 한다</td>
+                                <td>조각별 적분을 하나만 하고 끝낸다</td>
+                            </tr>
+                            <tr>
+                                <td>구간별 식</td>
+                                <td>CDF와 기대값은 구간마다 다른 식을 써야 한다</td>
+                                <td>하나의 식을 전체 구간에 잘못 적용한다</td>
+                            </tr>
+                        </table>
+
+                        <h3>4. CDF는 누적된 면적이고, 조각별로 이어져야 한다</h3>
+                        <p>누적분포함수 \(F(x)\)는 \(X\)가 \(x\) 이하일 확률이다. 연속형에서는 왼쪽부터 \(x\)까지 밀도를 적분한 값이다.</p>
+
+                        <div class="stat-formula">
+                            $$F(x)=P(X\le x)=\int_{-\infty}^{x}f(t)\,dt$$
+                        </div>
+
+                        <p>조각별 PDF가 주어지면 CDF도 조각별로 나온다. 예를 들어 첫 번째 구간에서는 첫 번째 밀도만 적분하지만, 두 번째 구간에서는 첫 번째 구간의 누적 면적에 두 번째 구간에서 \(x\)까지의 면적을 더해야 한다. 즉 CDF는 이전 구간의 누적값을 기억하는 함수다.</p>
+
+                        <div class="stat-formula">
+                            $$F(x)=0\quad \text{before the support}$$
+                            $$F(x)=\int_{\text{left endpoint}}^x f(t)\,dt\quad \text{inside the first segment}$$
+                            $$F(x)=\text{previous accumulated area}+\int_{\text{segment start}}^x f(t)\,dt$$
+                            $$F(x)=1\quad \text{after the support}$$
+                        </div>
+
+                        <p>CDF를 제대로 쓰려면 구간 경계에서 값이 자연스럽게 이어지는지도 확인해야 한다. 연속형 확률변수의 CDF는 점프하지 않고 증가하며, 마지막에는 1에 도달해야 한다.</p>
+
+                        <h3>5. 기댓값과 분산: 평균 위치와 퍼짐을 계산하는 기본 공식</h3>
+                        <p>기댓값은 확률변수의 평균적인 위치를 의미한다. 이산형에서는 가능한 값에 확률을 곱해 더하고, 연속형에서는 값에 밀도를 곱해 적분한다.</p>
+
+                        <div class="stat-formula">
+                            $$E(X)=\sum_x x\,p(x)\quad \text{discrete}$$
+                            $$E(X)=\int_{-\infty}^{\infty}x f(x)\,dx\quad \text{continuous}$$
+                        </div>
+
+                        <p>분산은 평균에서 얼마나 흩어져 있는지 나타낸다. 직접 정의는 \(E[(X-\mu)^2]\)이지만, 계산에서는 보통 \(E(X^2)-[E(X)]^2\)가 더 편하다.</p>
+
+                        <div class="stat-formula">
+                            $$V(X)=E[(X-\mu)^2]$$
+                            $$V(X)=E(X^2)-[E(X)]^2$$
+                        </div>
+
+                        <p>이때 \(E(X^2)\)와 \([E(X)]^2\)를 혼동하면 안 된다. \(E(X^2)\)는 \(x^2\)에 확률이나 밀도를 곱해 계산하는 값이고, \([E(X)]^2\)는 기댓값을 구한 다음 그 결과를 제곱한 값이다.</p>
+
+                        <table class="stat-table">
+                            <tr>
+                                <th>항목</th>
+                                <th>계산</th>
+                                <th>의미</th>
+                            </tr>
+                            <tr>
+                                <td>\(E(X)\)</td>
+                                <td>\(\sum xp(x)\) 또는 \(\int xf(x)dx\)</td>
+                                <td>확률변수의 중심 위치</td>
+                            </tr>
+                            <tr>
+                                <td>\(E(X^2)\)</td>
+                                <td>\(\sum x^2p(x)\) 또는 \(\int x^2f(x)dx\)</td>
+                                <td>분산 계산을 위한 2차 순간</td>
+                            </tr>
+                            <tr>
+                                <td>\(V(X)\)</td>
+                                <td>\(E(X^2)-[E(X)]^2\)</td>
+                                <td>평균 주변의 퍼짐</td>
+                            </tr>
+                        </table>
+
+                        <h3>6. 이산형 확률변수: PMF는 합이 1이어야 한다</h3>
+                        <p>이산형 확률변수의 확률질량함수 \(p(x)=P(X=x)\)는 가능한 값마다 확률을 붙인다. 연속형의 면적 조건에 대응되는 것이 이산형의 합 조건이다.</p>
+
+                        <div class="stat-formula">
+                            $$p(x)\ge 0$$
+                            $$\sum_x p(x)=1$$
+                        </div>
+
+                        <p>가능한 값이 \(1,2,3,\ldots\)처럼 무한히 이어지고 확률이 어떤 비율로 줄어드는 형태라면 무한등비급수를 알아야 한다.</p>
+
+                        <div class="stat-formula">
+                            $$\sum_{x=1}^{\infty}r^x=\frac{r}{1-r},\qquad |r|<1$$
+                        </div>
+
+                        <p>이 공식은 단순 암기라기보다 “무한히 많은 확률을 모두 더해 1을 만든다”는 감각과 연결된다. 상수 \(c\)가 붙어 있으면, 먼저 비례 형태 전체의 합을 구하고 \(c\)를 곱해 1이 되도록 맞춘다.</p>
+
+                        <h3>7. 이산형 CDF는 계단함수다</h3>
+                        <p>이산형 누적분포함수도 \(F(y)=P(X\le y)\)로 정의된다. 하지만 가능한 값들이 띄엄띄엄 있으므로, CDF는 연속적으로 매끈하게 증가하지 않고 계단처럼 증가한다.</p>
+
+                        <div class="stat-formula">
+                            $$F(y)=\sum_{x\le y}p(x)$$
+                        </div>
+
+                        <p>가능한 값이 정수라면 \(\lfloor y\rfloor\), 즉 \(y\)보다 작거나 같은 가장 큰 정수를 쓰면 편하다. 예를 들어 \(1\le y<2\)이면 실제로 포함되는 값은 \(x=1\)뿐이고, \(2\le y<3\)이면 \(x=1,2\)가 포함된다. 이 때문에 이산형 CDF는 같은 구간 안에서는 값이 변하지 않다가 가능한 값에 도달할 때 점프한다.</p>
+
+                        <div class="lecture-note">
+                            <p><strong>요점.</strong> 연속형 CDF는 면적이 누적되는 곡선이고, 이산형 CDF는 확률질량이 누적되는 계단이다. 같은 \(F(x)\)라도 데이터의 성격에 따라 모양이 완전히 다르다.</p>
+                        </div>
+
+                        <h3>8. 전체확률법칙: 여러 길로 같은 결과가 나올 때</h3>
+                        <p>어떤 결과가 여러 경우를 통해 발생할 수 있다면, 그 경우들을 나누어 더해야 한다. 이것이 전체확률법칙이다. 사건 \(B_1, B_2, \ldots, B_k\)가 표본공간을 서로 겹치지 않게 나누는 분할이라면, 사건 \(A\)의 확률은 다음과 같이 계산된다.</p>
+
+                        <div class="stat-formula">
+                            $$P(A)=\sum_i P(A\mid B_i)P(B_i)$$
+                        </div>
+
+                        <p>검사 결과, 판정 결과, 분류 결과처럼 어떤 관측값이 여러 실제 상태에서 나올 수 있는 경우에 이 법칙이 특히 중요하다. 양성이라는 결과는 실제로 해당 상태인 경우에도 나오고, 해당 상태가 아닌 경우에도 나올 수 있다. 따라서 한 길만 계산하면 전체 확률을 놓치게 된다.</p>
+
+                        <table class="stat-table">
+                            <tr>
+                                <th>상황</th>
+                                <th>나눠야 하는 기준</th>
+                                <th>전체확률의 역할</th>
+                            </tr>
+                            <tr>
+                                <td>검사 결과</td>
+                                <td>실제 상태가 있는 경우 / 없는 경우</td>
+                                <td>같은 결과가 두 상태에서 모두 나올 수 있음을 반영한다</td>
+                            </tr>
+                            <tr>
+                                <td>분류 모델</td>
+                                <td>실제 클래스별 조건부 확률</td>
+                                <td>관측된 판정의 전체 빈도를 계산한다</td>
+                            </tr>
+                            <tr>
+                                <td>혼합 집단</td>
+                                <td>하위 집단별 비율</td>
+                                <td>집단 구성비와 조건부 확률을 함께 반영한다</td>
+                            </tr>
+                        </table>
+
+                        <h3>9. 베이즈 정리: 결과를 보고 원인을 거꾸로 추론하기</h3>
+                        <p>베이즈 정리는 조건을 뒤집는 공식이다. \(P(A\mid B)\)와 \(P(B\mid A)\)는 일반적으로 같지 않다. 그래서 결과 \(B\)를 관측한 뒤 원인 \(A\)의 확률을 알고 싶으면 베이즈 정리를 써야 한다.</p>
+
+                        <div class="stat-formula">
+                            $$P(A\mid B)=\frac{P(B\mid A)P(A)}{P(B)}$$
+                            $$P(B)=P(B\mid A)P(A)+P(B\mid A^c)P(A^c)$$
+                        </div>
+
+                        <p>여기서 \(P(A)\)는 사전확률, \(P(B\mid A)\)는 가능도, \(P(A\mid B)\)는 사후확률이다. 베이즈 문제에서 가장 많이 하는 실수는 검사 정확도나 조건부확률 하나만 보고 바로 결론을 내리는 것이다. 실제로는 기저율, 즉 사전확률이 매우 중요하다.</p>
+
+                        <div class="stat-comparison">
+                            <div class="stat-comparison-item">
+                                <h4>직관적 오해</h4>
+                                <p>검사가 매우 정확하면 양성 결과가 곧 실제 상태를 거의 확정한다고 생각하기 쉽다.</p>
+                            </div>
+                            <div class="stat-comparison-item">
+                                <h4>베이즈식 해석</h4>
+                                <p>실제 상태의 사전확률이 낮으면, 양성 결과 안에도 위양성이 상당히 섞일 수 있다.</p>
+                            </div>
+                        </div>
+
+                        <p>따라서 베이즈 문제는 표를 만들면 안전하다. 전체를 1 또는 10000명처럼 두고, 실제 상태별로 나눈 뒤 조건부확률을 곱하면 양성/음성 같은 관측 결과의 전체 구조가 보인다.</p>
+
+                        <h3>10. 체비셰프 부등식: 분포를 몰라도 최소한을 보장하기</h3>
+                        <p>체비셰프 부등식은 분포의 정확한 모양을 몰라도 평균과 분산만으로 평균 주변에 확률이 얼마나 있는지 하한을 보장해준다.</p>
+
+                        <div class="stat-formula">
+                            $$P(|X-\mu|\ge a)\le \frac{\sigma^2}{a^2}$$
+                            $$P(|X-\mu|<a)\ge 1-\frac{\sigma^2}{a^2}$$
+                        </div>
+
+                        <p>이 부등식이 중요한 이유는 분포 가정이 거의 없다는 점이다. 정규분포인지, 이항분포인지, 균일분포인지 몰라도 평균과 분산이 있으면 쓸 수 있다. 대신 그만큼 보수적인 하한을 준다. 정확한 확률이 아니라 “적어도 이만큼은 보장된다”는 말에 가깝다.</p>
+
+                        <table class="stat-table">
+                            <tr>
+                                <th>문제에서 보이는 단서</th>
+                                <th>떠올릴 개념</th>
+                                <th>이유</th>
+                            </tr>
+                            <tr>
+                                <td>평균과 분산만 주어짐</td>
+                                <td>체비셰프 부등식</td>
+                                <td>분포의 모양을 모를 때 쓸 수 있다</td>
+                            </tr>
+                            <tr>
+                                <td>평균을 중심으로 대칭 구간</td>
+                                <td>\(|X-\mu|\le a\)</td>
+                                <td>구간을 평균에서의 거리로 바꿀 수 있다</td>
+                            </tr>
+                            <tr>
+                                <td>최솟값 또는 최소 보장</td>
+                                <td>하한 \(1-\sigma^2/a^2\)</td>
+                                <td>정확한 확률보다 보장 가능한 값을 묻는 경우가 많다</td>
+                            </tr>
+                        </table>
+
+                        <h3>11. 표본공간과 경우의 수: 독립성 검정의 바닥</h3>
+                        <p>주사위, 동전, 카드처럼 모든 결과가 같은 확률을 갖는 문제에서는 표본공간을 먼저 세어야 한다. 주사위 두 개라면 결과를 순서쌍으로 보고 전체 경우의 수를 \(6\times 6=36\)으로 둔다. 어떤 사건의 확률은 그 사건에 들어가는 원소 개수를 전체 경우의 수로 나눈 값이다.</p>
+
+                        <div class="stat-formula">
+                            $$P(A)=\frac{|A|}{|\Omega|}$$
+                        </div>
+
+                        <p>합이 특정 값이 되는 경우의 수처럼 대칭적인 구조도 알아야 한다. 주사위 두 개의 합은 가운데로 갈수록 경우의 수가 많아지고 양끝으로 갈수록 줄어든다.</p>
+
+                        <table class="stat-table">
+                            <tr>
+                                <th>합</th>
+                                <th>2</th>
+                                <th>3</th>
+                                <th>4</th>
+                                <th>5</th>
+                                <th>6</th>
+                                <th>7</th>
+                                <th>8</th>
+                                <th>9</th>
+                                <th>10</th>
+                                <th>11</th>
+                                <th>12</th>
+                            </tr>
+                            <tr>
+                                <td>경우의 수</td>
+                                <td>1</td>
+                                <td>2</td>
+                                <td>3</td>
+                                <td>4</td>
+                                <td>5</td>
+                                <td>6</td>
+                                <td>5</td>
+                                <td>4</td>
+                                <td>3</td>
+                                <td>2</td>
+                                <td>1</td>
+                            </tr>
+                        </table>
+
+                        <p>이런 표본공간 감각이 있어야 사건의 교집합을 세고, 독립인지 아닌지 판단할 수 있다.</p>
+
+                        <h3>12. 쌍별 독립과 상호 독립: 모든 쌍을 따로 확인해야 한다</h3>
+                        <p>사건이 세 개 이상 있을 때는 독립성 판단이 더 조심스러워진다. 두 사건의 독립은 \(P(A\cap B)=P(A)P(B)\)로 확인한다. 세 사건이 쌍별 독립이라는 말은 가능한 모든 쌍이 각각 독립이라는 뜻이다.</p>
+
+                        <div class="stat-formula">
+                            $$P(A\cap B)=P(A)P(B)$$
+                            $$P(A\cap C)=P(A)P(C)$$
+                            $$P(B\cap C)=P(B)P(C)$$
+                        </div>
+
+                        <p>세 조건 중 하나라도 깨지면 쌍별 독립은 아니다. 중요한 점은 한 쌍이 독립이라고 해서 나머지 쌍도 자동으로 독립이 되는 것이 아니라는 점이다. 각각의 교집합을 직접 세어 곱과 비교해야 한다.</p>
+
+                        <div class="lecture-note">
+                            <p><strong>주의.</strong> 쌍별 독립과 상호 독립은 다르다. 쌍별 독립은 두 개씩 봤을 때의 조건이고, 상호 독립은 세 사건이 동시에 얽힌 조건까지 포함한다. 기초 단계에서는 먼저 쌍별 독립 조건을 정확히 확인하는 습관이 중요하다.</p>
+                        </div>
+
+                        <h3>13. 중간 점검 이후 남는 공부법</h3>
+                        <p>지금까지 배운 개념들은 서로 따로 떨어져 있지 않다. 사건 연산을 알아야 조건부확률을 풀 수 있고, 조건부확률을 알아야 베이즈 정리를 이해할 수 있다. PDF와 PMF의 차이를 알아야 연속형과 이산형 문제를 구분할 수 있고, 기댓값과 분산을 알아야 체비셰프 부등식과 이후 추론으로 넘어갈 수 있다.</p>
+
+                        <table class="stat-table">
+                            <tr>
+                                <th>문제를 봤을 때의 단서</th>
+                                <th>꺼내야 할 개념</th>
+                                <th>먼저 할 일</th>
+                            </tr>
+                            <tr>
+                                <td>독립, 여사건, 조건부확률</td>
+                                <td>사건 연산, 드모르간, 곱셈 법칙</td>
+                                <td>사건을 말로 먼저 해석한다</td>
+                            </tr>
+                            <tr>
+                                <td>밀도함수, 구간, 상수</td>
+                                <td>PDF 정규화, CDF, 적분</td>
+                                <td>정의역을 나누고 전체 면적을 1로 맞춘다</td>
+                            </tr>
+                            <tr>
+                                <td>확률질량함수, 무한합</td>
+                                <td>PMF 조건, 등비급수, 계단형 CDF</td>
+                                <td>가능한 값의 범위를 먼저 확인한다</td>
+                            </tr>
+                            <tr>
+                                <td>검사, 판정, 사후확률</td>
+                                <td>전체확률법칙, 베이즈 정리</td>
+                                <td>기저율과 조건부확률을 표로 정리한다</td>
+                            </tr>
+                            <tr>
+                                <td>평균, 분산, 최소 보장</td>
+                                <td>체비셰프 부등식</td>
+                                <td>구간을 \(|X-\mu|\) 형태로 바꾼다</td>
+                            </tr>
+                            <tr>
+                                <td>주사위, 경우의 수, 독립성</td>
+                                <td>표본공간, 교집합, 쌍별 독립</td>
+                                <td>전체 경우의 수와 사건별 원소 수를 센다</td>
+                            </tr>
+                        </table>
+
+                        <ul>
+                            <li>8주차는 지금까지의 범위를 확인하는 중간 점검 주차였다.</li>
+                            <li>남겨야 할 내용은 특정 사례의 계산 과정이 아니라, 그 유형을 이해하기 위해 필요한 선행 개념이다.</li>
+                            <li>사건 연산, 조건부확률, 독립, PDF/CDF, PMF/CDF, 기댓값/분산, 베이즈, 체비셰프, 경우의 수 기반 독립성은 반드시 연결해서 이해해야 한다.</li>
+                            <li>풀이의 시작은 공식을 외우는 것이 아니라, 이 문제가 어떤 확률 구조를 묻는지 판단하는 것이다.</li>
+                        </ul>
+                    </div>
+
+                    <div class="lang-en">
+                        <p class="week-references"><em>Keywords: event algebra, complements, independence, probability density function, cumulative distribution function, expectation, variance, probability mass function, geometric series, total probability, Bayes theorem, Chebyshev inequality, sample space, pairwise independence</em></p>
+
+                        <p>Week 8 was the midterm checkpoint. Rather than recording any specific calculation path, this note summarizes the prerequisite statistical knowledge that had to be ready before approaching the topics covered so far.</p>
+
+                        <div class="lecture-note">
+                            <p><strong>Note.</strong> The key skill is recognizing which concept a situation is asking for: independence, complements, density normalization, CDF construction, Bayes reasoning, Chebyshev bounds, or counting-based independence checks.</p>
+                        </div>
+
+                        <h3>1. Event Algebra and Complements</h3>
+                        <p>Basic probability begins with reading events correctly. \(A^c\) means that \(A\) does not occur, \(A\cap B\) means both occur, and \(A\cup B\) means at least one occurs.</p>
+
+                        <div class="stat-formula">
+                            $$P(A^c)=1-P(A)$$
+                            $$P(A\cup B)=P(A)+P(B)-P(A\cap B)$$
+                            $$(A\cup B)^c=A^c\cap B^c$$
+                        </div>
+
+                        <h3>2. Conditional Probability and Independence</h3>
+                        <p>Conditional probability is probability after information has been given.</p>
+
+                        <div class="stat-formula">
+                            $$P(A\mid B)=\frac{P(A\cap B)}{P(B)},\qquad P(B)>0$$
+                            $$P(A\cap B)=P(A)P(B)\quad \text{if independent}$$
+                        </div>
+
+                        <p>If \(A\) and \(B\) are independent, their complements inherit the same structure under the usual nonzero denominator conditions.</p>
+
+                        <h3>3. Continuous Random Variables: PDF and CDF</h3>
+                        <p>A probability density function is not probability at a point. It gives probability through area.</p>
+
+                        <div class="stat-formula">
+                            $$f(x)\ge 0,\qquad \int_{-\infty}^{\infty}f(x)\,dx=1$$
+                            $$P(a\le X\le b)=\int_a^b f(x)\,dx$$
+                            $$F(x)=P(X\le x)=\int_{-\infty}^{x}f(t)\,dt$$
+                        </div>
+
+                        <p>For piecewise densities, each segment must be integrated over its own interval, and the CDF must carry previous accumulated area into later segments.</p>
+
+                        <h3>4. Expectation and Variance</h3>
+                        <p>Expectation gives the center of a random variable, and variance gives spread around that center.</p>
+
+                        <div class="stat-formula">
+                            $$E(X)=\sum_x x\,p(x)\quad \text{or}\quad E(X)=\int x f(x)\,dx$$
+                            $$V(X)=E(X^2)-[E(X)]^2$$
+                        </div>
+
+                        <h3>5. Discrete Random Variables: PMF and Step CDF</h3>
+                        <p>A probability mass function assigns probability to possible values, and all masses must sum to 1. Infinite supports often require the geometric series formula.</p>
+
+                        <div class="stat-formula">
+                            $$\sum_x p(x)=1$$
+                            $$\sum_{x=1}^{\infty}r^x=\frac{r}{1-r},\qquad |r|<1$$
+                            $$F(y)=\sum_{x\le y}p(x)$$
+                        </div>
+
+                        <p>For integer-valued variables, the CDF is a step function. It stays flat between possible values and jumps at values with positive probability.</p>
+
+                        <h3>6. Total Probability and Bayes' Theorem</h3>
+                        <p>When one observed result can arise from multiple underlying states, use the law of total probability first. Then use Bayes' theorem to reverse the condition.</p>
+
+                        <div class="stat-formula">
+                            $$P(B)=P(B\mid A)P(A)+P(B\mid A^c)P(A^c)$$
+                            $$P(A\mid B)=\frac{P(B\mid A)P(A)}{P(B)}$$
+                        </div>
+
+                        <p>The base rate matters. A highly accurate test does not automatically make a positive result nearly certain if the prior probability is very low.</p>
+
+                        <h3>7. Chebyshev's Inequality</h3>
+                        <p>Chebyshev's inequality gives a distribution-free lower bound when only mean and variance are known.</p>
+
+                        <div class="stat-formula">
+                            $$P(|X-\mu|\ge a)\le \frac{\sigma^2}{a^2}$$
+                            $$P(|X-\mu|<a)\ge 1-\frac{\sigma^2}{a^2}$$
+                        </div>
+
+                        <p>It is useful when a question asks for a guaranteed minimum probability around the mean rather than an exact probability from a known distribution.</p>
+
+                        <h3>8. Sample Spaces and Pairwise Independence</h3>
+                        <p>For equally likely outcomes, probability is counting. First build the sample space, then count the event and intersection sizes.</p>
+
+                        <div class="stat-formula">
+                            $$P(A)=\frac{|A|}{|\Omega|}$$
+                            $$P(A\cap B)=P(A)P(B)\quad \text{checks independence}$$
+                        </div>
+
+                        <p>With three events, pairwise independence requires every pair to satisfy the independence condition. One independent pair does not make all pairs independent.</p>
+
+                        <h3>9. How to Study After the Checkpoint</h3>
+                        <p>The concepts are connected. Event algebra supports conditional probability; conditional probability supports Bayes; PDF/PMF distinctions support CDFs; expectation and variance support Chebyshev and later inference.</p>
+
+                        <table class="stat-table">
+                            <tr>
+                                <th>Signal in a question</th>
+                                <th>Concept to recall</th>
+                                <th>First move</th>
+                            </tr>
+                            <tr>
+                                <td>Independence, complements, conditions</td>
+                                <td>Event algebra and multiplication rule</td>
+                                <td>Translate events into words first</td>
+                            </tr>
+                            <tr>
+                                <td>Density, interval, unknown constant</td>
+                                <td>PDF normalization and CDF</td>
+                                <td>Split the support and set total area to 1</td>
+                            </tr>
+                            <tr>
+                                <td>Mass function, infinite sum</td>
+                                <td>PMF condition and geometric series</td>
+                                <td>Identify all possible values</td>
+                            </tr>
+                            <tr>
+                                <td>Test result or posterior probability</td>
+                                <td>Total probability and Bayes</td>
+                                <td>Build a state-by-result table</td>
+                            </tr>
+                            <tr>
+                                <td>Mean, variance, minimum guarantee</td>
+                                <td>Chebyshev inequality</td>
+                                <td>Rewrite the interval as distance from the mean</td>
+                            </tr>
+                            <tr>
+                                <td>Dice, counting, intersections</td>
+                                <td>Sample space and pairwise independence</td>
+                                <td>Count outcomes and compare products</td>
+                            </tr>
+                        </table>
+
+                        <ul>
+                            <li>Week 8 was a midterm checkpoint across the material covered so far.</li>
+                            <li>The note keeps the focus on prerequisite concepts, not on any specific calculation path.</li>
+                            <li>The main foundations are event algebra, conditional probability, independence, PDF/CDF, PMF/CDF, expectation, variance, Bayes, Chebyshev, and counting-based independence checks.</li>
+                            <li>The first step in solving is not memorizing a formula, but recognizing the probability structure being asked about.</li>
+                        </ul>
+                    </div>
+                </div>
+            </section>
+        </article>
+
+        <div id="site-footer"></div>
+    </div>
+
+    <script src="../../../common.js"></script>
+</body>
+</html>
