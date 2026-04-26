@@ -362,6 +362,70 @@
     font-weight: 500;
 }
 
+.assignment-chip {
+    display: inline-flex;
+    align-items: center;
+    width: auto;
+    height: auto;
+    min-height: 26px;
+    padding: 4px 10px;
+    margin: 4px 0 10px 0;
+    border-radius: 999px;
+    background: rgba(139, 69, 19, 0.1);
+    color: #8B4513;
+    font-size: 0.76em;
+    font-weight: 500;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+}
+
+.assignment-assets {
+    display: grid;
+    grid-template-columns: minmax(220px, 0.72fr) minmax(280px, 1.28fr);
+    gap: 18px;
+    margin: 18px 0 28px 0;
+    align-items: start;
+}
+
+.assignment-figure {
+    margin: 0;
+    padding: 12px;
+    border-radius: 8px;
+    border: 1px solid rgba(139, 69, 19, 0.12);
+    background: rgba(255, 255, 255, 0.42);
+}
+
+.assignment-figure img {
+    display: block;
+    width: 100%;
+    height: auto;
+    border-radius: 5px;
+    border: 1px solid rgba(0, 0, 0, 0.08);
+}
+
+.assignment-figure figcaption {
+    margin-top: 10px;
+    color: #777;
+    font-size: 0.82em;
+    line-height: 1.6;
+    font-weight: 300;
+}
+
+.assignment-download {
+    margin: 8px 0 0 0;
+}
+
+.assignment-download a {
+    color: #8B4513;
+    text-decoration: none;
+    font-size: 0.85em;
+    font-weight: 400;
+}
+
+.assignment-download a:hover {
+    text-decoration: underline;
+}
+
 [data-theme="dark"] .lecture-card {
     background: rgba(40, 40, 40, 0.7);
     border-left-color: #F0E68C;
@@ -489,9 +553,32 @@
     color: #F0E68C;
 }
 
+[data-theme="dark"] .assignment-chip {
+    background: rgba(240, 230, 140, 0.1);
+    color: #F0E68C;
+}
+
+[data-theme="dark"] .assignment-figure {
+    background: rgba(40, 40, 40, 0.58);
+    border-color: rgba(240, 230, 140, 0.16);
+}
+
+[data-theme="dark"] .assignment-figure img {
+    border-color: rgba(255, 255, 255, 0.1);
+}
+
+[data-theme="dark"] .assignment-figure figcaption {
+    color: #909090;
+}
+
+[data-theme="dark"] .assignment-download a {
+    color: #F0E68C;
+}
+
 @media (max-width: 600px) {
     .stat-comparison,
-    .course-week-grid {
+    .course-week-grid,
+    .assignment-assets {
         grid-template-columns: 1fr;
     }
 }
