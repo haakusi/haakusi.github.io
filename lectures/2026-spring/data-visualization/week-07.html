@@ -1,0 +1,573 @@
+<!DOCTYPE html>
+<html data-theme="dark" data-lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Info Design &amp; Data Viz - Week 7 - Sewon Park</title>
+    <link rel="stylesheet" type="text/css" href="../../../style.css">
+    <link rel="stylesheet" type="text/css" href="../../../assets/css/lectures.css">
+</head>
+<body>
+    <button class="theme-toggle" onclick="toggleTheme()" aria-label="Toggle dark mode"></button>
+    <button class="lang-toggle" onclick="toggleLanguage()" aria-label="Toggle language">EN</button>
+
+    <div class="container">
+        <div id="site-header"></div>
+        <div id="site-nav"></div>
+
+        <article class="course-page">
+            <div class="course-header">
+                <h1 data-en="Info Design &amp; Data Viz" data-kr="정보디자인데이터시각화">Info Design &amp; Data Viz</h1>
+                <p class="course-meta" data-en="2026 Spring | Sat 12:00-15:00" data-kr="2026 봄학기 | 토요일 12:00-15:00">2026 Spring | Sat 12:00-15:00</p>
+            </div>
+
+            <div class="course-nav">
+                <a href="../../../lectures.html" class="back-to-lectures" data-en="Back to Lectures" data-kr="강의 목록으로">Back to Lectures</a>
+                <span class="nav-separator">/</span>
+                <a href="./index.html" class="back-to-course" data-en="Course Home" data-kr="과목 홈">Course Home</a>
+            </div>
+
+            <div class="week-nav">
+                <span data-en="Weeks:" data-kr="주차:">Weeks:</span>
+                <a href="week-01.html" class="week-link">W1</a>
+                <a href="week-02.html" class="week-link">W2</a>
+                <a href="week-03.html" class="week-link">W3</a>
+                <a href="week-04.html" class="week-link">W4</a>
+                <a href="week-05.html" class="week-link">W5</a>
+                <a href="week-06.html" class="week-link">W6</a>
+                <a href="week-07.html" class="week-link current">W7</a>
+            </div>
+
+            <section class="week-section" id="week-07">
+                <h2 data-en="Week 7" data-kr="7주차">Week 7</h2>
+                <p class="week-date">2026-04-18</p>
+                <div class="week-content">
+                    <div class="lang-kr" hidden>
+                        <p class="week-references"><em>Keywords: Korean typography, square Hangul, non-square Hangul, Batang, Dotum, Choi Jeong-ho, Lee Yong-je, Baram, legibility, internal space, mixed scripts, primary information, color, background, visual concept</em></p>
+
+                        <p>이번 7주차는 개인 프로젝트 피드백과 한글 타이포그래피 강의가 연결된 시간이었다. 앞부분에서는 3개월 데이터, 색상 비율, 배경색, 1차 정보와 제목의 관계를 다시 점검했고, 뒤에서는 한글꼴의 구조와 가독성, 바탕체와 돋움체, 최정호와 이용제 같은 디자이너의 작업까지 확장해서 보았다.</p>
+
+                        <div class="lecture-note">
+                            <p><strong>메모.</strong> 이번 주의 핵심은 "깔끔하고 좋다"에서 멈추면 안 된다는 점이었다. 정해진 규칙만 따라도 번듯한 결과는 만들 수 있지만, 정보 목표와 브랜드의 특징, 앱과 웹에서 소통하려는 정보 구조, 그리고 그 구조를 지탱하는 시각 컨셉까지 설명할 수 있어야 한다.</p>
+                        </div>
+
+                        <h3>1. 보기 좋은 디자인과 설득 가능한 디자인은 다르다</h3>
+                        <p>좋은 디자인 아웃풋을 많이 보고, 좋은 사례를 거의 100% 따라 하며 흡수하는 것은 분명히 필요하다. 정해진 규칙을 지키면 결과물이 어느 정도 정돈되어 보인다. 하지만 수업에서 반복해서 짚은 것은, 그 다음 단계가 더 중요하다는 점이었다. 브랜드의 특징, 브랜드가 앱과 웹에서 전달하려는 정보 구조, 그리고 그 구조에 대한 시각적인 컨셉을 잡아야 한다.</p>
+
+                        <table class="stat-table">
+                            <tr>
+                                <th>피드백 문장</th>
+                                <th>그 안의 함정</th>
+                                <th>다음 질문</th>
+                            </tr>
+                            <tr>
+                                <td>깔끔하고 좋다</td>
+                                <td>정리는 잘 되었지만 목표가 안 보일 수 있다</td>
+                                <td>무엇을 위해 이렇게 정리했는가?</td>
+                            </tr>
+                            <tr>
+                                <td>보기 좋다</td>
+                                <td>취향의 평가로 끝날 수 있다</td>
+                                <td>어떤 정보 목표와 컨셉을 근거로 삼았는가?</td>
+                            </tr>
+                            <tr>
+                                <td>레퍼런스를 잘 따라 했다</td>
+                                <td>브랜드 고유의 특징이 사라질 수 있다</td>
+                                <td>이 작업만의 정보 구조와 시각 언어는 무엇인가?</td>
+                            </tr>
+                        </table>
+
+                        <p>그래서 이번 주의 피드백은 "예쁘게 만들기"보다 <strong>왜 이 정보가 이 형식으로 보여야 하는지</strong>를 설명하는 쪽에 가까웠다.</p>
+
+                        <h3>2. 3개월 데이터와 색상은 대비 구조로 더 분명히 보일 수 있다</h3>
+                        <p>개인 프로젝트에서는 3개월치 검색 기록 데이터가 있으므로, 그 데이터를 그대로 3개월 단위로 두고 비교 구조를 만들 수 있다는 이야기가 나왔다. 색상을 단순히 많이 쓰는 것이 아니라, 포함시킬 수 있는 데이터 내용을 위와 아래로 나누거나 서로 대비되는 면으로 배치해 차이를 드러내는 방식이다.</p>
+
+                        <table class="stat-table">
+                            <tr>
+                                <th>설계 요소</th>
+                                <th>이번 주 메모</th>
+                                <th>디자인 판단</th>
+                            </tr>
+                            <tr>
+                                <td>기간</td>
+                                <td>3개월은 3개월로 유지한다</td>
+                                <td>기간 자체가 비교의 기준이 되도록 한다</td>
+                            </tr>
+                            <tr>
+                                <td>검색 기록 데이터</td>
+                                <td>포함 가능한 데이터가 이미 있다</td>
+                                <td>상하 혹은 대비 면으로 나누어 읽기 구조를 만든다</td>
+                            </tr>
+                            <tr>
+                                <td>색상</td>
+                                <td>각 색상이 가진 비율을 살린다</td>
+                                <td>배경에 사선이나 비율 면을 넣어 퍼센티지를 보여준다</td>
+                            </tr>
+                            <tr>
+                                <td>큐브형 배열</td>
+                                <td>지금처럼 큐브형으로 나열한다</td>
+                                <td>구조는 유지하되 배경 면과 색상 비율로 정보 차이를 보강한다</td>
+                            </tr>
+                        </table>
+
+                        <div class="stat-formula">
+                            3개월 검색 기록 데이터
+                            <br>
+                            -> 색상 비율과 대비 구조
+                            <br>
+                            -> 위 / 아래 또는 사선 배경으로 정보 차이 표현
+                            <br>
+                            -> 큐브형 배열 안에서 1차 정보가 먼저 보이게 만들기
+                        </div>
+
+                        <h3>3. 한글은 네모꼴과 탈네모꼴의 구조를 함께 봐야 한다</h3>
+                        <p>한글 타이포그래피에서는 먼저 네모꼴 한글꼴과 탈네모꼴 한글꼴의 차이를 보았다. 네모꼴은 모든 낱글자를 같은 네모틀 안에서 설계하며, 전통적인 미감과 완성형 글자의 균형을 섬세하게 조절하는 방식이다. 바탕체와 돋움체가 대표적인 예다.</p>
+
+                        <p>탈네모꼴은 전통적으로 이어져 온 정네모꼴의 한계를 넘어선 구조다. 한글 창제 때부터 보였던 형태와 타자기 글자꼴, 조형 이론을 바탕으로 미래지향적으로 제시된 새로운 한글꼴을 포함한다. 특히 세벌식 구조의 탈네모꼴은 한글을 고정된 네모틀 안에만 가두지 않고, 자소와 조합의 움직임을 더 적극적으로 드러내는 방향으로 읽을 수 있다.</p>
+
+                        <div class="stat-comparison">
+                            <div class="stat-comparison-item">
+                                <h4>네모꼴 한글꼴</h4>
+                                <p>완성형 낱글자를 같은 네모틀 안에서 디자인한다. 낱자를 미세하게 다르게 조절해 전통적인 미감과 안정된 균형을 만든다.</p>
+                            </div>
+                            <div class="stat-comparison-item">
+                                <h4>탈네모꼴 한글꼴</h4>
+                                <p>정네모꼴의 한계를 넘는 구조다. 자소의 움직임과 조형성을 더 드러내며, 포스터나 실험적 제목에서 형태 자체가 강하게 보일 수 있다.</p>
+                            </div>
+                        </div>
+
+                        <p>안상수체처럼 외국인이 볼 때 의미보다 형태와 조형으로 먼저 보이게 만드는 서체도 이 맥락에서 생각할 수 있다. 이런 서체는 본문 가독성보다 포스터 안에서 형태를 아트처럼 인식하게 만드는 쪽에 더 가까울 수 있다.</p>
+
+                        <h3>4. 바탕체와 돋움체는 단순한 취향 문제가 아니다</h3>
+                        <p>수업에서는 예전에 흔히 명조체와 고딕체라고 부르던 이름이 1991년 문화체육부를 중심으로 바탕체와 돋움체로 정리되었다는 점도 언급되었다. 바탕체는 중국에서 시작된 명조체의 흐름과 연결되고, 돋움체는 로마자의 고딕 계열 명칭이 일본을 거쳐 한국에 정착한 맥락을 갖는다.</p>
+
+                        <table class="stat-table">
+                            <tr>
+                                <th>구분</th>
+                                <th>수업에서 본 배경</th>
+                                <th>디자인에서의 사용감</th>
+                            </tr>
+                            <tr>
+                                <td>바탕체</td>
+                                <td>명조체의 흐름과 연결되며, 한글의 전통적 미감이 강하다</td>
+                                <td>긴 글과 본문에서 안정적이고 섬세한 인상을 만든다</td>
+                            </tr>
+                            <tr>
+                                <td>돋움체</td>
+                                <td>로마자 고딕체 명칭이 일본을 거쳐 정착한 맥락이 있다</td>
+                                <td>바탕체보다 가독성이 떨어질 수 있지만 쉽게 눈에 띄어 표지판, 신문, 서적의 돋보임 용도로 많이 쓰인다</td>
+                            </tr>
+                            <tr>
+                                <td>궁서체</td>
+                                <td>궁에서 훈련된 장인이 쓰던 글씨에서 온다</td>
+                                <td>컴퓨터 기본 궁서체의 인상만으로 원래의 글씨 문화를 판단하면 부족하다</td>
+                            </tr>
+                        </table>
+
+                        <p>제안서에서 바탕체보다 돋움체를 많이 쓰는 이유도 이 맥락과 연결된다. 돋움체는 감성을 덜어내고 구조와 형식을 더 기계적이고 분명하게 보이게 할 수 있다. 하지만 그렇기 때문에 "무난해서"가 아니라, 이 작업이 그런 구조적 인상을 필요로 하는지 따져야 한다.</p>
+
+                        <h3>5. 가독성은 전체를 빨리 알아차리게 하는 산업적 조건이다</h3>
+                        <p>인지심리학에서는 <em>apple</em>과 <em>APPLE</em>의 차이를 통해 글자의 폼이 기억과 인식에 영향을 준다는 관점이 자주 쓰인다. 대문자와 소문자를 함께 쓰면 글자 높낮이가 생기기 때문에, 모든 글자를 꽉 채운 대문자보다 전체 형태를 빨리 알아차리기 쉽다. 꽉 채우면 깔끔해 보일 수 있지만, 높낮이가 있으면 가독성에는 더 유리할 수 있다.</p>
+
+                        <div class="lecture-note">
+                            <p><strong>메모.</strong> 가독성은 "전체를 빨리 알아차린다"는 뜻에 가깝다. 산업에서는 이것이 굉장히 중요하다. 안 읽히면 이탈하고, 장면에서 빨리 알아차리지 못하면 다음 장면으로 넘어가지 못한다.</p>
+                        </div>
+
+                        <table class="stat-table">
+                            <tr>
+                                <th>요소</th>
+                                <th>수업 메모</th>
+                                <th>적용 질문</th>
+                            </tr>
+                            <tr>
+                                <td>자간</td>
+                                <td>글씨가 어느 정도 쫀쫀하게 붙을 때 가독성이 좋아진다</td>
+                                <td>글자 사이가 너무 헐렁하거나 막히지 않았는가?</td>
+                            </tr>
+                            <tr>
+                                <td>단어 간격</td>
+                                <td>띄어쓰기는 글자 간격보다 훨씬 넓게 확보되어야 한다</td>
+                                <td>단어 단위가 한눈에 분리되는가?</td>
+                            </tr>
+                            <tr>
+                                <td>장평</td>
+                                <td>맞는 폰트가 없을 때 폭 조절을 검토할 수 있다</td>
+                                <td>한글과 로마자의 폭과 밀도가 함께 맞는가?</td>
+                            </tr>
+                            <tr>
+                                <td>대소문자</td>
+                                <td>높낮이가 생기면 읽기 형태가 살아난다</td>
+                                <td>영문 표기가 장식이 아니라 읽기 리듬을 만드는가?</td>
+                            </tr>
+                        </table>
+
+                        <h3>6. 속공간을 알면 글자의 크기와 밀도가 다르게 보인다</h3>
+                        <p>수업에서 가장 실무적으로 크게 남은 단어는 속공간이었다. 속공간은 글자 안쪽의 빈 공간이다. 글자가 크다 작다는 단순한 포인트 크기만의 문제가 아니라, 속공간이 어벙벙한지 쫀쫀한지에 따라 훨씬 다르게 느껴진다. 글자간 사이도 이 판단에 포함된다.</p>
+
+                        <p>한글은 모아쓰기 구조를 가진다. 닿자, 홀자, 받침이 결합해 하나의 네모꼴 안에 들어가며, 그 안에서 첫줄기, 첫돌기, 맺음돌기, 부리, 상투, 기둥, 곁줄기, 굴림, 맺음, 둥근줄기, 내림점, 삐침 같은 부분들이 각자의 자리를 갖는다. 이름이 있다는 것은 그 자리가 있다는 뜻이고, 그 자리를 볼 줄 알면 서체 선택이 훨씬 구체적이 된다.</p>
+
+                        <div class="stat-formula">
+                            서체의 획과 속공간을 본다
+                            <br>
+                            -> 글자의 밀도와 크기감을 판단한다
+                            <br>
+                            -> 한글 / 한자 / 로마자 / 숫자의 조화를 조절한다
+                            <br>
+                            -> 커버, 명함, 앱 화면처럼 작은 차이가 보이는 매체에서 완성도가 갈린다
+                        </div>
+
+                        <h3>7. 한글, 한자, 로마자, 숫자는 그냥 섞으면 안 된다</h3>
+                        <p>한글은 네모꼴 안에 채우려고 만든 서체가 많기 때문에, 로마자나 숫자를 같은 크기와 같은 감각으로 섞으면 복잡도가 급격히 달라질 수 있다. 영어는 베이스라인을 기준으로 흐르고, 세로쓰기에서는 APPLE처럼 글자를 한 글자씩 쌓기보다 좌측으로 눕혀 쓰는 방식이 더 자연스러운 경우가 있다.</p>
+
+                        <table class="stat-table">
+                            <tr>
+                                <th>혼용 상황</th>
+                                <th>문제</th>
+                                <th>조정 방식</th>
+                            </tr>
+                            <tr>
+                                <td>한글 + 로마자</td>
+                                <td>속공간과 기준선이 달라 같은 크기로 보이지 않는다</td>
+                                <td>영문을 조금 작게 쓰거나 기준선을 맞추고, 필요하면 다른 성격의 서체를 짝지어 쓴다</td>
+                            </tr>
+                            <tr>
+                                <td>한글 + 숫자</td>
+                                <td>한글 안의 숫자가 헐렁하고 아름답지 않게 보일 수 있다</td>
+                                <td>숫자는 영문 서체로 바꾸고 자간까지 미세하게 조절한다</td>
+                            </tr>
+                            <tr>
+                                <td>제목 한글 + 제목 영문</td>
+                                <td>두 언어가 같은 내용과 같은 목소리로 겹칠 수 있다</td>
+                                <td>한글은 고딕, 영문은 세리프처럼 서로 다른 성격을 의도적으로 조합할 수 있다</td>
+                            </tr>
+                            <tr>
+                                <td>명함 / 쇼핑백</td>
+                                <td>간단하지만 손 안에서 보는 매체라 작은 결함이 바로 보인다</td>
+                                <td>이름, 직책, 주소, 전화번호, 이메일의 숫자와 영문 자간을 끝까지 비교한다</td>
+                            </tr>
+                        </table>
+
+                        <p>산돌이나 윤서체, 나눔서체, 프리텐다드 같은 기본 서체들은 디지털 환경에서 이런 혼용 문제를 상당 부분 감안하고 있다. 하지만 인쇄 포스터나 명함처럼 상징성이 강한 매체에서는 이야기가 달라진다. 작은 공간 안에서 숫자 하나, 영문 자간 하나가 전문성의 차이를 만든다.</p>
+
+                        <h3>8. 최정호와 이용제의 작업은 한글을 보는 눈을 바꾼다</h3>
+                        <p>한글 디자이너 최정호의 작업은 바탕체와 돋움체를 볼 때 중요한 기준점이 된다. 동아출판사에서 활자 개발에 착수해 동아출판사체를 완성했고, 이후 산돌과 윤서체 같은 흐름에서도 기본부터 출발해 한글 서체의 구조를 세밀하게 다듬는 태도가 이어진다. 모리사와 HAB 증명조 같은 인쇄 활자 흐름도 함께 언급되었다.</p>
+
+                        <p>또 다른 축으로는 이용제의 바람체가 있었다. 한글이 가로쓰기와 세로쓰기에서 어떻게 달라지는지, 장인이 국경을 넘어 서로 상호작용하고 교류한다는 감각, 그리고 한글을 기능과 조형 사이에서 다시 생각하게 만드는 사례로 볼 수 있었다.</p>
+
+                        <div class="lecture-note">
+                            <p><strong>메모.</strong> 영문 서체를 고를 때는 아주 꼼꼼하게 비교하면서, 한글 서체는 "내 눈에 좋은 것이 좋은 것"으로 끝낼 때가 많다. 하지만 최정호 같은 디자이너의 작업을 알고 나면 한글의 조형을 더 유심히 볼 수 있고, 보는 사람도 그 아름다움을 느끼게 만들 수 있다.</p>
+                        </div>
+
+                        <h3>9. 정보 목표, 컨셉, 1차 정보, 제목은 같이 묶여야 한다</h3>
+                        <p>마지막으로 다시 정보디자인의 핵심으로 돌아왔다. <strong>정보 목표 = 컨셉 = 1차 정보 = 제목</strong>에 가깝다. 모든 정보디자인은 1차 정보를 중심으로 시작한다. 1차 정보와 제목은 같이 묶여서 보여야 하고, 컬러, 타입, 크기 역시 바로 근처에서 서로를 보조해야 한다.</p>
+
+                        <table class="stat-table">
+                            <tr>
+                                <th>판단 지점</th>
+                                <th>주의할 점</th>
+                                <th>적용 방향</th>
+                            </tr>
+                            <tr>
+                                <td>1차 정보</td>
+                                <td>왜 넣는지 모른 채 소진하면 안 된다</td>
+                                <td>가장 먼저 읽혀야 하는 메시지로 정리한다</td>
+                            </tr>
+                            <tr>
+                                <td>제목</td>
+                                <td>1차 정보와 떨어져 있거나 다른 색으로 끊기면 약해진다</td>
+                                <td>제목과 1차 정보가 한 덩어리처럼 보이게 한다</td>
+                            </tr>
+                            <tr>
+                                <td>배경색</td>
+                                <td>배경색을 선택하는 순간 담아둔 색상이 흩어질 수 있다</td>
+                                <td>흰색을 기본으로 두거나 아주 미세하게만 사용한다</td>
+                            </tr>
+                            <tr>
+                                <td>서체</td>
+                                <td>돋움체가 항상 의도와 맞는 것은 아니다</td>
+                                <td>서체를 왜 썼는지, 색상과 형태가 왜 맞는지 설명한다</td>
+                            </tr>
+                        </table>
+
+                        <p>다음에 설명할 때는 서체를 왜 썼고, 색상은 왜 썼고, 타입과 컬러와 폼이 어떻게 정보 목표를 지탱하는지를 말해야 한다. 지금처럼 큐브형으로 나열하되, 배경색은 각 색상이 가진 비율을 사선이나 다른 면 구성으로 넣어보는 방향이 이번 주 이후의 작업 방향으로 남았다.</p>
+
+                        <ul>
+                            <li>좋은 디자인은 보기 좋은 결과가 아니라, 정보 목표와 컨셉을 설명할 수 있는 결과다.</li>
+                            <li>3개월 검색 기록 데이터는 기간을 유지하고, 색상 비율과 상하/사선 대비 구조로 정보 차이를 드러낼 수 있다.</li>
+                            <li>한글은 네모꼴과 탈네모꼴, 바탕체와 돋움체의 구조적 차이를 이해하고 써야 한다.</li>
+                            <li>가독성은 전체를 빨리 알아차리게 하는 조건이며, 산업 환경에서는 이탈과 직접 연결된다.</li>
+                            <li>속공간을 보면 글자의 크기감, 밀도, 한글과 로마자/숫자의 조화가 다르게 보인다.</li>
+                            <li>최정호와 이용제의 작업은 한글 서체를 단순 취향이 아니라 구조와 조형의 문제로 보게 만든다.</li>
+                            <li>정보 목표, 컨셉, 1차 정보, 제목은 따로 떨어지지 않고 한 덩어리로 작동해야 한다.</li>
+                        </ul>
+                    </div>
+
+                    <div class="lang-en">
+                        <p class="week-references"><em>Keywords: Korean typography, square Hangul, non-square Hangul, Batang, Dotum, Choi Jeong-ho, Lee Yong-je, Baram, legibility, internal space, mixed scripts, primary information, color, background, visual concept</em></p>
+
+                        <p>Week 7 connected project feedback with a lecture on Korean typography. The first part revisited the three-month dataset, color ratios, background color, and the relation between title and primary information. The second part moved into Hangul structure, legibility, Batang and Dotum, and the work of type designers such as Choi Jeong-ho and Lee Yong-je.</p>
+
+                        <div class="lecture-note">
+                            <p><strong>Note.</strong> The core warning this week was not to stop at "clean and good-looking." If one follows basic rules, the output can look competent. But the stronger task is to explain the information goal, the brand's character, the information structure used in the app or web context, and the visual concept that supports that structure.</p>
+                        </div>
+
+                        <h3>1. Good-Looking Design and Defensible Design Are Different</h3>
+                        <p>Studying strong design output and absorbing references closely is necessary. Rules help a result look organized. But the class emphasized the next step: the work still needs its own brand character, information structure, and visual concept.</p>
+
+                        <table class="stat-table">
+                            <tr>
+                                <th>Feedback phrase</th>
+                                <th>Possible trap</th>
+                                <th>Next question</th>
+                            </tr>
+                            <tr>
+                                <td>It looks clean</td>
+                                <td>It may be organized without showing a goal</td>
+                                <td>What was it organized for?</td>
+                            </tr>
+                            <tr>
+                                <td>It looks nice</td>
+                                <td>The judgment can stop at taste</td>
+                                <td>What information goal and concept support it?</td>
+                            </tr>
+                            <tr>
+                                <td>The reference was followed well</td>
+                                <td>The brand's own character may disappear</td>
+                                <td>What is this project's own information structure and visual language?</td>
+                            </tr>
+                        </table>
+
+                        <p>The feedback this week was therefore less about making something attractive and more about explaining <strong>why this information has to appear in this form</strong>.</p>
+
+                        <h3>2. Three Months of Data Can Become a Clearer Contrast Structure</h3>
+                        <p>The personal project already has three months of search-history data, so the three-month frame can remain intact. Instead of merely adding many colors, the data can be divided into upper and lower areas, or into contrasting planes, so that differences become visible through structure.</p>
+
+                        <table class="stat-table">
+                            <tr>
+                                <th>Design element</th>
+                                <th>Class note</th>
+                                <th>Design decision</th>
+                            </tr>
+                            <tr>
+                                <td>Period</td>
+                                <td>Keep the three months as three months</td>
+                                <td>Let the period itself become the comparison frame</td>
+                            </tr>
+                            <tr>
+                                <td>Search-history data</td>
+                                <td>The usable data already exists</td>
+                                <td>Build a reading structure through upper/lower or opposing planes</td>
+                            </tr>
+                            <tr>
+                                <td>Color</td>
+                                <td>Use the ratio each color carries</td>
+                                <td>Show percentages through diagonal or proportional background planes</td>
+                            </tr>
+                            <tr>
+                                <td>Cube-like arrangement</td>
+                                <td>Keep the current cube-like listing</td>
+                                <td>Maintain the structure while strengthening differences through color-ratio backgrounds</td>
+                            </tr>
+                        </table>
+
+                        <div class="stat-formula">
+                            Three months of search-history data
+                            <br>
+                            -> color ratios and contrast structure
+                            <br>
+                            -> upper / lower or diagonal background areas
+                            <br>
+                            -> primary information becomes visible inside the cube-like layout
+                        </div>
+
+                        <h3>3. Hangul Has to Be Seen Through Square and Non-Square Structures</h3>
+                        <p>The typography part began with the difference between square Hangul type and non-square Hangul type. Square Hangul designs completed syllables inside the same square frame and carefully adjust balance and traditional visual qualities. Batang and Dotum are representative examples.</p>
+
+                        <p>Non-square Hangul moves beyond the limits of the traditional square structure. It includes forms visible from the creation of Hangul, typewriter-influenced structures, and newer forms proposed through visual theory. Especially in three-set structures, Hangul can reveal the movement of letters and combinations instead of being locked inside a fixed square.</p>
+
+                        <div class="stat-comparison">
+                            <div class="stat-comparison-item">
+                                <h4>Square Hangul</h4>
+                                <p>Completed syllables are designed inside a shared square frame. Small differences in each component create traditional balance and stability.</p>
+                            </div>
+                            <div class="stat-comparison-item">
+                                <h4>Non-Square Hangul</h4>
+                                <p>The structure moves beyond the fixed square. It can expose the movement and visual character of letters, especially in posters and experimental display type.</p>
+                            </div>
+                        </div>
+
+                        <p>Typefaces such as Ahn Sang-soo can be understood in this context. They may make the form appear first, even to people who cannot read Korean, and can operate more as visual form than as body-text typography.</p>
+
+                        <h3>4. Batang and Dotum Are Not Just Matters of Taste</h3>
+                        <p>The class also noted that the names once commonly called Myungjo and Gothic were reorganized in Korea around 1991 as Batang and Dotum. Batang connects to the history of Ming-style type, while Dotum carries the context of the Gothic naming used for Roman type and transmitted through Japan.</p>
+
+                        <table class="stat-table">
+                            <tr>
+                                <th>Category</th>
+                                <th>Background from class</th>
+                                <th>Design effect</th>
+                            </tr>
+                            <tr>
+                                <td>Batang</td>
+                                <td>Connected to the Myungjo lineage and traditional Hangul aesthetics</td>
+                                <td>Creates a stable, delicate impression in longer text</td>
+                            </tr>
+                            <tr>
+                                <td>Dotum</td>
+                                <td>Connected to the Gothic naming path that came through Japanese typography</td>
+                                <td>May be less readable than Batang, but stands out strongly in signs, newspapers, and emphasis contexts</td>
+                            </tr>
+                            <tr>
+                                <td>Gungseo</td>
+                                <td>Originates from trained court handwriting</td>
+                                <td>The default computer version should not be mistaken for the entire writing culture behind it</td>
+                            </tr>
+                        </table>
+
+                        <p>This also explains why proposals often use Dotum-like sans-serif type rather than Batang. Dotum can remove emotional softness and make structure, format, and a mechanical tone more visible. But that choice still needs a reason, not just safety.</p>
+
+                        <h3>5. Legibility Is the Industrial Condition of Fast Recognition</h3>
+                        <p>In cognitive psychology, the difference between <em>apple</em> and <em>APPLE</em> is often used to discuss how letter form affects recognition. Mixed case produces a contour with height variation, while all caps can look clean but block-like. A filled block can feel orderly, but a varied outline can support faster reading.</p>
+
+                        <div class="lecture-note">
+                            <p><strong>Note.</strong> Legibility here means recognizing the whole quickly. In industrial contexts, this is critical. If text is not readable, people leave. If a scene cannot be understood quickly, the viewer cannot move to the next scene.</p>
+                        </div>
+
+                        <table class="stat-table">
+                            <tr>
+                                <th>Element</th>
+                                <th>Class note</th>
+                                <th>Application question</th>
+                            </tr>
+                            <tr>
+                                <td>Letter spacing</td>
+                                <td>Letters often read better when they hold a compact rhythm</td>
+                                <td>Is the spacing too loose or too tight?</td>
+                            </tr>
+                            <tr>
+                                <td>Word spacing</td>
+                                <td>Word spaces need to be much wider than letter spaces</td>
+                                <td>Can words be separated at a glance?</td>
+                            </tr>
+                            <tr>
+                                <td>Width adjustment</td>
+                                <td>If the right typeface is unavailable, width can be adjusted carefully</td>
+                                <td>Do Hangul and Roman letters share compatible width and density?</td>
+                            </tr>
+                            <tr>
+                                <td>Upper/lowercase</td>
+                                <td>Height variation creates a readable silhouette</td>
+                                <td>Does English text create reading rhythm rather than decoration?</td>
+                            </tr>
+                        </table>
+
+                        <h3>6. Internal Space Changes How Size and Density Are Perceived</h3>
+                        <p>The most practical term this week was internal space: the empty space inside letters. Whether a letter feels large or small is not only about point size. It also depends on whether the internal space feels loose, dense, awkward, or compact. Letter spacing is part of the same perception.</p>
+
+                        <p>Hangul is assembled writing. Consonants, vowels, and final consonants combine into syllable blocks, and parts such as stems, finishing strokes, beaks, columns, curves, dots, and descenders each have positions. If a part has a name, it has a place. Seeing those places makes typeface choice much more concrete.</p>
+
+                        <div class="stat-formula">
+                            Look at stroke details and internal space
+                            <br>
+                            -> judge density and perceived size
+                            <br>
+                            -> adjust the harmony of Hangul / Hanja / Roman letters / numbers
+                            <br>
+                            -> small media such as covers, business cards, and apps reveal the difference
+                        </div>
+
+                        <h3>7. Hangul, Hanja, Roman Letters, and Numbers Cannot Simply Be Mixed</h3>
+                        <p>Many Hangul typefaces are designed to fill a square frame. When Roman letters or numbers are mixed at the same size and density, the visual complexity can shift quickly. English flows along a baseline, and in vertical writing it can sometimes be more natural to rotate the word left rather than stacking letters one by one.</p>
+
+                        <table class="stat-table">
+                            <tr>
+                                <th>Mixed setting</th>
+                                <th>Problem</th>
+                                <th>Adjustment</th>
+                            </tr>
+                            <tr>
+                                <td>Hangul + Roman letters</td>
+                                <td>Internal space and baseline differ, so they do not appear equally sized</td>
+                                <td>Use Roman letters slightly smaller, align the baseline, or pair intentionally different type personalities</td>
+                            </tr>
+                            <tr>
+                                <td>Hangul + numbers</td>
+                                <td>Numbers inside Hangul can feel loose or visually weak</td>
+                                <td>Use a Roman typeface for numbers and adjust spacing carefully</td>
+                            </tr>
+                            <tr>
+                                <td>Korean title + English title</td>
+                                <td>The two languages can duplicate the same voice</td>
+                                <td>Pair Hangul sans-serif with Roman serif, or otherwise create deliberate contrast</td>
+                            </tr>
+                            <tr>
+                                <td>Business card / shopping bag</td>
+                                <td>The medium is simple, but small defects are immediately visible in the hand</td>
+                                <td>Compare spacing for name, title, address, phone number, and email until the system feels precise</td>
+                            </tr>
+                        </table>
+
+                        <p>Type families from Sandoll, Yoon, Nanum, or Pretendard already account for many digital mixing problems. But printed posters and symbolic objects such as business cards are different. In a small space, one digit or one English spacing decision can change the professional impression.</p>
+
+                        <h3>8. Choi Jeong-ho and Lee Yong-je Change How Hangul Is Seen</h3>
+                        <p>Choi Jeong-ho's work is a key reference point for understanding Batang and Dotum. He worked on type development at Dong-A Publishing and completed Dong-A typefaces, and the attitude of starting from fundamental Hangul structure continues into later type design ecosystems such as Sandoll and Yoon. The class also mentioned printing histories such as woodblock, metal type, and Morisawa HAB Jeung Myungjo.</p>
+
+                        <p>Lee Yong-je's Baram was another axis. It opened a way to think about Hangul in horizontal and vertical writing, about craft traditions that cross national borders, and about Korean type between function and visual form.</p>
+
+                        <div class="lecture-note">
+                            <p><strong>Note.</strong> Roman typefaces are often chosen with great care, while Hangul typefaces are too often chosen by "what looks good to my eye." Once the work of designers such as Choi Jeong-ho is known, Hangul can be seen as structure and visual form, not only as preference.</p>
+                        </div>
+
+                        <h3>9. Information Goal, Concept, Primary Information, and Title Should Stay Together</h3>
+                        <p>The final point returned to information design itself. <strong>Information goal = concept = primary information = title</strong>, at least in the way this project needs to be organized. Every information design project begins with primary information. The title and primary information should read as a connected unit, and color, type, and size should support that unit nearby.</p>
+
+                        <table class="stat-table">
+                            <tr>
+                                <th>Decision point</th>
+                                <th>Risk</th>
+                                <th>Direction</th>
+                            </tr>
+                            <tr>
+                                <td>Primary information</td>
+                                <td>It can be used up without knowing why it is there</td>
+                                <td>Turn it into the message that must be read first</td>
+                            </tr>
+                            <tr>
+                                <td>Title</td>
+                                <td>It weakens if separated from the primary information or split by color</td>
+                                <td>Make title and primary information feel like one unit</td>
+                            </tr>
+                            <tr>
+                                <td>Background color</td>
+                                <td>Once chosen, it can scatter the colors already inside the work</td>
+                                <td>Start from white, or use background color very subtly</td>
+                            </tr>
+                            <tr>
+                                <td>Typeface</td>
+                                <td>Dotum is not automatically aligned with every intention</td>
+                                <td>Explain why the type, color, and form all support the information goal</td>
+                            </tr>
+                        </table>
+
+                        <p>In the next explanation, the reasons for typeface, color, type, and form all need to be stated. The current cube-like arrangement can remain, but the background color can be tested as diagonal or proportional surfaces that carry each color's ratio.</p>
+
+                        <ul>
+                            <li>Good design is not only good-looking; it can explain its information goal and concept.</li>
+                            <li>The three-month search-history data can retain its period and reveal difference through color ratios and upper/lower or diagonal contrasts.</li>
+                            <li>Hangul type should be used with awareness of square/non-square structures and Batang/Dotum differences.</li>
+                            <li>Legibility is the ability to recognize the whole quickly, and in industrial contexts it directly affects drop-off.</li>
+                            <li>Internal space changes how size, density, and harmony among Hangul, Roman letters, and numbers are perceived.</li>
+                            <li>The work of Choi Jeong-ho and Lee Yong-je makes Hangul type visible as structure and form, not merely preference.</li>
+                            <li>Information goal, concept, primary information, and title should work as one connected unit.</li>
+                        </ul>
+                    </div>
+                </div>
+            </section>
+        </article>
+
+        <div id="site-footer"></div>
+    </div>
+
+    <script src="../../../common.js"></script>
+</body>
+</html>
