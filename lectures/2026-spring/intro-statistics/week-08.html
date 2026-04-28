@@ -301,8 +301,10 @@
                         <p>체비셰프 부등식은 분포의 정확한 모양을 몰라도 평균과 분산만으로 평균 주변에 확률이 얼마나 있는지 하한을 보장해준다.</p>
 
                         <div class="stat-formula">
-                            $$P(|X-\mu|\ge a)\le \frac{\sigma^2}{a^2}$$
-                            $$P(|X-\mu|<a)\ge 1-\frac{\sigma^2}{a^2}$$
+                            $$\begin{aligned}
+                            P(|X-\mu|\ge a) &\le \frac{\sigma^2}{a^2}\\
+                            P(|X-\mu|&lt;a) &\ge 1-\frac{\sigma^2}{a^2}
+                            \end{aligned}$$
                         </div>
 
                         <p>이 부등식이 중요한 이유는 분포 가정이 거의 없다는 점이다. 정규분포인지, 이항분포인지, 균일분포인지 몰라도 평균과 분산이 있으면 쓸 수 있다. 대신 그만큼 보수적인 하한을 준다. 정확한 확률이 아니라 “적어도 이만큼은 보장된다”는 말에 가깝다.</p>
@@ -508,8 +510,10 @@
                         <p>Chebyshev's inequality gives a distribution-free lower bound when only mean and variance are known.</p>
 
                         <div class="stat-formula">
-                            $$P(|X-\mu|\ge a)\le \frac{\sigma^2}{a^2}$$
-                            $$P(|X-\mu|<a)\ge 1-\frac{\sigma^2}{a^2}$$
+                            $$\begin{aligned}
+                            P(|X-\mu|\ge a) &\le \frac{\sigma^2}{a^2}\\
+                            P(|X-\mu|&lt;a) &\ge 1-\frac{\sigma^2}{a^2}
+                            \end{aligned}$$
                         </div>
 
                         <p>It is useful when a question asks for a guaranteed minimum probability around the mean rather than an exact probability from a known distribution.</p>
