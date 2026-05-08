@@ -1,0 +1,403 @@
+<!DOCTYPE html>
+<html data-theme="dark" data-lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Info Design &amp; Data Viz - Week 9 - Sewon Park</title>
+    <link rel="stylesheet" type="text/css" href="../../../style.css">
+    <link rel="stylesheet" type="text/css" href="../../../assets/css/lectures.css">
+</head>
+<body>
+    <button class="theme-toggle" onclick="toggleTheme()" aria-label="Toggle dark mode"></button>
+    <button class="lang-toggle" onclick="toggleLanguage()" aria-label="Toggle language">EN</button>
+
+    <div class="container">
+        <div id="site-header"></div>
+        <div id="site-nav"></div>
+
+        <article class="course-page">
+            <div class="course-header">
+                <h1 data-en="Info Design &amp; Data Viz" data-kr="정보디자인데이터시각화">Info Design &amp; Data Viz</h1>
+                <p class="course-meta" data-en="2026 Spring | Sat 12:00-15:00" data-kr="2026 봄학기 | 토요일 12:00-15:00">2026 Spring | Sat 12:00-15:00</p>
+            </div>
+
+            <div class="course-nav">
+                <a href="../../../lectures.html" class="back-to-lectures" data-en="Back to Lectures" data-kr="강의 목록으로">Back to Lectures</a>
+                <span class="nav-separator">/</span>
+                <a href="./index.html" class="back-to-course" data-en="Course Home" data-kr="과목 홈">Course Home</a>
+            </div>
+
+            <div class="week-nav">
+                <span data-en="Weeks:" data-kr="주차:">Weeks:</span>
+                <a href="week-01.html" class="week-link">W1</a>
+                <a href="week-02.html" class="week-link">W2</a>
+                <a href="week-03.html" class="week-link">W3</a>
+                <a href="week-04.html" class="week-link">W4</a>
+                <a href="week-05.html" class="week-link">W5</a>
+                <a href="week-06.html" class="week-link">W6</a>
+                <a href="week-07.html" class="week-link">W7</a>
+                <a href="week-08.html" class="week-link">W8</a>
+                <a href="week-09.html" class="week-link current">W9</a>
+            </div>
+
+            <section class="week-section" id="week-09">
+                <h2 data-en="Week 9" data-kr="9주차">Week 9</h2>
+                <p class="week-date">2026-05-02</p>
+                <div class="week-content">
+                    <span class="assignment-chip" data-en="Forms as Service Design" data-kr="서비스디자인으로서의 폼">Forms as Service Design</span>
+
+                    <div class="lang-kr" hidden>
+                        <p class="week-references"><em>Keywords: form design, public forms, service design, VOC, user state, provider identity, official workflow, visual hierarchy, typography, color, point-line-plane, pre-main-post service</em></p>
+
+                        <p>9주차의 중심 주제는 <strong>폼(form)</strong>이었다. 공공기관이나 회사에서 쓰는 양식은 흔히 기능적 입력 도구로만 취급된다. 그러나 실제로 폼은 기관, 비즈니스, 국가가 사용자와 만나는 첫 번째 서비스 접점이다. 그래서 폼 디자인은 칸을 예쁘게 정리하는 일이 아니라, 사용자의 상태, 제공자의 목적, 정보 수집의 논리, 톤앤매너를 함께 설계하는 정보디자인 작업이다.</p>
+
+                        <div class="lecture-note">
+                            <p><strong>메모.</strong> 폼은 사람 대신 앞에 서는 인터페이스다. 입사지원서, 입국신고서, 출생신고서, 사망신고서처럼 겉으로는 글자와 줄과 칸만 있어 보이지만, 실제로는 회사, 기관, 국가가 사용자를 어떻게 대하는지 보여주는 태도다.</p>
+                        </div>
+
+                        <h3>1. 폼은 종이가 아니라 서비스의 얼굴이다</h3>
+                        <p>같은 정보를 받더라도 어떤 회사에 제출하는지, 어떤 기관에 제출하는지에 따라 폼은 달라진다. 입사지원서만 보아도 회사마다 묻는 순서, 말투, 서류 구조, 필수 항목, 자기소개 방식이 다르다. 그 차이는 단순한 취향이 아니라, 그 조직이 사람을 어떤 방식으로 만나고 판단하는지 드러내는 아이덴티티다.</p>
+
+                        <table class="stat-table">
+                            <tr>
+                                <th>기능 중심으로 보는 폼</th>
+                                <th>정보디자인으로 보는 폼</th>
+                            </tr>
+                            <tr>
+                                <td>필요한 데이터를 빠짐없이 받는 문서</td>
+                                <td>사용자와 제공자가 만나는 서비스 접점</td>
+                            </tr>
+                            <tr>
+                                <td>칸, 선, 항목, 제출 버튼의 집합</td>
+                                <td>질문 순서, 말투, 시선 흐름, 심리적 부담까지 포함한 경험</td>
+                            </tr>
+                            <tr>
+                                <td>기관 내부 처리만 잘 되면 충분함</td>
+                                <td>사용자가 틀리지 않고, 불안해하지 않고, 맥락을 이해해야 함</td>
+                            </tr>
+                        </table>
+
+                        <p>강의에서 강조된 문장은 "Learn to love forms"였다. 폼은 지루한 사무 문서처럼 보이지만, 실제로는 사용자의 행동과 감정을 가장 직접적으로 바꾸는 정보디자인 대상이다.</p>
+
+                        <h3>2. 좋은 폼은 리서치에서 시작한다</h3>
+                        <p>폼을 새로 디자인하려면 먼저 현재 양식이 왜 지금의 모습이 되었는지 알아야 한다. 원래 무엇이었고, 어떤 민원과 VOC를 받았으며, 어떤 제도와 업무 흐름 때문에 수정되고 보완되어 여기까지 왔는지를 봐야 한다. 역사와 배경을 찾다 보면 어떤 항목이 그냥 남아 있는지, 어떤 질문이 실제로 필요한지, 어떤 말투가 사용자를 밀어내는지 보인다.</p>
+
+                        <div class="stat-formula">
+                            현재 폼
+                            <br>
+                            -> 역사 / 제도 / 업무 흐름 / VOC / 사용자 상황 조사
+                            <br>
+                            -> 남겨야 할 항목과 바꿔야 할 항목 구분
+                            <br>
+                            -> 한 장의 문서가 아니라 하나의 서비스 흐름으로 재설계
+                        </div>
+
+                        <p>공공 양식은 특히 사용자의 삶과 강하게 맞닿는다. 출생, 사망, 입국, 세금, 노동, 민원 같은 장면에서 폼은 단순한 행정 절차가 아니라 국가가 개인을 부르는 방식이 된다. 과거 행정 체계에서 온 흔적이 현재 양식에 남아 있을 수 있기 때문에, 표면의 칸만 고치는 것으로는 충분하지 않다.</p>
+
+                        <h3>3. 사용자의 상태를 진지하게 받아들여야 한다</h3>
+                        <p>폼의 사용자는 항상 차분하고 시간이 충분한 사람이 아니다. 사망신고서를 쓰는 사람은 마음이 무너져 있을 수 있고, 병원과 행정기관을 오가야 하는 상황일 수 있다. 입국신고서를 쓰는 사람은 낯선 언어와 절차 앞에 있을 수 있다. 공공 폼은 대중 전체를 대상으로 하지만, 동시에 연령, 언어, 감정 상태, 디지털 숙련도, 행정 경험이 모두 다른 사람들을 담아야 한다.</p>
+
+                        <div class="stat-comparison">
+                            <div class="stat-comparison-item">
+                                <h4>Get to Know Your Users</h4>
+                                <p>사용자가 어떤 단계에서 이 폼을 만나는지 봐야 한다. 신청 전인지, 이미 지친 상태인지, 제출 후 결과를 기다리는지에 따라 필요한 안내가 달라진다.</p>
+                            </div>
+                            <div class="stat-comparison-item">
+                                <h4>Take Your Users Seriously</h4>
+                                <p>VOC는 불평처럼 보일 수 있지만, 그 안에는 왜 불편한지에 대한 단서가 있다. 사용자가 정확히 무엇을 몰라서 막히는지 찾아야 한다.</p>
+                            </div>
+                        </div>
+
+                        <p>사용자가 네이버 지식인이나 AI에게 물어봐야 겨우 쓸 수 있는 폼이라면 이미 실패한 것이다. 답을 해도 빙글빙글 도는 느낌, 정확하지 않은 안내, 애매한 용어는 사용자를 더 불안하게 만든다. 좋은 폼은 사용자가 틀릴 가능성을 미리 예상하고, 그 가능성을 줄이는 방향으로 설계되어야 한다.</p>
+
+                        <h3>4. 제공자의 생각도 알아야 한다</h3>
+                        <p>폼은 사용자만을 위한 것이 아니다. 제공자, 즉 기관이나 회사가 왜 이 정보를 필요로 하는지, 어떤 업무 처리 과정에 쓰는지, 얼마나 급한지, 접수 후 며칠이 걸리는지까지 알아야 한다. 제공자가 필요한 정보를 모르면 폼은 내부 업무에서 실패하고, 사용자만 생각하면 공적 처리 흐름을 놓칠 수 있다.</p>
+
+                        <table class="stat-table">
+                            <tr>
+                                <th>질문</th>
+                                <th>디자인에서 필요한 이유</th>
+                            </tr>
+                            <tr>
+                                <td>이 정보는 왜 필요한가?</td>
+                                <td>불필요한 질문을 줄이고 필수 질문의 의미를 설명할 수 있다</td>
+                            </tr>
+                            <tr>
+                                <td>누가 이 폼을 검토하는가?</td>
+                                <td>사용자 영역과 오피셜 영역을 분리하고 처리 속도를 높일 수 있다</td>
+                            </tr>
+                            <tr>
+                                <td>접수 후 어떤 일이 일어나는가?</td>
+                                <td>제출 후 안내, 문자, 다음 단계, 문의 경로를 설계할 수 있다</td>
+                            </tr>
+                            <tr>
+                                <td>이 조직의 톤과 태도는 무엇인가?</td>
+                                <td>폼에도 기관의 아이덴티티와 스타일을 줄 수 있다</td>
+                            </tr>
+                        </table>
+
+                        <p>폼에는 제공자의 아이덴티티도 필요하다. 빅테크, 공공기관, 학교, 병원, 금융기관은 같은 질문을 하더라도 서로 다른 태도로 말해야 한다. 기능은 같아도 톤앤매너가 다르면 사용자 경험은 완전히 달라진다.</p>
+
+                        <h3>5. 시각 요소는 사용자의 사고 흐름을 만든다</h3>
+                        <p>폼 디자인에서 글자 크기, 용어, 칸의 폭, 줄의 위치, 번호, 색, 여백은 모두 사고 흐름을 만든다. 사용자는 전체 폼을 보면서 지금 작성할 수 있는지, 몇 분 걸릴지, 어느 부분이 공식 영역인지, 어디에 무엇을 써야 하는지 판단한다. 따라서 "Leave nothing to chance"가 중요하다. 긴가민가하게 해석할 여지를 남기면 안 된다.</p>
+
+                        <table class="stat-table">
+                            <tr>
+                                <th>시각 요소</th>
+                                <th>사용자에게 주는 신호</th>
+                            </tr>
+                            <tr>
+                                <td>번호와 단계</td>
+                                <td>어디서 어디까지가 한 묶음인지, 지금 몇 단계 중 어디인지 알려준다</td>
+                            </tr>
+                            <tr>
+                                <td>선과 면</td>
+                                <td>작성 영역과 설명 영역을 안정적으로 나누고 시선을 붙잡는다</td>
+                            </tr>
+                            <tr>
+                                <td>점과 작은 표시</td>
+                                <td>디테일한 체크, 보조 정보, 처리 표식을 담당한다</td>
+                            </tr>
+                            <tr>
+                                <td>색</td>
+                                <td>가벼움, 주의, 차분함, 공식성 같은 감정 톤을 만든다</td>
+                            </tr>
+                            <tr>
+                                <td>서체와 장식</td>
+                                <td>빠른 처리, 진중함, 친절함, 공적 권위 같은 인상을 조절한다</td>
+                            </tr>
+                        </table>
+
+                        <p>흰 바탕은 비교적 가볍게 들어갈 수 있는 느낌을 주고, 노란색은 약간의 긍정적 정서를 만든다. 연보라색이나 회색은 차분하고 무거운 정보를 쓰는 분위기에 맞을 수 있다. 반대로 너무 진한 색이나 검은 바탕 위 흰 글자는 눈을 피로하게 만들 수 있다.</p>
+
+                        <h3>6. 폼 안에도 서비스의 전, 중, 후가 있다</h3>
+                        <p>서비스에는 전, 중, 후가 있듯이 폼 안에도 전, 중, 후가 있다. 작성 전에 무엇을 준비해야 하는지 알려주는 영역, 실제로 정보를 입력하는 영역, 제출 후 언제 어떤 연락이 오는지 알려주는 영역, 더 궁금할 때 어디로 가야 하는지 안내하는 영역이 필요하다.</p>
+
+                        <div class="stat-formula">
+                            Pre-service: 왜 쓰는지 / 무엇을 준비할지
+                            <br>
+                            Main-service: 어떤 순서로 무엇을 작성할지
+                            <br>
+                            Post-service: 제출 후 언제 무엇이 일어나는지
+                            <br>
+                            Follow-up: 추가 문의와 확인 경로
+                        </div>
+
+                        <p>사용자와 오피셜의 공간을 나누는 것도 중요하다. 예를 들어 사용자가 쓰는 영역을 크게 두고, 기관 내부에서 처리하거나 확인하는 영역은 오른쪽 열처럼 분리할 수 있다. 세로로 들어가는 표시나 빠른 체크 영역은 사용자에게 보라는 지침이 아니라, 담당자가 종이를 넘기며 빠르게 처리하기 위한 숏컷일 수 있다.</p>
+
+                        <h3>7. 다음 작업은 폼 분석을 논리적으로 정리하는 일이다</h3>
+                        <p>폼 프로젝트는 예쁘게 고치는 작업이 아니라 리서치, 분석, 소팅, 파인딩, 가설, 설계, 파일럿 테스트로 이어지는 서비스디자인 과정이다. 어떤 폼이 어떤 의도를 가지고 있고, 어떤 이유로 그렇게 되었으며, 현재 전달 키워드와 기대 감성 키워드가 무엇인지 정리해야 한다.</p>
+
+                        <table class="stat-table">
+                            <tr>
+                                <th>가로 분석축</th>
+                                <th>세로 분석축</th>
+                            </tr>
+                            <tr>
+                                <td>프리 인포 / 메인 인포 / 포스트 인포</td>
+                                <td>현재 내용 / 내용 분석 / 기대 분석</td>
+                            </tr>
+                            <tr>
+                                <td>사용자 작성 영역 / 오피셜 처리 영역 / 추가 안내 영역</td>
+                                <td>현재 전달 키워드 / 기대 감성 키워드 / 개선 가설</td>
+                            </tr>
+                            <tr>
+                                <td>도구와 방식별 유형</td>
+                                <td>시각화 이론 / 심리적 배려 / 서비스 흐름</td>
+                            </tr>
+                        </table>
+
+                        <p>결국 좋은 폼은 사용자에게 또 하나의 양식을 주는 것이 아니라, 하나의 문제를 덜어주는 것이다. "Do not give users one more form - give them one less problem"이라는 말이 9주차의 핵심 결론에 가깝다.</p>
+
+                        <ul>
+                            <li>9주차는 폼을 정보디자인과 서비스디자인의 대상으로 보는 수업이었다.</li>
+                            <li>폼은 사람 대신 기관과 비즈니스의 태도를 전달하는 인터페이스다.</li>
+                            <li>좋은 폼은 사용자 상태, 제공자 목적, 역사와 제도, VOC를 함께 조사해야 한다.</li>
+                            <li>용어, 순서, 번호, 색, 선, 면, 여백은 모두 사용자의 사고 흐름을 만든다.</li>
+                            <li>폼 안에도 서비스의 전, 중, 후와 제출 후 안내가 있어야 한다.</li>
+                            <li>다음 작업은 실제 폼을 분석하고, 리서치와 이론적 배경을 바탕으로 개선 가설을 세우는 것이다.</li>
+                        </ul>
+                    </div>
+
+                    <div class="lang-en">
+                        <p class="week-references"><em>Keywords: form design, public forms, service design, VOC, user state, provider identity, official workflow, visual hierarchy, typography, color, point-line-plane, pre-main-post service</em></p>
+
+                        <p>Week 9 centered on <strong>forms</strong>. Public agencies and companies often treat forms as functional input tools, but a form is also the first service encounter between a user and an institution, business, or state. Form design is therefore not just arranging boxes neatly. It is information design that coordinates user state, provider intent, data logic, and tone of voice.</p>
+
+                        <div class="lecture-note">
+                            <p><strong>Note.</strong> A form stands in for a person. Job applications, arrival cards, birth registrations, and death registrations may look like text, lines, and fields, but they communicate how a company, institution, or country approaches a user.</p>
+                        </div>
+
+                        <h3>1. A Form Is a Service Face, Not Just Paper</h3>
+                        <p>Even when the requested information is similar, the form changes depending on the company or institution. Job applications differ in question order, tone, required sections, and self-introduction structure. Those differences are not only style choices. They reveal how an organization meets, judges, and supports people.</p>
+
+                        <table class="stat-table">
+                            <tr>
+                                <th>Function-only view</th>
+                                <th>Information design view</th>
+                            </tr>
+                            <tr>
+                                <td>A document that collects required data</td>
+                                <td>A service encounter between user and provider</td>
+                            </tr>
+                            <tr>
+                                <td>A set of fields, lines, labels, and submit actions</td>
+                                <td>An experience made from question order, language, eye flow, and emotional burden</td>
+                            </tr>
+                            <tr>
+                                <td>Success means internal processing works</td>
+                                <td>Success means users understand, avoid mistakes, and feel oriented</td>
+                            </tr>
+                        </table>
+
+                        <p>The lecture's key phrase was "Learn to love forms." Forms may seem like dull administrative objects, but they directly shape user action and emotion.</p>
+
+                        <h3>2. Good Forms Begin with Research</h3>
+                        <p>To redesign a form, the first step is understanding why the current form became what it is. What was it originally? What complaints and VOC have accumulated? Which laws, procedures, and internal workflows caused revisions? Research reveals which fields are necessary, which remain only by inertia, and which terms push users away.</p>
+
+                        <div class="stat-formula">
+                            Current form
+                            <br>
+                            -> history / policy / workflow / VOC / user situation research
+                            <br>
+                            -> separate what must remain from what should change
+                            <br>
+                            -> redesign the form as a service flow, not only as a sheet
+                        </div>
+
+                        <p>Public forms are especially close to lived experience. Birth, death, immigration, tax, labor, and complaint forms are not only administrative processes. They are ways the state addresses individuals. Traces of older administrative systems can remain in current forms, so changing surface layout alone is rarely enough.</p>
+
+                        <h3>3. Take the User's State Seriously</h3>
+                        <p>Users are not always calm, well-rested, and available. A person completing a death registration may be grieving while moving between a hospital and an office. A traveler completing an arrival card may face unfamiliar language and procedure. Public forms address the mass public, but that public includes different ages, languages, emotional states, digital skills, and administrative experiences.</p>
+
+                        <div class="stat-comparison">
+                            <div class="stat-comparison-item">
+                                <h4>Get to Know Your Users</h4>
+                                <p>Designers need to know where the form appears in the user's journey: before action, during fatigue, after submission, or while waiting for an outcome.</p>
+                            </div>
+                            <div class="stat-comparison-item">
+                                <h4>Take Your Users Seriously</h4>
+                                <p>VOC can look like complaint, but it often contains evidence of why the form fails. The designer has to find where users get stuck.</p>
+                            </div>
+                        </div>
+
+                        <p>If users need to ask a search engine, Q&amp;A forum, or AI tool just to complete the form, the form has already failed. Circular explanations, inaccurate answers, and ambiguous terms increase anxiety. A good form assumes failure is possible and designs to reduce it.</p>
+
+                        <h3>4. Learn How Providers Think</h3>
+                        <p>A form is not only for users. Designers also have to understand why the provider needs the information, how it enters business or institutional workflow, how urgent it is, and how many days the next step takes. If provider needs are ignored, internal work fails; if users are ignored, the service experience fails.</p>
+
+                        <table class="stat-table">
+                            <tr>
+                                <th>Question</th>
+                                <th>Why it matters for design</th>
+                            </tr>
+                            <tr>
+                                <td>Why is this information needed?</td>
+                                <td>It reduces unnecessary questions and explains necessary ones</td>
+                            </tr>
+                            <tr>
+                                <td>Who reviews this form?</td>
+                                <td>User fields and official processing fields can be separated clearly</td>
+                            </tr>
+                            <tr>
+                                <td>What happens after submission?</td>
+                                <td>Post-submit guidance, messages, next steps, and contact paths can be designed</td>
+                            </tr>
+                            <tr>
+                                <td>What is this organization's tone?</td>
+                                <td>The form can carry institutional identity and style</td>
+                            </tr>
+                        </table>
+
+                        <p>Forms need provider identity. A big tech company, public agency, university, hospital, or bank may ask similar questions, but each should speak with a different attitude. The same function can create a very different user experience through tone and manner.</p>
+
+                        <h3>5. Visual Elements Shape Thought Flow</h3>
+                        <p>In form design, type size, terminology, field width, line placement, numbering, color, and spacing all shape the user's thinking flow. Users look at a whole form and judge whether they can complete it now, how long it may take, which parts are official, and where each answer belongs. This is why "Leave nothing to chance" matters. Ambiguous interpretation should be removed.</p>
+
+                        <table class="stat-table">
+                            <tr>
+                                <th>Visual element</th>
+                                <th>Signal to the user</th>
+                            </tr>
+                            <tr>
+                                <td>Numbers and steps</td>
+                                <td>They show grouping, sequence, and current position</td>
+                            </tr>
+                            <tr>
+                                <td>Lines and fields</td>
+                                <td>They divide writing areas and explanation areas while stabilizing the eye</td>
+                            </tr>
+                            <tr>
+                                <td>Dots and small marks</td>
+                                <td>They handle checks, secondary details, and processing signs</td>
+                            </tr>
+                            <tr>
+                                <td>Color</td>
+                                <td>It creates emotional tone such as lightness, caution, calmness, or officialness</td>
+                            </tr>
+                            <tr>
+                                <td>Typeface and ornament</td>
+                                <td>They adjust impressions of speed, seriousness, kindness, or authority</td>
+                            </tr>
+                        </table>
+
+                        <p>A white background can make the form feel lighter, while yellow can create a slightly warmer and more positive feeling. Pale purple or gray can fit calmer and heavier information. Heavy color or white text on black can quickly become tiring.</p>
+
+                        <h3>6. A Form Has Before, During, and After</h3>
+                        <p>A service has before, during, and after. A form has the same structure. It needs an area that explains what to prepare, an area for actual input, an area that tells users what happens after submission, and a path for follow-up questions.</p>
+
+                        <div class="stat-formula">
+                            Pre-service: why this form exists / what to prepare
+                            <br>
+                            Main-service: what to write and in what order
+                            <br>
+                            Post-service: what happens after submission and when
+                            <br>
+                            Follow-up: where to confirm or ask further questions
+                        </div>
+
+                        <p>Separating user space from official space is also important. The user writing area can occupy the main area, while internal review fields can be placed in a clearly separated right column. Vertical marks or quick-check areas may not be for the user at all; they can help officials process paper quickly while flipping through documents.</p>
+
+                        <h3>7. The Next Task Is Logical Form Analysis</h3>
+                        <p>A form project is not cosmetic repair. It is a service design process that moves through research, analysis, sorting, findings, hypotheses, design, and pilot testing. The designer has to explain what a form intends, why it became that way, what it currently communicates, and what emotional or behavioral effect it should create.</p>
+
+                        <table class="stat-table">
+                            <tr>
+                                <th>Horizontal analysis axis</th>
+                                <th>Vertical analysis axis</th>
+                            </tr>
+                            <tr>
+                                <td>Pre-information / main information / post-information</td>
+                                <td>Current content / content analysis / expected analysis</td>
+                            </tr>
+                            <tr>
+                                <td>User input area / official processing area / additional guidance</td>
+                                <td>Current delivery keywords / expected emotional keywords / improvement hypothesis</td>
+                            </tr>
+                            <tr>
+                                <td>Tool and format types</td>
+                                <td>Visualization theory / psychological care / service flow</td>
+                            </tr>
+                        </table>
+
+                        <p>The final principle is that a good form should not give users one more form. It should give them one less problem.</p>
+
+                        <ul>
+                            <li>Week 9 treated forms as information design and service design objects.</li>
+                            <li>A form is an interface that carries the attitude of an institution or business.</li>
+                            <li>Good form design researches user state, provider purpose, history, policy, and VOC together.</li>
+                            <li>Terminology, order, numbering, color, lines, fields, and spacing all shape thought flow.</li>
+                            <li>A form needs pre-service, main-service, post-service, and follow-up information.</li>
+                            <li>The next step is to analyze real forms and build improvement hypotheses from research and theory.</li>
+                        </ul>
+                    </div>
+                </div>
+            </section>
+        </article>
+
+        <div id="site-footer"></div>
+    </div>
+
+    <script src="../../../common.js"></script>
+</body>
+</html>
