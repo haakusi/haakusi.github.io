@@ -1,0 +1,495 @@
+<!DOCTYPE html>
+<html data-theme="dark" data-lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>AI Theory - Week 9 - Sewon Park</title>
+    <link rel="stylesheet" type="text/css" href="../../../style.css">
+    <link rel="stylesheet" type="text/css" href="../../../assets/css/lectures.css">
+</head>
+<body>
+    <button class="theme-toggle" onclick="toggleTheme()" aria-label="Toggle dark mode"></button>
+    <button class="lang-toggle" onclick="toggleLanguage()" aria-label="Toggle language">EN</button>
+
+    <div class="container">
+        <div id="site-header"></div>
+        <div id="site-nav"></div>
+
+        <article class="course-page">
+            <div class="course-header">
+                <h1 data-en="AI Theory" data-kr="인공지능론">AI Theory</h1>
+                <p class="course-meta" data-en="2026 Spring | Intensive Course | Online 3h + Offline 3h" data-kr="2026 봄학기 | 압축형 수업 | 온라인 3시간 + 오프라인 3시간">2026 Spring | Intensive Course | Online 3h + Offline 3h</p>
+            </div>
+
+            <div class="course-nav">
+                <a href="../../../lectures.html" class="back-to-lectures" data-en="Back to Lectures" data-kr="강의 목록으로">Back to Lectures</a>
+                <span class="nav-separator">/</span>
+                <a href="./index.html" class="back-to-course" data-en="Course Home" data-kr="과목 홈">Course Home</a>
+            </div>
+
+            <div class="week-nav">
+                <span data-en="Weeks:" data-kr="주차:">Weeks:</span>
+                <a href="week-09.html" class="week-link current">W9</a>
+            </div>
+
+            <section class="week-section" id="week-09">
+                <h2 data-en="Week 9" data-kr="9주차">Week 9</h2>
+                <p class="week-date" data-en="2026-05-05 · First class" data-kr="2026-05-05 · 첫 수업">2026-05-05 · First class</p>
+                <div class="week-content">
+                    <span class="assignment-chip" data-en="Introduction to AI" data-kr="Introduction to AI">Introduction to AI</span>
+
+                    <div class="lang-kr" hidden>
+                        <p class="week-references"><em>Keywords: artificial intelligence, intelligence, Turing Test, Chinese Room, weak AI, strong AI, AGI, singularity, symbolism, connectionism, LLM agent, ReAct, CoT, ToT, memory, tools, MCP, AI safety</em></p>
+
+                        <p>인공지능론은 9주차가 첫 수업이었다. 이 과목은 두 달 동안 온라인 3시간과 오프라인 3시간을 병행하는 압축형 수업이고, 첫 시간에는 인공지능의 고전적 질문부터 LLM 에이전트까지 큰 지도를 훑었다. 알고리즘, 정렬, 그래프, 지식그래프, 심볼릭 AI, 에이전트, 메모리, 도구, MCP, 그리고 앞으로의 직업 변화까지 한 번에 연결하는 오리엔테이션에 가까웠다.</p>
+
+                        <div class="lecture-note">
+                            <p><strong>메모.</strong> 이번 수업의 핵심은 "AI가 무엇인가"를 하나의 정의로 외우는 것이 아니라, 인간의 지능을 어떻게 흉내 내고, 문제 해결을 어떻게 인위적으로 구성하며, LLM 이후의 에이전트 시스템이 왜 다시 고전 AI의 개념을 필요로 하는지 보는 것이었다.</p>
+                        </div>
+
+                        <h3>1. Artificial Intelligence is...</h3>
+                        <p>수업은 인공지능을 두 가지 방향에서 출발시켰다. 하나는 <strong>인간의 지능을 흉내 내는 것</strong>이고, 다른 하나는 <strong>인위적으로 만든 문제 해결 시스템</strong>이다. 지능은 오감으로 환경을 지각하고, 학습하고, 지식을 축적한 뒤 그것을 활용해 문제를 해결하는 능력으로 볼 수 있다.</p>
+
+                        <table class="stat-table">
+                            <tr>
+                                <th>개념</th>
+                                <th>수업에서의 정리</th>
+                                <th>중요한 이유</th>
+                            </tr>
+                            <tr>
+                                <td>Artificial Intelligence</td>
+                                <td>인간 지능의 흉내이자 인위적 문제 해결</td>
+                                <td>모방과 문제 해결이라는 두 축이 모두 필요하다</td>
+                            </tr>
+                            <tr>
+                                <td>Intelligence</td>
+                                <td>지각, 학습, 지식, 활용의 결합</td>
+                                <td>보는 것, 아는 것, 쓰는 것은 같은 일이 아니다</td>
+                            </tr>
+                            <tr>
+                                <td>Perception</td>
+                                <td>환경을 받아들이는 과정</td>
+                                <td>사람도 집중 상태에 따라 보지 못하는 것이 생긴다</td>
+                            </tr>
+                        </table>
+
+                        <p>흥미로웠던 지점은 사람의 지각도 완전하지 않다는 것이다. 사람들은 "지각했다"를 "다 봤다"로 생각하기 쉽지만, 실제로는 집중하면 놓치는 것이 생긴다. 따라서 AI를 이해하려면 기계가 사람처럼 생각하는가만 볼 것이 아니라, 사람의 생각과 의미 도출 방식 자체도 아직 완벽히 설명되지 않았다는 점을 함께 봐야 한다.</p>
+
+                        <h3>2. Turing Test와 Chinese Room</h3>
+                        <p>튜링 테스트는 Alan Turing의 "Computing Machinery and Intelligence"에서 출발한 질문이다. 내부를 들여다보지 않고 결과만 보고 기계가 지능적으로 보이는지 판단하자는 접근이다. 단순해 보이지만 70년 가까이 유효했던 이유는, 지능을 직접 정의하기보다 행동과 결과로 판단한다는 실용적 태도를 갖고 있기 때문이다.</p>
+
+                        <div class="stat-comparison">
+                            <div class="stat-comparison-item">
+                                <h4>Turing Test</h4>
+                                <p>내부 구조를 보지 않고 대화 결과만으로 지능처럼 보이는지를 판단한다. 환경을 어떻게 세팅하느냐에 따라 결과가 달라질 수 있다.</p>
+                            </div>
+                            <div class="stat-comparison-item">
+                                <h4>Chinese Room</h4>
+                                <p>중국어를 모르는 사람이 규칙표만 보고 답을 만들 수 있다면, 그 방은 정말 중국어를 이해한다고 볼 수 있는가를 묻는다.</p>
+                            </div>
+                        </div>
+
+                        <p>Chinese Room Thought Experiment는 튜링 테스트식 판단에 대한 반론으로 소개되었다. 겉으로 맞는 답을 내는 것과 실제로 이해하는 것은 다르다는 주장이다. 반대로 시스템 전체를 하나의 기계로 보면, 방 안의 사람만이 아니라 방 전체가 중국어를 처리하는 시스템이라고 볼 수도 있다. GPT 시대에는 이 논쟁이 다시 중요해졌다. 모델의 출력이 맞는지, 그 출력이 이해인지, 우리는 어떤 기준으로 반박하고 검증할지 스스로 생각해야 한다.</p>
+
+                        <p>Eugene Goostman 사례도 언급되었다. 13살 우크라이나 출신 아이처럼 설정한 챗봇이 일부 심사위원을 속였고, 튜링 테스트를 통과했다는 논쟁이 생겼다. 이 사례는 지능 자체보다 <strong>평가 조건과 캐릭터 설정이 결과에 얼마나 영향을 주는지</strong> 보여준다.</p>
+
+                        <h3>3. Weak AI, Strong AI, AGI, Singularity</h3>
+                        <p>약한 AI와 강한 AI의 구분도 다루었다. Weak AI는 하나의 문제나 도메인을 잘 푸는 시스템에 가깝고, Strong AI는 여러 문제를 두루 다루는 범용 지능에 가깝다. GPT 계열 모델은 기존의 좁은 AI와 달리 언어, 추론, 계획, 코드, 설명을 폭넓게 다룬다는 점에서 AGI 논의와 연결된다.</p>
+
+                        <table class="stat-table">
+                            <tr>
+                                <th>구분</th>
+                                <th>의미</th>
+                                <th>예시적 질문</th>
+                            </tr>
+                            <tr>
+                                <td>Weak AI</td>
+                                <td>특정 문제나 도메인을 잘 푸는 AI</td>
+                                <td>이 작업 하나를 얼마나 잘하는가?</td>
+                            </tr>
+                            <tr>
+                                <td>Strong AI / AGI</td>
+                                <td>여러 영역을 일반적으로 다루는 지능</td>
+                                <td>새로운 문제를 다른 맥락에도 옮겨 풀 수 있는가?</td>
+                            </tr>
+                            <tr>
+                                <td>Singularity</td>
+                                <td>기술 성장이 통제하기 어려운 속도로 자기 개선되는 지점</td>
+                                <td>AI가 스스로를 재귀적으로 개선하면 무슨 일이 생기는가?</td>
+                            </tr>
+                        </table>
+
+                        <p>Ray Kurzweil의 예측도 함께 언급되었다. 2029년 AGI, 2045년 특이점 같은 시간표는 확정된 미래라기보다, AI 발전 속도와 인간 사회가 어떤 상상력을 갖고 움직이는지 보여주는 프레임으로 볼 수 있다. AI와 Bio 영역이 결합되면 1년에 한 살 먹는 삶이 아니라 더 느리게 늙는 삶 같은 상상도 가능해진다.</p>
+
+                        <h3>4. Symbolism과 Connectionism</h3>
+                        <p>AI 기술의 큰 흐름은 Symbolism과 Connectionism으로 나누어 볼 수 있다. Connectionism은 머신러닝과 딥러닝으로 이어지는 흐름이고, Symbolism은 논리, 정리 증명, 명시적 지식 표현, 추론을 다룬다. 이 수업에서는 특히 심볼릭 AI 쪽을 중요하게 다룰 예정이다.</p>
+
+                        <div class="stat-formula">
+                            LLM: 언어, 패턴, 생성, 유연한 추론
+                            <br>
+                            +
+                            <br>
+                            Symbolic AI: 정확성, 규칙, 지식표현, 검증
+                            <br>
+                            =
+                            <br>
+                            Neuro-Symbolic AI: LLM과 지식그래프, 온톨로지, 추론 검증의 결합
+                        </div>
+
+                        <p>교재로는 <em>Artificial Intelligence: A Modern Approach</em>가 언급되었다. Introduction, agents, search strategies, logic and inference, planning 같은 주제들이 이 과목의 골격이 된다. 중요한 점은 LLM이 갑자기 모든 것을 새로 만든 것이 아니라, 지난 75년 동안 쌓인 탐색, 추론, 계획, 지식표현의 축적 위에서 빠르게 진화하고 있다는 것이다.</p>
+
+                        <h3>5. LLM Agent와 Agentic AI</h3>
+                        <p>LLM 이후에는 Agentic AI가 중요해졌다. 에이전트는 목표가 주어졌을 때 환경을 지각하고, 계획하고, 행동하고, 결과를 반성하면서 목표를 달성하려는 자율 시스템이다. 단순히 답변을 생성하는 모델이 아니라, 루프를 돌며 상태를 바꾸고 도구를 사용하는 시스템에 가깝다.</p>
+
+                        <table class="stat-table">
+                            <tr>
+                                <th>구성요소</th>
+                                <th>역할</th>
+                            </tr>
+                            <tr>
+                                <td>Perceive</td>
+                                <td>환경, 입력, 파일, 도구 결과를 관찰한다</td>
+                            </tr>
+                            <tr>
+                                <td>Plan</td>
+                                <td>목표를 하위 과업과 순서로 나눈다</td>
+                            </tr>
+                            <tr>
+                                <td>Act</td>
+                                <td>도구를 호출하거나 코드를 실행하거나 외부 시스템에 행동한다</td>
+                            </tr>
+                            <tr>
+                                <td>Reflect</td>
+                                <td>결과를 평가하고 다음 행동을 수정한다</td>
+                            </tr>
+                            <tr>
+                                <td>Memory</td>
+                                <td>단기 맥락, 장기 지식, 경험을 저장하고 불러온다</td>
+                            </tr>
+                        </table>
+
+                        <p><em>Generative Agents: Interactive Simulacra of Human Behavior</em>도 소개되었다. LLM 기반 에이전트들이 지각하고, 메모리 스트림에서 기억을 검색하고, 계획하고, 반성하며 상호작용하는 구조를 보여준 연구다. 에이전트를 다르게 만드는 것은 LLM 성능만이 아니라 메모리, 도구, 자율성, 루프, 비용이다.</p>
+
+                        <h3>6. Planning, Memory, Tools</h3>
+                        <p>LLM 에이전트의 핵심 구성요소는 Planning, Memory, Tools다. Planning은 복잡한 문제를 단계별 하위 과업으로 나누고, Memory는 단기 맥락과 장기 지식, 사용자 페르소나와 경험을 관리한다. Tools는 웹 검색, 코드 실행, 파일 읽기/쓰기, API 호출 같은 외부 능력을 연결한다.</p>
+
+                        <table class="stat-table">
+                            <tr>
+                                <th>영역</th>
+                                <th>핵심 개념</th>
+                                <th>수업 메모</th>
+                            </tr>
+                            <tr>
+                                <td>Planning</td>
+                                <td>ReAct, Chain of Thought, Tree of Thought</td>
+                                <td>복잡한 문제를 바로 답하지 않고 절차와 분기로 구조화한다</td>
+                            </tr>
+                            <tr>
+                                <td>Short-term memory</td>
+                                <td>In-context memory</td>
+                                <td>대화창 안의 텍스트이며 토큰 한계가 있다</td>
+                            </tr>
+                            <tr>
+                                <td>Long-term memory</td>
+                                <td>Vector DB, embedding</td>
+                                <td>수많은 문서와 과거 지식을 검색 가능한 형태로 둔다</td>
+                            </tr>
+                            <tr>
+                                <td>Experience memory</td>
+                                <td>Story-based memory</td>
+                                <td>단순 문서보다 경험과 맥락을 이야기처럼 저장한다</td>
+                            </tr>
+                            <tr>
+                                <td>Tools</td>
+                                <td>Search, code, files, API, skills, plugins, MCP</td>
+                                <td>LLM이 외부 세계와 연결되는 실행 능력이다</td>
+                            </tr>
+                        </table>
+
+                        <p>앞으로는 장기기억을 어떻게 관리할지가 중요해진다. 컨텍스트를 능동적으로 관리하는 방법으로는 압축, 요약 방향 명시, 외부 메모리 활용 등이 언급되었다. MCP는 기업이나 서비스가 열어둔 API와 도구를 에이전트가 사용할 수 있게 하는 연결 방식으로 이해할 수 있다.</p>
+
+                        <h3>7. 질문의 시대, 스토리의 시대</h3>
+                        <p>AI가 많은 답을 쉽게 만들어주는 시대에는 오히려 어떤 질문을 던질지가 더 중요해진다. 모든 산에 엘리베이터가 생기면 남는 질문은 "어떤 산을 오를 것인가"가 된다. 모든 정보에 쉽게 닿을 수 있다면, 진짜를 선별해주는 전문가와 조직의 전문성, 진정성, 차별화가 더 중요해진다.</p>
+
+                        <div class="stat-comparison">
+                            <div class="stat-comparison-item">
+                                <h4>Story</h4>
+                                <p>AI가 결과를 만들어도, 왜 이 문제를 풀어야 하는지와 어떤 맥락에서 의미가 있는지는 사람이 잡아야 한다.</p>
+                            </div>
+                            <div class="stat-comparison-item">
+                                <h4>Seeking</h4>
+                                <p>답을 받는 능력보다 좋은 질문을 찾고 검증하는 능력이 중요해진다.</p>
+                            </div>
+                            <div class="stat-comparison-item">
+                                <h4>Sincerity</h4>
+                                <p>회사의 전문성과 진정성이 있어야 AI 결과물도 신뢰 가능한 서비스로 연결된다.</p>
+                            </div>
+                        </div>
+
+                        <p>Suprema Developer Portal 같은 실제 업무 맥락에 AI를 적용할 때도 마찬가지다. 이미지, 영상, 패턴, 조기 발견, 개발자 경험, 마켓플레이스, MCP와 API 연결 같은 요소를 어떻게 엮어 "손쉽게 사용할 수 있는 조건"을 만들 것인지가 중요해진다.</p>
+
+                        <h3>8. 앞으로의 역할 변화와 안전</h3>
+                        <p>에이전트가 강력해질수록 안전 설계도 중요해진다. LLM에는 환각, 비용, 컨텍스트 한계, 보안 문제가 있고, 에이전트는 파일, 코드, API, 비밀키에 접근할 수 있기 때문에 실수의 비용이 커진다. Claude Code 같은 도구도 비밀키와 데이터 유출을 조심해야 한다는 경고가 있었다.</p>
+
+                        <table class="stat-table">
+                            <tr>
+                                <th>사라지거나 줄어드는 일</th>
+                                <th>변화하는 역할</th>
+                                <th>새로 생기는 역할</th>
+                            </tr>
+                            <tr>
+                                <td>반복 데이터 입력, 단순 변환, 단순 코드 번역, 정형 보고서 작성</td>
+                                <td>설계, 아키텍처, 에이전트 결과 검증, PM 요구사항 명세 고도화</td>
+                                <td>Agent Engineer, Prompt Engineer, AI Safety Engineer, Human-AI Interface Designer</td>
+                            </tr>
+                        </table>
+
+                        <p>특히 <strong>요구사항 명세 고도화</strong>가 중요하게 느껴졌다. AI가 실행을 많이 대신할수록, 사람은 무엇을 만들지, 왜 필요한지, 어떤 제약과 품질 기준이 있는지를 더 정확히 정의해야 한다. 인터페이스도 중요해진다. 앞으로는 사람이 쓰는 인터페이스뿐 아니라 AI가 사용하는 인터페이스도 설계 대상이 될 수 있다.</p>
+
+                        <h3>9. 과제와 개인적으로 남은 생각</h3>
+                        <p>다음 주 과제로는 BFS와 DFS 구현이 언급되었다. 기본 탐색 알고리즘은 반드시 직접 구현해야 한다. 또한 Ted Chiang의 외계 언어와 사고를 다루는 글을 읽고 느낀 점을 정리하는 과제도 언급되었다. 에이전트, 언어, 사고, 시간 인식이 연결되는 주제라서 AI 이론 수업과 잘 맞는다.</p>
+
+                        <p>개인적으로는 도메인 지식과 맥락 관리가 특히 중요하게 남았다. 프롬프트가 짧고 얕으면 결과도 얕아진다. 도메인에 대한 기본 지식과 이해가 있어야 좋은 질문을 만들 수 있고, inference 단계에서도 더 높은 품질의 결과를 얻을 수 있다. 앞으로 내가 공부해 온 심볼릭 구조, 스토리 창작 기법, 분석 기법을 구조화해서 연구와 실무에 맞춰보면 결과가 달라질 수 있겠다고 느꼈다.</p>
+
+                        <ul>
+                            <li>인공지능론은 9주차가 첫 수업이고, 온라인 3시간과 오프라인 3시간으로 운영되는 압축형 과목이다.</li>
+                            <li>첫 수업은 AI의 정의, 지능, 지각, 튜링 테스트, 중국어 방, AGI, 특이점까지 큰 질문을 훑었다.</li>
+                            <li>이 과목은 Symbolism, search, reasoning, planning, logic and inference를 중요하게 다룰 예정이다.</li>
+                            <li>LLM 에이전트는 Perceive, Plan, Act, Reflect, Memory, Tools가 결합된 자율 루프로 이해할 수 있다.</li>
+                            <li>앞으로는 장기기억, 컨텍스트 관리, MCP, 도구 사용, 안전 설계가 핵심 이슈가 된다.</li>
+                            <li>AI 시대에는 답보다 질문, 실행보다 요구사항 명세, 결과보다 검증과 맥락 이해가 더 중요해진다.</li>
+                        </ul>
+                    </div>
+
+                    <div class="lang-en">
+                        <p class="week-references"><em>Keywords: artificial intelligence, intelligence, Turing Test, Chinese Room, weak AI, strong AI, AGI, singularity, symbolism, connectionism, LLM agent, ReAct, CoT, ToT, memory, tools, MCP, AI safety</em></p>
+
+                        <p>Week 9 was the first class of AI Theory. The course is an intensive two-month format with three hours online and three hours offline. The first session mapped a wide territory: classical definitions of artificial intelligence, intelligence and perception, the Turing Test, the Chinese Room, weak and strong AI, AGI, symbolic AI, LLM agents, memory, tools, MCP, safety, and changing human roles.</p>
+
+                        <div class="lecture-note">
+                            <p><strong>Note.</strong> The point was not to memorize one definition of AI. The point was to see how AI imitates intelligence, how artificial problem solving is constructed, and why LLM-era agents still need classical AI concepts such as search, reasoning, planning, and symbolic verification.</p>
+                        </div>
+
+                        <h3>1. Artificial Intelligence Is...</h3>
+                        <p>The class began with two starting points. Artificial intelligence can be seen as an imitation of human intelligence, and it can also be seen as artificially constructed problem solving. Intelligence combines perception, learning, knowledge, and the ability to use that knowledge.</p>
+
+                        <table class="stat-table">
+                            <tr>
+                                <th>Concept</th>
+                                <th>Class framing</th>
+                                <th>Why it matters</th>
+                            </tr>
+                            <tr>
+                                <td>Artificial Intelligence</td>
+                                <td>Imitating human intelligence and solving problems artificially</td>
+                                <td>Both imitation and problem solving are necessary lenses</td>
+                            </tr>
+                            <tr>
+                                <td>Intelligence</td>
+                                <td>Perception, learning, knowledge, and use</td>
+                                <td>Seeing, knowing, and using are not the same thing</td>
+                            </tr>
+                            <tr>
+                                <td>Perception</td>
+                                <td>Receiving information from the environment</td>
+                                <td>Even humans miss things depending on attention</td>
+                            </tr>
+                        </table>
+
+                        <p>A useful point was that human perception is not complete either. People often treat perception as if it means seeing everything, but attention can make people miss what is present. To understand AI, we also have to admit that human meaning-making itself is not perfectly explained.</p>
+
+                        <h3>2. Turing Test and Chinese Room</h3>
+                        <p>The Turing Test comes from Alan Turing's "Computing Machinery and Intelligence." It judges intelligence through behavior and output rather than by inspecting internal structure. This looks simple, but it remained powerful for decades because it turns an abstract question into an observable test.</p>
+
+                        <div class="stat-comparison">
+                            <div class="stat-comparison-item">
+                                <h4>Turing Test</h4>
+                                <p>Judge whether a machine appears intelligent from conversation alone. The result depends heavily on the testing environment.</p>
+                            </div>
+                            <div class="stat-comparison-item">
+                                <h4>Chinese Room</h4>
+                                <p>If someone who does not know Chinese uses a rulebook to produce correct answers, does the system really understand Chinese?</p>
+                            </div>
+                        </div>
+
+                        <p>The Chinese Room thought experiment challenges output-only evaluation. Correct answers may not mean true understanding. A counterargument is that the whole room, not only the person inside, can be treated as the machine. In the GPT era, this debate matters again: we need to decide how to challenge, verify, and interpret model outputs.</p>
+
+                        <p>The Eugene Goostman case was also mentioned. A chatbot framed as a 13-year-old Ukrainian boy convinced some judges, leading to debate about whether it passed the Turing Test. The case shows how evaluation criteria and character framing can strongly affect the result.</p>
+
+                        <h3>3. Weak AI, Strong AI, AGI, and Singularity</h3>
+                        <p>Weak AI usually refers to systems that solve one task or domain well. Strong AI or AGI refers to more general intelligence across tasks and domains. GPT-like models connect to AGI discussions because they work across language, reasoning, planning, code, and explanation instead of only one narrow task.</p>
+
+                        <table class="stat-table">
+                            <tr>
+                                <th>Term</th>
+                                <th>Meaning</th>
+                                <th>Question</th>
+                            </tr>
+                            <tr>
+                                <td>Weak AI</td>
+                                <td>AI that solves a specific task or domain</td>
+                                <td>How well does it do this one job?</td>
+                            </tr>
+                            <tr>
+                                <td>Strong AI / AGI</td>
+                                <td>General intelligence across domains</td>
+                                <td>Can it transfer problem solving into new contexts?</td>
+                            </tr>
+                            <tr>
+                                <td>Singularity</td>
+                                <td>A point of uncontrollable technological growth through recursive self-improvement</td>
+                                <td>What happens if AI improves itself?</td>
+                            </tr>
+                        </table>
+
+                        <p>Ray Kurzweil's timeline was introduced as part of this discussion, including forecasts such as AGI in 2029 and singularity in 2045. These are not guaranteed dates, but they are useful frames for understanding how people imagine the speed of AI and bio-technology development.</p>
+
+                        <h3>4. Symbolism and Connectionism</h3>
+                        <p>AI technology can be viewed through two large traditions. Connectionism leads toward machine learning and deep learning. Symbolism focuses on logic, theorem proving, explicit knowledge representation, and reasoning. This course will emphasize the symbolic side.</p>
+
+                        <div class="stat-formula">
+                            LLM: language, patterns, generation, flexible reasoning
+                            <br>
+                            +
+                            <br>
+                            Symbolic AI: accuracy, rules, knowledge representation, verification
+                            <br>
+                            =
+                            <br>
+                            Neuro-Symbolic AI: LLMs plus knowledge graphs, ontologies, and reasoning checks
+                        </div>
+
+                        <p><em>Artificial Intelligence: A Modern Approach</em> was mentioned as a core reference. Introduction, agents, search strategies, logic and inference, and planning form the course backbone. The key point is that LLMs did not appear from nowhere. They are evolving quickly partly because 75 years of search, reasoning, planning, and knowledge representation already exist.</p>
+
+                        <h3>5. LLM Agents and Agentic AI</h3>
+                        <p>After LLMs, Agentic AI became a major topic. An agent is an autonomous system that receives a goal, perceives its environment, plans, acts, reflects on results, and tries to achieve the goal. It is closer to a looped system that changes state and uses tools than to a model that only produces answers.</p>
+
+                        <table class="stat-table">
+                            <tr>
+                                <th>Component</th>
+                                <th>Role</th>
+                            </tr>
+                            <tr>
+                                <td>Perceive</td>
+                                <td>Observe inputs, environment, files, and tool results</td>
+                            </tr>
+                            <tr>
+                                <td>Plan</td>
+                                <td>Break goals into subtasks and sequence</td>
+                            </tr>
+                            <tr>
+                                <td>Act</td>
+                                <td>Call tools, run code, or interact with external systems</td>
+                            </tr>
+                            <tr>
+                                <td>Reflect</td>
+                                <td>Evaluate outcomes and revise the next action</td>
+                            </tr>
+                            <tr>
+                                <td>Memory</td>
+                                <td>Store and retrieve short-term context, long-term knowledge, and experience</td>
+                            </tr>
+                        </table>
+
+                        <p><em>Generative Agents: Interactive Simulacra of Human Behavior</em> was introduced as an example of LLM-based agents that perceive, retrieve memories from a memory stream, plan, reflect, and interact. What differentiates agents is not only the LLM but memory, tools, autonomy, loops, and cost.</p>
+
+                        <h3>6. Planning, Memory, Tools</h3>
+                        <p>The core components of LLM agents are planning, memory, and tools. Planning structures complex problems into subtasks. Memory manages short-term context, long-term knowledge, user persona, and experience. Tools connect the LLM to web search, code execution, file read/write, API calls, skills, plugins, and MCP.</p>
+
+                        <table class="stat-table">
+                            <tr>
+                                <th>Area</th>
+                                <th>Key idea</th>
+                                <th>Class note</th>
+                            </tr>
+                            <tr>
+                                <td>Planning</td>
+                                <td>ReAct, Chain of Thought, Tree of Thought</td>
+                                <td>Problems should be structured into procedures and branches</td>
+                            </tr>
+                            <tr>
+                                <td>Short-term memory</td>
+                                <td>In-context memory</td>
+                                <td>Text inside the conversation window, limited by tokens</td>
+                            </tr>
+                            <tr>
+                                <td>Long-term memory</td>
+                                <td>Vector DB, embeddings</td>
+                                <td>Large document stores made searchable</td>
+                            </tr>
+                            <tr>
+                                <td>Experience memory</td>
+                                <td>Story-based memory</td>
+                                <td>Experience and context stored as stories rather than isolated facts</td>
+                            </tr>
+                            <tr>
+                                <td>Tools</td>
+                                <td>Search, code, files, APIs, skills, plugins, MCP</td>
+                                <td>Execution abilities that connect LLMs to the outside world</td>
+                            </tr>
+                        </table>
+
+                        <p>Managing long-term memory will become increasingly important. Active context management includes compaction, directed summarization, and external memory. MCP can be understood as a way for agents to use APIs and tools exposed by companies and services.</p>
+
+                        <h3>7. The Age of Questions and Stories</h3>
+                        <p>When AI can generate many answers easily, the important question becomes what to ask. If every mountain has an elevator, the remaining question is which mountain to climb. When information becomes easy to reach, experts who can select what is real and meaningful become more important.</p>
+
+                        <div class="stat-comparison">
+                            <div class="stat-comparison-item">
+                                <h4>Story</h4>
+                                <p>AI can produce outputs, but humans still need to define why the problem matters and what context gives it meaning.</p>
+                            </div>
+                            <div class="stat-comparison-item">
+                                <h4>Seeking</h4>
+                                <p>The ability to find and verify good questions becomes more important than simply receiving answers.</p>
+                            </div>
+                            <div class="stat-comparison-item">
+                                <h4>Sincerity</h4>
+                                <p>Company expertise and authenticity are needed before AI outputs can become trustworthy services.</p>
+                            </div>
+                        </div>
+
+                        <p>The same applies when thinking about applying AI to a developer portal such as Suprema's. Images, video, pattern detection, early discovery, developer experience, marketplaces, MCP, and API connections all matter when building conditions that make AI genuinely usable.</p>
+
+                        <h3>8. Role Changes and Safety</h3>
+                        <p>As agents become stronger, safety design becomes more important. LLMs have hallucinations, cost, context limits, and security risks. Agents can access files, code, APIs, and secret keys, which raises the cost of mistakes. The class also warned about secret key and data leakage risks in tools such as Claude Code.</p>
+
+                        <table class="stat-table">
+                            <tr>
+                                <th>Work that shrinks</th>
+                                <th>Roles that change</th>
+                                <th>New roles</th>
+                            </tr>
+                            <tr>
+                                <td>Repeated data entry, simple transformation, simple code translation, standardized reports</td>
+                                <td>Design, architecture, agent output verification, stronger PM requirement specification</td>
+                                <td>Agent Engineer, Prompt Engineer, AI Safety Engineer, Human-AI Interface Designer</td>
+                            </tr>
+                        </table>
+
+                        <p>The phrase that stood out most was stronger requirement specification. As AI handles more execution, humans must define what to build, why it matters, and what constraints and quality standards apply. Interfaces also become important, including interfaces used not only by humans but by AI systems.</p>
+
+                        <h3>9. Assignment and Personal Takeaway</h3>
+                        <p>The next assignment is to implement BFS and DFS. Basic search algorithms need to be implemented directly. A reading assignment was also mentioned: a Ted Chiang story involving alien language and human thinking, followed by a short reflection. This connects well with agents, language, cognition, and time.</p>
+
+                        <p>My main takeaway was the importance of domain knowledge and context management. If the prompt is short and shallow, the output will often be shallow. Domain understanding makes better prompts, better inference, and better verification possible. I also want to connect my interests in symbolic structure, story creation methods, and analytical methods into a more structured research direction.</p>
+
+                        <ul>
+                            <li>Week 9 was the first AI Theory class, in an intensive online/offline format.</li>
+                            <li>The class introduced AI definitions, intelligence, perception, the Turing Test, the Chinese Room, AGI, and singularity.</li>
+                            <li>The course will emphasize symbolism, search, reasoning, planning, logic, and inference.</li>
+                            <li>LLM agents can be understood as autonomous loops combining perceive, plan, act, reflect, memory, and tools.</li>
+                            <li>Long-term memory, context management, MCP, tool use, and safety will become core issues.</li>
+                            <li>In the AI era, questions, requirements, verification, and contextual understanding become more important.</li>
+                        </ul>
+                    </div>
+                </div>
+            </section>
+        </article>
+
+        <div id="site-footer"></div>
+    </div>
+
+    <script src="../../../common.js"></script>
+</body>
+</html>
