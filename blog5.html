@@ -40,6 +40,38 @@
             margin-bottom: 8px;
         }
 
+        .lecture-snapshot {
+            display: block;
+            margin: 24px 0 28px;
+            border: 1px solid rgba(0, 0, 0, 0.08);
+            border-radius: 8px;
+            overflow: hidden;
+            text-decoration: none;
+            color: inherit;
+            background: rgba(255, 255, 255, 0.55);
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+        }
+
+        .lecture-snapshot:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 22px rgba(0, 0, 0, 0.12);
+        }
+
+        .lecture-snapshot img {
+            display: block;
+            width: 100%;
+            max-height: 360px;
+            object-fit: cover;
+        }
+
+        .lecture-snapshot-label {
+            display: block;
+            padding: 12px 14px;
+            font-size: 0.9em;
+            color: #666;
+            font-weight: 300;
+        }
+
         [data-theme="dark"] .insight-note {
             background: rgba(240, 230, 140, 0.05);
             border-left-color: #F0E68C;
@@ -47,6 +79,15 @@
         }
 
         [data-theme="dark"] .compact-list {
+            color: #c0c0c0;
+        }
+
+        [data-theme="dark"] .lecture-snapshot {
+            border-color: rgba(255, 255, 255, 0.08);
+            background: rgba(30, 30, 30, 0.8);
+        }
+
+        [data-theme="dark"] .lecture-snapshot-label {
             color: #c0c0c0;
         }
     </style>
@@ -63,6 +104,10 @@
             <h1 class="lang-kr">Geoffrey Hinton 노벨물리학상 AI 연설을 보고</h1>
             <h1 class="lang-en">Notes on Geoffrey Hinton's Nobel Physics AI Lecture</h1>
             <p class="blog-date">May 9, 2026</p>
+            <a class="lecture-snapshot" href="https://youtu.be/UccvsYEp9yc?si=hWKq1xgHbHv1WMGZ" target="_blank" rel="noopener">
+                <img src="https://img.youtube.com/vi/UccvsYEp9yc/hqdefault.jpg" alt="Geoffrey Hinton Nobel Physics AI lecture snapshot">
+                <span class="lecture-snapshot-label" data-en="Watch the original lecture on YouTube" data-kr="YouTube에서 원본 연설 보기">Watch the original lecture on YouTube</span>
+            </a>
 
             <div class="blog-content lang-kr" hidden>
                 <p>오늘 Geoffrey Hinton의 노벨상 수상 연설을 보면서, AI를 단순히 하나의 기술 트렌드가 아니라 지능, 언어, 추론, 기억, 하드웨어, 안전, 미래 사회까지 연결된 전범위의 문제로 보게 되었다. 특히 AI가 어떻게 추론하는지, 어떻게 동작하는지, 앞으로 어떤 미래를 만들 수 있는지, 그리고 지금 우리가 무엇을 고민해야 하는지를 글로벌한 세계관 안에서 바라볼 수 있게 해준 연설이었다.</p>
