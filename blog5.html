@@ -92,7 +92,7 @@
                 <p>다만 신경망을 이용해 각 단어에 대한 특징들을 학습할 수 있다고 해도, 처음에는 그 특징들이 어디서 오는지 설명하지 못했다.</p>
 
                 <h3>3. 초기 신경망 언어 모델에서 트랜스포머까지</h3>
-                <p>신경망을 활용하면 단어들을 입력받아 다음 단어를 예측하도록 훈련시킬 수 있다. 여기서 중요한 것은 특정한 작은 언어 모델 하나를 Hinton이 직접 만들었다는 소유권의 문제가 아니라, 단어 기호를 특징 벡터로 바꾸고 그 특징들의 상호작용으로 다음 단어를 예측한다는 신경망적 관점이다. 초기의 작은 신경망 언어 모델 아이디어는 이후 Yoshua Bengio 등의 neural probabilistic language model 연구와 트랜스포머 계열로 이어지는 큰 흐름의 선행 맥락으로 볼 수 있다.</p>
+                <p>신경망을 활용하면 단어들을 입력받아 다음 단어를 예측하도록 훈련시킬 수 있다. 여기서 중요한 것은 작은 언어 모델 하나를 특정하는 것이 아니라, 단어 기호를 특징 벡터로 바꾸고 그 특징들의 상호작용으로 다음 단어를 예측한다는 신경망적 관점이다. 초기의 작은 신경망 언어 모델 아이디어는 이후 Yoshua Bengio 등의 neural probabilistic language model 연구와 트랜스포머 계열로 이어지는 큰 흐름의 선행 맥락으로 볼 수 있다.</p>
 
                 <p>다시 말해 신경망은 단어라는 기호를 여러 특징으로 변환하는 방법을 배우고, 문맥 속 모든 단어의 특징들이 어떻게 상호작용하여 다음 단어의 특징을 예측하는지 학습한다. 오늘날 사람들이 사용하는 대규모 언어 모델이 작동하는 방식이 바로 이것이다.</p>
 
@@ -307,7 +307,7 @@
                 <p>But even if neural networks could learn features for each word, at first they could not explain where those features came from.</p>
 
                 <h3>3. From Early Neural Language Models to Transformers</h3>
-                <p>With a neural network, we can train a system to receive words and predict the next word. The important point here is not the ownership of one particular small language model by Hinton, but the neural-network view: transform word symbols into feature vectors, let those features interact, and use them to predict the next word. Early small neural language-model ideas can be seen as part of the path that later included Yoshua Bengio's neural probabilistic language model work and, eventually, transformer-based LLMs.</p>
+                <p>With a neural network, we can train a system to receive words and predict the next word. The important point here is not to single out one small language model, but the neural-network view: transform word symbols into feature vectors, let those features interact, and use them to predict the next word. Early small neural language-model ideas can be seen as part of the path that later included Yoshua Bengio's neural probabilistic language model work and, eventually, transformer-based LLMs.</p>
 
                 <p>The network learns how to turn a word as a symbol into many features, and how all the word features in a context interact to predict the features of the next word. This is how the large language models people use today work.</p>
 
