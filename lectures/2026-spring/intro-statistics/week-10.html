@@ -1,0 +1,454 @@
+<!DOCTYPE html>
+<html data-theme="dark" data-lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Intro to Statistics - Week 10 - Sewon Park</title>
+    <link rel="stylesheet" type="text/css" href="../../../style.css">
+    <link rel="stylesheet" type="text/css" href="../../../assets/css/lectures.css">
+    <script src="../../../assets/js/mathjax-config.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js" async></script>
+</head>
+<body>
+    <button class="theme-toggle" onclick="toggleTheme()" aria-label="Toggle dark mode"></button>
+    <button class="lang-toggle" onclick="toggleLanguage()" aria-label="Toggle language">EN</button>
+
+    <div class="container">
+        <div id="site-header"></div>
+        <div id="site-nav"></div>
+
+        <article class="course-page">
+            <div class="course-header">
+                <h1 data-en="Intro to Statistics" data-kr="기초통계">Intro to Statistics</h1>
+                <p class="course-meta" data-en="2026 Spring | Fri 19:00-22:00" data-kr="2026 봄학기 | 금요일 19:00-22:00">2026 Spring | Fri 19:00-22:00</p>
+            </div>
+
+            <div class="course-nav">
+                <a href="../../../lectures.html" class="back-to-lectures" data-en="Back to Lectures" data-kr="강의 목록으로">Back to Lectures</a>
+                <span class="nav-separator">/</span>
+                <a href="./index.html" class="back-to-course" data-en="Course Home" data-kr="과목 홈">Course Home</a>
+            </div>
+
+            <div class="week-nav">
+                <span data-en="Weeks:" data-kr="주차:">Weeks:</span>
+                <a href="week-01.html" class="week-link">W1</a>
+                <a href="week-02.html" class="week-link">W2</a>
+                <a href="week-03.html" class="week-link">W3</a>
+                <a href="week-04.html" class="week-link">W4</a>
+                <a href="week-05.html" class="week-link">W5</a>
+                <a href="week-06.html" class="week-link">W6</a>
+                <a href="week-07.html" class="week-link">W7</a>
+                <a href="week-08.html" class="week-link">W8</a>
+                <a href="week-09.html" class="week-link">W9</a>
+                <a href="week-10.html" class="week-link current">W10</a>
+            </div>
+
+            <section class="week-section" id="week-10">
+                <h2 data-en="Week 10" data-kr="10주차">Week 10</h2>
+                <p class="week-date">2026-05-08 · Estimation and estimator properties</p>
+                <div class="week-content">
+                    <span class="assignment-chip" data-en="Estimation" data-kr="추정">Estimation</span>
+
+                    <div class="lang-kr" hidden>
+                        <p class="week-references"><em>Keywords: 기술통계, 표본분포, 추론통계, 점추정, 구간추정, 모수, 통계량, 추정량, 추정값, 불편성, 자유도, 표본분산, 효율성, 상대효율, MSE, 일치성, 표본크기, 오차한계, 표본추출 편향</em></p>
+
+                        <p>10주차는 지금까지 배운 내용을 추정의 관점으로 다시 연결하는 시간이었다. 6장까지 배운 내용은 기술통계에 가깝고, 7장에서는 표본분포를 배웠다. 8장 이후부터는 표본을 통해 모집단을 추론하는 영역으로 넘어간다. 이때 7장에서 배운 대수의 법칙과 중심극한정리가 특히 중요하다. 표본을 충분히 많이 뽑으면 표본평균이 모평균에 가까워지고, 표본평균의 분포를 정규분포로 근사할 수 있기 때문이다.</p>
+
+                        <div class="lecture-note">
+                            <p><strong>핵심 흐름.</strong> 기술통계는 가진 데이터를 요약하는 일이고, 추론통계는 표본을 통해 보이지 않는 모집단을 추론하는 일이다. 추정은 모수를 알아내려는 시도이고, 검정은 어떤 주장이나 가설이 데이터와 얼마나 맞는지 판단하는 절차다.</p>
+                        </div>
+
+                        <h3>1. 추정: 모수를 통계량으로 추론하기</h3>
+                        <p>추정을 한다는 것은 모수 \(\theta\)를 직접 알 수 없을 때, 표본으로부터 계산한 통계량 \(\hat\theta\)를 가지고 그 모수를 추론하겠다는 뜻이다. 모평균 \(\mu\)를 모를 때 표본평균 \(\bar X\)를 계산해 \(\mu\)를 추론하는 것이 대표적인 예다.</p>
+
+                        <table class="stat-table">
+                            <tr>
+                                <th>용어</th>
+                                <th>표기</th>
+                                <th>의미</th>
+                            </tr>
+                            <tr>
+                                <td>모수</td>
+                                <td>\(\theta, \mu, \sigma^2, p\)</td>
+                                <td>모집단의 참값. 보통 직접 알 수 없다.</td>
+                            </tr>
+                            <tr>
+                                <td>통계량</td>
+                                <td>\(\bar X, S^2, \hat p\)</td>
+                                <td>표본으로부터 계산한 값. statistic은 통계량, statistics는 통계학이다.</td>
+                            </tr>
+                            <tr>
+                                <td>추정량</td>
+                                <td>\(\hat\theta\)</td>
+                                <td>모수를 추정하기 위해 사용하는 통계량의 공식 또는 규칙이다.</td>
+                            </tr>
+                            <tr>
+                                <td>추정값</td>
+                                <td>estimate</td>
+                                <td>실제 표본을 넣어 계산된 구체적인 값이다.</td>
+                            </tr>
+                        </table>
+
+                        <p>추정은 크게 점추정과 구간추정으로 나눌 수 있다. 점추정은 모수를 하나의 값으로 추정하는 것이고, 구간추정은 모수가 들어 있을 법한 범위를 제시하는 것이다. 데이터를 다룰 때는 하나의 숫자만 말하는 점추정보다, 불확실성을 함께 보여주는 구간추정이 더 많이 쓰인다.</p>
+
+                        <h3>2. 좋은 점추정량의 성질</h3>
+                        <p>점추정량을 평가할 때는 여러 성질을 본다. 이번 주차에서는 불편성, 유효성 또는 효율성, 일치성, 그리고 조금 더 심화된 충분성까지 언급했다.</p>
+
+                        <table class="stat-table">
+                            <tr>
+                                <th>성질</th>
+                                <th>핵심 질문</th>
+                                <th>해석</th>
+                            </tr>
+                            <tr>
+                                <td>불편성</td>
+                                <td>평균적으로 맞는가?</td>
+                                <td>\(E(\hat\theta)=\theta\)이면 불편추정량이다.</td>
+                            </tr>
+                            <tr>
+                                <td>효율성</td>
+                                <td>흔들림이 작은가?</td>
+                                <td>같은 모수를 추정한다면 분산이 작은 추정량이 더 안정적이다.</td>
+                            </tr>
+                            <tr>
+                                <td>일치성</td>
+                                <td>표본크기가 커지면 참값에 가까워지는가?</td>
+                                <td>\(n\)이 커질수록 추정량이 모수로 확률수렴해야 한다.</td>
+                            </tr>
+                            <tr>
+                                <td>충분성</td>
+                                <td>표본의 정보를 충분히 담고 있는가?</td>
+                                <td>조금 더 심화된 성질로, 모수에 관한 표본 정보를 얼마나 보존하는지 본다.</td>
+                            </tr>
+                        </table>
+
+                        <p>오차는 추정량과 모수의 차이다.</p>
+
+                        <div class="stat-formula">
+                            $$\text{error}=\hat\theta-\theta$$
+                            $$\text{bias}=E(\hat\theta)-\theta$$
+                        </div>
+
+                        <p>불편성은 특정 표본에서 항상 정확하다는 뜻이 아니다. 여러 번 표본을 뽑아 평균을 냈을 때 중심이 모수에 맞아 있느냐를 보는 성질이다.</p>
+
+                        <h3>3. 자유도와 표본분산의 \(n-1\)</h3>
+                        <p>표본분산은 다음처럼 정의한다.</p>
+
+                        <div class="stat-formula">
+                            $$S^2=\frac{1}{n-1}\sum_{i=1}^{n}(X_i-\bar X)^2$$
+                        </div>
+
+                        <p>여기서 왜 \(n\)이 아니라 \(n-1\)로 나누는지가 중요하다. 쉽게 말하면, 자유도는 독립적으로 움직일 수 있는 정보의 수다. 독립적인 셀의 총 숫자에서 우리가 이미 추정해야 하는 모수의 개수를 뺀 것이 자유도다. 표본분산을 계산할 때는 \(\bar X\)라는 통계량으로 모평균 \(\mu\)를 한 번 추정했기 때문에 자유도가 하나 줄어 \(n-1\)이 된다.</p>
+
+                        <div class="lecture-note">
+                            <p><strong>자유도 메모.</strong> 피자 조각을 나누는 비유처럼 생각할 수 있다. \(n\)개의 값이 있어도 평균이라는 제약을 이미 맞춰야 한다면 마지막 하나는 마음대로 움직일 수 없다. 그래서 독립적으로 남는 정보는 \(n-1\)개다.</p>
+                        </div>
+
+                        <p>\(n-1\)로 나누는 이유는 표본분산이 모분산 \(\sigma^2\)의 불편추정량이 되게 하기 위해서다. 이를 기댓값으로 확인할 수 있다.</p>
+
+                        <div class="stat-formula">
+                            $$S^2=\frac{1}{n-1}\left[\sum_{i=1}^{n}X_i^2-\frac{1}{n}\left(\sum_{i=1}^{n}X_i\right)^2\right]$$
+                            $$V(X)=E(X^2)-[E(X)]^2,\qquad E(X^2)=V(X)+[E(X)]^2$$
+                            $$E(X_i^2)=\sigma^2+\mu^2$$
+                            $$E\left[\left(\sum_{i=1}^{n}X_i\right)^2\right]
+                            =V\left(\sum_{i=1}^{n}X_i\right)+\left[E\left(\sum_{i=1}^{n}X_i\right)\right]^2
+                            =n\sigma^2+n^2\mu^2$$
+                            $$E(S^2)=\frac{1}{n-1}\left[n\sigma^2+n\mu^2-\frac{1}{n}(n\sigma^2+n^2\mu^2)\right]$$
+                            $$E(S^2)=\frac{1}{n-1}\left[(n-1)\sigma^2\right]=\sigma^2$$
+                        </div>
+
+                        <p>결국 표본분산에 기댓값을 씌우면 모분산 \(\sigma^2\)가 된다. 이것이 표본분산의 불편성이고, \(n-1\)의 비밀이다.</p>
+
+                        <h3>4. 예제 8-3, 8-4: 불편성과 편의</h3>
+                        <p>예제 8-3과 8-4는 추정량이 평균적으로 모수와 맞는지를 확인하는 흐름으로 이해할 수 있다. 예를 들어 이항분포에서 \(X\sim Bin(n,p)\)라고 할 때 \(\hat p=X/n\)은 \(p\)의 불편추정량이다.</p>
+
+                        <div class="stat-formula">
+                            $$E\left(\frac{X}{n}\right)=\frac{E(X)}{n}=\frac{np}{n}=p$$
+                        </div>
+
+                        <p>반면 \((X+1)/(n+2)\) 같은 추정량은 항상 불편추정량은 아니다. 이때 편의는 다음처럼 계산된다.</p>
+
+                        <div class="stat-formula">
+                            $$E\left(\frac{X+1}{n+2}\right)=\frac{np+1}{n+2}$$
+                            $$\text{bias}=\frac{np+1}{n+2}-p=\frac{1-2p}{n+2}$$
+                        </div>
+
+                        <p>여기까지가 불편성에 대한 핵심 이야기다. 하지만 불편하다고 해서 항상 가장 좋은 추정량이라는 뜻은 아니다. 다음으로는 분산과 효율성을 함께 봐야 한다.</p>
+
+                        <h3>5. 효율성: 같은 추정이라면 덜 흔들리는 것이 좋다</h3>
+                        <p>효율성은 추정량의 분산을 비교하는 관점이다. 표본평균을 평균의 추정량으로 쓸 수도 있고, 다른 가중평균을 쓸 수도 있다. 이때 두 추정량의 중심이 같더라도 분산은 다를 수 있다.</p>
+
+                        <p>분산이 작다는 것은 표본을 새로 뽑아도 추정량이 안정적으로 모수 근처에 모인다는 뜻이다. 분산이 크면 어떤 표본에서는 평균에 잘 접근하지만, 어떤 표본에서는 멀리 떨어질 수 있다. 그래서 같은 조건이라면 분산이 작은 추정량이 더 효율적이다.</p>
+
+                        <div class="stat-formula">
+                            $$RE(\hat\theta_1,\hat\theta_2)=\frac{V(\hat\theta_2)}{V(\hat\theta_1)}$$
+                        </div>
+
+                        <p>상대효율이 \(1.2\)라는 것은 분자 쪽 추정량의 분산이 더 크다는 뜻으로 읽을 수 있다. 같은 정도, 즉 같은 precision을 만족시키려면 어떤 추정량은 표본 100개로 충분한 반면 다른 추정량은 120개가 필요할 수 있다. 효율성은 결국 제한된 표본과 비용 안에서 얼마나 안정적으로 모수를 추정할 수 있는가의 문제다.</p>
+
+                        <h3>6. MSE: 불편성과 효율성을 함께 보기</h3>
+                        <p>MSE, 평균제곱오차는 추정량과 모수 사이의 편차를 제곱한 뒤 기댓값을 취한 것이다.</p>
+
+                        <div class="stat-formula">
+                            $$MSE(\hat\theta)=E[(\hat\theta-\theta)^2]$$
+                            $$MSE(\hat\theta)=V(\hat\theta)+[\text{bias}(\hat\theta)]^2$$
+                        </div>
+
+                        <p>MSE가 작을수록 좋은 추정량으로 평가할 수 있다. 불편추정량은 bias가 0이므로 MSE가 분산과 같다. 예를 들어 표본평균 \(\bar X\)가 모평균 \(\mu\)의 불편추정량이라면 다음과 같다.</p>
+
+                        <div class="stat-formula">
+                            $$MSE(\bar X)=V(\bar X)=\frac{\sigma^2}{n}$$
+                        </div>
+
+                        <p>이항분포의 비율 추정량을 비교하면 MSE가 왜 유용한지 더 잘 보인다.</p>
+
+                        <div class="stat-formula">
+                            $$MSE\left(\frac{X}{n}\right)=\frac{p(1-p)}{n}$$
+                            $$MSE\left(\frac{X+1}{n+2}\right)=
+                            \frac{np(1-p)}{(n+2)^2}+\left(\frac{1-2p}{n+2}\right)^2$$
+                            $$MSE\left(\frac{X+1}{n+2}\right)=
+                            \frac{1+(n-4)p-(n-4)p^2}{(n+2)^2}$$
+                        </div>
+
+                        <p>\(p\)는 0과 1 사이의 확률이고, \(p(1-p)\)는 \(p=0.5\)일 때 최댓값을 가진다. 그래프로 보면 \(p=0\)과 \(p=1\) 근처에서는 0에 가깝고, 가운데 \(0.5\)에서 가장 높은 곡선이 된다. 따라서 어떤 추정량이 항상 더 좋다고 단정할 수 없다. \(p\)가 0이나 1에 가까우면 \(X/n\)이 더 나을 수 있고, \(p\)가 0.5 근처라면 \((X+1)/(n+2)\)가 더 나을 수 있다.</p>
+
+                        <h3>7. 일치성: 표본크기가 커지면 참값으로 가는가</h3>
+                        <p>일치성은 표본크기 \(n\)이 커질수록 추정량이 모수로 확률적으로 수렴하는 성질이다.</p>
+
+                        <div class="stat-formula">
+                            $$\hat\theta_n \xrightarrow{p} \theta$$
+                            $$\lim_{n\to\infty}P(|\hat\theta_n-\theta|\lt\varepsilon)=1$$
+                        </div>
+
+                        <p>또한 MSE가 0으로 수렴하면 일치성을 보이는 데 사용할 수 있다.</p>
+
+                        <div class="stat-formula">
+                            $$\lim_{n\to\infty}MSE(\hat\theta_n)=0$$
+                        </div>
+
+                        <p>앞에서 본 두 비율 추정량은 표본크기가 커질수록 MSE가 0으로 가므로 일치 추정량으로 볼 수 있다.</p>
+
+                        <div class="stat-formula">
+                            $$MSE\left(\frac{X}{n}\right)=\frac{p(1-p)}{n}\to 0$$
+                            $$MSE\left(\frac{X+1}{n+2}\right)=
+                            \frac{1+(n-4)p-(n-4)p^2}{(n+2)^2}\to 0$$
+                        </div>
+
+                        <p>표본크기가 커질수록 bias와 분산이 줄어들고, 결국 MSE도 0으로 수렴한다는 점이 중요하다.</p>
+
+                        <h3>8. 표본크기: 크면 좋지만 현실에서는 비용이 든다</h3>
+                        <p>이론적으로는 표본크기가 클수록 모수에 더 근접할 확률이 커진다. 표본 1개보다 99개가 더 낫고, 표본이 더 많으면 표본평균의 분산도 작아진다. 하지만 표본을 뽑는 데는 시간과 비용이 든다. 현실에서는 무조건 표본크기를 늘릴 수 없다.</p>
+
+                        <p>여론조사처럼 표본 하나당 단가가 정해져 있는 경우에는 표본크기 하나를 늘리는 비용도 커질 수 있다. 어떤 조사는 표본 하나가 만원, 이만원일 수도 있고, 특정 대상이나 조건에서는 훨씬 더 큰 비용이 들 수도 있다. 그래서 제한된 시간과 비용 안에서 필요한 precision을 만족시키는 표본크기를 정해야 한다.</p>
+
+                        <p>선거철 뉴스에서 자주 보는 오차한계는 이 문제와 연결된다. 비율 추정에서 95% 신뢰수준을 쓰면 보통 \(z_{\alpha/2}=1.96\)을 사용하고, \(p(1-p)\)의 최댓값은 \(p=0.5\)에서 \(0.25\)가 된다.</p>
+
+                        <div class="stat-formula">
+                            $$E=z_{\alpha/2}\sqrt{\frac{p(1-p)}{n}}$$
+                            $$1.96\sqrt{\frac{0.25}{n}}\approx 0.03$$
+                            $$n\approx 1000$$
+                        </div>
+
+                        <table class="stat-table">
+                            <tr>
+                                <th>오차한계</th>
+                                <th>대략적인 표본크기</th>
+                                <th>해석</th>
+                            </tr>
+                            <tr>
+                                <td>\(\pm 3.1\%\text{p}\)</td>
+                                <td>약 1,000명</td>
+                                <td>선거 여론조사에서 자주 보이는 규모다.</td>
+                            </tr>
+                            <tr>
+                                <td>\(\pm 3.7\%\text{p}\)</td>
+                                <td>약 700명</td>
+                                <td>오차한계가 커지는 대신 필요한 표본이 줄어든다.</td>
+                            </tr>
+                            <tr>
+                                <td>\(\pm 2.0\%\text{p}\)</td>
+                                <td>약 2,400명</td>
+                                <td>오차한계를 줄이려면 표본크기가 크게 늘어난다.</td>
+                            </tr>
+                        </table>
+
+                        <p>다만 오차한계는 표본추출이 적절하다는 전제 아래의 표본오차를 말한다. 응답률이 낮거나 표본이 한쪽으로 치우치면, 오차한계만으로 신뢰성을 말하기 어렵다.</p>
+
+                        <h3>9. 표본을 잘못 뽑으면 계산을 잘해도 의미가 없다</h3>
+                        <p>루즈벨트 미국 대통령 선거 예측 실패 사례는 표본추출의 중요성을 보여주는 대표적인 이야기다. Literary Digest는 많은 표본을 모았지만, 잡지 구독자나 전화가 있는 가구처럼 상대적으로 여유롭고 보수 성향이 강한 집단을 중심으로 표본이 치우쳤다. 응답률도 낮았다. 그래서 Landon 후보의 승리를 예측했지만 실제로는 Roosevelt가 압승했다.</p>
+
+                        <p>반면 Gallup은 남녀, 지역, 소득, 직업 등을 나누어 할당추출에 가깝게 표본을 구성했고, 훨씬 작은 표본으로도 더 나은 예측을 했다. 여기서 중요한 메시지는 단순하다. 샘플을 잘못 뽑으면 그 뒤에 어떤 정교한 통계 계산을 해도 의미가 크게 줄어든다.</p>
+
+                        <div class="lecture-note">
+                            <p><strong>마지막 메모.</strong> 통계수치는 언제든지 합법적으로 꾸며질 수 있다. 통계는 학문이자 아트다. 어떤 수치를 볼 때는 그 수치가 어떤 배경에서 만들어졌는지, 어떤 표본에서 왔는지, 어떤 방식으로 계산되었는지를 함께 봐야 한다.</p>
+                        </div>
+
+                        <ul>
+                            <li>추정은 모수를 표본 통계량으로 추론하는 절차다.</li>
+                            <li>점추정은 하나의 값, 구간추정은 불확실성을 포함한 범위를 제시한다.</li>
+                            <li>좋은 추정량은 불편성, 효율성, 일치성 등을 통해 평가한다.</li>
+                            <li>\(n-1\)은 표본평균을 이미 추정했기 때문에 남는 자유도를 반영한다.</li>
+                            <li>MSE는 분산과 bias를 함께 평가하는 기준이다.</li>
+                            <li>표본크기는 클수록 좋지만, 현실에서는 시간과 비용의 제약이 있으므로 효율성이 중요하다.</li>
+                            <li>표본을 잘못 뽑으면 큰 표본과 정교한 계산도 잘못된 결론을 낼 수 있다.</li>
+                        </ul>
+                    </div>
+
+                    <div class="lang-en">
+                        <p class="week-references"><em>Keywords: descriptive statistics, sampling distributions, inference, point estimation, interval estimation, parameter, statistic, estimator, estimate, unbiasedness, degrees of freedom, sample variance, efficiency, relative efficiency, MSE, consistency, sample size, margin of error, sampling bias</em></p>
+
+                        <p>Week 10 connects the earlier chapters to estimation. Up to Chapter 6, the course mainly dealt with descriptive statistics. Chapter 7 introduced sampling distributions, where the law of large numbers and the central limit theorem are the crucial ideas. From there, statistics moves toward inference: using sample statistics to reason about unknown population parameters.</p>
+
+                        <div class="lecture-note">
+                            <p><strong>Main flow.</strong> Descriptive statistics summarizes the data we have. Inferential statistics uses samples to reason about the population we cannot fully observe. Estimation tries to infer parameters; testing evaluates whether claims or hypotheses are compatible with the data.</p>
+                        </div>
+
+                        <h3>1. Estimation: Inferring Parameters with Statistics</h3>
+                        <p>To estimate means to infer an unknown parameter \(\theta\) using a statistic \(\hat\theta\) computed from a sample. The sample mean \(\bar X\) is the standard point estimator for the population mean \(\mu\).</p>
+
+                        <table class="stat-table">
+                            <tr>
+                                <th>Term</th>
+                                <th>Notation</th>
+                                <th>Meaning</th>
+                            </tr>
+                            <tr>
+                                <td>Parameter</td>
+                                <td>\(\theta, \mu, \sigma^2, p\)</td>
+                                <td>The unknown population value.</td>
+                            </tr>
+                            <tr>
+                                <td>Statistic</td>
+                                <td>\(\bar X, S^2, \hat p\)</td>
+                                <td>A value computed from the sample. A statistic is not the same as statistics, the field.</td>
+                            </tr>
+                            <tr>
+                                <td>Estimator</td>
+                                <td>\(\hat\theta\)</td>
+                                <td>The rule or formula used to estimate a parameter.</td>
+                            </tr>
+                            <tr>
+                                <td>Estimate</td>
+                                <td>estimate</td>
+                                <td>The numerical value produced after applying the estimator to a sample.</td>
+                            </tr>
+                        </table>
+
+                        <p>Estimation divides into point estimation and interval estimation. Point estimation gives one value. Interval estimation gives a plausible range and is often more useful because it exposes uncertainty.</p>
+
+                        <h3>2. Properties of Point Estimators</h3>
+                        <p>Important properties of point estimators include unbiasedness, efficiency, consistency, and sufficiency.</p>
+
+                        <div class="stat-formula">
+                            $$\text{error}=\hat\theta-\theta$$
+                            $$\text{bias}=E(\hat\theta)-\theta$$
+                        </div>
+
+                        <p>An unbiased estimator is correct on average: \(E(\hat\theta)=\theta\). This does not mean every sample gives the correct value. It means repeated sampling would center the estimator at the parameter.</p>
+
+                        <h3>3. Degrees of Freedom and \(n-1\)</h3>
+                        <p>The sample variance is defined by dividing by \(n-1\):</p>
+
+                        <div class="stat-formula">
+                            $$S^2=\frac{1}{n-1}\sum_{i=1}^{n}(X_i-\bar X)^2$$
+                        </div>
+
+                        <p>The reason is degrees of freedom. Once \(\bar X\) has been computed to estimate \(\mu\), one constraint has already been used. Among \(n\) values, only \(n-1\) deviations can move freely. This is why sample variance uses \(n-1\), not \(n\).</p>
+
+                        <div class="stat-formula">
+                            $$S^2=\frac{1}{n-1}\left[\sum_{i=1}^{n}X_i^2-\frac{1}{n}\left(\sum_{i=1}^{n}X_i\right)^2\right]$$
+                            $$E(S^2)=\sigma^2$$
+                        </div>
+
+                        <p>So \(S^2\) is an unbiased estimator of the population variance \(\sigma^2\). This is the key reason behind the \(n-1\).</p>
+
+                        <h3>4. Bias Examples</h3>
+                        <p>If \(X\sim Bin(n,p)\), then \(X/n\) is an unbiased estimator of \(p\):</p>
+
+                        <div class="stat-formula">
+                            $$E\left(\frac{X}{n}\right)=p$$
+                        </div>
+
+                        <p>But \((X+1)/(n+2)\) is generally biased:</p>
+
+                        <div class="stat-formula">
+                            $$\text{bias}\left(\frac{X+1}{n+2}\right)=\frac{1-2p}{n+2}$$
+                        </div>
+
+                        <h3>5. Efficiency and Relative Efficiency</h3>
+                        <p>Efficiency compares the variance of estimators. If two estimators target the same parameter, the one with the smaller variance is more stable across repeated samples.</p>
+
+                        <div class="stat-formula">
+                            $$RE(\hat\theta_1,\hat\theta_2)=\frac{V(\hat\theta_2)}{V(\hat\theta_1)}$$
+                        </div>
+
+                        <p>If the relative efficiency is \(1.2\), one estimator may need about 120 observations to reach the same precision that the other reaches with 100. This connects estimator quality to real constraints such as time and cost.</p>
+
+                        <h3>6. Mean Squared Error</h3>
+                        <p>MSE combines variance and bias into one criterion:</p>
+
+                        <div class="stat-formula">
+                            $$MSE(\hat\theta)=E[(\hat\theta-\theta)^2]$$
+                            $$MSE(\hat\theta)=V(\hat\theta)+[\text{bias}(\hat\theta)]^2$$
+                        </div>
+
+                        <p>For an unbiased estimator, MSE equals variance. For the sample mean,</p>
+
+                        <div class="stat-formula">
+                            $$MSE(\bar X)=\frac{\sigma^2}{n}$$
+                        </div>
+
+                        <p>For the two binomial proportion estimators,</p>
+
+                        <div class="stat-formula">
+                            $$MSE\left(\frac{X}{n}\right)=\frac{p(1-p)}{n}$$
+                            $$MSE\left(\frac{X+1}{n+2}\right)=
+                            \frac{1+(n-4)p-(n-4)p^2}{(n+2)^2}$$
+                        </div>
+
+                        <p>Which estimator is better can depend on \(p\). Near 0 or 1, \(X/n\) can be better. Near 0.5, \((X+1)/(n+2)\) can have smaller MSE.</p>
+
+                        <h3>7. Consistency</h3>
+                        <p>An estimator is consistent if it converges in probability to the parameter as sample size increases.</p>
+
+                        <div class="stat-formula">
+                            $$\hat\theta_n \xrightarrow{p} \theta$$
+                            $$\lim_{n\to\infty}P(|\hat\theta_n-\theta|\lt\varepsilon)=1$$
+                            $$\lim_{n\to\infty}MSE(\hat\theta_n)=0\quad \text{is a useful route to consistency}$$
+                        </div>
+
+                        <h3>8. Sample Size, Cost, and Margin of Error</h3>
+                        <p>Larger samples are better in theory because they reduce variance, but real samples cost time and money. This is why efficiency matters. In a proportion estimate, the margin of error is often approximated by</p>
+
+                        <div class="stat-formula">
+                            $$E=z_{\alpha/2}\sqrt{\frac{p(1-p)}{n}}$$
+                            $$1.96\sqrt{\frac{0.25}{n}}\approx 0.03\quad \Rightarrow\quad n\approx 1000$$
+                        </div>
+
+                        <p>This is why many election polls with about 1,000 respondents report a margin of error around \(\pm 3\%\text{p}\). A smaller margin of error requires a much larger sample.</p>
+
+                        <h3>9. Sampling Bias</h3>
+                        <p>The Literary Digest prediction failure in the Roosevelt election shows why sampling design matters. A huge sample does not help if the sample is biased. Gallup used a more balanced quota-style sampling design and predicted better with a much smaller sample.</p>
+
+                        <div class="lecture-note">
+                            <p><strong>Final note.</strong> Statistics can be framed legally and selectively. A statistical number should always be read together with its sampling background, response rate, assumptions, and calculation method.</p>
+                        </div>
+
+                        <ul>
+                            <li>Estimation uses sample statistics to infer unknown parameters.</li>
+                            <li>Point estimates give one value; interval estimates expose uncertainty.</li>
+                            <li>Unbiasedness, efficiency, MSE, and consistency are different ways to judge an estimator.</li>
+                            <li>The \(n-1\) in sample variance reflects degrees of freedom after estimating the mean.</li>
+                            <li>Sample size helps, but cost and sampling bias decide whether the result is actually useful.</li>
+                        </ul>
+                    </div>
+                </div>
+            </section>
+        </article>
+
+        <div id="site-footer"></div>
+    </div>
+
+    <script src="../../../common.js"></script>
+</body>
+</html>
