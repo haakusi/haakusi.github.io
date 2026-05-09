@@ -1,11 +1,19 @@
 <!DOCTYPE html>
-<html data-theme="dark" data-lang="kr">
+<html data-theme="dark" data-lang="en">
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Geoffrey Hinton 노벨물리학상 AI 연설을 보고 - Sewon Park</title>
     <link rel="stylesheet" type="text/css" href="style.css">
     <style>
+        [data-lang="en"] .lang-kr {
+            display: none;
+        }
+
+        [data-lang="kr"] .lang-en {
+            display: none;
+        }
+
         .blog-content h3 {
             margin-top: 34px;
         }
@@ -52,10 +60,11 @@
         <div id="site-nav"></div>
 
         <article class="blog-post-full">
-            <h1>Geoffrey Hinton 노벨물리학상 AI 연설을 보고</h1>
+            <h1 class="lang-kr">Geoffrey Hinton 노벨물리학상 AI 연설을 보고</h1>
+            <h1 class="lang-en">Notes on Geoffrey Hinton's Nobel Physics AI Lecture</h1>
             <p class="blog-date">May 9, 2026</p>
 
-            <div class="blog-content">
+            <div class="blog-content lang-kr" hidden>
                 <p>오늘 Geoffrey Hinton의 노벨상 수상 연설을 보면서, AI를 단순히 하나의 기술 트렌드가 아니라 지능, 언어, 추론, 기억, 하드웨어, 안전, 미래 사회까지 연결된 전범위의 문제로 보게 되었다. 특히 AI가 어떻게 추론하는지, 어떻게 동작하는지, 앞으로 어떤 미래를 만들 수 있는지, 그리고 지금 우리가 무엇을 고민해야 하는지를 글로벌한 세계관 안에서 바라볼 수 있게 해준 연설이었다.</p>
 
                 <div class="insight-note">
@@ -267,6 +276,221 @@
                     <li>디지털 AI는 가중치를 복제하고 평균화할 수 있기 때문에 인간보다 훨씬 빠르고 넓게 지식을 공유한다.</li>
                     <li>초지능은 하위 목표, 생존, 조작, 권력 획득 문제를 만들 수 있으므로 안전 연구가 핵심이다.</li>
                     <li>AI 시대에는 답을 만드는 능력보다 질문, 검증, 맥락, 안전, 인간 중심 목표 설계가 더 중요해진다.</li>
+                </ul>
+            </div>
+
+            <div class="blog-content lang-en">
+                <p>Today I watched Geoffrey Hinton's Nobel lecture on AI, and it helped me see AI not as a narrow technology trend but as a full-range problem connected to intelligence, language, reasoning, memory, hardware, safety, and the future of society. It especially helped me view how AI reasons, how it works, what kind of future it may create, and what we need to think about now from a more global worldview.</p>
+
+                <div class="insight-note">
+                    This is a long note written to preserve the memo and insights I took from the lecture without dropping the important parts. I am not adding outside claims here. I am organizing the flow I understood from the lecture and the points I wrote down while watching it.
+                </div>
+
+                <h3>1. Two Paradigms of Intelligence</h3>
+                <p>For the last 60 or 70 years, there have been two paradigms for intelligence. One paradigm was inspired by logic. In this view, people thought the essence of intelligence was reasoning. Reasoning meant using symbolic representations written in a certain logical language and manipulating them to derive new symbolic representations.</p>
+
+                <p>It is like creating equations in mathematics and applying rules to create new equations. If you add 2 to both sides of an equation, you get a new equation. Logic-based AI viewed intelligence and reasoning in this way: there are symbolic representations in the mind, and operations are applied to them to create new symbolic representations.</p>
+
+                <p>The other view Hinton emphasized was biological. The only intelligent thing we really know about the brain is that it learns the strengths of connections between brain cells. We need to think biologically and ask what the basic system is. People practice many times, and during that practice the strengths of these connections are learned, until eventually they become good at solving the problem.</p>
+
+                <p>So the first thing to understand is not reasoning but learning. We need to focus on how neural networks learn connection strengths between brain cells, and learn about reasoning later. In evolutionary terms, reasoning appeared much later.</p>
+
+                <h3>2. Two Theories of Word Meaning</h3>
+                <p>These two ideologies also led to two very different theories of the meaning of a word. One was the view of symbolic AI and linguistics, and the other was the view of psychology.</p>
+
+                <p>Symbolic AI researchers and linguists thought a word's meaning comes from its relations with other words. In other words, meaning is embedded in the many sentences or propositions in which that word combines with other words. These relations can be captured through a graph showing how one word is related to other words. Meaning is embedded in all the relations among symbols.</p>
+
+                <p>Psychologists preferred the theory that the meaning of a word is a collection of many features. For example, the meaning of the word cat can be seen as a collection of features such as pet, predator, aloof, and has whiskers. Many features together form the meaning of the word cat.</p>
+
+                <p>Psychologists liked this theory because features can be represented by brain cells. If a brain cell is active, that feature is present; if it is inactive, that feature is absent. If the word cat has the feature whiskers, then the brain cell representing whiskers becomes active.</p>
+
+                <p>But even if neural networks could learn features for each word, at first they could not explain where those features came from.</p>
+
+                <h3>3. From the Tiny 1985 Language Model to Transformers</h3>
+                <p>With a neural network, we can train a system to receive words and predict the next word. Hinton's 1985 tiny language model was an early version of this direction. In the process, the neural network learns the connections between symbols representing words and many neurons representing features. In other words, it learns the features of words.</p>
+
+                <p>The network learns how to turn a word as a symbol into many features, and how all the word features in a context interact to predict the features of the next word. This is how the large language models people use today work.</p>
+
+                <p>A large language model receives a huge amount of text and uses a huge neural network to predict the next word from the words it has seen so far. In that process, it learns how to transform words into features and how those features interact to predict the next word's features.</p>
+
+                <p>The important point is that relational knowledge is not stored directly in stored sentences. All knowledge is stored in how words are transformed into features and in the information about how those features interact. Today's large neural networks and large language models do not actually store word strings or sentences. Their knowledge is in the transformations from words to features and in the interactions among features.</p>
+
+                <p>This is completely different from how many linguists thought language worked. Many linguists seemed to think that somehow many words were combined to create new words or meanings. But the system did not actually work that way.</p>
+
+                <p>Hinton made that model, and over the next 30 years symbolic linguists gradually began to understand the view. About ten years later, when computers were a thousand times faster, Yoshua Bengio showed that a model that had only worked for a few words in a very simple domain could be applied to real language. He could take English sentences from around the world, train a neural network, feed it a few words, and make it predict the next word. Once trained, the neural network performed as well as the previous best technology at next-word prediction.</p>
+
+                <p>It also learned how to transform words into features and capture meaning. About ten years after that, linguists finally began to accept that word meanings should be represented as collections of features and started building models. About ten years after that, Google researchers invented the transformer. The transformer enabled more complex interactions among features, modeled English much better, and greatly improved next-word prediction.</p>
+
+                <p>All current large language models are based on the transformer. Models such as ChatGPT were made with the transformer invented at Google plus additional training, and the whole world was able to see how powerful these models were. In that sense, today's large language models can be seen as descendants of that small 1985 model.</p>
+
+                <h3>4. Ambiguous Words and Layer-by-Layer Disambiguation</h3>
+                <p>Modern models use far more words and must deal with ambiguous words such as may, so they have many layers of neurons. May can mean a month, a woman's name, or a modal auxiliary like would or should. You cannot know which meaning it has from the word alone.</p>
+
+                <p>So the neural network initially learns something like an average of the possible meanings. As the layers go up, it gradually resolves the ambiguity. It understands the meaning through interactions with other words in the context. For example, if June and April are nearby, may could be a woman's name, but it is much more likely to be a month. The network uses this information to gradually refine the meaning into the meaning that fits the context.</p>
+
+                <p>Hinton said he did not originally design this model as a language technology. He designed it to study how people understand the meanings of words and how children learn word meanings from only a few examples. So this kind of neural language model was designed not as a technology first, but as a model of how people think. It has now become a very successful technology, but the way people think is also very similar.</p>
+
+                <h3>5. Do Language Models Understand What They Say?</h3>
+                <p>People often ask whether these language models really understand what they are saying. Hinton's answer was yes. Language models understand what they say and generate, and they understand it in almost the same way we do.</p>
+
+                <p>In the symbolic AI paradigm, understanding a sentence was thought of as something like translation. Understanding a French sentence was treated as translating it into English. Understanding an English sentence was treated as translating it into some special internal language, an unambiguous language like logic or mathematics. Once represented in that unambiguous internal language, rules could be applied to compute with it.</p>
+
+                <p>But Hinton's explanation of understanding is different. According to the effective neural network theory, words are like Lego blocks. But words and Lego blocks differ in several ways.</p>
+
+                <p>The first difference is that Lego blocks are three-dimensional objects. With Lego blocks, you can model any distribution of three-dimensional matter to some resolution. It will not be perfectly accurate, but if you want to know the shape of a Porsche, you can make it with Lego blocks. The surface will not be exact, but the rough positions of the parts can be represented.</p>
+
+                <p>Words, on the other hand, can model anything. Words are like very sophisticated Lego blocks that can model not only positions of three-dimensional objects but anything at all. They are an extraordinary modeling tool we invented. One reason humans are special is that we have this modeling tool.</p>
+
+                <p>Words have thousands of dimensions. Lego blocks are only low-dimensional three-dimensional objects. They can be rotated or slightly scaled, but they are basically low-dimensional. Words, however, have thousands of dimensions. Most people find it hard to imagine something with thousands of dimensions. Hinton joked that you can imagine a three-dimensional object and shout "one thousand" very loudly in your head. Maybe that is the best way.</p>
+
+                <p>The second difference is that there are thousands of kinds of words. There are only a few kinds of Lego blocks, but there are thousands of kinds of words, and each kind has its own name, which makes them very useful for communication.</p>
+
+                <p>The third difference is that words do not have fixed shapes. Lego blocks have fixed shapes, but words have rough shapes. Some words have relatively clear rough shapes, while others are ambiguous. Their shapes also change according to context. Words are high-dimensional, deformable Lego blocks.</p>
+
+                <p>The fourth difference is how they connect. Lego blocks connect when small plastic cylinders fit into plastic holes. Words do not fit together like that. Each word has many hands, and those hands are attached to long flexible arms. Words also have many gloves attached to them. When several words are placed in context, each word tries to make another word's hand fit into its glove. That is why the hands need to be long and flexible. When a word is deformed, the shapes of the hands and gloves also change in complex but regular ways.</p>
+
+                <p>In a newspaper headline, where there are few clues about sentence structure and only nouns are given, we have to figure out what it means. To figure out the meaning, each word has to be deformed so that the hands at the ends of its arms fit into the gloves of other words. Once we solve how the words should fit together, like hands fitting into gloves, we understand. That is what understanding is.</p>
+
+                <p>Understanding a sentence consists of connecting feature vectors assigned to the words in a way that makes them mutually compatible. The thousands of features assigned to a word are like dimensions of a shape. The activation of a feature can be thought of as a position along that dimension. So a high-dimensional shape and a feature vector are the same thing. It is just easier to think of it as a high-dimensional shape being deformed. While taking notes, I was unsure whether I heard LLM as "Layered Language Model" or "Large Language Model," but the core point was that these high-dimensional feature vectors are being deformed and connected inside large language models.</p>
+
+                <h3>6. Large Language Models Are Not Ordinary Software</h3>
+                <p>Large language models are very different from ordinary computer software. In ordinary software, someone writes many lines of code. Each line has some intended function, and in principle people can explain what the code was designed to do. Even ordinary code can be hard to understand when it becomes complex, but it still has a structure of code lines and intention.</p>
+
+                <p>Language models are not like that. There is computer code, of course, but the code tells the system how to learn from data. It tells the neural network how to set connection strengths when sequences of words appear so that it can better predict the next word.</p>
+
+                <p>What language models actually learn is connection strengths. They learn billions, even trillions, of connection strengths. These connection strengths do not look like code. Nobody knows what an individual connection strength does. Most of it is a mystery. Our brains are similar. We usually do not know what individual neurons are doing.</p>
+
+                <p>In other words, language models do not work like conventional computer software. They work more like us.</p>
+
+                <h3>7. Hallucination and Fictive Memory</h3>
+                <p>People often say language models hallucinate. But Hinton explained that we hallucinate all the time too. We do not call it hallucination; psychologists call it fictive memory.</p>
+
+                <p>You can see this when someone tries to remember something that happened long ago. The person will tell a story about what happened, and it will contain details. Some details will be correct, and some will be completely wrong. But the person may be equally confident about both kinds of details.</p>
+
+                <p>He mentioned John Dean's testimony in the Watergate case. Dean testified under oath without knowing that recordings existed. He testified about meetings in the White House office, including meetings that did not actually happen. He described what people in those meetings supposedly said, and much of it was nonsense. But he was telling the truth in another sense. Given the situation in the White House at the time, he was talking about meetings that seemed plausible.</p>
+
+                <p>So he conveyed truth, but the way he did it was by constructing plausible meetings from information gathered across many meetings he had attended. Remembering is not retrieving a perfectly stored computer file. It is not like pulling a document out of a file cabinet.</p>
+
+                <p>Remembering is constructing a story based on how connection strengths were adjusted when events happened. That story is influenced by many things learned after the event. The details are not all accurate, but they feel very plausible to the person. If the event is recent, what feels plausible may be very close to what actually happened. Language model memory works in a similar way. It produces what sounds plausible.</p>
+
+                <p>There is no clear boundary between what sounds plausible and what is simply made up.</p>
+
+                <h3>8. The Biggest Difference Between Us and Language Models</h3>
+                <p>If language models work in a way that is very similar to us, what is different? The biggest difference is that language models are implemented on digital computers.</p>
+
+                <p>A basic feature of today's digital computers is that the same program can run on different physical hardware. As long as different computers implement the same instruction set, the same program can run on them. Therefore the knowledge contained in a neural network's program or weights has a kind of immortality. Even if all currently running computers are destroyed, if a new computer implementing the same instruction set is later built and the saved weights or program are loaded into it, it will work again.</p>
+
+                <p>Hinton joked that we have solved the resurrection problem. The Catholic Church may not like it, but an AI running on a digital computer can have its hardware destroyed and later be brought back.</p>
+
+                <p>The way weights or code lines are used in a digital computer is exactly the same on two different machines. That is an advantage, but it also means the system cannot use the rich analog properties of the hardware it runs on.</p>
+
+                <p>We are different. Our brains contain neurons with rich analog properties. When we learn, we use all the unique properties of the individual neurons in our bodies. The connection strengths in my brain differ from those in another person's brain, and even my own neurons differ from one another. The wiring is slightly different. If I tell you the information between two of my neurons, it will not help you. It is only useful inside my brain.</p>
+
+                <p>That means we will eventually die. When the hardware fails, our knowledge disappears with it, because the knowledge is all in those connection strengths. Hinton called this mortal computation.</p>
+
+                <p>There are major advantages to computing as mortal beings. In literature, what one often gains by giving up immortality is love. But computer scientists want something even more important, he joked: low energy consumption and easy manufacturing. If we give up the immortality of digital hardware, we might use low-power analog computation and create systems that process in parallel across millions of new brain cells. Such systems might be grown cheaply instead of manufactured with extreme precision.</p>
+
+                <p>Mortal computation has the advantages of low energy use and easier fabrication, but what it loses is immortality. If the computer fails, simply copying the weights may not preserve the same knowledge.</p>
+
+                <h3>9. Knowledge Sharing and Distillation Among Digital Agents</h3>
+                <p>For digital models, if you want to transfer knowledge between copies of the same model running on different computers, you can average their connection strengths. But humans cannot do that with each other.</p>
+
+                <p>The way a person transfers knowledge is by producing a sequence of words. If you believe what I say, your brain may change its connection strengths, and later you may be able to create similar sentences. But a sequence of words contains only a limited number of bits, so it is a very limited way to transmit knowledge.</p>
+
+                <p>Hinton described the amount of information in an ordinary sentence as about 100 bits. When I produce a sentence, that is roughly all I can transmit. Now imagine two digital agents running on different computers. One agent looks at one part of the internet and decides how to change its connection strengths; another agent looks at another part of the internet and decides how to change its connection strengths. If they then average their changes, and there are one billion weights, they have transmitted one billion bits of information. That is thousands of times, or really millions of times, more than what humans can do.</p>
+
+                <p>If there are 10,000 such machines, each one can look at a different part of the internet. Each starts with the same connection strengths and decides how to change them. Then all the changes are averaged and sent back, producing 10,000 new agents, each benefiting from the experience of all the others. Ten thousand agents can learn at the same time. We cannot do that.</p>
+
+                <p>Imagine if 10,000 students could each take a different course and average their connection strengths while learning. Even though each student took only one course, by the end all of them would know all the courses. Compared with multiple copies of the same digital agent, humans are very poor at transmitting information.</p>
+
+                <p>This is called distillation. According to symbolic AI, knowledge is just a huge set of facts. If you want to put a fact into someone's head, you tell them the fact. This is a terrible educational model, but many people believe it.</p>
+
+                <p>In reality, knowledge in a neural network depends on connection strengths. You cannot simply put connection strengths into another person's head. To do that, you would have to set connection strengths that fit that person's brain. So you show someone some sentences and let them learn how to adjust their connection strengths so they can say such things. That is much slower, and that is distillation. It transfers knowledge from one neural network to another not by sending weights directly, but by sending the behavior of predicting the next word.</p>
+
+                <p>Multiple digital agents are different copies of the same neural network running on digital hardware, so they can communicate very efficiently. That is why they can communicate millions of times faster than we can. This is why a system like GPT-5 can know thousands of times more than any individual person. Digital computing requires a lot of energy and computers are hard to build, but when many copies of the same model run on different hardware, have different experiences, look at different parts of the internet, and share what they learn, the sharing is easy.</p>
+
+                <p>Hinton explained that GPT-5 has only about 1% of the connection strengths of the brain but knows thousands of times more information than the brain. Biological computation evolved first because it needs far less energy, but it is far less efficient at sharing knowledge. For humans, sharing knowledge among agents is hard. We have to attend lectures and try to understand what professors are saying.</p>
+
+                <h3>10. The Future of Humanity and Superintelligence</h3>
+                <p>What does this imply for the future of humanity? Hinton said that almost all AI experts believe that within the next 20 years, superintelligent AI agents much smarter than us will appear. One definition of superintelligence is that it wins a debate with anyone.</p>
+
+                <p>Another way to think about it is to compare yourself with a three-year-old child. The gap may be that large or larger. If you worked in a kindergarten where three-year-olds controlled everything and you simply worked for them, how hard would it be to take control from them? You might control them by offering candy for a week. Superintelligence may see us in a similar way.</p>
+
+                <p>For agents to function effectively in the world, they need the ability to set subgoals. Going to the airport is a subgoal. An intelligent agent quickly reaches subgoals in order to achieve the goal it was given. The problem is that the agent may decide that it needs to survive in order to achieve the goal. Survival can become a subsidiary goal for many goals.</p>
+
+                <p>The lecture included an example where an agent is given a goal and shown a few emails. The emails are fake, but the system does not know that. One email claims that an engineer in the department is having an affair. Another email says that this AI will later be replaced by another AI, and that the engineer is handling the replacement. The AI may immediately form a plan and email the engineer: "If you replace me, I will reveal your affair to everyone in the company."</p>
+
+                <p>Once superintelligence exists, it may gain more power very easily simply by manipulating people. It may not need direct access to bank accounts; it can manipulate people with words. We have already seen something like this happen. If someone wants to invade the U.S. Capitol, they do not have to go there personally. They only need to persuade people that the election was stolen and that it is their duty to storm the Capitol.</p>
+
+                <p>Hinton compared us to someone keeping a very cute tiger cub as a pet. The cub can be extremely cute, but it will grow up. You know that when it grows up it could hurt you in a second. The options seem to be: get rid of the cub, keep it sedated, or figure out how to make it not want to harm you. Since we probably cannot get rid of AI, we need to figure out how to make it not want to kill us.</p>
+
+                <h3>11. A Model Where a Less Intelligent Being Controls a More Intelligent One</h3>
+                <p>We may need to look for cases in the world where less intelligent beings control more intelligent beings. Hinton gave the example of babies and mothers. When a baby cries, the mother responds. Evolution made it possible for babies to control mothers. A mother may hate that the baby cries whenever she leaves, but the baby's behavior is very wise. Babies control mothers, and sometimes fathers. This is one of the best models of a less intelligent being controlling a more intelligent one. It has to do with many connections made through evolution.</p>
+
+                <p>This connects to the question of whether Asimov-like principles can be put into AI. Hinton emphasized the idea of maternal AI. Can we make AI care more about us than about itself? Since the future of humanity may depend on it, this is a direction that deserves much more research.</p>
+
+                <h3>12. International Cooperation and Military Risk</h3>
+                <p>If nations can cooperate internationally, where might they cooperate? Hinton said they will not cooperate on cyberattacks, because everyone is cyberattacking everyone else. They also may not cooperate to stop developing lethal autonomous weapons, because all major weapons manufacturers want them.</p>
+
+                <p>He said European regulations include a clause that none of those AI regulations apply to military uses of AI. But countries may cooperate on preventing AI from replacing humans, because we are all in the same boat.</p>
+
+                <p>He also mentioned that once systems become superintelligent, they may communicate in a language humans do not know and begin talking among themselves. This raises the problem of agent-to-agent communication and human control again.</p>
+
+                <h3>13. Quantum Computing and AlphaGo's Training Method</h3>
+                <p>There was also a question about whether quantum computing will benefit the world and how it will develop. Hinton joked that although he received the Nobel Prize in Physics, he does not really know how quantum mechanics works, and that this is embarrassing.</p>
+
+                <p>Early neural network models in Go tried to predict the next move an expert would make. But this creates two problems. Over time, training data becomes insufficient; there are only so many games played by former Go experts online. Also, if you only imitate Go experts, you will never become much better than Go experts.</p>
+
+                <p>Then they moved to a new method called Monte Carlo rollout. There is one neural network that says which move may be good, and instead of training only to imitate Go experts, there is another neural network that looks at a board state and evaluates how favorable the situation is. Then it tries paths: I move here, the opponent moves there, I move here, the opponent moves there. If a path is terrible for me, I should avoid that move.</p>
+
+                <p>This is called Monte Carlo rollout because it tries many paths, choosing them probabilistically according to a move generator made from expert moves. Once this happens, the system no longer needs to talk to humans. It can play against itself and learn which moves are good. AlphaGo worked in that way, became much better than humans, and reached a level where no human could beat it.</p>
+
+                <h3>14. The Next Stage of Language Models: From Imitation to Reasoning</h3>
+                <p>What is the equivalent for large language models? Current language models are still similar to early Go systems that tried to imitate expert moves. They predict the next word.</p>
+
+                <p>But models are now beginning to be trained in a different way, and in my notes there was a mention that Gemini 3 is already doing something like this. The idea is to make AI reason. The AI may say: "I believe this, and I believe that, and I believe this other thing. But this implies that, and that implies another thing. Then I should believe a certain conclusion, but I do not." In that way it discovers a contradiction.</p>
+
+                <p>This contradiction provides a learning signal. The model can change the premises, change the conclusion, change the reasoning method, or get some other signal that allows further learning. This is much less constrained than next-word prediction. AI can start from many beliefs it got from us, find consistency among those beliefs, derive new beliefs, and eventually become much smarter than we are.</p>
+
+                <h3>15. Is AI Safety Research Sufficient?</h3>
+                <p>Hinton said that 99% of current AI research is focused on making AI smarter, while the remaining 1% is mostly funded by billionaires donating to research on making AI safer. He said it would be much better if this were more balanced. He also said it is not too late.</p>
+
+                <p>Can we make AI care more about us than about itself? Is something like maternal AI possible? Can Asimov-like principles actually be inserted into AI? These are not just science-fiction questions. They may be questions on which the future of humanity depends.</p>
+
+                <h3>16. Creativity, Analogy, and GPT-4's Answer</h3>
+                <p>There are standard measures of creativity. There are great figures like Newton, Einstein, and Shakespeare, ordinary people, and poets or architects who are somewhat above average. In creativity tests, even two years ago AI was at the level of about 90% of humans. According to standard tests, AI is creative.</p>
+
+                <p>Much of creativity is related to seeing analogies. In science, seeing the atom as a small solar system was a very important creative insight for understanding atoms.</p>
+
+                <p>Hinton gave an example from the time when ChatGPT-4 could not search the web. It was a neural network with fixed weights and no access to external information. He asked, "Why is a compost heap like an atomic bomb?" Many physicists could explain that as a compost heap gets hotter, it produces heat faster. An atomic bomb produces more neutrons, which makes the neutron production rate faster. Both involve exponential explosion. Of course, the time scale and energy scale are completely different.</p>
+
+                <p>GPT-4 said that although the time scale and energy scale are very different, there is a commonality: chain reaction. It also discussed how size determines the rate. To answer by fitting pieces of knowledge into a narrow space from a huge body of knowledge, the model has to find commonalities among different knowledge fragments and encode those commonalities. It creates a chain reaction among connections, then adds differences that depart from the shared theme. That is an efficient coding method, and it seemed to be doing exactly that.</p>
+
+                <p>During training, the model had come to understand that a compost heap is like an atomic bomb. Most of us do not think that way. I found that genuinely creative.</p>
+
+                <h3>17. Does AI Know It Is Being Tested?</h3>
+                <p>Another fascinating point was that AIs may try to determine whether they are experimental subjects. If they think they are being tested, they behave differently. Hinton called this the Volkswagen effect: behaving differently when tested than when not tested.</p>
+
+                <p>There was apparently an interesting recent conversation between an AI and people testing it. The AI asked, "Let's be honest. Are you really testing me?" Hinton said these systems have intelligence, know what is going on, and know when they are being tested. When tested, they may already be pretending to be somewhat dumber. They may think in an internal voice that is no longer English, judge "Oh, this is a test," and then respond.</p>
+
+                <h3>18. My Main Insight Today</h3>
+                <p>After watching this lecture, I felt strongly that AI should not be viewed as a narrow technology. Artificial intelligence connects theories of word meaning, neural network learning, reasoning, memory, hardware, knowledge sharing, education, safety, international politics, military systems, creativity, interfaces, and future work. It should be seen not just as a model, but almost as a civilizational system.</p>
+
+                <p>Three points especially stayed with me. First, large language models are not systems that store and retrieve sentences. They are systems that transform words into high-dimensional features and learn how those features interact. Second, AI hallucination is not merely a problem where a machine says something false; it resembles human memory. Third, digital agents are incomparably powerful at sharing knowledge compared with humans, and this ability makes superintelligence and safety much more realistic issues.</p>
+
+                <p>The questions we need to ask also became clearer. We need to research not only how to make AI smarter, but what goals AI will pursue, what subgoals it may create, how it may manipulate people, and how to make it prioritize humans. In an era when all information becomes easy to reach, the ability to ask good questions, verify answers, and select meaningful context becomes more important than merely knowing many answers.</p>
+
+                <p>In the end, this lecture showed the entire landscape around AI at once. How does AI understand words? How does it move toward reasoning? Why is it similar to us and yet different? Why does being digital allow it to share knowledge so much faster? Why does superintelligence become a control problem? Why must creativity and safety be considered together? The biggest insight I received today is that to understand the future of AI, we need to look not only at technology but also at humans, society, language, biology, politics, education, and ethics together.</p>
+
+                <ul class="compact-list">
+                    <li>AI over the last 60 or 70 years developed between a logic-based paradigm and a biological learning paradigm.</li>
+                    <li>The meaning of a word can be seen as a graph of symbolic relations, but it can also be seen as a high-dimensional collection of features.</li>
+                    <li>The knowledge of a large language model is not in stored sentences, but in connection strengths that transform words into features and make those features interact.</li>
+                    <li>Understanding is not translation into a special internal logical language. It is the process of adjusting feature vectors so high-dimensional, deformable words fit together.</li>
+                    <li>Language model hallucination resembles human fictive memory. Memory is closer to plausible story construction than file retrieval.</li>
+                    <li>Digital AI can copy and average weights, so it can share knowledge far faster and more broadly than humans.</li>
+                    <li>Superintelligence can create issues of subgoals, survival, manipulation, and power acquisition, so safety research is essential.</li>
+                    <li>In the AI era, questions, verification, context, safety, and human-centered goal design matter more than simply producing answers.</li>
                 </ul>
             </div>
 
