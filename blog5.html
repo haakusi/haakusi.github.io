@@ -91,8 +91,8 @@
 
                 <p>다만 신경망을 이용해 각 단어에 대한 특징들을 학습할 수 있다고 해도, 처음에는 그 특징들이 어디서 오는지 설명하지 못했다.</p>
 
-                <h3>3. 1985년의 작은 언어 모델에서 트랜스포머까지</h3>
-                <p>신경망을 활용하면 단어들을 입력받아 다음 단어를 예측하도록 훈련시킬 수 있다. Hinton이 1985년에 만든 tiny language model이 그런 방향의 시작점이었다. 이 과정에서 신경망은 단어를 나타내는 기호와 특징을 나타내는 수많은 뉴런 사이의 연결을 학습한다. 즉 단어의 특징을 학습한다.</p>
+                <h3>3. 초기 신경망 언어 모델에서 트랜스포머까지</h3>
+                <p>신경망을 활용하면 단어들을 입력받아 다음 단어를 예측하도록 훈련시킬 수 있다. 여기서 중요한 것은 특정한 작은 언어 모델 하나를 Hinton이 직접 만들었다는 소유권의 문제가 아니라, 단어 기호를 특징 벡터로 바꾸고 그 특징들의 상호작용으로 다음 단어를 예측한다는 신경망적 관점이다. 초기의 작은 신경망 언어 모델 아이디어는 이후 Yoshua Bengio 등의 neural probabilistic language model 연구와 트랜스포머 계열로 이어지는 큰 흐름의 선행 맥락으로 볼 수 있다.</p>
 
                 <p>다시 말해 신경망은 단어라는 기호를 여러 특징으로 변환하는 방법을 배우고, 문맥 속 모든 단어의 특징들이 어떻게 상호작용하여 다음 단어의 특징을 예측하는지 학습한다. 오늘날 사람들이 사용하는 대규모 언어 모델이 작동하는 방식이 바로 이것이다.</p>
 
@@ -102,18 +102,18 @@
 
                 <p>이는 대부분의 언어학자들이 생각했던 방식과 전혀 다르다. 많은 언어학자들은 어떻게 된 일인지 수많은 단어들을 조합해서 새로운 단어들을 만들어내는 것처럼 생각했다. 하지만 실제로는 전혀 그렇게 작동하지 않았다.</p>
 
-                <p>Hinton은 그 모델을 만들었고, 이후 30년 동안 점차 기호 언어학자들에게 이 관점이 이해되기 시작했다고 설명했다. 약 10년 후 컴퓨터 속도가 천 배 빨라진 시대에 Yoshua Bengio가 아주 단순한 영역에서 몇 개의 단어에만 적용되던 모델이 실제 언어에도 적용될 수 있음을 보여주었다. 전 세계의 영어 문장을 가져와 신경망을 훈련시키고, 몇몇 단어를 입력받아 다음 단어를 예측하게 할 수 있었다. 그렇게 훈련시키면 신경망은 다음 단어를 예측하는 데 있어 이전 최고 기술만큼 뛰어난 성능을 보였다.</p>
+                <p>이런 관점은 이후 30년 동안 점차 기호 언어학자들에게도 이해되기 시작했다고 설명했다. 컴퓨터 속도가 훨씬 빨라진 뒤 Yoshua Bengio는 아주 단순한 영역에서 몇 개의 단어에만 적용되던 신경망 언어 모델의 관점이 실제 언어에도 적용될 수 있음을 보여주었다. 전 세계의 영어 문장을 가져와 신경망을 훈련시키고, 몇몇 단어를 입력받아 다음 단어를 예측하게 할 수 있었다. 그렇게 훈련시키면 신경망은 다음 단어를 예측하는 데 있어 이전 최고 기술만큼 뛰어난 성능을 보였다.</p>
 
                 <p>또한 이 모델은 단어를 특징으로 변환하여 의미를 포착하는 방법도 학습했다. 그로부터 약 10년 후 언어학자들은 마침내 단어의 의미를 특징들의 집합으로 표현해야 한다는 것을 받아들이고 모델을 만들기 시작했다. 그리고 약 10년 후 Google 연구원들이 트랜스포머를 발명했다. 트랜스포머는 특징들 간의 더 복잡한 상호작용을 가능하게 했고, 영어를 훨씬 더 잘 모델링할 수 있게 했으며, 다음 단어를 예측하는 능력을 크게 향상시켰다.</p>
 
-                <p>지금의 모든 대규모 언어 모델은 이 트랜스포머를 기반으로 한다. ChatGPT 같은 모델들도 Google에서 발명한 트랜스포머와 약간의 추가 학습을 통해 만들어졌고, 전 세계가 이런 모델의 성능을 확인할 수 있게 되었다. 이런 의미에서 대규모 언어 모델들은 1985년의 작은 모델의 후손이라고 볼 수 있다.</p>
+                <p>지금의 모든 대규모 언어 모델은 이 트랜스포머를 기반으로 한다. ChatGPT 같은 모델들도 Google에서 발명한 트랜스포머와 약간의 추가 학습을 통해 만들어졌고, 전 세계가 이런 모델의 성능을 확인할 수 있게 되었다. 이런 의미에서 대규모 언어 모델들은 초기 신경망 언어 모델의 관점과 트랜스포머 발전이 결합되어 이어진 후손이라고 볼 수 있다.</p>
 
                 <h3>4. 모호한 단어와 층별 의미 해소</h3>
                 <p>오늘날의 모델은 훨씬 더 많은 단어를 사용하고, may와 같은 모호한 단어를 처리해야 하기 때문에 여러 층의 뉴런을 가진다. may는 월을 나타낼 수도 있고, 여성의 이름을 뜻할 수도 있고, would나 should와 같은 조동사일 수도 있다. 단어 자체만으로는 어떤 의미인지 알 수 없다.</p>
 
                 <p>그래서 신경망은 처음에는 여러 의미의 평균값을 내도록 학습을 진행한다. 그리고 층이 올라갈수록 점차 모호성을 해소해 간다. 문맥 속 다른 단어와의 상호작용을 통해 의미를 파악하는 것이다. 예를 들어 6월과 4월이 가까이 있다면 여성 이름일 수도 있지만 월 이름일 가능성이 훨씬 높다. 신경망은 이러한 정보를 활용하여 문맥에 맞는 적절한 의미로 의미를 점진적으로 다듬어 나간다.</p>
 
-                <p>Hinton은 원래 이 모델을 언어 기술로 설계한 것이 아니라고 했다. 사람들이 단어의 의미를 어떻게 이해하는지, 그리고 아이들이 단 몇 가지 예시만으로 단어의 의미를 어떻게 학습하는지를 연구하기 위해 설계했다. 따라서 이런 신경망 언어 모델은 처음부터 기술이 아니라 사람들의 사고방식을 모델로 삼아 설계된 것이다. 지금은 매우 성공적인 기술이 되었지만, 사람들의 사고방식도 매우 유사하다는 것이 핵심이다.</p>
+                <p>Hinton은 이런 신경망 언어 모델의 관점을 단순한 언어 기술이 아니라, 사람들이 단어의 의미를 어떻게 이해하는지, 그리고 아이들이 단 몇 가지 예시만으로 단어의 의미를 어떻게 학습하는지를 설명하는 방식으로 다루었다. 따라서 이런 신경망 언어 모델은 처음부터 기술만의 문제가 아니라 사람들의 사고방식을 모델로 삼아 이해할 수 있는 것이다. 지금은 매우 성공적인 기술이 되었지만, 사람들의 사고방식도 매우 유사하다는 것이 핵심이다.</p>
 
                 <h3>5. 언어 모델은 자신이 말하는 것을 이해하는가</h3>
                 <p>사람들이 흔히 묻는 질문이 있다. 이런 언어 모델이 정말 자신이 말하는 내용을 이해하는가. Hinton의 답은 예였다. 언어 모델은 자신이 말하는 내용과 생성하는 내용을 이해하며, 우리와 거의 같은 방식으로 이해한다고 설명했다.</p>
@@ -306,8 +306,8 @@
 
                 <p>But even if neural networks could learn features for each word, at first they could not explain where those features came from.</p>
 
-                <h3>3. From the Tiny 1985 Language Model to Transformers</h3>
-                <p>With a neural network, we can train a system to receive words and predict the next word. Hinton's 1985 tiny language model was an early version of this direction. In the process, the neural network learns the connections between symbols representing words and many neurons representing features. In other words, it learns the features of words.</p>
+                <h3>3. From Early Neural Language Models to Transformers</h3>
+                <p>With a neural network, we can train a system to receive words and predict the next word. The important point here is not the ownership of one particular small language model by Hinton, but the neural-network view: transform word symbols into feature vectors, let those features interact, and use them to predict the next word. Early small neural language-model ideas can be seen as part of the path that later included Yoshua Bengio's neural probabilistic language model work and, eventually, transformer-based LLMs.</p>
 
                 <p>The network learns how to turn a word as a symbol into many features, and how all the word features in a context interact to predict the features of the next word. This is how the large language models people use today work.</p>
 
@@ -317,18 +317,18 @@
 
                 <p>This is completely different from how many linguists thought language worked. Many linguists seemed to think that somehow many words were combined to create new words or meanings. But the system did not actually work that way.</p>
 
-                <p>Hinton made that model, and over the next 30 years symbolic linguists gradually began to understand the view. About ten years later, when computers were a thousand times faster, Yoshua Bengio showed that a model that had only worked for a few words in a very simple domain could be applied to real language. He could take English sentences from around the world, train a neural network, feed it a few words, and make it predict the next word. Once trained, the neural network performed as well as the previous best technology at next-word prediction.</p>
+                <p>This view gradually became more understandable to symbolic linguists over the following decades. Later, when computers were much faster, Yoshua Bengio showed that the neural language-model view, which had only worked for a few words in a very simple domain, could be applied to real language. He could take English sentences from around the world, train a neural network, feed it a few words, and make it predict the next word. Once trained, the neural network performed as well as the previous best technology at next-word prediction.</p>
 
                 <p>It also learned how to transform words into features and capture meaning. About ten years after that, linguists finally began to accept that word meanings should be represented as collections of features and started building models. About ten years after that, Google researchers invented the transformer. The transformer enabled more complex interactions among features, modeled English much better, and greatly improved next-word prediction.</p>
 
-                <p>All current large language models are based on the transformer. Models such as ChatGPT were made with the transformer invented at Google plus additional training, and the whole world was able to see how powerful these models were. In that sense, today's large language models can be seen as descendants of that small 1985 model.</p>
+                <p>All current large language models are based on the transformer. Models such as ChatGPT were made with the transformer invented at Google plus additional training, and the whole world was able to see how powerful these models were. In that sense, today's large language models can be seen as descendants of the broader early neural language-model direction combined with the transformer breakthrough.</p>
 
                 <h3>4. Ambiguous Words and Layer-by-Layer Disambiguation</h3>
                 <p>Modern models use far more words and must deal with ambiguous words such as may, so they have many layers of neurons. May can mean a month, a woman's name, or a modal auxiliary like would or should. You cannot know which meaning it has from the word alone.</p>
 
                 <p>So the neural network initially learns something like an average of the possible meanings. As the layers go up, it gradually resolves the ambiguity. It understands the meaning through interactions with other words in the context. For example, if June and April are nearby, may could be a woman's name, but it is much more likely to be a month. The network uses this information to gradually refine the meaning into the meaning that fits the context.</p>
 
-                <p>Hinton said he did not originally design this model as a language technology. He designed it to study how people understand the meanings of words and how children learn word meanings from only a few examples. So this kind of neural language model was designed not as a technology first, but as a model of how people think. It has now become a very successful technology, but the way people think is also very similar.</p>
+                <p>Hinton framed this neural language-model view not merely as a language technology, but as a way to study how people understand the meanings of words and how children learn word meanings from only a few examples. So this kind of neural language model can be understood not only as a technology, but also as a model of how people think. It has now become a very successful technology, but the way people think is also very similar.</p>
 
                 <h3>5. Do Language Models Understand What They Say?</h3>
                 <p>People often ask whether these language models really understand what they are saying. Hinton's answer was yes. Language models understand what they say and generate, and they understand it in almost the same way we do.</p>
