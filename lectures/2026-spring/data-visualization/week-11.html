@@ -1,0 +1,416 @@
+<!DOCTYPE html>
+<html data-theme="dark" data-lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Info Design &amp; Data Viz - Week 11 - Sewon Park</title>
+    <link rel="stylesheet" type="text/css" href="../../../style.css">
+    <link rel="stylesheet" type="text/css" href="../../../assets/css/lectures.css">
+</head>
+<body>
+    <button class="theme-toggle" onclick="toggleTheme()" aria-label="Toggle dark mode"></button>
+    <button class="lang-toggle" onclick="toggleLanguage()" aria-label="Toggle language">EN</button>
+
+    <div class="container">
+        <div id="site-header"></div>
+        <div id="site-nav"></div>
+
+        <article class="course-page">
+            <div class="course-header">
+                <h1 data-en="Info Design &amp; Data Viz" data-kr="정보디자인데이터시각화">Info Design &amp; Data Viz</h1>
+                <p class="course-meta" data-en="2026 Spring | Sat 12:00-15:00" data-kr="2026 봄학기 | 토요일 12:00-15:00">2026 Spring | Sat 12:00-15:00</p>
+            </div>
+
+            <div class="course-nav">
+                <a href="../../../lectures.html" class="back-to-lectures" data-en="Back to Lectures" data-kr="강의 목록으로">Back to Lectures</a>
+                <span class="nav-separator">/</span>
+                <a href="./index.html" class="back-to-course" data-en="Course Home" data-kr="과목 홈">Course Home</a>
+            </div>
+
+            <div class="week-nav">
+                <span data-en="Weeks:" data-kr="주차:">Weeks:</span>
+                <a href="week-01.html" class="week-link">W1</a>
+                <a href="week-02.html" class="week-link">W2</a>
+                <a href="week-03.html" class="week-link">W3</a>
+                <a href="week-04.html" class="week-link">W4</a>
+                <a href="week-05.html" class="week-link">W5</a>
+                <a href="week-06.html" class="week-link">W6</a>
+                <a href="week-07.html" class="week-link">W7</a>
+                <a href="week-08.html" class="week-link">W8</a>
+                <a href="week-09.html" class="week-link">W9</a>
+                <a href="week-10.html" class="week-link">W10</a>
+                <a href="week-11.html" class="week-link current">W11</a>
+            </div>
+
+            <section class="week-section" id="week-11">
+                <h2 data-en="Week 11" data-kr="11주차">Week 11</h2>
+                <p class="week-date">2026-05-16 · Pre / Main / Post Information</p>
+                <div class="week-content">
+                    <span class="assignment-chip" data-en="Form Analysis Framework" data-kr="폼 분석 프레임워크">Form Analysis Framework</span>
+
+                    <div class="lang-kr" hidden>
+                        <p class="week-references"><em>Keywords: service double diamond, form provider, user motivation, pre information, main information, post information, staged information, fragmentary information, journey map, desktop research, user interview, critical thinking, form lifecycle</em></p>
+
+                        <p>11주차는 지난 폼 디자인 수업을 이어 받아, 폼을 하나의 서비스 흐름으로 분석하는 방법을 정리했다. 핵심은 폼 안의 정보를 <strong>Pre information</strong>, <strong>Main information</strong>, <strong>Post information</strong>으로 나누고, 사용자가 어떤 동기와 상태로 들어와서 어떤 정보를 쓰고, 제출 후 어디로 이어지는지를 보는 것이다.</p>
+
+                        <div class="lecture-note">
+                            <p><strong>메모.</strong> 정보디자인에서 동기는 매우 중요하다. 작성하는 사람과 받는 사람 모두 중요하며, 사람이 직접 설명해주지 않는 폼에서는 사용자가 왜 이 정보를 작성해야 하는지에 대한 이유가 폼 안에 포함되어 있어야 한다.</p>
+                        </div>
+
+                        <h3>1. Service Double Diamond와 폼의 동기</h3>
+                        <p>폼은 기능적으로 데이터를 받는 도구이지만, 실제 서비스에서는 사용자와 제공자가 만나는 장면이다. 제공자는 어떤 조건을 만족하는 사람을 확인해야 하고, 사용자는 어떤 목적을 가지고 그 폼에 들어온다. 따라서 폼 분석은 항목을 나열하는 일에서 끝나지 않고, 사용자가 불편한 기색 없이 진행할 수 있는지, 그 안에 숨어 있는 동기를 제대로 찾을 수 있는지를 함께 봐야 한다.</p>
+
+                        <table class="stat-table">
+                            <tr>
+                                <th>분석 관점</th>
+                                <th>확인할 질문</th>
+                            </tr>
+                            <tr>
+                                <td>사용자 동기</td>
+                                <td>사용자는 왜 이 폼을 작성하는가? 지금 어떤 단계와 감정 상태에 있는가?</td>
+                            </tr>
+                            <tr>
+                                <td>제공자 목적</td>
+                                <td>기관이나 회사는 왜 이 정보를 받아야 하는가? 어떤 처리 과정에 필요한가?</td>
+                            </tr>
+                            <tr>
+                                <td>정보 흐름</td>
+                                <td>작성 전, 작성 중, 작성 후에 각각 어떤 안내와 행동이 필요한가?</td>
+                            </tr>
+                            <tr>
+                                <td>서비스 태도</td>
+                                <td>폼이 사용자를 독려하는가, 방치하는가, 불안하게 만드는가?</td>
+                            </tr>
+                        </table>
+
+                        <p>Service Double Diamond의 관점에서 보면, 먼저 폼의 배경과 사용자 상황을 넓게 조사하고, 그 안에서 핵심 문제를 정의한 뒤, 가능한 해결 방향을 탐색하고, 실제 폼 구조와 표현으로 좁혀야 한다. 무작정 폼을 고치기 전에 왜 이런 결과물이 나올 수밖에 없었는지, 왜 조사가 이렇게 되었는지, 왜 좋은 조사에도 결과물이 충분하지 않았는지를 보는 과정이 필요하다.</p>
+
+                        <h3>2. Pre Information</h3>
+                        <p>Pre information은 사용자가 서비스에 유입되는 시작점의 정보다. 사용자는 첫 화면이나 첫 안내에서 "나에게 맞을 것 같다" 혹은 "보고 싶지 않다"를 판단한다. 정보가 너무 없으면 관심이 있어도 불평하고 이탈할 수 있고, 반대로 유입 단계에서 맞지 않는 정보를 받으면 바로 떠날 수 있다.</p>
+
+                        <div class="lecture-note">
+                            <p><strong>Pre information의 역할.</strong> 유입 경로를 선별하고, 컨셉에 맞는 라포를 형성하며, 메인 정보로 넘어갈 이유를 제공한다. 메인 정보가 가진 기능과 역할의 일부를 핵심적으로 전달하되, 페르소나의 니즈와 사용 특성에 맞게 구성해야 한다.</p>
+                        </div>
+
+                        <p>대학원 입학 정보를 예로 들면, 사용자는 탐색, 정보 수집, 지원 동기 형성의 단계에서 첫 정보를 만난다. 이때 커리큘럼, 과정의 목표, 마지막에 얻을 수 있는 성장이나 적용 가능성이 어느 정도 보여야 한다. 사용자가 기대한 목표와 프로그램의 구조가 70-80% 정도라도 맞아야 다음 단계로 넘어갈 가능성이 생긴다.</p>
+
+                        <p>Pre information은 웹뿐 아니라 오프라인 폼에서도 필요하다. 구성품을 받기 위해 신청서를 내야 한다면, 사용자가 어떤 예의를 갖춰 무엇을 제출해야 하는지 알 수 있어야 한다. 블루프린트나 자료를 제공하더라도, 서비스가 고객과 만나는 장면이라는 점을 기준으로 설계해야 한다.</p>
+
+                        <h3>3. Main Information</h3>
+                        <p>Main information은 사용자가 실제 목표를 달성하기 위해 쓰고 읽는 핵심 정보다. 이 단계에서 정보가 부족하거나 흐름이 어긋나면 사용자는 중간에 이탈한다. 사용자가 관심은 있는데 정보가 없다고 느끼거나, 목표와 커리큘럼이 맞지 않는다고 느끼면 메인 단계에서도 떠날 수 있다.</p>
+
+                        <p>Main information은 단순히 많은 정보를 넣는 것이 아니라, 지속적인 인터랙션이 일어날 수 있도록 하는 정보여야 한다. 메인 정보와 직접 관련된 정보, 또는 메인 정보를 돕는 서포티브 정보가 사용자의 다음 행동을 이어준다. 확산 가능한 기능이 있는 정보는 사용자가 한 번 보고 끝나지 않고, 다음 서비스나 주변 사람에게 이어질 가능성을 만든다.</p>
+
+                        <table class="stat-table">
+                            <tr>
+                                <th>Main information에서 볼 점</th>
+                                <th>설명</th>
+                            </tr>
+                            <tr>
+                                <td>목표 적합성</td>
+                                <td>사용자가 기대한 목표와 실제 정보 구조가 맞는가?</td>
+                            </tr>
+                            <tr>
+                                <td>단계성</td>
+                                <td>사용자가 지금 무엇을 하고 있고 다음에 무엇을 해야 하는지 알 수 있는가?</td>
+                            </tr>
+                            <tr>
+                                <td>지원 정보</td>
+                                <td>메인 행동을 돕는 설명, 예시, 준비물, 문의 경로가 적절한 위치에 있는가?</td>
+                            </tr>
+                            <tr>
+                                <td>이탈 방지</td>
+                                <td>정보 부족, 과도한 부담, 애매한 용어 때문에 사용자가 떠나지 않는가?</td>
+                            </tr>
+                        </table>
+
+                        <h3>4. Post Information</h3>
+                        <p>Post information은 사용자가 주요 정보를 습득하거나 기입한 뒤 필요로 하게 되는 연관 정보다. 이 단계는 제출이 끝났다는 안내를 넘어서, 재유입과 확장, 확산을 설계하는 영역이다.</p>
+
+                        <div class="stat-comparison">
+                            <div class="stat-comparison-item">
+                                <h4>기관 입장</h4>
+                                <p>졸업자 수, 프로그램 품질, 네임밸류, 입소문처럼 서비스의 기세와 신뢰가 쌓여야 한다. 만족한 사용자가 다시 오고, 오지 않던 사람도 들어올 수 있는 구조가 필요하다.</p>
+                            </div>
+                            <div class="stat-comparison-item">
+                                <h4>고객 입장</h4>
+                                <p>사용자가 만족한 뒤 무엇을 더 할 수 있는지 정확한 경로를 받아야 한다. 다음 혜택, 다음 날짜, 연결 서비스, 문의처, 처리 결과 안내가 막연하지 않아야 한다.</p>
+                            </div>
+                        </div>
+
+                        <p>좋은 Post information은 "잘 썼어, 잘 가, 또 만나"에서 끝나지 않는다. 사용자가 A를 만족스럽게 썼다면, A를 업그레이드하거나 연동할 수 있는 서비스가 무엇인지, 그 장점과 효율성은 무엇인지 알려줄 수 있어야 한다. 출생신고서처럼 제출 후 결과를 기다리는 폼이라면, 실제 호적 반영이나 처리 결과가 언제 어떤 방식으로 안내되는지 사용자가 다시 묻지 않아도 알 수 있어야 한다.</p>
+
+                        <div class="stat-formula">
+                            Pre information -> Main information -> Post information -> Re-entry / next service
+                        </div>
+
+                        <p>서비스를 사람이라고 생각하면 더 분명해진다. "이런 것을 좋아하시는군요. 다음에는 이것도 해보시겠어요?"라고 말할 때는 막연하게 말하지 않고, 날짜와 방법과 경로를 정확하게 알려줘야 한다. 회사나 기관의 서비스도 마찬가지로, 고객이 갈 곳이 없어서 남는 구조가 아니라 서비스 생태계 안에서 다음 행동을 자연스럽게 이어가게 하는 구조가 필요하다.</p>
+
+                        <h3>5. 단계적 정보와 단편적 정보</h3>
+                        <p>폼 안의 질문은 크게 단계적 정보와 단편적 정보로 나누어 볼 수 있다. 단계적 정보는 목표를 달성하기 위해 연계된 질문들이 흐름을 만드는 경우다. 예를 들어 사는 곳을 묻고, 이전 거주지를 묻고, 해외에 나간 적이 있는지를 묻는 식으로 꼬리 질문이 이어진다. 단편적 정보는 혈액형, MBTI, 시력처럼 각각 독립적으로 묻는 정보다.</p>
+
+                        <table class="stat-table">
+                            <tr>
+                                <th>구분</th>
+                                <th>예시</th>
+                                <th>디자인에서 주의할 점</th>
+                            </tr>
+                            <tr>
+                                <td>단계적 정보</td>
+                                <td>주소 -> 이전 주소 -> 해외 체류 경험</td>
+                                <td>질문 흐름과 조건 분기가 명확해야 한다</td>
+                            </tr>
+                            <tr>
+                                <td>단편적 정보</td>
+                                <td>혈액형, MBTI, 시력</td>
+                                <td>정보의 목적과 그룹이 보이지 않으면 사용자가 헷갈릴 수 있다</td>
+                            </tr>
+                        </table>
+
+                        <p>이름을 묻는 경우에도 갑자기 본인, 부모, 자녀의 이름이 섞여 나오면 혼란이 생긴다. 어떤 그룹의 정보인지, 어떤 순서로 써야 하는지, 어디까지가 한 묶음인지 설명해야 한다. 분석할 때는 어느 부분이 단계적 정보이고 어느 부분이 단편적 정보인지 연필로 직접 그루핑해보는 것이 좋다.</p>
+
+                        <h3>6. 분석 매트릭스와 기대감성</h3>
+                        <p>폼을 분석할 때는 Pre, Main, Post 단계에 따라 현재 내용과 기대 효과를 나누어 적을 수 있다. 이 표는 현재 폼이 무엇을 전달하고 있는지, 어떤 감성을 만들고 있는지, 실제로는 어떤 방향으로 바뀌어야 하는지를 정리하는 기본 틀이다.</p>
+
+                        <table class="stat-table">
+                            <tr>
+                                <th></th>
+                                <th>Pre information</th>
+                                <th>Main information</th>
+                                <th>Post information</th>
+                            </tr>
+                            <tr>
+                                <td>현재내용</td>
+                                <td>사용자가 처음 만나는 유입 정보</td>
+                                <td>실제 작성 또는 이해해야 하는 핵심 정보</td>
+                                <td>제출 후 안내와 다음 행동 정보</td>
+                            </tr>
+                            <tr>
+                                <td>내용분석</td>
+                                <td>첫 인상, 라포, 유입 경로의 적합성</td>
+                                <td>질문 순서, 용어, 작성 공간, 처리 흐름</td>
+                                <td>결과 안내, 문의처, 재유입 가능성</td>
+                            </tr>
+                            <tr>
+                                <td>기대분석</td>
+                                <td>메인 단계로 넘어갈 이유를 만든다</td>
+                                <td>오해 없이 작성하고 신뢰를 유지한다</td>
+                                <td>신뢰 누수 없이 다음 단계로 연결한다</td>
+                            </tr>
+                            <tr>
+                                <td>현재전달 keyword</td>
+                                <td>현재 폼이 실제로 주는 인상</td>
+                                <td>현재 작성 과정의 톤과 부담</td>
+                                <td>현재 마무리 안내의 수준</td>
+                            </tr>
+                            <tr>
+                                <td>기대감성 keyword</td>
+                                <td>기대감, 접근 용이성</td>
+                                <td>신뢰, 지속성, 독려, 페이스메이커</td>
+                                <td>안심, 발전, 지속가능성</td>
+                            </tr>
+                        </table>
+
+                        <p>기대분석과 기대감성 키워드를 정하면 대략적인 시각 표현 방법을 도출할 수 있다. 다만 이것만으로 충분하지는 않다. 기계적, 자동적, 의무적인 내용 전달에 머무르면 사용자는 귀찮다고 느끼거나 돈을 주고 다른 사람에게 맡기고 싶다고 느낄 수 있다.</p>
+
+                        <p>폼은 사용자를 독려하는 페이스메이커 역할을 해야 한다. 사용자가 단어 뜻을 찾게 만들거나 질문의 의미를 추측하게 만들면 수고로움이 늘어난다. 필요한 설명은 가까운 곳에 있어야 하고, 이성적으로도 감성적으로도 접근할 수 있어야 한다. 좋은 마무리는 "누수 없이 잘 끝났다"는 신뢰를 만들고, 그 신뢰는 다음 발전과 지속가능성으로 이어진다.</p>
+
+                        <h3>7. 비판적 사고와 비교 분석</h3>
+                        <p>폼 분석은 "있다", "없다", "잘못됐다"에서 멈추면 안 된다. 분석은 인사이트로 이어져야 하고, 인사이트는 가치와 해결책으로 이어져야 한다.</p>
+
+                        <div class="stat-formula">
+                            분석 -> 인사이트 -> 가치 -> 해결책
+                        </div>
+
+                        <p>비판적 사고는 불편함과 문제의식을 가지고 볼 때 더 잘 작동한다. 글씨가 왜 이렇게 작은지, 행간은 왜 이런지, 숫자는 왜 이렇게 붙어 있는지, 검은 점으로만 구분한 이유가 무엇인지 묻는 것이다. 단순히 1, 2, 3, 4, 5처럼 나열하기보다, 소제목과 그 안의 1, 2, 3 구조를 만들면 사용자는 무엇이 더 중요한지 이해하기 쉽다.</p>
+
+                        <p>안내문 분석은 하나만 보는 것보다 여러 개를 비교할 때 더 좋다. 5종의 비교적 괜찮은 정보와 7종 안내문을 함께 보면, 안내 단계인지, 주의 단계인지, 경고 단계인지, 사용자가 어떤 정서로 받아들이게 되는지 더 분명해진다. AI 시대에는 여러 자료를 빠르게 비교하고 분류할 수 있다는 장점도 있다.</p>
+
+                        <h3>8. 폼의 라이프사이클과 저니맵</h3>
+                        <p>무작정 폼만 분석하면 안 된다. 폼이 가진 전후 맥락, 환경, 라이프 단계를 봐야 한다. 출생신고서, 사망신고서, 대학원 지원서, 주소지 변경 폼은 모두 사용자가 삶의 특정 단계에서 만나는 폼이다. 사용자가 그 폼을 쓰기 전 어떤 일을 겪었고, 작성 중 어떤 감정 상태에 있으며, 작성 후 무엇을 기다리는지를 함께 봐야 한다.</p>
+
+                        <p>저니맵은 서비스 디자인에서 단계별 경험을 쪼개어 사용자가 언제 불편해지고 언제 이탈하는지를 보는 도구다. 하나의 서비스 전체 라이프사이클을 볼 수도 있고, 더 작게는 폼 안의 Pre, Main, Post 단계를 쪼개어 마이크로 저니맵으로 만들 수도 있다.</p>
+
+                        <table class="stat-table">
+                            <tr>
+                                <th>저니맵에서 볼 내용</th>
+                                <th>폼 분석에 적용되는 질문</th>
+                            </tr>
+                            <tr>
+                                <td>서비스 전</td>
+                                <td>사용자는 왜 이 폼을 찾았고 무엇을 준비해야 하는가?</td>
+                            </tr>
+                            <tr>
+                                <td>서비스 중</td>
+                                <td>작성 순서, 용어, 공간, 도움말이 사용자 흐름을 방해하지 않는가?</td>
+                            </tr>
+                            <tr>
+                                <td>서비스 후</td>
+                                <td>처리 결과, 소요 기간, 문의 경로, 다음 서비스가 안내되는가?</td>
+                            </tr>
+                            <tr>
+                                <td>정서적 맥락</td>
+                                <td>사용자가 기쁜 상황인지, 불안한 상황인지, 슬픈 상황인지 고려했는가?</td>
+                            </tr>
+                        </table>
+
+                        <h3>9. 데스크탑 리서치와 사용자 인터뷰</h3>
+                        <p>분석의 시작은 데스크탑 리서치다. 폼의 히스토리, 제도적 배경, 처리 과정, 공식 자료, 이전 결과물의 이유를 살펴야 한다. 예를 들어 출생신고서나 사망신고서를 본다면, 인본주의가 말로는 들어가 있어도 실제 폼에서 느껴지는지, 작성 내용, 통계청 자료 조사, official only 영역, 처리 결과 안내, 작성 방법, 미리 준비해야 하는 첨부서류가 어디에 배치되어 있는지 봐야 한다.</p>
+
+                        <p>사용자 인터뷰도 필요하다. 폼을 여러 장 복사해 주변 사람에게 실제로 써보게 하거나, 직접 작성해보면서 어느 지점에서 불편한지 확인할 수 있다. 도로명 주소와 지번 주소처럼 사용자가 헷갈릴 수 있는 지침이 빠져 있는지도 봐야 한다. 연령층과 디지털 숙련도에 따라 막히는 지점이 다를 수 있으므로, 2-3명이라도 실제 작성 경험을 관찰하는 것이 중요하다.</p>
+
+                        <p>온라인 UX에서는 도움말과 안내가 즉시 드러나야 한다. 마우스를 올리거나 해당 항목에 진입했을 때 필요한 설명이 바로 보여야지, 사용자가 뒤쪽 설명을 계속 넘겨보게 만들면 안 된다. 첨부서류처럼 미리 알아야 하는 정보가 뒤에만 있으면 사용자는 작성 중에 다시 멈출 수 있다.</p>
+
+                        <ul>
+                            <li>11주차는 폼을 Pre, Main, Post 단계로 나누어 분석하는 방법을 정리했다.</li>
+                            <li>폼에는 사용자 동기, 제공자 목적, 정보 흐름, 서비스 태도가 함께 들어간다.</li>
+                            <li>단계적 정보와 단편적 정보를 구분하면 질문 흐름과 그룹핑 문제를 더 잘 볼 수 있다.</li>
+                            <li>분석 매트릭스는 현재 내용, 내용 분석, 기대 분석, 전달 키워드, 기대감성 키워드를 정리하는 기본 틀이다.</li>
+                            <li>폼 분석은 라이프사이클과 저니맵, 데스크탑 리서치, 사용자 인터뷰까지 포함해야 한다.</li>
+                            <li>좋은 분석은 인사이트와 가치, 해결책으로 이어져야 한다.</li>
+                        </ul>
+                    </div>
+
+                    <div class="lang-en">
+                        <p class="week-references"><em>Keywords: service double diamond, form provider, user motivation, pre information, main information, post information, staged information, fragmentary information, journey map, desktop research, user interview, critical thinking, form lifecycle</em></p>
+
+                        <p>Week 11 continued the form design topic by organizing forms as service flows. The central framework was to divide form information into <strong>Pre information</strong>, <strong>Main information</strong>, and <strong>Post information</strong>, then examine how users enter, complete, and continue after the form.</p>
+
+                        <div class="lecture-note">
+                            <p><strong>Note.</strong> Motivation matters in information design. A form has to serve both the person completing it and the provider receiving it. When no person is present to explain the process, the form itself has to explain why the user is being asked to provide information.</p>
+                        </div>
+
+                        <h3>1. Service Double Diamond and Form Motivation</h3>
+                        <p>A form is a data collection tool, but in service use it is also the meeting point between users and providers. The provider needs to verify conditions, while the user arrives with a purpose and a situation. Form analysis therefore has to look beyond fields. It has to ask whether the user can proceed without friction and whether the hidden motivation behind each question is clear.</p>
+
+                        <table class="stat-table">
+                            <tr>
+                                <th>Lens</th>
+                                <th>Question to ask</th>
+                            </tr>
+                            <tr>
+                                <td>User motivation</td>
+                                <td>Why is the user completing this form, and what state are they in?</td>
+                            </tr>
+                            <tr>
+                                <td>Provider purpose</td>
+                                <td>Why does the institution or company need this information?</td>
+                            </tr>
+                            <tr>
+                                <td>Information flow</td>
+                                <td>What guidance is needed before, during, and after completion?</td>
+                            </tr>
+                            <tr>
+                                <td>Service attitude</td>
+                                <td>Does the form encourage, abandon, or unsettle the user?</td>
+                            </tr>
+                        </table>
+
+                        <p>From a Service Double Diamond perspective, the designer first researches the form background and user context, then defines the core problem, explores possible directions, and narrows the result into actual form structure and expression. Before redesigning, it is necessary to ask why the existing outcome became what it is.</p>
+
+                        <h3>2. Pre, Main, and Post Information</h3>
+                        <p><strong>Pre information</strong> is the entry point. It shapes whether users feel that the service fits them, whether they want to continue, and whether the first relationship feels appropriate. It should select the right entry path, form rapport, and deliver the essential promise of the main service.</p>
+
+                        <p><strong>Main information</strong> is the core information the user actually reads or enters to accomplish the goal. If it lacks structure, supporting explanation, or relevance to the user's goal, users can leave even after they showed interest. Main information should support continued interaction rather than simply list everything.</p>
+
+                        <p><strong>Post information</strong> appears after the user has learned or submitted the main information. It includes result guidance, expected processing time, contact paths, next services, and re-entry paths. A good post-service does not end with "thank you and goodbye." It tells the user what happens next and where they can continue.</p>
+
+                        <div class="stat-formula">
+                            Pre information -> Main information -> Post information -> Re-entry / next service
+                        </div>
+
+                        <p>For example, if a birth registration form is submitted, the user should not have to ask whether the record was actually processed. The service should tell them when the result will arrive, by what channel, and where to check or ask further questions.</p>
+
+                        <h3>3. Staged and Fragmentary Information</h3>
+                        <p>Questions in forms can be read as staged information or fragmentary information. Staged information creates a connected flow toward a goal, such as current address, previous address, and overseas stay history. Fragmentary information asks independent facts, such as blood type, MBTI, or eyesight.</p>
+
+                        <table class="stat-table">
+                            <tr>
+                                <th>Type</th>
+                                <th>Example</th>
+                                <th>Design concern</th>
+                            </tr>
+                            <tr>
+                                <td>Staged information</td>
+                                <td>Address -> previous address -> overseas stay</td>
+                                <td>The sequence and branching logic must be clear</td>
+                            </tr>
+                            <tr>
+                                <td>Fragmentary information</td>
+                                <td>Blood type, MBTI, eyesight</td>
+                                <td>The purpose and grouping must still be visible</td>
+                            </tr>
+                        </table>
+
+                        <p>Even a name field can become confusing if the form suddenly mixes the user's name, parent names, and child names without sequence or grouping. During analysis, it is useful to mark which parts are staged and which parts are fragmentary.</p>
+
+                        <h3>4. Analysis Matrix and Expected Emotion</h3>
+                        <p>The class introduced a matrix for analyzing forms across Pre, Main, and Post stages. The rows include current content, content analysis, expected analysis, current delivery keywords, and expected emotional keywords.</p>
+
+                        <table class="stat-table">
+                            <tr>
+                                <th></th>
+                                <th>Pre information</th>
+                                <th>Main information</th>
+                                <th>Post information</th>
+                            </tr>
+                            <tr>
+                                <td>Current content</td>
+                                <td>Entry information</td>
+                                <td>Core writing or reading tasks</td>
+                                <td>Result and next-step guidance</td>
+                            </tr>
+                            <tr>
+                                <td>Content analysis</td>
+                                <td>First impression and entry path</td>
+                                <td>Order, terms, writing space, workflow</td>
+                                <td>Result notice, contact path, re-entry</td>
+                            </tr>
+                            <tr>
+                                <td>Expected analysis</td>
+                                <td>Create a reason to continue</td>
+                                <td>Support accurate completion and trust</td>
+                                <td>Close the process without trust leakage</td>
+                            </tr>
+                            <tr>
+                                <td>Expected emotion</td>
+                                <td>Expectation, accessibility</td>
+                                <td>Trust, continuity, encouragement</td>
+                                <td>Relief, development, sustainability</td>
+                            </tr>
+                        </table>
+
+                        <p>Expected emotional keywords can suggest visual directions, but they are not enough by themselves. A form should not feel mechanical, automatic, or merely obligatory. It should work as a pacemaker that helps the user proceed without having to search for every term or infer every instruction.</p>
+
+                        <h3>5. Critical Thinking, Journey Maps, and Research</h3>
+                        <p>Form analysis should not stop at "present," "missing," or "wrong." The path should be analysis, insight, value, and solution. Critical thinking becomes clearer when the analyst notices friction: small type, tight leading, unclear numbering, black bullets used instead of structure, or a flat 1-10 list without headings.</p>
+
+                        <div class="stat-formula">
+                            Analysis -> Insight -> Value -> Solution
+                        </div>
+
+                        <p>Comparing multiple forms is often more productive than analyzing one form alone. Warning notices, guides, and official forms can reveal different tones: simple notice, caution, warning, or concern. This comparison helps identify what the user is likely to feel.</p>
+
+                        <p>A journey map helps divide the service into stages and identify where users feel discomfort or drop off. A form can be mapped within a larger life cycle, such as birth registration, death registration, graduate application, or address change. It can also be mapped more narrowly inside the Pre, Main, and Post stages of the form itself.</p>
+
+                        <p>The analysis should begin with desktop research: history, institutional background, official process, and existing documents. It should also include user interviews or small usability checks. Copying several forms, asking people to complete them, and observing where they hesitate can reveal problems that a designer may miss.</p>
+
+                        <ul>
+                            <li>Week 11 organized form analysis through the Pre, Main, and Post framework.</li>
+                            <li>A form includes user motivation, provider purpose, information flow, and service attitude.</li>
+                            <li>Staged and fragmentary information help diagnose question flow and grouping.</li>
+                            <li>The analysis matrix records current content, analysis, expected outcomes, and emotional keywords.</li>
+                            <li>Form analysis should include lifecycle context, journey mapping, desktop research, and user interviews.</li>
+                            <li>Good analysis has to lead to insight, value, and an actual solution.</li>
+                        </ul>
+                    </div>
+                </div>
+            </section>
+        </article>
+
+        <div id="site-footer"></div>
+    </div>
+
+    <script src="../../../common.js"></script>
+</body>
+</html>
