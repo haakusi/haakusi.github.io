@@ -1,0 +1,456 @@
+<!DOCTYPE html>
+<html data-theme="dark" data-lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>AI Theory - Week 10 - Sewon Park</title>
+    <link rel="stylesheet" type="text/css" href="../../../style.css">
+    <link rel="stylesheet" type="text/css" href="../../../assets/css/lectures.css">
+</head>
+<body>
+    <button class="theme-toggle" onclick="toggleTheme()" aria-label="Toggle dark mode"></button>
+    <button class="lang-toggle" onclick="toggleLanguage()" aria-label="Toggle language">EN</button>
+
+    <div class="container">
+        <div id="site-header"></div>
+        <div id="site-nav"></div>
+
+        <article class="course-page">
+            <div class="course-header">
+                <h1 data-en="AI Theory" data-kr="인공지능론">AI Theory</h1>
+                <p class="course-meta" data-en="2026 Spring | Intensive Course | Online 3h + Offline 3h" data-kr="2026 봄학기 | 압축형 수업 | 온라인 3시간 + 오프라인 3시간">2026 Spring | Intensive Course | Online 3h + Offline 3h</p>
+            </div>
+
+            <div class="course-nav">
+                <a href="../../../lectures.html" class="back-to-lectures" data-en="Back to Lectures" data-kr="강의 목록으로">Back to Lectures</a>
+                <span class="nav-separator">/</span>
+                <a href="./index.html" class="back-to-course" data-en="Course Home" data-kr="과목 홈">Course Home</a>
+            </div>
+
+            <div class="week-nav">
+                <span data-en="Weeks:" data-kr="주차:">Weeks:</span>
+                <a href="week-09.html" class="week-link">W9</a>
+                <a href="week-10.html" class="week-link current">W10</a>
+            </div>
+
+            <section class="week-section" id="week-10">
+                <h2 data-en="Week 10" data-kr="10주차">Week 10</h2>
+                <p class="week-date" data-en="2026-05-12 · Presentation, A* practice, and assignment feedback" data-kr="2026-05-12 · 발표, A* 실습, 과제 피드백">2026-05-12 · Presentation, A* practice, and assignment feedback</p>
+                <div class="week-content">
+                    <span class="assignment-chip" data-en="A* Search Practice" data-kr="A* 탐색 실습">A* Search Practice</span>
+
+                    <div class="lang-kr" hidden>
+                        <p class="week-references"><em>Keywords: 발표 세션, 책 발표, 박세원, machine unlearning, LLM forgetting, reward function, A* search, BFS, DFS, goal test, heuristic, complexity, failure case</em></p>
+
+                        <p>10주차는 발표 세션, 수업 시간의 <strong>A* 탐색 구현 실습</strong>, 그리고 첫 번째 과제 피드백을 함께 진행한 참여형 수업이었다. 발표는 책 발표 형식으로 진행되었고, 박세원 발표에서는 <strong>머신 언러닝(machine unlearning)</strong>과 LLM의 망각 문제를 중심으로 생각할 지점이 정리되었다. 실습과 피드백에서는 BFS, DFS, A* 구현 방식, goal test의 위치, fail case, 복잡도 케이스가 함께 다루어졌다.</p>
+
+                        <div class="lecture-note">
+                            <p><strong>메모.</strong> 이번 주차의 핵심은 새 이론을 많이 늘리는 것보다, 발표 주제와 실제 구현 과제를 연결해 보는 데 있었다. 수업 시간에는 A*를 구현해보고, 서로 다른 구현 방식과 실패 케이스, 복잡도 차이를 논의했다. 탐색 알고리즘에서는 작은 구현 위치와 자료구조 선택이 실제 실행 흐름을 크게 바꿀 수 있다.</p>
+                        </div>
+
+                        <h3>1. 발표 주제: 머신 언러닝과 LLM의 망각</h3>
+                        <p>머신 언러닝은 학습된 모델에서 특정 정보나 학습 흔적을 제거하거나 약화하는 문제로 볼 수 있다. 발표에서는 LLM의 망각을 "조금 지우는 것"이라는 표현으로 생각해볼 수 있었다. 단순히 데이터를 삭제하는 문제가 아니라, 이미 모델 내부의 가중치와 행동 경향에 반영된 내용을 어떻게 다룰 것인가의 문제다.</p>
+
+                        <table class="stat-table">
+                            <tr>
+                                <th>관점</th>
+                                <th>정리</th>
+                            </tr>
+                            <tr>
+                                <td>Machine Unlearning</td>
+                                <td>모델이 이미 학습한 특정 정보나 패턴을 제거하거나 완화하려는 접근</td>
+                            </tr>
+                            <tr>
+                                <td>LLM의 망각</td>
+                                <td>특정 기억을 단순 파일처럼 지우는 것이 아니라, 모델 행동에 남은 흔적을 어떻게 낮출지 고민하는 문제</td>
+                            </tr>
+                            <tr>
+                                <td>발표 후 생각</td>
+                                <td>망각은 안전성, 프라이버시, 모델 수정, 서비스 운영과 연결될 수 있다</td>
+                            </tr>
+                        </table>
+
+                        <h3>2. Reward Function을 고치는 행위</h3>
+                        <p>발표를 통해 reward function을 고치는 행위가 자율적인 요소를 가진 시스템에서 매우 중요한 요소가 될 수 있겠다는 생각이 남았다. 에이전트가 스스로 판단하고 행동하는 구조에서는 어떤 행동을 보상하고 어떤 행동을 피하게 할 것인지가 전체 시스템의 방향을 바꿀 수 있다.</p>
+
+                        <div class="stat-formula">
+                            자율적 시스템
+                            <br>
+                            -> 목표 설정
+                            <br>
+                            -> reward function
+                            <br>
+                            -> 행동 선택과 수정
+                            <br>
+                            -> 결과와 피드백
+                        </div>
+
+                        <p>따라서 reward function은 단순한 점수 함수가 아니라, 에이전트가 어떤 행동을 더 가치 있게 여기도록 만들 것인가의 설계 지점이다. 머신 언러닝이 모델의 기억과 행동을 수정하는 문제라면, reward function의 수정은 앞으로의 행동 경향을 조정하는 문제로 연결해 볼 수 있다.</p>
+
+                        <h3>3. 수업 실습: A* 탐색 구현</h3>
+                        <p>A*는 목표까지의 실제 비용과 앞으로 남은 비용의 추정치를 함께 사용해 탐색하는 알고리즘이다. BFS가 깊이 순서대로 넓게 확장한다면, A*는 우선순위 큐를 사용해 더 유망해 보이는 노드를 먼저 확장한다. 핵심 평가는 다음과 같이 정리할 수 있다.</p>
+
+                        <div class="stat-formula">
+                            f(n) = g(n) + h(n)
+                            <br>
+                            g(n): 시작점에서 현재 노드까지 실제로 든 비용
+                            <br>
+                            h(n): 현재 노드에서 목표까지 남은 비용의 추정치
+                        </div>
+
+                        <table class="stat-table">
+                            <tr>
+                                <th>A* 구현 요소</th>
+                                <th>역할</th>
+                            </tr>
+                            <tr>
+                                <td>Open set</td>
+                                <td>앞으로 확장할 후보 노드 집합. 보통 우선순위 큐로 관리한다.</td>
+                            </tr>
+                            <tr>
+                                <td>Closed / visited set</td>
+                                <td>이미 처리했거나 더 좋은 경로를 찾은 노드를 관리해 중복 확장을 줄인다.</td>
+                            </tr>
+                            <tr>
+                                <td>g score</td>
+                                <td>각 노드까지 도달하는 현재까지의 최저 비용을 기록한다.</td>
+                            </tr>
+                            <tr>
+                                <td>heuristic</td>
+                                <td>목표까지 남은 거리를 추정한다. 이 값이 탐색의 방향성을 만든다.</td>
+                            </tr>
+                            <tr>
+                                <td>came from</td>
+                                <td>최종 경로를 복원하기 위해 각 노드의 이전 노드를 기록한다.</td>
+                            </tr>
+                        </table>
+
+                        <p>좋은 heuristic은 탐색 공간을 줄이는 데 도움을 준다. 다만 heuristic이 실제 남은 비용을 과하게 낮추거나 높이는 방식에 따라 탐색 결과와 최적성 판단이 달라질 수 있다. 일반적으로 admissible heuristic, 즉 실제 비용을 과대평가하지 않는 휴리스틱을 사용하면 A*의 최적성 논의가 가능해진다.</p>
+
+                        <h3>4. BFS와 A*의 핵심 비교</h3>
+                        <p>BFS와 A*는 모두 상태 공간을 탐색하지만, 어떤 노드를 먼저 볼 것인지가 다르다. BFS는 시작점에서 가까운 깊이부터 차례대로 확장하고, A*는 현재까지의 비용과 목표까지의 추정 비용을 함께 고려해 우선순위를 정한다.</p>
+
+                        <table class="stat-table">
+                            <tr>
+                                <th>구분</th>
+                                <th>BFS</th>
+                                <th>A*</th>
+                            </tr>
+                            <tr>
+                                <td>자료구조</td>
+                                <td>FIFO queue</td>
+                                <td>Priority queue</td>
+                            </tr>
+                            <tr>
+                                <td>확장 기준</td>
+                                <td>깊이가 얕은 노드부터 확장</td>
+                                <td><code>f(n) = g(n) + h(n)</code> 값이 작은 노드부터 확장</td>
+                            </tr>
+                            <tr>
+                                <td>휴리스틱</td>
+                                <td>사용하지 않음</td>
+                                <td>사용함</td>
+                            </tr>
+                            <tr>
+                                <td>장점</td>
+                                <td>가중치가 같거나 없는 그래프에서 최단 경로를 단순하게 보장하기 쉽다</td>
+                                <td>좋은 휴리스틱이 있으면 목표 방향으로 더 효율적으로 탐색할 수 있다</td>
+                            </tr>
+                            <tr>
+                                <td>주의점</td>
+                                <td>분기 수가 크면 너무 많은 노드를 확장할 수 있다</td>
+                                <td>휴리스틱과 방문 처리, 비용 갱신을 잘못 구현하면 잘못된 경로를 선택할 수 있다</td>
+                            </tr>
+                        </table>
+
+                        <p>수업에서 A*를 직접 구현해본 이유는 BFS와 비교했을 때 "정보가 있는 탐색"이 어떻게 달라지는지 보기 위해서다. BFS는 문제의 구조를 모를 때도 넓게 탐색하지만, A*는 목표에 가까워 보이는 방향을 선택한다. 그래서 구현에서는 heuristic을 어떻게 정의하는지, 우선순위 큐에서 어떤 노드를 꺼내는지, 이미 방문한 노드에 더 좋은 비용이 발견되었을 때 어떻게 갱신하는지가 중요하다.</p>
+
+                        <h3>5. 첫 번째 과제 피드백: BFS/DFS 구현과 복잡도</h3>
+                        <p>첫 번째 과제에서는 각자가 BFS와 DFS를 다르게 구현했고, 그 차이를 바탕으로 fail case와 복잡도 케이스를 살펴보았다. 같은 문제를 풀어도 자료구조를 어떻게 쓰는지, goal test를 어디에 두는지, 반복문 구조를 어떻게 잡는지에 따라 실행 흐름이 달라진다.</p>
+
+                        <table class="stat-table">
+                            <tr>
+                                <th>피드백 지점</th>
+                                <th>수업 메모</th>
+                            </tr>
+                            <tr>
+                                <td>구현 방식의 차이</td>
+                                <td>각자 BFS/DFS를 다르게 구현했고, 그 차이 자체가 비교 대상이 되었다</td>
+                            </tr>
+                            <tr>
+                                <td>해시맵 사용</td>
+                                <td>복잡도 측면에서 해시맵을 어떻게 쓰는지, 불필요한 중복 탐색을 줄이는지가 중요했다</td>
+                            </tr>
+                            <tr>
+                                <td>복잡도 질문</td>
+                                <td>구현 방식에 따라 복잡도가 크게 증가할 수 있고, 경우에 따라 높은 차수까지 갈 수 있는지 논의했다</td>
+                            </tr>
+                            <tr>
+                                <td>fail case</td>
+                                <td>정상 케이스뿐 아니라 실패 케이스에서 알고리즘이 어떻게 멈추고 판단하는지도 확인해야 한다</td>
+                            </tr>
+                        </table>
+
+                        <h3>6. Goal Test의 위치</h3>
+                        <p>goal test를 어디에 배치하는지도 중요한 피드백이었다. 수업 메모상 goal test가 가장 상단에 있을 때와, 루프 아래로 들어갈 때 복잡도 표현이 달라질 수 있다고 정리되었다.</p>
+
+                        <div class="stat-comparison">
+                            <div class="stat-comparison-item">
+                                <h4>상단에서 goal test</h4>
+                                <p>목표 상태를 먼저 확인하면 불필요한 확장을 줄일 수 있다. 수업 메모에서는 <code>O(b^d)</code> 수준으로 비교되었다.</p>
+                            </div>
+                            <div class="stat-comparison-item">
+                                <h4>루프 아래에서 goal test</h4>
+                                <p>목표 확인이 늦어지면 한 단계 더 확장한 뒤 검사하게 될 수 있다. 수업 메모에서는 <code>O(b^(d+1))</code> 수준으로 비교되었다.</p>
+                            </div>
+                        </div>
+
+                        <p>이 차이는 단순히 코드 위치의 문제가 아니라, 탐색 알고리즘에서 언제 상태를 검사하고 언제 자식을 생성하는지의 문제다. 같은 BFS/DFS라도 goal test 위치와 방문 처리 방식에 따라 불필요한 노드 확장이 생길 수 있다.</p>
+
+                        <h3>7. Problem과 Goal을 책 구조대로 구현하기</h3>
+                        <p>과제 피드백 중에는 Problem과 Goal을 책에서 제시한 구조대로 구현한 점이 좋았다는 언급이 있었다. 문제 상태, 목표 조건, 탐색 절차를 분리해두면 알고리즘 자체를 더 명확하게 볼 수 있고, fail case나 복잡도 케이스를 따로 검토하기 쉬워진다.</p>
+
+                        <table class="stat-table">
+                            <tr>
+                                <th>구조</th>
+                                <th>의미</th>
+                            </tr>
+                            <tr>
+                                <td>Problem</td>
+                                <td>초기 상태, 가능한 행동, 상태 전이, 비용 등 문제 자체의 정의</td>
+                            </tr>
+                            <tr>
+                                <td>Goal</td>
+                                <td>현재 상태가 목표 상태인지 판단하는 조건</td>
+                            </tr>
+                            <tr>
+                                <td>Search</td>
+                                <td>Problem과 Goal을 사용해 상태 공간을 탐색하는 절차</td>
+                            </tr>
+                        </table>
+
+                        <p>이번 과제에서 중요한 점은 하나의 정답 코드만 보는 것이 아니라, 서로 다른 구현을 비교하며 어디서 실패하는지, 어디서 복잡도가 커지는지 확인하는 것이었다. 구현은 다를 수 있지만, 문제 정의와 goal test, 실패 케이스, 복잡도 분석은 반드시 함께 봐야 한다.</p>
+
+                        <ul>
+                            <li>10주차는 책 발표와 첫 번째 과제 피드백 중심의 세션이었다.</li>
+                            <li>발표에서는 머신 언러닝과 LLM의 망각 문제가 주요 생각거리로 남았다.</li>
+                            <li>reward function을 고치는 행위는 자율 시스템의 행동 방향을 조정하는 중요한 요소로 볼 수 있다.</li>
+                            <li>수업 시간에는 A*를 직접 구현하며 heuristic, priority queue, 비용 갱신을 실습했다.</li>
+                            <li>BFS와 A*는 모두 탐색 알고리즘이지만, BFS는 깊이 기준, A*는 비용과 휴리스틱 기준으로 확장한다.</li>
+                            <li>BFS/DFS 과제에서는 각자의 구현 차이, fail case, 복잡도 케이스가 비교되었다.</li>
+                            <li>goal test 위치는 탐색 확장과 복잡도에 영향을 줄 수 있다.</li>
+                            <li>Problem과 Goal을 책 구조대로 분리해 구현하면 알고리즘을 더 명확하게 검토할 수 있다.</li>
+                        </ul>
+                    </div>
+
+                    <div class="lang-en">
+                        <p class="week-references"><em>Keywords: presentation session, book presentation, Park Sewon, machine unlearning, LLM forgetting, reward function, A* search, BFS, DFS, goal test, heuristic, complexity, failure case</em></p>
+
+                        <p>Week 10 combined a presentation session, an in-class <strong>A* search implementation practice</strong>, and first-assignment feedback. The presentation discussed <strong>machine unlearning</strong> and the question of forgetting in LLMs. The practice and feedback compared BFS, DFS, A* implementations, goal test placement, failure cases, and complexity cases.</p>
+
+                        <div class="lecture-note">
+                            <p><strong>Note.</strong> The week connected presentation themes with actual implementation work. The class implemented A* and discussed different implementations, failure cases, and complexity differences. In search algorithms, small choices in data structure and test placement can significantly change execution behavior.</p>
+                        </div>
+
+                        <h3>1. Machine Unlearning and LLM Forgetting</h3>
+                        <p>Machine unlearning can be understood as an attempt to remove or reduce specific information or patterns from a trained model. In the presentation, LLM forgetting was framed as a problem of partially erasing or weakening a learned trace. This is not the same as deleting a file, because the information may already be reflected in weights and behavioral tendencies.</p>
+
+                        <table class="stat-table">
+                            <tr>
+                                <th>Lens</th>
+                                <th>Summary</th>
+                            </tr>
+                            <tr>
+                                <td>Machine unlearning</td>
+                                <td>Reducing or removing selected learned information or patterns from a model</td>
+                            </tr>
+                            <tr>
+                                <td>LLM forgetting</td>
+                                <td>Controlling traces that remain in model behavior rather than deleting a simple record</td>
+                            </tr>
+                            <tr>
+                                <td>Follow-up thought</td>
+                                <td>Forgetting connects to safety, privacy, model updates, and service operation</td>
+                            </tr>
+                        </table>
+
+                        <h3>2. Reward Function as a Control Point</h3>
+                        <p>The discussion also suggested that changing a reward function can be important in systems with autonomous behavior. When an agent judges and acts by itself, the reward function affects which behaviors are encouraged and which are discouraged.</p>
+
+                        <div class="stat-formula">
+                            autonomous system
+                            <br>
+                            -> goal setting
+                            <br>
+                            -> reward function
+                            <br>
+                            -> action selection and adjustment
+                            <br>
+                            -> outcome and feedback
+                        </div>
+
+                        <p>In that sense, a reward function is not merely a scoring formula. It is a design point that shapes what the agent treats as valuable. If machine unlearning adjusts memory or behavior already learned, reward function modification can be seen as adjusting future behavioral tendencies.</p>
+
+                        <h3>3. In-Class Practice: A* Search</h3>
+                        <p>A* combines the actual cost from the start node with an estimate of the remaining cost to the goal. BFS expands broadly by depth, while A* uses a priority queue to expand the node that looks most promising.</p>
+
+                        <div class="stat-formula">
+                            f(n) = g(n) + h(n)
+                            <br>
+                            g(n): actual cost from the start to the current node
+                            <br>
+                            h(n): estimated remaining cost from the current node to the goal
+                        </div>
+
+                        <table class="stat-table">
+                            <tr>
+                                <th>A* implementation element</th>
+                                <th>Role</th>
+                            </tr>
+                            <tr>
+                                <td>Open set</td>
+                                <td>Candidate nodes to expand, usually managed with a priority queue</td>
+                            </tr>
+                            <tr>
+                                <td>Closed / visited set</td>
+                                <td>Reduces repeated expansion by tracking processed nodes or better-known paths</td>
+                            </tr>
+                            <tr>
+                                <td>g score</td>
+                                <td>Stores the best known cost to reach each node</td>
+                            </tr>
+                            <tr>
+                                <td>Heuristic</td>
+                                <td>Estimates remaining distance to the goal and gives the search direction</td>
+                            </tr>
+                            <tr>
+                                <td>Came from</td>
+                                <td>Stores predecessor nodes so the final path can be reconstructed</td>
+                            </tr>
+                        </table>
+
+                        <p>A useful heuristic can reduce the search space. However, the result and optimality discussion depend on how the heuristic estimates the remaining cost. With an admissible heuristic, meaning one that does not overestimate the true remaining cost, A* can be discussed as an optimal search method under the usual assumptions.</p>
+
+                        <h3>4. BFS and A* Core Comparison</h3>
+                        <p>BFS and A* both search a state space, but they differ in which node is expanded first. BFS expands by shallowest depth. A* combines the cost so far with a heuristic estimate of the remaining cost.</p>
+
+                        <table class="stat-table">
+                            <tr>
+                                <th>Aspect</th>
+                                <th>BFS</th>
+                                <th>A*</th>
+                            </tr>
+                            <tr>
+                                <td>Data structure</td>
+                                <td>FIFO queue</td>
+                                <td>Priority queue</td>
+                            </tr>
+                            <tr>
+                                <td>Expansion rule</td>
+                                <td>Expand shallower nodes first</td>
+                                <td>Expand nodes with lower <code>f(n) = g(n) + h(n)</code></td>
+                            </tr>
+                            <tr>
+                                <td>Heuristic</td>
+                                <td>Not used</td>
+                                <td>Used</td>
+                            </tr>
+                            <tr>
+                                <td>Strength</td>
+                                <td>Simple shortest-path behavior in unweighted or equal-cost graphs</td>
+                                <td>Can search more efficiently toward the goal when the heuristic is useful</td>
+                            </tr>
+                            <tr>
+                                <td>Risk</td>
+                                <td>Can expand too many nodes when the branching factor is large</td>
+                                <td>Incorrect heuristic, visit handling, or cost update can lead to wrong behavior</td>
+                            </tr>
+                        </table>
+
+                        <p>The point of implementing A* in class was to see how informed search differs from BFS. BFS explores broadly without domain guidance, while A* uses an estimate of the goal direction. Implementation details such as heuristic definition, priority queue ordering, and updating a node when a better cost is found are therefore critical.</p>
+
+                        <h3>5. BFS/DFS Assignment Feedback</h3>
+                        <p>The first assignment showed that different students implemented BFS and DFS in different ways. Those differences became useful comparison points for failure cases and complexity. Even for the same problem, the use of data structures, goal test placement, and loop structure can change execution behavior.</p>
+
+                        <table class="stat-table">
+                            <tr>
+                                <th>Feedback point</th>
+                                <th>Class note</th>
+                            </tr>
+                            <tr>
+                                <td>Implementation differences</td>
+                                <td>Different BFS/DFS implementations were compared</td>
+                            </tr>
+                            <tr>
+                                <td>Hash map usage</td>
+                                <td>Using hash maps to avoid unnecessary repeated search was an important complexity issue</td>
+                            </tr>
+                            <tr>
+                                <td>Complexity</td>
+                                <td>The class discussed how implementation choices can increase complexity significantly</td>
+                            </tr>
+                            <tr>
+                                <td>Failure cases</td>
+                                <td>The implementation should be checked not only on success cases but also on how it stops or fails</td>
+                            </tr>
+                        </table>
+
+                        <h3>6. Goal Test Placement</h3>
+                        <p>Goal test placement was another important feedback point. The class note compared putting the goal test near the top of the loop with putting it below expansion logic.</p>
+
+                        <div class="stat-comparison">
+                            <div class="stat-comparison-item">
+                                <h4>Goal test first</h4>
+                                <p>Checking the goal earlier can reduce unnecessary expansion. The class note compared this with <code>O(b^d)</code>.</p>
+                            </div>
+                            <div class="stat-comparison-item">
+                                <h4>Goal test after expansion</h4>
+                                <p>Checking the goal later can cause one more level of expansion before the test. The class note compared this with <code>O(b^(d+1))</code>.</p>
+                            </div>
+                        </div>
+
+                        <p>The point is not only code placement. It is about when a search algorithm tests a state and when it generates children. In BFS/DFS, goal test placement and visited-state handling can create unnecessary node expansion.</p>
+
+                        <h3>7. Problem and Goal Structure</h3>
+                        <p>The feedback also noted that implementing Problem and Goal in the structure used by the textbook was helpful. Separating problem definition, goal condition, and search procedure makes the algorithm easier to inspect, especially when checking failure cases and complexity.</p>
+
+                        <table class="stat-table">
+                            <tr>
+                                <th>Structure</th>
+                                <th>Meaning</th>
+                            </tr>
+                            <tr>
+                                <td>Problem</td>
+                                <td>Initial state, possible actions, state transitions, and related problem definition</td>
+                            </tr>
+                            <tr>
+                                <td>Goal</td>
+                                <td>The condition used to decide whether the current state is a target state</td>
+                            </tr>
+                            <tr>
+                                <td>Search</td>
+                                <td>The procedure that explores the state space using the problem and goal definitions</td>
+                            </tr>
+                        </table>
+
+                        <ul>
+                            <li>Week 10 centered on a book presentation and first-assignment feedback.</li>
+                            <li>The presentation left machine unlearning and LLM forgetting as key questions.</li>
+                            <li>Changing reward functions can be a major control point for autonomous systems.</li>
+                            <li>The class implemented A* and practiced heuristic use, priority queues, and cost updates.</li>
+                            <li>BFS and A* are both search algorithms, but BFS expands by depth while A* expands by cost plus heuristic estimate.</li>
+                            <li>The BFS/DFS assignment compared implementation differences, failure cases, and complexity cases.</li>
+                            <li>Goal test placement can affect search expansion and complexity.</li>
+                            <li>Separating Problem and Goal in the textbook structure makes the algorithm easier to review.</li>
+                        </ul>
+                    </div>
+                </div>
+            </section>
+        </article>
+
+        <div id="site-footer"></div>
+    </div>
+
+    <script src="../../../common.js"></script>
+</body>
+</html>
