@@ -269,6 +269,22 @@
     overflow-x: auto;
 }
 
+.lecture-code {
+    margin: 14px 0 18px 0;
+    padding: 14px 16px;
+    overflow-x: auto;
+    background: rgba(255, 255, 255, 0.55);
+    border: 1px solid rgba(139, 69, 19, 0.14);
+    border-radius: 6px;
+    color: #333;
+    font-size: 0.84em;
+    line-height: 1.55;
+}
+
+.lecture-code code {
+    font-family: "SFMono-Regular", Consolas, "Liberation Mono", monospace;
+}
+
 .stat-chart {
     text-align: center;
     margin: 20px 0;
@@ -506,6 +522,12 @@
 [data-theme="dark"] .stat-formula {
     background: rgba(240, 230, 140, 0.05);
     border-left-color: #F0E68C;
+}
+
+[data-theme="dark"] .lecture-code {
+    background: rgba(40, 40, 40, 0.72);
+    border-color: rgba(240, 230, 140, 0.14);
+    color: #d8d8d8;
 }
 
 [data-theme="dark"] .stat-chart {

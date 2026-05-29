@@ -1,0 +1,408 @@
+<!DOCTYPE html>
+<html data-theme="dark" data-lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>AI Theory - Week 11 - Sewon Park</title>
+    <link rel="stylesheet" type="text/css" href="../../../style.css">
+    <link rel="stylesheet" type="text/css" href="../../../assets/css/lectures.css">
+</head>
+<body>
+    <button class="theme-toggle" onclick="toggleTheme()" aria-label="Toggle dark mode"></button>
+    <button class="lang-toggle" onclick="toggleLanguage()" aria-label="Toggle language">EN</button>
+
+    <div class="container">
+        <div id="site-header"></div>
+        <div id="site-nav"></div>
+
+        <article class="course-page">
+            <div class="course-header">
+                <h1 data-en="AI Theory" data-kr="인공지능론">AI Theory</h1>
+                <p class="course-meta" data-en="2026 Spring | Intensive Course | Online 3h + Offline 3h" data-kr="2026 봄학기 | 압축형 수업 | 온라인 3시간 + 오프라인 3시간">2026 Spring | Intensive Course | Online 3h + Offline 3h</p>
+            </div>
+
+            <div class="course-nav">
+                <a href="../../../lectures.html" class="back-to-lectures" data-en="Back to Lectures" data-kr="강의 목록으로">Back to Lectures</a>
+                <span class="nav-separator">/</span>
+                <a href="./index.html" class="back-to-course" data-en="Course Home" data-kr="과목 홈">Course Home</a>
+            </div>
+
+            <div class="week-nav">
+                <span data-en="Weeks:" data-kr="주차:">Weeks:</span>
+                <a href="week-09.html" class="week-link">W9</a>
+                <a href="week-10.html" class="week-link">W10</a>
+                <a href="week-11.html" class="week-link current">W11</a>
+                <a href="week-12.html" class="week-link">W12</a>
+            </div>
+
+            <section class="week-section" id="week-11">
+                <h2 data-en="Week 11" data-kr="11주차">Week 11</h2>
+                <p class="week-date" data-en="2026-05-19 · Local search practice" data-kr="2026-05-19 · 지역 탐색 실습">2026-05-19 · Local search practice</p>
+                <div class="week-content">
+                    <span class="assignment-chip" data-en="Local Search" data-kr="지역 탐색">Local Search</span>
+
+                    <div class="lang-kr" hidden>
+                        <p class="week-references"><em>Keywords: local search, 100-bit string optimization, hill climbing, random restart, random walk, graph search, simulated annealing, temperature, acceptance probability, neighborhood, objective value</em></p>
+
+                        <p>11주차는 전역 탐색 문제를 모두 펼쳐 보는 방식에서 벗어나, 현재 해 주변을 움직이며 더 좋은 해를 찾아가는 <strong>지역 탐색(local search)</strong>을 실습한 시간이었다. 과제는 <strong>100-bit string 최적화</strong>였고, 수업에서는 hill climbing을 random-restart 방식으로 진행하고, 그래프 위에서의 random walk를 살펴본 뒤, simulated annealing의 용어와 알고리즘에 익숙해지는 것을 목표로 했다.</p>
+
+                        <div class="lecture-note">
+                            <p><strong>메모.</strong> 지역 탐색은 전체 경로보다 현재 해의 품질과 이웃 해의 품질을 비교하는 데 집중한다. 그래서 구현은 단순해 보이지만, 지역 최적해에 갇히지 않기 위한 restart, random move, 확률적 수용 규칙이 중요해진다.</p>
+                        </div>
+
+                        <h3>1. 과제: 100-bit string 최적화</h3>
+                        <p>100-bit string 최적화 문제에서는 하나의 해를 길이 100의 0/1 리스트로 표현한다. 각 위치의 비트를 바꾸면 다른 후보 해가 되고, 평가 함수는 그 후보 해가 얼마나 좋은지를 점수로 반환한다. Local search에서는 전체 가능한 문자열을 모두 나열하지 않고, 현재 문자열에서 한 비트 또는 일부 비트를 바꾼 이웃 해를 비교하며 점수를 개선한다.</p>
+
+                        <table class="stat-table">
+                            <tr>
+                                <th>항목</th>
+                                <th>100-bit string에서의 의미</th>
+                            </tr>
+                            <tr>
+                                <td>State</td>
+                                <td>길이 100의 0/1 문자열 또는 리스트</td>
+                            </tr>
+                            <tr>
+                                <td>Neighbor</td>
+                                <td>현재 문자열에서 한 비트 등을 뒤집어 만든 후보</td>
+                            </tr>
+                            <tr>
+                                <td>Objective value</td>
+                                <td>후보 문자열을 평가한 점수</td>
+                            </tr>
+                            <tr>
+                                <td>Search goal</td>
+                                <td>제한된 반복 안에서 더 높은 점수의 문자열 찾기</td>
+                            </tr>
+                        </table>
+
+                        <p>이 과제에서 중요한 점은 알고리즘이 "항상 좋아지는 이동만 할 것인가", "나쁜 이동도 가끔 받아들일 것인가", "한 번의 시작점에 의존할 것인가"를 직접 비교하는 것이다. 같은 100-bit 표현을 쓰더라도 neighbor 생성 방식, restart 횟수, temperature 감소 방식에 따라 결과가 달라진다.</p>
+
+                        <pre class="lecture-code"><code>state = random_100_bit_string()
+neighbor = flip_one_bit(state)
+delta = value(neighbor) - value(state)</code></pre>
+
+                        <h3>2. Hill Climbing과 Random-Restart</h3>
+                        <p>Hill climbing은 현재 해의 이웃 중 더 좋은 해를 선택해 조금씩 올라가는 방식이다. 목표가 값을 최대화하는 문제라면, 현재 해보다 높은 값을 가진 이웃을 찾고 그쪽으로 이동한다. 더 좋은 이웃이 없으면 현재 위치는 지역 최적해가 된다.</p>
+
+                        <table class="stat-table">
+                            <tr>
+                                <th>구성 요소</th>
+                                <th>의미</th>
+                            </tr>
+                            <tr>
+                                <td>Current solution</td>
+                                <td>현재 평가 중인 해</td>
+                            </tr>
+                            <tr>
+                                <td>Neighbor</td>
+                                <td>현재 해를 조금 바꿔 만든 후보 해</td>
+                            </tr>
+                            <tr>
+                                <td>Value / score</td>
+                                <td>해의 품질을 평가하는 목적 함수 값</td>
+                            </tr>
+                            <tr>
+                                <td>Local optimum</td>
+                                <td>주변 이웃보다 나쁘지 않지만 전체 최적은 아닐 수 있는 해</td>
+                            </tr>
+                        </table>
+
+                        <p>문제는 hill climbing이 한 번의 시작점에 크게 의존한다는 점이다. 그래서 이번 수업에서는 <strong>random-restart hill climbing</strong>으로 진행했다. 무작위 초기 해에서 hill climbing을 여러 번 실행하고, 각 실행에서 얻은 결과 중 가장 좋은 해를 최종 결과로 선택한다.</p>
+
+                        <div class="stat-formula">
+                            random initial solution -> hill climbing -> local optimum
+                            <br>
+                            repeat several times
+                            <br>
+                            choose the best result among restarts
+                        </div>
+
+                        <h3>3. Random Walk on a Graph</h3>
+                        <p>Random walk는 그래프에서 현재 노드의 이웃 중 하나를 무작위로 선택해 이동하는 방식이다. BFS나 A*처럼 명확한 목표 방향이나 우선순위를 두기보다, 움직임 자체에 확률성을 둔다. 따라서 좋은 해를 보장하기보다는 그래프 구조를 탐색하거나, 결정적 탐색이 놓치는 경로를 우연히 방문하는 데 의미가 있다.</p>
+
+                        <table class="stat-table">
+                            <tr>
+                                <th>비교</th>
+                                <th>Hill climbing</th>
+                                <th>Random walk</th>
+                            </tr>
+                            <tr>
+                                <td>이동 기준</td>
+                                <td>더 좋은 이웃을 우선 선택</td>
+                                <td>이웃 중 하나를 무작위 선택</td>
+                            </tr>
+                            <tr>
+                                <td>방향성</td>
+                                <td>목적 함수 값의 개선 방향</td>
+                                <td>확률적 이동</td>
+                            </tr>
+                            <tr>
+                                <td>장점</td>
+                                <td>좋은 이웃이 있으면 빠르게 개선</td>
+                                <td>특정 방향에 갇히지 않고 이동 가능</td>
+                            </tr>
+                            <tr>
+                                <td>주의점</td>
+                                <td>지역 최적해에 갇힐 수 있음</td>
+                                <td>무작위 이동만으로는 비효율적일 수 있음</td>
+                            </tr>
+                        </table>
+
+                        <h3>4. Simulated Annealing 용어</h3>
+                        <p>Simulated annealing은 hill climbing처럼 이웃 해로 이동하지만, 항상 좋아지는 방향만 선택하지 않는다. 새로운 해가 더 나쁘더라도 일정 확률로 받아들인다. 초반에는 temperature가 높아 나쁜 해도 비교적 자주 받아들이고, 시간이 지나 temperature가 낮아지면 더 보수적으로 움직인다.</p>
+
+                        <table class="stat-table">
+                            <tr>
+                                <th>용어</th>
+                                <th>설명</th>
+                            </tr>
+                            <tr>
+                                <td>Temperature T</td>
+                                <td>나쁜 해를 받아들일 가능성을 조절하는 값</td>
+                            </tr>
+                            <tr>
+                                <td>Cooling schedule</td>
+                                <td>반복이 진행될수록 T를 낮추는 규칙</td>
+                            </tr>
+                            <tr>
+                                <td>Delta E</td>
+                                <td><code>value(neighbor) - value(current)</code>. 최대화 문제에서는 양수면 더 좋은 해다.</td>
+                            </tr>
+                            <tr>
+                                <td>Acceptance probability</td>
+                                <td>나쁜 해를 확률적으로 받아들이는 기준</td>
+                            </tr>
+                        </table>
+
+                        <div class="stat-formula">
+                            Delta E = value(neighbor) - value(current)
+                            <br>
+                            if Delta E &gt;= 0: accept neighbor
+                            <br>
+                            if Delta E &lt; 0: accept neighbor when e^(Delta E / T) &gt; rand(0, 1)
+                        </div>
+
+                        <p>여기서 최대화 문제를 기준으로 하면, 이웃 해가 더 좋을 때는 바로 교체한다. 이웃 해가 더 나쁘면 <code>e^(Delta E / T)</code>와 <code>rand(0, 1)</code>을 비교해 확률적으로 교체한다. <code>Delta E</code>가 음수여도 T가 충분히 크면 받아들일 가능성이 남고, T가 작아지면 받아들이기 어려워진다.</p>
+
+                        <h3>5. SA Algorithm 흐름</h3>
+                        <p>Simulated annealing은 지역 최적해를 피하기 위해 일부러 손해 보는 이동을 허용한다. 하지만 무작정 흔들리는 것이 아니라, temperature를 점점 낮추며 초반에는 탐색을 넓게 하고 후반에는 좋은 해 주변에 수렴하게 만든다.</p>
+
+                        <pre class="lecture-code"><code>current = random_solution()
+best = current
+T = initial_temperature
+
+while T &gt; minimum_temperature:
+    neighbor = random_neighbor(current)
+    delta = value(neighbor) - value(current)
+
+    if delta &gt;= 0:
+        current = neighbor
+    elif exp(delta / T) &gt; rng.random():
+        current = neighbor
+
+    if value(current) &gt; value(best):
+        best = current
+
+    T = cool(T)
+
+return best</code></pre>
+
+                        <ul>
+                            <li>11주차는 지역 탐색을 직접 움직여보는 실습 중심 수업이었다.</li>
+                            <li>과제는 100-bit string을 local search로 최적화하는 문제였다.</li>
+                            <li>Hill climbing은 더 좋은 이웃으로 이동하지만, 지역 최적해에 갇힐 수 있다.</li>
+                            <li>Random-restart는 시작점을 여러 번 바꾸어 hill climbing의 약점을 줄인다.</li>
+                            <li>Random walk는 그래프에서 이웃을 무작위로 선택해 이동하는 확률적 탐색이다.</li>
+                            <li>Simulated annealing은 더 나쁜 해도 확률적으로 받아들이며 탐색 범위를 넓힌다.</li>
+                            <li>SA의 핵심 조건은 <code>Delta E = value(neighbor) - value(current)</code>와 <code>e^(Delta E / T) &gt; rand(0, 1)</code>이다.</li>
+                        </ul>
+                    </div>
+
+                    <div class="lang-en">
+                        <p class="week-references"><em>Keywords: local search, 100-bit string optimization, hill climbing, random restart, random walk, graph search, simulated annealing, temperature, acceptance probability, neighborhood, objective value</em></p>
+
+                        <p>Week 11 practiced <strong>local search</strong>: moving around the neighborhood of a current solution instead of expanding the entire search space. The assignment was <strong>100-bit string optimization</strong>, and the class used random-restart hill climbing, random walk on a graph, and simulated annealing to become familiar with the core terms and algorithmic behavior.</p>
+
+                        <div class="lecture-note">
+                            <p><strong>Note.</strong> Local search focuses on the value of the current solution and its neighbors rather than full path construction. The implementation can look simple, but restart, random movement, and probabilistic acceptance matter because a deterministic climb can get stuck.</p>
+                        </div>
+
+                        <h3>1. Assignment: 100-bit String Optimization</h3>
+                        <p>In the 100-bit string optimization problem, one solution is represented as a length-100 list of 0s and 1s. Flipping bits creates candidate solutions, and the evaluation function returns how good each candidate is. Local search does not enumerate every possible string; it compares neighboring strings near the current one and tries to improve the score.</p>
+
+                        <table class="stat-table">
+                            <tr>
+                                <th>Item</th>
+                                <th>Meaning in a 100-bit string problem</th>
+                            </tr>
+                            <tr>
+                                <td>State</td>
+                                <td>A length-100 binary string or list</td>
+                            </tr>
+                            <tr>
+                                <td>Neighbor</td>
+                                <td>A candidate made by flipping one or more bits</td>
+                            </tr>
+                            <tr>
+                                <td>Objective value</td>
+                                <td>The score returned by evaluating the candidate string</td>
+                            </tr>
+                            <tr>
+                                <td>Search goal</td>
+                                <td>Find a higher-scoring string within a limited number of iterations</td>
+                            </tr>
+                        </table>
+
+                        <p>The assignment made the tradeoffs visible: whether the algorithm accepts only improving moves, occasionally accepts worse moves, or depends too much on one starting point. With the same 100-bit representation, results can change depending on neighbor generation, restart count, and the temperature schedule.</p>
+
+                        <pre class="lecture-code"><code>state = random_100_bit_string()
+neighbor = flip_one_bit(state)
+delta = value(neighbor) - value(state)</code></pre>
+
+                        <h3>2. Hill Climbing and Random-Restart</h3>
+                        <p>Hill climbing repeatedly moves from the current solution to a better neighboring solution. In a maximization problem, it looks for a neighbor with a higher value and moves there. If no better neighbor exists, the current state is a local optimum.</p>
+
+                        <table class="stat-table">
+                            <tr>
+                                <th>Component</th>
+                                <th>Meaning</th>
+                            </tr>
+                            <tr>
+                                <td>Current solution</td>
+                                <td>The solution currently being evaluated</td>
+                            </tr>
+                            <tr>
+                                <td>Neighbor</td>
+                                <td>A candidate solution made by slightly changing the current solution</td>
+                            </tr>
+                            <tr>
+                                <td>Value / score</td>
+                                <td>The objective-function value that evaluates solution quality</td>
+                            </tr>
+                            <tr>
+                                <td>Local optimum</td>
+                                <td>A solution that is not worse than its neighbors but may not be globally optimal</td>
+                            </tr>
+                        </table>
+
+                        <p>The weakness is dependence on the starting point. The class therefore used <strong>random-restart hill climbing</strong>: run hill climbing from several random initial solutions, then keep the best result across all restarts.</p>
+
+                        <div class="stat-formula">
+                            random initial solution -> hill climbing -> local optimum
+                            <br>
+                            repeat several times
+                            <br>
+                            choose the best result among restarts
+                        </div>
+
+                        <h3>3. Random Walk on a Graph</h3>
+                        <p>A random walk moves through a graph by randomly choosing one of the current node's neighbors. Unlike BFS or A*, it does not use a clear priority rule or goal direction. Its value is in probabilistic movement: it may visit paths that a deterministic rule would not choose.</p>
+
+                        <table class="stat-table">
+                            <tr>
+                                <th>Comparison</th>
+                                <th>Hill climbing</th>
+                                <th>Random walk</th>
+                            </tr>
+                            <tr>
+                                <td>Move rule</td>
+                                <td>Prefer a better neighbor</td>
+                                <td>Randomly choose a neighbor</td>
+                            </tr>
+                            <tr>
+                                <td>Direction</td>
+                                <td>Objective-value improvement</td>
+                                <td>Probabilistic movement</td>
+                            </tr>
+                            <tr>
+                                <td>Strength</td>
+                                <td>Improves quickly when a better neighbor exists</td>
+                                <td>Can keep moving without committing to one local direction</td>
+                            </tr>
+                            <tr>
+                                <td>Risk</td>
+                                <td>Can get stuck in a local optimum</td>
+                                <td>Pure randomness can be inefficient</td>
+                            </tr>
+                        </table>
+
+                        <h3>4. Simulated Annealing Terms</h3>
+                        <p>Simulated annealing also moves to neighboring solutions, but it does not accept only improving moves. If a new solution is worse, it may still replace the current solution with some probability. Early in the run, the temperature is high and worse moves are accepted more often. Later, the temperature decreases and the search becomes more conservative.</p>
+
+                        <table class="stat-table">
+                            <tr>
+                                <th>Term</th>
+                                <th>Explanation</th>
+                            </tr>
+                            <tr>
+                                <td>Temperature T</td>
+                                <td>Controls how likely the algorithm is to accept worse solutions</td>
+                            </tr>
+                            <tr>
+                                <td>Cooling schedule</td>
+                                <td>The rule that lowers T as iterations continue</td>
+                            </tr>
+                            <tr>
+                                <td>Delta E</td>
+                                <td><code>value(neighbor) - value(current)</code>. In maximization, a positive value is better.</td>
+                            </tr>
+                            <tr>
+                                <td>Acceptance probability</td>
+                                <td>The probabilistic rule used to accept a worse solution</td>
+                            </tr>
+                        </table>
+
+                        <div class="stat-formula">
+                            Delta E = value(neighbor) - value(current)
+                            <br>
+                            if Delta E &gt;= 0: accept neighbor
+                            <br>
+                            if Delta E &lt; 0: accept neighbor when e^(Delta E / T) &gt; rand(0, 1)
+                        </div>
+
+                        <p>For a maximization problem, a better neighbor is accepted immediately. If the neighbor is worse, the algorithm compares <code>e^(Delta E / T)</code> with <code>rand(0, 1)</code>. Even when <code>Delta E</code> is negative, a high T leaves a meaningful chance of acceptance; as T gets smaller, acceptance becomes harder.</p>
+
+                        <h3>5. SA Algorithm Flow</h3>
+                        <p>Simulated annealing avoids local optima by allowing occasional worse moves. It is not random wandering forever: the temperature gradually cools, so the early stage explores broadly and the later stage settles around stronger solutions.</p>
+
+                        <pre class="lecture-code"><code>current = random_solution()
+best = current
+T = initial_temperature
+
+while T &gt; minimum_temperature:
+    neighbor = random_neighbor(current)
+    delta = value(neighbor) - value(current)
+
+    if delta &gt;= 0:
+        current = neighbor
+    elif exp(delta / T) &gt; rng.random():
+        current = neighbor
+
+    if value(current) &gt; value(best):
+        best = current
+
+    T = cool(T)
+
+return best</code></pre>
+
+                        <ul>
+                            <li>Week 11 was a practice-centered class on local search.</li>
+                            <li>The assignment optimized a 100-bit string with local search.</li>
+                            <li>Hill climbing moves to a better neighbor but can get trapped in a local optimum.</li>
+                            <li>Random-restart changes the starting point several times to reduce that weakness.</li>
+                            <li>Random walk moves through graph neighbors by random choice.</li>
+                            <li>Simulated annealing accepts worse solutions probabilistically to explore more broadly.</li>
+                            <li>The key SA condition is <code>Delta E = value(neighbor) - value(current)</code> and <code>e^(Delta E / T) &gt; rand(0, 1)</code>.</li>
+                        </ul>
+                    </div>
+                </div>
+            </section>
+        </article>
+
+        <div id="site-footer"></div>
+    </div>
+
+    <script src="../../../common.js"></script>
+</body>
+</html>
