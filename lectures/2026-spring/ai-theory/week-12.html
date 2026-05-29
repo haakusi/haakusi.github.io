@@ -47,7 +47,7 @@
                         <p>12주차는 <strong>좀비 아포칼립스</strong> 상황을 배경으로 한 <code>evaluate-search.py</code> 관련 문제를 풀며, 유전 알고리즘의 기본 연산자를 직접 구현하고 비교한 실습 시간이었다. 핵심은 population에서 부모를 선택하고, crossover로 자식을 만들고, mutate로 변화를 주며, capacity 제약을 넘는 해를 repair하는 흐름을 코드로 확인하는 것이었다.</p>
 
                         <div class="lecture-note">
-                            <p><strong>메모.</strong> 아래 코드는 수업 중 나온 학생 구현 예시를 이름과 학번 없이 정리한 것이다. 같은 연산자라도 선택 방식, 복사 여부, 가중치 처리, 제약 조건 복구 방식에 따라 탐색 결과가 달라질 수 있다.</p>
+                            <p><strong>메모.</strong> 수업 중에는 학생들이 여러 구현 예시를 제안했지만, 아래 코드는 특정 제출물이 아니라 연산자 개념을 설명하기 위한 일반형 예시로 정리했다. 같은 연산자라도 선택 방식, 복사 여부, 가중치 처리, 제약 조건 복구 방식에 따라 탐색 결과가 달라질 수 있다.</p>
                         </div>
 
                         <h3>1. 전체 실습 흐름</h3>
@@ -98,51 +98,85 @@ for generation in range(max_generations):
                         <p>여기서 핵심은 함수 시그니처를 맞추고, 무작위 선택에는 전달받은 <code>rng</code>를 사용하는 것이다. 그래야 같은 seed에서 결과를 재현할 수 있고, 서로 다른 구현을 공정하게 비교할 수 있다.</p>
 
                         <h3>3. Select: Tournament 방식</h3>
-                        <p>Tournament selection은 population에서 몇 개의 후보를 무작위로 뽑고, 그중 score가 가장 높은 individual을 부모로 선택한다. 아래 예시는 세 개의 후보를 뽑는 tournament 방식이다.</p>
+                        <p>Tournament selection은 population에서 몇 개의 후보를 무작위로 뽑고, 그중 score가 가장 높은 individual을 부모로 선택한다. 후보 수를 <code>tournament_size</code>로 조절하면 선택 압력을 바꿀 수 있다.</p>
 
-                        <pre class="lecture-code"><code>def select(population: list[list[int]], scores: list[int], rng: random.Random) -&gt; list[int]:
-    idx1 = rng.randint(0, len(population) - 1)
-    idx2 = rng.randint(0, len(population) - 1)
-    idx3 = rng.randint(0, len(population) - 1)
-    best_idx = idx1
-    if scores[idx2] &gt; scores[best_idx]:
-        best_idx = idx2
-    if scores[idx3] &gt; scores[best_idx]:
-        best_idx = idx3
+                        <pre class="lecture-code"><code>def select_tournament(
+    population: list[list[int]],
+    scores: list[float],
+    rng: random.Random,
+    tournament_size: int = 3,
+) -&gt; list[int]:
+    if not population:
+        raise ValueError("population must not be empty")
+
+    candidate_indices = [
+        rng.randrange(len(population))
+        for _ in range(tournament_size)
+    ]
+    best_idx = max(candidate_indices, key=lambda idx: scores[idx])
     return population[best_idx].copy()</code></pre>
 
                         <p>이 방식은 높은 점수를 가진 individual이 선택될 가능성을 높이지만, 완전히 최고 점수만 고르는 방식은 아니다. 후보를 무작위로 뽑기 때문에 population의 다양성이 어느 정도 유지된다.</p>
 
                         <h3>4. Select: Roulette Wheel 방식</h3>
-                        <p>Roulette wheel selection은 score를 weight처럼 사용해 부모를 뽑는다. 점수가 높을수록 선택될 확률이 커진다.</p>
+                        <p>Roulette wheel selection은 score를 weight처럼 사용해 부모를 뽑는다. 점수가 높을수록 선택될 확률이 커진다. 점수가 모두 같거나 음수가 섞일 수 있으면, 확률 계산 전에 weight를 0 이상으로 보정하는 편이 안전하다.</p>
 
-                        <pre class="lecture-code"><code>def select(population: list[list[int]], scores: list[int], rng: random.Random) -&gt; list[int]:
-    parent_cand = rng.choices(range(len(population)), weights=scores, k=1)
-    parent = population[parent_cand[0]]
-    return parent</code></pre>
+                        <pre class="lecture-code"><code>def select_roulette(
+    population: list[list[int]],
+    scores: list[float],
+    rng: random.Random,
+) -&gt; list[int]:
+    if not population:
+        raise ValueError("population must not be empty")
 
-                        <p>이 방식은 점수 차이를 확률에 직접 반영한다. 다만 score가 모두 0이거나 음수가 섞이는 경우에는 별도 처리가 필요할 수 있다.</p>
+    min_score = min(scores)
+    weights = [score - min_score + 1e-9 for score in scores]
+    selected_idx = rng.choices(
+        range(len(population)),
+        weights=weights,
+        k=1,
+    )[0]
+    return population[selected_idx].copy()</code></pre>
+
+                        <p>이 방식은 점수 차이를 확률에 직접 반영한다. 위 예시는 가장 낮은 점수를 기준으로 weight를 이동시켜, 음수 점수나 같은 점수가 있어도 선택 확률을 계산할 수 있게 만든다.</p>
 
                         <h3>5. Crossover: One-Point Crossover</h3>
                         <p>One-point crossover는 한 지점을 기준으로 두 부모를 잘라 앞부분은 첫 번째 부모에서, 뒷부분은 두 번째 부모에서 가져와 child를 만든다.</p>
 
-                        <pre class="lecture-code"><code>def crossover(parent_a: list[int], parent_b: list[int], rng: random.Random) -&gt; list[int]:
+                        <pre class="lecture-code"><code>def crossover_one_point(
+    parent_a: list[int],
+    parent_b: list[int],
+    rng: random.Random,
+    crossover_rate: float = 1.0,
+) -&gt; list[int]:
+    if len(parent_a) != len(parent_b):
+        raise ValueError("parents must have the same length")
+
     n = len(parent_a)
-    point = rng.randint(1, n - 1)
-    child = parent_a[:point] + parent_b[point:]
-    return child</code></pre>
+    if n &lt; 2 or rng.random() &gt;= crossover_rate:
+        return parent_a.copy()
+
+    point = rng.randrange(1, n)
+    return parent_a[:point] + parent_b[point:]</code></pre>
 
                         <p>교차 지점이 어디로 잡히는지에 따라 부모의 특성이 다르게 섞인다. 이 연산자는 단순하지만, 두 부모의 조합을 새롭게 만들어 population을 탐색하게 해준다.</p>
 
                         <h3>6. Mutate: Bit Flip</h3>
-                        <p>Mutation은 자식 individual의 일부 비트를 낮은 확률로 뒤집는다. 아래 예시는 비트 길이가 n일 때 각 위치를 <code>1 / n</code> 확률로 바꾼다.</p>
+                        <p>Mutation은 자식 individual의 일부 비트를 낮은 확률로 뒤집는다. 일반적으로 mutation rate를 따로 지정하지 않으면 비트 길이가 n일 때 <code>1 / n</code>을 기본값으로 둘 수 있다.</p>
 
-                        <pre class="lecture-code"><code>def mutate(individual: list[int], rng: random.Random) -&gt; list[int]:
-    child = individual[:]
-    pm = 1 / len(child)
-    for i in range(len(child)):
-        if rng.random() &lt; pm:
-            child[i] = 1 - child[i]
+                        <pre class="lecture-code"><code>def mutate_bit_flip(
+    individual: list[int],
+    rng: random.Random,
+    mutation_rate: float | None = None,
+) -&gt; list[int]:
+    child = individual.copy()
+    if not child:
+        return child
+
+    rate = 1 / len(child) if mutation_rate is None else mutation_rate
+    for i, bit in enumerate(child):
+        if rng.random() &lt; rate:
+            child[i] = 1 - bit
     return child</code></pre>
 
                         <p>Mutation은 너무 크면 좋은 구조를 쉽게 깨고, 너무 작으면 새로운 조합을 찾기 어렵다. <code>1 / len(child)</code>는 한 individual에서 평균적으로 한 비트 정도가 바뀌도록 하는 간단한 기준이다.</p>
@@ -150,29 +184,37 @@ for generation in range(max_generations):
                         <h3>7. Repair: Capacity 제약 복구</h3>
                         <p>Zombie Apocalypse 문제처럼 선택할 수 있는 총 무게가 제한된 문제에서는 crossover와 mutation 후 capacity를 넘는 해가 생길 수 있다. Repair는 이런 해를 다시 유효한 해로 되돌리는 과정이다.</p>
 
-                        <pre class="lecture-code"><code>def repair(individual: list[int], rng: random.Random) -&gt; list[int]:
-    total_weight = sum(ITEMS[i]["weight"] for i, bit in enumerate(individual) if bit)
+                        <pre class="lecture-code"><code>def repair_by_efficiency(
+    individual: list[int],
+    items: list[dict[str, float]],
+    capacity: float,
+) -&gt; list[int]:
+    child = individual.copy()
+    total_weight = sum(
+        item["weight"]
+        for bit, item in zip(child, items)
+        if bit
+    )
 
-    if total_weight &gt; CAPACITY:
-        efficiency = [
-            (i, ITEMS[i]["value"] / ITEMS[i]["weight"])
-            for i in range(len(individual))
-            if individual[i] == 1
-        ]
-        efficiency.sort(key=lambda x: x[1])
+    selected = [
+        (idx, item["value"] / item["weight"])
+        for idx, (bit, item) in enumerate(zip(child, items))
+        if bit
+    ]
+    selected.sort(key=lambda pair: pair[1])
 
-        while total_weight &gt; CAPACITY and efficiency:
-            idx, _ = efficiency.pop(0)
-            individual[idx] = 0
-            total_weight -= ITEMS[idx]["weight"]
+    while total_weight &gt; capacity and selected:
+        idx, _ = selected.pop(0)
+        child[idx] = 0
+        total_weight -= items[idx]["weight"]
 
-    return individual</code></pre>
+    return child</code></pre>
 
                         <p>위 방식은 선택된 아이템 중 value/weight 비율이 낮은 항목부터 제거한다. 즉, 무게 제한을 맞추되 상대적으로 효율이 낮은 선택을 먼저 포기하는 repair 전략이다.</p>
 
                         <ul>
                             <li>12주차 실습은 좀비 아포칼립스 상황의 <code>evaluate-search.py</code> 문제를 중심으로 진행했다.</li>
-                            <li>학생 코드 예시는 이름과 학번을 제거해 연산자 구조만 정리했다.</li>
+                            <li>코드 예시는 특정 학생 제출물이 아니라 연산자 구조를 설명하기 위한 일반형으로 정리했다.</li>
                             <li>각 함수는 전체 세대 반복 루프 안에서 부모 선택, 자식 생성, 변이, 제약 복구를 담당한다.</li>
                             <li>Tournament selection과 roulette wheel selection은 부모를 고르는 방식이 다르다.</li>
                             <li>One-point crossover는 두 부모의 일부를 한 지점에서 섞는다.</li>
@@ -187,7 +229,7 @@ for generation in range(max_generations):
                         <p>Week 12 used a <strong>Zombie Apocalypse</strong> scenario and an <code>evaluate-search.py</code> practice problem to implement and compare basic genetic-algorithm operators. The core loop was to select parents from a population, create children through crossover, introduce variation through mutation, and repair solutions that violate the capacity constraint.</p>
 
                         <div class="lecture-note">
-                            <p><strong>Note.</strong> The examples below reorganize in-class student implementations without names or student IDs. Even for the same operator, selection rules, copying behavior, weight handling, and repair strategy can change the search result.</p>
+                            <p><strong>Note.</strong> Students proposed several implementations in class, but the examples below are general operator templates rather than specific submissions. Even for the same operator, selection rules, copying behavior, weight handling, and repair strategy can change the search result.</p>
                         </div>
 
                         <h3>1. Practice Flow</h3>
@@ -238,51 +280,85 @@ for generation in range(max_generations):
                         <p>The key implementation requirement is to keep the expected function signatures and use the provided <code>rng</code> for randomness. That makes results reproducible under the same seed and allows different implementations to be compared fairly.</p>
 
                         <h3>3. Select: Tournament Selection</h3>
-                        <p>Tournament selection samples several candidates from the population and chooses the one with the highest score. This example uses a tournament of three candidates.</p>
+                        <p>Tournament selection samples several candidates from the population and chooses the one with the highest score. The <code>tournament_size</code> parameter controls selection pressure.</p>
 
-                        <pre class="lecture-code"><code>def select(population: list[list[int]], scores: list[int], rng: random.Random) -&gt; list[int]:
-    idx1 = rng.randint(0, len(population) - 1)
-    idx2 = rng.randint(0, len(population) - 1)
-    idx3 = rng.randint(0, len(population) - 1)
-    best_idx = idx1
-    if scores[idx2] &gt; scores[best_idx]:
-        best_idx = idx2
-    if scores[idx3] &gt; scores[best_idx]:
-        best_idx = idx3
+                        <pre class="lecture-code"><code>def select_tournament(
+    population: list[list[int]],
+    scores: list[float],
+    rng: random.Random,
+    tournament_size: int = 3,
+) -&gt; list[int]:
+    if not population:
+        raise ValueError("population must not be empty")
+
+    candidate_indices = [
+        rng.randrange(len(population))
+        for _ in range(tournament_size)
+    ]
+    best_idx = max(candidate_indices, key=lambda idx: scores[idx])
     return population[best_idx].copy()</code></pre>
 
                         <p>This raises the chance of selecting a stronger individual without always selecting the global best. Because candidates are sampled randomly, some population diversity remains.</p>
 
                         <h3>4. Select: Roulette Wheel Selection</h3>
-                        <p>Roulette wheel selection uses scores as weights. Higher-score individuals are more likely to be selected.</p>
+                        <p>Roulette wheel selection uses scores as weights. Higher-score individuals are more likely to be selected. If scores can be equal or negative, it is safer to shift them into non-negative weights before sampling.</p>
 
-                        <pre class="lecture-code"><code>def select(population: list[list[int]], scores: list[int], rng: random.Random) -&gt; list[int]:
-    parent_cand = rng.choices(range(len(population)), weights=scores, k=1)
-    parent = population[parent_cand[0]]
-    return parent</code></pre>
+                        <pre class="lecture-code"><code>def select_roulette(
+    population: list[list[int]],
+    scores: list[float],
+    rng: random.Random,
+) -&gt; list[int]:
+    if not population:
+        raise ValueError("population must not be empty")
 
-                        <p>This directly maps score differences into probability. If all scores are zero or if negative scores appear, the implementation may need extra handling.</p>
+    min_score = min(scores)
+    weights = [score - min_score + 1e-9 for score in scores]
+    selected_idx = rng.choices(
+        range(len(population)),
+        weights=weights,
+        k=1,
+    )[0]
+    return population[selected_idx].copy()</code></pre>
+
+                        <p>This directly maps score differences into probability. The example shifts weights from the minimum score so equal or negative scores can still be sampled safely.</p>
 
                         <h3>5. Crossover: One-Point Crossover</h3>
                         <p>One-point crossover chooses one split point. The child takes the front part from the first parent and the back part from the second parent.</p>
 
-                        <pre class="lecture-code"><code>def crossover(parent_a: list[int], parent_b: list[int], rng: random.Random) -&gt; list[int]:
+                        <pre class="lecture-code"><code>def crossover_one_point(
+    parent_a: list[int],
+    parent_b: list[int],
+    rng: random.Random,
+    crossover_rate: float = 1.0,
+) -&gt; list[int]:
+    if len(parent_a) != len(parent_b):
+        raise ValueError("parents must have the same length")
+
     n = len(parent_a)
-    point = rng.randint(1, n - 1)
-    child = parent_a[:point] + parent_b[point:]
-    return child</code></pre>
+    if n &lt; 2 or rng.random() &gt;= crossover_rate:
+        return parent_a.copy()
+
+    point = rng.randrange(1, n)
+    return parent_a[:point] + parent_b[point:]</code></pre>
 
                         <p>The split point determines how the parents' traits are mixed. The operator is simple, but it lets the search explore new combinations of existing patterns.</p>
 
                         <h3>6. Mutate: Bit Flip</h3>
-                        <p>Mutation flips some bits of the child with low probability. In this example, each position changes with probability <code>1 / n</code>, where n is the bit length.</p>
+                        <p>Mutation flips some bits of the child with low probability. If a mutation rate is not provided, <code>1 / n</code> is a common default for a bit string of length n.</p>
 
-                        <pre class="lecture-code"><code>def mutate(individual: list[int], rng: random.Random) -&gt; list[int]:
-    child = individual[:]
-    pm = 1 / len(child)
-    for i in range(len(child)):
-        if rng.random() &lt; pm:
-            child[i] = 1 - child[i]
+                        <pre class="lecture-code"><code>def mutate_bit_flip(
+    individual: list[int],
+    rng: random.Random,
+    mutation_rate: float | None = None,
+) -&gt; list[int]:
+    child = individual.copy()
+    if not child:
+        return child
+
+    rate = 1 / len(child) if mutation_rate is None else mutation_rate
+    for i, bit in enumerate(child):
+        if rng.random() &lt; rate:
+            child[i] = 1 - bit
     return child</code></pre>
 
                         <p>If mutation is too strong, it breaks useful structures too easily. If it is too weak, the algorithm may not discover enough new combinations. <code>1 / len(child)</code> is a simple rule that changes about one bit on average.</p>
@@ -290,29 +366,37 @@ for generation in range(max_generations):
                         <h3>7. Repair: Capacity Constraint</h3>
                         <p>In a problem with a strict capacity limit, crossover and mutation can produce overweight solutions. Repair restores such individuals to a valid state.</p>
 
-                        <pre class="lecture-code"><code>def repair(individual: list[int], rng: random.Random) -&gt; list[int]:
-    total_weight = sum(ITEMS[i]["weight"] for i, bit in enumerate(individual) if bit)
+                        <pre class="lecture-code"><code>def repair_by_efficiency(
+    individual: list[int],
+    items: list[dict[str, float]],
+    capacity: float,
+) -&gt; list[int]:
+    child = individual.copy()
+    total_weight = sum(
+        item["weight"]
+        for bit, item in zip(child, items)
+        if bit
+    )
 
-    if total_weight &gt; CAPACITY:
-        efficiency = [
-            (i, ITEMS[i]["value"] / ITEMS[i]["weight"])
-            for i in range(len(individual))
-            if individual[i] == 1
-        ]
-        efficiency.sort(key=lambda x: x[1])
+    selected = [
+        (idx, item["value"] / item["weight"])
+        for idx, (bit, item) in enumerate(zip(child, items))
+        if bit
+    ]
+    selected.sort(key=lambda pair: pair[1])
 
-        while total_weight &gt; CAPACITY and efficiency:
-            idx, _ = efficiency.pop(0)
-            individual[idx] = 0
-            total_weight -= ITEMS[idx]["weight"]
+    while total_weight &gt; capacity and selected:
+        idx, _ = selected.pop(0)
+        child[idx] = 0
+        total_weight -= items[idx]["weight"]
 
-    return individual</code></pre>
+    return child</code></pre>
 
                         <p>This strategy removes selected items with the lowest value-to-weight ratio first. It tries to satisfy the capacity limit while giving up relatively inefficient choices first.</p>
 
                         <ul>
                             <li>Week 12 centered on the Zombie Apocalypse <code>evaluate-search.py</code> practice problem.</li>
-                            <li>Student implementation examples were anonymized by removing names and student IDs.</li>
+                            <li>The code examples are general operator templates, not specific student submissions.</li>
                             <li>Each function fits into a generation loop for parent selection, child creation, mutation, and constraint repair.</li>
                             <li>Tournament selection and roulette wheel selection use different parent-choice rules.</li>
                             <li>One-point crossover mixes two parents at one split point.</li>
