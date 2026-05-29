@@ -1,0 +1,561 @@
+<!DOCTYPE html>
+<html data-theme="dark" data-lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Info Design &amp; Data Viz - Week 12 - Sewon Park</title>
+    <link rel="stylesheet" type="text/css" href="../../../style.css">
+    <link rel="stylesheet" type="text/css" href="../../../assets/css/lectures.css">
+</head>
+<body>
+    <button class="theme-toggle" onclick="toggleTheme()" aria-label="Toggle dark mode"></button>
+    <button class="lang-toggle" onclick="toggleLanguage()" aria-label="Toggle language">EN</button>
+
+    <div class="container">
+        <div id="site-header"></div>
+        <div id="site-nav"></div>
+
+        <article class="course-page">
+            <div class="course-header">
+                <h1 data-en="Info Design &amp; Data Viz" data-kr="정보디자인데이터시각화">Info Design &amp; Data Viz</h1>
+                <p class="course-meta" data-en="2026 Spring | Sat 12:00-15:00" data-kr="2026 봄학기 | 토요일 12:00-15:00">2026 Spring | Sat 12:00-15:00</p>
+            </div>
+
+            <div class="course-nav">
+                <a href="../../../lectures.html" class="back-to-lectures" data-en="Back to Lectures" data-kr="강의 목록으로">Back to Lectures</a>
+                <span class="nav-separator">/</span>
+                <a href="./index.html" class="back-to-course" data-en="Course Home" data-kr="과목 홈">Course Home</a>
+            </div>
+
+            <div class="week-nav">
+                <span data-en="Weeks:" data-kr="주차:">Weeks:</span>
+                <a href="week-01.html" class="week-link">W1</a>
+                <a href="week-02.html" class="week-link">W2</a>
+                <a href="week-03.html" class="week-link">W3</a>
+                <a href="week-04.html" class="week-link">W4</a>
+                <a href="week-05.html" class="week-link">W5</a>
+                <a href="week-06.html" class="week-link">W6</a>
+                <a href="week-07.html" class="week-link">W7</a>
+                <a href="week-08.html" class="week-link">W8</a>
+                <a href="week-09.html" class="week-link">W9</a>
+                <a href="week-10.html" class="week-link">W10</a>
+                <a href="week-11.html" class="week-link">W11</a>
+                <a href="week-12.html" class="week-link current">W12</a>
+            </div>
+
+            <section class="week-section" id="week-12">
+                <h2 data-en="Week 12" data-kr="12주차">Week 12</h2>
+                <p class="week-date">2026-05-23 · Persona, Insight, and Journey Map</p>
+                <div class="week-content">
+                    <span class="assignment-chip" data-en="Persona and Insight Synthesis" data-kr="페르소나와 인사이트 종합">Persona and Insight Synthesis</span>
+
+                    <div class="lang-kr" hidden>
+                        <p class="week-references"><em>Keywords: persona, primary persona, secondary persona, marriage registration, model persona prediction, stakeholder map, shadowing, interview, finding, key finding, insight, needs, value, service, ideas, key features, staged information, fragmentary information, As-is journey map, To-be scenario, touch point, pain point, Feel &amp; Think, offline form gesture, eye flow, QR feedback</em></p>
+
+                        <p>12주차는 폼 프로젝트를 단순한 리서치 요약에서 <strong>페르소나, 파인딩, 인사이트, 가치, 서비스 제안</strong>으로 발전시키는 방법을 다뤘다. 지난주까지 Pre, Main, Post 정보와 폼의 서비스 흐름을 분석했다면, 이번 주는 그 분석을 실제 사용자의 삶과 감정, 행동 흐름에 연결하는 단계다.</p>
+
+                        <div class="lecture-note">
+                            <p><strong>메모.</strong> 중간 발표에서 최소한 도달해야 할 지점은 리서치가 좋다, 나쁘다를 말하는 것이 아니라 파인딩과 키파인딩을 바탕으로 인사이트, 즉 사용자가 직접 말하지 않은 니즈를 설명하는 것이다.</p>
+                        </div>
+
+                        <h3>1. 페르소나는 인구통계가 아니라 살아 있는 사용자 가설이다</h3>
+                        <p><strong>페르소나</strong>는 공통된 관심사를 가진 특정 그룹을 표현하기 위해 설정하는 가상의 인물이다. 가상의 인물이지만 동기와 반응은 실제적이어야 한다. 추상적인 연령, 성별, 직업 정보만으로 만드는 것이 아니라 사용자가 무엇을 원하고, 무엇을 불편해하고, 어떤 상황에서 서비스와 만나는지까지 담아야 한다.</p>
+
+                        <table class="stat-table">
+                            <tr>
+                                <th>구분</th>
+                                <th>페르소나에서 확인할 내용</th>
+                            </tr>
+                            <tr>
+                                <td>공통 관심사</td>
+                                <td>어떤 문제, 욕구, 상황을 공유하는 사용자 그룹인가?</td>
+                            </tr>
+                            <tr>
+                                <td>라이프 스테이지</td>
+                                <td>2026년, 2027년, 2028년의 사용자는 어떤 삶의 단계에 있고 무엇을 필요로 하는가?</td>
+                            </tr>
+                            <tr>
+                                <td>동기와 반응</td>
+                                <td>사용자는 왜 이 폼을 쓰고, 어떤 순간에 안심하거나 이탈하는가?</td>
+                            </tr>
+                            <tr>
+                                <td>검증 방식</td>
+                                <td>모델별 페르소나 예측, 모델 학습 전후 수준, 실제 사용자 반응을 비교할 수 있는가?</td>
+                            </tr>
+                        </table>
+
+                        <p>페르소나는 목표시장 안에 존재하는 다양한 관심 그룹을 정의하게 해준다. 그 과정에서 사용자가 생동감 있게 참여하고, 실제 사람의 관점으로 서비스에 대한 판단을 제공할 수 있다. 그래서 페르소나를 만들 때는 "20대 여성"처럼 끝내지 말고, 왜 이 사용자가 이 폼을 만나게 되었는지, 어떤 생활 맥락 안에서 불편함을 느꼈는지를 설명해야 한다.</p>
+
+                        <h3>2. 페르소나 개발은 리서치에서 캐릭터로 발전하는 과정이다</h3>
+                        <p>페르소나는 책상 위에서 상상으로 쓰는 프로필이 아니다. 먼저 공통 관심사에 따라 사용자를 분류하고, 그 분류를 하나의 캐릭터로 발전시킨다. 이때 이해관계자 맵, 셰도잉, 인터뷰에서 얻은 인사이트가 근거가 된다. 시각적 묘사, 자세한 일화, 하루의 루틴, 주변 사람과의 관계처럼 다양한 방법으로 구체화할 수 있다.</p>
+
+                        <div class="stat-formula">
+                            공통 관심사 분류 -> 리서치 근거 수집 -> 대표 캐릭터 구성 -> 동기와 반응 검증
+                        </div>
+
+                        <p>발표에서는 <strong>Primary Persona</strong>와 <strong>Secondary Persona</strong>를 구분할 수 있다. Primary Persona는 우리가 가장 직접적으로 타겟하는 사용자이고, Secondary Persona는 그 사용자 주변에서 영향을 주거나 대신 행동하는 사람이다. 예를 들어 출생신고 서비스라면 프라이머리는 신고 당사자나 부모가 될 수 있고, 세컨더리는 가족, 대리인, 담당 공무원, 주변 조언자가 될 수 있다.</p>
+
+                        <p>혼인신고서 프로젝트라면 Primary Persona는 초혼 당사자로 설정할 수 있고, Secondary Persona는 재혼, 사실혼 관계, 국제결혼, 대리 작성자처럼 다른 조건을 가진 사용자로 확장할 수 있다. 비경험자라도 각 페르소나의 pain point만 충분히 조사하면 분석에 참여할 수 있다. 실제로 결혼식을 했지만 혼인신고를 하지 않는 사례, 자녀 출산 후 어쩔 수 없이 혼인신고와 출생신고를 함께 진행하는 사례도 조사 대상이 된다.</p>
+
+                        <p>최종 발표에서는 스토리텔링 방식으로 프라이머리 페르소나가 누구인지 먼저 말하고, 우리가 타겟하는 지점과 핵심 기능을 연결해 설명하면 좋다. Sony 사례처럼 사용자의 이야기에서 시작해 제품이나 서비스의 키 피처로 넘어가면 기능이 왜 필요한지 더 설득력 있게 보인다.</p>
+
+                        <h3>3. 인터뷰는 페르소나와 니즈의 재료가 된다</h3>
+                        <p>수업에서는 패션에 관심이 많은 MZ세대 2명을 대상으로 한 인터뷰 예시가 제시되었다. 남성 1명, 여성 1명의 짧은 발화에서도 가격, 신뢰, 트렌드, 포장 경험 같은 파인딩이 나온다.</p>
+
+                        <table class="stat-table">
+                            <tr>
+                                <th>인터뷰 발화</th>
+                                <th>읽어낼 수 있는 파인딩</th>
+                                <th>이어질 수 있는 니즈</th>
+                            </tr>
+                            <tr>
+                                <td>플랫폼에서 사면 너무 비싸고, 올드한 제품들밖에 없다.</td>
+                                <td>기존 플랫폼은 가격과 트렌드 감각에서 기대를 충족하지 못한다.</td>
+                                <td>합리적 가격과 최신 취향을 동시에 만족하는 탐색 환경이 필요하다.</td>
+                            </tr>
+                            <tr>
+                                <td>중고나라나 커뮤니티에서 사면 저렴한데 믿을 수 있어야 한다.</td>
+                                <td>비공식 거래는 저렴하지만 신뢰 장치가 부족하다.</td>
+                                <td>개인 간 거래의 가격 장점과 플랫폼 수준의 신뢰가 함께 필요하다.</td>
+                            </tr>
+                            <tr>
+                                <td>가끔 포장을 성의 없이 해줘서 돈이 아깝다.</td>
+                                <td>거래 후 경험과 물건을 받는 순간의 감정도 서비스 품질에 포함된다.</td>
+                                <td>배송, 포장, 수령 경험까지 관리되는 중고거래 서비스가 필요하다.</td>
+                            </tr>
+                        </table>
+
+                        <p>이 발화들을 묶으면 "믿을 수 있고 트렌디한 중고거래 플랫폼은 없을까?"라는 문제의식으로 발전한다. 중요한 점은 인터뷰 발화를 그대로 제목으로 옮기는 것이 아니라, 그 안에서 반복되는 걱정과 욕구를 찾아 인물에 대한 페르소나, 니즈, 인사이트로 연결하는 것이다.</p>
+
+                        <h3>4. Finding에서 Service까지 가는 흐름</h3>
+                        <p>이번 주의 가장 중요한 흐름은 <strong>Finding -> Key Finding -> Insight -> Value -> Service</strong>다. 인터뷰나 설문 단계에서는 사람들이 직접 말한 불편함, 요구, 바람, 애매함이 나온다. 이것은 아직 인사이트가 아니라 파인딩이다.</p>
+
+                        <div class="stat-formula">
+                            Finding -> Key Finding -> Insight / Needs -> Values -> Core Service / Value Service
+                        </div>
+
+                        <table class="stat-table">
+                            <tr>
+                                <th>단계</th>
+                                <th>의미</th>
+                                <th>질문</th>
+                            </tr>
+                            <tr>
+                                <td>Finding</td>
+                                <td>좋았던 점, 불편했던 점, 애매했던 점을 포함한 관찰 조각</td>
+                                <td>사용자 입에서 실제로 나온 말과 행동은 무엇인가?</td>
+                            </tr>
+                            <tr>
+                                <td>Key Finding</td>
+                                <td>현재 경험에서 반복적으로 드러나는 핵심 문제와 행동 패턴</td>
+                                <td>현실에서 사용자는 이렇게 행동하고, 이런 문제를 겪는구나.</td>
+                            </tr>
+                            <tr>
+                                <td>Insight / Needs</td>
+                                <td>사용자가 직접 말하지 않았지만 우리가 발견한 변화 방향</td>
+                                <td>이 문제들을 엮어보면 앞으로 반드시 무엇을 바꿔야 하는가?</td>
+                            </tr>
+                            <tr>
+                                <td>Value</td>
+                                <td>수단, 과정, 결과를 통해 사용자에게 전달되어야 할 기대 효과</td>
+                                <td>여러 인사이트 중 무엇이 더 중요한지 판단할 기준은 무엇인가?</td>
+                            </tr>
+                            <tr>
+                                <td>Service</td>
+                                <td>인사이트와 가치를 실제 기능, 흐름, 터치포인트로 구현한 결과</td>
+                                <td>Core service와 value service는 각각 무엇인가?</td>
+                            </tr>
+                        </table>
+
+                        <p>니즈는 사용자가 자기 입으로 정확히 말하지 않는다. 그래서 파인딩을 모두 펼쳐 놓고 팀원끼리 이야기하면서 연결해야 한다. 좋았던 것도 파인딩이고, 불편했던 것도 파인딩이고, 애매했던 것도 파인딩이다. 여러 파인딩을 엮어 "이 불편함과 저 불편함을 같이 해결하면 되겠구나"라고 발견하는 지점에서 니즈와 인사이트가 나온다.</p>
+
+                        <p>인사이트까지 가려면 많은 파인딩이 필요하다. 혼자 해도 100여 개의 파인딩이 나올 수 있고, 그중 30-50개는 버리게 될 수 있다. 중요한 것은 파인딩을 짝짓고, 카테고리화하고, 살릴 것과 버릴 것을 판단하는 과정이다. 팀 작업이라면 서로 조사 영역을 겹치게 배치해 관점을 교차시키는 것이 좋다.</p>
+
+                        <h3>5. Key Finding, Insight, Value의 차이</h3>
+                        <p>Key Finding은 현재의 문제를 설명한다. 사용자가 현재 이렇게 행동하고, 이런 문제를 겪고, 이런 니즈가 존재한다는 사실을 정리하는 단계다. 반면 Insight는 앞으로 취해야 할 변화를 말한다. 단순한 결론이 아니라 수단, 과정, 조건을 포함해야 한다.</p>
+
+                        <div class="stat-comparison">
+                            <div class="stat-comparison-item">
+                                <h4>Key Finding</h4>
+                                <p>현실과 현재 경험의 요약이다. "사용자는 이렇게 행동하는구나", "이런 문제를 겪는구나", "이런 니즈가 존재하는구나"처럼 현재의 상태를 말한다.</p>
+                            </div>
+                            <div class="stat-comparison-item">
+                                <h4>Insight</h4>
+                                <p>앞으로의 변화 방향이다. "반드시 이것을 해야 하겠구나", "반복되는 흐름은 이렇게 바꿔야겠구나", "사용자의 시선 흐름은 이렇게 유도해야겠구나"처럼 수단과 과정과 조건을 포함한다.</p>
+                            </div>
+                        </div>
+
+                        <p>Value는 인사이트를 통해 사용자에게 전달되어야 하는 결과 중심의 합성이다. 여러 기능과 아이디어 중 무엇이 더 중요한지 판단이 서지 않을 때는 가치로 돌아가야 한다. 결국 <strong>Ideas = Features</strong>이며, 기능은 단어 하나나 흐름 하나에서 출발할 수 있다. 작성하다 보면 단어 하나에서 흐름이 깨지거나, 어떤 기능이 왜 존재하는지 설명되지 않는 지점이 드러난다.</p>
+
+                        <table class="stat-table">
+                            <tr>
+                                <th>구분</th>
+                                <th>정리 방식</th>
+                            </tr>
+                            <tr>
+                                <td>Insight</td>
+                                <td>반복되는 문제를 어떤 방향으로 바꿔야 하는지 설명한다.</td>
+                            </tr>
+                            <tr>
+                                <td>UX Strategy</td>
+                                <td>인사이트를 실제 사용자 경험 전략으로 옮기며, 어떤 해결 방향을 살리고 버릴지 판단한다.</td>
+                            </tr>
+                            <tr>
+                                <td>Ideas = Features</td>
+                                <td>전략을 통과한 후 구체적인 기능, 디자인 방법, how-to로 바뀐 아이디어다.</td>
+                            </tr>
+                            <tr>
+                                <td>Key Features</td>
+                                <td>여러 아이디어 중 핵심가치에 근거해 선별한 가장 중요한 기능 또는 솔루션이다.</td>
+                            </tr>
+                        </table>
+
+                        <h3>6. As-is Journey Map과 To-be 시나리오</h3>
+                        <p>인터뷰와 설문에서 나오는 것은 주로 과거부터 현재까지의 경험이다. 사용자가 무엇이 어려웠고 무엇이 필요했다고 말하는지, 즉 컴플레인과 니즈가 As-is Journey Map의 재료가 된다. To-be 시나리오는 그 불편함을 해결하기 위해 서비스가 어떤 정보와 기능을 포함해야 하는지를 제안하는 단계다.</p>
+
+                        <table class="stat-table">
+                            <tr>
+                                <th>저니맵 요소</th>
+                                <th>정리할 내용</th>
+                            </tr>
+                            <tr>
+                                <td>Touch point</td>
+                                <td>사용자가 사람, 웹사이트, 모바일, 관공서, 커뮤니티 중 어디서 서비스를 만나는가?</td>
+                            </tr>
+                            <tr>
+                                <td>Key finding</td>
+                                <td>각 단계에서 반복적으로 드러나는 핵심 문제는 무엇인가?</td>
+                            </tr>
+                            <tr>
+                                <td>Key problems</td>
+                                <td>사용자가 어디서 힘들어하고, 어디서 정보가 끊기고, 어디서 두 번 세 번 돌아다니는가?</td>
+                            </tr>
+                            <tr>
+                                <td>Key idea</td>
+                                <td>To-be에서 어떤 기능, 정보, 흐름으로 해결할 수 있는가?</td>
+                            </tr>
+                            <tr>
+                                <td>Feel &amp; Think / Do</td>
+                                <td>사용자가 각 단계에서 무엇을 느끼고 생각하며, 실제로 무엇을 하는가?</td>
+                            </tr>
+                        </table>
+
+                        <p>저니맵은 Pre, Main, Post처럼 큰 등분으로 시작할 수 있지만, 각 단계 안에서도 더 구체적인 pain point를 찾아야 한다. 예를 들어 대학원 웹사이트라면 교수님이 무엇을 하는지, 연구실 멤버 구성이 어떤지, 개강일이나 필수과목이 무엇인지 충분히 알려주지 않아 사용자가 불편할 수 있다. 혼인신고서나 공공 폼이라면 네이버에서 조언을 찾아야 하는 구조 자체가 As-is의 문제다. 관공서가 알려줬어야 하는 정보를 폼 안이나 작성 직전에 제공해야 한다.</p>
+
+                        <p>저니맵은 뉴스 서비스에도 적용할 수 있다. 접근, 탐색, 선택, 이용, 추가 탐색처럼 단계적으로 쪼개고, 각 단계에서 사용자가 무엇을 보고 무엇을 결정하는지 확인한다. 청구서 확인에서 올레닷컴, 요금 조회, 콜센터로 이어지는 흐름처럼 실제 사용자가 이동하는 경로를 가능한 한 자세히 나열해야 한다.</p>
+
+                        <p>저니맵은 거창한 서비스에서만 출발하지 않는다. "아침에 늦게 일어나 식사 후 허겁지겁 집을 나가고, 학원에서 공부했다" 같은 일상 서술도 행동 단계를 나누면 저니맵의 출발점이 된다. 현재 수준에서는 As-is와 To-be를 함께 정리해야 한다. 원래 되던 피처를 먼저 As-is 흐름에 태워보고, 바꾼 피처는 To-be 흐름에 다시 태워보며 같은 여정에서 무엇이 달라졌는지 확인한다.</p>
+
+                        <h3>7. 단계적 정보와 단편적 정보는 필수 분석 항목이다</h3>
+                        <p>폼 분석에서는 단계적 정보와 단편적 정보를 반드시 구분해야 한다. 어떤 항목은 1-10까지 순서가 잘 잡혀 있지만, 어떤 항목은 그루핑이 안 되어 있어 사용자가 뒤에 있는 설명을 찾아야 하거나, 작성 중에 필요한 정보가 제출 단계에 가까운 곳에 숨어 있을 수 있다.</p>
+
+                        <table class="stat-table">
+                            <tr>
+                                <th>분석 항목</th>
+                                <th>확인할 질문</th>
+                            </tr>
+                            <tr>
+                                <td>알아야 할 내용</td>
+                                <td>사용자가 작성 전에 미리 알아야 하는 정보가 앞에 있는가?</td>
+                            </tr>
+                            <tr>
+                                <td>보면서 작성할 내용</td>
+                                <td>작성 칸 근처에 필요한 설명, 예시, 기준이 붙어 있는가?</td>
+                            </tr>
+                            <tr>
+                                <td>제출할 때 필요한 내용</td>
+                                <td>첨부서류, 확인 방법, 처리 기간, 제출 후 안내가 적절한 위치에 있는가?</td>
+                            </tr>
+                            <tr>
+                                <td>위치 조정</td>
+                                <td>뒤에 적힌 설명 중 앞이나 해당 항목 옆으로 옮겨야 하는 정보는 없는가?</td>
+                            </tr>
+                        </table>
+
+                        <p>팀 작업에서는 공유문서를 하나 열어 폼 0번처럼 기준 양식을 먼저 정하고, 양식의 구분, 단계적 정보, 단편적 정보, 뒤에 있는 안내, 위치를 바꿔야 할 설명을 함께 적어두면 좋다. 디자인을 새로 한다는 것은 기존 폼을 1:1로 바꾸는 일이 아니라, 핵심가치와 톤앤매너를 기준으로 정보의 위치와 흐름을 다시 설계하는 일이다.</p>
+
+                        <h3>8. 오프라인 폼은 제스처와 눈의 동선을 포함한다</h3>
+                        <p>이번 프로젝트의 출발점은 먼저 오프라인 폼을 분석하는 것이다. 온라인으로 확장할 수 있다면 좋지만, 오프라인 문서에서는 손의 움직임, 팔의 방향, 눈의 경로가 모두 정보디자인 요소가 된다. 사용자가 좌에서 우로, 위에서 아래로 작성할 때 주요 설명을 왼쪽에 둘지 오른쪽에 둘지, 설명과 작성 칸이 얼마나 가까워야 하는지까지 봐야 한다.</p>
+
+                        <div class="lecture-note">
+                            <p><strong>오프라인 분석의 핵심.</strong> 설명을 사용자의 시선과 손의 흐름에서 멀리 두면 사용자는 계속 눈길을 이탈해야 한다. 중요한 정보를 왼쪽에 둬야 한다는 발견을 해놓고도 실제 배치가 좌하단에 있어 경로가 끊긴다면, 분석과 디자인이 연결되지 않은 것이다.</p>
+                        </div>
+
+                        <p>오프라인 폼은 단지 문서 레이아웃이 아니라 제스처와 눈의 동선을 포함한 인터페이스다. 따라서 기능과 정서는 모두 단어와 흐름에서 추출될 수 있다. 논문에서 기능이나 정서 분류를 찾아보고, 실제 작성, 셰도잉, 인터뷰를 통해 왜 그 기능이 필요하고 어디서 흐름이 깨지는지 확인해야 한다.</p>
+
+                        <h3>9. QR, 모바일 피드백, 서비스 제안으로 확장하기</h3>
+                        <p>수업에서는 QR이나 모바일 접속을 통해 Pre, Post, Future 흐름을 개발하고, 실제로 사용자가 접근하고 피드백할 수 있는 서비스로 제안해볼 수 있다는 이야기도 나왔다. UX가 결합되면 QR 안에서도 사용자가 어떤 정보에 먼저 접근하는지, 어떤 피드백을 남기는지, 그 결과를 어떻게 마지막 발표에서 함께 공유할지 고민할 수 있다.</p>
+
+                        <p>예를 들어 10명 정도의 사용자에게 모바일 링크나 QR을 통해 시나리오를 보여주고, 각 단계에서 피드백을 받으면 To-be 서비스의 근거가 된다. 단순히 "이런 기능이 있으면 좋겠다"가 아니라, 어떤 페르소나의 어떤 여정에서 어떤 문제가 있었고, 어떤 가치 때문에 이 기능이 필요하다는 식으로 연결해야 한다.</p>
+
+                        <ul>
+                            <li>12주차는 페르소나를 리서치 기반의 사용자 가설로 설정하는 방법을 다뤘다.</li>
+                            <li>Primary Persona와 Secondary Persona를 구분하면 발표에서 타겟과 핵심 기능을 더 명확히 설명할 수 있다.</li>
+                            <li>파인딩은 좋았던 점, 불편했던 점, 애매했던 점을 모두 포함하는 관찰 조각이다.</li>
+                            <li>니즈와 인사이트는 사용자가 직접 말한 문장이 아니라, 파인딩을 엮고 토론하면서 발견하는 변화 방향이다.</li>
+                            <li>Key Finding은 현재의 문제이고, Insight는 앞으로 취해야 할 변화이며, Value는 여러 선택지를 판단하게 하는 기준이다.</li>
+                            <li>Ideas는 UX 전략을 통과해 구체화된 features이고, Key Features는 핵심가치에 따라 선별한 가장 중요한 솔루션이다.</li>
+                            <li>As-is Journey Map은 현재의 불편함을 단계별로 드러내고, To-be 시나리오는 서비스가 포함해야 할 기능과 흐름을 제안한다.</li>
+                            <li>혼인신고서 프로젝트에서는 초혼을 프라이머리로, 재혼·사실혼·국제결혼·대리 작성자를 세컨더리 페르소나로 볼 수 있다.</li>
+                            <li>단계적 정보와 단편적 정보, 작성 전·작성 중·제출 시점의 정보 위치는 필수 분석 항목이다.</li>
+                            <li>오프라인 폼에서는 제스처와 눈의 동선, 온라인 확장에서는 QR과 모바일 피드백까지 함께 고려할 수 있다.</li>
+                        </ul>
+                    </div>
+
+                    <div class="lang-en">
+                        <p class="week-references"><em>Keywords: persona, primary persona, secondary persona, marriage registration, model persona prediction, stakeholder map, shadowing, interview, finding, key finding, insight, needs, value, service, ideas, key features, staged information, fragmentary information, As-is journey map, To-be scenario, touch point, pain point, Feel &amp; Think, offline form gesture, eye flow, QR feedback</em></p>
+
+                        <p>Week 12 moved the form project from research summary toward <strong>persona, findings, insight, value, and service proposal</strong>. After analyzing Pre, Main, and Post information in forms, the next step is to connect that analysis to real user lives, emotions, and behavior flows.</p>
+
+                        <div class="lecture-note">
+                            <p><strong>Note.</strong> The minimum goal for the midterm presentation is not to say whether research was good or bad. It is to explain insights, or user needs that were not directly spoken, from findings and key findings.</p>
+                        </div>
+
+                        <h3>1. Persona as a Living User Hypothesis</h3>
+                        <p>A <strong>persona</strong> is a fictional person that represents a group with shared interests. The person is fictional, but their motivation and response have to be grounded in reality. A persona should not stop at age, gender, or job. It needs to explain why the user meets the form, what situation they are in, and what makes them feel reassured or blocked.</p>
+
+                        <table class="stat-table">
+                            <tr>
+                                <th>Aspect</th>
+                                <th>Question</th>
+                            </tr>
+                            <tr>
+                                <td>Shared interest</td>
+                                <td>What problem, desire, or situation does this user group share?</td>
+                            </tr>
+                            <tr>
+                                <td>Life stage</td>
+                                <td>What stage of life are users in across 2026, 2027, and 2028?</td>
+                            </tr>
+                            <tr>
+                                <td>Motivation and response</td>
+                                <td>Why do they use the form, and when do they feel safe or leave?</td>
+                            </tr>
+                            <tr>
+                                <td>Validation</td>
+                                <td>Can model-level persona prediction, pre-training and post-training performance, and actual users be compared?</td>
+                            </tr>
+                        </table>
+
+                        <p>Personas help define multiple interest groups inside a target market. They also let those groups participate with a more vivid point of view. For a final presentation, it is useful to distinguish <strong>Primary Persona</strong> and <strong>Secondary Persona</strong>. In a birth registration service, for example, the primary persona may be the parent or submitter, while secondary personas may include family members, proxies, public officers, or surrounding advisors.</p>
+
+                        <p>For a marriage registration project, the primary persona can be a first-marriage applicant. Secondary personas can include remarriage, common-law relationships, international marriage, and proxy writers. Even people without direct experience can contribute if they investigate the pain points carefully. Cases worth researching include couples who had a wedding but did not register their marriage, or people who register marriage and birth together after childbirth.</p>
+
+                        <h3>2. Persona Development Starts from Research</h3>
+                        <p>Persona development begins by grouping users according to shared interests, then developing each group into a representative character. Stakeholder maps, shadowing, and interviews provide the evidence. Visual description, short episodes, daily routines, and relationships can all make the persona more concrete.</p>
+
+                        <div class="stat-formula">
+                            Shared interest grouping -> research evidence -> representative character -> validated motivation and response
+                        </div>
+
+                        <p>The lecture example used two MZ users interested in fashion. Even short interview statements revealed findings around price, trust, trends, packaging, and post-purchase experience.</p>
+
+                        <table class="stat-table">
+                            <tr>
+                                <th>Interview statement</th>
+                                <th>Finding</th>
+                                <th>Possible need</th>
+                            </tr>
+                            <tr>
+                                <td>Platforms are expensive and only have old-looking products.</td>
+                                <td>Existing platforms fail on price and trend sensitivity.</td>
+                                <td>A search environment that combines fair pricing and current taste.</td>
+                            </tr>
+                            <tr>
+                                <td>Communities are cheaper, but they need to be trustworthy.</td>
+                                <td>Informal trade is cheap but lacks reliable safeguards.</td>
+                                <td>The price advantage of peer trading with platform-level trust.</td>
+                            </tr>
+                            <tr>
+                                <td>Sometimes the packaging is careless, so it feels like a waste of money.</td>
+                                <td>The delivery and receiving moment are part of service quality.</td>
+                                <td>A secondhand service that manages shipping, packaging, and receipt experience.</td>
+                            </tr>
+                        </table>
+
+                        <p>These fragments can be synthesized into a question such as: "Is there a trustworthy and trendy secondhand platform?" The point is not to copy interview sentences into the project. The point is to connect repeated concerns into persona, need, and insight.</p>
+
+                        <h3>3. From Finding to Service</h3>
+                        <p>The central flow of the week was <strong>Finding -> Key Finding -> Insight -> Value -> Service</strong>. Interviews and surveys usually provide complaints, needs, wishes, and ambiguous reactions from past and current experience. Those are findings, not insights yet.</p>
+
+                        <div class="stat-formula">
+                            Finding -> Key Finding -> Insight / Needs -> Values -> Core Service / Value Service
+                        </div>
+
+                        <table class="stat-table">
+                            <tr>
+                                <th>Stage</th>
+                                <th>Meaning</th>
+                                <th>Question</th>
+                            </tr>
+                            <tr>
+                                <td>Finding</td>
+                                <td>An observed fragment, whether positive, uncomfortable, or ambiguous</td>
+                                <td>What did users actually say or do?</td>
+                            </tr>
+                            <tr>
+                                <td>Key Finding</td>
+                                <td>A repeated core problem or behavior pattern in the current experience</td>
+                                <td>What is happening now?</td>
+                            </tr>
+                            <tr>
+                                <td>Insight / Needs</td>
+                                <td>A direction for change that users did not directly state</td>
+                                <td>What must change if these findings are connected?</td>
+                            </tr>
+                            <tr>
+                                <td>Value</td>
+                                <td>The expected result delivered through means, process, and outcome</td>
+                                <td>What should guide priority when choices conflict?</td>
+                            </tr>
+                            <tr>
+                                <td>Service</td>
+                                <td>The implementation of insight and value as functions, flows, and touch points</td>
+                                <td>What are the core service and value service?</td>
+                            </tr>
+                        </table>
+
+                        <p>Users rarely state their needs directly. The team has to spread out findings, discuss them, pair them, categorize them, and decide which ones to keep. A positive reaction is a finding. A complaint is a finding. An ambiguous reaction is also a finding. When several findings are connected, hidden needs and insights begin to emerge.</p>
+
+                        <p>Many findings are needed to reach insight. Even one person can produce around one hundred findings, then discard thirty to fifty. The value comes from pairing, clustering, and deciding what matters. In team work, overlapping research areas can help members discover patterns that a single person might miss.</p>
+
+                        <h3>4. Key Finding, Insight, and Value</h3>
+                        <p>A Key Finding describes the current problem: how users behave now, what they struggle with, and what needs appear in the present experience. An Insight describes the change that should happen next. It should include means, process, and conditions, not only a vague conclusion.</p>
+
+                        <div class="stat-comparison">
+                            <div class="stat-comparison-item">
+                                <h4>Key Finding</h4>
+                                <p>A summary of current reality: users act this way, experience this problem, and show this need.</p>
+                            </div>
+                            <div class="stat-comparison-item">
+                                <h4>Insight</h4>
+                                <p>A future direction: this repeated flow must change, this screen must guide attention differently, or this condition must be supported.</p>
+                            </div>
+                        </div>
+
+                        <p>Value is the result-centered synthesis delivered through means, process, and outcome. When it is hard to decide which function matters more, the project should return to value. In this sense, <strong>Ideas = Features</strong>. A function can begin from one word, one broken flow, or one unanswered reason for why something exists.</p>
+
+                        <table class="stat-table">
+                            <tr>
+                                <th>Term</th>
+                                <th>How to use it</th>
+                            </tr>
+                            <tr>
+                                <td>Insight</td>
+                                <td>Explains the direction of change behind repeated problems.</td>
+                            </tr>
+                            <tr>
+                                <td>UX Strategy</td>
+                                <td>Turns insight into an experience strategy and filters which solutions to keep.</td>
+                            </tr>
+                            <tr>
+                                <td>Ideas = Features</td>
+                                <td>Concrete functions, design methods, or how-to decisions after the strategy step.</td>
+                            </tr>
+                            <tr>
+                                <td>Key Features</td>
+                                <td>The most important functions or solutions selected according to the core value.</td>
+                            </tr>
+                        </table>
+
+                        <h3>5. As-is Journey Map and To-be Scenario</h3>
+                        <p>Interviews and surveys mainly reveal past and current experience. They show what was difficult and what users needed. That material becomes the As-is Journey Map. The To-be scenario proposes what information, functions, and flows the service should include to solve those problems.</p>
+
+                        <table class="stat-table">
+                            <tr>
+                                <th>Journey map element</th>
+                                <th>What to record</th>
+                            </tr>
+                            <tr>
+                                <td>Touch point</td>
+                                <td>Where does the user meet the service: person, website, mobile, public office, or community?</td>
+                            </tr>
+                            <tr>
+                                <td>Key finding</td>
+                                <td>What repeated issue appears at each stage?</td>
+                            </tr>
+                            <tr>
+                                <td>Key problems</td>
+                                <td>Where does the user struggle, lose information, or have to visit multiple places?</td>
+                            </tr>
+                            <tr>
+                                <td>Key idea</td>
+                                <td>What function, information, or flow can solve it in the To-be state?</td>
+                            </tr>
+                            <tr>
+                                <td>Feel &amp; Think / Do</td>
+                                <td>What does the user feel, think, and actually do at each stage?</td>
+                            </tr>
+                        </table>
+
+                        <p>A journey map can begin with broad Pre, Main, and Post divisions, but each stage needs more specific pain points. In a graduate school website, for example, users may struggle because the professor's work, lab members, opening schedule, or required courses are not clear enough. In a public form, the fact that users have to search Naver or communities for instructions is itself an As-is problem. The institution should have provided those explanations inside or right before the form.</p>
+
+                        <p>The same method applies to a news service: access, exploration, selection, use, and additional exploration. It also applies to billing journeys, such as checking a statement, visiting an online portal, viewing charges, and calling a customer center. The map should list actual user movement in detail.</p>
+
+                        <p>A journey map can also begin from ordinary narrative: waking up late, rushing out after breakfast, and studying at an academy. Once the actions are divided into stages, the map can reveal decisions, emotions, and friction. At the current project stage, As-is and To-be should be developed together. Existing features should be placed on the As-is journey, and changed features should be run through the To-be journey to show what actually improves.</p>
+
+                        <h3>6. Staged and Fragmentary Information Are Required Analysis Items</h3>
+                        <p>The form analysis must distinguish staged information from fragmentary information. Some areas may have a clear 1-10 sequence, while others may lack grouping. Users may have to search for explanations at the back, or information needed during writing may be placed too close to the submission stage.</p>
+
+                        <table class="stat-table">
+                            <tr>
+                                <th>Analysis item</th>
+                                <th>Question</th>
+                            </tr>
+                            <tr>
+                                <td>Information needed before writing</td>
+                                <td>Is preparation information placed before the user starts?</td>
+                            </tr>
+                            <tr>
+                                <td>Information needed while writing</td>
+                                <td>Are explanations, examples, and criteria placed near the relevant field?</td>
+                            </tr>
+                            <tr>
+                                <td>Information needed at submission</td>
+                                <td>Are attachments, confirmation methods, processing time, and post-submission guidance placed properly?</td>
+                            </tr>
+                            <tr>
+                                <td>Position adjustment</td>
+                                <td>Should any explanation currently at the back move forward or beside the field?</td>
+                            </tr>
+                        </table>
+
+                        <p>In team work, it is useful to open a shared document, define a baseline "form 0," and record form categories, staged information, fragmentary information, back-page guidance, and explanations that should move. Redesigning a form is not a one-to-one replacement. It means redesigning information position and flow according to core value, tone, and manner.</p>
+
+                        <h3>7. Offline Forms Include Gesture and Eye Flow</h3>
+                        <p>The project should begin by analyzing the offline form. Online extension may be useful, but an offline document includes hand movement, arm direction, and eye path. When a user writes left to right and top to bottom, the designer has to decide where explanations should sit and how close they should be to the writing area.</p>
+
+                        <div class="lecture-note">
+                            <p><strong>Offline analysis.</strong> If important guidance is far from the user's eye and hand flow, the user has to keep leaving the writing path. If the analysis finds that information should be placed on the left but the design puts it far below, the analysis and design are not connected.</p>
+                        </div>
+
+                        <p>An offline form is an interface made of layout, gesture, and eye movement. Function and emotion can both be extracted from words and flows. Research papers may help classify functions and emotions, but actual writing, shadowing, and interviews are needed to see why a function exists and where the flow breaks.</p>
+
+                        <h3>8. QR, Mobile Feedback, and Service Proposal</h3>
+                        <p>The class also discussed extending the project through QR or mobile access. A mobile scenario could show Pre, Post, and Future flows, collect feedback, and become part of the service proposal. When UX is added, even the QR flow becomes something to analyze: which information users reach first, where they leave feedback, and how the final presentation uses that response.</p>
+
+                        <p>For example, a team can show a mobile link or QR scenario to about ten users and collect stage-by-stage feedback. The proposal should then connect a specific persona, a specific journey problem, a value, and the feature that solves it.</p>
+
+                        <ul>
+                            <li>Week 12 framed persona as a research-based user hypothesis.</li>
+                            <li>Primary and secondary personas help explain target users and key features in presentations.</li>
+                            <li>Findings include positive, negative, and ambiguous observations.</li>
+                            <li>Needs and insights are discovered by connecting findings, not by copying user statements.</li>
+                            <li>Key Finding describes the current problem, Insight describes the future change, and Value guides priority.</li>
+                            <li>Ideas are features made concrete through UX strategy; Key Features are the most important solutions selected by core value.</li>
+                            <li>An As-is Journey Map reveals current friction, while a To-be scenario proposes functions and flows.</li>
+                            <li>For marriage registration, first-marriage applicants can be primary personas, while remarriage, common-law, international marriage, and proxy cases can be secondary personas.</li>
+                            <li>Staged and fragmentary information, plus the placement of before-writing, during-writing, and submission information, are required analysis items.</li>
+                            <li>Offline forms require gesture and eye-flow analysis; online extensions can include QR and mobile feedback.</li>
+                        </ul>
+                    </div>
+                </div>
+            </section>
+        </article>
+
+        <div id="site-footer"></div>
+    </div>
+
+    <script src="../../../common.js"></script>
+</body>
+</html>
