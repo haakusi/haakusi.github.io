@@ -1,0 +1,464 @@
+<!DOCTYPE html>
+<html data-theme="dark" data-lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Intro to Statistics - Week 12 - Sewon Park</title>
+    <link rel="stylesheet" type="text/css" href="../../../style.css">
+    <link rel="stylesheet" type="text/css" href="../../../assets/css/lectures.css">
+</head>
+<body>
+    <button class="theme-toggle" onclick="toggleTheme()" aria-label="Toggle dark mode"></button>
+    <button class="lang-toggle" onclick="toggleLanguage()" aria-label="Toggle language">EN</button>
+
+    <div class="container">
+        <div id="site-header"></div>
+        <div id="site-nav"></div>
+
+        <article class="course-page">
+            <div class="course-header">
+                <h1 data-en="Intro to Statistics" data-kr="기초통계">Intro to Statistics</h1>
+                <p class="course-meta" data-en="2026 Spring | Fri 19:00-22:00" data-kr="2026 봄학기 | 금요일 19:00-22:00">2026 Spring | Fri 19:00-22:00</p>
+            </div>
+
+            <div class="course-nav">
+                <a href="../../../lectures.html" class="back-to-lectures" data-en="Back to Lectures" data-kr="강의 목록으로">Back to Lectures</a>
+                <span class="nav-separator">/</span>
+                <a href="./index.html" class="back-to-course" data-en="Course Home" data-kr="과목 홈">Course Home</a>
+            </div>
+
+            <div class="week-nav">
+                <span data-en="Weeks:" data-kr="주차:">Weeks:</span>
+                <a href="week-01.html" class="week-link">W1</a>
+                <a href="week-02.html" class="week-link">W2</a>
+                <a href="week-03.html" class="week-link">W3</a>
+                <a href="week-04.html" class="week-link">W4</a>
+                <a href="week-05.html" class="week-link">W5</a>
+                <a href="week-06.html" class="week-link">W6</a>
+                <a href="week-07.html" class="week-link">W7</a>
+                <a href="week-08.html" class="week-link">W8</a>
+                <a href="week-09.html" class="week-link">W9</a>
+                <a href="week-10.html" class="week-link">W10</a>
+                <a href="week-11.html" class="week-link">W11</a>
+                <a href="week-12.html" class="week-link current">W12</a>
+            </div>
+
+            <section class="week-section" id="week-12">
+                <h2 data-en="Week 12" data-kr="12주차">Week 12</h2>
+                <p class="week-date" data-en="2026-05-22 · Confidence intervals and inference cases" data-kr="2026-05-22 · 신뢰구간과 추론 케이스">2026-05-22 · Confidence intervals and inference cases</p>
+                <div class="week-content">
+                    <span class="assignment-chip" data-en="Confidence Intervals" data-kr="신뢰구간">Confidence Intervals</span>
+
+                    <div class="lang-kr" hidden>
+                        <p class="week-references"><em>Keywords: 신뢰구간, 표본오차, 표준오차, 신뢰계수, 유의수준, Z critical value, t distribution, 독립표본, 대응표본, 자유도, 카이제곱분포, 모분산, 가설검정</em></p>
+
+                        <p>12주차는 신뢰구간을 중심으로 추정과 검정의 여러 케이스를 정리한 시간이었다. 핵심은 공식을 많이 외우는 것이 아니라, 하나의 기본 구조를 이해한 뒤 상황별로 표준오차와 신뢰계수를 바꾸어 끼워 넣는 것이다. 수업에서는 단일 평균, 두 모평균 차이, 독립표본과 대응표본, 모분산을 알 때와 모를 때, t분포와 카이제곱분포까지 연결했다.</p>
+
+                        <div class="lecture-note">
+                            <p><strong>핵심.</strong> 목표값은 추정값을 중심으로 표본오차만큼 흔들린다. 표본오차는 신뢰계수와 표준오차의 곱으로 생각하면 된다. 그래서 통계 방법론에서는 표준오차를 조금이라도 줄이는 일이 매우 중요하다.</p>
+                        </div>
+
+                        <h3>1. 신뢰구간의 기본 공식</h3>
+                        <p>이번 주차에서 가장 중요한 뼈대는 다음 두 줄이다. 어떤 모수를 추정하든, 먼저 추정값을 놓고 그 주변에 표본오차를 붙여 목표값이 들어갈 만한 구간을 만든다.</p>
+
+                        <div class="stat-formula">
+                            목표값 = 추정값 +- 표본오차
+                            <br>
+                            표본오차 = 신뢰계수 x 표준오차
+                        </div>
+
+                        <table class="stat-table">
+                            <tr>
+                                <th>개념</th>
+                                <th>의미</th>
+                            </tr>
+                            <tr>
+                                <td>추정값</td>
+                                <td>표본에서 계산한 값. 예: 표본평균, 표본비율, 두 표본평균의 차이</td>
+                            </tr>
+                            <tr>
+                                <td>표준오차</td>
+                                <td>추정값의 표준편차. 표본을 다시 뽑을 때 추정값이 얼마나 흔들리는지 나타낸다.</td>
+                            </tr>
+                            <tr>
+                                <td>신뢰계수</td>
+                                <td>정규분포, t분포, 카이제곱분포 등 해당 상황의 분포에서 얻는 임계값</td>
+                            </tr>
+                            <tr>
+                                <td>표본오차</td>
+                                <td>신뢰구간의 반폭. 신뢰계수와 표준오차를 곱해 얻는다.</td>
+                            </tr>
+                        </table>
+
+                        <p>표준오차의 "standard"는 추정값의 표준편차라는 뜻이다. 같은 모집단을 대상으로 표본을 여러 번 뽑으면 표본평균이나 표본비율 같은 추정값이 조금씩 달라진다. 그 추정값들의 흔들림을 표준편차로 표현한 것이 표준오차다.</p>
+
+                        <h3>2. 유의수준과 신뢰구간의 의미</h3>
+                        <p>유의수준은 보통 <code>alpha</code>로 적고, 아무 언급이 없으면 5%, 즉 <code>alpha = 0.05</code>를 기본값으로 둔다. 신뢰수준은 <code>1 - alpha</code>이고, 95% 신뢰구간은 <code>alpha = 0.05</code>일 때의 구간이다.</p>
+
+                        <div class="stat-formula">
+                            P(|오차| &lt;= c) = 1 - alpha
+                            <br>
+                            P(theta_hat - c &lt;= theta &lt;= theta_hat + c) = 1 - alpha
+                            <br>
+                            [theta_hat - c, theta_hat + c] = theta에 대한 100(1 - alpha)% 신뢰구간
+                        </div>
+
+                        <p>신뢰도가 높아질수록 신뢰구간의 폭은 넓어진다. 더 높은 확률로 모수를 포함하고 싶다면, 더 넓은 구간을 잡아야 한다. 따라서 신뢰구간을 읽을 때는 "신뢰수준"과 "구간의 폭"을 함께 봐야 한다.</p>
+
+                        <h3>3. Z 신뢰구간과 중요한 임계값</h3>
+                        <p>모분산 또는 모표준편차를 알고 있고 정규근사가 가능한 경우, 표준정규분포의 임계값을 사용한다. 가운데 확률이 <code>1 - alpha</code>가 되도록 양끝을 각각 <code>alpha / 2</code>만큼 잘라낸다.</p>
+
+                        <div class="stat-formula">
+                            P(-z_(alpha/2) &lt; Z &lt; z_(alpha/2)) = 1 - alpha
+                            <br>
+                            Z = (X_bar - mu) / (sigma / sqrt(n))
+                            <br>
+                            mu = x_bar +- z_(alpha/2) x (sigma / sqrt(n))
+                        </div>
+
+                        <table class="stat-table">
+                            <tr>
+                                <th>신뢰수준</th>
+                                <th>alpha</th>
+                                <th>z_(alpha/2)</th>
+                                <th>수업 메모</th>
+                            </tr>
+                            <tr>
+                                <td>99%</td>
+                                <td>0.01</td>
+                                <td>2.58</td>
+                                <td>가장 넓은 구간</td>
+                            </tr>
+                            <tr>
+                                <td>95%</td>
+                                <td>0.05</td>
+                                <td>1.96</td>
+                                <td>기본값처럼 자주 사용</td>
+                            </tr>
+                            <tr>
+                                <td>90%</td>
+                                <td>0.10</td>
+                                <td>1.645</td>
+                                <td>상대적으로 좁은 구간</td>
+                            </tr>
+                        </table>
+
+                        <p>경험적 법칙에서는 평균에서 1시그마 안에 약 68%, 2시그마 안에 약 95%, 3시그마 안에 약 99.7%가 들어간다고 말한다. 하지만 표준정규분포에서 정확히 95%를 가운데에 두려면 2가 아니라 약 1.96을 써야 한다. 그래서 95% 신뢰구간에서 <code>z_(alpha/2)</code>는 1.96이다.</p>
+
+                        <h3>4. 두 모평균 차이: 독립표본</h3>
+                        <p>두 집단의 평균 차이를 볼 때는 표본평균의 차이가 추정값이 된다. 독립표본이고 두 모분산을 알고 있다면 표본평균 차이의 분포는 다음과 같이 정리된다.</p>
+
+                        <div class="stat-formula">
+                            (X_bar - Y_bar) ~ N(mu_1 - mu_2, sigma_1^2 / n_1 + sigma_2^2 / n_2)
+                            <br>
+                            (mu_1 - mu_2) = (x_bar - y_bar) +- z_(alpha/2) x sqrt(sigma_1^2 / n_1 + sigma_2^2 / n_2)
+                        </div>
+
+                        <p>모분산을 모를 때는 표본분산을 사용하고 t분포로 넘어간다. 두 모분산이 같다고 가정할 수 있으면 합동분산을 쓰고, 같다고 보기 어렵다면 Welch 방식의 자유도를 계산한다. 실제 계산에서는 자유도 값이 복잡하므로 컴퓨터가 계산하는 경우가 많다.</p>
+
+                        <div class="stat-formula">
+                            v =
+                            (s_1^2 / n_1 + s_2^2 / n_2)^2
+                            /
+                            { (s_1^2 / n_1)^2 / (n_1 - 1) + (s_2^2 / n_2)^2 / (n_2 - 1) }
+                            <br>
+                            (mu_1 - mu_2) = (x_bar - y_bar) +- t_(alpha/2, v) x sqrt(s_1^2 / n_1 + s_2^2 / n_2)
+                        </div>
+
+                        <h3>5. 대응표본</h3>
+                        <p>쌍으로 데이터를 모으는 것을 대응표본이라고 한다. 예를 들어 같은 사람의 안정 시 심박수와 100미터 전력질주 후 심박수, 공복혈당과 식후 2시간 혈당처럼 한 대상에서 두 조건의 값을 같이 얻는 경우다.</p>
+
+                        <table class="stat-table">
+                            <tr>
+                                <th>구분</th>
+                                <th>예시</th>
+                                <th>핵심 처리</th>
+                            </tr>
+                            <tr>
+                                <td>독립표본</td>
+                                <td>서로 다른 두 집단의 평균 비교</td>
+                                <td>두 표본평균 차이의 표준오차를 계산한다</td>
+                            </tr>
+                            <tr>
+                                <td>대응표본</td>
+                                <td>같은 대상의 전후 비교</td>
+                                <td>각 쌍의 차이 <code>d_i</code>를 만든 뒤 단일평균 문제처럼 본다</td>
+                            </tr>
+                        </table>
+
+                        <div class="stat-formula">
+                            d_i = x_i - y_i
+                            <br>
+                            mu_D = d_bar +- t_(alpha/2, n-1) x s_D / sqrt(n)
+                        </div>
+
+                        <p>같은 데이터를 보더라도 관점에 따라 해석은 달라질 수 있다. 중간고사와 기말고사 점수 차이를 볼 때도 학생은 "중간고사가 어려웠다"고 느낄 수 있고, 교수는 "기말에 공부를 덜 했다"고 해석할 수 있다. 통계는 숫자를 계산하는 일이면서 동시에 어떤 비교 구조를 잡을지 판단하는 일이다.</p>
+
+                        <h3>6. 카이제곱분포와 모분산</h3>
+                        <p>표준정규분포를 따른다는 것은 <code>Z = (X - mu) / sigma</code>처럼 표준화할 수 있다는 뜻이다. 표본평균을 사용해 중심을 잡으면 자유도 하나가 줄어들고, 제곱합은 카이제곱분포를 따른다.</p>
+
+                        <div class="stat-formula">
+                            sum((X_i - X_bar)^2 / sigma^2) ~ chi-square_(n-1)
+                            <br>
+                            sum(((X_i - X_bar) / sigma)^2) ~ chi-square_(n-1)
+                        </div>
+
+                        <p><code>X_bar</code>는 모수가 아니라 통계량이고, 모평균을 추정하는 값이다. 표본평균을 사용했기 때문에 자유도는 <code>n - 1</code>로 표기한다. 모분산에 대한 신뢰구간은 이런 카이제곱분포의 임계값을 사용한다.</p>
+
+                        <h3>7. 케이스를 외우지 말고 구조로 추론하기</h3>
+                        <p>신뢰구간은 단일평균, 모분산을 알 때와 모를 때, 독립표본의 모분산을 알 때와 모를 때, 합동분산을 가정할 수 있을 때와 없을 때, 대응표본, 모비율, 모분산 등 여러 케이스로 갈라진다. 하지만 전부 따로 외우기보다, 다음 구조를 먼저 잡고 상황에 맞게 분포와 표준오차를 바꾸는 것이 중요하다.</p>
+
+                        <table class="stat-table">
+                            <tr>
+                                <th>판단 순서</th>
+                                <th>질문</th>
+                            </tr>
+                            <tr>
+                                <td>1. 무엇을 추정하는가?</td>
+                                <td>평균, 평균 차이, 비율, 분산 중 무엇인가?</td>
+                            </tr>
+                            <tr>
+                                <td>2. 표본 구조는 무엇인가?</td>
+                                <td>단일표본, 독립표본, 대응표본 중 무엇인가?</td>
+                            </tr>
+                            <tr>
+                                <td>3. 모분산을 아는가?</td>
+                                <td>알면 Z, 모르면 보통 t 또는 카이제곱으로 간다</td>
+                            </tr>
+                            <tr>
+                                <td>4. 표준오차는 무엇인가?</td>
+                                <td>해당 추정량이 표본마다 얼마나 흔들리는지 계산한다</td>
+                            </tr>
+                            <tr>
+                                <td>5. 신뢰계수는 어디서 오는가?</td>
+                                <td>정규분포표, t분포표, 카이제곱분포표 등에서 가져온다</td>
+                            </tr>
+                        </table>
+
+                        <div class="lecture-note">
+                            <p><strong>공부 방식.</strong> 공식을 무조건 외우는 방식은 오래가기 어렵다. 바뀌는 조건을 보고 왜 Z에서 t로 바뀌는지, 왜 자유도가 생기는지, 왜 표준오차가 달라지는지를 논리적으로 추론해야 한다. 통계는 학문이면서 동시에 판단의 기술에 가깝다.</p>
+                        </div>
+
+                        <ul>
+                            <li>신뢰구간의 기본 구조는 <code>추정값 +- 신뢰계수 x 표준오차</code>다.</li>
+                            <li>표준오차는 추정값의 표준편차이며, 표준오차를 줄이는 것은 중요한 성과다.</li>
+                            <li>기본 유의수준은 보통 5%, 즉 <code>alpha = 0.05</code>다.</li>
+                            <li>주요 Z 임계값은 99% = 2.58, 95% = 1.96, 90% = 1.645다.</li>
+                            <li>신뢰수준이 높을수록 신뢰구간의 폭은 넓어진다.</li>
+                            <li>두 모평균 차이는 독립표본과 대응표본을 먼저 구분해야 한다.</li>
+                            <li>모분산을 모르면 t분포와 자유도를 사용하고, 모분산 자체는 카이제곱분포와 연결된다.</li>
+                            <li>여러 케이스를 통째로 외우기보다 기본 구조에서 논리적으로 추론해야 한다.</li>
+                        </ul>
+                    </div>
+
+                    <div class="lang-en">
+                        <p class="week-references"><em>Keywords: confidence interval, sampling error, standard error, confidence coefficient, significance level, Z critical value, t distribution, independent samples, paired samples, degrees of freedom, chi-square distribution, population variance, hypothesis testing</em></p>
+
+                        <p>Week 12 centered on confidence intervals and the major inference cases that branch from them. The point was not to memorize many formulas separately, but to understand one basic structure and then substitute the correct standard error and confidence coefficient for each situation. The class connected one-sample means, two-sample mean differences, independent and paired samples, known and unknown variances, t distributions, and chi-square distributions.</p>
+
+                        <div class="lecture-note">
+                            <p><strong>Core idea.</strong> A target value is estimated by placing a sampling error around an estimate. Sampling error is the confidence coefficient multiplied by the standard error. This is why reducing standard error is a major achievement in statistical methods.</p>
+                        </div>
+
+                        <h3>1. Basic Confidence Interval Form</h3>
+                        <p>The key structure of the week is the following two-line formula. For any parameter, start with an estimate and attach a sampling error around it.</p>
+
+                        <div class="stat-formula">
+                            target value = estimate +- sampling error
+                            <br>
+                            sampling error = confidence coefficient x standard error
+                        </div>
+
+                        <table class="stat-table">
+                            <tr>
+                                <th>Concept</th>
+                                <th>Meaning</th>
+                            </tr>
+                            <tr>
+                                <td>Estimate</td>
+                                <td>A value computed from the sample, such as a sample mean, sample proportion, or difference between sample means</td>
+                            </tr>
+                            <tr>
+                                <td>Standard error</td>
+                                <td>The standard deviation of an estimator across repeated samples</td>
+                            </tr>
+                            <tr>
+                                <td>Confidence coefficient</td>
+                                <td>The critical value taken from the relevant distribution: normal, t, chi-square, and so on</td>
+                            </tr>
+                            <tr>
+                                <td>Sampling error</td>
+                                <td>The half-width of a confidence interval, computed from the confidence coefficient and standard error</td>
+                            </tr>
+                        </table>
+
+                        <p>The "standard" in standard error refers to the standard deviation of an estimate. If we repeatedly sample from the same population, sample means or sample proportions will vary. The standard error measures that variation.</p>
+
+                        <h3>2. Significance Level and Confidence Interval Meaning</h3>
+                        <p>The significance level is usually written as <code>alpha</code>. If nothing is specified, 5%, or <code>alpha = 0.05</code>, is the default. The confidence level is <code>1 - alpha</code>, so a 95% confidence interval corresponds to <code>alpha = 0.05</code>.</p>
+
+                        <div class="stat-formula">
+                            P(|error| &lt;= c) = 1 - alpha
+                            <br>
+                            P(theta_hat - c &lt;= theta &lt;= theta_hat + c) = 1 - alpha
+                            <br>
+                            [theta_hat - c, theta_hat + c] = a 100(1 - alpha)% confidence interval for theta
+                        </div>
+
+                        <p>As the confidence level increases, the confidence interval becomes wider. To include the parameter more reliably, we need a wider target interval. Therefore, confidence level and interval width should be read together.</p>
+
+                        <h3>3. Z Confidence Intervals and Critical Values</h3>
+                        <p>When the population variance or standard deviation is known and normal approximation is appropriate, we use critical values from the standard normal distribution. The middle probability is <code>1 - alpha</code>, leaving <code>alpha / 2</code> in each tail.</p>
+
+                        <div class="stat-formula">
+                            P(-z_(alpha/2) &lt; Z &lt; z_(alpha/2)) = 1 - alpha
+                            <br>
+                            Z = (X_bar - mu) / (sigma / sqrt(n))
+                            <br>
+                            mu = x_bar +- z_(alpha/2) x (sigma / sqrt(n))
+                        </div>
+
+                        <table class="stat-table">
+                            <tr>
+                                <th>Confidence level</th>
+                                <th>alpha</th>
+                                <th>z_(alpha/2)</th>
+                                <th>Note</th>
+                            </tr>
+                            <tr>
+                                <td>99%</td>
+                                <td>0.01</td>
+                                <td>2.58</td>
+                                <td>Widest interval among the three</td>
+                            </tr>
+                            <tr>
+                                <td>95%</td>
+                                <td>0.05</td>
+                                <td>1.96</td>
+                                <td>Common default</td>
+                            </tr>
+                            <tr>
+                                <td>90%</td>
+                                <td>0.10</td>
+                                <td>1.645</td>
+                                <td>Narrower interval</td>
+                            </tr>
+                        </table>
+
+                        <p>The empirical rule says that about 68%, 95%, and 99.7% of values fall within one, two, and three standard deviations of the mean. But for a central 95% interval under the standard normal distribution, the exact cutoff is about 1.96, not 2. Thus <code>z_(alpha/2)</code> is 1.96 for a 95% confidence interval.</p>
+
+                        <h3>4. Difference Between Two Means: Independent Samples</h3>
+                        <p>When comparing two population means, the estimate is the difference between two sample means. If the samples are independent and the two population variances are known, the distribution is:</p>
+
+                        <div class="stat-formula">
+                            (X_bar - Y_bar) ~ N(mu_1 - mu_2, sigma_1^2 / n_1 + sigma_2^2 / n_2)
+                            <br>
+                            (mu_1 - mu_2) = (x_bar - y_bar) +- z_(alpha/2) x sqrt(sigma_1^2 / n_1 + sigma_2^2 / n_2)
+                        </div>
+
+                        <p>If the population variances are unknown, sample variances are used and the t distribution enters. If equal variances can be assumed, pooled variance is used. If not, Welch's degrees of freedom are computed, usually by software.</p>
+
+                        <div class="stat-formula">
+                            v =
+                            (s_1^2 / n_1 + s_2^2 / n_2)^2
+                            /
+                            { (s_1^2 / n_1)^2 / (n_1 - 1) + (s_2^2 / n_2)^2 / (n_2 - 1) }
+                            <br>
+                            (mu_1 - mu_2) = (x_bar - y_bar) +- t_(alpha/2, v) x sqrt(s_1^2 / n_1 + s_2^2 / n_2)
+                        </div>
+
+                        <h3>5. Paired Samples</h3>
+                        <p>Paired samples are collected in pairs. Examples include the same person's resting heart rate and heart rate after a 100-meter sprint, or fasting blood sugar and blood sugar two hours after a meal.</p>
+
+                        <table class="stat-table">
+                            <tr>
+                                <th>Type</th>
+                                <th>Example</th>
+                                <th>Main treatment</th>
+                            </tr>
+                            <tr>
+                                <td>Independent samples</td>
+                                <td>Comparing means from two separate groups</td>
+                                <td>Compute the standard error of the difference between two sample means</td>
+                            </tr>
+                            <tr>
+                                <td>Paired samples</td>
+                                <td>Before-after comparison on the same subjects</td>
+                                <td>Create differences <code>d_i</code> and treat them like a one-sample mean problem</td>
+                            </tr>
+                        </table>
+
+                        <div class="stat-formula">
+                            d_i = x_i - y_i
+                            <br>
+                            mu_D = d_bar +- t_(alpha/2, n-1) x s_D / sqrt(n)
+                        </div>
+
+                        <p>The same data can be interpreted differently depending on the viewpoint. For example, in a midterm-final score comparison, students may feel that the midterm was harder, while an instructor may think students studied less for the final. Statistics is not only calculation; it also requires judgment about the comparison structure.</p>
+
+                        <h3>6. Chi-Square Distribution and Population Variance</h3>
+                        <p>Following the standard normal distribution means that a variable can be standardized as <code>Z = (X - mu) / sigma</code>. When the sample mean is used as the center, one degree of freedom is used up, and the squared sum follows a chi-square distribution.</p>
+
+                        <div class="stat-formula">
+                            sum((X_i - X_bar)^2 / sigma^2) ~ chi-square_(n-1)
+                            <br>
+                            sum(((X_i - X_bar) / sigma)^2) ~ chi-square_(n-1)
+                        </div>
+
+                        <p><code>X_bar</code> is not a parameter; it is a statistic used to estimate the population mean. Because the sample mean is used, the degrees of freedom become <code>n - 1</code>. Confidence intervals for population variance use critical values from the chi-square distribution.</p>
+
+                        <h3>7. Infer From Structure, Not Memorization</h3>
+                        <p>Confidence interval formulas branch into many cases: one mean, known or unknown variance, two independent means with known variances, unknown equal variances, unknown unequal variances, paired samples, proportions, and variances. Instead of memorizing them as isolated formulas, start from the following structure and change the distribution and standard error according to the case.</p>
+
+                        <table class="stat-table">
+                            <tr>
+                                <th>Step</th>
+                                <th>Question</th>
+                            </tr>
+                            <tr>
+                                <td>1. What is being estimated?</td>
+                                <td>Mean, difference of means, proportion, or variance?</td>
+                            </tr>
+                            <tr>
+                                <td>2. What is the sample structure?</td>
+                                <td>One sample, independent samples, or paired samples?</td>
+                            </tr>
+                            <tr>
+                                <td>3. Is the population variance known?</td>
+                                <td>If known, use Z; if unknown, usually move to t or chi-square.</td>
+                            </tr>
+                            <tr>
+                                <td>4. What is the standard error?</td>
+                                <td>Compute how much the estimator varies across samples.</td>
+                            </tr>
+                            <tr>
+                                <td>5. Where does the confidence coefficient come from?</td>
+                                <td>Normal table, t table, chi-square table, and so on.</td>
+                            </tr>
+                        </table>
+
+                        <div class="lecture-note">
+                            <p><strong>Study method.</strong> Blind memorization does not hold up well. The better approach is to infer why Z changes to t, why degrees of freedom appear, and why the standard error changes. Statistics is both a discipline and a craft of judgment.</p>
+                        </div>
+
+                        <ul>
+                            <li>The basic confidence interval form is <code>estimate +- confidence coefficient x standard error</code>.</li>
+                            <li>Standard error is the standard deviation of an estimator, and reducing it is important.</li>
+                            <li>The common default significance level is 5%, or <code>alpha = 0.05</code>.</li>
+                            <li>Key Z critical values are 99% = 2.58, 95% = 1.96, and 90% = 1.645.</li>
+                            <li>Higher confidence levels produce wider confidence intervals.</li>
+                            <li>For two mean differences, first distinguish independent samples from paired samples.</li>
+                            <li>When population variance is unknown, t distributions and degrees of freedom matter; population variance connects to chi-square.</li>
+                            <li>Do not memorize every case separately; infer from the basic structure.</li>
+                        </ul>
+                    </div>
+                </div>
+            </section>
+        </article>
+
+        <div id="site-footer"></div>
+    </div>
+
+    <script src="../../../common.js"></script>
+</body>
+</html>
