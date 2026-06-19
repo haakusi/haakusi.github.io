@@ -1,0 +1,343 @@
+<!DOCTYPE html>
+<html data-theme="dark" data-lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Intro to Statistics - Week 15 - Sewon Park</title>
+    <link rel="stylesheet" type="text/css" href="../../../style.css">
+    <link rel="stylesheet" type="text/css" href="../../../assets/css/lectures.css">
+</head>
+<body>
+    <button class="theme-toggle" onclick="toggleTheme()" aria-label="Toggle dark mode"></button>
+    <button class="lang-toggle" onclick="toggleLanguage()" aria-label="Toggle language">EN</button>
+
+    <div class="container">
+        <div id="site-header"></div>
+        <div id="site-nav"></div>
+
+        <article class="course-page">
+            <div class="course-header">
+                <h1 data-en="Intro to Statistics" data-kr="기초통계">Intro to Statistics</h1>
+                <p class="course-meta" data-en="2026 Spring | Fri 19:00-22:00" data-kr="2026 봄학기 | 금요일 19:00-22:00">2026 Spring | Fri 19:00-22:00</p>
+            </div>
+
+            <div class="course-nav">
+                <a href="../../../lectures.html" class="back-to-lectures" data-en="Back to Lectures" data-kr="강의 목록으로">Back to Lectures</a>
+                <span class="nav-separator">/</span>
+                <a href="./index.html" class="back-to-course" data-en="Course Home" data-kr="과목 홈">Course Home</a>
+            </div>
+
+            <div class="week-nav">
+                <span data-en="Weeks:" data-kr="주차:">Weeks:</span>
+                <a href="week-01.html" class="week-link">W1</a>
+                <a href="week-02.html" class="week-link">W2</a>
+                <a href="week-03.html" class="week-link">W3</a>
+                <a href="week-04.html" class="week-link">W4</a>
+                <a href="week-05.html" class="week-link">W5</a>
+                <a href="week-06.html" class="week-link">W6</a>
+                <a href="week-07.html" class="week-link">W7</a>
+                <a href="week-08.html" class="week-link">W8</a>
+                <a href="week-09.html" class="week-link">W9</a>
+                <a href="week-10.html" class="week-link">W10</a>
+                <a href="week-11.html" class="week-link">W11</a>
+                <a href="week-12.html" class="week-link">W12</a>
+                <a href="week-13.html" class="week-link">W13</a>
+                <a href="week-14.html" class="week-link">W14</a>
+                <a href="week-15.html" class="week-link current">W15</a>
+            </div>
+
+            <section class="week-section" id="week-15">
+                <h2 data-en="Week 15" data-kr="15주차">Week 15</h2>
+                <p class="week-date" data-en="2026-06-12 · Categorical data and chi-square tests" data-kr="2026-06-12 · 범주형 자료와 카이제곱 검정">2026-06-12 · Categorical data and chi-square tests</p>
+                <div class="week-content">
+                    <span class="assignment-chip" data-en="Categorical Data" data-kr="범주형 자료">Categorical Data</span>
+
+                    <div class="lang-kr" hidden>
+                        <p class="week-references"><em>Keywords: 범주형 자료, 수치형 자료, 적합도 검정, 독립성 검정, 동질성 검정, 카이제곱 검정, 귀무가설, 기대도수, 주변확률, p-value, 상관계수, 통계 해석, 수주대토, 조장</em></p>
+
+                        <p>15주차는 범주형 자료를 어떻게 검정하고 해석할 것인지 정리한 시간이었다. 실제 문제를 풀려면 회귀분석, 다변량분석처럼 더 확장된 방법들도 필요하지만, 그 출발점은 데이터가 범주형인지 수치형인지 구분하고, 각 자료형에 맞는 검정과 해석을 선택하는 데 있다.</p>
+
+                        <div class="lecture-note">
+                            <p><strong>핵심.</strong> 통계 분석에서 계산보다 더 중요한 것은 숫자가 무엇을 의미하는지 해석하는 힘이다. AI가 답을 내더라도 p-value, 상관계수, 검정통계량, 분포, 귀무가설이 무엇을 뜻하는지 모르면 그 답을 제대로 사용할 수 없다.</p>
+                        </div>
+
+                        <h3>1. 범주형 자료와 세 가지 검정</h3>
+                        <p>범주형 자료는 성별, 흡연 여부, 연령대, 선호 브랜드처럼 값을 몇 개의 범주로 나누어 세는 자료다. 수치형 자료가 평균과 분산을 중심으로 다루어진다면, 범주형 자료는 도수, 비율, 분포, 행과 열의 관계를 중심으로 다룬다.</p>
+
+                        <table class="stat-table">
+                            <tr>
+                                <th>검정</th>
+                                <th>주요 질문</th>
+                                <th>핵심 구조</th>
+                            </tr>
+                            <tr>
+                                <td>적합도 검정</td>
+                                <td>관측된 범주 분포가 이론적 분포와 맞는가?</td>
+                                <td>하나의 모집단에서 관측도수와 기대도수를 비교한다.</td>
+                            </tr>
+                            <tr>
+                                <td>독립성 검정</td>
+                                <td>같은 모집단 안에서 두 범주형 변수가 독립인가?</td>
+                                <td>하나의 교차표에서 행 변수와 열 변수의 관련성을 본다.</td>
+                            </tr>
+                            <tr>
+                                <td>동질성 검정</td>
+                                <td>서로 다른 모집단들이 같은 분포를 가지는가?</td>
+                                <td>여러 모집단의 범주 분포가 동질적인지 비교한다.</td>
+                            </tr>
+                        </table>
+
+                        <p>세 검정 모두 귀무가설 아래에서 진행된다. 적합도 검정은 "주어진 분포와 차이가 없다"는 귀무가설을 놓고, 독립성 검정은 "행 변수와 열 변수가 독립이다"를 놓고, 동질성 검정은 "서로 다른 모집단의 분포가 동일하다"를 놓고 출발한다.</p>
+
+                        <h3>2. 카이제곱 검정의 기본 생각</h3>
+                        <p>범주형 자료 검정에서는 실제 관측된 도수와 귀무가설이 맞을 때 기대되는 도수를 비교한다. 차이가 작으면 귀무가설을 기각하기 어렵고, 차이가 충분히 크면 귀무가설을 의심하게 된다.</p>
+
+                        <div class="stat-formula">
+                            chi-square = sum((관측도수 - 기대도수)^2 / 기대도수)
+                            <br>
+                            관측도수와 기대도수의 차이가 클수록 검정통계량은 커진다.
+                        </div>
+
+                        <p>예제 11-2처럼 자료를 직관적으로 보면 어떤 범주가 커 보이거나 작아 보일 수 있다. 하지만 통계적으로는 그 차이가 우연한 표본 변동인지, 귀무가설을 기각할 만큼 큰 차이인지 따져야 한다. 데이터를 눈으로 보는 것과 검정으로 판단하는 것은 다르다.</p>
+
+                        <h3>3. 독립성: 주변확률의 곱으로 판단하기</h3>
+                        <p>확률분포표에서 두 변수가 독립인지 보려면 결합확률이 주변확률의 곱으로 표현되는지 확인한다. 모든 셀에서 이 관계가 성립하면 두 변수는 독립이라고 볼 수 있다.</p>
+
+                        <div class="stat-formula">
+                            독립 조건: Pij = Pi. x P.j
+                            <br>
+                            귀무가설 예: 모든 연령대별로 흡연 차이가 없다.
+                        </div>
+
+                        <p>예를 들어 원자료만 보면 50-60대 흡연율이 가장 높아 보일 수 있다. 그러나 독립성 검정에서는 단순히 가장 큰 비율을 찾는 것이 아니라, 연령대와 흡연 여부가 통계적으로 독립인지 아닌지를 판단한다.</p>
+
+                        <h3>4. 데이터, 처리, 해석</h3>
+                        <p>통계 분석에서 데이터 자체의 품질은 절반 이상을 차지할 만큼 중요하다. 결측과 오류가 적고, 충분히 넓은 범위를 포함하며, 목적에 맞게 수집된 클린 데이터셋이 있어야 분석이 의미를 가진다.</p>
+
+                        <table class="stat-table">
+                            <tr>
+                                <th>구성</th>
+                                <th>수업 메모식 비중</th>
+                                <th>의미</th>
+                            </tr>
+                            <tr>
+                                <td>데이터 품질</td>
+                                <td>50%</td>
+                                <td>결측, 오류, 범위, 표본의 대표성, 빅데이터 기반 확보</td>
+                            </tr>
+                            <tr>
+                                <td>통계적 처리</td>
+                                <td>10%</td>
+                                <td>분산분석, 회귀분석, 검정 방법 선택과 계산</td>
+                            </tr>
+                            <tr>
+                                <td>해석 능력</td>
+                                <td>40%</td>
+                                <td>p-value, 상관계수, 검정통계량, 결과 수치가 말하는 의미 이해</td>
+                            </tr>
+                        </table>
+
+                        <p>처리 과정은 도구나 AI가 도와줄 수 있다. 하지만 어디에 데이터가 있는지 알고, 어떤 데이터를 써야 하는지 판단하고, 결과 숫자가 무엇을 말하는지 해석하는 일은 사람이 해야 한다. 질문의 수준이 답변의 수준을 결정하므로, 통계 용어의 의미를 이해해야 더 좋은 질문도 할 수 있다.</p>
+
+                        <h3>5. 시험과 공부의 태도</h3>
+                        <p>시험은 단순히 공식을 외웠는지 확인하는 자리가 아니라, 배운 개념으로 어떻게 생각하고 추론하는지 보여주는 자리다. 어려운 문제가 나오면 "이 문제는 이런 상황을 해결해야 하는 문제이고, 나라면 이런 방식으로 접근하겠다"는 식으로 원리를 가지고 논리적으로 풀어가야 한다.</p>
+
+                        <div class="lecture-note">
+                            <p><strong>시험 메모.</strong> 백지를 내지 말아야 한다. 용어를 알고, 귀무가설이 무엇인지 쓰고, 어떤 검정을 적용할지 말하고, 가능한 논리를 전개해야 한다. 수학은 오차를 인정하지 않지만, 통계는 오차를 인정하고 그 안에서 판단하는 학문이다.</p>
+                        </div>
+
+                        <p>좋은 답안은 <code>A = B, B = C, C = A</code>처럼 정해진 경로만 반복하는 답이 아니라, <code>A</code>에서 여러 가능성을 열어 두고 그중 어떤 조합이 타당한지 논리적으로 좁혀가는 답이다. 교육의 힘은 그런 사고를 만들고, 연산 횟수를 줄이며, 더 넓은 가능성을 볼 수 있게 하는 데 있다.</p>
+
+                        <h3>6. 대학 교육과 자기 생각</h3>
+                        <p>대학은 큰 사람을 만드는 곳이라는 말이 인상적이었다. 단순히 책에 있는 정답을 옮기는 것이 아니라, 내 생각은 무엇인지 말하고, 그 생각을 교수자에게 평가받고, 더 나은 방향으로 다듬는 과정이 필요하다.</p>
+
+                        <p>친구도 나보다 나은 친구를 사귀라는 말이 있었다. 교육의 목적은 결국 사람을 만드는 것이다. 같은 수업을 듣더라도 무엇을 얻는지는 사람마다 다르다. 중요한 것은 내가 어떤 이해 수준에 도달했는지, 그리고 그 이해를 바탕으로 스스로 판단할 수 있는지다.</p>
+
+                        <h3>7. 수주대토와 조장</h3>
+                        <p>마지막으로 삶의 태도를 설명하기 위해 두 고사가 나왔다. 하나는 한비자의 <strong>수주대토(守株待兔)</strong>이고, 다른 하나는 맹자의 <strong>조장(助長)</strong>이다.</p>
+
+                        <table class="stat-table">
+                            <tr>
+                                <th>고사</th>
+                                <th>의미</th>
+                                <th>수업에서의 해석</th>
+                            </tr>
+                            <tr>
+                                <td>수주대토<br><code>守株待兔</code></td>
+                                <td>나무 그루터기를 지키며 토끼가 다시 와서 부딪히기만 기다리는 어리석음</td>
+                                <td>목표는 있지만 아무것도 하지 않는 태도</td>
+                            </tr>
+                            <tr>
+                                <td>조장<br><code>助長</code></td>
+                                <td>싹이 빨리 자라게 하려고 억지로 뽑아 올려 모두 말라 죽게 한 어리석음</td>
+                                <td>목표는 있지만 너무 서두르는 태도</td>
+                            </tr>
+                        </table>
+
+                        <p>두 농부 모두 목적은 있었다. 수주대토의 농부는 토끼를 얻고 싶었지만 아무것도 하지 않았고, 조장의 농부는 빨리 수확하고 싶어서 지나치게 서둘렀다. 인생도 마찬가지다. 목표가 있다면 손놓고 기다리기만 해서도 안 되고, 억지로 당겨서 망쳐서도 안 된다.</p>
+
+                        <div class="lecture-note">
+                            <p><strong>최종 정리.</strong> 통계는 오차를 인정하면서도 더 나은 판단을 하려는 학문이다. 범주형 자료를 볼 때도 직관에만 의존하지 말고, 귀무가설 아래에서 기대되는 값과 실제 관측값을 비교해야 한다. 삶에서도 너무 서두르지 말고, 아무것도 하지 않는 상태에 머물지도 말고, 하루도 빠짐없이 한 걸음씩 나아가는 태도가 필요하다.</p>
+                        </div>
+
+                        <ul>
+                            <li>범주형 자료는 도수, 비율, 분포, 행과 열의 관계를 중심으로 해석한다.</li>
+                            <li>적합도 검정은 관측 분포가 이론적 분포와 맞는지 검정한다.</li>
+                            <li>독립성 검정은 같은 모집단 안에서 두 범주형 변수가 독립인지 본다.</li>
+                            <li>동질성 검정은 다른 모집단들이 같은 범주 분포를 가지는지 본다.</li>
+                            <li>모든 검정은 귀무가설 아래에서 시작한다.</li>
+                            <li>직관적으로 커 보이는 차이와 통계적으로 유의한 차이는 다를 수 있다.</li>
+                            <li>AI와 도구가 계산을 해도 p-value, 상관계수, 검정통계량의 의미는 사람이 이해해야 한다.</li>
+                            <li>수주대토처럼 기다리기만 하지 말고, 조장처럼 억지로 서두르지도 말고, 꾸준히 한 걸음씩 나아가야 한다.</li>
+                        </ul>
+                    </div>
+
+                    <div class="lang-en">
+                        <p class="week-references"><em>Keywords: categorical data, numerical data, goodness-of-fit test, test of independence, test of homogeneity, chi-square test, null hypothesis, expected frequency, marginal probability, p-value, correlation coefficient, statistical interpretation</em></p>
+
+                        <p>Week 15 focused on how to test and interpret categorical data. To solve real problems, broader methods such as regression analysis and multivariate analysis are eventually needed. But the starting point is to distinguish categorical data from numerical data and choose the right test and interpretation for the data structure.</p>
+
+                        <div class="lecture-note">
+                            <p><strong>Core idea.</strong> In statistical analysis, interpretation can matter more than calculation. Even if AI gives an answer, the answer is not useful unless we understand what p-values, correlation coefficients, test statistics, distributions, and null hypotheses mean.</p>
+                        </div>
+
+                        <h3>1. Categorical Data and Three Tests</h3>
+                        <p>Categorical data counts observations by categories, such as gender, smoking status, age group, or preferred brand. Numerical data is often analyzed through means and variances, while categorical data is analyzed through counts, proportions, distributions, and relationships between rows and columns.</p>
+
+                        <table class="stat-table">
+                            <tr>
+                                <th>Test</th>
+                                <th>Main question</th>
+                                <th>Structure</th>
+                            </tr>
+                            <tr>
+                                <td>Goodness-of-fit test</td>
+                                <td>Does the observed category distribution fit a theoretical distribution?</td>
+                                <td>Compare observed and expected counts in one population.</td>
+                            </tr>
+                            <tr>
+                                <td>Test of independence</td>
+                                <td>Are two categorical variables independent in the same population?</td>
+                                <td>Use a contingency table to examine the relationship between row and column variables.</td>
+                            </tr>
+                            <tr>
+                                <td>Test of homogeneity</td>
+                                <td>Do different populations share the same distribution?</td>
+                                <td>Compare category distributions across multiple populations.</td>
+                            </tr>
+                        </table>
+
+                        <p>All three tests proceed under a null hypothesis. In a goodness-of-fit test, the null says that the observed distribution fits the proposed distribution. In a test of independence, the null says that the row and column variables are independent. In a test of homogeneity, the null says that different populations have the same distribution.</p>
+
+                        <h3>2. Basic Idea of the Chi-Square Test</h3>
+                        <p>For categorical data, the test compares observed counts with the counts expected under the null hypothesis. If the difference is small, it is hard to reject the null. If the difference is large enough, the null hypothesis becomes doubtful.</p>
+
+                        <div class="stat-formula">
+                            chi-square = sum((observed count - expected count)^2 / expected count)
+                            <br>
+                            The larger the gap between observed and expected counts, the larger the test statistic.
+                        </div>
+
+                        <p>As in Example 11-2, a distribution may look different by intuition alone. But statistical analysis asks whether that difference is merely sampling variation or large enough to reject the null hypothesis. Looking at data visually and making a statistical decision are not the same thing.</p>
+
+                        <h3>3. Independence Through Marginal Probabilities</h3>
+                        <p>In a probability table, independence can be checked by asking whether each joint probability equals the product of its marginal probabilities. If this relationship holds for all cells, the two variables can be treated as independent.</p>
+
+                        <div class="stat-formula">
+                            independence condition: Pij = Pi. x P.j
+                            <br>
+                            example null hypothesis: there is no smoking difference across age groups.
+                        </div>
+
+                        <p>For example, the raw data may suggest that the 50-60 age group has the highest smoking rate. But an independence test does not simply identify the largest rate. It asks whether age group and smoking status are statistically independent.</p>
+
+                        <h3>4. Data, Processing, and Interpretation</h3>
+                        <p>Data quality matters enormously in statistical analysis. A clean dataset with few missing values or errors, broad coverage, and appropriate sampling is what makes analysis meaningful.</p>
+
+                        <table class="stat-table">
+                            <tr>
+                                <th>Part</th>
+                                <th>Class-note share</th>
+                                <th>Meaning</th>
+                            </tr>
+                            <tr>
+                                <td>Data quality</td>
+                                <td>50%</td>
+                                <td>Missing values, errors, coverage, representativeness, and large-scale data foundation</td>
+                            </tr>
+                            <tr>
+                                <td>Statistical processing</td>
+                                <td>10%</td>
+                                <td>Choosing and computing methods such as ANOVA, regression, and hypothesis tests</td>
+                            </tr>
+                            <tr>
+                                <td>Interpretation</td>
+                                <td>40%</td>
+                                <td>Understanding what p-values, correlations, test statistics, and numerical outputs mean</td>
+                            </tr>
+                        </table>
+
+                        <p>Tools and AI can help with processing. But people still need to know where the data is, which data should be used, and what the resulting numbers mean. The quality of an answer depends on the quality of the question, and better questions require understanding statistical terms.</p>
+
+                        <h3>5. Exams and Study Attitude</h3>
+                        <p>An exam is not only a test of memorized formulas. It is a place to show how one reasons from concepts. When a problem is difficult, a good answer can start by explaining what kind of situation the problem represents and which method would be used to approach it.</p>
+
+                        <div class="lecture-note">
+                            <p><strong>Exam note.</strong> Do not submit a blank answer. Define the null hypothesis, name the possible test, explain the reasoning, and show effort. Mathematics often does not accept error; statistics accepts error and makes decisions within it.</p>
+                        </div>
+
+                        <p>A strong answer is not only a fixed chain such as <code>A = B, B = C, C = A</code>. It can open multiple possibilities from <code>A</code>, then reason toward the most plausible combination. Education should build that kind of thinking: fewer unnecessary operations, broader possibilities, and better judgment.</p>
+
+                        <h3>6. University Education and Personal Thought</h3>
+                        <p>The lecture described university as a place for forming larger people. The point is not only to copy answers from a book, but to state one's own thinking, receive evaluation, and refine that thinking.</p>
+
+                        <p>Another note was to keep friends who are better than oneself. Education is ultimately about forming people. Even when the same lesson is taught, what each person gains from it differs. What matters is the level of understanding reached and whether that understanding can support independent judgment.</p>
+
+                        <h3>7. Two Cautionary Stories</h3>
+                        <p>The lecture ended with two classical stories about life attitude: <strong>waiting by a stump for a rabbit</strong>, or <code>守株待兔</code>, from Han Feizi, and <strong>pulling sprouts to help them grow</strong>, or <code>助長</code>, from Mencius.</p>
+
+                        <table class="stat-table">
+                            <tr>
+                                <th>Story</th>
+                                <th>Meaning</th>
+                                <th>Class interpretation</th>
+                            </tr>
+                            <tr>
+                                <td>Waiting by a stump<br><code>守株待兔</code></td>
+                                <td>A farmer waits for another rabbit to hit the stump instead of working.</td>
+                                <td>Having a goal but doing nothing.</td>
+                            </tr>
+                            <tr>
+                                <td>Pulling sprouts<br><code>助長</code></td>
+                                <td>A farmer pulls sprouts upward to make them grow faster, causing them to wither.</td>
+                                <td>Having a goal but rushing too much.</td>
+                            </tr>
+                        </table>
+
+                        <p>Both farmers had goals. One wanted a rabbit but did nothing; the other wanted faster growth but forced the process and ruined it. Life works similarly. A goal should not lead to passive waiting, but it also should not lead to reckless haste.</p>
+
+                        <div class="lecture-note">
+                            <p><strong>Final summary.</strong> Statistics accepts error and still tries to make better decisions. With categorical data, we should not rely only on intuition; we compare observed values with what the null hypothesis expects. In life as well, do not merely wait and do not force growth too quickly. Move one step at a time, steadily.</p>
+                        </div>
+
+                        <ul>
+                            <li>Categorical data is interpreted through counts, proportions, distributions, and row-column relationships.</li>
+                            <li>A goodness-of-fit test checks whether an observed distribution fits a theoretical distribution.</li>
+                            <li>A test of independence checks whether two categorical variables are independent in the same population.</li>
+                            <li>A test of homogeneity checks whether different populations have the same category distribution.</li>
+                            <li>Every test begins under a null hypothesis.</li>
+                            <li>A difference that looks large by intuition may not be statistically significant.</li>
+                            <li>Even when AI or tools compute the result, people must understand p-values, correlations, and test statistics.</li>
+                            <li>Do not wait passively and do not rush blindly; make steady progress one step at a time.</li>
+                        </ul>
+                    </div>
+                </div>
+            </section>
+        </article>
+
+        <div id="site-footer"></div>
+    </div>
+
+    <script src="../../../common.js"></script>
+</body>
+</html>
