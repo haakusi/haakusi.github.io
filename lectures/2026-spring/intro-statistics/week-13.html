@@ -1,0 +1,445 @@
+<!DOCTYPE html>
+<html data-theme="dark" data-lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Intro to Statistics - Week 13 - Sewon Park</title>
+    <link rel="stylesheet" type="text/css" href="../../../style.css">
+    <link rel="stylesheet" type="text/css" href="../../../assets/css/lectures.css">
+</head>
+<body>
+    <button class="theme-toggle" onclick="toggleTheme()" aria-label="Toggle dark mode"></button>
+    <button class="lang-toggle" onclick="toggleLanguage()" aria-label="Toggle language">EN</button>
+
+    <div class="container">
+        <div id="site-header"></div>
+        <div id="site-nav"></div>
+
+        <article class="course-page">
+            <div class="course-header">
+                <h1 data-en="Intro to Statistics" data-kr="기초통계">Intro to Statistics</h1>
+                <p class="course-meta" data-en="2026 Spring | Fri 19:00-22:00" data-kr="2026 봄학기 | 금요일 19:00-22:00">2026 Spring | Fri 19:00-22:00</p>
+            </div>
+
+            <div class="course-nav">
+                <a href="../../../lectures.html" class="back-to-lectures" data-en="Back to Lectures" data-kr="강의 목록으로">Back to Lectures</a>
+                <span class="nav-separator">/</span>
+                <a href="./index.html" class="back-to-course" data-en="Course Home" data-kr="과목 홈">Course Home</a>
+            </div>
+
+            <div class="week-nav">
+                <span data-en="Weeks:" data-kr="주차:">Weeks:</span>
+                <a href="week-01.html" class="week-link">W1</a>
+                <a href="week-02.html" class="week-link">W2</a>
+                <a href="week-03.html" class="week-link">W3</a>
+                <a href="week-04.html" class="week-link">W4</a>
+                <a href="week-05.html" class="week-link">W5</a>
+                <a href="week-06.html" class="week-link">W6</a>
+                <a href="week-07.html" class="week-link">W7</a>
+                <a href="week-08.html" class="week-link">W8</a>
+                <a href="week-09.html" class="week-link">W9</a>
+                <a href="week-10.html" class="week-link">W10</a>
+                <a href="week-11.html" class="week-link">W11</a>
+                <a href="week-12.html" class="week-link">W12</a>
+                <a href="week-13.html" class="week-link current">W13</a>
+            </div>
+
+            <section class="week-section" id="week-13">
+                <h2 data-en="Week 13" data-kr="13주차">Week 13</h2>
+                <p class="week-date" data-en="2026-05-29 · Hypothesis testing and decision errors" data-kr="2026-05-29 · 가설검정과 의사결정 오류">2026-05-29 · Hypothesis testing and decision errors</p>
+                <div class="week-content">
+                    <span class="assignment-chip" data-en="Hypothesis Testing" data-kr="가설검정">Hypothesis Testing</span>
+
+                    <div class="lang-kr" hidden>
+                        <p class="week-references"><em>Keywords: 가설, 귀무가설, 대립가설, H0, H1, 검정통계량, 임계값, 기각영역, 유의수준, alpha, beta, 제1종 오류, 제2종 오류, p-value, 양측검정, 합동분산</em></p>
+
+                        <p>13주차는 신뢰구간에서 가설검정으로 넘어가며, 통계적 판단이 왜 항상 오류 가능성을 포함하는지 정리한 시간이었다. 가설검정은 두 가설을 놓고 어느 쪽의 증거가 더 강한지 판단하는 절차다. 다만 이 판단은 100% 확정이 아니라 표본에 근거한 의사결정이므로, 잘못 기각하거나 잘못 기각하지 않는 오류가 생길 수 있다.</p>
+
+                        <div class="lecture-note">
+                            <p><strong>핵심.</strong> 가설검정의 목표는 표본으로부터 얻은 검정통계량과 p-value를 보고 귀무가설 <code>H0</code>를 기각할 수 있는지 판단하는 것이다. 통계는 계산이면서 동시에 오류 가능성을 감수하는 의사결정이다.</p>
+                        </div>
+
+                        <h3>1. 가설, 귀무가설, 대립가설</h3>
+                        <p>가설은 아직 입증되지 않은 주장이나 사실이다. 가설검정에서는 보통 기존 입장이나 기본 상태를 귀무가설 <code>H0</code>로 두고, 연구자가 보이고 싶은 주장이나 차이를 대립가설 <code>H1</code>로 둔다.</p>
+
+                        <table class="stat-table">
+                            <tr>
+                                <th>구분</th>
+                                <th>표기</th>
+                                <th>의미</th>
+                            </tr>
+                            <tr>
+                                <td>귀무가설</td>
+                                <td><code>H0</code></td>
+                                <td>기존 주장, 차이가 없다는 주장, 검정에서 기각 대상이 되는 기본 가설</td>
+                            </tr>
+                            <tr>
+                                <td>대립가설</td>
+                                <td><code>H1</code></td>
+                                <td>연구자가 지지하고 싶은 주장, 차이나 효과가 있다는 주장</td>
+                            </tr>
+                        </table>
+
+                        <p>수업에서는 귀무가설을 "기각됐으면 좋겠다 하는 것"으로 기억했다. 엄밀하게는 <code>H0</code>가 항상 나쁜 가설이라는 뜻은 아니다. 다만 많은 연구 문제에서 내가 보이고 싶은 주장은 <code>H1</code>에 있고, 그 주장을 밀어붙이려면 <code>H0</code>를 기각할 만큼 강한 표본 증거가 필요하다.</p>
+
+                        <h3>2. 검정통계량, 임계값, 기각영역</h3>
+                        <p>가설검정의 마지막 판단 기준은 검정통계량이다. 표본평균, 표본분산, 표본비율처럼 표본에서 얻은 값을 표준화해 하나의 기준값으로 만들고, 그 값이 임계값을 넘어 기각영역에 들어가는지 본다.</p>
+
+                        <div class="stat-formula">
+                            검정통계량 = 표본에서 얻은 정보가 H0 기준에서 얼마나 멀리 떨어져 있는지 나타내는 값
+                            <br>
+                            임계값 = H0를 기각할지 말지 가르는 기준점
+                            <br>
+                            기각영역 = 검정통계량이 들어오면 H0를 기각하는 영역
+                        </div>
+
+                        <p>임계값을 어디에 두느냐에 따라 기각영역의 크기가 달라진다. <code>alpha</code> 영역을 줄이면 제1종 오류는 줄어들지만, 반대로 <code>beta</code> 영역이 커질 수 있다. 이 관계 때문에 통계적 판단에서는 오류의 종류를 먼저 분명히 이해해야 한다.</p>
+
+                        <h3>3. 제1종 오류와 제2종 오류</h3>
+                        <p>가설검정은 실제 세계에서 <code>H0</code>가 참인지 거짓인지 모르는 상태에서 판단한다. 그래서 판단 결과와 실제 상태가 어긋나는 두 가지 오류가 생긴다.</p>
+
+                        <table class="stat-table">
+                            <tr>
+                                <th>의사결정</th>
+                                <th>H0가 사실</th>
+                                <th>H0가 거짓</th>
+                            </tr>
+                            <tr>
+                                <td>H0를 기각하지 않음</td>
+                                <td>올바른 판단</td>
+                                <td>제2종 오류 <code>beta</code></td>
+                            </tr>
+                            <tr>
+                                <td>H0를 기각함</td>
+                                <td>제1종 오류 <code>alpha</code></td>
+                                <td>올바른 판단</td>
+                            </tr>
+                        </table>
+
+                        <p>법정 예시로 생각하면 제1종 오류가 더 직관적이다. 무고한 사람에게 "너는 범인이다"라고 판단해 사형을 선고하면, 사실인 <code>H0</code>를 기각해 버린 것이다. 반대로 실제 범인이 맞는데도 "무죄"라고 풀어주면, 거짓인 <code>H0</code>를 기각하지 못한 제2종 오류가 된다.</p>
+
+                        <p>제약회사 사례는 <code>H0</code>를 어떻게 놓는지에 따라 오류 이름이 달라질 수 있다. 수업 메모에서는 <code>H0</code>를 "이 약은 효과가 있다"는 제약회사의 주장으로 놓고, 실제로 좋은 암 치료제가 시장에서 거절되면 제1종 오류, 효과가 없는데 회사의 주장을 믿고 팔리게 하면 제2종 오류처럼 생각했다. 일반적인 신약 검정에서는 <code>H0</code>를 "효과가 없다"로 두는 경우가 많으므로, 시험 문제에서는 반드시 <code>H0</code>가 무엇인지 먼저 확인해야 한다.</p>
+
+                        <h3>4. alpha, beta, 표본크기</h3>
+                        <p><code>alpha</code>는 제1종 오류 확률이고, 특별한 언급이 없으면 보통 <code>0.05</code>, 즉 5%를 기본 유의수준으로 사용한다. <code>beta</code>는 제2종 오류 확률이다. 두 오류는 서로 밀고 당기는 관계에 있어서 한쪽을 줄이면 다른 쪽이 커질 수 있다.</p>
+
+                        <div class="stat-formula">
+                            alpha 작아짐 -> 제1종 오류 감소, beta 증가 가능
+                            <br>
+                            beta 작아짐 -> 제2종 오류 감소, alpha 증가 가능
+                            <br>
+                            둘을 함께 줄이는 가장 직접적인 방법 -> 표본크기 n 증가
+                        </div>
+
+                        <p>표본크기를 크게 늘리면 두 분포를 더 분명하게 구분할 수 있고, 같은 유의수준에서도 검정력이 좋아진다. 그래서 통계적 판단에서 표본크기 <code>n</code>은 단순한 숫자가 아니라 의사결정의 신뢰도를 좌우하는 핵심 조건이다.</p>
+
+                        <h3>5. 가설검정의 여섯 단계</h3>
+                        <p>수업에서 정리한 가설검정 절차는 다음 여섯 단계다. 중요한 것은 단계 자체를 외우는 것이 아니라, 각 단계가 의사결정의 어떤 근거를 만드는지 이해하는 것이다.</p>
+
+                        <table class="stat-table">
+                            <tr>
+                                <th>단계</th>
+                                <th>내용</th>
+                            </tr>
+                            <tr>
+                                <td>1</td>
+                                <td>가설 설정: <code>H0</code>, <code>H1</code>을 정한다.</td>
+                            </tr>
+                            <tr>
+                                <td>2</td>
+                                <td>유의수준 <code>alpha</code>와 표본크기 <code>n</code>을 결정한다.</td>
+                            </tr>
+                            <tr>
+                                <td>3</td>
+                                <td>검정통계량과 그 분포를 결정한다.</td>
+                            </tr>
+                            <tr>
+                                <td>4</td>
+                                <td>임계값과 기각영역을 설정한다.</td>
+                            </tr>
+                            <tr>
+                                <td>5</td>
+                                <td>표본으로 검정통계량을 계산한다.</td>
+                            </tr>
+                            <tr>
+                                <td>6</td>
+                                <td>기각 여부를 판단하고 의사결정을 내린다.</td>
+                            </tr>
+                        </table>
+
+                        <h3>6. 예제 10-1: 양측검정</h3>
+                        <p>예제 10-1은 모표준편차를 아는 평균 검정이다. 주어진 값은 <code>mu0 = 112</code>, <code>sigma = 12</code>, <code>n = 16</code>, <code>x_bar = 114.65</code>이다. 평균이 112와 다른지를 보므로 양측검정을 사용한다.</p>
+
+                        <div class="stat-formula">
+                            H0: mu = 112
+                            <br>
+                            H1: mu != 112
+                            <br>
+                            alpha = 0.05, n = 16
+                            <br>
+                            Z0 = (X_bar - mu0) / (sigma / sqrt(n))
+                        </div>
+
+                        <p>계산하면 <code>Z0 = (114.65 - 112) / (12 / sqrt(16)) = 2.65 / 3 ≈ 0.88</code>이다. 유의수준 5%의 양측검정에서는 임계값이 약 <code>-1.96</code>과 <code>1.96</code>이므로, <code>0.88</code>은 기각영역에 들어가지 않는다.</p>
+
+                        <div class="stat-formula">
+                            기각영역: Z &lt;= -1.96 또는 Z &gt;= 1.96
+                            <br>
+                            관측값: Z0 ≈ 0.88
+                            <br>
+                            결론: H0를 기각하지 않는다
+                        </div>
+
+                        <h3>7. p-value는 무엇인가</h3>
+                        <p>p-value는 <code>H0</code>가 맞다고 가정했을 때, 지금 관측한 표본 결과만큼 또는 그보다 더 극단적인 결과가 나올 확률이다. 수업에서는 "표본으로부터 얻은 정보가 귀무가설을 지지하는 정도"로 직관화했다.</p>
+
+                        <table class="stat-table">
+                            <tr>
+                                <th>p-value</th>
+                                <th>해석</th>
+                            </tr>
+                            <tr>
+                                <td>작다</td>
+                                <td>H0 아래에서 보기 드문 표본 결과다. H0를 기각할 근거가 강해진다.</td>
+                            </tr>
+                            <tr>
+                                <td>크다</td>
+                                <td>H0 아래에서도 충분히 나올 수 있는 결과다. H0를 기각하기 어렵다.</td>
+                            </tr>
+                        </table>
+
+                        <p>내 주장이 대립가설에 있다면 p-value는 귀무가설을 방어하는 값처럼 느껴질 수 있다. 그래서 p-value가 작을수록 내가 주장하는 <code>H1</code> 쪽으로 판단을 밀어붙이기 쉬워진다. 반대로 p-value가 크면 기존 귀무가설을 기각할 근거가 부족하다.</p>
+
+                        <h3>8. 두 모평균 검정과 합동분산</h3>
+                        <p>두 집단 평균을 비교할 때는 문맥을 잘 읽어야 한다. "차이가 있다고 할 수 있는가"라는 질문이라면 보통 귀무가설은 두 평균이 같다는 주장이고, 대립가설은 두 평균이 다르다는 주장이다.</p>
+
+                        <div class="stat-formula">
+                            H0: mu1 = mu2
+                            <br>
+                            H1: mu1 != mu2
+                        </div>
+
+                        <p>모분산을 모르지만 두 모분산이 같다고 가정할 수 있으면 합동분산을 사용한다. 즉, 표본분산을 각각 따로만 보는 것이 아니라 두 표본의 정보를 합쳐 공통 분산을 추정한다. 여기서도 핵심은 공식을 외우기보다 "두 집단이 독립인지, 대응인지, 분산을 아는지, 같다고 볼 수 있는지"를 먼저 판단하는 것이다.</p>
+
+                        <h3>9. 통계적 판단과 삶의 판단</h3>
+                        <p>이번 수업은 통계적 의사결정을 일상적 판단과 연결했다. 사람은 하루에도 수없이 많은 결정을 한다. 학교에 갈지, 아침을 먹을지, 커피를 마실지 같은 작은 결정부터 기업 경영과 인재 판단 같은 큰 결정까지, 모든 결정에는 근거와 오류 가능성이 있다.</p>
+
+                        <p>기업의 원가절감도 마찬가지다. 사람을 줄이는 방식은 빠르게 보이지만 장기적으로 조직을 무너뜨릴 수 있고, 부품 원가를 지나치게 낮추는 판단은 리콜과 신뢰 하락으로 이어질 수 있다. CEO의 한순간의 판단이 회사 전체의 방향을 바꿀 수 있으므로, 기업을 키우려면 거시적 안목과 사람을 볼 줄 아는 힘이 필요하다.</p>
+
+                        <div class="lecture-note">
+                            <p><strong>수업 메모.</strong> 시간은 나이가 들수록 더 빠르게 지나가는 것처럼 느껴진다. 하루를 어떻게 보냈는지 돌아보고, 어제의 나보다 오늘의 내가 조금 더 나아지도록 살아야 한다. 마인드가 바뀌면 행동이 바뀌고, 행동이 습관이 되며, 습관은 삶의 방향을 바꾼다.</p>
+                        </div>
+
+                        <ul>
+                            <li>가설은 아직 입증되지 않은 주장이고, 가설검정은 <code>H0</code>와 <code>H1</code> 사이의 의사결정이다.</li>
+                            <li>귀무가설 <code>H0</code>를 기각하려면 검정통계량이 기각영역에 들어가거나 p-value가 유의수준보다 작아야 한다.</li>
+                            <li>제1종 오류는 참인 <code>H0</code>를 잘못 기각하는 오류이고, 확률은 <code>alpha</code>다.</li>
+                            <li>제2종 오류는 거짓인 <code>H0</code>를 기각하지 못하는 오류이고, 확률은 <code>beta</code>다.</li>
+                            <li><code>alpha</code>와 <code>beta</code>는 서로 trade-off 관계에 있으며, 표본크기를 늘리면 둘을 함께 줄일 수 있다.</li>
+                            <li>p-value가 작을수록 귀무가설을 기각할 근거가 강해진다.</li>
+                            <li>통계 문제를 풀 때도 문맥을 읽는 국어 능력이 중요하다.</li>
+                            <li>가설검정은 계산 절차이면서, 오류 가능성을 인식하고 판단하는 훈련이다.</li>
+                        </ul>
+                    </div>
+
+                    <div class="lang-en">
+                        <p class="week-references"><em>Keywords: hypothesis, null hypothesis, alternative hypothesis, H0, H1, test statistic, critical value, rejection region, significance level, alpha, beta, Type I error, Type II error, p-value, two-sided test, pooled variance</em></p>
+
+                        <p>Week 13 moved from confidence intervals into hypothesis testing. The main theme was that statistical decisions always carry the possibility of error. Hypothesis testing places two hypotheses against each other and asks which side is better supported by sample evidence. The decision is not absolute certainty; it is a judgment made under uncertainty.</p>
+
+                        <div class="lecture-note">
+                            <p><strong>Core idea.</strong> In hypothesis testing, we use a test statistic and p-value from the sample to decide whether the null hypothesis <code>H0</code> can be rejected. Statistics is calculation, but it is also decision-making under possible error.</p>
+                        </div>
+
+                        <h3>1. Hypothesis, Null Hypothesis, Alternative Hypothesis</h3>
+                        <p>A hypothesis is an unproven claim or statement. In hypothesis testing, the existing position or default state is usually written as the null hypothesis <code>H0</code>, while the claim the researcher wants to support is written as the alternative hypothesis <code>H1</code>.</p>
+
+                        <table class="stat-table">
+                            <tr>
+                                <th>Term</th>
+                                <th>Notation</th>
+                                <th>Meaning</th>
+                            </tr>
+                            <tr>
+                                <td>Null hypothesis</td>
+                                <td><code>H0</code></td>
+                                <td>The default claim, often a claim of no difference, and the hypothesis tested for possible rejection</td>
+                            </tr>
+                            <tr>
+                                <td>Alternative hypothesis</td>
+                                <td><code>H1</code></td>
+                                <td>The claim the researcher wants to support, usually a claim of difference or effect</td>
+                            </tr>
+                        </table>
+
+                        <p>In class, the null hypothesis was remembered as the hypothesis one often hopes to reject. More precisely, <code>H0</code> is not automatically a bad hypothesis. But in many research settings, the claim we want to show is placed in <code>H1</code>, and supporting it requires enough evidence to reject <code>H0</code>.</p>
+
+                        <h3>2. Test Statistic, Critical Value, Rejection Region</h3>
+                        <p>The final decision in hypothesis testing is based on a test statistic. A sample result such as a mean, variance, or proportion is standardized into a value that can be compared with a known distribution. We then check whether it crosses a critical value and falls into the rejection region.</p>
+
+                        <div class="stat-formula">
+                            test statistic = how far the sample evidence is from what H0 expects
+                            <br>
+                            critical value = the cutoff for rejecting or not rejecting H0
+                            <br>
+                            rejection region = the region where H0 is rejected
+                        </div>
+
+                        <p>Moving the critical value changes the size of the rejection region. If the <code>alpha</code> region becomes smaller, Type I error decreases, but the <code>beta</code> region can become larger. This is why the two types of error must be understood before the final decision.</p>
+
+                        <h3>3. Type I Error and Type II Error</h3>
+                        <p>In real problems, we do not know whether <code>H0</code> is actually true or false. A statistical decision can therefore be correct or incorrect in two different ways.</p>
+
+                        <table class="stat-table">
+                            <tr>
+                                <th>Decision</th>
+                                <th>H0 is true</th>
+                                <th>H0 is false</th>
+                            </tr>
+                            <tr>
+                                <td>Do not reject H0</td>
+                                <td>Correct decision</td>
+                                <td>Type II error <code>beta</code></td>
+                            </tr>
+                            <tr>
+                                <td>Reject H0</td>
+                                <td>Type I error <code>alpha</code></td>
+                                <td>Correct decision</td>
+                            </tr>
+                        </table>
+
+                        <p>The courtroom example makes Type I error intuitive. If an innocent person is judged guilty and sentenced to death, a true <code>H0</code> has been rejected. If the person is actually guilty but is released as innocent, then a false <code>H0</code> has not been rejected; that is Type II error.</p>
+
+                        <p>The pharmaceutical example depends on how <code>H0</code> is framed. In the class note, if <code>H0</code> is the company's claim that the drug is effective, rejecting a genuinely effective cancer drug is Type I error, while accepting and selling an ineffective drug after believing the company's false claim is Type II error. In standard drug testing, however, <code>H0</code> is often framed as "no effect," so exam problems must always be read from the stated <code>H0</code> first.</p>
+
+                        <h3>4. Alpha, Beta, and Sample Size</h3>
+                        <p><code>alpha</code> is the probability of Type I error. If no value is specified, the common default significance level is <code>0.05</code>, or 5%. <code>beta</code> is the probability of Type II error. The two errors push against each other: reducing one can increase the other.</p>
+
+                        <div class="stat-formula">
+                            smaller alpha -> lower Type I error, possible increase in beta
+                            <br>
+                            smaller beta -> lower Type II error, possible increase in alpha
+                            <br>
+                            direct way to reduce both -> increase sample size n
+                        </div>
+
+                        <p>A larger sample size makes the relevant distributions easier to distinguish and improves statistical power under the same significance level. Therefore, <code>n</code> is not just a number in a formula; it strongly shapes the reliability of the decision.</p>
+
+                        <h3>5. Six Steps of Hypothesis Testing</h3>
+                        <p>The class organized hypothesis testing into six steps. The goal is not only to memorize the list, but to understand what kind of decision evidence each step creates.</p>
+
+                        <table class="stat-table">
+                            <tr>
+                                <th>Step</th>
+                                <th>Content</th>
+                            </tr>
+                            <tr>
+                                <td>1</td>
+                                <td>Set the hypotheses: define <code>H0</code> and <code>H1</code>.</td>
+                            </tr>
+                            <tr>
+                                <td>2</td>
+                                <td>Choose the significance level <code>alpha</code> and sample size <code>n</code>.</td>
+                            </tr>
+                            <tr>
+                                <td>3</td>
+                                <td>Choose the test statistic and its distribution.</td>
+                            </tr>
+                            <tr>
+                                <td>4</td>
+                                <td>Set the critical value and rejection region.</td>
+                            </tr>
+                            <tr>
+                                <td>5</td>
+                                <td>Compute the test statistic from the sample.</td>
+                            </tr>
+                            <tr>
+                                <td>6</td>
+                                <td>Make the decision: reject or do not reject <code>H0</code>.</td>
+                            </tr>
+                        </table>
+
+                        <h3>6. Example 10-1: Two-Sided Test</h3>
+                        <p>Example 10-1 is a mean test with a known population standard deviation. The given values are <code>mu0 = 112</code>, <code>sigma = 12</code>, <code>n = 16</code>, and <code>x_bar = 114.65</code>. Since the question asks whether the mean is different from 112, this is a two-sided test.</p>
+
+                        <div class="stat-formula">
+                            H0: mu = 112
+                            <br>
+                            H1: mu != 112
+                            <br>
+                            alpha = 0.05, n = 16
+                            <br>
+                            Z0 = (X_bar - mu0) / (sigma / sqrt(n))
+                        </div>
+
+                        <p>The calculation gives <code>Z0 = (114.65 - 112) / (12 / sqrt(16)) = 2.65 / 3 ≈ 0.88</code>. For a two-sided test at the 5% significance level, the critical values are about <code>-1.96</code> and <code>1.96</code>, so <code>0.88</code> does not fall in the rejection region.</p>
+
+                        <div class="stat-formula">
+                            rejection region: Z &lt;= -1.96 or Z &gt;= 1.96
+                            <br>
+                            observed value: Z0 ≈ 0.88
+                            <br>
+                            conclusion: do not reject H0
+                        </div>
+
+                        <h3>7. What Is a p-value?</h3>
+                        <p>A p-value is the probability, assuming <code>H0</code> is true, of observing a result at least as extreme as the one obtained from the sample. In class, it was described intuitively as the degree to which the sample information supports the null hypothesis.</p>
+
+                        <table class="stat-table">
+                            <tr>
+                                <th>p-value</th>
+                                <th>Interpretation</th>
+                            </tr>
+                            <tr>
+                                <td>Small</td>
+                                <td>The sample result is unusual under H0. Evidence against H0 becomes stronger.</td>
+                            </tr>
+                            <tr>
+                                <td>Large</td>
+                                <td>The sample result is plausible under H0. It is difficult to reject H0.</td>
+                            </tr>
+                        </table>
+
+                        <p>If my claim is placed in the alternative hypothesis, the p-value can feel like a defense of the null hypothesis. The smaller the p-value, the easier it is to argue for <code>H1</code>. A large p-value means that there is not enough evidence to reject the existing null hypothesis.</p>
+
+                        <h3>8. Two-Mean Tests and Pooled Variance</h3>
+                        <p>When comparing two group means, the wording of the problem matters. If the question asks whether we can say there is a difference, the null hypothesis usually says that the two means are equal, and the alternative says that they are different.</p>
+
+                        <div class="stat-formula">
+                            H0: mu1 = mu2
+                            <br>
+                            H1: mu1 != mu2
+                        </div>
+
+                        <p>If the population variances are unknown but can be assumed equal, pooled variance is used. The idea is to combine information from the two samples to estimate a common variance. Again, the important question is not only which formula to memorize, but whether the samples are independent or paired, whether the variances are known, and whether equal variance is a reasonable assumption.</p>
+
+                        <h3>9. Statistical Judgment and Life Judgment</h3>
+                        <p>The lecture connected statistical decision-making with ordinary decisions. We make countless decisions every day: whether to go to school, whether to eat breakfast, whether to drink coffee. Larger decisions in management and leadership follow the same pattern: each decision has a basis and each can be wrong.</p>
+
+                        <p>Cost reduction in business is a good example. Cutting people can look fast, but it can damage the organization in the long run. Lowering parts costs too aggressively can lead to recalls and loss of trust. A single CEO decision can change the fate of a company, so growing an organization requires broad judgment and the ability to work with people well.</p>
+
+                        <div class="lecture-note">
+                            <p><strong>Class note.</strong> Time seems to accelerate as we get older. It is worth asking how each day was spent and trying to become slightly better than yesterday. When mindset changes, behavior changes; behavior becomes habit, and habit can change the direction of a life.</p>
+                        </div>
+
+                        <ul>
+                            <li>A hypothesis is an unproven claim, and hypothesis testing is a decision between <code>H0</code> and <code>H1</code>.</li>
+                            <li>To reject <code>H0</code>, the test statistic must fall in the rejection region or the p-value must be smaller than the significance level.</li>
+                            <li>Type I error rejects a true <code>H0</code>; its probability is <code>alpha</code>.</li>
+                            <li>Type II error fails to reject a false <code>H0</code>; its probability is <code>beta</code>.</li>
+                            <li><code>alpha</code> and <code>beta</code> have a trade-off relationship, and increasing sample size can reduce both.</li>
+                            <li>A smaller p-value gives stronger evidence against the null hypothesis.</li>
+                            <li>Reading the context carefully is essential in statistical problems.</li>
+                            <li>Hypothesis testing is both a calculation procedure and training in judgment under uncertainty.</li>
+                        </ul>
+                    </div>
+                </div>
+            </section>
+        </article>
+
+        <div id="site-footer"></div>
+    </div>
+
+    <script src="../../../common.js"></script>
+</body>
+</html>
