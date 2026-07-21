@@ -1,0 +1,417 @@
+<!DOCTYPE html>
+<html data-theme="dark" data-lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>AI Theory - Week 13 - Sewon Park</title>
+    <link rel="stylesheet" type="text/css" href="../../../style.css">
+    <link rel="stylesheet" type="text/css" href="../../../assets/css/lectures.css">
+</head>
+<body>
+    <button class="theme-toggle" onclick="toggleTheme()" aria-label="Toggle dark mode"></button>
+    <button class="lang-toggle" onclick="toggleLanguage()" aria-label="Toggle language">EN</button>
+
+    <div class="container">
+        <div id="site-header"></div>
+        <div id="site-nav"></div>
+
+        <article class="course-page">
+            <div class="course-header">
+                <h1 data-en="AI Theory" data-kr="인공지능론">AI Theory</h1>
+                <p class="course-meta" data-en="2026 Spring | Intensive Course | Online 3h + Offline 3h" data-kr="2026 봄학기 | 압축형 수업 | 온라인 3시간 + 오프라인 3시간">2026 Spring | Intensive Course | Online 3h + Offline 3h</p>
+            </div>
+
+            <div class="course-nav">
+                <a href="../../../lectures.html" class="back-to-lectures" data-en="Back to Lectures" data-kr="강의 목록으로">Back to Lectures</a>
+                <span class="nav-separator">/</span>
+                <a href="./index.html" class="back-to-course" data-en="Course Home" data-kr="과목 홈">Course Home</a>
+            </div>
+
+            <div class="week-nav">
+                <span data-en="Weeks:" data-kr="주차:">Weeks:</span>
+                <a href="week-09.html" class="week-link">W9</a>
+                <a href="week-10.html" class="week-link">W10</a>
+                <a href="week-11.html" class="week-link">W11</a>
+                <a href="week-12.html" class="week-link">W12</a>
+                <a href="week-13.html" class="week-link current">W13</a>
+            </div>
+
+            <section class="week-section" id="week-13">
+                <h2 data-en="Week 13" data-kr="13주차">Week 13</h2>
+                <p class="week-date" data-en="2026-05-25 - 05-31 · CSP and Backtracking" data-kr="2026-05-25 - 05-31 · CSP와 백트래킹">2026-05-25 - 05-31 · CSP and Backtracking</p>
+                <div class="week-content">
+                    <span class="assignment-chip" data-en="Constraint Satisfaction Problems" data-kr="제약 만족 문제">Constraint Satisfaction Problems</span>
+
+                    <div class="lang-kr" hidden>
+                        <p class="week-references"><em>교안: 06. CSP-1.pdf, 06. CSP-2.pdf, CSP (3) 교안.pdf (AIMA 6장) · 주차 기간과 활동명은 제공된 LMS 기록을 기준으로 정리</em></p>
+
+                        <p>13주차는 <strong>제약 만족 문제(Constraint Satisfaction Problem, CSP)</strong>를 중심으로, 문제를 변수·도메인·제약으로 표현하고 해를 찾는 과정을 정리했다. 기본 백트래킹에서 출발해 MRV와 LCV 같은 순서 휴리스틱, forward checking과 AC-3 제약 전파, min-conflicts 지역 탐색까지 이어지는 흐름이다.</p>
+
+                        <div class="lecture-note">
+                            <p><strong>핵심 관점.</strong> 일반 탐색이 상태를 블랙박스처럼 다루는 데 비해 CSP는 상태의 내부를 변수와 값의 할당으로 드러낸다. 해는 모든 변수가 할당된 <em>complete assignment</em>이면서 모든 제약을 만족하는 <em>consistent assignment</em>이어야 한다.</p>
+                        </div>
+
+                        <h3>1. CSP의 형식적 표현</h3>
+                        <div class="stat-formula">
+                            CSP = (X, D, C)<br>
+                            X = 변수 집합 · D = 각 변수의 도메인 · C = 허용되는 할당을 정의하는 제약 집합<br>
+                            Goal = complete assignment + consistent assignment
+                        </div>
+
+                        <table class="stat-table">
+                            <tr>
+                                <th>요소</th>
+                                <th>의미</th>
+                                <th>예시</th>
+                            </tr>
+                            <tr>
+                                <td>Variable</td>
+                                <td>값을 결정해야 하는 대상</td>
+                                <td>지역, 스도쿠 칸, 강의, 문자</td>
+                            </tr>
+                            <tr>
+                                <td>Domain</td>
+                                <td>각 변수가 가질 수 있는 값의 집합</td>
+                                <td>색상, 1-9, 시간·강의실, 0-9</td>
+                            </tr>
+                            <tr>
+                                <td>Constraint</td>
+                                <td>허용되거나 금지되는 값의 조합</td>
+                                <td>인접 지역은 다른 색, 행·열은 AllDifferent</td>
+                            </tr>
+                        </table>
+
+                        <p>교안은 지도 색칠, 스도쿠, N-Queens, 복면산, 강의실 배정을 대표 예제로 사용한다. 문제의 표면은 서로 다르지만, 모두 어떤 값을 정해야 하는 변수와 가능한 값의 범위, 동시에 만족해야 하는 규칙으로 다시 쓸 수 있다.</p>
+
+                        <h3>2. 백트래킹: 한 번에 변수 하나씩</h3>
+                        <p>백트래킹은 깊이 우선 탐색을 CSP에 맞게 단순화한 기본 알고리즘이다. 빈 할당에서 시작해 미할당 변수 하나를 고르고, 현재 할당과 충돌하지 않는 값을 넣은 뒤 재귀적으로 다음 변수를 처리한다. 합법적인 값이 남지 않으면 직전 선택을 취소하고 다른 값을 시도한다.</p>
+
+                        <pre class="lecture-code"><code>BACKTRACK(assignment, csp):
+    if assignment is complete:
+        return assignment
+
+    var = SELECT-UNASSIGNED-VARIABLE(csp)
+    for value in ORDER-DOMAIN-VALUES(var, assignment, csp):
+        if value is consistent with assignment:
+            assign var = value
+            result = BACKTRACK(assignment, csp)
+            if result is not failure:
+                return result
+            undo var = value
+
+    return failure</code></pre>
+
+                        <p>변수 할당은 순서를 바꾸어도 같은 부분 할당을 나타내므로, 매 노드에서 변수 하나만 선택하면 된다. 또한 값을 넣을 때마다 제약을 검사하면 이미 모순인 부분 할당의 하위 탐색을 즉시 버릴 수 있다.</p>
+
+                        <h3>3. 더 빨리 실패하고 더 빨리 성공하는 순서</h3>
+                        <div class="stat-comparison">
+                            <div class="stat-comparison-item">
+                                <h4>MRV</h4>
+                                <p>합법적인 값이 가장 적게 남은 변수를 먼저 고른다. 실패 가능성이 큰 지점을 일찍 확인하는 fail-fast 전략이다.</p>
+                            </div>
+                            <div class="stat-comparison-item">
+                                <h4>Degree Heuristic</h4>
+                                <p>MRV가 동률이면 아직 할당되지 않은 변수들과 가장 많은 제약을 공유하는 변수를 우선한다.</p>
+                            </div>
+                            <div class="stat-comparison-item">
+                                <h4>LCV</h4>
+                                <p>이웃 변수의 도메인에서 가장 적은 값을 제거하는 값을 먼저 시도한다. 이후 선택지를 최대한 남기는 succeed-fast 전략이다.</p>
+                            </div>
+                        </div>
+
+                        <h3>4. Forward Checking과 AC-3</h3>
+                        <table class="stat-table">
+                            <tr>
+                                <th>방법</th>
+                                <th>확인 범위</th>
+                                <th>역할</th>
+                            </tr>
+                            <tr>
+                                <td>Forward checking</td>
+                                <td>방금 할당한 변수의 미할당 이웃</td>
+                                <td>충돌하는 값을 이웃 도메인에서 지우고, 빈 도메인이 생기면 즉시 백트래킹한다.</td>
+                            </tr>
+                            <tr>
+                                <td>Arc consistency</td>
+                                <td>서로 연결된 변수 쌍</td>
+                                <td>X의 모든 값이 Y에서 최소 하나의 양립 가능한 값을 갖도록 도메인을 줄인다.</td>
+                            </tr>
+                            <tr>
+                                <td>AC-3</td>
+                                <td>큐에 들어 있는 모든 arc</td>
+                                <td>도메인이 바뀔 때 이웃 arc를 다시 검사해 제약 축소를 연쇄적으로 전파한다.</td>
+                            </tr>
+                        </table>
+
+                        <div class="stat-formula">
+                            Forward checking = 한 단계 앞의 명백한 실패 감지<br>
+                            AC-3 = 이웃 도메인 축소를 반복 전파 · 시간복잡도 O(c * d^3)
+                        </div>
+
+                        <p>Forward checking은 현재 변수와 이웃 사이의 충돌은 잡지만, 아직 할당되지 않은 이웃들끼리의 모순은 놓칠 수 있다. Arc consistency는 한 도메인의 값이 다른 도메인에서 지원되는지 반복 확인해 더 이른 실패 감지를 가능하게 한다.</p>
+
+                        <h3>5. Min-Conflicts와 지역 탐색</h3>
+                        <p>CSP를 항상 부분 할당으로만 풀 필요는 없다. 지역 탐색은 처음부터 모든 변수에 값을 넣은 complete-state formulation을 사용하고, 위반된 제약의 수를 <code>h(n)</code>으로 둔다. Min-conflicts는 충돌 중인 변수를 하나 고른 뒤 제약 위반을 가장 적게 만드는 값으로 바꾸며 <code>h(n) = 0</code>인 상태를 찾는다.</p>
+
+                        <div class="lecture-note">
+                            <p><strong>12주차와의 연결.</strong> CSP 교안은 hill climbing, simulated annealing, genetic algorithm도 complete-state CSP 탐색에 사용할 수 있다고 설명한다. 따라서 앞선 좀비 생존 키트 GA 실습은 제약 아래에서 더 좋은 해를 찾는 또 하나의 탐색 관점으로 이어진다.</p>
+                        </div>
+
+                        <h3>6. 13주차 LMS 활동 기록</h3>
+                        <p>주차 활동 창은 5월 25일 00:00부터 5월 31일 23:59까지였다. 아래 표는 사용자가 제공한 LMS 항목을 강의·실습·프로젝트 흐름으로 다시 묶은 것이다.</p>
+
+                        <table class="stat-table">
+                            <tr>
+                                <th>구분</th>
+                                <th>항목</th>
+                                <th>기록</th>
+                            </tr>
+                            <tr>
+                                <td>CSP 기초</td>
+                                <td>CSP · CSP (1)</td>
+                                <td>27:06 강의와 1차 자료</td>
+                            </tr>
+                            <tr>
+                                <td>백트래킹</td>
+                                <td>CSP - Backtracking · CSP (2)</td>
+                                <td>24:46 강의와 2차 자료</td>
+                            </tr>
+                            <tr>
+                                <td>제약 전파·지역 탐색</td>
+                                <td>CSP (3) · CSP (3) 교안</td>
+                                <td>32:40 강의와 3차 교안</td>
+                            </tr>
+                            <tr>
+                                <td>바이브 코딩</td>
+                                <td>5강. 클로드 코드에서 API 설정하기</td>
+                                <td>25:42</td>
+                            </tr>
+                            <tr>
+                                <td>AI 에이전트</td>
+                                <td>6강. 클로드 코드 AI 에이전트로 개발팀 구성하기</td>
+                                <td>44:32</td>
+                            </tr>
+                            <tr>
+                                <td>데모</td>
+                                <td>CSP-demo</td>
+                                <td>15:36 · 출결 대상 아님</td>
+                            </tr>
+                            <tr>
+                                <td>GA 과제</td>
+                                <td>좀비 생존 키트 만들기</td>
+                                <td>5월 26일 17:50 마감</td>
+                            </tr>
+                            <tr>
+                                <td>발표</td>
+                                <td>발표용</td>
+                                <td>5월 26일 15:00 시작 · 1시간</td>
+                            </tr>
+                            <tr>
+                                <td>코드·프로젝트</td>
+                                <td>학생 코드 · 기말 프로젝트 제안</td>
+                                <td>기말 프로젝트 제안 시 가산점</td>
+                            </tr>
+                        </table>
+
+                        <h3>7. 주차 요약</h3>
+                        <ul>
+                            <li>CSP는 문제를 변수, 도메인, 제약으로 명시적으로 표현한다.</li>
+                            <li>백트래킹은 변수 하나씩 값을 넣고 모순이 생기면 선택을 되돌린다.</li>
+                            <li>MRV와 degree heuristic은 변수 순서를, LCV는 값의 순서를 개선한다.</li>
+                            <li>Forward checking과 AC-3는 미래의 모순을 더 일찍 발견하도록 도메인을 축소한다.</li>
+                            <li>Min-conflicts와 GA 같은 지역 탐색은 complete-state에서 제약 위반을 줄이는 대안적 접근이다.</li>
+                            <li>주차 후반 활동은 CSP-demo, 바이브 코딩, AI 에이전트 개발팀, GA 과제, 기말 프로젝트 제안으로 이어졌다.</li>
+                        </ul>
+                    </div>
+
+                    <div class="lang-en">
+                        <p class="week-references"><em>Sources: 06. CSP-1.pdf, 06. CSP-2.pdf, and CSP (3) handout.pdf (AIMA Chapter 6) · Module dates and activity names follow the supplied LMS record</em></p>
+
+                        <p>Week 13 focused on <strong>Constraint Satisfaction Problems (CSPs)</strong>: representing a problem through variables, domains, and constraints, then searching for a valid assignment. The sequence moved from basic backtracking to ordering heuristics such as MRV and LCV, constraint propagation through forward checking and AC-3, and min-conflicts local search.</p>
+
+                        <div class="lecture-note">
+                            <p><strong>Core perspective.</strong> Standard search may treat a state as a black box. A CSP exposes its internal structure as variable-value assignments. A solution must be both a <em>complete assignment</em>, with every variable assigned, and a <em>consistent assignment</em>, satisfying every constraint.</p>
+                        </div>
+
+                        <h3>1. Formal CSP Representation</h3>
+                        <div class="stat-formula">
+                            CSP = (X, D, C)<br>
+                            X = variables · D = each variable's domain · C = constraints that define legal assignments<br>
+                            Goal = complete assignment + consistent assignment
+                        </div>
+
+                        <table class="stat-table">
+                            <tr>
+                                <th>Element</th>
+                                <th>Meaning</th>
+                                <th>Examples</th>
+                            </tr>
+                            <tr>
+                                <td>Variable</td>
+                                <td>An object whose value must be chosen</td>
+                                <td>Region, Sudoku cell, class, letter</td>
+                            </tr>
+                            <tr>
+                                <td>Domain</td>
+                                <td>The set of values available to a variable</td>
+                                <td>Colors, 1-9, time and room, 0-9</td>
+                            </tr>
+                            <tr>
+                                <td>Constraint</td>
+                                <td>A legal or forbidden combination of values</td>
+                                <td>Adjacent regions differ; each row and column is AllDifferent</td>
+                            </tr>
+                        </table>
+
+                        <p>The handouts use map coloring, Sudoku, N-Queens, cryptarithmetic, and classroom assignment as representative examples. Their surfaces differ, but each can be rewritten as variables to decide, possible values, and rules that must hold together.</p>
+
+                        <h3>2. Backtracking: One Variable at a Time</h3>
+                        <p>Backtracking is the fundamental depth-first algorithm adapted to CSP structure. It begins with an empty assignment, selects one unassigned variable, tries a value consistent with the current assignment, and recursively continues. If no legal value remains, it undoes the previous choice and tries another value.</p>
+
+                        <pre class="lecture-code"><code>BACKTRACK(assignment, csp):
+    if assignment is complete:
+        return assignment
+
+    var = SELECT-UNASSIGNED-VARIABLE(csp)
+    for value in ORDER-DOMAIN-VALUES(var, assignment, csp):
+        if value is consistent with assignment:
+            assign var = value
+            result = BACKTRACK(assignment, csp)
+            if result is not failure:
+                return result
+            undo var = value
+
+    return failure</code></pre>
+
+                        <p>Variable assignments are commutative, so the algorithm only needs to select one variable at each node. Checking constraints as values are assigned also lets it discard inconsistent partial assignments before exploring their descendants.</p>
+
+                        <h3>3. Ordering to Fail Fast and Succeed Fast</h3>
+                        <div class="stat-comparison">
+                            <div class="stat-comparison-item">
+                                <h4>MRV</h4>
+                                <p>Choose the variable with the fewest legal values remaining. It exposes likely failure points early.</p>
+                            </div>
+                            <div class="stat-comparison-item">
+                                <h4>Degree Heuristic</h4>
+                                <p>Break an MRV tie by choosing the variable involved in the most constraints with unassigned variables.</p>
+                            </div>
+                            <div class="stat-comparison-item">
+                                <h4>LCV</h4>
+                                <p>Try the value that removes the fewest values from neighboring domains, preserving more future choices.</p>
+                            </div>
+                        </div>
+
+                        <h3>4. Forward Checking and AC-3</h3>
+                        <table class="stat-table">
+                            <tr>
+                                <th>Method</th>
+                                <th>Scope</th>
+                                <th>Role</th>
+                            </tr>
+                            <tr>
+                                <td>Forward checking</td>
+                                <td>Unassigned neighbors of the newly assigned variable</td>
+                                <td>Remove conflicting neighbor values and backtrack if a domain becomes empty.</td>
+                            </tr>
+                            <tr>
+                                <td>Arc consistency</td>
+                                <td>Pairs of connected variables</td>
+                                <td>Keep each value of X only when Y contains at least one compatible value.</td>
+                            </tr>
+                            <tr>
+                                <td>AC-3</td>
+                                <td>All arcs managed in a queue</td>
+                                <td>When a domain changes, recheck neighboring arcs and propagate the reduction.</td>
+                            </tr>
+                        </table>
+
+                        <div class="stat-formula">
+                            Forward checking = detect obvious failure one step ahead<br>
+                            AC-3 = repeatedly propagate neighbor-domain reductions · time complexity O(c * d^3)
+                        </div>
+
+                        <p>Forward checking detects conflicts between the current variable and its neighbors, but it can miss contradictions among still-unassigned neighbors. Arc consistency repeatedly checks whether values have support in neighboring domains, allowing earlier failure detection.</p>
+
+                        <h3>5. Min-Conflicts and Local Search</h3>
+                        <p>A CSP does not always require partial assignments. Local search uses a complete-state formulation in which every variable has a value from the beginning and <code>h(n)</code> is the number of violated constraints. Min-conflicts selects a conflicted variable and assigns the value that creates the fewest violations until it reaches <code>h(n) = 0</code>.</p>
+
+                        <div class="lecture-note">
+                            <p><strong>Connection to Week 12.</strong> The CSP handout states that hill climbing, simulated annealing, and genetic algorithms can also use a complete-state CSP formulation. The earlier Zombie Survival Kit GA practice therefore provides another perspective on searching for stronger solutions under constraints.</p>
+                        </div>
+
+                        <h3>6. Week 13 LMS Activity Record</h3>
+                        <p>The module window ran from May 25 at 00:00 through May 31 at 23:59. The table reorganizes the supplied LMS items into a lecture, practice, and project sequence.</p>
+
+                        <table class="stat-table">
+                            <tr>
+                                <th>Category</th>
+                                <th>Item</th>
+                                <th>Record</th>
+                            </tr>
+                            <tr>
+                                <td>CSP foundations</td>
+                                <td>CSP · CSP (1)</td>
+                                <td>27:06 lecture and first resource</td>
+                            </tr>
+                            <tr>
+                                <td>Backtracking</td>
+                                <td>CSP - Backtracking · CSP (2)</td>
+                                <td>24:46 lecture and second resource</td>
+                            </tr>
+                            <tr>
+                                <td>Propagation and local search</td>
+                                <td>CSP (3) · CSP (3) handout</td>
+                                <td>32:40 lecture and third handout</td>
+                            </tr>
+                            <tr>
+                                <td>Vibe coding</td>
+                                <td>Lesson 5: Configuring an API in Claude Code</td>
+                                <td>25:42</td>
+                            </tr>
+                            <tr>
+                                <td>AI agents</td>
+                                <td>Lesson 6: Building a development team with Claude Code AI agents</td>
+                                <td>44:32</td>
+                            </tr>
+                            <tr>
+                                <td>Demo</td>
+                                <td>CSP-demo</td>
+                                <td>15:36 · not attendance-tracked</td>
+                            </tr>
+                            <tr>
+                                <td>GA assignment</td>
+                                <td>Build a Zombie Survival Kit</td>
+                                <td>Due May 26 at 17:50</td>
+                            </tr>
+                            <tr>
+                                <td>Presentation</td>
+                                <td>Presentation session</td>
+                                <td>May 26 at 15:00 · one hour</td>
+                            </tr>
+                            <tr>
+                                <td>Code and project</td>
+                                <td>Student code · final-project proposal</td>
+                                <td>Bonus credit for proposing a final project</td>
+                            </tr>
+                        </table>
+
+                        <h3>7. Week Summary</h3>
+                        <ul>
+                            <li>A CSP represents a problem explicitly through variables, domains, and constraints.</li>
+                            <li>Backtracking assigns one variable at a time and undoes a choice when it reaches inconsistency.</li>
+                            <li>MRV and the degree heuristic order variables; LCV orders values.</li>
+                            <li>Forward checking and AC-3 reduce domains to reveal future contradictions earlier.</li>
+                            <li>Min-conflicts and local methods such as GAs offer complete-state alternatives.</li>
+                            <li>The later activities connected CSP demos with vibe coding, AI-agent development teams, a GA assignment, and the final-project proposal.</li>
+                        </ul>
+                    </div>
+                </div>
+            </section>
+        </article>
+
+        <div id="site-footer"></div>
+    </div>
+
+    <script src="../../../common.js"></script>
+</body>
+</html>
