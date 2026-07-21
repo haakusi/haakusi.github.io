@@ -18,7 +18,7 @@
         <article class="course-page">
             <div class="course-header">
                 <h1 data-en="AI Theory" data-kr="인공지능론">AI Theory</h1>
-                <p class="course-meta" data-en="2026 Spring | Intensive Course | Online 3h + Offline 3h" data-kr="2026 봄학기 | 압축형 수업 | 온라인 3시간 + 오프라인 3시간">2026 Spring | Intensive Course | Online 3h + Offline 3h</p>
+                <p class="course-meta" data-en="2026 Spring | Intensive Course" data-kr="2026 봄학기 | 압축형 수업">2026 Spring | Intensive Course</p>
             </div>
 
             <div class="course-nav">
@@ -46,9 +46,9 @@
                     <span class="assignment-chip" data-en="First-Order Logic" data-kr="1차 논리">First-Order Logic</span>
 
                     <div class="lang-kr" hidden>
-                        <p class="week-references"><em>교안: 09-1. FOL.pdf, 09-2. FOL Inference.pdf (AIMA 8-9장) · 주차 기간과 기말 평가 활동명은 제공된 LMS 기록을 기준으로 정리</em></p>
+                        <p class="week-references"><em>교안: 09-1. FOL.pdf, 09-2. FOL Inference.pdf (AIMA 8-9장) · 핵심 개념 중심의 개인 요약</em></p>
 
-                        <p>16주차는 명제논리보다 표현력이 높은 <strong>1차 논리(First-Order Logic, FOL)</strong>와 그 추론 방법을 다루고 기말 평가 활동으로 학기를 마무리했다. 객체·관계·함수를 표현하는 언어에서 출발해 양화사, 예화, Skolem 상수, 단일화, Generalized Modus Ponens로 이어졌다.</p>
+                        <p>16주차는 명제논리보다 표현력이 높은 <strong>1차 논리(First-Order Logic, FOL)</strong>와 그 추론 방법을 다루며 학기를 마무리했다. 객체·관계·함수를 표현하는 언어에서 출발해 양화사, 예화, Skolem 상수, 단일화, Generalized Modus Ponens로 이어졌다.</p>
 
                         <div class="lecture-note">
                             <p><strong>핵심 관점.</strong> 명제논리가 각각의 사실을 독립 기호로 다룬다면, FOL은 세계를 객체와 객체 사이의 관계로 구조화한다. 하나의 일반 규칙을 여러 객체에 적용할 수 있어 더 압축적이고 재사용 가능한 지식 표현이 된다.</p>
@@ -185,66 +185,20 @@
 
                         <p>모든 universal 문장을 가능한 ground term으로 바꾸는 명제화는 원리상 가능하지만 무관한 문장을 많이 만들 수 있다. 단일화와 GMP를 사용한 lifted inference는 현재 사실과 맞는 치환만 찾아 관련 결론을 직접 도출한다.</p>
 
-                        <h3>6. 기말 평가와 16주차 LMS 활동 기록</h3>
-                        <p>주차 활동 창은 6월 15일 00:00부터 6월 21일 23:59까지였다. FOL 강의와 외부 관점의 AI 콘텐츠, AI 사용 보고서, 기말과제 수정사항 및 Q&amp;A가 기말 평가 주차에 함께 배치됐다.</p>
-
-                        <table class="stat-table">
-                            <tr>
-                                <th>구분</th>
-                                <th>항목</th>
-                                <th>기록</th>
-                            </tr>
-                            <tr>
-                                <td>지식 표현</td>
-                                <td>FOL · 자료</td>
-                                <td>50:37 강의와 교안</td>
-                            </tr>
-                            <tr>
-                                <td>추론</td>
-                                <td>FOL Inference · 자료</td>
-                                <td>16:41 강의와 교안</td>
-                            </tr>
-                            <tr>
-                                <td>초청 강연</td>
-                                <td>기업에서의 AI 활용 현황</td>
-                                <td>50:34 녹화</td>
-                            </tr>
-                            <tr>
-                                <td>인터뷰</td>
-                                <td>스탠포드 최예진 교수 - AI의 현황</td>
-                                <td>30:01 · 출결 대상 아님</td>
-                            </tr>
-                            <tr>
-                                <td>기말 보고서</td>
-                                <td>AI 사용 보고서</td>
-                                <td>6월 10일 00:00 - 6월 21일 23:59</td>
-                            </tr>
-                            <tr>
-                                <td>기말 정리</td>
-                                <td>기말과제 수정사항 및 Q&amp;A</td>
-                                <td>수정 안내와 질의응답</td>
-                            </tr>
-                        </table>
-
-                        <div class="lecture-note">
-                            <p><strong>기록 범위.</strong> 제공된 정보는 16주차를 기말 평가 주차로 표시하고 보고서와 과제 수정·Q&amp;A를 제시한다. 별도의 시험 문항, 형식, 장소, 배점은 제공되지 않아 추가하지 않았다.</p>
-                        </div>
-
-                        <h3>7. 주차 요약</h3>
+                        <h3>6. 주차 요약</h3>
                         <ul>
                             <li>FOL은 객체, 관계, 함수를 이용해 세계의 구조를 표현한다.</li>
                             <li>상수, 변수, 술어, 함수, 등호, 연결사, 양화사가 FOL 문장을 구성한다.</li>
                             <li>Universal은 전체를, existential은 적어도 하나의 존재를 표현한다.</li>
                             <li>UI와 EI는 양화 문장을 개별 문장으로 예화하며, EI는 새 Skolem 상수를 사용한다.</li>
                             <li>Unification과 GMP는 관련 사실과 규칙을 직접 연결하는 lifted inference를 만든다.</li>
-                            <li>학기는 AI 활용 강연·인터뷰, AI 사용 보고서, 기말과제 수정·Q&amp;A로 마무리됐다.</li>
                         </ul>
                     </div>
 
                     <div class="lang-en">
-                        <p class="week-references"><em>Sources: 09-1. FOL.pdf and 09-2. FOL Inference.pdf (AIMA Chapters 8-9) · Module dates and final-assessment activity names follow the supplied LMS record</em></p>
+                        <p class="week-references"><em>Sources: 09-1. FOL.pdf and 09-2. FOL Inference.pdf (AIMA Chapters 8-9) · Personal summary centered on key concepts</em></p>
 
-                        <p>Week 16 studied <strong>First-Order Logic (FOL)</strong>, a language more expressive than propositional logic, and concluded the semester with final-assessment activities. The conceptual path moved from objects, relations, and functions to quantifiers, instantiation, Skolem constants, unification, and Generalized Modus Ponens.</p>
+                        <p>Week 16 studied <strong>First-Order Logic (FOL)</strong>, a language more expressive than propositional logic, and concluded the semester. The conceptual path moved from objects, relations, and functions to quantifiers, instantiation, Skolem constants, unification, and Generalized Modus Ponens.</p>
 
                         <div class="lecture-note">
                             <p><strong>Core perspective.</strong> Propositional logic treats each fact as a separate symbol. FOL structures a world through objects and relations among them. A single general rule can therefore apply across many objects, producing more compact and reusable knowledge representation.</p>
@@ -381,59 +335,13 @@
 
                         <p>Propositionalizing every universal sentence over available ground terms is possible in principle, but it can generate many irrelevant sentences. Lifted inference with unification and GMP instead finds substitutions that match current facts and derives only relevant conclusions.</p>
 
-                        <h3>6. Final Assessment and Week 16 LMS Activity Record</h3>
-                        <p>The module window ran from June 15 at 00:00 through June 21 at 23:59. FOL lectures, external perspectives on AI, the AI Use Report, and final-assignment revisions and Q&amp;A were grouped into the final-assessment week.</p>
-
-                        <table class="stat-table">
-                            <tr>
-                                <th>Category</th>
-                                <th>Item</th>
-                                <th>Record</th>
-                            </tr>
-                            <tr>
-                                <td>Knowledge representation</td>
-                                <td>FOL · resource</td>
-                                <td>50:37 lecture and handout</td>
-                            </tr>
-                            <tr>
-                                <td>Inference</td>
-                                <td>FOL Inference · resource</td>
-                                <td>16:41 lecture and handout</td>
-                            </tr>
-                            <tr>
-                                <td>Guest lecture</td>
-                                <td>Current use of AI in companies</td>
-                                <td>50:34 recording</td>
-                            </tr>
-                            <tr>
-                                <td>Interview</td>
-                                <td>Stanford Professor Yejin Choi on the state of AI</td>
-                                <td>30:01 · not attendance-tracked</td>
-                            </tr>
-                            <tr>
-                                <td>Final report</td>
-                                <td>AI Use Report</td>
-                                <td>June 10 at 00:00 - June 21 at 23:59</td>
-                            </tr>
-                            <tr>
-                                <td>Final wrap-up</td>
-                                <td>Final-assignment revisions and Q&amp;A</td>
-                                <td>Revision guidance and questions</td>
-                            </tr>
-                        </table>
-
-                        <div class="lecture-note">
-                            <p><strong>Record boundary.</strong> The supplied information identifies Week 16 as the final-assessment week and lists the report plus assignment revisions and Q&amp;A. No separate question format, venue, schedule, or point allocation was provided, so none was added.</p>
-                        </div>
-
-                        <h3>7. Week Summary</h3>
+                        <h3>6. Week Summary</h3>
                         <ul>
                             <li>FOL represents world structure through objects, relations, and functions.</li>
                             <li>Constants, variables, predicates, functions, equality, connectives, and quantifiers form FOL sentences.</li>
                             <li>Universal quantification covers all objects; existential quantification asserts at least one.</li>
                             <li>UI and EI instantiate quantified sentences, with EI introducing a fresh Skolem constant.</li>
                             <li>Unification and GMP support lifted inference that connects relevant facts and rules directly.</li>
-                            <li>The semester concluded with AI-use perspectives, the AI Use Report, and final-assignment revisions and Q&amp;A.</li>
                         </ul>
                     </div>
                 </div>

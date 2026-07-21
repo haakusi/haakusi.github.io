@@ -18,7 +18,7 @@
         <article class="course-page">
             <div class="course-header">
                 <h1 data-en="AI Theory" data-kr="인공지능론">AI Theory</h1>
-                <p class="course-meta" data-en="2026 Spring | Intensive Course | Online 3h + Offline 3h" data-kr="2026 봄학기 | 압축형 수업 | 온라인 3시간 + 오프라인 3시간">2026 Spring | Intensive Course | Online 3h + Offline 3h</p>
+                <p class="course-meta" data-en="2026 Spring | Intensive Course" data-kr="2026 봄학기 | 압축형 수업">2026 Spring | Intensive Course</p>
             </div>
 
             <div class="course-nav">
@@ -46,7 +46,7 @@
                     <span class="assignment-chip" data-en="Constraint Satisfaction Problems" data-kr="제약 만족 문제">Constraint Satisfaction Problems</span>
 
                     <div class="lang-kr" hidden>
-                        <p class="week-references"><em>교안: 06. CSP-1.pdf, 06. CSP-2.pdf, CSP (3) 교안.pdf (AIMA 6장) · 주차 기간과 활동명은 제공된 LMS 기록을 기준으로 정리</em></p>
+                        <p class="week-references"><em>교안: 06. CSP-1.pdf, 06. CSP-2.pdf, CSP (3) 교안.pdf (AIMA 6장) · 핵심 개념 중심의 개인 요약</em></p>
 
                         <p>13주차는 <strong>제약 만족 문제(Constraint Satisfaction Problem, CSP)</strong>를 중심으로, 문제를 변수·도메인·제약으로 표현하고 해를 찾는 과정을 정리했다. 기본 백트래킹에서 출발해 MRV와 LCV 같은 순서 휴리스틱, forward checking과 AC-3 제약 전파, min-conflicts 지역 탐색까지 이어지는 흐름이다.</p>
 
@@ -160,75 +160,18 @@
                             <p><strong>12주차와의 연결.</strong> CSP 교안은 hill climbing, simulated annealing, genetic algorithm도 complete-state CSP 탐색에 사용할 수 있다고 설명한다. 따라서 앞선 좀비 생존 키트 GA 실습은 제약 아래에서 더 좋은 해를 찾는 또 하나의 탐색 관점으로 이어진다.</p>
                         </div>
 
-                        <h3>6. 13주차 LMS 활동 기록</h3>
-                        <p>주차 활동 창은 5월 25일 00:00부터 5월 31일 23:59까지였다. 아래 표는 사용자가 제공한 LMS 항목을 강의·실습·프로젝트 흐름으로 다시 묶은 것이다.</p>
-
-                        <table class="stat-table">
-                            <tr>
-                                <th>구분</th>
-                                <th>항목</th>
-                                <th>기록</th>
-                            </tr>
-                            <tr>
-                                <td>CSP 기초</td>
-                                <td>CSP · CSP (1)</td>
-                                <td>27:06 강의와 1차 자료</td>
-                            </tr>
-                            <tr>
-                                <td>백트래킹</td>
-                                <td>CSP - Backtracking · CSP (2)</td>
-                                <td>24:46 강의와 2차 자료</td>
-                            </tr>
-                            <tr>
-                                <td>제약 전파·지역 탐색</td>
-                                <td>CSP (3) · CSP (3) 교안</td>
-                                <td>32:40 강의와 3차 교안</td>
-                            </tr>
-                            <tr>
-                                <td>바이브 코딩</td>
-                                <td>5강. 클로드 코드에서 API 설정하기</td>
-                                <td>25:42</td>
-                            </tr>
-                            <tr>
-                                <td>AI 에이전트</td>
-                                <td>6강. 클로드 코드 AI 에이전트로 개발팀 구성하기</td>
-                                <td>44:32</td>
-                            </tr>
-                            <tr>
-                                <td>데모</td>
-                                <td>CSP-demo</td>
-                                <td>15:36 · 출결 대상 아님</td>
-                            </tr>
-                            <tr>
-                                <td>GA 과제</td>
-                                <td>좀비 생존 키트 만들기</td>
-                                <td>5월 26일 17:50 마감</td>
-                            </tr>
-                            <tr>
-                                <td>발표</td>
-                                <td>발표용</td>
-                                <td>5월 26일 15:00 시작 · 1시간</td>
-                            </tr>
-                            <tr>
-                                <td>코드·프로젝트</td>
-                                <td>학생 코드 · 기말 프로젝트 제안</td>
-                                <td>기말 프로젝트 제안 시 가산점</td>
-                            </tr>
-                        </table>
-
-                        <h3>7. 주차 요약</h3>
+                        <h3>6. 주차 요약</h3>
                         <ul>
                             <li>CSP는 문제를 변수, 도메인, 제약으로 명시적으로 표현한다.</li>
                             <li>백트래킹은 변수 하나씩 값을 넣고 모순이 생기면 선택을 되돌린다.</li>
                             <li>MRV와 degree heuristic은 변수 순서를, LCV는 값의 순서를 개선한다.</li>
                             <li>Forward checking과 AC-3는 미래의 모순을 더 일찍 발견하도록 도메인을 축소한다.</li>
                             <li>Min-conflicts와 GA 같은 지역 탐색은 complete-state에서 제약 위반을 줄이는 대안적 접근이다.</li>
-                            <li>주차 후반 활동은 CSP-demo, 바이브 코딩, AI 에이전트 개발팀, GA 과제, 기말 프로젝트 제안으로 이어졌다.</li>
                         </ul>
                     </div>
 
                     <div class="lang-en">
-                        <p class="week-references"><em>Sources: 06. CSP-1.pdf, 06. CSP-2.pdf, and CSP (3) handout.pdf (AIMA Chapter 6) · Module dates and activity names follow the supplied LMS record</em></p>
+                        <p class="week-references"><em>Sources: 06. CSP-1.pdf, 06. CSP-2.pdf, and CSP (3) handout.pdf (AIMA Chapter 6) · Personal summary centered on key concepts</em></p>
 
                         <p>Week 13 focused on <strong>Constraint Satisfaction Problems (CSPs)</strong>: representing a problem through variables, domains, and constraints, then searching for a valid assignment. The sequence moved from basic backtracking to ordering heuristics such as MRV and LCV, constraint propagation through forward checking and AC-3, and min-conflicts local search.</p>
 
@@ -342,70 +285,13 @@
                             <p><strong>Connection to Week 12.</strong> The CSP handout states that hill climbing, simulated annealing, and genetic algorithms can also use a complete-state CSP formulation. The earlier Zombie Survival Kit GA practice therefore provides another perspective on searching for stronger solutions under constraints.</p>
                         </div>
 
-                        <h3>6. Week 13 LMS Activity Record</h3>
-                        <p>The module window ran from May 25 at 00:00 through May 31 at 23:59. The table reorganizes the supplied LMS items into a lecture, practice, and project sequence.</p>
-
-                        <table class="stat-table">
-                            <tr>
-                                <th>Category</th>
-                                <th>Item</th>
-                                <th>Record</th>
-                            </tr>
-                            <tr>
-                                <td>CSP foundations</td>
-                                <td>CSP · CSP (1)</td>
-                                <td>27:06 lecture and first resource</td>
-                            </tr>
-                            <tr>
-                                <td>Backtracking</td>
-                                <td>CSP - Backtracking · CSP (2)</td>
-                                <td>24:46 lecture and second resource</td>
-                            </tr>
-                            <tr>
-                                <td>Propagation and local search</td>
-                                <td>CSP (3) · CSP (3) handout</td>
-                                <td>32:40 lecture and third handout</td>
-                            </tr>
-                            <tr>
-                                <td>Vibe coding</td>
-                                <td>Lesson 5: Configuring an API in Claude Code</td>
-                                <td>25:42</td>
-                            </tr>
-                            <tr>
-                                <td>AI agents</td>
-                                <td>Lesson 6: Building a development team with Claude Code AI agents</td>
-                                <td>44:32</td>
-                            </tr>
-                            <tr>
-                                <td>Demo</td>
-                                <td>CSP-demo</td>
-                                <td>15:36 · not attendance-tracked</td>
-                            </tr>
-                            <tr>
-                                <td>GA assignment</td>
-                                <td>Build a Zombie Survival Kit</td>
-                                <td>Due May 26 at 17:50</td>
-                            </tr>
-                            <tr>
-                                <td>Presentation</td>
-                                <td>Presentation session</td>
-                                <td>May 26 at 15:00 · one hour</td>
-                            </tr>
-                            <tr>
-                                <td>Code and project</td>
-                                <td>Student code · final-project proposal</td>
-                                <td>Bonus credit for proposing a final project</td>
-                            </tr>
-                        </table>
-
-                        <h3>7. Week Summary</h3>
+                        <h3>6. Week Summary</h3>
                         <ul>
                             <li>A CSP represents a problem explicitly through variables, domains, and constraints.</li>
                             <li>Backtracking assigns one variable at a time and undoes a choice when it reaches inconsistency.</li>
                             <li>MRV and the degree heuristic order variables; LCV orders values.</li>
                             <li>Forward checking and AC-3 reduce domains to reveal future contradictions earlier.</li>
                             <li>Min-conflicts and local methods such as GAs offer complete-state alternatives.</li>
-                            <li>The later activities connected CSP demos with vibe coding, AI-agent development teams, a GA assignment, and the final-project proposal.</li>
                         </ul>
                     </div>
                 </div>

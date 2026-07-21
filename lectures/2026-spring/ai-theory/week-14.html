@@ -18,7 +18,7 @@
         <article class="course-page">
             <div class="course-header">
                 <h1 data-en="AI Theory" data-kr="인공지능론">AI Theory</h1>
-                <p class="course-meta" data-en="2026 Spring | Intensive Course | Online 3h + Offline 3h" data-kr="2026 봄학기 | 압축형 수업 | 온라인 3시간 + 오프라인 3시간">2026 Spring | Intensive Course | Online 3h + Offline 3h</p>
+                <p class="course-meta" data-en="2026 Spring | Intensive Course" data-kr="2026 봄학기 | 압축형 수업">2026 Spring | Intensive Course</p>
             </div>
 
             <div class="course-nav">
@@ -46,7 +46,7 @@
                     <span class="assignment-chip" data-en="Adversarial Search" data-kr="적대적 탐색">Adversarial Search</span>
 
                     <div class="lang-kr" hidden>
-                        <p class="week-references"><em>교안: AI and Game.pdf, Minimax.pdf, Alpha_beta_prunning.pdf (AIMA 5장) · 주차 기간과 활동명은 제공된 LMS 기록을 기준으로 정리</em></p>
+                        <p class="week-references"><em>교안: AI and Game.pdf, Minimax.pdf, Alpha_beta_prunning.pdf (AIMA 5장) · 핵심 개념 중심의 개인 요약</em></p>
 
                         <p>14주차는 게임을 <strong>상대의 합리적 대응까지 고려하는 탐색 문제</strong>로 바라봤다. 게임 상태를 트리로 펼친 뒤 MAX와 MIN의 선택을 번갈아 계산하는 Minimax, 현실적인 자원 한계를 다루는 깊이 제한과 평가함수, 결과를 바꾸지 않으면서 불필요한 가지를 제거하는 알파-베타 가지치기가 핵심이다.</p>
 
@@ -147,65 +147,18 @@
                             <p><strong>연결.</strong> Minimax가 상대를 포함한 의사결정 원리를 정의한다면, 평가함수는 제한된 깊이에서 상태의 가치를 근사하고, 알파-베타는 답에 영향을 주지 않는 계산을 생략한다.</p>
                         </div>
 
-                        <h3>6. 14주차 LMS 활동 기록</h3>
-                        <p>주차 활동 창은 6월 1일 00:00부터 6월 7일 23:59까지였다. 아래 표는 제공된 LMS 항목을 강의·실습·코드 흐름으로 묶은 것이다.</p>
-
-                        <table class="stat-table">
-                            <tr>
-                                <th>구분</th>
-                                <th>항목</th>
-                                <th>기록</th>
-                            </tr>
-                            <tr>
-                                <td>게임 개요</td>
-                                <td>AI and Game · 자료</td>
-                                <td>22:33 강의와 교안</td>
-                            </tr>
-                            <tr>
-                                <td>적대적 탐색</td>
-                                <td>Minimax · 자료</td>
-                                <td>49:58 강의와 교안</td>
-                            </tr>
-                            <tr>
-                                <td>탐색 최적화</td>
-                                <td>Alpha-beta pruning · 자료</td>
-                                <td>33:38 강의와 교안</td>
-                            </tr>
-                            <tr>
-                                <td>바이브 코딩</td>
-                                <td>7강. MCP로 클로드 코드의 한계 넘어서기</td>
-                                <td>55:31 · 완강</td>
-                            </tr>
-                            <tr>
-                                <td>CSP 과제</td>
-                                <td>보안 퍼즐 풀기 · GPT 사용 금지</td>
-                                <td>6월 2일 17:45 마감</td>
-                            </tr>
-                            <tr>
-                                <td>발표</td>
-                                <td>발표용</td>
-                                <td>6월 2일 15:00 시작 · 3시간 · 출결 대상 아님</td>
-                            </tr>
-                            <tr>
-                                <td>코드</td>
-                                <td>CSP code</td>
-                                <td>주차 코드 자료</td>
-                            </tr>
-                        </table>
-
-                        <h3>7. 주차 요약</h3>
+                        <h3>6. 주차 요약</h3>
                         <ul>
                             <li>게임 탐색은 내 행동뿐 아니라 상대의 최선 대응까지 포함한다.</li>
                             <li>Minimax는 MAX의 최대화와 MIN의 최소화를 번갈아 계산한다.</li>
                             <li>큰 게임에서는 깊이 제한과 평가함수로 비말단 상태를 근사한다.</li>
                             <li>알파-베타는 최종 Minimax 결과를 유지하면서 불필요한 가지를 제거한다.</li>
                             <li>좋은 수를 먼저 검사할수록 가지치기가 커지고 더 깊은 탐색이 가능해진다.</li>
-                            <li>주차 활동은 MCP 완강, CSP 보안 퍼즐, 발표, CSP 코드로 이어졌다.</li>
                         </ul>
                     </div>
 
                     <div class="lang-en">
-                        <p class="week-references"><em>Sources: AI and Game.pdf, Minimax.pdf, and Alpha_beta_prunning.pdf (AIMA Chapter 5) · Module dates and activity names follow the supplied LMS record</em></p>
+                        <p class="week-references"><em>Sources: AI and Game.pdf, Minimax.pdf, and Alpha_beta_prunning.pdf (AIMA Chapter 5) · Personal summary centered on key concepts</em></p>
 
                         <p>Week 14 treated games as <strong>search problems in which an opponent actively responds</strong>. The central sequence was to unfold states into a game tree, alternate MAX and MIN choices through minimax, cope with resource limits through depth bounds and evaluation functions, and skip irrelevant branches with alpha-beta pruning.</p>
 
@@ -306,60 +259,13 @@
                             <p><strong>Connection.</strong> Minimax defines the decision principle under opposition, the evaluation function estimates value at a limited depth, and alpha-beta removes work that cannot influence the decision.</p>
                         </div>
 
-                        <h3>6. Week 14 LMS Activity Record</h3>
-                        <p>The module window ran from June 1 at 00:00 through June 7 at 23:59. The supplied LMS items are grouped below as a lecture, practice, and code sequence.</p>
-
-                        <table class="stat-table">
-                            <tr>
-                                <th>Category</th>
-                                <th>Item</th>
-                                <th>Record</th>
-                            </tr>
-                            <tr>
-                                <td>Game overview</td>
-                                <td>AI and Game · resource</td>
-                                <td>22:33 lecture and handout</td>
-                            </tr>
-                            <tr>
-                                <td>Adversarial search</td>
-                                <td>Minimax · resource</td>
-                                <td>49:58 lecture and handout</td>
-                            </tr>
-                            <tr>
-                                <td>Search optimization</td>
-                                <td>Alpha-beta pruning · resource</td>
-                                <td>33:38 lecture and handout</td>
-                            </tr>
-                            <tr>
-                                <td>Vibe coding</td>
-                                <td>Lesson 7: Extending Claude Code with MCP</td>
-                                <td>55:31 · course conclusion</td>
-                            </tr>
-                            <tr>
-                                <td>CSP assignment</td>
-                                <td>Solve a security puzzle · GPT prohibited</td>
-                                <td>Due June 2 at 17:45</td>
-                            </tr>
-                            <tr>
-                                <td>Presentation</td>
-                                <td>Presentation session</td>
-                                <td>June 2 at 15:00 · three hours · not attendance-tracked</td>
-                            </tr>
-                            <tr>
-                                <td>Code</td>
-                                <td>CSP code</td>
-                                <td>Weekly code resource</td>
-                            </tr>
-                        </table>
-
-                        <h3>7. Week Summary</h3>
+                        <h3>6. Week Summary</h3>
                         <ul>
                             <li>Game search includes the opponent's best response, not just the agent's action.</li>
                             <li>Minimax alternates MAX's maximization with MIN's minimization.</li>
                             <li>Large games require depth limits and evaluation functions for non-terminal states.</li>
                             <li>Alpha-beta removes irrelevant branches without changing the final minimax result.</li>
                             <li>Better move ordering creates more cutoffs and enables deeper search.</li>
-                            <li>The module also included the MCP course conclusion, a CSP security puzzle, a presentation, and CSP code.</li>
                         </ul>
                     </div>
                 </div>

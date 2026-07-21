@@ -18,7 +18,7 @@
         <article class="course-page">
             <div class="course-header">
                 <h1 data-en="AI Theory" data-kr="인공지능론">AI Theory</h1>
-                <p class="course-meta" data-en="2026 Spring | Intensive Course | Online 3h + Offline 3h" data-kr="2026 봄학기 | 압축형 수업 | 온라인 3시간 + 오프라인 3시간">2026 Spring | Intensive Course | Online 3h + Offline 3h</p>
+                <p class="course-meta" data-en="2026 Spring | Intensive Course" data-kr="2026 봄학기 | 압축형 수업">2026 Spring | Intensive Course</p>
             </div>
 
             <div class="course-nav">
@@ -46,7 +46,7 @@
                     <span class="assignment-chip" data-en="Propositional Logic" data-kr="명제논리">Propositional Logic</span>
 
                     <div class="lang-kr" hidden>
-                        <p class="week-references"><em>교안: 08-1. PL Logic.pdf, 08-2. pl-entailment.pdf, Inference Algorithm.pdf (AIMA 7장) · 주차 기간과 활동명은 제공된 LMS 기록을 기준으로 정리</em></p>
+                        <p class="week-references"><em>교안: 08-1. PL Logic.pdf, 08-2. pl-entailment.pdf, Inference Algorithm.pdf (AIMA 7장) · 핵심 개념 중심의 개인 요약</em></p>
 
                         <p>15주차는 지식을 문장으로 저장하고 새로운 결론을 이끌어내는 <strong>논리 에이전트</strong>의 구조를 다뤘다. 명제논리의 구문과 의미에서 시작해, 가능한 세계와 모델, entailment, 그리고 진리표·추론 규칙·resolution으로 결론을 증명하는 방법을 연결했다.</p>
 
@@ -179,65 +179,18 @@
                             <p><strong>Resolution의 역할.</strong> 명제논리에서 resolution은 sound하고 complete하다. 식을 CNF로 표준화한 뒤 한 쌍의 상보 리터럴을 제거하는 과정을 반복해, 모순을 나타내는 빈 절에 도달하는지 본다.</p>
                         </div>
 
-                        <h3>6. 15주차 LMS 활동 기록</h3>
-                        <p>주차 활동 창은 6월 8일 00:00부터 6월 14일 23:59까지였다. 아래 표는 제공된 LMS 항목을 개념·증명·성찰 흐름으로 정리한 것이다.</p>
-
-                        <table class="stat-table">
-                            <tr>
-                                <th>구분</th>
-                                <th>항목</th>
-                                <th>기록</th>
-                            </tr>
-                            <tr>
-                                <td>논리 기초</td>
-                                <td>Logic · 자료</td>
-                                <td>34:44 강의와 교안</td>
-                            </tr>
-                            <tr>
-                                <td>의미론</td>
-                                <td>Entailment · 자료</td>
-                                <td>38:52 강의와 교안</td>
-                            </tr>
-                            <tr>
-                                <td>추론</td>
-                                <td>Inference Algorithm · 자료</td>
-                                <td>40:09 강의와 교안</td>
-                            </tr>
-                            <tr>
-                                <td>다큐멘터리</td>
-                                <td>The Thinking Game</td>
-                                <td>1:24:08 · Tribeca Film Festival 공식 선정작</td>
-                            </tr>
-                            <tr>
-                                <td>주차 과제</td>
-                                <td>AI 이용 금지</td>
-                                <td>6월 9일 17:50 마감</td>
-                            </tr>
-                            <tr>
-                                <td>발표</td>
-                                <td>발표용</td>
-                                <td>6월 9일 15:00 시작 · 1시간 · 출결 대상 아님</td>
-                            </tr>
-                            <tr>
-                                <td>코드</td>
-                                <td>Minimax code</td>
-                                <td>주차 코드 자료</td>
-                            </tr>
-                        </table>
-
-                        <h3>7. 주차 요약</h3>
+                        <h3>6. 주차 요약</h3>
                         <ul>
                             <li>논리 에이전트는 사실과 규칙을 지식베이스에 저장하고 질의에 답한다.</li>
                             <li>명제논리는 syntax와 semantics를 분리해 문장의 구조와 진리 조건을 정의한다.</li>
                             <li>Entailment는 KB가 참인 모든 모델에서 결론도 참이라는 관계다.</li>
                             <li>Soundness는 잘못된 결론을 막고, completeness는 필요한 결론을 놓치지 않게 한다.</li>
                             <li>진리표, 추론 규칙, resolution은 서로 다른 방식으로 논리적 결론을 확인한다.</li>
-                            <li>주차 활동은 다큐멘터리, AI 이용 금지 과제, 발표, Minimax 코드로 확장됐다.</li>
                         </ul>
                     </div>
 
                     <div class="lang-en">
-                        <p class="week-references"><em>Sources: 08-1. PL Logic.pdf, 08-2. pl-entailment.pdf, and Inference Algorithm.pdf (AIMA Chapter 7) · Module dates and activity names follow the supplied LMS record</em></p>
+                        <p class="week-references"><em>Sources: 08-1. PL Logic.pdf, 08-2. pl-entailment.pdf, and Inference Algorithm.pdf (AIMA Chapter 7) · Personal summary centered on key concepts</em></p>
 
                         <p>Week 15 examined <strong>logical agents</strong> that store knowledge as sentences and derive new conclusions. The sequence connected propositional syntax and semantics with possible worlds and models, entailment, and three approaches to proof: truth tables, inference rules, and resolution.</p>
 
@@ -370,60 +323,13 @@
                             <p><strong>Role of resolution.</strong> Resolution is sound and complete for propositional logic. After conversion to CNF, it repeatedly eliminates one complementary pair of literals and tests whether the process reaches the empty clause.</p>
                         </div>
 
-                        <h3>6. Week 15 LMS Activity Record</h3>
-                        <p>The module window ran from June 8 at 00:00 through June 14 at 23:59. The supplied LMS items are grouped below as a concept, proof, and reflection sequence.</p>
-
-                        <table class="stat-table">
-                            <tr>
-                                <th>Category</th>
-                                <th>Item</th>
-                                <th>Record</th>
-                            </tr>
-                            <tr>
-                                <td>Logic foundations</td>
-                                <td>Logic · resource</td>
-                                <td>34:44 lecture and handout</td>
-                            </tr>
-                            <tr>
-                                <td>Semantics</td>
-                                <td>Entailment · resource</td>
-                                <td>38:52 lecture and handout</td>
-                            </tr>
-                            <tr>
-                                <td>Inference</td>
-                                <td>Inference Algorithm · resource</td>
-                                <td>40:09 lecture and handout</td>
-                            </tr>
-                            <tr>
-                                <td>Documentary</td>
-                                <td>The Thinking Game</td>
-                                <td>1:24:08 · Tribeca Film Festival official selection</td>
-                            </tr>
-                            <tr>
-                                <td>Weekly assignment</td>
-                                <td>AI use prohibited</td>
-                                <td>Due June 9 at 17:50</td>
-                            </tr>
-                            <tr>
-                                <td>Presentation</td>
-                                <td>Presentation session</td>
-                                <td>June 9 at 15:00 · one hour · not attendance-tracked</td>
-                            </tr>
-                            <tr>
-                                <td>Code</td>
-                                <td>Minimax code</td>
-                                <td>Weekly code resource</td>
-                            </tr>
-                        </table>
-
-                        <h3>7. Week Summary</h3>
+                        <h3>6. Week Summary</h3>
                         <ul>
                             <li>Logical agents store facts and rules in a knowledge base and answer queries.</li>
                             <li>Propositional logic separates syntax from semantics to define structure and truth.</li>
                             <li>Entailment means that a conclusion is true in every model where the KB is true.</li>
                             <li>Soundness prevents false conclusions; completeness prevents missing required ones.</li>
                             <li>Truth tables, inference rules, and resolution provide different paths to logical conclusions.</li>
-                            <li>The module also included a documentary, an AI-prohibited assignment, a presentation, and Minimax code.</li>
                         </ul>
                     </div>
                 </div>
