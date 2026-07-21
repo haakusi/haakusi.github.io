@@ -1,49 +1,5 @@
-<!DOCTYPE html>
-<html data-theme="dark" data-lang="en">
-<head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Math for AI - Week 1 - Sewon Park</title>
-    <link rel="stylesheet" type="text/css" href="../../../style.css">
-    <link rel="stylesheet" type="text/css" href="../../../assets/css/lectures.css">
-</head>
-<body>
-    <button class="theme-toggle" onclick="toggleTheme()" aria-label="Toggle dark mode"></button>
-    <button class="lang-toggle" onclick="toggleLanguage()" aria-label="Toggle language">EN</button>
-
-    <div class="container">
-        <div id="site-header"></div>
-        <div id="site-nav"></div>
-
-        <article class="course-page">
-            <div class="course-header">
-                <h1 data-en="Math for AI" data-kr="인공지능을위한수학">Math for AI</h1>
-                <p class="course-meta" data-en="2026 Spring | Mon 19:00-22:00" data-kr="2026 봄학기 | 월요일 19:00-22:00">2026 Spring | Mon 19:00-22:00</p>
-            </div>
-
-            <div class="course-nav">
-                <a href="../../../lectures.html" class="back-to-lectures" data-en="Back to Lectures" data-kr="강의 목록으로">Back to Lectures</a>
-                <span class="nav-separator">/</span>
-                <a href="./index.html" class="back-to-course" data-en="Course Home" data-kr="과목 홈">Course Home</a>
-            </div>
-
-            <div class="week-nav">
-                <span data-en="Weeks:" data-kr="주차:">Weeks:</span>
-                <a href="week-01.html" class="week-link current">W1</a>
-            </div>
-
-            <section class="week-section" id="week-01">
-                <h2 data-en="Week 1" data-kr="1주차">Week 1</h2>
-                <p class="week-date">2026-03-02</p>
-                <div class="week-content">
-                    <p class="empty-state" data-en="Notes will be added after class." data-kr="수업 후 노트가 추가됩니다.">Notes will be added after class.</p>
-                </div>
-            </section>
-        </article>
-
-        <div id="site-footer"></div>
-    </div>
-
-    <script src="../../../common.js"></script>
-</body>
-</html>
+<!DOCTYPE html><html data-theme="dark" data-lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>Math for AI - Week 1 - Sewon Park</title><link rel="stylesheet" type="text/css" href="../../../style.css"><link rel="stylesheet" type="text/css" href="../../../assets/css/lectures.css"></head><body><button class="theme-toggle" onclick="toggleTheme()" aria-label="Toggle dark mode"></button><button class="lang-toggle" onclick="toggleLanguage()" aria-label="Toggle language">EN</button><div class="container"><div id="site-header"></div><div id="site-nav"></div><article class="course-page"><div class="course-header"><h1 data-en="Math for AI" data-kr="인공지능을위한수학">Math for AI</h1><p class="course-meta" data-en="2026 Spring | Weekly learning notes" data-kr="2026 봄학기 | 주차별 학습 노트">2026 Spring | Weekly learning notes</p></div><div class="course-nav"><a href="../../../lectures.html" class="back-to-lectures" data-en="Back to Lectures" data-kr="강의 목록으로">Back to Lectures</a><span class="nav-separator">/</span><a href="./index.html" class="back-to-course" data-en="Course Home" data-kr="과목 홈">Course Home</a></div>
+<div class="week-nav"><span data-en="Weeks:" data-kr="주차:">Weeks:</span><a href="week-01.html" class="week-link current">W1</a><a href="week-02.html" class="week-link">W2</a><a href="week-03.html" class="week-link">W3</a><a href="week-04.html" class="week-link">W4</a><a href="week-05.html" class="week-link">W5</a><a href="week-06.html" class="week-link">W6</a><a href="week-07.html" class="week-link">W7</a><a href="week-08.html" class="week-link">W8</a><a href="week-09.html" class="week-link">W9</a><a href="week-10.html" class="week-link">W10</a><a href="week-11.html" class="week-link">W11</a><a href="week-12.html" class="week-link">W12</a><a href="week-13.html" class="week-link">W13</a><a href="week-14.html" class="week-link">W14</a><a href="week-15.html" class="week-link">W15</a><a href="week-16.html" class="week-link">W16</a></div>
+<section class="week-section" id="week-01"><h2 data-en="Week 1" data-kr="1주차">Week 1</h2><p class="week-date" data-en="2026-03-02 · Linear Algebra Overview" data-kr="2026-03-02 · 선형대수학의 개요">2026-03-02 · Linear Algebra Overview</p><div class="week-content"><span class="assignment-chip" data-en="Objects · Structure · Representation" data-kr="대상 · 구조 · 표현">Objects · Structure · Representation</span>
+<div class="lang-kr" hidden><p class="week-references"><em>정리 기준: 01. 선형대수학의 개요 · 기본 개념, 범위, 응용을 중심으로 재구성</em></p><p>선형대수는 숫자 계산만을 위한 과목이 아니라 <strong>데이터를 벡터와 행렬로 표현하고, 관계를 함수와 변환으로 설명하는 언어</strong>다. 첫 주에는 이후 모든 장에서 반복되는 수학적 대상과 표기 사이의 연결을 세운다.</p><h3>1. 집합과 사상으로 대상과 관계를 정의한다</h3><ul><li>집합은 조건을 만족하는 대상의 모임이며 합집합·교집합·차집합은 데이터 범주를 결합하거나 비교하는 기본 연산이다.</li><li>사상 또는 함수는 정의역의 각 원소를 공역의 한 원소에 대응시킨다. 실제로 도달한 값의 집합이 치역이다.</li><li>단사는 서로 다른 입력을 서로 다른 출력에, 전사는 공역의 모든 원소에, 전단사는 두 조건을 모두 만족시켜 역함수를 가능하게 한다.</li></ul><h3>2. 선형대수의 네 축을 구분한다</h3><table class="stat-table"><tr><th>축</th><th>핵심 질문</th><th>AI에서의 역할</th></tr><tr><td>연립선형방정식</td><td>여러 제약을 동시에 만족하는 해가 있는가?</td><td>모수 추정과 제약 해석</td></tr><tr><td>벡터공간</td><td>어떤 표현을 선형결합으로 만들 수 있는가?</td><td>특징 표현과 잠재공간</td></tr><tr><td>선형변환</td><td>입력 공간이 출력 공간으로 어떻게 바뀌는가?</td><td>층의 연산과 좌표 변환</td></tr><tr><td>행렬 이론</td><td>변환의 구조와 계산 성질은 무엇인가?</td><td>효율적 계산과 분해</td></tr></table><h3>3. 데이터는 형태에 맞는 배열로 바뀐다</h3><p>표는 행과 열의 행렬, 회색조 영상은 픽셀값 행렬, 텍스트는 단어나 토큰의 벡터, 그래프는 인접행렬이나 특징행렬로 표현할 수 있다. 표현이 정해지면 행렬 곱으로 변환을 적용하고 벡터 사이의 관계를 계산할 수 있다.</p><div class="stat-formula">이미지 H × W → 픽셀 행렬 · 문서 → 토큰/특징 벡터 · 그래프 → 인접행렬 A · 변환 → y = Ax</div><div class="lecture-note"><p><strong>연결 관점.</strong> 벡터는 하나의 데이터 항목, 행렬은 여러 벡터의 묶음이자 변환, 함수는 입력과 출력의 규칙이다. 같은 표기를 계산 도구와 의미 표현이라는 두 관점에서 함께 읽는다.</p></div><h3>핵심 정리</h3><ul><li>집합은 대상을, 함수는 대응 관계를, 벡터와 행렬은 수치 표현을 제공한다.</li><li>정의역·공역·치역과 단사·전사·전단사의 차이는 역변환 가능성을 이해하는 기반이다.</li><li>AI 데이터의 종류가 달라도 적절한 벡터와 행렬로 바꾸면 공통된 선형대수 연산을 적용할 수 있다.</li></ul><h3>실전 팁</h3><ul><li>새 표기를 볼 때 대상의 종류, 크기, 입력 공간, 출력 공간을 먼저 옆에 적는다.</li><li>표·영상·문장·그래프 각각을 벡터 또는 행렬로 바꾸는 작은 예를 만들어 행과 열의 의미를 말해 본다.</li><li>함수 예시마다 정의역·공역·치역을 그린 뒤 단사·전사·전단사 중 어디에 해당하는지 확인한다.</li></ul></div>
+<div class="lang-en"><p class="week-references"><em>Basis: 01. Linear Algebra Overview · Reorganized around foundational objects, scope, and applications</em></p><p>Linear algebra is not merely a collection of numerical procedures. It is a <strong>language for representing data as vectors and matrices and describing relationships as functions and transformations</strong>. This week builds the object-to-notation connections that recur throughout the course.</p><h3>1. Sets and Mappings Define Objects and Relations</h3><ul><li>A set collects objects satisfying a condition; union, intersection, and difference are basic ways to combine or compare data categories.</li><li>A mapping or function sends every element of a domain to one element of a codomain. The values actually reached form the range.</li><li>An injective map keeps distinct inputs distinct, a surjective map reaches the entire codomain, and a bijective map satisfies both conditions and can support an inverse.</li></ul><h3>2. Separate the Four Axes of Linear Algebra</h3><table class="stat-table"><tr><th>Axis</th><th>Core question</th><th>Role in AI</th></tr><tr><td>Linear systems</td><td>Is there a value satisfying several constraints at once?</td><td>Parameter estimation and constraints</td></tr><tr><td>Vector spaces</td><td>Which representations can be built by linear combinations?</td><td>Features and latent spaces</td></tr><tr><td>Linear transformations</td><td>How does an input space map into an output space?</td><td>Layer operations and coordinate changes</td></tr><tr><td>Matrix theory</td><td>What structure and computational properties does a transform have?</td><td>Efficient computation and decomposition</td></tr></table><h3>3. Data Becomes an Array Chosen for Its Structure</h3><p>A table becomes a row-column matrix, a grayscale image a matrix of pixel intensities, text a vector of token or feature values, and a graph an adjacency or feature matrix. Once the representation is explicit, matrix multiplication applies a transformation and vector operations compare or combine observations.</p><div class="stat-formula">Image H × W → pixel matrix · document → token/feature vector · graph → adjacency matrix A · transformation → y = Ax</div><div class="lecture-note"><p><strong>Connection view.</strong> A vector can represent one observation; a matrix can be a collection of vectors or an operator; a function supplies the input-output rule. Read notation both as a computational object and as a statement about meaning.</p></div><h3>Key Takeaways</h3><ul><li>Sets describe objects, functions describe correspondences, and vectors and matrices provide numerical representations.</li><li>Domain, codomain, range, injectivity, surjectivity, and bijectivity provide the foundation for reasoning about invertible mappings.</li><li>Different AI data types can share the same linear-algebra operations after an appropriate vector or matrix representation is chosen.</li></ul><h3>Practical Tips</h3><ul><li>For every new symbol, annotate its object type, dimensions, input space, and output space before calculating.</li><li>Create one small table, image, sentence, and graph example; encode each as a vector or matrix and explain every row and column.</li><li>Draw the domain, codomain, and range of sample functions, then classify each map as injective, surjective, bijective, or neither.</li></ul></div></div></section></article><div id="site-footer"></div></div><script src="../../../common.js"></script></body></html>

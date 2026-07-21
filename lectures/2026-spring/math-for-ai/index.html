@@ -10,39 +10,33 @@
 <body>
     <button class="theme-toggle" onclick="toggleTheme()" aria-label="Toggle dark mode"></button>
     <button class="lang-toggle" onclick="toggleLanguage()" aria-label="Toggle language">EN</button>
-
     <div class="container">
-        <div id="site-header"></div>
-        <div id="site-nav"></div>
-
+        <div id="site-header"></div><div id="site-nav"></div>
         <article class="course-page">
-            <div class="course-header">
-                <h1 data-en="Math for AI" data-kr="인공지능을위한수학">Math for AI</h1>
-                <p class="course-meta" data-en="2026 Spring | Mon 19:00-22:00" data-kr="2026 봄학기 | 월요일 19:00-22:00">2026 Spring | Mon 19:00-22:00</p>
-            </div>
-
-            <div class="course-nav">
-                <a href="../../../lectures.html" class="back-to-lectures" data-en="Back to Lectures" data-kr="강의 목록으로">Back to Lectures</a>
-            </div>
-
-            <p class="course-summary" data-en="Mathematical foundations for artificial intelligence — linear algebra, calculus, probability, and optimization."
-               data-kr="인공지능을 위한 수학적 기반을 다루는 과목이다. 선형대수, 미적분, 확률, 최적화를 중심으로 정리한다.">Mathematical foundations for artificial intelligence — linear algebra, calculus, probability, and optimization.</p>
-
+            <div class="course-header"><h1 data-en="Math for AI" data-kr="인공지능을위한수학">Math for AI</h1><p class="course-meta" data-en="2026 Spring | Weekly learning notes" data-kr="2026 봄학기 | 주차별 학습 노트">2026 Spring | Weekly learning notes</p></div>
+            <div class="course-nav"><a href="../../../lectures.html" class="back-to-lectures" data-en="Back to Lectures" data-kr="강의 목록으로">Back to Lectures</a></div>
+            <p class="course-summary" data-en="A concept-centered path from linear equations and matrix decompositions to probability models, showing how mathematical structure supports representation, inference, approximation, and learning in AI." data-kr="연립방정식과 행렬 분해에서 확률모형까지 이어지며, 수학적 구조가 인공지능의 표현·추론·근사·학습을 어떻게 뒷받침하는지 개념 중심으로 정리한다.">A concept-centered path from linear equations and matrix decompositions to probability models, showing how mathematical structure supports representation, inference, approximation, and learning in AI.</p>
             <div class="course-week-grid">
-                <a class="course-week-card" href="week-01.html">
-                    <div class="course-week-card-top">
-                        <span class="course-week-badge">W1</span>
-                        <span class="course-week-date">2026-03-02</span>
-                    </div>
-                    <h2 data-en="Week 1" data-kr="1주차">Week 1</h2>
-                    <p data-en="Notes will be added after class." data-kr="수업 후 노트가 추가됩니다.">Notes will be added after class.</p>
-                </a>
+                <a class="course-week-card" href="week-01.html"><div class="course-week-card-top"><span class="course-week-badge">W1</span><span class="course-week-date">2026-03-02</span></div><h2 data-en="Linear Algebra Overview" data-kr="선형대수학의 개요">Linear Algebra Overview</h2><p data-en="Sets, mappings, matrices, vectors, and the data representations that make linear algebra central to AI." data-kr="집합·사상·행렬·벡터와 데이터 표현을 연결해 선형대수가 AI의 핵심 언어가 되는 이유를 살핀다.">Sets, mappings, matrices, vectors, and the data representations that make linear algebra central to AI.</p></a>
+                <a class="course-week-card" href="week-02.html"><div class="course-week-card-top"><span class="course-week-badge">W2</span><span class="course-week-date">2026-03-09</span></div><h2 data-en="Systems of Linear Equations" data-kr="연립선형방정식">Systems of Linear Equations</h2><p data-en="Classify solution sets and solve systems with row operations, echelon forms, and elimination." data-kr="해의 구조를 분류하고 행 연산·사다리꼴·소거법으로 연립방정식을 해결한다.">Classify solution sets and solve systems with row operations, echelon forms, and elimination.</p></a>
+                <a class="course-week-card" href="week-03.html"><div class="course-week-card-top"><span class="course-week-badge">W3</span><span class="course-week-date">2026-03-16</span></div><h2 data-en="Matrices" data-kr="행렬">Matrices</h2><p data-en="Matrix shapes and operations, multiplication, inverses, transposes, and structured matrices." data-kr="행렬의 크기와 연산, 곱셈, 역행렬, 전치, 구조화된 행렬을 다룬다.">Matrix shapes and operations, multiplication, inverses, transposes, and structured matrices.</p></a>
+                <a class="course-week-card" href="week-04.html"><div class="course-week-card-top"><span class="course-week-badge">W4</span><span class="course-week-date">2026-03-23</span></div><h2 data-en="Inverse Matrices" data-kr="역행렬">Inverse Matrices</h2><p data-en="Compute and interpret inverses through elementary matrices, row reduction, LU decomposition, and block structure." data-kr="기본행렬·행 소거·LU 분해·블록 구조로 역행렬을 계산하고 해석한다.">Compute and interpret inverses through elementary matrices, row reduction, LU decomposition, and block structure.</p></a>
+                <a class="course-week-card" href="week-05.html"><div class="course-week-card-top"><span class="course-week-badge">W5</span><span class="course-week-date">2026-03-30</span></div><h2 data-en="Determinants" data-kr="행렬식">Determinants</h2><p data-en="Use determinants to detect invertibility, track geometric scaling, and connect cofactors to linear systems." data-kr="행렬식으로 가역성을 판별하고 기하학적 크기 변화와 여인수·연립방정식을 연결한다.">Use determinants to detect invertibility, track geometric scaling, and connect cofactors to linear systems.</p></a>
+                <a class="course-week-card" href="week-06.html"><div class="course-week-card-top"><span class="course-week-badge">W6</span><span class="course-week-date">2026-04-06</span></div><h2 data-en="Vectors and Vector Spaces" data-kr="벡터와 벡터공간">Vectors and Vector Spaces</h2><p data-en="Span, independence, basis, dimension, inner products, and vector-matrix differentiation." data-kr="생성·선형독립·기저·차원·내적과 벡터·행렬 미분을 정리한다.">Span, independence, basis, dimension, inner products, and vector-matrix differentiation.</p></a>
+                <a class="course-week-card" href="week-07.html"><div class="course-week-card-top"><span class="course-week-badge">W7</span><span class="course-week-date">2026-04-13</span></div><h2 data-en="Linear Transformations" data-kr="선형변환">Linear Transformations</h2><p data-en="Represent transformations with matrices and connect kernels, ranges, four subspaces, and rank." data-kr="변환을 행렬로 표현하고 핵·치역·네 기본부분공간·계수를 연결한다.">Represent transformations with matrices and connect kernels, ranges, four subspaces, and rank.</p></a>
+                <a class="course-week-card" href="week-08.html"><div class="course-week-card-top"><span class="course-week-badge">W8</span><span class="course-week-date">2026-04-20</span></div><h2 data-en="Midterm Exam" data-kr="중간고사">Midterm Exam</h2><p data-en="Assessment week with a concept map for reviewing the linear-algebra foundations from W1-W7." data-kr="W1-W7의 선형대수 기반을 연결해 복습하는 중간고사 주차다.">Assessment week with a concept map for reviewing the linear-algebra foundations from W1-W7.</p></a>
+                <a class="course-week-card" href="week-09.html"><div class="course-week-card-top"><span class="course-week-badge">W9</span><span class="course-week-date">2026-04-27</span></div><h2 data-en="Eigenvalues and Eigenvectors" data-kr="고윳값과 고유벡터">Eigenvalues and Eigenvectors</h2><p data-en="Find invariant directions from the characteristic equation and connect them to PCA." data-kr="특성방정식에서 불변 방향을 찾고 주성분 분석으로 연결한다.">Find invariant directions from the characteristic equation and connect them to PCA.</p></a>
+                <a class="course-week-card" href="week-10.html"><div class="course-week-card-top"><span class="course-week-badge">W10</span><span class="course-week-date">2026-05-04</span></div><h2 data-en="Orthogonality and Least Squares" data-kr="직교성과 최소제곱">Orthogonality and Least Squares</h2><p data-en="Orthogonal bases, projection, Gram-Schmidt, QR decomposition, and least-squares regression." data-kr="직교기저·정사영·그람-슈미트·QR 분해·최소제곱 회귀를 연결한다.">Orthogonal bases, projection, Gram-Schmidt, QR decomposition, and least-squares regression.</p></a>
+                <a class="course-week-card" href="week-11.html"><div class="course-week-card-top"><span class="course-week-badge">W11</span><span class="course-week-date">2026-05-11</span></div><h2 data-en="Diagonalization and Symmetry" data-kr="대각화와 대칭">Diagonalization and Symmetry</h2><p data-en="Similarity, diagonalization, the spectral structure of symmetric matrices, and quadratic forms." data-kr="닮음·대각화·대칭행렬의 스펙트럼 구조·이차형식을 다룬다.">Similarity, diagonalization, the spectral structure of symmetric matrices, and quadratic forms.</p></a>
+                <a class="course-week-card" href="week-12.html"><div class="course-week-card-top"><span class="course-week-badge">W12</span><span class="course-week-date">2026-05-18</span></div><h2 data-en="Singular Value Decomposition and Probability Foundations" data-kr="특잇값 분해와 확률의 기초">Singular Value Decomposition and Probability Foundations</h2><p data-en="SVD, low-rank approximation, descriptive data summaries, events, and probability rules." data-kr="SVD와 낮은 계수 근사, 데이터 요약, 사건, 확률 법칙을 함께 다룬다.">SVD, low-rank approximation, descriptive data summaries, events, and probability rules.</p></a>
+                <a class="course-week-card" href="week-13.html"><div class="course-week-card-top"><span class="course-week-badge">W13</span><span class="course-week-date">2026-05-25</span></div><h2 data-en="Counting, Random Variables, and Discrete Distributions" data-kr="경우의 수·확률변수·이산분포">Counting, Random Variables, and Discrete Distributions</h2><p data-en="Combinatorics, probability functions, expectation, and binomial, Poisson, and hypergeometric models." data-kr="경우의 수·확률함수·기댓값과 이항·포아송·초기하분포를 정리한다.">Combinatorics, probability functions, expectation, and binomial, Poisson, and hypergeometric models.</p></a>
+                <a class="course-week-card" href="week-14.html"><div class="course-week-card-top"><span class="course-week-badge">W14</span><span class="course-week-date">2026-06-01</span></div><h2 data-en="Normal and Multivariate Distributions" data-kr="정규분포와 다변량분포">Normal and Multivariate Distributions</h2><p data-en="Standardization, normal probabilities, joint and marginal distributions, independence, and covariance." data-kr="표준화·정규확률·결합·주변분포·독립성·공분산을 연결한다.">Standardization, normal probabilities, joint and marginal distributions, independence, and covariance.</p></a>
+                <a class="course-week-card" href="week-15.html"><div class="course-week-card-top"><span class="course-week-badge">W15</span><span class="course-week-date">2026-06-08</span></div><h2 data-en="Self-Study and Concept Integration" data-kr="자율학습과 개념 통합">Self-Study and Concept Integration</h2><p data-en="Integrate eigenstructure, approximation, and probability through a deliberate self-study map." data-kr="고유구조·근사·확률을 하나의 자율학습 지도 안에서 통합한다.">Integrate eigenstructure, approximation, and probability through a deliberate self-study map.</p></a>
+                <a class="course-week-card" href="week-16.html"><div class="course-week-card-top"><span class="course-week-badge">W16</span><span class="course-week-date">2026-06-15</span></div><h2 data-en="Final Exam" data-kr="기말고사">Final Exam</h2><p data-en="Final assessment week with a semester-wide concept and problem-solving review map." data-kr="한 학기의 개념과 문제 해결 흐름을 연결해 점검하는 기말고사 주차다.">Final assessment week with a semester-wide concept and problem-solving review map.</p></a>
             </div>
         </article>
-
         <div id="site-footer"></div>
     </div>
-
     <script src="../../../common.js"></script>
 </body>
 </html>
