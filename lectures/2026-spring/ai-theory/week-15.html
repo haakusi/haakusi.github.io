@@ -1,0 +1,438 @@
+<!DOCTYPE html>
+<html data-theme="dark" data-lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>AI Theory - Week 15 - Sewon Park</title>
+    <link rel="stylesheet" type="text/css" href="../../../style.css">
+    <link rel="stylesheet" type="text/css" href="../../../assets/css/lectures.css">
+</head>
+<body>
+    <button class="theme-toggle" onclick="toggleTheme()" aria-label="Toggle dark mode"></button>
+    <button class="lang-toggle" onclick="toggleLanguage()" aria-label="Toggle language">EN</button>
+
+    <div class="container">
+        <div id="site-header"></div>
+        <div id="site-nav"></div>
+
+        <article class="course-page">
+            <div class="course-header">
+                <h1 data-en="AI Theory" data-kr="인공지능론">AI Theory</h1>
+                <p class="course-meta" data-en="2026 Spring | Intensive Course | Online 3h + Offline 3h" data-kr="2026 봄학기 | 압축형 수업 | 온라인 3시간 + 오프라인 3시간">2026 Spring | Intensive Course | Online 3h + Offline 3h</p>
+            </div>
+
+            <div class="course-nav">
+                <a href="../../../lectures.html" class="back-to-lectures" data-en="Back to Lectures" data-kr="강의 목록으로">Back to Lectures</a>
+                <span class="nav-separator">/</span>
+                <a href="./index.html" class="back-to-course" data-en="Course Home" data-kr="과목 홈">Course Home</a>
+            </div>
+
+            <div class="week-nav">
+                <span data-en="Weeks:" data-kr="주차:">Weeks:</span>
+                <a href="week-09.html" class="week-link">W9</a>
+                <a href="week-10.html" class="week-link">W10</a>
+                <a href="week-11.html" class="week-link">W11</a>
+                <a href="week-12.html" class="week-link">W12</a>
+                <a href="week-13.html" class="week-link">W13</a>
+                <a href="week-14.html" class="week-link">W14</a>
+                <a href="week-15.html" class="week-link current">W15</a>
+                <a href="week-16.html" class="week-link">W16</a>
+            </div>
+
+            <section class="week-section" id="week-15">
+                <h2 data-en="Week 15" data-kr="15주차">Week 15</h2>
+                <p class="week-date" data-en="2026-06-08 - 06-14 · Logic, Entailment, and Inference" data-kr="2026-06-08 - 06-14 · 논리, Entailment, 추론">2026-06-08 - 06-14 · Logic, Entailment, and Inference</p>
+                <div class="week-content">
+                    <span class="assignment-chip" data-en="Propositional Logic" data-kr="명제논리">Propositional Logic</span>
+
+                    <div class="lang-kr" hidden>
+                        <p class="week-references"><em>교안: 08-1. PL Logic.pdf, 08-2. pl-entailment.pdf, Inference Algorithm.pdf (AIMA 7장) · 주차 기간과 활동명은 제공된 LMS 기록을 기준으로 정리</em></p>
+
+                        <p>15주차는 지식을 문장으로 저장하고 새로운 결론을 이끌어내는 <strong>논리 에이전트</strong>의 구조를 다뤘다. 명제논리의 구문과 의미에서 시작해, 가능한 세계와 모델, entailment, 그리고 진리표·추론 규칙·resolution으로 결론을 증명하는 방법을 연결했다.</p>
+
+                        <div class="lecture-note">
+                            <p><strong>핵심 관점.</strong> 지식베이스는 관찰된 사실과 일반 규칙을 문장으로 보관한다. 추론은 단순히 그럴듯한 답을 만드는 것이 아니라, 지식베이스가 참인 모든 경우에 반드시 참인 결론을 찾아야 한다.</p>
+                        </div>
+
+                        <h3>1. 지식 기반 에이전트</h3>
+                        <div class="stat-comparison">
+                            <div class="stat-comparison-item">
+                                <h4>TELL</h4>
+                                <p>사실, 규칙, 지각, 행동 결과를 지식베이스에 추가한다.</p>
+                            </div>
+                            <div class="stat-comparison-item">
+                                <h4>ASK</h4>
+                                <p>현재 지식으로 특정 문장을 결론 내릴 수 있는지 질의한다.</p>
+                            </div>
+                            <div class="stat-comparison-item">
+                                <h4>Inference</h4>
+                                <p>기존 문장에서 의미론적으로 보장되는 새 문장을 도출한다.</p>
+                            </div>
+                        </div>
+
+                        <p>논리 언어는 문장을 만드는 규칙인 <strong>syntax</strong>와, 각 모델에서 문장이 참인지 정하는 <strong>semantics</strong>를 분리한다. 이 구분 덕분에 표현의 올바름과 결론의 진리 조건을 체계적으로 확인할 수 있다.</p>
+
+                        <h3>2. 명제논리의 구문과 의미</h3>
+                        <table class="stat-table">
+                            <tr>
+                                <th>요소</th>
+                                <th>역할</th>
+                                <th>핵심</th>
+                            </tr>
+                            <tr>
+                                <td>Proposition symbol</td>
+                                <td>참 또는 거짓이 되는 원자 문장</td>
+                                <td>P, Q, R</td>
+                            </tr>
+                            <tr>
+                                <td>Connective</td>
+                                <td>문장을 결합하거나 부정</td>
+                                <td>not, and, or, implication, biconditional</td>
+                            </tr>
+                            <tr>
+                                <td>Literal</td>
+                                <td>원자 문장 또는 그 부정</td>
+                                <td>P 또는 not P</td>
+                            </tr>
+                            <tr>
+                                <td>Clause</td>
+                                <td>리터럴을 OR로 묶은 단위</td>
+                                <td>CNF와 resolution의 기본 구성</td>
+                            </tr>
+                            <tr>
+                                <td>Horn clause</td>
+                                <td>양의 리터럴이 최대 하나인 절</td>
+                                <td>효율적인 규칙 기반 추론에 적합</td>
+                            </tr>
+                        </table>
+
+                        <p>복합 문장의 값은 원자 명제에 참·거짓을 대입하고 구문 트리를 아래에서 위로 계산해 정한다. 특히 implication은 전건이 참이고 후건이 거짓일 때만 거짓이라는 의미를 갖는다.</p>
+
+                        <h3>3. 모델, 가능한 세계, Entailment</h3>
+                        <p>모델은 명제 기호마다 참·거짓을 할당한 하나의 가능한 세계다. 명제 기호가 n개이면 최대 2^n개의 모델을 생각할 수 있고, 지식베이스에 문장을 더할수록 그 문장들과 양립하는 모델만 남는다.</p>
+
+                        <div class="stat-formula">
+                            KB entails alpha iff M(KB) is a subset of M(alpha)<br>
+                            즉, KB가 참인 모든 모델에서 alpha도 참이어야 한다.
+                        </div>
+
+                        <p>어떤 결론이 일부 모델에서만 참이라면 아직 알 수 없는 것이지 거짓으로 증명된 것은 아니다. Entailment는 높은 확률이나 직관이 아니라, 남은 모든 모델에서의 필연성을 요구한다.</p>
+
+                        <h3>4. 진리 조건과 추론 알고리즘의 품질</h3>
+                        <table class="stat-table">
+                            <tr>
+                                <th>개념</th>
+                                <th>의미</th>
+                            </tr>
+                            <tr>
+                                <td>Valid</td>
+                                <td>모든 모델에서 참인 문장</td>
+                            </tr>
+                            <tr>
+                                <td>Satisfiable</td>
+                                <td>적어도 하나의 모델에서 참인 문장</td>
+                            </tr>
+                            <tr>
+                                <td>Unsatisfiable</td>
+                                <td>어떤 모델에서도 참일 수 없는 문장</td>
+                            </tr>
+                            <tr>
+                                <td>Soundness</td>
+                                <td>알고리즘이 도출한 결론은 실제로 KB가 entail하는 결론이다.</td>
+                            </tr>
+                            <tr>
+                                <td>Completeness</td>
+                                <td>KB가 entail하는 모든 결론을 알고리즘이 도출할 수 있다.</td>
+                            </tr>
+                        </table>
+
+                        <div class="stat-formula">
+                            KB entails alpha iff (KB implies alpha) is valid<br>
+                            KB entails alpha iff (KB and not alpha) is unsatisfiable
+                        </div>
+
+                        <h3>5. 세 가지 추론 경로</h3>
+                        <table class="stat-table">
+                            <tr>
+                                <th>방법</th>
+                                <th>작동 방식</th>
+                                <th>특징</th>
+                            </tr>
+                            <tr>
+                                <td>Truth-table model checking</td>
+                                <td>모든 모델을 열거하고 KB가 참인 행에서 질의를 확인한다.</td>
+                                <td>직관적이지만 모델 수가 2^n으로 증가한다.</td>
+                            </tr>
+                            <tr>
+                                <td>Inference rules</td>
+                                <td>Modus Ponens 같은 규칙을 적용해 증명 사슬을 만든다.</td>
+                                <td>모델 전체 대신 관련 문장을 직접 변환한다.</td>
+                            </tr>
+                            <tr>
+                                <td>Resolution</td>
+                                <td>KB와 질의의 부정을 CNF 절로 만들고 상보 리터럴을 제거한다.</td>
+                                <td>빈 절이 나오면 모순이므로 원래 질의가 증명된다.</td>
+                            </tr>
+                        </table>
+
+                        <div class="lecture-note">
+                            <p><strong>Resolution의 역할.</strong> 명제논리에서 resolution은 sound하고 complete하다. 식을 CNF로 표준화한 뒤 한 쌍의 상보 리터럴을 제거하는 과정을 반복해, 모순을 나타내는 빈 절에 도달하는지 본다.</p>
+                        </div>
+
+                        <h3>6. 15주차 LMS 활동 기록</h3>
+                        <p>주차 활동 창은 6월 8일 00:00부터 6월 14일 23:59까지였다. 아래 표는 제공된 LMS 항목을 개념·증명·성찰 흐름으로 정리한 것이다.</p>
+
+                        <table class="stat-table">
+                            <tr>
+                                <th>구분</th>
+                                <th>항목</th>
+                                <th>기록</th>
+                            </tr>
+                            <tr>
+                                <td>논리 기초</td>
+                                <td>Logic · 자료</td>
+                                <td>34:44 강의와 교안</td>
+                            </tr>
+                            <tr>
+                                <td>의미론</td>
+                                <td>Entailment · 자료</td>
+                                <td>38:52 강의와 교안</td>
+                            </tr>
+                            <tr>
+                                <td>추론</td>
+                                <td>Inference Algorithm · 자료</td>
+                                <td>40:09 강의와 교안</td>
+                            </tr>
+                            <tr>
+                                <td>다큐멘터리</td>
+                                <td>The Thinking Game</td>
+                                <td>1:24:08 · Tribeca Film Festival 공식 선정작</td>
+                            </tr>
+                            <tr>
+                                <td>주차 과제</td>
+                                <td>AI 이용 금지</td>
+                                <td>6월 9일 17:50 마감</td>
+                            </tr>
+                            <tr>
+                                <td>발표</td>
+                                <td>발표용</td>
+                                <td>6월 9일 15:00 시작 · 1시간 · 출결 대상 아님</td>
+                            </tr>
+                            <tr>
+                                <td>코드</td>
+                                <td>Minimax code</td>
+                                <td>주차 코드 자료</td>
+                            </tr>
+                        </table>
+
+                        <h3>7. 주차 요약</h3>
+                        <ul>
+                            <li>논리 에이전트는 사실과 규칙을 지식베이스에 저장하고 질의에 답한다.</li>
+                            <li>명제논리는 syntax와 semantics를 분리해 문장의 구조와 진리 조건을 정의한다.</li>
+                            <li>Entailment는 KB가 참인 모든 모델에서 결론도 참이라는 관계다.</li>
+                            <li>Soundness는 잘못된 결론을 막고, completeness는 필요한 결론을 놓치지 않게 한다.</li>
+                            <li>진리표, 추론 규칙, resolution은 서로 다른 방식으로 논리적 결론을 확인한다.</li>
+                            <li>주차 활동은 다큐멘터리, AI 이용 금지 과제, 발표, Minimax 코드로 확장됐다.</li>
+                        </ul>
+                    </div>
+
+                    <div class="lang-en">
+                        <p class="week-references"><em>Sources: 08-1. PL Logic.pdf, 08-2. pl-entailment.pdf, and Inference Algorithm.pdf (AIMA Chapter 7) · Module dates and activity names follow the supplied LMS record</em></p>
+
+                        <p>Week 15 examined <strong>logical agents</strong> that store knowledge as sentences and derive new conclusions. The sequence connected propositional syntax and semantics with possible worlds and models, entailment, and three approaches to proof: truth tables, inference rules, and resolution.</p>
+
+                        <div class="lecture-note">
+                            <p><strong>Core perspective.</strong> A knowledge base stores observed facts and general rules as sentences. Inference should not merely produce a plausible answer; it should derive a conclusion that is true in every case where the knowledge base is true.</p>
+                        </div>
+
+                        <h3>1. Knowledge-Based Agents</h3>
+                        <div class="stat-comparison">
+                            <div class="stat-comparison-item">
+                                <h4>TELL</h4>
+                                <p>Adds facts, rules, percepts, and action results to the knowledge base.</p>
+                            </div>
+                            <div class="stat-comparison-item">
+                                <h4>ASK</h4>
+                                <p>Queries whether a sentence follows from current knowledge.</p>
+                            </div>
+                            <div class="stat-comparison-item">
+                                <h4>Inference</h4>
+                                <p>Derives new sentences that are semantically guaranteed by old ones.</p>
+                            </div>
+                        </div>
+
+                        <p>A logical language separates <strong>syntax</strong>, the rules for forming sentences, from <strong>semantics</strong>, the conditions under which a sentence is true in a model. This makes it possible to check both well-formed representation and the truth conditions of a conclusion.</p>
+
+                        <h3>2. Propositional Syntax and Semantics</h3>
+                        <table class="stat-table">
+                            <tr>
+                                <th>Element</th>
+                                <th>Role</th>
+                                <th>Key idea</th>
+                            </tr>
+                            <tr>
+                                <td>Proposition symbol</td>
+                                <td>An atomic sentence that is true or false</td>
+                                <td>P, Q, R</td>
+                            </tr>
+                            <tr>
+                                <td>Connective</td>
+                                <td>Combines or negates sentences</td>
+                                <td>not, and, or, implication, biconditional</td>
+                            </tr>
+                            <tr>
+                                <td>Literal</td>
+                                <td>An atomic sentence or its negation</td>
+                                <td>P or not P</td>
+                            </tr>
+                            <tr>
+                                <td>Clause</td>
+                                <td>A disjunction of literals</td>
+                                <td>Building block for CNF and resolution</td>
+                            </tr>
+                            <tr>
+                                <td>Horn clause</td>
+                                <td>A clause with at most one positive literal</td>
+                                <td>Supports efficient rule-based inference</td>
+                            </tr>
+                        </table>
+
+                        <p>A compound sentence is evaluated by assigning truth values to atomic symbols and working upward through its parse tree. In particular, an implication is false only when its premise is true and its conclusion is false.</p>
+
+                        <h3>3. Models, Possible Worlds, and Entailment</h3>
+                        <p>A model is one possible world represented by a truth assignment to every proposition symbol. With n symbols there can be 2^n models, and every sentence added to a knowledge base removes models that are incompatible with it.</p>
+
+                        <div class="stat-formula">
+                            KB entails alpha iff M(KB) is a subset of M(alpha)<br>
+                            alpha must be true in every model where KB is true.
+                        </div>
+
+                        <p>If a query is true in only some remaining models, it is unknown rather than proven false. Entailment requires necessity across all remaining models, not probability or intuition.</p>
+
+                        <h3>4. Truth Conditions and Inference Quality</h3>
+                        <table class="stat-table">
+                            <tr>
+                                <th>Concept</th>
+                                <th>Meaning</th>
+                            </tr>
+                            <tr>
+                                <td>Valid</td>
+                                <td>True in every model</td>
+                            </tr>
+                            <tr>
+                                <td>Satisfiable</td>
+                                <td>True in at least one model</td>
+                            </tr>
+                            <tr>
+                                <td>Unsatisfiable</td>
+                                <td>True in no model</td>
+                            </tr>
+                            <tr>
+                                <td>Soundness</td>
+                                <td>Every conclusion produced by the algorithm is entailed by the KB.</td>
+                            </tr>
+                            <tr>
+                                <td>Completeness</td>
+                                <td>The algorithm can produce every conclusion entailed by the KB.</td>
+                            </tr>
+                        </table>
+
+                        <div class="stat-formula">
+                            KB entails alpha iff (KB implies alpha) is valid<br>
+                            KB entails alpha iff (KB and not alpha) is unsatisfiable
+                        </div>
+
+                        <h3>5. Three Paths to Inference</h3>
+                        <table class="stat-table">
+                            <tr>
+                                <th>Method</th>
+                                <th>Mechanism</th>
+                                <th>Characteristic</th>
+                            </tr>
+                            <tr>
+                                <td>Truth-table model checking</td>
+                                <td>Enumerates models and checks the query whenever KB is true.</td>
+                                <td>Transparent, but the model space grows as 2^n.</td>
+                            </tr>
+                            <tr>
+                                <td>Inference rules</td>
+                                <td>Applies rules such as Modus Ponens to construct a proof chain.</td>
+                                <td>Transforms relevant sentences without enumerating every model.</td>
+                            </tr>
+                            <tr>
+                                <td>Resolution</td>
+                                <td>Converts KB and the negated query to CNF and removes complementary literals.</td>
+                                <td>An empty clause proves contradiction and therefore the original query.</td>
+                            </tr>
+                        </table>
+
+                        <div class="lecture-note">
+                            <p><strong>Role of resolution.</strong> Resolution is sound and complete for propositional logic. After conversion to CNF, it repeatedly eliminates one complementary pair of literals and tests whether the process reaches the empty clause.</p>
+                        </div>
+
+                        <h3>6. Week 15 LMS Activity Record</h3>
+                        <p>The module window ran from June 8 at 00:00 through June 14 at 23:59. The supplied LMS items are grouped below as a concept, proof, and reflection sequence.</p>
+
+                        <table class="stat-table">
+                            <tr>
+                                <th>Category</th>
+                                <th>Item</th>
+                                <th>Record</th>
+                            </tr>
+                            <tr>
+                                <td>Logic foundations</td>
+                                <td>Logic · resource</td>
+                                <td>34:44 lecture and handout</td>
+                            </tr>
+                            <tr>
+                                <td>Semantics</td>
+                                <td>Entailment · resource</td>
+                                <td>38:52 lecture and handout</td>
+                            </tr>
+                            <tr>
+                                <td>Inference</td>
+                                <td>Inference Algorithm · resource</td>
+                                <td>40:09 lecture and handout</td>
+                            </tr>
+                            <tr>
+                                <td>Documentary</td>
+                                <td>The Thinking Game</td>
+                                <td>1:24:08 · Tribeca Film Festival official selection</td>
+                            </tr>
+                            <tr>
+                                <td>Weekly assignment</td>
+                                <td>AI use prohibited</td>
+                                <td>Due June 9 at 17:50</td>
+                            </tr>
+                            <tr>
+                                <td>Presentation</td>
+                                <td>Presentation session</td>
+                                <td>June 9 at 15:00 · one hour · not attendance-tracked</td>
+                            </tr>
+                            <tr>
+                                <td>Code</td>
+                                <td>Minimax code</td>
+                                <td>Weekly code resource</td>
+                            </tr>
+                        </table>
+
+                        <h3>7. Week Summary</h3>
+                        <ul>
+                            <li>Logical agents store facts and rules in a knowledge base and answer queries.</li>
+                            <li>Propositional logic separates syntax from semantics to define structure and truth.</li>
+                            <li>Entailment means that a conclusion is true in every model where the KB is true.</li>
+                            <li>Soundness prevents false conclusions; completeness prevents missing required ones.</li>
+                            <li>Truth tables, inference rules, and resolution provide different paths to logical conclusions.</li>
+                            <li>The module also included a documentary, an AI-prohibited assignment, a presentation, and Minimax code.</li>
+                        </ul>
+                    </div>
+                </div>
+            </section>
+        </article>
+
+        <div id="site-footer"></div>
+    </div>
+
+    <script src="../../../common.js"></script>
+</body>
+</html>

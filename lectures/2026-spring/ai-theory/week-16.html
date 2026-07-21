@@ -1,0 +1,448 @@
+<!DOCTYPE html>
+<html data-theme="dark" data-lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>AI Theory - Week 16 - Sewon Park</title>
+    <link rel="stylesheet" type="text/css" href="../../../style.css">
+    <link rel="stylesheet" type="text/css" href="../../../assets/css/lectures.css">
+</head>
+<body>
+    <button class="theme-toggle" onclick="toggleTheme()" aria-label="Toggle dark mode"></button>
+    <button class="lang-toggle" onclick="toggleLanguage()" aria-label="Toggle language">EN</button>
+
+    <div class="container">
+        <div id="site-header"></div>
+        <div id="site-nav"></div>
+
+        <article class="course-page">
+            <div class="course-header">
+                <h1 data-en="AI Theory" data-kr="인공지능론">AI Theory</h1>
+                <p class="course-meta" data-en="2026 Spring | Intensive Course | Online 3h + Offline 3h" data-kr="2026 봄학기 | 압축형 수업 | 온라인 3시간 + 오프라인 3시간">2026 Spring | Intensive Course | Online 3h + Offline 3h</p>
+            </div>
+
+            <div class="course-nav">
+                <a href="../../../lectures.html" class="back-to-lectures" data-en="Back to Lectures" data-kr="강의 목록으로">Back to Lectures</a>
+                <span class="nav-separator">/</span>
+                <a href="./index.html" class="back-to-course" data-en="Course Home" data-kr="과목 홈">Course Home</a>
+            </div>
+
+            <div class="week-nav">
+                <span data-en="Weeks:" data-kr="주차:">Weeks:</span>
+                <a href="week-09.html" class="week-link">W9</a>
+                <a href="week-10.html" class="week-link">W10</a>
+                <a href="week-11.html" class="week-link">W11</a>
+                <a href="week-12.html" class="week-link">W12</a>
+                <a href="week-13.html" class="week-link">W13</a>
+                <a href="week-14.html" class="week-link">W14</a>
+                <a href="week-15.html" class="week-link">W15</a>
+                <a href="week-16.html" class="week-link current">W16</a>
+            </div>
+
+            <section class="week-section" id="week-16">
+                <h2 data-en="Week 16" data-kr="16주차">Week 16</h2>
+                <p class="week-date" data-en="2026-06-15 - 06-21 · FOL, Inference, and Final Assessment" data-kr="2026-06-15 - 06-21 · FOL, 추론, 기말 평가">2026-06-15 - 06-21 · FOL, Inference, and Final Assessment</p>
+                <div class="week-content">
+                    <span class="assignment-chip" data-en="First-Order Logic" data-kr="1차 논리">First-Order Logic</span>
+
+                    <div class="lang-kr" hidden>
+                        <p class="week-references"><em>교안: 09-1. FOL.pdf, 09-2. FOL Inference.pdf (AIMA 8-9장) · 주차 기간과 기말 평가 활동명은 제공된 LMS 기록을 기준으로 정리</em></p>
+
+                        <p>16주차는 명제논리보다 표현력이 높은 <strong>1차 논리(First-Order Logic, FOL)</strong>와 그 추론 방법을 다루고 기말 평가 활동으로 학기를 마무리했다. 객체·관계·함수를 표현하는 언어에서 출발해 양화사, 예화, Skolem 상수, 단일화, Generalized Modus Ponens로 이어졌다.</p>
+
+                        <div class="lecture-note">
+                            <p><strong>핵심 관점.</strong> 명제논리가 각각의 사실을 독립 기호로 다룬다면, FOL은 세계를 객체와 객체 사이의 관계로 구조화한다. 하나의 일반 규칙을 여러 객체에 적용할 수 있어 더 압축적이고 재사용 가능한 지식 표현이 된다.</p>
+                        </div>
+
+                        <h3>1. 왜 FOL이 필요한가</h3>
+                        <div class="stat-comparison">
+                            <div class="stat-comparison-item">
+                                <h4>Objects</h4>
+                                <p>사람, 장소, 숫자, 사물처럼 세계를 구성하는 대상이다.</p>
+                            </div>
+                            <div class="stat-comparison-item">
+                                <h4>Relations</h4>
+                                <p>대상의 속성이나 대상 사이의 연결을 참·거짓으로 표현한다.</p>
+                            </div>
+                            <div class="stat-comparison-item">
+                                <h4>Functions</h4>
+                                <p>하나 이상의 대상을 입력받아 다른 대상을 가리키는 값을 만든다.</p>
+                            </div>
+                        </div>
+
+                        <p>명제논리로 일반 법칙을 표현하려면 모든 개별 경우를 따로 작성해야 한다. FOL은 변수와 양화사를 사용해 대상 전체에 적용되는 규칙이나 어떤 대상의 존재를 하나의 문장으로 나타낸다.</p>
+
+                        <h3>2. FOL 언어의 구성</h3>
+                        <table class="stat-table">
+                            <tr>
+                                <th>요소</th>
+                                <th>역할</th>
+                                <th>예</th>
+                            </tr>
+                            <tr>
+                                <td>Constant</td>
+                                <td>특정 객체를 가리킨다.</td>
+                                <td>John, SKKU, 2</td>
+                            </tr>
+                            <tr>
+                                <td>Variable</td>
+                                <td>양화되거나 치환될 객체 자리를 나타낸다.</td>
+                                <td>x, y</td>
+                            </tr>
+                            <tr>
+                                <td>Predicate</td>
+                                <td>속성이나 관계를 참·거짓 문장으로 만든다.</td>
+                                <td>Student(x), Knows(x, y)</td>
+                            </tr>
+                            <tr>
+                                <td>Function</td>
+                                <td>term을 입력받아 다른 객체를 가리키는 term을 만든다.</td>
+                                <td>MotherOf(x)</td>
+                            </tr>
+                            <tr>
+                                <td>Equality</td>
+                                <td>두 term이 같은 객체를 가리키는지 표현한다.</td>
+                                <td>FatherOf(John) = Henry</td>
+                            </tr>
+                        </table>
+
+                        <div class="stat-formula">
+                            Term = constant | variable | function(term, ...)<br>
+                            Atomic sentence = predicate(term, ...) | term = term
+                        </div>
+
+                        <h3>3. 양화사와 범위</h3>
+                        <table class="stat-table">
+                            <tr>
+                                <th>양화사</th>
+                                <th>의미</th>
+                                <th>전형적인 문장 구조</th>
+                            </tr>
+                            <tr>
+                                <td>Universal</td>
+                                <td>모든 객체에 대해 문장이 참이다.</td>
+                                <td>조건을 나타내는 implication과 자주 결합한다.</td>
+                            </tr>
+                            <tr>
+                                <td>Existential</td>
+                                <td>문장을 만족하는 객체가 적어도 하나 존재한다.</td>
+                                <td>속성을 함께 요구하는 conjunction과 자주 결합한다.</td>
+                            </tr>
+                        </table>
+
+                        <p>같은 종류의 양화사는 순서를 바꾸어도 의미가 유지되지만, universal과 existential의 순서를 섞으면 뜻이 달라질 수 있다. 또한 두 양화사는 부정과 함께 서로 바꿔 표현할 수 있다.</p>
+
+                        <div class="lecture-note">
+                            <p><strong>주의.</strong> 모든 학생에 대한 규칙을 쓸 때 universal 뒤에 단순 conjunction을 두면 모두가 그 조건을 실제로 만족한다는 과도한 주장이 될 수 있다. 반대로 existential 뒤에 implication만 두면 조건을 만족하지 않는 객체 때문에 문장이 쉽게 참이 될 수 있다.</p>
+                        </div>
+
+                        <h3>4. 해석과 지식 표현</h3>
+                        <p>FOL 모델은 객체들의 집합과 함께 각 상수, 술어, 함수가 무엇을 가리키는지 정하는 <strong>interpretation</strong>을 포함한다. 문장의 참·거짓은 기호 모양만으로 정해지는 것이 아니라 이 해석에 따라 결정된다.</p>
+
+                        <div class="stat-comparison">
+                            <div class="stat-comparison-item">
+                                <h4>Atomic facts</h4>
+                                <p>특정 객체의 속성이나 두 객체의 관계를 표현한다.</p>
+                            </div>
+                            <div class="stat-comparison-item">
+                                <h4>General rules</h4>
+                                <p>변수와 양화사로 여러 개별 사실을 하나의 규칙으로 묶는다.</p>
+                            </div>
+                            <div class="stat-comparison-item">
+                                <h4>Structured meaning</h4>
+                                <p>시간, 위치, 행동, 자연어 의미를 객체와 관계로 연결한다.</p>
+                            </div>
+                        </div>
+
+                        <h3>5. FOL 추론: 예화에서 단일화까지</h3>
+                        <table class="stat-table">
+                            <tr>
+                                <th>방법</th>
+                                <th>핵심 동작</th>
+                                <th>의미</th>
+                            </tr>
+                            <tr>
+                                <td>Universal Instantiation</td>
+                                <td>universal 변수에 ground term을 치환한다.</td>
+                                <td>일반 규칙에서 필요한 개별 문장을 만든다.</td>
+                            </tr>
+                            <tr>
+                                <td>Existential Instantiation</td>
+                                <td>existential 변수를 새 Skolem 상수로 한 번 치환한다.</td>
+                                <td>어떤 객체가 존재한다는 사실을 새 이름으로 다룬다.</td>
+                            </tr>
+                            <tr>
+                                <td>Unification</td>
+                                <td>두 표현을 같게 만드는 변수 치환을 찾는다.</td>
+                                <td>규칙의 전제와 알려진 사실을 연결한다.</td>
+                            </tr>
+                            <tr>
+                                <td>Generalized Modus Ponens</td>
+                                <td>단일화된 전제들과 규칙에서 치환된 결론을 만든다.</td>
+                                <td>불필요한 모든 ground 문장을 만들지 않고 직접 추론한다.</td>
+                            </tr>
+                        </table>
+
+                        <p>모든 universal 문장을 가능한 ground term으로 바꾸는 명제화는 원리상 가능하지만 무관한 문장을 많이 만들 수 있다. 단일화와 GMP를 사용한 lifted inference는 현재 사실과 맞는 치환만 찾아 관련 결론을 직접 도출한다.</p>
+
+                        <h3>6. 기말 평가와 16주차 LMS 활동 기록</h3>
+                        <p>주차 활동 창은 6월 15일 00:00부터 6월 21일 23:59까지였다. FOL 강의와 외부 관점의 AI 콘텐츠, AI 사용 보고서, 기말과제 수정사항 및 Q&amp;A가 기말 평가 주차에 함께 배치됐다.</p>
+
+                        <table class="stat-table">
+                            <tr>
+                                <th>구분</th>
+                                <th>항목</th>
+                                <th>기록</th>
+                            </tr>
+                            <tr>
+                                <td>지식 표현</td>
+                                <td>FOL · 자료</td>
+                                <td>50:37 강의와 교안</td>
+                            </tr>
+                            <tr>
+                                <td>추론</td>
+                                <td>FOL Inference · 자료</td>
+                                <td>16:41 강의와 교안</td>
+                            </tr>
+                            <tr>
+                                <td>초청 강연</td>
+                                <td>기업에서의 AI 활용 현황</td>
+                                <td>50:34 녹화</td>
+                            </tr>
+                            <tr>
+                                <td>인터뷰</td>
+                                <td>스탠포드 최예진 교수 - AI의 현황</td>
+                                <td>30:01 · 출결 대상 아님</td>
+                            </tr>
+                            <tr>
+                                <td>기말 보고서</td>
+                                <td>AI 사용 보고서</td>
+                                <td>6월 10일 00:00 - 6월 21일 23:59</td>
+                            </tr>
+                            <tr>
+                                <td>기말 정리</td>
+                                <td>기말과제 수정사항 및 Q&amp;A</td>
+                                <td>수정 안내와 질의응답</td>
+                            </tr>
+                        </table>
+
+                        <div class="lecture-note">
+                            <p><strong>기록 범위.</strong> 제공된 정보는 16주차를 기말 평가 주차로 표시하고 보고서와 과제 수정·Q&amp;A를 제시한다. 별도의 시험 문항, 형식, 장소, 배점은 제공되지 않아 추가하지 않았다.</p>
+                        </div>
+
+                        <h3>7. 주차 요약</h3>
+                        <ul>
+                            <li>FOL은 객체, 관계, 함수를 이용해 세계의 구조를 표현한다.</li>
+                            <li>상수, 변수, 술어, 함수, 등호, 연결사, 양화사가 FOL 문장을 구성한다.</li>
+                            <li>Universal은 전체를, existential은 적어도 하나의 존재를 표현한다.</li>
+                            <li>UI와 EI는 양화 문장을 개별 문장으로 예화하며, EI는 새 Skolem 상수를 사용한다.</li>
+                            <li>Unification과 GMP는 관련 사실과 규칙을 직접 연결하는 lifted inference를 만든다.</li>
+                            <li>학기는 AI 활용 강연·인터뷰, AI 사용 보고서, 기말과제 수정·Q&amp;A로 마무리됐다.</li>
+                        </ul>
+                    </div>
+
+                    <div class="lang-en">
+                        <p class="week-references"><em>Sources: 09-1. FOL.pdf and 09-2. FOL Inference.pdf (AIMA Chapters 8-9) · Module dates and final-assessment activity names follow the supplied LMS record</em></p>
+
+                        <p>Week 16 studied <strong>First-Order Logic (FOL)</strong>, a language more expressive than propositional logic, and concluded the semester with final-assessment activities. The conceptual path moved from objects, relations, and functions to quantifiers, instantiation, Skolem constants, unification, and Generalized Modus Ponens.</p>
+
+                        <div class="lecture-note">
+                            <p><strong>Core perspective.</strong> Propositional logic treats each fact as a separate symbol. FOL structures a world through objects and relations among them. A single general rule can therefore apply across many objects, producing more compact and reusable knowledge representation.</p>
+                        </div>
+
+                        <h3>1. Why FOL?</h3>
+                        <div class="stat-comparison">
+                            <div class="stat-comparison-item">
+                                <h4>Objects</h4>
+                                <p>Entities such as people, places, numbers, and physical things.</p>
+                            </div>
+                            <div class="stat-comparison-item">
+                                <h4>Relations</h4>
+                                <p>Truth-valued properties of objects or links between objects.</p>
+                            </div>
+                            <div class="stat-comparison-item">
+                                <h4>Functions</h4>
+                                <p>Mappings from one or more objects to another object.</p>
+                            </div>
+                        </div>
+
+                        <p>In propositional logic, a general law may require a separate sentence for every case. FOL uses variables and quantifiers to state a rule for all objects or assert that an object with certain properties exists.</p>
+
+                        <h3>2. Components of the FOL Language</h3>
+                        <table class="stat-table">
+                            <tr>
+                                <th>Element</th>
+                                <th>Role</th>
+                                <th>Example</th>
+                            </tr>
+                            <tr>
+                                <td>Constant</td>
+                                <td>Names a particular object.</td>
+                                <td>John, SKKU, 2</td>
+                            </tr>
+                            <tr>
+                                <td>Variable</td>
+                                <td>Marks an object position to quantify or substitute.</td>
+                                <td>x, y</td>
+                            </tr>
+                            <tr>
+                                <td>Predicate</td>
+                                <td>Turns a property or relation into a truth-valued sentence.</td>
+                                <td>Student(x), Knows(x, y)</td>
+                            </tr>
+                            <tr>
+                                <td>Function</td>
+                                <td>Maps terms to a term that refers to another object.</td>
+                                <td>MotherOf(x)</td>
+                            </tr>
+                            <tr>
+                                <td>Equality</td>
+                                <td>States that two terms refer to the same object.</td>
+                                <td>FatherOf(John) = Henry</td>
+                            </tr>
+                        </table>
+
+                        <div class="stat-formula">
+                            Term = constant | variable | function(term, ...)<br>
+                            Atomic sentence = predicate(term, ...) | term = term
+                        </div>
+
+                        <h3>3. Quantifiers and Scope</h3>
+                        <table class="stat-table">
+                            <tr>
+                                <th>Quantifier</th>
+                                <th>Meaning</th>
+                                <th>Typical sentence structure</th>
+                            </tr>
+                            <tr>
+                                <td>Universal</td>
+                                <td>The sentence holds for every object.</td>
+                                <td>Often combines a condition and result through implication.</td>
+                            </tr>
+                            <tr>
+                                <td>Existential</td>
+                                <td>At least one object satisfies the sentence.</td>
+                                <td>Often joins required properties through conjunction.</td>
+                            </tr>
+                        </table>
+
+                        <p>Quantifiers of the same type can exchange order without changing meaning, but mixing universal and existential order can change the claim. Negation also allows either quantifier to be expressed through the other.</p>
+
+                        <div class="lecture-note">
+                            <p><strong>Caution.</strong> A universal statement with a simple conjunction may accidentally claim that every object satisfies the condition. An existential statement with implication may become true merely because some object fails the premise.</p>
+                        </div>
+
+                        <h3>4. Interpretation and Knowledge Representation</h3>
+                        <p>An FOL model contains a domain of objects and an <strong>interpretation</strong> that assigns meaning to every constant, predicate, and function. A sentence's truth is determined through that interpretation, not by symbol shape alone.</p>
+
+                        <div class="stat-comparison">
+                            <div class="stat-comparison-item">
+                                <h4>Atomic facts</h4>
+                                <p>Describe an object's property or a relation between particular objects.</p>
+                            </div>
+                            <div class="stat-comparison-item">
+                                <h4>General rules</h4>
+                                <p>Use variables and quantifiers to replace many separate facts with one rule.</p>
+                            </div>
+                            <div class="stat-comparison-item">
+                                <h4>Structured meaning</h4>
+                                <p>Connect time, location, action, and language meaning through objects and relations.</p>
+                            </div>
+                        </div>
+
+                        <h3>5. FOL Inference: From Instantiation to Unification</h3>
+                        <table class="stat-table">
+                            <tr>
+                                <th>Method</th>
+                                <th>Core operation</th>
+                                <th>Purpose</th>
+                            </tr>
+                            <tr>
+                                <td>Universal Instantiation</td>
+                                <td>Substitutes a ground term for a universal variable.</td>
+                                <td>Creates a needed instance of a general rule.</td>
+                            </tr>
+                            <tr>
+                                <td>Existential Instantiation</td>
+                                <td>Replaces an existential variable once with a fresh Skolem constant.</td>
+                                <td>Gives a new name to an object known to exist.</td>
+                            </tr>
+                            <tr>
+                                <td>Unification</td>
+                                <td>Finds a substitution that makes two expressions identical.</td>
+                                <td>Matches known facts with the premises of a rule.</td>
+                            </tr>
+                            <tr>
+                                <td>Generalized Modus Ponens</td>
+                                <td>Uses unified premises and a rule to derive a substituted conclusion.</td>
+                                <td>Infers directly without generating every possible ground sentence.</td>
+                            </tr>
+                        </table>
+
+                        <p>Propositionalizing every universal sentence over available ground terms is possible in principle, but it can generate many irrelevant sentences. Lifted inference with unification and GMP instead finds substitutions that match current facts and derives only relevant conclusions.</p>
+
+                        <h3>6. Final Assessment and Week 16 LMS Activity Record</h3>
+                        <p>The module window ran from June 15 at 00:00 through June 21 at 23:59. FOL lectures, external perspectives on AI, the AI Use Report, and final-assignment revisions and Q&amp;A were grouped into the final-assessment week.</p>
+
+                        <table class="stat-table">
+                            <tr>
+                                <th>Category</th>
+                                <th>Item</th>
+                                <th>Record</th>
+                            </tr>
+                            <tr>
+                                <td>Knowledge representation</td>
+                                <td>FOL · resource</td>
+                                <td>50:37 lecture and handout</td>
+                            </tr>
+                            <tr>
+                                <td>Inference</td>
+                                <td>FOL Inference · resource</td>
+                                <td>16:41 lecture and handout</td>
+                            </tr>
+                            <tr>
+                                <td>Guest lecture</td>
+                                <td>Current use of AI in companies</td>
+                                <td>50:34 recording</td>
+                            </tr>
+                            <tr>
+                                <td>Interview</td>
+                                <td>Stanford Professor Yejin Choi on the state of AI</td>
+                                <td>30:01 · not attendance-tracked</td>
+                            </tr>
+                            <tr>
+                                <td>Final report</td>
+                                <td>AI Use Report</td>
+                                <td>June 10 at 00:00 - June 21 at 23:59</td>
+                            </tr>
+                            <tr>
+                                <td>Final wrap-up</td>
+                                <td>Final-assignment revisions and Q&amp;A</td>
+                                <td>Revision guidance and questions</td>
+                            </tr>
+                        </table>
+
+                        <div class="lecture-note">
+                            <p><strong>Record boundary.</strong> The supplied information identifies Week 16 as the final-assessment week and lists the report plus assignment revisions and Q&amp;A. No separate question format, venue, schedule, or point allocation was provided, so none was added.</p>
+                        </div>
+
+                        <h3>7. Week Summary</h3>
+                        <ul>
+                            <li>FOL represents world structure through objects, relations, and functions.</li>
+                            <li>Constants, variables, predicates, functions, equality, connectives, and quantifiers form FOL sentences.</li>
+                            <li>Universal quantification covers all objects; existential quantification asserts at least one.</li>
+                            <li>UI and EI instantiate quantified sentences, with EI introducing a fresh Skolem constant.</li>
+                            <li>Unification and GMP support lifted inference that connects relevant facts and rules directly.</li>
+                            <li>The semester concluded with AI-use perspectives, the AI Use Report, and final-assignment revisions and Q&amp;A.</li>
+                        </ul>
+                    </div>
+                </div>
+            </section>
+        </article>
+
+        <div id="site-footer"></div>
+    </div>
+
+    <script src="../../../common.js"></script>
+</body>
+</html>
