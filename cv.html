@@ -1,244 +1,193 @@
 <!DOCTYPE html>
-<html data-theme="dark" data-lang="en">
+<html lang="en" data-theme="dark" data-lang="en">
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Sewon Park</title>
-    <link rel="stylesheet" type="text/css" href="style.css">
-    <link rel="stylesheet" type="text/css" href="cv-style.css">
+    <meta name="description" content="Public CV of Sewon Park, AI-native Platform & Product Engineering Lead.">
+    <meta property="og:title" content="CV — Sewon Park">
+    <meta property="og:description" content="AI-native platform, developer experience, industrial software, and verification-first engineering.">
+    <meta property="og:type" content="profile">
+    <meta property="og:url" content="https://haakusi.github.io/cv.html">
+    <meta property="og:image" content="https://haakusi.github.io/og-banner.png?v=20260723">
+    <link rel="icon" href="favicon.svg" type="image/svg+xml">
+    <title>CV — Sewon Park</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="cv-style.css">
 </head>
-<body>
+<body class="cv-page">
+    <a class="cv-skip" href="#cv-main" data-en="Skip to CV" data-kr="이력서로 이동">Skip to CV</a>
     <button class="theme-toggle" onclick="toggleTheme()" aria-label="Toggle dark mode">☀️</button>
     <button class="lang-toggle" onclick="toggleLanguage()" aria-label="Toggle language">EN</button>
-    
+
     <div class="container cv-container">
         <div id="site-header"></div>
         <div id="site-nav"></div>
 
-        <!-- CV Content Starts Here -->
-        <div class="cv-header">
-            <a href="swpark_cv.pdf" target="_blank" class="pdf-download-btn" aria-label="Download PDF">📄 PDF</a>
-            <h1 class="cv-name">Sewon Park</h1>
-            <div class="cv-title">Research Engineer</div>
-            <div class="cv-company">Suprema Inc.</div>
-        </div>
-
-        <section class="cv-section">
-            <h2>Education</h2>
-
-            <div class="education-entry">
-                <div class="left-content">
-                    <div class="degree-title">Ph.D. in Applied Artificial Intelligence</div>
-                    <div class="institution">Sungkyunkwan University, Seoul, Korea</div>
+        <main id="cv-main">
+            <header class="cv-hero">
+                <p class="cv-eyebrow" data-en="PUBLIC CV · JULY 2026" data-kr="공개 이력서 · 2026년 7월">PUBLIC CV · JULY 2026</p>
+                <h1>Sewon Park <span class="lang-kr" hidden>박세원</span></h1>
+                <p class="cv-role" data-en="AI-native Platform & Product Engineering Lead" data-kr="AI-native 플랫폼·제품 엔지니어링 리드">AI-native Platform & Product Engineering Lead</p>
+                <p class="cv-summary lang-en">Engineer with roughly eight years of experience connecting physical devices, enterprise software, developer platforms, and production-grade AI verification. I work where device packets, APIs, agent workflows, and release confidence meet.</p>
+                <p class="cv-summary lang-kr" hidden>물리 장치, 엔터프라이즈 소프트웨어, 개발자 플랫폼과 운영 수준의 AI 검증을 연결해 온 약 8년 경력의 엔지니어입니다. 장치 패킷·API·에이전트 워크플로·릴리스 신뢰성이 만나는 지점에서 일합니다.</p>
+                <div class="cv-actions">
+                    <a href="swpark_cv.pdf" target="_blank" rel="noreferrer" data-en="English PDF" data-kr="영문 PDF">English PDF</a>
+                    <a href="swpark_cv_ko.pdf" target="_blank" rel="noreferrer" data-en="Korean PDF" data-kr="한글 PDF">Korean PDF</a>
+                    <a href="mailto:haakusi@gmail.com">haakusi@gmail.com</a>
                 </div>
-                <div class="right-date">Mar. 2026 - Present</div>
-            </div>
+            </header>
 
-            <div class="education-entry">
-                <div class="left-content">
-                    <div class="degree-title">M.S. in Applied Data Science</div>
-                    <div class="institution">Sungkyunkwan University, Suwon, Korea</div>
-                    <div class="thesis">Thesis: "Prediction of Blue House National Petition Response Targets Considering Data Imbalance"</div>
+            <section class="cv-snapshot" aria-label="Career snapshot">
+                <div><span data-en="FOCUS" data-kr="초점">FOCUS</span><strong data-en="AI platform · DevEx · industrial software" data-kr="AI 플랫폼 · 개발자 경험 · 산업용 소프트웨어">AI platform · DevEx · industrial software</strong></div>
+                <div><span data-en="DIFFERENTIATOR" data-kr="차별점">DIFFERENTIATOR</span><strong data-en="Device boundary to developer abstraction" data-kr="장치 경계부터 개발자 추상화까지">Device boundary to developer abstraction</strong></div>
+                <div><span data-en="OPERATING MODEL" data-kr="작업 원칙">OPERATING MODEL</span><strong data-en="Verification before trust" data-kr="신뢰보다 검증을 먼저">Verification before trust</strong></div>
+            </section>
+
+            <section class="cv-section" aria-labelledby="impact-title">
+                <div class="cv-section-heading">
+                    <span>01</span>
+                    <h2 id="impact-title" data-en="Selected impact" data-kr="대표 성과">Selected impact</h2>
                 </div>
-                <div class="right-date">Sep. 2019 - Aug. 2021</div>
-            </div>
-            
-            <div class="education-entry">
-                <div class="left-content">
-                    <div class="degree-title">B.S. in Maritime Police System</div>
-                    <div class="institution">Gyeongsang National University, Jinju, Korea</div>
-                </div>
-                <div class="right-date">Mar. 2010 - Feb. 2017</div>
-            </div>
-        </section>
 
-        <section class="cv-section">
-            <h2>Research Interests</h2>
-            <ul class="research-list">
-                <li>Large Language Models (LLM) and Multi-Agent Systems</li>
-                <li>Artificial Intelligence and Data Science</li>
-                <li>Quantum Machine Learning (QML) and Quantum Neural Networks (QNN)</li>
-                <li>Social Network Analysis and Sentiment Propagation Dynamics</li>
-                <li>Distributed Systems and Microservices Architecture</li>
-            </ul>
-        </section>
-
-        <section class="cv-section">
-            <h2>Research Experience</h2>
-            
-            <div class="experience-entry">
-                <div class="left-content">
-                    <div class="position-title">Research Engineer</div>
-                    <div class="institution">BSS Development Team, Suprema Inc., Korea</div>
+                <article class="cv-project cv-project-featured">
+                    <div class="cv-project-head">
+                        <div><p>2026 · PRODUCTIZING</p><h3 data-en="Developer platform with natural-language verification" data-kr="자연어 검증을 갖춘 개발자 플랫폼">Developer platform with natural-language verification</h3></div>
+                        <span data-en="Product owner · architecture · full-stack" data-kr="제품 책임 · 아키텍처 · 풀스택">Product owner · architecture · full-stack</span>
+                    </div>
+                    <p class="lang-en">Built an integrated Developer platform spanning documentation, an API source of truth, a device emulator, MCP tools, a Linux/AWS sandbox, and evaluation gates. Designed natural-language recall and replay for complex user, door, authentication, and event scenario history. Built independently with an AI-native workflow and now being hardened for product release.</p>
+                    <p class="lang-kr" hidden>문서·API 단일 기준·장치 에뮬레이터·MCP 도구·Linux/AWS 샌드박스·평가 게이트를 연결한 Developer platform을 구축했습니다. 사용자·도어·인증·이벤트의 복합 시나리오 이력을 자연어로 호출하고 재현하도록 설계했습니다. AI-native 방식으로 독립 구축한 뒤 현재 제품 릴리스를 위한 보안·운영 기준을 강화하고 있습니다.</p>
                     <ul>
-                        <li>Leading AI agent development and backend architecture for enterprise access control solutions</li>
-                        <li>Specializing in NLP, deep learning, prompt engineering, and MCP-based multi-client architecture</li>
-                        <li>Managing team of 3 interns for LLM-based automated testing solutions</li>
+                        <li data-en="One operation model shared by six developer-facing surfaces" data-kr="여섯 개발자 표면이 공유하는 하나의 운영 모델">One operation model shared by six developer-facing surfaces</li>
+                        <li data-en="Same gateway concept from device emulator toward physical-device workflows" data-kr="장치 에뮬레이터에서 실제 장치 워크플로까지 이어지는 동일한 게이트웨이 개념">Same gateway concept from device emulator toward physical-device workflows</li>
+                        <li data-en="Recognition through a company-wide engineering excellence program" data-kr="전사 엔지니어링 우수 프로그램을 통한 성과 인정">Recognition through a company-wide engineering excellence program</li>
                     </ul>
-                </div>
-                <div class="right-date">Feb. 2021 - Present</div>
-            </div>
-            
-            <div class="experience-entry">
-                <div class="left-content">
-                    <div class="position-title">Research Engineer</div>
-                    <div class="institution">R&D Department, HBrain Inc., Korea</div>
-                    <ul>
-                        <li>Developed Smart AI traffic control services using radar and camera sensor fusion</li>
-                        <li>Participated in government projects (Ministry of Interior, Ministry of Land)</li>
-                    </ul>
-                </div>
-                <div class="right-date">Apr. 2020 - Jan. 2021</div>
-            </div>
+                </article>
 
-            <div class="experience-entry">
-                <div class="left-content">
-                    <div class="position-title">Software Developer</div>
-                    <div class="institution">Development Team, AtData Inc., Korea</div>
-                    <ul>
-                        <li>Contributed to SK Telecom TANGO 5G Project for web development and system maintenance</li>
-                        <li>Developed IP configuration and transmission network management web applications</li>
-                        <li>Implemented raw data analysis processing and Jenkins-based automated deployment</li>
-                    </ul>
-                </div>
-                <div class="right-date">Oct. 2018 - Feb. 2020</div>
-            </div>
-        </section>
+                <div class="cv-project-grid">
+                    <article class="cv-project">
+                        <div class="cv-project-head">
+                            <div><p>2026 · IN PROGRESS</p><h3 data-en="Legacy modernization with meaning-preservation gates" data-kr="의미 보존 게이트 기반 레거시 현대화">Legacy modernization with meaning-preservation gates</h3></div>
+                        </div>
+                        <p class="lang-en">Leading an AI-native frontend rewrite from a mixed Angular/React architecture. Backend payloads and responses, API contracts, React behavior, useEffect, DOM, UI, CSS assertions, and E2E flows are verified as separate release gates.</p>
+                        <p class="lang-kr" hidden>Angular/React 혼합 구조를 전환하는 AI-native 프론트엔드 리라이트를 리딩합니다. Backend payload/response, API contract, React 동작, useEffect, DOM, UI, CSS assertion과 E2E 흐름을 독립 릴리스 게이트로 검증합니다.</p>
+                    </article>
 
-        <section class="cv-section">
-            <h2>Selected Projects</h2>
-            
-            <div class="project-entry">
-                <div class="left-content">
-                    <div class="project-title">Quantum ML-based Stablecoin Depegging Prediction Research (Personal Research)</div>
-                    <div class="project-description">
-                        Investigating whether sentiment analysis performed in quantum ML's 2ⁿ-dimensional Hilbert space 
-                        outperforms classical ML's n-dimensional Euclidean space for stablecoin depegging prediction. 
-                        Collected 7M+ Reddit posts and 2,246 news articles covering major events (LUNA collapse, FTX crisis, SVB crisis). 
-                        Conducting comparative analysis across GPU vs QPU simulator vs NISQ hardware, implementing QNN for sentiment 
-                        analysis and comparing with traditional models (VADER, XGBoost).
-                    </div>
-                    <div class="tech-stack">Technologies: Python, Qiskit, PennyLane, QNN, QSVM, Reddit API, Network Analysis, VADER, XGBoost</div>
+                    <article class="cv-project">
+                        <div class="cv-project-head">
+                            <div><p>2025 · DEPLOYED</p><h3 data-en="Global Technical Support chatbot" data-kr="글로벌 Technical Support 챗봇">Global Technical Support chatbot</h3></div>
+                        </div>
+                        <p class="lang-en">Developed the frontend and backend for an internal Technical Support chatbot used by overseas offices and employees, and deployed the service on AWS EC2.</p>
+                        <p class="lang-kr" hidden>해외지사와 사내 임직원이 사용하는 Technical Support 챗봇의 프론트엔드와 백엔드를 개발하고 AWS EC2에 배포했습니다.</p>
+                    </article>
                 </div>
-                <div class="right-date">Jul. 2025 - Ongoing</div>
-            </div>
-            
-            <div class="project-entry">
-                <div class="left-content">
-                    <div class="project-title">Multi-Agent AI System Development with MCP Architecture (Suprema)</div>
-                    <div class="project-description">
-                        Designed and implemented comprehensive AI agent ecosystem including BioStar Copilot (product assistant) 
-                        and Solis (internal support agent). Built MCP-based architecture supporting 80+ API tools with multi-client 
-                        integration (BioStar X UI, Claude Desktop, WhatsApp Mobile). Currently transitioning to full multi-agent 
-                        orchestration system for scalable AI services using function-calling and tool-based orchestration.
-                    </div>
-                    <div class="tech-stack">Technologies: Python, LLM, LangGraph, MCP, React, NLP, RAG, Prompt Engineering, Multi-Agent Architecture</div>
-                </div>
-                <div class="right-date">Feb. 2025 - Ongoing</div>
-            </div>
-            
-            <div class="project-entry">
-                <div class="left-content">
-                    <div class="project-title">LLM-based Automated Unit Test Generation System (Suprema)</div>
-                    <div class="project-description">
-                        Led team of 3 interns to design LLM-based agent for automated backend/frontend unit test generation. 
-                        Architected GitLab PR integration with MCP server and developed MCP client similar to Claude Desktop. 
-                        Successfully deployed to internal development teams.
-                    </div>
-                    <div class="tech-stack">Technologies: Python, Java, LLM, LangGraph, Agentic RAG, GitLab CI/CD, Jacoco</div>
-                </div>
-                <div class="right-date">Feb. 2025 - Jun. 2025</div>
-            </div>
-            
-            <div class="project-entry">
-                <div class="left-content">
-                    <div class="project-title">Spring Cloud MSA Architecture Migration (Suprema)</div>
-                    <div class="project-description">
-                        Transformed monolithic application to microservices architecture using Spring Cloud Gateway, 
-                        implementing Circuit Breaker, Rate Limiter, and dynamic routing. Upgraded to SpringBoot 3.4.4 and JDK 21.
-                    </div>
-                    <div class="tech-stack">Technologies: Java, Spring Cloud, MSA, Kubernetes</div>
-                </div>
-                <div class="right-date">May 2024 - Oct. 2024</div>
-            </div>
-            
-            <div class="project-entry">
-                <div class="left-content">
-                    <div class="project-title">Distributed Event Processing System (Suprema)</div>
-                    <div class="project-description">
-                        Enhanced real-time event log service performance using Apache Ignite and Zookeeper for distributed 
-                        processing. Achieved significant performance improvements in handling concurrent device connections.
-                    </div>
-                    <div class="tech-stack">Technologies: Java, Apache Ignite, Zookeeper, gRPC, RabbitMQ</div>
-                </div>
-                <div class="right-date">Jan. 2023 - Apr. 2023</div>
-            </div>
-            
-            <div class="project-entry">
-                <div class="left-content">
-                    <div class="project-title">AWS Cloud Integration for Remote Enrollment (Suprema)</div>
-                    <div class="project-description">
-                        Implemented serverless architecture for remote user registration using AWS Lambda and S3, 
-                        enabling automated distribution and reducing operational costs.
-                    </div>
-                    <div class="tech-stack">Technologies: AWS Lambda, S3, REST API, Python</div>
-                </div>
-                <div class="right-date">Jul. 2021 - Oct. 2021</div>
-            </div>
-        </section>
+            </section>
 
-        <section class="cv-section">
-            <h2>Publications & Presentations</h2>
-            <ul>
-                <li>HBrain, "Development of AI traffic safety element technology and integrated system", The Korean Society of 
-                Intelligent Transport Systems, Jeju, Korea (Oct. 2021) - Oral Presentation</li>
-            </ul>
-        </section>
+            <section class="cv-section" aria-labelledby="experience-title">
+                <div class="cv-section-heading">
+                    <span>02</span>
+                    <h2 id="experience-title" data-en="Experience" data-kr="경력">Experience</h2>
+                </div>
 
-        <section class="cv-section">
-            <h2>Technical Skills</h2>
-            
-            <div class="skills-line">
-                <span class="skill-category">Programming Languages:</span> Python, Java, JavaScript, TypeScript, C++, Kotlin, SQL
-            </div>
-            
-            <div class="skills-line">
-                <span class="skill-category">AI & Machine Learning:</span> LLM, NLP, Deep Learning, PyTorch, TensorFlow, Keras, RAG, Agentic RAG, LangGraph, MCP, Prompt Engineering, QML, QNN, QSVM
-            </div>
-            
-            <div class="skills-line">
-                <span class="skill-category">Frameworks & Tools:</span> Spring Framework, Spring Cloud, React, Angular, Node.js, FastAPI, Django
-            </div>
-            
-            <div class="skills-line">
-                <span class="skill-category">Databases & Infrastructure:</span> MySQL, MSSQL, MariaDB, PostgreSQL, Redis
-            </div>
-            
-            <div class="skills-line">
-                <span class="skill-category">Data Analysis & Research:</span> Network Analysis, Sentiment Analysis, Time Series Analysis, Statistical Modeling, Qiskit, PennyLane, VADER
-            </div>
-            
-            <div class="skills-line">
-                <span class="skill-category">Cloud & DevOps:</span> AWS (Lambda, S3, EC2), Docker, Kubernetes, Jenkins, GitLab CI/CD
-            </div>
-            
-            <div class="skills-line">
-                <span class="skill-category">Architecture & Methodologies:</span> Microservices (MSA), Agent Orchestration, Distributed Computing, RESTful API, gRPC, Test Automation, Agile/Scrum
-            </div>
-        </section>
+                <article class="cv-experience">
+                    <div class="cv-date">2021.02—PRESENT</div>
+                    <div>
+                        <h3 data-en="Platform & Product Engineering · AI-native Mission Lead" data-kr="플랫폼·제품 엔지니어링 · AI-native 미션 리드">Platform & Product Engineering · AI-native Mission Lead</h3>
+                        <p class="cv-organization">Suprema · Seongnam, Korea</p>
+                        <ul>
+                            <li data-en="Lead cross-functional AI-native missions covering developer tooling, product modernization, and version-aware E2E verification." data-kr="개발자 도구·제품 현대화·버전별 E2E 검증을 다루는 부서 횡단 AI-native 미션을 리딩합니다.">Lead cross-functional AI-native missions covering developer tooling, product modernization, and version-aware E2E verification.</li>
+                            <li data-en="Developed vertically across device packets and SDKs, user and identity domains, distributed events, backend services, web products, and cloud integrations." data-kr="장치 패킷·SDK, 사용자·신원 도메인, 분산 이벤트, 백엔드 서비스, 웹 제품과 클라우드 통합을 수직으로 개발했습니다.">Developed vertically across device packets and SDKs, user and identity domains, distributed events, backend services, web products, and cloud integrations.</li>
+                            <li data-en="Designed reusable AI verification and automated testing workflows, and shared the operating method through mentoring and internal technical sessions." data-kr="재사용 가능한 AI 검증·자동 테스트 워크플로를 설계하고 멘토링과 사내 기술 세션을 통해 작업 방식을 전파했습니다.">Designed reusable AI verification and automated testing workflows, and shared the operating method through mentoring and internal technical sessions.</li>
+                        </ul>
+                    </div>
+                </article>
 
-        <section class="cv-section">
-            <h2>Languages</h2>
-            <ul>
-                <li>Korean: Native</li>
-                <li>English: Intermediate (TOEIC Speaking 130)</li>
-            </ul>
-        </section>
+                <article class="cv-experience">
+                    <div class="cv-date">2020.04—2021.01</div>
+                    <div>
+                        <h3 data-en="Research Engineer · Sensor Software" data-kr="연구원 · 센서 소프트웨어">Research Engineer · Sensor Software</h3>
+                        <p class="cv-organization">HBrain · Korea</p>
+                        <ul>
+                            <li data-en="Developed Windows software for radar, camera, and FPGA-based pedestrian-detection systems using C/C++, MFC, OpenGL, and device SDKs." data-kr="C/C++·MFC·OpenGL·장치 SDK로 레이더·카메라·FPGA 기반 보행자 검지 Windows 소프트웨어를 개발했습니다.">Developed Windows software for radar, camera, and FPGA-based pedestrian-detection systems using C/C++, MFC, OpenGL, and device SDKs.</li>
+                            <li data-en="Contributed to public R&D projects and wrote requirements, protocol, and operational-scenario documents." data-kr="공공 R&D 과제에 참여하고 요구사항·프로토콜·운영 시나리오 문서를 작성했습니다.">Contributed to public R&D projects and wrote requirements, protocol, and operational-scenario documents.</li>
+                        </ul>
+                    </div>
+                </article>
 
-        <section class="cv-section">
-            <h2>Military Service</h2>
-            <p>Republic of Korea Army, Completed mandatory service (Jun. 2012 - Mar. 2014)</p>
-        </section>
+                <article class="cv-experience">
+                    <div class="cv-date">2018.10—2020.02</div>
+                    <div>
+                        <h3 data-en="Software Developer · Network Management" data-kr="소프트웨어 개발자 · 네트워크 관리">Software Developer · Network Management</h3>
+                        <p class="cv-organization">AtData · Korea</p>
+                        <ul>
+                            <li data-en="Developed and maintained web applications for SK Telecom's network-management program, including IP configuration, transmission views, and raw-data processing." data-kr="SK Telecom 네트워크 관리 프로그램에서 IP 설정·전송망 화면·raw data 처리 웹 애플리케이션을 개발하고 유지보수했습니다.">Developed and maintained web applications for SK Telecom's network-management program, including IP configuration, transmission views, and raw-data processing.</li>
+                            <li data-en="Implemented Jenkins-based deployment automation and supported new server environments." data-kr="Jenkins 기반 배포 자동화와 신규 서버 환경 구축을 담당했습니다.">Implemented Jenkins-based deployment automation and supported new server environments.</li>
+                        </ul>
+                    </div>
+                </article>
+            </section>
+
+            <section class="cv-section" aria-labelledby="research-cv-title">
+                <div class="cv-section-heading">
+                    <span>03</span>
+                    <h2 id="research-cv-title" data-en="Research & education" data-kr="연구·학력">Research & education</h2>
+                </div>
+
+                <div class="cv-research-grid">
+                    <article>
+                        <p class="cv-status" data-en="RESEARCH IN PROGRESS" data-kr="진행 중인 연구">RESEARCH IN PROGRESS</p>
+                        <h3 data-en="Explainable retrieval & hybrid model evaluation" data-kr="설명 가능한 검색·하이브리드 모델 평가">Explainable retrieval & hybrid model evaluation</h3>
+                        <ul>
+                            <li data-en="Expert-knowledge and VLM-based explainable traditional-dance retrieval and recommendation" data-kr="전문가 지식과 VLM 기반 설명 가능한 전통무용 검색·추천">Expert-knowledge and VLM-based explainable traditional-dance retrieval and recommendation</li>
+                            <li data-en="Hybrid quantum–classical framework comparing classical ML and QML candidates under shared data splits, budgets, and evaluation gates" data-kr="동일한 데이터 분할·예산·평가 게이트에서 고전 ML과 QML 후보를 비교하는 양자–고전 하이브리드 프레임워크">Hybrid quantum–classical framework comparing classical ML and QML candidates under shared data splits, budgets, and evaluation gates</li>
+                        </ul>
+                    </article>
+
+                    <article class="cv-education-list">
+                        <div><time>2026—PRESENT</time><strong data-en="Ph.D. coursework, AI Convergence" data-kr="인공지능융합 박사과정">Ph.D. coursework, AI Convergence</strong><span>Sungkyunkwan University</span></div>
+                        <div><time>2019—2021</time><strong data-en="M.S., Applied Data Science" data-kr="응용데이터사이언스 석사">M.S., Applied Data Science</strong><span>Sungkyunkwan University</span><small data-en="Thesis: response-target prediction for public petitions under class imbalance" data-kr="석사논문: 데이터 불균형을 고려한 국민청원 답변 대상 예측">Thesis: response-target prediction for public petitions under class imbalance</small></div>
+                        <div><time>2010—2017</time><strong data-en="B.S., Maritime Police Systems" data-kr="해양경찰시스템 학사">B.S., Maritime Police Systems</strong><span>Gyeongsang National University</span></div>
+                    </article>
+                </div>
+            </section>
+
+            <section class="cv-section" aria-labelledby="skills-title">
+                <div class="cv-section-heading">
+                    <span>04</span>
+                    <h2 id="skills-title" data-en="Technical foundation" data-kr="기술 기반">Technical foundation</h2>
+                </div>
+
+                <div class="cv-skills">
+                    <div><strong data-en="Platform & product" data-kr="플랫폼·제품">Platform & product</strong><p>Java · Kotlin · Python · JavaScript/TypeScript · Spring · React · REST · gRPC</p></div>
+                    <div><strong data-en="AI & evaluation" data-kr="AI·평가">AI & evaluation</strong><p>LLM · MCP · RAG · agent workflows · PyTorch · contract/unit/DOM/UI/CSS/E2E testing</p></div>
+                    <div><strong data-en="Device & domain" data-kr="장치·도메인">Device & domain</strong><p>C/C++ · device SDKs · packet debugging · biometric authentication · user/door/auth/event flows</p></div>
+                    <div><strong data-en="Data & infrastructure" data-kr="데이터·인프라">Data & infrastructure</strong><p>MariaDB · Microsoft SQL Server · AWS Lambda/S3/EC2 · Docker/Linux · Jenkins · GitLab CI/CD</p></div>
+                </div>
+            </section>
+
+            <section class="cv-section cv-final" aria-labelledby="community-title">
+                <div class="cv-section-heading">
+                    <span>05</span>
+                    <h2 id="community-title" data-en="Leadership & public evidence" data-kr="리더십·공개 근거">Leadership & public evidence</h2>
+                </div>
+
+                <div class="cv-final-grid">
+                    <article>
+                        <h3 data-en="Engineering enablement" data-kr="엔지니어링 전파">Engineering enablement</h3>
+                        <p data-en="Led intern projects for LLM-assisted test generation, mentored AI learners, and shared verification-first practices through internal presentations and examples." data-kr="LLM 보조 테스트 생성 인턴 과제를 리딩하고 AI 학습자를 멘토링했으며, 사내 발표와 예제를 통해 검증 우선 작업 방식을 전파했습니다.">Led intern projects for LLM-assisted test generation, mentored AI learners, and shared verification-first practices through internal presentations and examples.</p>
+                    </article>
+                    <article>
+                        <h3 data-en="Selected presentation" data-kr="주요 발표">Selected presentation</h3>
+                        <p data-en="Development of AI traffic-safety element technology and an integrated system — Korean Society of Intelligent Transport Systems, oral presentation." data-kr="AI 교통안전 요소기술 및 통합 시스템 개발 — 한국ITS학회 구두 발표.">Development of AI traffic-safety element technology and an integrated system — Korean Society of Intelligent Transport Systems, oral presentation.</p>
+                    </article>
+                </div>
+            </section>
+
+            <nav class="cv-closing" aria-label="Related career pages">
+                <a href="portfolio.html" data-en="Portfolio →" data-kr="포트폴리오 →">Portfolio →</a>
+                <a href="research.html" data-en="Research →" data-kr="연구 →">Research →</a>
+                <a href="mailto:haakusi@gmail.com" data-en="Contact →" data-kr="연락하기 →">Contact →</a>
+            </nav>
+        </main>
 
         <div id="site-footer"></div>
     </div>

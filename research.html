@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark" data-lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="Active research and foundations of Sewon Park: explainable multimodal retrieval and hybrid quantum-classical model evaluation.">
+    <meta property="og:title" content="Research — Sewon Park">
+    <meta property="og:description" content="Research questions, evaluation methods, and public notes across VLMs, QML, and applied AI.">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://haakusi.github.io/research.html">
+    <meta property="og:image" content="https://haakusi.github.io/og-banner.png?v=20260723">
+    <link rel="icon" href="favicon.svg" type="image/svg+xml">
+    <title>Research — Sewon Park</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="research-style.css">
+</head>
+<body class="research-page">
+    <a class="research-skip" href="#research-main" data-en="Skip to research" data-kr="연구 내용으로 이동">Skip to research</a>
+    <button class="theme-toggle" onclick="toggleTheme()" aria-label="Toggle dark mode">☀️</button>
+    <button class="lang-toggle" onclick="toggleLanguage()" aria-label="Toggle language">EN</button>
+
+    <div class="container research-container">
+        <div id="site-header"></div>
+        <div id="site-nav"></div>
+
+        <main id="research-main">
+            <section class="research-hero" aria-labelledby="research-page-title">
+                <p class="research-kicker" data-en="RESEARCH IN PROGRESS · METHODS BEFORE CLAIMS" data-kr="진행 중인 연구 · 주장보다 방법">RESEARCH IN PROGRESS · METHODS BEFORE CLAIMS</p>
+                <h1 id="research-page-title">
+                    <span class="lang-en">Research in progress,<br><em>with the evaluation visible.</em></span>
+                    <span class="lang-kr" hidden>진행 중인 연구,<br><em>평가 방법까지 공개합니다.</em></span>
+                </h1>
+                <div class="research-hero-grid">
+                    <p class="lang-en">My research asks how expert knowledge, multimodal models, and quantum machine-learning candidates can be evaluated without hiding the baseline. These are active research directions—not published results or claims of advantage.</p>
+                    <p class="lang-kr" hidden>전문가 지식, 멀티모달 모델과 양자 머신러닝 후보를 기준선 없이 포장하지 않고 어떻게 평가할지 연구합니다. 아래 내용은 진행 중인 연구 방향이며 출판된 결과나 우위에 대한 주장이 아닙니다.</p>
+                    <div class="research-hero-tags"><span>VLM</span><span>Explainability</span><span>QML</span><span>Evaluation</span><span>Applied AI</span></div>
+                </div>
+            </section>
+
+            <section class="research-principle" aria-labelledby="principle-title">
+                <div>
+                    <p>00 / PRINCIPLE</p>
+                    <h2 id="principle-title" data-en="A novel method is useful only when the comparison is fair." data-kr="새로운 방법은 비교가 공정할 때만 의미가 있습니다.">A novel method is useful only when the comparison is fair.</h2>
+                </div>
+                <p class="lang-en">The recurring thread between my engineering and research is verification. I keep the problem definition, classical baselines, data split, budget, metrics, and failure cases visible before interpreting a result.</p>
+                <p class="lang-kr" hidden>실무와 연구를 잇는 공통 원칙은 검증입니다. 결과를 해석하기 전에 문제 정의, 고전 기준선, 데이터 분할, 예산, 지표와 실패 사례를 명시합니다.</p>
+            </section>
+
+            <section class="active-research" aria-labelledby="active-title">
+                <div class="research-section-heading">
+                    <p>01 / ACTIVE RESEARCH</p>
+                    <h2 id="active-title" data-en="Two questions, one evaluation discipline" data-kr="두 개의 질문, 하나의 평가 원칙">Two questions, one evaluation discipline</h2>
+                </div>
+
+                <article class="research-case research-case-vlm">
+                    <header>
+                        <div><span>TRACK 01</span><h3 data-en="Explainable Traditional-Dance Retrieval & Recommendation" data-kr="설명 가능한 전통무용 검색·추천">Explainable Traditional-Dance Retrieval & Recommendation</h3></div>
+                        <strong data-en="RESEARCH IN PROGRESS" data-kr="연구 진행 중">RESEARCH IN PROGRESS</strong>
+                    </header>
+                    <div class="research-case-grid">
+                        <div class="research-case-copy">
+                            <section>
+                                <h4 data-en="Question" data-kr="연구 질문">Question</h4>
+                                <p data-en="Can expert domain knowledge and visual-language models retrieve and recommend traditional-dance material while explaining which movement, costume, formation, rhythm, or cultural cues support the result?" data-kr="전문가 도메인 지식과 VLM을 결합해 전통무용 자료를 검색·추천하면서 동작·의상·대형·장단·문화적 단서 중 무엇이 결과를 뒷받침하는지 설명할 수 있는가?">Can expert domain knowledge and visual-language models retrieve and recommend traditional-dance material while explaining which movement, costume, formation, rhythm, or cultural cues support the result?</p>
+                            </section>
+                            <section>
+                                <h4 data-en="Proposed approach" data-kr="제안 접근">Proposed approach</h4>
+                                <p data-en="Represent expert annotations and multimodal evidence separately, then combine them at retrieval and explanation time so the contribution of domain knowledge can be audited." data-kr="전문가 주석과 멀티모달 근거를 분리해 표현한 뒤 검색·설명 단계에서 결합하여 도메인 지식의 기여를 검토할 수 있게 합니다.">Represent expert annotations and multimodal evidence separately, then combine them at retrieval and explanation time so the contribution of domain knowledge can be audited.</p>
+                            </section>
+                            <section>
+                                <h4 data-en="Evaluation focus" data-kr="평가 초점">Evaluation focus</h4>
+                                <p data-en="Retrieval relevance, expert agreement, explanation faithfulness, and failure analysis across ambiguous or culturally similar material." data-kr="검색 관련성, 전문가 합의, 설명 충실도와 모호하거나 문화적으로 유사한 자료에서의 실패 분석을 중심으로 평가합니다.">Retrieval relevance, expert agreement, explanation faithfulness, and failure analysis across ambiguous or culturally similar material.</p>
+                            </section>
+                        </div>
+                        <div class="vlm-map" aria-label="Expert knowledge and VLM research map">
+                            <div class="vlm-node expert"><span>Expert</span><strong>Domain cues</strong></div>
+                            <div class="vlm-node visual"><span>Visual</span><strong>Frames · motion</strong></div>
+                            <div class="vlm-node language"><span>Language</span><strong>Terms · context</strong></div>
+                            <div class="vlm-core"><span>Evidence</span><strong>Retrieval + Explanation</strong></div>
+                        </div>
+                    </div>
+                </article>
+
+                <article class="research-case research-case-qml">
+                    <header>
+                        <div><span>TRACK 02</span><h3 data-en="Hybrid Quantum–Classical Model Selection" data-kr="양자–고전 하이브리드 모델 선택">Hybrid Quantum–Classical Model Selection</h3></div>
+                        <strong data-en="FRAMEWORK STUDY" data-kr="프레임워크 연구">FRAMEWORK STUDY</strong>
+                    </header>
+                    <div class="research-case-grid">
+                        <div class="research-case-copy">
+                            <section>
+                                <h4 data-en="Question" data-kr="연구 질문">Question</h4>
+                                <p data-en="Under which data, feature, noise, and resource conditions should a model-selection workflow prefer a classical baseline, a quantum kernel, or a variational quantum model?" data-kr="어떤 데이터·특징·노이즈·자원 조건에서 모델 선택 워크플로가 고전 기준선, 양자 커널 또는 변분 양자 모델을 선택해야 하는가?">Under which data, feature, noise, and resource conditions should a model-selection workflow prefer a classical baseline, a quantum kernel, or a variational quantum model?</p>
+                            </section>
+                            <section>
+                                <h4 data-en="Comparison contract" data-kr="비교 계약">Comparison contract</h4>
+                                <p data-en="Compare classical baselines and QML candidates with the same data splits, budgets, and evaluation gates. Record accuracy, robustness, runtime, resource cost, and instability rather than assuming quantum advantage." data-kr="동일한 데이터 분할·예산·평가 게이트에서 고전 기준선과 QML 후보를 비교합니다. 양자 우위를 전제하지 않고 정확도·강건성·실행시간·자원비용·불안정성을 기록합니다.">Compare classical baselines and QML candidates with the same data splits, budgets, and evaluation gates. Record accuracy, robustness, runtime, resource cost, and instability rather than assuming quantum advantage.</p>
+                            </section>
+                            <section>
+                                <h4 data-en="Intended contribution" data-kr="목표 기여">Intended contribution</h4>
+                                <p data-en="A reproducible selection framework that can recommend a model family—or reject all candidates—based on evidence from the task and execution environment." data-kr="과제와 실행 환경의 근거를 바탕으로 모델 계열을 추천하거나 모든 후보를 기각할 수 있는 재현 가능한 선택 프레임워크를 목표로 합니다.">A reproducible selection framework that can recommend a model family—or reject all candidates—based on evidence from the task and execution environment.</p>
+                            </section>
+                        </div>
+                        <div class="qml-map" aria-label="Hybrid quantum-classical evaluation flow">
+                            <div class="qml-input"><span>Shared input</span><strong>Split · budget · metrics</strong></div>
+                            <div class="qml-candidates"><div>Classical ML</div><div>Quantum kernel</div><div>Variational QML</div></div>
+                            <div class="qml-gate"><span>Evaluation gate</span><strong>Select · defer · reject</strong></div>
+                        </div>
+                    </div>
+                </article>
+            </section>
+
+            <section class="research-foundations" aria-labelledby="foundations-title">
+                <div class="research-section-heading">
+                    <p>02 / FOUNDATIONS</p>
+                    <h2 id="foundations-title" data-en="Research foundations" data-kr="연구 기반">Research foundations</h2>
+                </div>
+                <div class="foundation-grid">
+                    <article>
+                        <time>2026—PRESENT</time>
+                        <h3 data-en="Ph.D. coursework in AI Convergence" data-kr="인공지능융합 박사과정">Ph.D. coursework in AI Convergence</h3>
+                        <p data-en="Coursework and active research alongside full-time platform engineering at Sungkyunkwan University." data-kr="성균관대학교에서 재직과 병행하며 수업과 진행 연구를 수행하고 있습니다.">Coursework and active research alongside full-time platform engineering at Sungkyunkwan University.</p>
+                    </article>
+                    <article>
+                        <time>2021</time>
+                        <h3 data-en="M.S. thesis on imbalanced public-petition prediction" data-kr="데이터 불균형 기반 국민청원 예측 석사논문">M.S. thesis on imbalanced public-petition prediction</h3>
+                        <p data-en="Prediction of response-target petitions under class imbalance, completed in Applied Data Science at Sungkyunkwan University." data-kr="성균관대학교 응용데이터사이언스 석사과정에서 데이터 불균형을 고려한 답변 대상 청원 예측을 연구했습니다.">Prediction of response-target petitions under class imbalance, completed in Applied Data Science at Sungkyunkwan University.</p>
+                    </article>
+                    <article>
+                        <time>2021</time>
+                        <h3 data-en="AI traffic-safety systems presentation" data-kr="AI 교통안전 시스템 발표">AI traffic-safety systems presentation</h3>
+                        <p data-en="Oral presentation on AI traffic-safety element technology and an integrated system at the Korean Society of Intelligent Transport Systems." data-kr="한국ITS학회에서 AI 교통안전 요소기술 및 통합 시스템 개발을 주제로 구두 발표했습니다.">Oral presentation on AI traffic-safety element technology and an integrated system at the Korean Society of Intelligent Transport Systems.</p>
+                    </article>
+                </div>
+            </section>
+
+            <section class="research-method" aria-labelledby="method-research-title">
+                <div class="research-section-heading">
+                    <p>03 / WORKING METHOD</p>
+                    <h2 id="method-research-title" data-en="How I keep a research claim honest" data-kr="연구 주장을 정직하게 유지하는 방법">How I keep a research claim honest</h2>
+                </div>
+                <ol>
+                    <li><span>01</span><div><strong data-en="Define the decision" data-kr="결정 문제 정의">Define the decision</strong><p data-en="State what the result must help a person or system decide." data-kr="결과가 사람이나 시스템의 어떤 결정을 도와야 하는지 명시합니다.">State what the result must help a person or system decide.</p></div></li>
+                    <li><span>02</span><div><strong data-en="Freeze the comparison" data-kr="비교 조건 고정">Freeze the comparison</strong><p data-en="Keep splits, budgets, metrics, and baselines shared before experimentation." data-kr="실험 전에 데이터 분할·예산·지표·기준선을 공통으로 고정합니다.">Keep splits, budgets, metrics, and baselines shared before experimentation.</p></div></li>
+                    <li><span>03</span><div><strong data-en="Record failures" data-kr="실패 기록">Record failures</strong><p data-en="Treat instability, ambiguity, and negative results as evidence, not cleanup work." data-kr="불안정성·모호성·부정적 결과를 정리 대상이 아니라 근거로 다룹니다.">Treat instability, ambiguity, and negative results as evidence, not cleanup work.</p></div></li>
+                    <li><span>04</span><div><strong data-en="Separate status from ambition" data-kr="상태와 지향 분리">Separate status from ambition</strong><p data-en="Label work as proposed, in progress, evaluated, submitted, or published." data-kr="제안·진행·평가·제출·출판 상태를 구분해 표시합니다.">Label work as proposed, in progress, evaluated, submitted, or published.</p></div></li>
+                </ol>
+            </section>
+
+            <section class="research-notes" aria-labelledby="notes-title">
+                <div class="research-section-heading">
+                    <p>04 / PUBLIC NOTES</p>
+                    <h2 id="notes-title" data-en="Notes, not publications" data-kr="논문이 아닌 공개 노트">Notes, not publications</h2>
+                </div>
+                <div class="research-note-grid">
+                    <a href="blog2.html"><span>QML</span><strong data-en="Quantum neural networks in financial applications" data-kr="금융 응용을 위한 양자 신경망">Quantum neural networks in financial applications</strong><small data-en="Conceptual research note" data-kr="개념 연구 노트">Conceptual research note</small></a>
+                    <a href="blog5.html"><span>AI FOUNDATIONS</span><strong data-en="Notes on Geoffrey Hinton's AI lecture" data-kr="Geoffrey Hinton AI 연설 노트">Notes on Geoffrey Hinton's AI lecture</strong><small data-en="Lecture reflection" data-kr="강연 감상·정리">Lecture reflection</small></a>
+                    <a href="lectures.html"><span>COURSEWORK</span><strong data-en="Graduate lecture archive" data-kr="대학원 수업 아카이브">Graduate lecture archive</strong><small data-en="Math, statistics, AI, design, and research ethics" data-kr="수학·통계·AI·디자인·연구윤리">Math, statistics, AI, design, and research ethics</small></a>
+                </div>
+            </section>
+
+            <section class="research-cta" aria-labelledby="research-cta-title">
+                <p>05 / CONNECT</p>
+                <h2 id="research-cta-title" data-en="Interested in evaluation-first applied AI research?" data-kr="검증 우선 응용 AI 연구에 관심이 있으신가요?">Interested in evaluation-first applied AI research?</h2>
+                <div><a href="mailto:haakusi@gmail.com">haakusi@gmail.com</a><a href="portfolio.html" data-en="Engineering portfolio" data-kr="엔지니어링 포트폴리오">Engineering portfolio</a><a href="cv.html" data-en="Public CV" data-kr="공개 이력서">Public CV</a></div>
+            </section>
+        </main>
+
+        <div id="site-footer"></div>
+    </div>
+
+    <script src="common.js"></script>
+</body>
+</html>

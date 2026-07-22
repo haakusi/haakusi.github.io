@@ -28,7 +28,7 @@
         headerEl.innerHTML = `
         <header>
             <h1 data-en="Sewon Park" data-kr="박세원">Sewon Park</h1>
-            <p class="subtitle" data-en="Research Engineer | AI & Full-Stack Development" data-kr="선임 연구원 | AI 및 풀스택 개발">Research Engineer | AI & Full-Stack Development</p>
+            <p class="subtitle" data-en="AI-native Platform & Product Engineering Lead" data-kr="AI-native 플랫폼·제품 엔지니어링 리드">AI-native Platform & Product Engineering Lead</p>
             <div class="social-links">
                 <a href="mailto:haakusi@gmail.com" aria-label="Email">
                     <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
@@ -65,6 +65,8 @@
             { href: 'blog.html', en: 'Blog', kr: '블로그' },
             { href: 'lectures.html', en: 'Lectures', kr: '강의' },
             { href: 'reading.html', en: 'Reading', kr: '독서' },
+            { href: 'portfolio.html', en: 'Portfolio', kr: '포트폴리오' },
+            { href: 'research.html', en: 'Research', kr: '연구' },
             { href: 'cv.html', en: 'CV', kr: '이력서' }
         ];
 
@@ -75,12 +77,16 @@
             const isActive = currentPage === item.href
                 || (item.href === 'blog.html' && currentPage.startsWith('blog'))
                 || (item.href === 'lectures.html' && (currentPage === 'lectures.html' || window.location.pathname.includes('/lectures/')))
-                || (item.href === 'reading.html' && (currentPage === 'reading.html' || window.location.pathname.includes('/reading/')));
+                || (item.href === 'reading.html' && (currentPage === 'reading.html' || window.location.pathname.includes('/reading/')))
+                || (item.href === 'portfolio.html' && currentPage.startsWith('portfolio'))
+                || (item.href === 'research.html' && currentPage.startsWith('research'))
+                || (item.href === 'cv.html' && currentPage.startsWith('cv'));
 
             const activeClass = isActive ? ' active' : '';
             const fullHref = prefix + item.href;
 
-            return `<a href="${fullHref}" class="nav-link${activeClass}" data-en="${item.en}" data-kr="${item.kr}">${item.en}</a>`;
+            const currentAttribute = isActive ? ' aria-current="page"' : '';
+            return `<a href="${fullHref}" class="nav-link${activeClass}"${currentAttribute} data-en="${item.en}" data-kr="${item.kr}">${item.en}</a>`;
         }).join('\n            ');
 
         navEl.innerHTML = `<nav class="navigation">
@@ -94,7 +100,7 @@
         if (!footerEl) return;
 
         footerEl.innerHTML = `<footer>
-            <p>Last updated: March 2026</p>
+            <p data-en="Last updated: July 2026" data-kr="마지막 업데이트: 2026년 7월">Last updated: July 2026</p>
         </footer>`;
     }
 
@@ -118,6 +124,7 @@
         const newLang = currentLang === 'en' ? 'kr' : 'en';
 
         html.setAttribute('data-lang', newLang);
+        document.documentElement.lang = newLang === 'kr' ? 'ko' : 'en';
         localStorage.setItem('language', newLang);
 
         const button = document.querySelector('.lang-toggle');
@@ -160,8 +167,12 @@
         if (themeButton) themeButton.textContent = savedTheme === 'dark' ? '\u2600\uFE0F' : '\uD83C\uDF19';
 
         // Apply saved language
-        var savedLang = localStorage.getItem('language') || 'en';
+        var requestedLang = new URLSearchParams(window.location.search).get('lang');
+        var savedLang = requestedLang === 'kr' || requestedLang === 'en'
+            ? requestedLang
+            : (localStorage.getItem('language') || 'en');
         document.documentElement.setAttribute('data-lang', savedLang);
+        document.documentElement.lang = savedLang === 'kr' ? 'ko' : 'en';
         var langButton = document.querySelector('.lang-toggle');
         if (langButton) langButton.textContent = savedLang === 'en' ? 'EN' : '\uD55C';
 

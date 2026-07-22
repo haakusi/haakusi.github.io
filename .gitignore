@@ -1,0 +1,6 @@
+# Local private career artifacts and source evidence
+no_read/
+
+# macOS metadata
+.DS_Store
+**/.DS_Store

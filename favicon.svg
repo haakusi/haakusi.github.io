@@ -1,0 +1,5 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" role="img" aria-label="Sewon Park">
+  <rect width="64" height="64" rx="15" fill="#090c13"/>
+  <path d="M13 18h25v8H23v7h13v8H23v15H13V18Z" fill="#f4f7fb"/>
+  <circle cx="46" cy="45" r="8" fill="#75e6c8"/>
+</svg>
