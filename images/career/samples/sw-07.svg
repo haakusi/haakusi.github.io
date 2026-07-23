@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 800" role="img" aria-labelledby="title">
+  <title id="title">Abstract end-to-end verification matrix</title>
+  <rect width="640" height="800" fill="#080b0a"/><g transform="translate(76 120)">
+    <g fill="#131918" stroke="#34413e"><rect width="110" height="110" rx="18"/><rect x="126" width="110" height="110" rx="18"/><rect x="252" width="110" height="110" rx="18"/><rect x="378" width="110" height="110" rx="18"/>
+    <rect y="126" width="110" height="110" rx="18"/><rect x="126" y="126" width="110" height="110" rx="18"/><rect x="252" y="126" width="110" height="110" rx="18"/><rect x="378" y="126" width="110" height="110" rx="18"/>
+    <rect y="252" width="110" height="110" rx="18"/><rect x="126" y="252" width="110" height="110" rx="18"/><rect x="252" y="252" width="110" height="110" rx="18"/><rect x="378" y="252" width="110" height="110" rx="18"/>
+    <rect y="378" width="110" height="110" rx="18"/><rect x="126" y="378" width="110" height="110" rx="18"/><rect x="252" y="378" width="110" height="110" rx="18"/><rect x="378" y="378" width="110" height="110" rx="18"/></g>
+  <g fill="none" stroke="#9adbcf" stroke-width="8" stroke-linecap="round" stroke-linejoin="round"><path d="m103 172 18 18 36-42M355 172l18 18 36-42M229 298l18 18 36-42M481 298l18 18 36-42M103 550l18 18 36-42M355 550l18 18 36-42"/></g>
+  <path d="M110 686h420" stroke="#9adbcf" stroke-width="10" stroke-linecap="round"/>
+  </g>
+</svg>

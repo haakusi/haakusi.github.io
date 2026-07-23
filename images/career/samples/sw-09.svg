@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 800" role="img" aria-labelledby="title">
+  <title id="title">Abstract hardware and software gateway</title>
+  <rect width="640" height="800" fill="#080a0a"/><rect x="84" y="110" width="184" height="580" rx="42" fill="#121817" stroke="#41504d" stroke-width="4"/>
+  <rect x="372" y="110" width="184" height="580" rx="18" fill="#0e1715" stroke="#9adbcf" stroke-width="4"/>
+  <circle cx="176" cy="234" r="54" fill="#9adbcf"/><path d="M142 374h68M142 426h68M142 478h68" stroke="#8b9996" stroke-width="12" stroke-linecap="round"/>
+  <path d="M268 400h104" stroke="#dce7e4" stroke-width="10"/><path d="m334 364 38 36-38 36" fill="none" stroke="#dce7e4" stroke-width="10" stroke-linecap="round" stroke-linejoin="round"/>
+  <rect x="414" y="180" width="100" height="100" rx="22" fill="#172522"/><path d="M414 350h100M414 414h100M414 478h72M414 542h100" stroke="#9adbcf" stroke-width="10" stroke-linecap="round"/>
+</svg>

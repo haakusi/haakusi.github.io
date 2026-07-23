@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 800" role="img" aria-labelledby="title">
+  <title id="title">Abstract MCP tool conversation</title>
+  <rect width="640" height="800" fill="#09100f"/><path d="M122 110h396a42 42 0 0 1 42 42v496a42 42 0 0 1-42 42H240l-104 72 24-72h-38a42 42 0 0 1-42-42V152a42 42 0 0 1 42-42Z" fill="#101817" stroke="#344642" stroke-width="4"/>
+  <rect x="128" y="176" width="278" height="92" rx="32" fill="#1b2926"/><rect x="222" y="306" width="290" height="92" rx="32" fill="#9adbcf"/>
+  <rect x="128" y="436" width="330" height="132" rx="32" fill="#17211f" stroke="#9adbcf" stroke-opacity=".5"/>
+  <path d="M170 214h178M266 344h198M170 482h236M170 522h166" stroke="#dce7e4" stroke-width="9" stroke-linecap="round" opacity=".78"/>
+  <circle cx="484" cy="616" r="36" fill="#9adbcf"/><path d="m470 616 10 10 20-24" fill="none" stroke="#07100e" stroke-width="8" stroke-linecap="round" stroke-linejoin="round"/>
+</svg>

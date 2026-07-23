@@ -16,7 +16,7 @@ const decodeEntities = (value) => value.replaceAll('&amp;', '&');
 
 test('homepage is a focused career hub with direct paths to evidence and archives', () => {
     assert.match(index, /<body class="career-home">/);
-    for (const phrase of ['Selected evidence', '선별된 근거']) {
+    for (const phrase of ['The newest work comes first.', '가장 최근의 작업을 먼저 보여드립니다.']) {
         assert.ok(index.includes(phrase), `missing homepage phrase: ${phrase}`);
     }
     assert.match(indexText, /From device packets to reliable AI products\./);
@@ -40,13 +40,12 @@ test('public CV is current, impact-led, bilingual, and fact constrained', () => 
         'BioStar Developer Portal',
         '~200K LOC modernization',
         'Gateway, device, and distributed-event platform',
-        'special promotion 19 months',
         'MariaDB',
         'Microsoft SQL Server',
     ]) {
         assert.ok(decodeEntities(cv).includes(phrase), `missing CV phrase: ${phrase}`);
     }
-    assert.doesNotMatch(cv, /Technical Support chatbot|Global Technical Support|\bSolis\b|RabbitMQ|Redis|Freshdesk|Jira|7M\+|80\+ API|WhatsApp|1,?300|7,000만원|010-\d|구미동|1991년|GI\b/);
+    assert.doesNotMatch(cv, /Technical Support chatbot|Global Technical Support|\bSolis\b|RabbitMQ|Redis|Freshdesk|Jira|7M\+|80\+ API|WhatsApp|1,?300|7,000만원|010-\d|구미동|1991년|GI\b|특별승진|입사\s*19개월|special promotion|19 months after joining/i);
 });
 
 test('research page separates active work, foundations, and research notes', () => {

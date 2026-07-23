@@ -1,0 +1,7 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 800" role="img" aria-labelledby="title">
+  <title id="title">Abstract distributed event pipeline</title>
+  <rect width="640" height="800" fill="#07100e"/><g fill="none" stroke="#334642" stroke-width="18" stroke-linecap="round"><path d="M80 220h112c70 0 70 116 140 116h228"/><path d="M80 580h112c70 0 70-116 140-116h228"/></g>
+  <g fill="#0d1715" stroke="#9adbcf" stroke-width="6"><circle cx="82" cy="220" r="52"/><circle cx="82" cy="580" r="52"/><circle cx="320" cy="400" r="74"/><circle cx="558" cy="336" r="52"/><circle cx="558" cy="464" r="52"/></g>
+  <g fill="#9adbcf"><circle cx="82" cy="220" r="14"/><circle cx="82" cy="580" r="14"/><circle cx="320" cy="400" r="24"/><circle cx="558" cy="336" r="14"/><circle cx="558" cy="464" r="14"/></g>
+  <path d="M238 694h164" stroke="#dce7e4" stroke-width="9" stroke-linecap="round"/><path d="M272 726h96" stroke="#65736f" stroke-width="9" stroke-linecap="round"/>
+</svg>

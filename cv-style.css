@@ -784,4 +784,8 @@ body.cv-page {
     .cv-final-grid p { margin-top: 1.5mm; line-height: 1.42; }
     .cv-final .cv-section-heading { margin-bottom: 2mm; }
     .cv-final { padding-bottom: 0; break-inside: auto; }
+
+    [data-lang="kr"] .cv-section[aria-labelledby="skills-title"] {
+        break-before: page;
+    }
 }

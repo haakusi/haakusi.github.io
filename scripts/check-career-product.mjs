@@ -63,7 +63,7 @@ test('navigation prioritizes career evidence before the public archives', () => 
 test('home communicates identity, evidence, and conservative profile structured data', () => {
     const home = pages['index.html'];
     const decodedHome = home.replaceAll('&amp;', '&');
-    for (const id of ['identity', 'proof', 'journey', 'mentoring', 'research', 'archive', 'contact']) {
+    for (const id of ['identity', 'media', 'work', 'capability', 'journey', 'mentoring', 'research', 'archive', 'contact']) {
         assert.match(home, new RegExp(`id="${id}"`));
     }
     for (const phrase of [

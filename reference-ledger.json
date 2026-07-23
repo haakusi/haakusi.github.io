@@ -27,7 +27,7 @@
         {
           "name": "Measured asymmetric opening stage",
           "type": "layout",
-          "description": "A 1320px content axis and 96px fixed header frame a viewport-height hero whose desktop composition uses a 320px narrative rail, a 64px gap, and a flexible right-aligned identity field.",
+          "description": "A 1320px content axis and approximately 123px fixed header-plus-ticker frame a viewport-height hero whose desktop composition uses a 320px narrative rail, a 64px gap, and a flexible right-aligned identity field.",
           "applicability": "Recreate the spatial relationship with original Home markup and CSS, then collapse at 1180, 900, 640, and 430px without horizontal overflow."
         },
         {
@@ -51,8 +51,26 @@
         {
           "name": "Human evidence ribbon",
           "type": "content-structure",
-          "description": "A horizontal sequence of images and captions shows learning, community, recognition, and making as one life narrative.",
-          "applicability": "Use selected awards now and replace text-led mentoring, PhD, and community tiles with user-supplied photos later."
+          "description": "A horizontal sequence of approximately 189-by-237-pixel frames shows learning, community, systems, and making as one life narrative.",
+          "applicability": "Use ten original software-system SVG placeholders in a duplicated seamless track, then replace them one-for-one with the user's public activity photos later."
+        },
+        {
+          "name": "Headline ticker under the primary navigation",
+          "type": "motion",
+          "description": "A narrow moving line beneath the main navigation introduces the site's vocabulary before the hero, while the header remains fixed.",
+          "applicability": "Use original AI-native, device, gateway, API, and verification phrases; pause the track on hover and disable motion when reduced motion is requested."
+        },
+        {
+          "name": "Sticky media stage with scroll-linked drift",
+          "type": "motion",
+          "description": "A taller scroll stage holds the media ribbon in view while its track moves horizontally, creating depth without adding another content section.",
+          "applicability": "Use one requestAnimationFrame driver to map vertical stage progress to lateral track travel, keep a slow CSS fallback before JavaScript initializes, and provide a static non-sticky layout for reduced motion."
+        },
+        {
+          "name": "Circular capability geometry",
+          "type": "motion-and-visual-design",
+          "description": "Large circular and wedge forms turn a capability list into memorable visual anchors without relying on copied brand illustrations.",
+          "applicability": "Pair six original conic-gradient dials with AI, JVM, C++, TSX, MCP, and AWS marks, then move the oversized track laterally inside a sticky 220vh desktop stage."
         },
         {
           "name": "Principles before projects",

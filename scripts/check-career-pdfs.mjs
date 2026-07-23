@@ -43,7 +43,6 @@ test('PDF content carries the same career evidence as the web CV', () => {
         '~200K LOC modernization',
         'Gateway, device',
         'Spring Cloud Gateway MSA',
-        'special promotion 19 months',
         'SK Networks Family AI Camp',
         'Device & domain',
         'MariaDB',
@@ -59,7 +58,6 @@ test('PDF content carries the same career evidence as the web CV', () => {
         '자연어 검증을 갖춘 BioStar Developer Portal',
         '약 20만 LOC 의미 보존형 현대화',
         '게이트웨이·장치·분산 이벤트 플랫폼',
-        '입사 19개월 만에 특별승진',
         'SK Networks Family AI',
         '27기·28기',
         '리더십·공개 근거',
@@ -72,5 +70,11 @@ test('PDF content carries the same career evidence as the web CV', () => {
 
 test('PDFs omit private and unsupported profile details', () => {
     const combined = documents.en.text + '\n' + documents.ko.text;
-    assert.doesNotMatch(combined, /Technical Support chatbot|Global Technical Support|\bSolis\b|010-\d|구미동|1991년|희망연봉|주민등록|RabbitMQ|Freshdesk|Jira|\/Users\/|file:\/\//i);
+    assert.doesNotMatch(combined, /Technical Support chatbot|Global Technical Support|\bSolis\b|010-\d|구미동|1991년|희망연봉|주민등록|RabbitMQ|Freshdesk|Jira|\/Users\/|file:\/\/|특별승진|입사\s*19개월|special promotion|19 months after joining/i);
+});
+
+test('Korean technical foundation heading stays with its content on page three', () => {
+    const pages = documents.ko.text.split('\f');
+    assert.ok(!pages[1]?.includes('기술 기반'), 'technical foundation heading should not be orphaned on page two');
+    assert.ok(pages[2]?.includes('기술 기반'), 'technical foundation heading should begin page three');
 });
