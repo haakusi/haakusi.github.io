@@ -7,7 +7,7 @@
       "category": "landing",
       "summary": "A long-form personal portfolio that uses a compact anchor navigation, oversized identity typography, an activity-image ribbon, principle-led capability sections, a restrained project navigator, and a direct contact close.",
       "priority": "critical",
-      "extraction_method": "chrome-dom-and-computed-style",
+      "extraction_method": "playwright-scroll-sampling-and-computed-style",
       "captured_at": "2026-07-23T00:00:00+09:00",
       "asset_reuse_notes": "Pattern only. No brand assets, copy, illustrations, source code, or full layout are reused.",
       "strengths_to_adopt": [
@@ -18,7 +18,7 @@
         "A contact section and social links provide a decisive end to the narrative."
       ],
       "weaknesses_to_avoid": [
-        "A 23,000-pixel page and repeated image loops create unnecessary scroll cost.",
+        "A measured 19,462-pixel page and repeated image loops create substantial scroll cost.",
         "Motion and decorative repetition can overshadow evidence and accessibility.",
         "A full visual or information-architecture clone would erase the target person's identity."
       ],
@@ -67,6 +67,36 @@
           "applicability": "Use one requestAnimationFrame driver to map vertical stage progress to lateral track travel, keep a slow CSS fallback before JavaScript initializes, and provide a static non-sticky layout for reduced motion."
         },
         {
+          "name": "Sticky depth convergence",
+          "type": "motion",
+          "description": "A tall opening stage keeps one viewport frame pinned while its primary statement moves from distant scale and lower contrast into a crisp reading position, then lifts gently toward the next chapter.",
+          "applicability": "Map clamped vertical progress to deterministic scale, translation, and opacity values on the original Home statement; keep the effect desktop-only, disable it for reduced motion, and preserve the semantic document order."
+        },
+        {
+          "name": "Three-beat aperture convergence",
+          "type": "motion",
+          "description": "Playwright sampling measured the capability title at scale 3.8 with opacity 0 before entry, scale 2.1626 with opacity 1 during convergence, and scale 1 at the reading position. A black viewport-sized sticky frame clips the oversized edges while the text settles inward.",
+          "applicability": "Use a milder original range for haakusi: stage-wide content begins slightly oversized and dim, settles at scale 1, then releases smaller and softer toward the next section. Pair it with subtle side shades rather than copying the reference composition."
+        },
+        {
+          "name": "Outgoing-incoming scene handoff",
+          "type": "motion",
+          "description": "The initial scene translates key elements upward by about 90px while fading them to zero, while the next scene enters from roughly 32px below and resolves to full opacity. Only one narrative state is dominant at a time.",
+          "applicability": "At selected Home boundaries, fade and lift the outgoing heading while the next section resolves from depth. Keep body copy readable and never animate navigation or links out of reach."
+        },
+        {
+          "name": "Black-stage clipping frame",
+          "type": "visual-design",
+          "description": "The reference keeps a full-viewport black sticky surface with overflow hidden so oversized layers disappear beyond the scene instead of producing layout overflow.",
+          "applicability": "Add an original pointer-events-none side vignette and overflow clip to desktop Home scenes, with zero opacity on mobile, light theme, print, and reduced motion."
+        },
+        {
+          "name": "Compact shared shell rhythm",
+          "type": "layout",
+          "description": "A compact identity rail and secondary navigation establish one stable content axis before page-specific heroes begin.",
+          "applicability": "Use the same 70-pixel identity rail, 54-pixel navigation rail, 1320-pixel content axis, and readable type floor across Portfolio, CV, Research, Blog, Lectures, and Reading."
+        },
+        {
           "name": "Circular capability geometry",
           "type": "motion-and-visual-design",
           "description": "Large circular and wedge forms turn a capability list into memorable visual anchors without relying on copied brand illustrations.",
@@ -83,6 +113,72 @@
           "type": "visual-design",
           "description": "Black, white, and muted grey rely on typography, borders, and spacing rather than decorative gradients.",
           "applicability": "Unify Home, CV, Portfolio, Research, Blog, Reading, and Lectures with one sans-serif token system."
+        }
+      ]
+    },
+    {
+      "source": "https://www.saramin.co.kr/",
+      "category": "resume-editor",
+      "summary": "A Korean recruitment resume flow that leads with a compact career thesis and presents the remaining evidence as continuous semantic sections.",
+      "priority": "high",
+      "extraction_method": "authenticated-chrome-read-only",
+      "captured_at": "2026-07-23T15:20:00+09:00",
+      "asset_reuse_notes": "Pattern only. No personal data, brand assets, source code, private resume URL, or visual layout is reused.",
+      "strengths_to_adopt": [
+        "A short career thesis precedes detailed history and gives the reader a lens for later evidence.",
+        "Sections follow a familiar resume order and remain part of one continuous document.",
+        "Plain dividers and restrained typography keep dense content readable without a card for every item."
+      ],
+      "weaknesses_to_avoid": [
+        "Editing controls, completion widgets, and private profile fields do not belong in a public CV.",
+        "Long undifferentiated summary paragraphs can repeat evidence already present in experience."
+      ],
+      "target_area": "Public CV profile summary, semantic section order, and compact supporting evidence",
+      "patterns": [
+        {
+          "name": "Career thesis before detail",
+          "type": "content-structure",
+          "description": "One concise statement explains the candidate's trajectory and current value before the reader enters the chronology.",
+          "applicability": "Use a device-boundary-to-AI-platform profile paragraph followed by a small fact ledger."
+        },
+        {
+          "name": "Continuous resume document",
+          "type": "layout",
+          "description": "Semantic sections are separated by rules and headings rather than repeated floating containers.",
+          "applicability": "Use one content axis for experience, education, research, leadership, recognition, and skills."
+        }
+      ]
+    },
+    {
+      "source": "https://www.jobkorea.co.kr/",
+      "category": "resume-view",
+      "summary": "A traditional Korean resume presentation that uses reverse chronology, a stable date rail, and strong company/role labels for fast scanning.",
+      "priority": "high",
+      "extraction_method": "authenticated-chrome-read-only",
+      "captured_at": "2026-07-23T15:20:00+09:00",
+      "asset_reuse_notes": "Pattern only. No personal data, brand assets, source code, private resume URL, or visual layout is reused.",
+      "strengths_to_adopt": [
+        "A stable left date rail makes career sequence and tenure immediately visible.",
+        "Company and role labels lead each row while details remain subordinate.",
+        "Horizontal dividers provide scan anchors without introducing decorative surfaces."
+      ],
+      "weaknesses_to_avoid": [
+        "A large skill-chip cloud consumes space without proving depth or outcomes.",
+        "Private demographics, salary preferences, and administrative fields should not appear in a public developer CV."
+      ],
+      "target_area": "Professional experience chronology, compact rows, and technical foundation",
+      "patterns": [
+        {
+          "name": "Date rail plus evidence body",
+          "type": "layout",
+          "description": "Every career row keeps time in a fixed-width rail and reserves the wider column for scope, actions, and outcomes.",
+          "applicability": "Use the same rail for employers, education, research, mentoring, and recognition."
+        },
+        {
+          "name": "Role-first reverse chronology",
+          "type": "content-structure",
+          "description": "The newest and most relevant role appears first, with older roles compressed but still visible as the foundation of the trajectory.",
+          "applicability": "Keep Suprema expanded and HBrain/AtData concise, preserving the device-to-platform growth path."
         }
       ]
     },

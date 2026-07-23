@@ -21,26 +21,23 @@ test('homepage exposes the site IA and follows a newest-first editorial journey'
     for (const id of anchors) {
         assert.equal((index.match(new RegExp(`id="${id}"`, 'g')) ?? []).length, 1, `#${id} must be unique`);
     }
-    assert.match(index, /class="home-local-nav"/);
-    for (const path of ['portfolio.html', 'cv.html', 'research.html', 'blog.html', 'lectures.html']) {
-        assert.match(index, new RegExp(`class="home-local-links"[\\s\\S]*?href="${path}"`), `missing primary site link ${path}`);
+    assert.match(index, /<div id="site-header"><\/div>/);
+    assert.match(index, /<div id="site-nav"><\/div>/);
+    assert.doesNotMatch(index, /home-local-nav|home-motion-ticker/);
+    for (const path of ['index.html', 'portfolio.html', 'cv.html', 'research.html', 'blog.html', 'lectures.html', 'reading.html']) {
+        assert.match(common, new RegExp(`href: '${path}'`), `missing shared site link ${path}`);
     }
-    assert.match(index, /class="home-brand"/);
-    assert.match(index, /class="home-local-links"/);
     assert.ok(index.indexOf('id="work"') < index.indexOf('id="journey"'), 'current work must precede older chronology');
     assert.ok(index.indexOf('id="work"') < index.indexOf('id="mentoring"'), 'current work must precede mentoring');
 });
 
-test('homepage recreates the measured header, ticker, media, and hero relationships with original code', () => {
-    for (const className of ['home-motion-ticker', 'home-hero-brief', 'home-hero-statement', 'home-hero-meta', 'visual-scroll-stage', 'software-ribbon']) {
+test('homepage uses the shared shell while preserving its media and hero composition', () => {
+    for (const className of ['home-hero-brief', 'home-hero-statement', 'home-hero-meta', 'visual-scroll-stage', 'software-ribbon']) {
         assert.match(index, new RegExp(`class="[^"]*${className}`), `missing structural class ${className}`);
     }
     for (const contract of [
         /--home-container:\s*1320px/,
-        /--home-header-height:\s*124px/,
-        /\.home-local-nav\s*\{[\s\S]*?position:\s*fixed/,
-        /\.home-motion-ticker\s*\{[\s\S]*?position:\s*fixed/,
-        /@keyframes\s+headline-ticker/,
+        /--home-header-height:\s*54px/,
         /@keyframes\s+media-drift/,
         /\.visual-scroll-stage\s*\{[\s\S]*?min-height:\s*1[45]0vh/,
         /\.visual-scroll-stage-inner\s*\{[\s\S]*?position:\s*sticky/,
@@ -74,11 +71,12 @@ test('homepage leads with current, public-safe evidence and removes the incorrec
 
 test('award evidence stays in the detailed CV and portfolio while Home hides the temporary award gallery', () => {
     for (const page of [cv, portfolio]) {
-        assert.match(page, /5개 팀/);
+        assert.match(page, /5(?:개 )?팀/);
         assert.match(page, /300만원/);
         assert.match(page, /1,000만원/);
     }
-    assert.match(cv, /cv-metric-nowrap[^>]*>1,000만원</);
+    assert.match(cv, /data-kr="우수상"/);
+    assert.match(cv, /상금 1,000만원/);
     assert.doesNotMatch(index, /recognition-section|award-oldboy|award-innovation|혁신상|Innovation award|전사 우수상|company-wide excellence award/i);
     assert.doesNotMatch(publicCareerCopy, /혁신상[^<]{0,80}50만원|Innovation[^<]{0,80}(?:KRW )?500,000/i);
 });
@@ -137,7 +135,6 @@ test('homepage style is monochrome, token-driven, and motion-safe', () => {
     assert.doesNotMatch(homeCss, /Georgia|Times New Roman|radial-gradient|--home-warm/i);
     assert.match(homeCss, /--home-accent:\s*#[0-9a-f]{6}/i);
     assert.match(homeCss, /prefers-reduced-motion:\s*reduce/);
-    assert.match(homeCss, /\.home-motion-ticker-track[\s\S]*?animation-play-state:\s*paused/);
     assert.match(homeCss, /\.software-ribbon-track[\s\S]*?animation:\s*none/);
 });
 

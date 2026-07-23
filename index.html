@@ -55,70 +55,53 @@
 </head>
 <body class="career-home">
     <a class="home-skip career-skip" href="#home-main" data-en="Skip to main content" data-kr="본문으로 이동">Skip to main content</a>
+    <button class="theme-toggle" onclick="toggleTheme()" aria-label="Toggle dark mode">☀️</button>
+    <button class="lang-toggle" onclick="toggleLanguage()" aria-label="Toggle language">EN</button>
 
     <div class="container home-container">
         <div id="site-header"></div>
         <div id="site-nav"></div>
-
-        <nav class="home-local-nav" aria-label="Primary site navigation">
-            <a class="home-brand" href="index.html" aria-current="page"><strong>Sewon Park</strong><span data-en="Platform · Product · AI" data-kr="플랫폼 · 제품 · AI">Platform · Product · AI</span></a>
-            <div class="home-local-links">
-                <a href="portfolio.html" data-en="Work" data-kr="프로젝트">Work</a>
-                <a href="cv.html" data-en="CV" data-kr="이력서">CV</a>
-                <a href="research.html" data-en="Research" data-kr="연구">Research</a>
-                <a href="blog.html" data-en="Writing" data-kr="글">Writing</a>
-                <a href="lectures.html" data-en="Lectures" data-kr="강의">Lectures</a>
-            </div>
-            <div class="home-nav-controls">
-                <button class="theme-toggle" onclick="toggleTheme()" aria-label="Toggle dark mode">☀️</button>
-                <button class="lang-toggle" onclick="toggleLanguage()" aria-label="Toggle language">EN</button>
-            </div>
-        </nav>
-
-        <div class="home-motion-ticker" data-motion-ticker aria-hidden="true">
-            <div class="home-motion-ticker-track" data-motion-track="ticker">
-                <span>AI-NATIVE PRODUCT ENGINEERING</span><span>DEVICE → GATEWAY → API → AGENT</span><span>VERIFY BEFORE TRUST</span><span>DEVELOPER PORTAL · 2026</span>
-                <span>AI-NATIVE PRODUCT ENGINEERING</span><span>DEVICE → GATEWAY → API → AGENT</span><span>VERIFY BEFORE TRUST</span><span>DEVELOPER PORTAL · 2026</span>
-            </div>
-        </div>
+        <div class="home-scene-vignette" data-scene-vignette aria-hidden="true"></div>
 
         <main id="home-main">
-            <section id="identity" class="home-hero" aria-labelledby="home-title">
-                <div class="home-hero-brief">
-                    <p class="home-lede lang-en">I lead AI-native platform and product engineering across physical devices, enterprise software, developer experience, and release evidence. My work turns difficult boundaries into systems that teams can operate and trust.</p>
-                    <p class="home-lede lang-kr" hidden>물리 장치·엔터프라이즈 소프트웨어·개발자 경험·릴리스 근거를 잇는 AI-native 플랫폼과 제품 엔지니어링을 리딩합니다. 복잡한 경계를 팀이 운영하고 신뢰할 수 있는 시스템으로 바꿉니다.</p>
-                    <div class="home-actions">
-                        <a class="home-action home-action-primary" href="portfolio.html" data-en="Explore current work" data-kr="최신 프로젝트 보기">Explore current work</a>
-                        <a class="home-action" href="cv.html" data-en="Read the public CV" data-kr="공개 이력서 보기">Read the public CV</a>
+            <section id="identity" class="home-hero" data-hero-depth-stage aria-labelledby="home-title">
+                <div class="home-hero-depth-frame" data-hero-depth-frame>
+                    <div class="home-hero-brief" data-hero-depth-brief>
+                        <p class="home-lede lang-en">I lead AI-native platform and product engineering across physical devices, enterprise software, developer experience, and release evidence. My work turns difficult boundaries into systems that teams can operate and trust.</p>
+                        <p class="home-lede lang-kr" hidden>물리 장치·엔터프라이즈 소프트웨어·개발자 경험·릴리스 근거를 잇는 AI-native 플랫폼과 제품 엔지니어링을 리딩합니다. 복잡한 경계를 팀이 운영하고 신뢰할 수 있는 시스템으로 바꿉니다.</p>
+                        <div class="home-actions">
+                            <a class="home-action home-action-primary" href="portfolio.html" data-en="Explore current work" data-kr="최신 프로젝트 보기">Explore current work</a>
+                            <a class="home-action" href="cv.html" data-en="Read the public CV" data-kr="공개 이력서 보기">Read the public CV</a>
+                        </div>
+                        <aside class="identity-card" aria-label="Current profile">
+                            <p>NOW / 2026</p>
+                            <dl>
+                                <div><dt data-en="Role" data-kr="현재 역할">Role</dt><dd data-en="Integration Development Team Lead" data-kr="Integration개발팀 팀장">Integration Development Team Lead</dd></div>
+                                <div><dt data-en="Mission" data-kr="현재 미션">Mission</dt><dd>Developer Portal · React rewrite · Version-aware E2E</dd></div>
+                                <div><dt data-en="Study" data-kr="연구">Study</dt><dd data-en="Ph.D. in AI Convergence, in progress" data-kr="인공지능융합 박사과정 재학">Ph.D. in AI Convergence, in progress</dd></div>
+                            </dl>
+                        </aside>
                     </div>
-                    <aside class="identity-card" aria-label="Current profile">
-                        <p>NOW / 2026</p>
-                        <dl>
-                            <div><dt data-en="Role" data-kr="현재 역할">Role</dt><dd data-en="Integration Development Team Lead" data-kr="Integration개발팀 팀장">Integration Development Team Lead</dd></div>
-                            <div><dt data-en="Mission" data-kr="현재 미션">Mission</dt><dd>Developer Portal · React rewrite · Version-aware E2E</dd></div>
-                            <div><dt data-en="Study" data-kr="연구">Study</dt><dd data-en="Ph.D. in AI Convergence, in progress" data-kr="인공지능융합 박사과정 재학">Ph.D. in AI Convergence, in progress</dd></div>
-                        </dl>
-                    </aside>
-                </div>
 
-                <div class="home-hero-statement">
-                    <p class="home-kicker" data-en="AI-NATIVE · DEVICE-TO-CLOUD · VERIFICATION" data-kr="AI-NATIVE · 장치–클라우드 · 검증">AI-NATIVE · DEVICE-TO-CLOUD · VERIFICATION</p>
-                    <h1 id="home-title">
-                        <span class="lang-en"><span class="career-line">From device packets</span><em class="career-line">to reliable AI products.</em></span>
-                        <span class="lang-kr" hidden><span class="career-line">장치 패킷부터</span><em class="career-line">신뢰 가능한</em><em class="career-line">AI 제품까지.</em></span>
-                    </h1>
-                    <p class="home-hero-role" data-en="Platform engineer who understands the device beneath the API." data-kr="API 아래의 장치까지 이해하는 플랫폼 엔지니어.">Platform engineer who understands the device beneath the API.</p>
-                    <div class="identity-links">
-                        <a href="https://github.com/haakusi" target="_blank" rel="me noreferrer">GitHub ↗</a>
-                        <a href="https://www.linkedin.com/in/sewon-p-38009a1a7/" target="_blank" rel="me noreferrer">LinkedIn ↗</a>
-                        <a href="mailto:haakusi@gmail.com">Email ↗</a>
+                    <div class="home-hero-statement">
+                        <p class="home-kicker" data-en="AI-NATIVE · DEVICE-TO-CLOUD · VERIFICATION" data-kr="AI-NATIVE · 장치–클라우드 · 검증">AI-NATIVE · DEVICE-TO-CLOUD · VERIFICATION</p>
+                        <h1 id="home-title" data-hero-depth-content>
+                            <span class="lang-en"><span class="career-line">From device packets</span><em class="career-line">to reliable AI products.</em></span>
+                            <span class="lang-kr" hidden><span class="career-line">장치 패킷부터</span><em class="career-line">신뢰 가능한</em><em class="career-line">AI 제품까지.</em></span>
+                        </h1>
+                        <p class="home-hero-role" data-en="Platform engineer who understands the device beneath the API." data-kr="API 아래의 장치까지 이해하는 플랫폼 엔지니어.">Platform engineer who understands the device beneath the API.</p>
+                        <div class="identity-links">
+                            <a href="https://github.com/haakusi" target="_blank" rel="me noreferrer">GitHub ↗</a>
+                            <a href="https://www.linkedin.com/in/sewon-p-38009a1a7/" target="_blank" rel="me noreferrer">LinkedIn ↗</a>
+                            <a href="mailto:haakusi@gmail.com">Email ↗</a>
+                        </div>
+                        <div class="home-hero-meta"><span>SEONGNAM · SEOUL</span><span>8+ YEARS</span><span>AVAILABLE FOR THE RIGHT MISSION</span></div>
                     </div>
-                    <div class="home-hero-meta"><span>SEONGNAM · SEOUL</span><span>8+ YEARS</span><span>AVAILABLE FOR THE RIGHT MISSION</span></div>
                 </div>
             </section>
 
-            <section id="media" class="visual-scroll-stage" data-scroll-stage="media" aria-labelledby="media-title">
-                <div class="visual-scroll-stage-inner">
+            <section id="media" class="visual-scroll-stage" data-scroll-stage="media" data-cinematic-scene="field-notes" aria-labelledby="media-title">
+                <div class="visual-scroll-stage-inner" data-cinematic-content>
                     <div class="visual-scroll-heading">
                         <p>01 / SYSTEM FIELD NOTES</p>
                         <h2 id="media-title" data-en="Ten replaceable frames for the systems I build." data-kr="내가 만드는 시스템을 담는 교체 가능한 열 개의 프레임.">Ten replaceable frames for the systems I build.</h2>
@@ -158,12 +141,12 @@
                 <article><strong>DEVICE→CLOUD</strong><span data-en="C++ packet and SDK boundaries through Java/Kotlin services, web products, and AI workflows" data-kr="C++ 패킷·SDK 경계부터 Java/Kotlin 서비스·웹 제품·AI 워크플로까지">C++ packet and SDK boundaries through Java/Kotlin services, web products, and AI workflows</span></article>
             </section>
 
-            <section id="work" class="selected-work" aria-labelledby="work-title">
-                <div class="home-section-heading work-heading">
+            <section id="work" class="selected-work" data-cinematic-scene="current-work" aria-labelledby="work-title">
+                <div class="home-section-heading work-heading" data-cinematic-content>
                     <div><p>02 / CURRENT WORK</p><h2 id="work-title" data-en="The newest work comes first." data-kr="가장 최근의 작업을 먼저 보여드립니다.">The newest work comes first.</h2></div>
                     <a href="portfolio.html" data-en="Open full case studies →" data-kr="프로젝트 상세 보기 →">Open full case studies →</a>
                 </div>
-                <div class="project-showcase-list">
+                <div class="project-showcase-list" data-cinematic-content>
                     <a class="project-showcase project-showcase-featured" href="portfolio.html#case-developer-platform">
                         <svg class="project-geometry" viewBox="0 0 320 220" aria-hidden="true"><path d="M160 22 278 90v92L160 250 42 182V90Z"/><circle cx="160" cy="132" r="56"/><path d="M92 132h136M160 76v112"/></svg>
                         <div><span>01 / 2026 · PRODUCTIZING</span><h3 data-en="BioStar Developer Portal" data-kr="BioStar Developer Portal 제품화">BioStar Developer Portal</h3><p data-en="Browser API execution, device SDK emulator, MCP scenario history, and Linux/AWS sandbox in one developer loop." data-kr="브라우저 API 실행·장치 SDK 에뮬레이터·MCP 시나리오 이력·Linux/AWS 샌드박스를 하나의 개발자 루프로 통합합니다.">Browser API execution, device SDK emulator, MCP scenario history, and Linux/AWS sandbox in one developer loop.</p><small>1 engineer · 8 weeks · productizing</small></div>
@@ -179,14 +162,14 @@
                 </div>
             </section>
 
-            <section id="capability" class="capability-section" data-scroll-stage="capability" aria-labelledby="capability-title">
+            <section id="capability" class="capability-section" data-scroll-stage="capability" data-cinematic-scene="capability" aria-labelledby="capability-title">
                 <div class="capability-scroll-inner">
-                    <div class="home-section-heading">
+                    <div class="home-section-heading" data-cinematic-content>
                         <p>03 / CAPABILITY</p>
                         <h2 id="capability-title" data-en="Six capabilities, one product loop." data-kr="여섯 가지 역량을 하나의 제품 루프로 연결합니다.">Six capabilities, one product loop.</h2>
                     </div>
-                    <p class="capability-lede lang-en">The differentiator is not a long tool list. It is the ability to cross device, backend, web, agent, and infrastructure boundaries without losing the product question.</p>
-                    <p class="capability-lede lang-kr" hidden>차별점은 긴 도구 목록이 아닙니다. 제품의 질문을 놓치지 않은 채 장치·백엔드·웹·에이전트·인프라 경계를 넘나드는 역량입니다.</p>
+                    <p class="capability-lede lang-en" data-cinematic-content>The differentiator is not a long tool list. It is the ability to cross device, backend, web, agent, and infrastructure boundaries without losing the product question.</p>
+                    <p class="capability-lede lang-kr" data-cinematic-content hidden>차별점은 긴 도구 목록이 아닙니다. 제품의 질문을 놓치지 않은 채 장치·백엔드·웹·에이전트·인프라 경계를 넘나드는 역량입니다.</p>
                     <div class="capability-orbit" data-scroll-track="capability">
                         <article class="capability-orbit-item"><div class="capability-dial"><span class="capability-mark">AI</span></div><h3>AI-native Product</h3><p>Problem framing · architecture · full-stack · eval gates</p></article>
                         <article class="capability-orbit-item"><div class="capability-dial"><span class="capability-mark">JVM</span></div><h3>Java / Kotlin</h3><p>Spring Boot · gateway · service · identity</p></article>
@@ -198,12 +181,12 @@
                 </div>
             </section>
 
-            <section class="home-position" aria-labelledby="position-title">
-                <div class="home-section-heading">
+            <section class="home-position" data-cinematic-scene="position" aria-labelledby="position-title">
+                <div class="home-section-heading" data-cinematic-content>
                     <p>04 / POSITION</p>
                     <h2 id="position-title" data-en="Breadth becomes valuable when it closes one product loop." data-kr="넓은 경험은 하나의 제품 루프를 닫을 때 강점이 됩니다.">Breadth becomes valuable when it closes one product loop.</h2>
                 </div>
-                <div class="position-copy">
+                <div class="position-copy" data-cinematic-content>
                     <p class="lang-en">Network operations taught me production constraints. Radar, camera, FPGA, packets, and SDKs taught me physical constraints. Biometric access platforms taught identity, event, server, web, and cloud boundaries. Today I use that context to design AI-native developer platforms and verification systems as one product-engineering system.</p>
                     <p class="lang-kr" hidden>네트워크 운영에서 운영 제약을, 레이더·카메라·FPGA·패킷·SDK에서 물리 제약을, 생체인증 출입통제 플랫폼에서 신원·이벤트·서버·웹·클라우드 경계를 배웠습니다. 현재는 이 경험을 하나의 제품 엔지니어링 체계로 묶어 AI-native 개발자 플랫폼과 검증 시스템을 설계합니다.</p>
                     <div class="principle-list">
@@ -214,12 +197,12 @@
                 </div>
             </section>
 
-            <section id="journey" class="journey-section" aria-labelledby="journey-title">
-                <div class="home-section-heading">
+            <section id="journey" class="journey-section" data-cinematic-scene="journey" aria-labelledby="journey-title">
+                <div class="home-section-heading" data-cinematic-content>
                     <p>05 / JOURNEY</p>
                     <h2 id="journey-title" data-en="Current direction first, foundations after." data-kr="현재의 방향부터, 그 기반이 된 경험 순으로.">Current direction first, foundations after.</h2>
                 </div>
-                <ol class="journey-list">
+                <ol class="journey-list" data-cinematic-content>
                     <li><time>2026—NOW</time><div><h3 data-en="Ph.D. research alongside practice" data-kr="실무와 병행하는 박사 연구">Ph.D. research alongside practice</h3><p data-en="Study explainable VLM retrieval and hybrid quantum–classical model evaluation while continuing full-time engineering." data-kr="재직과 병행해 설명 가능한 VLM 검색과 양자–고전 하이브리드 모델 평가를 연구합니다.">Study explainable VLM retrieval and hybrid quantum–classical model evaluation while continuing full-time engineering.</p></div><span>RESEARCH</span></li>
                     <li><time>2025—NOW</time><div><h3 data-en="AI-native platform and product leadership" data-kr="AI-native 플랫폼·제품 리더십">AI-native platform and product leadership</h3><p data-en="Lead Developer Portal productization, a ~200K LOC frontend modernization, version-aware E2E, intern projects, and cross-team AI-native adoption." data-kr="Developer Portal 제품화, 약 20만 LOC 프론트엔드 현대화, 버전별 E2E, 인턴 과제와 부서 횡단 AI-native 전환을 리딩합니다.">Lead Developer Portal productization, a ~200K LOC frontend modernization, version-aware E2E, intern projects, and cross-team AI-native adoption.</p></div><span>AI / LEAD</span></li>
                     <li><time>2021—2024</time><div><h3 data-en="Biometric access-control core" data-kr="생체인증 출입통제 코어">Biometric access-control core</h3><p data-en="Delivered Spring Cloud Gateway MSA, device features, identity flows, and distributed events; improved event performance by 40%+ and CPU work by about 50%." data-kr="Spring Cloud Gateway MSA, 장치 기능, 신원 흐름과 분산 이벤트를 개발하고 이벤트 성능 40%+, CPU 처리 약 50%를 개선했습니다.">Delivered Spring Cloud Gateway MSA, device features, identity flows, and distributed events; improved event performance by 40%+ and CPU work by about 50%.</p></div><span>CORE / MSA</span></li>
@@ -228,12 +211,12 @@
                 </ol>
             </section>
 
-            <section id="mentoring" class="mentoring-section" aria-labelledby="mentoring-title">
-                <div class="home-section-heading">
+            <section id="mentoring" class="mentoring-section" data-cinematic-scene="mentoring" aria-labelledby="mentoring-title">
+                <div class="home-section-heading" data-cinematic-content>
                     <p>06 / MENTORING</p>
                     <h2 id="mentoring-title" data-en="A year of turning project ambiguity into decisions" data-kr="프로젝트의 모호함을 결정으로 바꿔온 1년">A year of turning project ambiguity into decisions</h2>
                 </div>
-                <div class="mentoring-layout">
+                <div class="mentoring-layout" data-cinematic-content>
                     <p class="mentoring-lede lang-en">Across Codeit, an AI bootcamp, and SK Networks Family AI Camp cohorts 27 and 28, I have helped teams move from problem definition to technical choices, implementation, and verification.</p>
                     <p class="mentoring-lede lang-kr" hidden>Codeit·AI 부트캠프·SK Networks Family AI Camp 27기와 28기에서 문제 정의부터 기술 선택·구현·검증까지 팀의 의사결정을 지원해 왔습니다.</p>
                     <div class="mentoring-list">
@@ -245,42 +228,42 @@
                 </div>
             </section>
 
-            <section id="research" class="research-preview" aria-labelledby="research-preview-title">
-                <div>
+            <section id="research" class="research-preview" data-cinematic-scene="research" aria-labelledby="research-preview-title">
+                <div data-cinematic-content>
                     <p class="home-section-index">07 / RESEARCH</p>
                     <h2 id="research-preview-title" data-en="Research that strengthens the evaluation habit" data-kr="평가 습관을 더 날카롭게 만드는 연구">Research that strengthens the evaluation habit</h2>
                     <p class="lang-en">My active research explores explainable traditional-dance retrieval with expert knowledge and VLMs, and hybrid quantum–classical model selection under shared baselines and evaluation conditions. Both are works in progress.</p>
                     <p class="lang-kr" hidden>전문가 지식과 VLM을 결합한 설명 가능한 전통무용 검색, 그리고 동일한 기준에서 고전 ML과 QML 후보를 비교하는 양자–고전 하이브리드 모델 선택을 연구합니다. 두 연구 모두 진행 중입니다.</p>
                     <a href="research.html" data-en="Research questions and methods →" data-kr="연구 질문과 방법 보기 →">Research questions and methods →</a>
                 </div>
-                <div class="research-principles">
+                <div class="research-principles" data-cinematic-content>
                     <article><span>01</span><strong data-en="Ask a falsifiable question" data-kr="검증 가능한 질문">Ask a falsifiable question</strong></article>
                     <article><span>02</span><strong data-en="Keep classical baselines visible" data-kr="고전 기준선을 명시">Keep classical baselines visible</strong></article>
                     <article><span>03</span><strong data-en="Compare under the same gates" data-kr="동일한 게이트에서 비교">Compare under the same gates</strong></article>
                 </div>
             </section>
 
-            <section id="archive" class="archive-section" aria-labelledby="archive-title">
-                <div class="home-section-heading">
+            <section id="archive" class="archive-section" data-cinematic-scene="archive" aria-labelledby="archive-title">
+                <div class="home-section-heading" data-cinematic-content>
                     <p>08 / PUBLIC ARCHIVE</p>
                     <h2 id="archive-title" data-en="A professional life, recorded in more than projects" data-kr="프로젝트 너머의 전문성을 기록합니다">A professional life, recorded in more than projects</h2>
                 </div>
-                <div class="archive-grid">
+                <div class="archive-grid" data-cinematic-content>
                     <a href="blog.html"><span>WRITING / 01</span><strong data-en="Architecture and AI notes" data-kr="아키텍처·AI 노트">Architecture and AI notes</strong><small data-en="Ideas made precise through writing" data-kr="글로 정리한 기술적 사고">Ideas made precise through writing</small></a>
                     <a href="reading.html"><span>READING / 02</span><strong data-en="Books and reflections" data-kr="책·독서 기록">Books and reflections</strong><small data-en="How ideas change practice" data-kr="생각이 실무를 바꾸는 과정">How ideas change practice</small></a>
                     <a href="lectures.html"><span>LECTURES / 03</span><strong data-en="Ph.D. coursework archive" data-kr="박사과정 수업 아카이브">Ph.D. coursework archive</strong><small data-en="Bilingual weekly concepts and notes" data-kr="한·영 주차별 개념과 핵심">Bilingual weekly concepts and notes</small></a>
                 </div>
             </section>
 
-            <section id="contact" class="home-cta" aria-labelledby="contact-title">
-                <p>09 / CONTACT</p>
-                <h2 id="contact-title">
+            <section id="contact" class="home-cta" data-cinematic-scene="contact" aria-labelledby="contact-title">
+                <p data-cinematic-content>09 / CONTACT</p>
+                <h2 id="contact-title" data-cinematic-content>
                     <span class="lang-en"><span class="career-line">Build the full loop.</span><span class="career-line">Prove that it works.</span></span>
                     <span class="lang-kr" hidden><span class="career-line">제품의 전체 루프를 만들고,</span><span class="career-line">동작한다는 근거를 남깁니다.</span></span>
                 </h2>
-                <p class="lang-en">Open to conversations about AI platforms, developer experience, device-connected products, backend/platform leadership, and research collaboration.</p>
-                <p class="lang-kr" hidden>AI 플랫폼·개발자 경험·장치 연결 제품·백엔드/플랫폼 리더십·연구 협업에 관한 대화를 환영합니다.</p>
-                <div class="home-contact-links">
+                <p class="lang-en" data-cinematic-content>Open to conversations about AI platforms, developer experience, device-connected products, backend/platform leadership, and research collaboration.</p>
+                <p class="lang-kr" data-cinematic-content hidden>AI 플랫폼·개발자 경험·장치 연결 제품·백엔드/플랫폼 리더십·연구 협업에 관한 대화를 환영합니다.</p>
+                <div class="home-contact-links" data-cinematic-content>
                     <a href="mailto:haakusi@gmail.com">haakusi@gmail.com ↗</a>
                     <a href="cv.html" data-en="Public CV →" data-kr="공개 이력서 →">Public CV →</a>
                     <a href="https://github.com/haakusi" target="_blank" rel="me noreferrer">GitHub ↗</a>

@@ -19,11 +19,120 @@
     --career-accent: #a9c0cf;
     --career-accent-strong: #d2e0e8;
     --career-accent-soft: rgba(169, 192, 207, 0.11);
-    --career-content: 1160px;
+    --career-content: 1320px;
     --career-reading: 720px;
     --career-radius: 10px;
-    --career-space-section: 88px;
+    --career-shell-primary: 70px;
+    --career-shell-primary-mobile: 85px;
+    --career-shell-secondary: 54px;
+    --career-tab-count: 7;
+    --career-type-body: 17px;
+    --career-type-label: 13px;
+    --career-space-section: 72px;
     color-scheme: dark;
+}
+
+/*
+ * Canonical root shell. Every public root uses these exact rails and slots;
+ * page-specific styles begin only after the navigation boundary.
+ */
+@media screen {
+    :where(body.career-home, body.portfolio-page, body.research-page, body.cv-page, body.archive-page, body.knowledge-page) #site-header,
+    :where(body.career-home, body.portfolio-page, body.research-page, body.cv-page, body.archive-page, body.knowledge-page) #site-nav {
+        width: min(calc(100vw - 48px), var(--career-content)) !important;
+        max-width: var(--career-content) !important;
+        margin-right: auto !important;
+        margin-left: auto !important;
+    }
+
+    :where(body.career-home, body.portfolio-page, body.research-page, body.cv-page, body.archive-page, body.knowledge-page) #site-header {
+        padding-top: 0 !important;
+    }
+
+    :where(body.career-home, body.portfolio-page, body.research-page, body.cv-page, body.archive-page, body.knowledge-page) #site-header header {
+        width: 100% !important;
+        min-height: var(--career-shell-primary) !important;
+        margin: 0 !important;
+        padding: 10px 128px 10px 0 !important;
+        gap: 4px 24px !important;
+        border-bottom: 1px solid var(--career-line) !important;
+    }
+
+    :where(body.career-home, body.portfolio-page, body.research-page, body.cv-page, body.archive-page, body.knowledge-page) #site-header header h1 {
+        font-size: 21px !important;
+        line-height: 1.15 !important;
+    }
+
+    :where(body.career-home, body.portfolio-page, body.research-page, body.cv-page, body.archive-page, body.knowledge-page) #site-header .subtitle {
+        font-size: 15px !important;
+        line-height: 1.35 !important;
+    }
+
+    :where(body.career-home, body.portfolio-page, body.research-page, body.cv-page, body.archive-page, body.knowledge-page) #site-header .social-links {
+        display: flex !important;
+        align-self: center !important;
+        margin: 0 !important;
+    }
+
+    :where(body.career-home, body.portfolio-page, body.research-page, body.cv-page, body.archive-page, body.knowledge-page) #site-nav {
+        min-height: var(--career-shell-secondary) !important;
+        margin-bottom: 0 !important;
+        overflow-x: auto;
+        scrollbar-width: none;
+    }
+
+    :where(body.career-home, body.portfolio-page, body.research-page, body.cv-page, body.archive-page, body.knowledge-page) #site-nav::-webkit-scrollbar {
+        display: none;
+    }
+
+    :where(body.career-home, body.portfolio-page, body.research-page, body.cv-page, body.archive-page, body.knowledge-page) #site-nav .navigation {
+        display: grid !important;
+        grid-template-columns: repeat(var(--career-tab-count), minmax(0, 1fr)) !important;
+        width: 100% !important;
+        min-height: var(--career-shell-secondary) !important;
+        margin: 0 !important;
+        padding: 8px 0 !important;
+        gap: 6px !important;
+        border-bottom: 1px solid var(--career-line) !important;
+        overflow: visible;
+    }
+
+    :where(body.career-home, body.portfolio-page, body.research-page, body.cv-page, body.archive-page, body.knowledge-page) .navigation .nav-link {
+        display: inline-flex !important;
+        width: 100% !important;
+        min-width: 0 !important;
+        align-items: center;
+        justify-content: center;
+        padding: 8px 12px !important;
+        font-size: 14px !important;
+        line-height: 1.2 !important;
+    }
+
+    @media (max-width: 680px) {
+        :where(body.career-home, body.portfolio-page, body.research-page, body.cv-page, body.archive-page, body.knowledge-page) #site-header,
+        :where(body.career-home, body.portfolio-page, body.research-page, body.cv-page, body.archive-page, body.knowledge-page) #site-nav {
+            width: calc(100vw - 32px) !important;
+        }
+
+        :where(body.career-home, body.portfolio-page, body.research-page, body.cv-page, body.archive-page, body.knowledge-page) #site-header header {
+            height: var(--career-shell-primary-mobile) !important;
+            min-height: var(--career-shell-primary-mobile) !important;
+            padding: 10px 112px 10px 0 !important;
+        }
+
+        :where(body.career-home, body.portfolio-page, body.research-page, body.cv-page, body.archive-page, body.knowledge-page) #site-header .subtitle {
+            font-size: 13px !important;
+        }
+
+        :where(body.career-home, body.portfolio-page, body.research-page, body.cv-page, body.archive-page, body.knowledge-page) #site-header .social-links {
+            display: none !important;
+        }
+
+        :where(body.career-home, body.portfolio-page, body.research-page, body.cv-page, body.archive-page, body.knowledge-page) #site-nav .navigation {
+            width: 630px !important;
+            min-width: 630px !important;
+        }
+    }
 }
 
 /* Editorial homepage and knowledge-detail bridge added in July 2026. These
@@ -426,6 +535,239 @@
     }
 }
 
+/*
+ * July 2026 root-shell convergence.
+ * Page-specific styles may shape each hero, but the identity rail, navigation,
+ * content axis, type floor, and section rhythm are deliberately identical.
+ */
+@media screen {
+    body.career-home,
+    body.portfolio-page,
+    body.research-page,
+    body.cv-page,
+    body.archive-page,
+    body.knowledge-page {
+        font-size: var(--career-type-body);
+    }
+
+    .portfolio-container,
+    .research-container,
+    .cv-container,
+    .archive-container,
+    body.knowledge-page > .container {
+        width: min(calc(100% - 48px), var(--career-content)) !important;
+        max-width: var(--career-content) !important;
+    }
+
+    body.career-home #site-header,
+    body.portfolio-page #site-header,
+    body.research-page #site-header,
+    body.cv-page #site-header,
+    body.archive-page #site-header,
+    body.knowledge-page #site-header {
+        padding-top: 0 !important;
+    }
+
+    body.career-home #site-header header,
+    body.portfolio-page #site-header header,
+    body.research-page #site-header header,
+    body.cv-page #site-header header,
+    body.archive-page #site-header header,
+    body.knowledge-page #site-header header {
+        min-height: var(--career-shell-primary) !important;
+        margin: 0 !important;
+        padding: 10px 128px 10px 0 !important;
+        gap: 4px 24px !important;
+        border-bottom: 1px solid var(--career-line) !important;
+    }
+
+    body.career-home #site-header header h1,
+    body.portfolio-page #site-header header h1,
+    body.research-page #site-header header h1,
+    body.cv-page #site-header header h1,
+    body.archive-page #site-header header h1,
+    body.knowledge-page #site-header header h1 {
+        font-size: 21px !important;
+        line-height: 1.15 !important;
+    }
+
+    body.career-home #site-header .subtitle,
+    body.portfolio-page #site-header .subtitle,
+    body.research-page #site-header .subtitle,
+    body.cv-page #site-header .subtitle,
+    body.archive-page #site-header .subtitle,
+    body.knowledge-page #site-header .subtitle {
+        font-size: 15px !important;
+        line-height: 1.35 !important;
+    }
+
+    body.career-home #site-header .social-links,
+    body.portfolio-page #site-header .social-links,
+    body.research-page #site-header .social-links,
+    body.cv-page #site-header .social-links,
+    body.archive-page #site-header .social-links,
+    body.knowledge-page #site-header .social-links {
+        display: flex !important;
+        align-self: center !important;
+        margin: 0 !important;
+    }
+
+    body.career-home #site-nav,
+    body.portfolio-page #site-nav,
+    body.research-page #site-nav,
+    body.cv-page #site-nav,
+    body.archive-page #site-nav,
+    body.knowledge-page #site-nav {
+        min-height: var(--career-shell-secondary) !important;
+        margin-top: 0 !important;
+        margin-right: auto !important;
+        margin-bottom: 0 !important;
+        margin-left: auto !important;
+    }
+
+    body.career-home #site-nav .navigation,
+    body.portfolio-page #site-nav .navigation,
+    body.research-page #site-nav .navigation,
+    body.cv-page #site-nav .navigation,
+    body.archive-page #site-nav .navigation,
+    body.knowledge-page #site-nav .navigation {
+        min-height: var(--career-shell-secondary) !important;
+        margin: 0 !important;
+        padding: 8px 0 !important;
+        gap: 6px !important;
+        justify-content: flex-start !important;
+        border-bottom: 1px solid var(--career-line) !important;
+    }
+
+    body.career-home .navigation .nav-link,
+    body.portfolio-page .navigation .nav-link,
+    body.research-page .navigation .nav-link,
+    body.cv-page .navigation .nav-link,
+    body.archive-page .navigation .nav-link,
+    body.knowledge-page .navigation .nav-link {
+        padding: 8px 12px !important;
+        font-size: 14px !important;
+        line-height: 1.2 !important;
+    }
+
+    body.research-page .research-hero {
+        min-height: min(560px, calc(100svh - 124px)) !important;
+        padding: 56px 0 !important;
+    }
+
+    body.portfolio-page .portfolio-hero {
+        min-height: min(560px, calc(100svh - 124px)) !important;
+        padding: 56px 0 64px !important;
+    }
+
+    body.cv-page .cv-hero,
+    body.archive-page .archive-hero {
+        padding: 56px 0 !important;
+    }
+
+    .home-kicker,
+    .portfolio-hero .eyebrow,
+    .research-kicker,
+    .cv-eyebrow,
+    .home-section-heading > p,
+    .section-index,
+    .research-section-heading > p,
+    .cv-section-heading > span,
+    .case-number,
+    .evidence-meta,
+    .cv-project-head p,
+    .cv-date,
+    .archive-kicker,
+    .archive-section-heading > p {
+        font-size: var(--career-type-label) !important;
+        line-height: 1.45 !important;
+    }
+
+    .home-signal span,
+    .proof-item span,
+    .cv-snapshot strong,
+    .portfolio-disclosure :where(strong, p),
+    .archive-page :where(.lecture-meta, .course-week-date, .book-meta, .book-date),
+    body.knowledge-page :where(.blog-date, .book-date, .course-meta, .week-date, .week-references) {
+        font-size: 13px !important;
+        line-height: 1.6 !important;
+    }
+
+    .boundary-map small,
+    .system-node small,
+    .research-hero-tags span,
+    .case-status,
+    .cv-status,
+    .cv-project-head > span {
+        font-size: 12px !important;
+        line-height: 1.5 !important;
+    }
+
+    .lectures-page .lecture-card h3,
+    .reading-page .book-preview h3 {
+        font-size: 20px !important;
+        line-height: 1.35 !important;
+    }
+
+    .lectures-page .lecture-desc,
+    .reading-page .book-insight,
+    .blog-index .blog-excerpt,
+    .case-study :where(p, li),
+    .research-case :where(p, li),
+    .cv-project :where(p, li),
+    .cv-experience :where(p, li) {
+        font-size: 16px !important;
+        line-height: 1.7 !important;
+    }
+
+    @media (max-width: 680px) {
+        .portfolio-container,
+        .research-container,
+        .cv-container,
+        .archive-container,
+        body.knowledge-page > .container {
+            width: calc(100% - 32px) !important;
+        }
+
+        body.career-home #site-header header,
+        body.portfolio-page #site-header header,
+        body.research-page #site-header header,
+        body.cv-page #site-header header,
+        body.archive-page #site-header header,
+        body.knowledge-page #site-header header {
+            height: var(--career-shell-primary-mobile) !important;
+            min-height: var(--career-shell-primary-mobile) !important;
+            padding: 10px 112px 10px 0 !important;
+        }
+
+        body.career-home #site-header .subtitle,
+        body.portfolio-page #site-header .subtitle,
+        body.research-page #site-header .subtitle,
+        body.cv-page #site-header .subtitle,
+        body.archive-page #site-header .subtitle,
+        body.knowledge-page #site-header .subtitle {
+            font-size: 13px !important;
+        }
+
+        body.career-home #site-header .social-links,
+        body.portfolio-page #site-header .social-links,
+        body.research-page #site-header .social-links,
+        body.cv-page #site-header .social-links,
+        body.archive-page #site-header .social-links,
+        body.knowledge-page #site-header .social-links {
+            display: none !important;
+        }
+
+        body.research-page .research-hero,
+        body.portfolio-page .portfolio-hero,
+        body.cv-page .cv-hero,
+        body.archive-page .archive-hero {
+            min-height: auto !important;
+            padding: 44px 0 !important;
+        }
+    }
+}
+
 [data-theme="light"] {
     --career-bg: #f1f2ef;
     --career-surface: #fafaf8;
@@ -670,10 +1012,11 @@
     }
 
     .navigation {
-        display: flex !important;
-        align-items: center;
-        justify-content: flex-start !important;
-        gap: 4px;
+        display: grid !important;
+        grid-template-columns: repeat(var(--career-tab-count), minmax(0, 1fr));
+        align-items: stretch;
+        gap: 6px;
+        width: 100%;
         max-width: 100%;
         margin: 0 !important;
         padding: 12px 0 !important;
@@ -682,7 +1025,6 @@
         scrollbar-width: none;
         text-align: left !important;
         white-space: nowrap;
-        flex-wrap: nowrap !important;
     }
 
     .navigation::-webkit-scrollbar {
@@ -690,7 +1032,12 @@
     }
 
     .navigation .nav-link {
-        flex: 0 0 auto;
+        display: inline-flex;
+        width: 100%;
+        min-width: 0;
+        align-items: center;
+        justify-content: center;
+        box-sizing: border-box;
         margin: 0 !important;
         padding: 7px 11px !important;
         border: 1px solid transparent;
@@ -2617,5 +2964,70 @@
         body.career-home .proof-strip > article:last-child {
             border-bottom: 0 !important;
         }
+    }
+}
+
+/* Final readable-type layer: intentionally last in the shared cascade. */
+@media screen {
+    body.career-home,
+    body.portfolio-page,
+    body.research-page,
+    body.cv-page,
+    body.archive-page,
+    body.knowledge-page {
+        font-size: var(--career-type-body) !important;
+    }
+
+    .portfolio-hero .eyebrow,
+    .research-kicker,
+    .cv-eyebrow,
+    .section-index,
+    .research-section-heading > p,
+    .cv-section-heading > span,
+    .case-number,
+    .evidence-meta,
+    .cv-project-head p,
+    .cv-date,
+    .archive-kicker,
+    .archive-section-heading > p {
+        font-size: var(--career-type-label) !important;
+        line-height: 1.45 !important;
+    }
+
+    .home-signal span,
+    .proof-item span,
+    .cv-snapshot strong,
+    .portfolio-disclosure :where(strong, p),
+    .archive-page :where(.lecture-meta, .course-week-date, .book-meta, .book-date),
+    body.knowledge-page :where(.blog-date, .book-date, .course-meta, .week-date, .week-references) {
+        font-size: 13px !important;
+        line-height: 1.6 !important;
+    }
+
+    .boundary-map small,
+    .system-node small,
+    .research-hero-tags span,
+    .case-status,
+    .cv-status,
+    .cv-project-head > span {
+        font-size: 12px !important;
+        line-height: 1.5 !important;
+    }
+
+    .lectures-page .lecture-card h3,
+    .reading-page .book-preview h3 {
+        font-size: 20px !important;
+        line-height: 1.35 !important;
+    }
+
+    .lectures-page .lecture-desc,
+    .reading-page .book-insight,
+    .blog-index .blog-excerpt,
+    .case-study :where(p, li),
+    .research-case :where(p, li),
+    .cv-project :where(p, li),
+    .cv-experience :where(p, li) {
+        font-size: 16px !important;
+        line-height: 1.7 !important;
     }
 }

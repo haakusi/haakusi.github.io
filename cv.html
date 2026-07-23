@@ -26,128 +26,216 @@
         <div id="site-nav"></div>
 
         <main id="cv-main">
-            <header class="cv-hero">
-                <p class="cv-eyebrow" data-en="PUBLIC CV · JULY 2026" data-kr="공개 이력서 · 2026년 7월">PUBLIC CV · JULY 2026</p>
-                <h1><span class="cv-name-latin">Sewon Park</span><span class="cv-name-korean lang-kr" hidden>박세원</span></h1>
-                <p class="cv-role" data-en="AI-native Platform &amp; Product Engineering Lead" data-kr="AI-native 플랫폼·제품 엔지니어링 리드">AI-native Platform &amp; Product Engineering Lead</p>
-                <p class="cv-summary lang-en">Engineer with roughly eight years of experience connecting physical devices, enterprise software, developer platforms, and production-grade AI verification. I work where device packets, APIs, agent workflows, and release confidence meet.</p>
-                <p class="cv-summary lang-kr" hidden>물리 장치, 엔터프라이즈 소프트웨어, 개발자 플랫폼과 운영 수준의 AI 검증을 연결해 온 약 8년 경력의 엔지니어입니다. 장치 패킷·API·에이전트 워크플로·릴리스 신뢰성이 만나는 지점에서 일합니다.</p>
-                <div class="cv-actions">
+            <header class="cv-profile">
+                <div class="cv-profile-main">
+                    <p class="cv-eyebrow" data-en="PUBLIC CV · JULY 2026" data-kr="공개 이력서 · 2026년 7월">PUBLIC CV · JULY 2026</p>
+                    <h1><span class="cv-name-latin">Sewon Park</span><span class="cv-name-korean lang-kr" hidden>박세원</span></h1>
+                    <p class="cv-role" data-en="AI-native Platform &amp; Product Engineering Lead" data-kr="AI-native 플랫폼·제품 엔지니어링 리드">AI-native Platform &amp; Product Engineering Lead</p>
+                </div>
+                <div class="cv-profile-links" aria-label="CV links">
+                    <a href="mailto:haakusi@gmail.com">haakusi@gmail.com</a>
+                    <a href="https://github.com/swpark21" target="_blank" rel="noreferrer">github.com/swpark21</a>
                     <a href="swpark_cv.pdf" target="_blank" rel="noreferrer" data-en="English PDF" data-kr="영문 PDF">English PDF</a>
                     <a href="swpark_cv_ko.pdf" target="_blank" rel="noreferrer" data-en="Korean PDF" data-kr="한글 PDF">Korean PDF</a>
-                    <a href="mailto:haakusi@gmail.com">haakusi@gmail.com</a>
                 </div>
             </header>
 
-            <section class="cv-snapshot" aria-label="Career snapshot">
-                <div><span data-en="FOCUS" data-kr="초점">FOCUS</span><strong data-en="AI platform · DevEx · industrial software" data-kr="AI 플랫폼 · 개발자 경험 · 산업용 소프트웨어">AI platform · DevEx · industrial software</strong></div>
-                <div><span data-en="DIFFERENTIATOR" data-kr="차별점">DIFFERENTIATOR</span><strong data-en="Device boundary to developer abstraction" data-kr="장치 경계부터 개발자 추상화까지">Device boundary to developer abstraction</strong></div>
-                <div><span data-en="OPERATING MODEL" data-kr="작업 원칙">OPERATING MODEL</span><strong data-en="Verification before trust" data-kr="신뢰보다 검증을 먼저">Verification before trust</strong></div>
-            </section>
-
-            <section class="cv-section" aria-labelledby="impact-title">
-                <div class="cv-section-heading">
-                    <span>01</span>
-                    <h2 id="impact-title" data-en="Selected impact" data-kr="대표 성과">Selected impact</h2>
+            <section class="cv-intro" aria-labelledby="profile-title">
+                <div class="cv-intro-copy">
+                    <p class="cv-kicker" data-en="CAREER PROFILE" data-kr="경력 요약">CAREER PROFILE</p>
+                    <h2 id="profile-title" data-en="Device boundary to AI platform" data-kr="장치 경계부터 AI 플랫폼까지">Device boundary to AI platform</h2>
+                    <p class="lang-en">Across roughly eight years, I have moved from telecom network software and radar·camera·FPGA systems to biometric access-control platforms, then to AI-native developer products and engineering transformation. My strength is connecting device packets and SDKs to backend services, web experiences, agent workflows, and evidence-based release gates.</p>
+                    <p class="lang-kr" hidden>약 8년 동안 통신사 네트워크 소프트웨어와 레이더·카메라·FPGA 시스템에서 출발해 생체인증 출입통제 플랫폼, AI-native 개발자 제품과 엔지니어링 전환으로 역할을 확장했습니다. 장치 패킷·SDK부터 백엔드·웹·에이전트 워크플로와 증거 기반 릴리스 게이트까지 연결하는 것이 강점입니다.</p>
                 </div>
-
-                <article class="cv-project cv-project-featured">
-                    <div class="cv-project-head">
-                        <div><p>2026 · PRODUCTIZING</p><h3 data-en="BioStar Developer Portal with natural-language verification" data-kr="자연어 검증을 갖춘 BioStar Developer Portal">BioStar Developer Portal with natural-language verification</h3></div>
-                        <span data-en="Product owner · architecture · full-stack" data-kr="제품 책임 · 아키텍처 · 풀스택">Product owner · architecture · full-stack</span>
-                    </div>
-                    <p class="lang-en">Independently designed and implemented an integrated Developer Portal in eight weeks using an AI-native workflow. Documentation, an API source of truth, a device emulator, MCP tools, a Linux/AWS sandbox, and evaluation gates share one operation model. Complex user, door, authentication, and event histories can be recalled and replayed in natural language for immediate verification.</p>
-                    <p class="lang-kr" hidden>AI-native 방식으로 1인 8주 동안 통합 Developer Portal을 설계·구현했습니다. 문서·API 단일 기준·장치 에뮬레이터·MCP 도구·Linux/AWS 샌드박스·평가 게이트가 하나의 operation model을 공유하며, 사용자·도어·인증·이벤트의 복합 이력을 자연어로 호출·재현해 즉시 검증합니다.</p>
-                    <ul>
-                        <li data-en="One operation model shared by six developer-facing surfaces" data-kr="여섯 개발자 표면이 공유하는 하나의 운영 모델">One operation model shared by six developer-facing surfaces</li>
-                        <li data-en="Same gateway concept from device emulator toward physical-device workflows" data-kr="장치 에뮬레이터에서 실제 장치 워크플로까지 이어지는 동일한 게이트웨이 개념">Same gateway concept from device emulator toward physical-device workflows</li>
-                        <li data-en="Recognition through a company-wide engineering excellence program" data-kr="전사 엔지니어링 우수 프로그램을 통한 성과 인정">Recognition through a company-wide engineering excellence program</li>
-                    </ul>
-                </article>
-
-                <div class="cv-project-grid">
-                    <article class="cv-project">
-                        <div class="cv-project-head">
-                            <div><p>2026 · IN PROGRESS</p><h3 data-en="~200K LOC modernization with meaning-preservation gates" data-kr="약 20만 LOC 의미 보존형 현대화">~200K LOC modernization with meaning-preservation gates</h3></div>
-                        </div>
-                        <p class="lang-en">Leading the frontend team through an AI-native rewrite of about 200K LOC from a mixed Angular/React architecture. Backend payloads and responses, API contracts, React behavior, useEffect, DOM, UI, CSS assertions, and E2E flows are verified as separate release gates.</p>
-                        <p class="lang-kr" hidden>프론트팀을 리딩하며 Angular/React 혼합 구조의 약 20만 LOC를 AI-native 방식으로 전면 전환합니다. Backend payload/response, API contract, React 동작, useEffect, DOM, UI, CSS assertion과 E2E 흐름을 독립 릴리스 게이트로 검증합니다.</p>
-                    </article>
-
-                    <article class="cv-project">
-                        <div class="cv-project-head">
-                            <div><p>2021—2024 · CORE PLATFORM</p><h3 data-en="Gateway, device, and distributed-event platform" data-kr="게이트웨이·장치·분산 이벤트 플랫폼">Gateway, device, and distributed-event platform</h3></div>
-                        </div>
-                        <p class="lang-en">Implemented a Spring Cloud Gateway MSA foundation and vertically integrated device packets, identity, authentication, and event flows across C++, Java/Kotlin, and web products. A distributed-event pipeline redesign improved processing performance by 40%+, while targeted data-structure and query work reduced CPU processing by about 50% and bulk deletion from the 30-second range to about three seconds.</p>
-                        <p class="lang-kr" hidden>Spring Cloud Gateway 기반 MSA를 구현하고 C++·Java/Kotlin·웹 제품 전반에서 장치 패킷·신원·인증·이벤트 흐름을 수직 통합했습니다. 분산 이벤트 파이프라인 재설계로 처리 성능을 40%+ 개선했으며, 자료구조와 쿼리 개선으로 CPU 처리를 약 50%, 대량 삭제를 30초대에서 약 3초로 단축했습니다.</p>
-                    </article>
-                </div>
+                <dl class="cv-facts">
+                    <div><dt data-en="EXPERIENCE" data-kr="경력">EXPERIENCE</dt><dd data-en="Approx. 8 years · 3 companies" data-kr="약 8년 · 3개 회사">Approx. 8 years · 3 companies</dd></div>
+                    <div><dt data-en="CURRENT" data-kr="현재">CURRENT</dt><dd data-en="Integration Development Team Lead" data-kr="Integration개발팀 팀장">Integration Development Team Lead</dd></div>
+                    <div><dt data-en="FOCUS" data-kr="초점">FOCUS</dt><dd data-en="AI Platform · DevEx · Industrial Software" data-kr="AI 플랫폼 · 개발자 경험 · 산업용 소프트웨어">AI Platform · DevEx · Industrial Software</dd></div>
+                    <div><dt data-en="PRINCIPLE" data-kr="원칙">PRINCIPLE</dt><dd data-en="Verification before trust" data-kr="신뢰보다 검증을 먼저">Verification before trust</dd></div>
+                </dl>
             </section>
 
             <section class="cv-section" aria-labelledby="experience-title">
                 <div class="cv-section-heading">
-                    <span>02</span>
-                    <h2 id="experience-title" data-en="Experience" data-kr="경력">Experience</h2>
+                    <span>01</span>
+                    <div>
+                        <p data-en="PROFESSIONAL HISTORY" data-kr="직업 이력">PROFESSIONAL HISTORY</p>
+                        <h2 id="experience-title" data-en="Experience" data-kr="경력">Experience</h2>
+                    </div>
                 </div>
 
-                <article class="cv-experience">
-                    <div class="cv-date">2021.02—PRESENT</div>
-                    <div>
-                        <h3 data-en="Platform &amp; Product Engineering · AI-native Mission Lead" data-kr="플랫폼·제품 엔지니어링 · AI-native 미션 리드">Platform &amp; Product Engineering · AI-native Mission Lead</h3>
-                        <p class="cv-organization">Suprema · Seongnam, Korea</p>
-                        <ul>
-                            <li data-en="As Integration Development Team Lead, lead Developer Portal productization, ~200K LOC modernization, and product/version-aware E2E verification as cross-functional AI-native missions." data-kr="Integration개발팀 팀장으로 Developer Portal 제품화, 약 20만 LOC 현대화, 제품·버전별 E2E 검증을 부서 횡단 AI-native 미션으로 리딩합니다.">As Integration Development Team Lead, lead Developer Portal productization, ~200K LOC modernization, and product/version-aware E2E verification as cross-functional AI-native missions.</li>
-                            <li data-en="Developed vertically across C++ device packets and SDKs, Java/Kotlin services, user and identity domains, distributed events, web products, and cloud integrations, including new-hardware features and cross-layer debugging." data-kr="C++ 장치 패킷·SDK, Java/Kotlin 서비스, 사용자·신원 도메인, 분산 이벤트, 웹 제품과 클라우드 통합을 수직으로 개발했으며 신규 하드웨어 기능과 계층 간 디버깅을 담당했습니다.">Developed vertically across C++ device packets and SDKs, Java/Kotlin services, user and identity domains, distributed events, web products, and cloud integrations, including new-hardware features and cross-layer debugging.</li>
-                            <li data-en="Designed reusable AI verification workflows, led three interns through LLM-assisted unit-test generation, and shared verification-first practices through internal technical sessions and external mentoring." data-kr="재사용 가능한 AI 검증 워크플로를 설계하고 인턴 3명의 LLM 보조 unit test 생성 과제를 리딩했으며 사내 기술 세션과 외부 멘토링으로 검증 우선 방식을 전파했습니다.">Designed reusable AI verification workflows, led three interns through LLM-assisted unit-test generation, and shared verification-first practices through internal technical sessions and external mentoring.</li>
-                        </ul>
-                    </div>
-                </article>
+                <div class="cv-experience-ledger">
+                    <article class="cv-entry cv-entry-current">
+                        <div class="cv-entry-rail">
+                            <time>2021.02—PRESENT</time>
+                            <span data-en="5+ YEARS" data-kr="5년+">5+ YEARS</span>
+                        </div>
+                        <div class="cv-entry-body">
+                            <header class="cv-entry-header">
+                                <div>
+                                    <h3>Suprema</h3>
+                                    <p data-en="Platform &amp; Product Engineering · Integration Development Team Lead" data-kr="플랫폼·제품 엔지니어링 · Integration개발팀 팀장">Platform &amp; Product Engineering · Integration Development Team Lead</p>
+                                </div>
+                                <span>Seongnam, Korea</span>
+                            </header>
+                            <p class="cv-entry-summary lang-en">Lead cross-functional AI-native missions while retaining hands-on ownership of the access-control product core. Work spans C++ device packets and SDKs, Java/Kotlin services, identity and event domains, React products, cloud sandboxes, and verification systems.</p>
+                            <p class="cv-entry-summary lang-kr" hidden>출입통제 제품 코어의 직접 개발 역량을 유지하면서 부서 횡단 AI-native 미션을 리딩합니다. C++ 장치 패킷·SDK, Java/Kotlin 서비스, 신원·이벤트 도메인, React 제품, 클라우드 샌드박스와 검증 시스템을 수직으로 다룹니다.</p>
 
-                <article class="cv-experience">
-                    <div class="cv-date">2020.04—2021.01</div>
-                    <div>
-                        <h3 data-en="Research Engineer · Sensor Software" data-kr="연구원 · 센서 소프트웨어">Research Engineer · Sensor Software</h3>
-                        <p class="cv-organization">HBrain · Korea</p>
-                        <ul>
-                            <li data-en="Developed Windows software for radar, camera, and FPGA-based pedestrian-detection systems using C/C++, MFC, OpenGL, and device SDKs." data-kr="C/C++·MFC·OpenGL·장치 SDK로 레이더·카메라·FPGA 기반 보행자 검지 Windows 소프트웨어를 개발했습니다.">Developed Windows software for radar, camera, and FPGA-based pedestrian-detection systems using C/C++, MFC, OpenGL, and device SDKs.</li>
-                            <li data-en="Contributed to public R&amp;D projects and wrote requirements, protocol, and operational-scenario documents." data-kr="공공 R&amp;D 과제에 참여하고 요구사항·프로토콜·운영 시나리오 문서를 작성했습니다.">Contributed to public R&amp;D projects and wrote requirements, protocol, and operational-scenario documents.</li>
-                        </ul>
-                    </div>
-                </article>
+                            <div class="cv-contributions" aria-label="Selected contributions at Suprema">
+                                <article class="cv-contribution">
+                                    <header>
+                                        <p><time>2026.04—PRESENT</time><span data-en="PRODUCTIZING" data-kr="제품화 진행 중">PRODUCTIZING</span></p>
+                                        <h4 data-en="BioStar Developer Portal · 1 person · 8 weeks" data-kr="BioStar Developer Portal · 1인 · 8주">BioStar Developer Portal · 1 person · 8 weeks</h4>
+                                    </header>
+                                    <dl class="cv-evidence">
+                                        <div><dt data-en="Problem" data-kr="문제">Problem</dt><dd data-en="API, SDK, documentation, and execution environments were fragmented, so a developer's first success depended on setup knowledge and technical support." data-kr="API·SDK·문서·실행 환경이 분절되어 개발자의 첫 성공이 설정 지식과 기술지원에 의존했습니다.">API, SDK, documentation, and execution environments were fragmented, so a developer's first success depended on setup knowledge and technical support.</dd></div>
+                                        <div><dt data-en="Action" data-kr="실행">Action</dt><dd data-en="Owned competitor analysis, problem framing, architecture, product design, full-stack implementation, and verification. Unified Docs, API SSOT, a device SDK emulator, MCP tools, a Linux/AWS sandbox, and evaluation gates." data-kr="경쟁사 분석·문제 정의부터 아키텍처·제품 설계·풀스택 구현·검증까지 담당하고 Docs·API SSOT·장치 SDK 에뮬레이터·MCP 도구·Linux/AWS 샌드박스·평가 게이트를 통합했습니다.">Owned competitor analysis, problem framing, architecture, product design, full-stack implementation, and verification. Unified Docs, API SSOT, a device SDK emulator, MCP tools, a Linux/AWS sandbox, and evaluation gates.</dd></div>
+                                        <div><dt data-en="Outcome" data-kr="결과">Outcome</dt><dd data-en="Postman-free browser API execution, hardware-free SDK workflow rehearsal, and natural-language replay of user·door·authentication·event histories. Selected among five finalist teams, later received the company-wide excellence award, and is being expanded toward physical-device workflows for a September release target." data-kr="Postman 없는 브라우저 API 실행, 실제 장치 없는 SDK 워크플로 재현, 사용자·도어·인증·이벤트 이력의 자연어 호출·재검증을 구현했습니다. 최종 5팀에 선정된 뒤 전사 우수상을 받았고, 9월 출시 목표로 실제 장치 연계까지 확장 중입니다.">Postman-free browser API execution, hardware-free SDK workflow rehearsal, and natural-language replay of user·door·authentication·event histories. Selected among five finalist teams, later received the company-wide excellence award, and is being expanded toward physical-device workflows for a September release target.</dd></div>
+                                    </dl>
+                                    <p class="cv-stack">TypeScript · React · Python · REST API/SDK · MCP · Docker/Linux · AWS · Playwright</p>
+                                </article>
 
-                <article class="cv-experience">
-                    <div class="cv-date">2018.10—2020.02</div>
-                    <div>
-                        <h3 data-en="Software Developer · Network Management" data-kr="소프트웨어 개발자 · 네트워크 관리">Software Developer · Network Management</h3>
-                        <p class="cv-organization">AtData · Korea</p>
-                        <ul>
-                            <li data-en="Developed and maintained web applications for SK Telecom's network-management program, including IP configuration, transmission views, and raw-data processing." data-kr="SK Telecom 네트워크 관리 프로그램에서 IP 설정·전송망 화면·raw data 처리 웹 애플리케이션을 개발하고 유지보수했습니다.">Developed and maintained web applications for SK Telecom's network-management program, including IP configuration, transmission views, and raw-data processing.</li>
-                            <li data-en="Implemented Jenkins-based deployment automation and supported new server environments." data-kr="Jenkins 기반 배포 자동화와 신규 서버 환경 구축을 담당했습니다.">Implemented Jenkins-based deployment automation and supported new server environments.</li>
-                        </ul>
-                    </div>
-                </article>
-            </section>
+                                <article class="cv-contribution">
+                                    <header>
+                                        <p><time>2026—PRESENT</time><span data-en="IN PROGRESS" data-kr="진행 중">IN PROGRESS</span></p>
+                                        <h4 data-en="~200K LOC modernization · frontend team lead" data-kr="약 20만 LOC 현대화 · 프론트팀 리딩">~200K LOC modernization · frontend team lead</h4>
+                                    </header>
+                                    <dl class="cv-evidence">
+                                        <div><dt data-en="Problem" data-kr="문제">Problem</dt><dd data-en="Angular embedded in an iframe and mixed with React had accumulated routing, back-navigation, and state-boundary debt." data-kr="iframe 안의 Angular와 React 혼재 구조로 routing·뒤로가기·상태 경계 부채가 누적돼 있었습니다.">Angular embedded in an iframe and mixed with React had accumulated routing, back-navigation, and state-boundary debt.</dd></div>
+                                        <div><dt data-en="Action" data-kr="실행">Action</dt><dd data-en="Lead the frontend team through an AI-native rewrite and separate backend payload/response, API contract, unit, React/useEffect, DOM, UI, CSS assertion, and E2E checks into independent meaning-preservation gates." data-kr="프론트팀을 리딩해 AI-native 전면 전환을 수행하고 backend payload/response, API contract, unit, React/useEffect, DOM, UI, CSS assertion, E2E를 독립적인 의미 보존 게이트로 구성했습니다.">Lead the frontend team through an AI-native rewrite and separate backend payload/response, API contract, unit, React/useEffect, DOM, UI, CSS assertion, and E2E checks into independent meaning-preservation gates.</dd></div>
+                                        <div><dt data-en="Outcome" data-kr="결과">Outcome</dt><dd data-en="Removed the architectural causes of the navigation and state problems and established a repeatable method for validating AI-generated migration code toward the next major release." data-kr="내비게이션·상태 문제의 구조적 원인을 해소하고, 차기 메이저 릴리스를 향해 AI 생성 전환 코드를 검증하는 반복 가능한 방법을 정립했습니다.">Removed the architectural causes of the navigation and state problems and established a repeatable method for validating AI-generated migration code toward the next major release.</dd></div>
+                                    </dl>
+                                    <p class="cv-stack">TypeScript · React · Angular · Playwright · REST API · DOM/UI/CSS/E2E</p>
+                                </article>
 
-            <section class="cv-section" aria-labelledby="research-cv-title">
-                <div class="cv-section-heading">
-                    <span>03</span>
-                    <h2 id="research-cv-title" data-en="Research &amp; education" data-kr="연구·학력">Research &amp; education</h2>
-                </div>
+                                <article class="cv-contribution">
+                                    <header>
+                                        <p><time>2026—PRESENT</time><span data-en="IN PROGRESS" data-kr="진행 중">IN PROGRESS</span></p>
+                                        <h4 data-en="Version-aware E2E · release confidence as a shared asset" data-kr="Version-aware E2E · 릴리스 신뢰성의 공통 자산화">Version-aware E2E · release confidence as a shared asset</h4>
+                                    </header>
+                                    <dl class="cv-evidence">
+                                        <div><dt data-en="Goal" data-kr="목표">Goal</dt><dd data-en="Detect product- and version-specific regressions before release instead of finding them again through manual checks." data-kr="제품·버전별 회귀를 수동 확인 과정에서 다시 찾지 않고 릴리스 전에 탐지하는 것이 목표입니다.">Detect product- and version-specific regressions before release instead of finding them again through manual checks.</dd></div>
+                                        <div><dt data-en="Action" data-kr="실행">Action</dt><dd data-en="Turn critical journeys into reproducible fixtures and layer API, UI, and CSS gates so the same scenario can be replayed against each release line." data-kr="critical journey를 재현 가능한 fixture로 전환하고 API·UI·CSS 게이트를 분리해 동일 시나리오가 릴리스별로 반복 검증되도록 구성합니다.">Turn critical journeys into reproducible fixtures and layer API, UI, and CSS gates so the same scenario can be replayed against each release line.</dd></div>
+                                        <div><dt data-en="Outcome" data-kr="결과">Outcome</dt><dd data-en="Building a common regression system that makes version differences visible and release confidence reusable across product teams." data-kr="버전 차이를 가시화하고 릴리스 신뢰성을 제품팀이 재사용할 수 있는 공통 회귀 체계를 구축 중입니다.">Building a common regression system that makes version differences visible and release confidence reusable across product teams.</dd></div>
+                                    </dl>
+                                    <p class="cv-stack">TypeScript · Playwright · REST API · UI/CSS assertion · E2E automation</p>
+                                </article>
 
-                <div class="cv-research-grid">
-                    <article>
-                        <p class="cv-status" data-en="RESEARCH IN PROGRESS" data-kr="진행 중인 연구">RESEARCH IN PROGRESS</p>
-                        <h3 data-en="Explainable retrieval &amp; hybrid model evaluation" data-kr="설명 가능한 검색·하이브리드 모델 평가">Explainable retrieval &amp; hybrid model evaluation</h3>
-                        <ul>
-                            <li data-en="Expert-knowledge and VLM-based explainable traditional-dance retrieval and recommendation" data-kr="전문가 지식과 VLM 기반 설명 가능한 전통무용 검색·추천">Expert-knowledge and VLM-based explainable traditional-dance retrieval and recommendation</li>
-                            <li data-en="Hybrid quantum–classical framework comparing classical ML and QML candidates under shared data splits, budgets, and evaluation gates" data-kr="동일한 데이터 분할·예산·평가 게이트에서 고전 ML과 QML 후보를 비교하는 양자–고전 하이브리드 프레임워크">Hybrid quantum–classical framework comparing classical ML and QML candidates under shared data splits, budgets, and evaluation gates</li>
-                        </ul>
+                                <article class="cv-contribution">
+                                    <header>
+                                        <p><time>2021—2024</time><span data-en="CORE PLATFORM" data-kr="코어 플랫폼">CORE PLATFORM</span></p>
+                                        <h4 data-en="Gateway, device, and distributed-event platform" data-kr="게이트웨이·장치·분산 이벤트 플랫폼">Gateway, device, and distributed-event platform</h4>
+                                    </header>
+                                    <dl class="cv-evidence">
+                                        <div><dt data-en="Scope" data-kr="범위">Scope</dt><dd data-en="Integrated device packets, capability cache, selective user sync, biometric login, face registration, Remote Enrollment, and new-hardware features across C++ servers, Java/Kotlin services, and web products." data-kr="장치 패킷·capability cache·선택적 사용자 동기화·생체인증 로그인·얼굴 등록·Remote Enrollment·신규 하드웨어 기능을 C++ 서버, Java/Kotlin 서비스와 웹 제품에 통합했습니다.">Integrated device packets, capability cache, selective user sync, biometric login, face registration, Remote Enrollment, and new-hardware features across C++ servers, Java/Kotlin services, and web products.</dd></div>
+                                        <div><dt data-en="Platform" data-kr="플랫폼">Platform</dt><dd data-en="Replaced Unified Gateway/Nginx with Spring Cloud Gateway, implementing URL and header routing, rate limiting, circuit breaking, TLS 1.2, and dynamic configuration refresh without restarts." data-kr="Unified Gateway/Nginx를 Spring Cloud Gateway로 대체하고 URL·헤더 라우팅, Rate Limiter, Circuit Breaker, TLS 1.2와 무중단 동적 설정 반영을 구현했습니다.">Replaced Unified Gateway/Nginx with Spring Cloud Gateway, implementing URL and header routing, rate limiting, circuit breaking, TLS 1.2, and dynamic configuration refresh without restarts.</dd></div>
+                                        <div><dt data-en="Outcome" data-kr="결과">Outcome</dt><dd data-en="Improved distributed-event processing by 40%+, reduced real-time lookup CPU time by about 50%, and shortened bulk-user deletion from the 30-second range to about three seconds (30 sec → 3 sec)." data-kr="분산 이벤트 처리 성능을 40%+ 개선하고 실시간 조회 CPU 시간을 약 50% 줄였으며 대량 사용자 삭제를 30초대 → 3초대로 단축했습니다.">Improved distributed-event processing by 40%+, reduced real-time lookup CPU time by about 50%, and shortened bulk-user deletion from the 30-second range to about three seconds (30 sec → 3 sec).</dd></div>
+                                    </dl>
+                                    <p class="cv-stack">Java · Kotlin · C++ · Spring Boot · MariaDB · Microsoft SQL Server · gRPC · Apache Ignite · ZooKeeper · AWS Lambda/S3</p>
+                                </article>
+
+                                <article class="cv-contribution">
+                                    <header>
+                                        <p><time>2025—2026</time><span data-en="ENGINEERING ENABLEMENT" data-kr="엔지니어링 전파">ENGINEERING ENABLEMENT</span></p>
+                                        <h4 data-en="AI-native delivery and verification practices" data-kr="AI-native 개발·검증 방법론 확산">AI-native delivery and verification practices</h4>
+                                    </header>
+                                    <dl class="cv-evidence">
+                                        <div><dt data-en="Action" data-kr="실행">Action</dt><dd data-en="Designed a GitLab MR event → coverage measurement → LLM unit-test generation → coverage remeasurement workflow and led three interns through its implementation." data-kr="GitLab MR event → coverage 측정 → LLM unit test 생성 → coverage 재측정 워크플로를 설계하고 인턴 3명의 구현을 리딩했습니다.">Designed a GitLab MR event → coverage measurement → LLM unit-test generation → coverage remeasurement workflow and led three interns through its implementation.</dd></div>
+                                        <div><dt data-en="Scale" data-kr="확산">Scale</dt><dd data-en="Shared agent architecture, AI-native workflow, and verification-gate practices through the TA AI TF, internal seminars, examples, and mentoring." data-kr="TA AI TF, 사내 세미나, 예제와 멘토링을 통해 agent architecture, AI-native workflow와 검증 게이트 방식을 전파했습니다.">Shared agent architecture, AI-native workflow, and verification-gate practices through the TA AI TF, internal seminars, examples, and mentoring.</dd></div>
+                                        <div><dt data-en="Outcome" data-kr="결과">Outcome</dt><dd data-en="Turned individual AI-assisted implementation habits into workflows that teams and learners can repeat and verify." data-kr="개인의 AI 보조 구현 방식을 팀과 학습자가 반복·검증할 수 있는 워크플로로 전환했습니다.">Turned individual AI-assisted implementation habits into workflows that teams and learners can repeat and verify.</dd></div>
+                                    </dl>
+                                    <p class="cv-stack">GitLab CI/CD · LLM agents · code coverage · unit-test automation · evaluation gates</p>
+                                </article>
+                            </div>
+                        </div>
                     </article>
 
-                    <article class="cv-education-list">
-                        <div><time>2026—PRESENT</time><strong data-en="Ph.D. coursework, AI Convergence" data-kr="인공지능융합 박사과정">Ph.D. coursework, AI Convergence</strong><span>Sungkyunkwan University</span></div>
-                        <div><time>2019—2021</time><strong data-en="M.S., Applied Data Science" data-kr="응용데이터사이언스 석사">M.S., Applied Data Science</strong><span>Sungkyunkwan University</span><small data-en="Thesis: response-target prediction for public petitions under class imbalance" data-kr="석사논문: 데이터 불균형을 고려한 국민청원 답변 대상 예측">Thesis: response-target prediction for public petitions under class imbalance</small></div>
-                        <div><time>2010—2017</time><strong data-en="B.S., Maritime Police Systems" data-kr="해양경찰시스템 학사">B.S., Maritime Police Systems</strong><span>Gyeongsang National University</span></div>
+                    <article class="cv-entry">
+                        <div class="cv-entry-rail"><time>2020.04—2021.01</time><span>10 MONTHS</span></div>
+                        <div class="cv-entry-body">
+                            <header class="cv-entry-header">
+                                <div><h3>HBrain</h3><p data-en="Research Engineer · Sensor Software" data-kr="연구원 · 센서 소프트웨어">Research Engineer · Sensor Software</p></div>
+                                <span>Korea</span>
+                            </header>
+                            <ul class="cv-bullets">
+                                <li data-en="Built radar·camera·FPGA pedestrian-detection and visualization software with C/C++, MFC, OpenGL, Windows API, and device SDKs; debugged sensor communication and integrated new device functions." data-kr="C/C++·MFC·OpenGL·Windows API·장치 SDK로 레이더·카메라·FPGA 보행자 검지·시각화 소프트웨어를 개발하고 센서 통신 디버깅과 신규 장치 기능 통합을 수행했습니다.">Built radar·camera·FPGA pedestrian-detection and visualization software with C/C++, MFC, OpenGL, Windows API, and device SDKs; debugged sensor communication and integrated new device functions.</li>
+                                <li data-en="Authored requirements, protocols, and operational scenarios for public R&amp;D projects and presented AI traffic-safety work at the Korean Society of Intelligent Transport Systems." data-kr="공공 R&amp;D 과제의 요구정의서·프로토콜·운영 시나리오를 작성하고 한국ITS학회에서 AI 교통안전 연구를 발표했습니다.">Authored requirements, protocols, and operational scenarios for public R&amp;D projects and presented AI traffic-safety work at the Korean Society of Intelligent Transport Systems.</li>
+                            </ul>
+                        </div>
+                    </article>
+
+                    <article class="cv-entry">
+                        <div class="cv-entry-rail"><time>2018.10—2020.02</time><span>1 YEAR 5 MONTHS</span></div>
+                        <div class="cv-entry-body">
+                            <header class="cv-entry-header">
+                                <div><h3>AtData</h3><p data-en="Software Developer · Network Management" data-kr="소프트웨어 개발자 · 네트워크 관리">Software Developer · Network Management</p></div>
+                                <span>Korea</span>
+                            </header>
+                            <ul class="cv-bullets">
+                                <li data-en="Developed and operated SK Telecom TANGO network-management web software, including IP configuration, transmission-network visualization, and raw-data processing." data-kr="SK Telecom TANGO 네트워크 관리 웹에서 IP configuration·전송망 시각화·raw data 처리 기능을 개발하고 운영했습니다.">Developed and operated SK Telecom TANGO network-management web software, including IP configuration, transmission-network visualization, and raw-data processing.</li>
+                                <li data-en="Supported change requests, built new server environments, and automated delivery with Jenkins." data-kr="CR·유지보수, 신규 서버 환경 구축과 Jenkins 기반 배포 자동화를 수행했습니다.">Supported change requests, built new server environments, and automated delivery with Jenkins.</li>
+                            </ul>
+                        </div>
+                    </article>
+                </div>
+            </section>
+
+            <section class="cv-section" aria-labelledby="education-title">
+                <div class="cv-section-heading">
+                    <span>02</span>
+                    <div>
+                        <p data-en="ACADEMIC FOUNDATION" data-kr="학문적 기반">ACADEMIC FOUNDATION</p>
+                        <h2 id="education-title" data-en="Education &amp; research" data-kr="학력·연구">Education &amp; research</h2>
+                    </div>
+                </div>
+                <div class="cv-compact-ledger">
+                    <article class="cv-compact-row">
+                        <div><time>2026—PRESENT</time><span data-en="IN PROGRESS" data-kr="진행 중">IN PROGRESS</span></div>
+                        <div><h3 data-en="Ph.D. coursework · AI Convergence" data-kr="인공지능융합 박사과정">Ph.D. coursework · AI Convergence</h3><p>Sungkyunkwan University</p></div>
+                    </article>
+                    <article class="cv-compact-row">
+                        <div><time>2019—2021</time><span data-en="M.S." data-kr="석사">M.S.</span></div>
+                        <div><h3 data-en="Applied Data Science" data-kr="데이터사이언스융합">Applied Data Science</h3><p>Sungkyunkwan University</p><small data-en="Thesis: response-target prediction for public petitions under class imbalance" data-kr="석사논문: 데이터 불균형을 고려한 국민청원 답변 대상 예측">Thesis: response-target prediction for public petitions under class imbalance</small></div>
+                    </article>
+                    <article class="cv-compact-row">
+                        <div><time>2010—2017</time><span data-en="B.S." data-kr="학사">B.S.</span></div>
+                        <div><h3 data-en="Maritime Police Systems" data-kr="해양경찰시스템">Maritime Police Systems</h3><p>Gyeongsang National University</p></div>
+                    </article>
+                    <article class="cv-compact-row cv-research-row">
+                        <div><span data-en="ACTIVE RESEARCH" data-kr="진행 연구">ACTIVE RESEARCH</span></div>
+                        <div><h3 data-en="Explainable traditional-dance retrieval &amp; recommendation" data-kr="설명 가능한 전통무용 검색·추천">Explainable traditional-dance retrieval &amp; recommendation</h3><p data-en="Combines expert domain knowledge and VLM evidence to retrieve, recommend, and explain movement candidates without hiding the basis of judgment." data-kr="전문가 도메인 지식과 VLM 근거를 결합해 판단 근거를 숨기지 않는 동작 검색·추천·설명 방식을 연구합니다.">Combines expert domain knowledge and VLM evidence to retrieve, recommend, and explain movement candidates without hiding the basis of judgment.</p></div>
+                    </article>
+                    <article class="cv-compact-row cv-research-row">
+                        <div><span data-en="ACTIVE RESEARCH" data-kr="진행 연구">ACTIVE RESEARCH</span></div>
+                        <div><h3 data-en="Hybrid quantum–classical model evaluation" data-kr="양자–고전 하이브리드 모델 평가">Hybrid quantum–classical model evaluation</h3><p data-en="Compares classical ML and QML candidates under shared splits, budgets, and evaluation gates so model choice is based on evidence rather than novelty." data-kr="고전 ML과 QML 후보를 동일한 데이터 분할·예산·평가 게이트에서 비교해 새로움이 아니라 근거로 모델을 선택하는 프레임워크를 준비합니다.">Compares classical ML and QML candidates under shared splits, budgets, and evaluation gates so model choice is based on evidence rather than novelty.</p></div>
+                    </article>
+                </div>
+            </section>
+
+            <section class="cv-section" aria-labelledby="leadership-title">
+                <div class="cv-section-heading">
+                    <span>03</span>
+                    <div>
+                        <p data-en="LEADERSHIP &amp; COMMUNITY" data-kr="리더십·커뮤니티">LEADERSHIP &amp; COMMUNITY</p>
+                        <h2 id="leadership-title" data-en="Enablement &amp; recognition" data-kr="전파·수상">Enablement &amp; recognition</h2>
+                    </div>
+                </div>
+                <div class="cv-compact-ledger">
+                    <article class="cv-compact-row">
+                        <div><time>2025—2026</time><span data-en="MENTORING" data-kr="멘토링">MENTORING</span></div>
+                        <div><h3 data-en="Four AI learning programs · sustained project mentoring" data-kr="4개 AI 교육과정 · 지속 프로젝트 멘토링">Four AI learning programs · sustained project mentoring</h3><p data-en="Supported problem framing, technology choices, implementation, and verification across Codeit, an AI bootcamp, and SK Networks Family AI Camp cohorts 27 and 28. Current teams cover a traffic-dispute AI service and a personalized fashion-recommendation service." data-kr="Codeit·AI 부트캠프·SK Networks Family AI Camp 27기·28기에서 문제 정의·기술 선택·구현·검증을 지원했습니다. 현재 교통분쟁 AI 서비스와 AI 개인화 패션 추천 서비스 프로젝트를 멘토링합니다.">Supported problem framing, technology choices, implementation, and verification across Codeit, an AI bootcamp, and SK Networks Family AI Camp cohorts 27 and 28. Current teams cover a traffic-dispute AI service and a personalized fashion-recommendation service.</p></div>
+                    </article>
+                    <article class="cv-compact-row">
+                        <div><time>2025—2026</time><span data-en="INTERNAL LEADERSHIP" data-kr="사내 리더십">INTERNAL LEADERSHIP</span></div>
+                        <div><h3 data-en="Three interns · AI verification workflow" data-kr="인턴 3명 · AI 검증 워크플로">Three interns · AI verification workflow</h3><p data-en="Led implementation of LLM-assisted test generation and shared verification-first engineering through the TA AI TF, internal seminars, and reusable examples." data-kr="LLM 보조 테스트 생성 구현을 리딩하고 TA AI TF·사내 세미나·재사용 예제를 통해 검증 우선 엔지니어링을 전파했습니다.">Led implementation of LLM-assisted test generation and shared verification-first engineering through the TA AI TF, internal seminars, and reusable examples.</p></div>
+                    </article>
+                    <article class="cv-compact-row">
+                        <div><time>2026.06</time><span data-en="EXCELLENCE AWARD" data-kr="우수상">EXCELLENCE AWARD</span></div>
+                        <div><h3 data-en="Oldboy Project · BioStar Developer Portal" data-kr="올드보이 프로젝트 · BioStar Developer Portal">Oldboy Project · BioStar Developer Portal</h3><p class="lang-en">Selected as one of five finalist teams with KRW 3 million in development funding; the completed AI-native product later received the company-wide excellence award with a KRW 10 million prize.</p><p class="lang-kr" hidden>최종 5팀에 선정되어 개발비 300만원을 받은 뒤 AI-native 제품을 완성했고, 전사 우수상과 상금 1,000만원을 받았습니다.</p></div>
+                    </article>
+                    <article class="cv-compact-row">
+                        <div><time>2026.01</time><span data-en="INNOVATION AWARD" data-kr="혁신상">INNOVATION AWARD</span></div>
+                        <div><h3 data-en="AI category · Encouragement Prize" data-kr="AI부문 장려상">AI category · Encouragement Prize</h3><p data-en="Recognized for applying AI throughout 2025 to improve organizational productivity and technical competitiveness." data-kr="2025년 한 해 동안 AI 기술을 업무에 적극 적용해 조직의 생산성과 기술 경쟁력 향상에 기여한 공로를 인정받았습니다.">Recognized for applying AI throughout 2025 to improve organizational productivity and technical competitiveness.</p></div>
                     </article>
                 </div>
             </section>
@@ -155,33 +243,16 @@
             <section class="cv-section" aria-labelledby="skills-title">
                 <div class="cv-section-heading">
                     <span>04</span>
-                    <h2 id="skills-title" data-en="Technical foundation" data-kr="기술 기반">Technical foundation</h2>
+                    <div>
+                        <p data-en="TECHNICAL FOUNDATION" data-kr="기술 기반">TECHNICAL FOUNDATION</p>
+                        <h2 id="skills-title" data-en="Selected stack" data-kr="주요 기술">Selected stack</h2>
+                    </div>
                 </div>
-
-                <div class="cv-skills">
-                    <div><strong data-en="Platform &amp; product" data-kr="플랫폼·제품">Platform &amp; product</strong><p>Java · Kotlin · Python · JavaScript/TypeScript · Spring · React · REST · gRPC</p></div>
-                    <div><strong data-en="AI &amp; evaluation" data-kr="AI·평가">AI &amp; evaluation</strong><p>LLM · MCP · RAG · agent workflows · PyTorch · contract/unit/DOM/UI/CSS/E2E testing</p></div>
-                    <div><strong data-en="Device &amp; domain" data-kr="장치·도메인">Device &amp; domain</strong><p>C/C++ · device SDKs · packet debugging · biometric authentication · user/door/auth/event flows</p></div>
-                    <div><strong data-en="Data &amp; infrastructure" data-kr="데이터·인프라">Data &amp; infrastructure</strong><p>MariaDB · Microsoft SQL Server · AWS Lambda/S3/EC2 · Docker/Linux · Jenkins · GitLab CI/CD</p></div>
-                </div>
-            </section>
-
-            <section class="cv-section cv-final" aria-labelledby="community-title">
-                <div class="cv-section-heading">
-                    <span>05</span>
-                    <h2 id="community-title" data-en="Leadership &amp; public evidence" data-kr="리더십·공개 근거">Leadership &amp; public evidence</h2>
-                </div>
-
-                <div class="cv-final-grid">
-                    <article>
-                        <h3 data-en="Mentoring &amp; engineering enablement" data-kr="멘토링·엔지니어링 전파">Mentoring &amp; engineering enablement</h3>
-                        <p data-en="Mentored AI service projects across Codeit, an AI bootcamp, and SK Networks Family AI Camp cohorts 27 and 28 for roughly one year. Current teams include a traffic-dispute AI service and a personalized fashion-recommendation service. Internally, led three interns and shared verification-first AI-native practices through technical sessions and examples." data-kr="약 1년간 Codeit·AI 부트캠프·SK Networks Family AI Camp 27기·28기의 AI 서비스 프로젝트를 멘토링했습니다. 현재 교통분쟁 AI 서비스와 AI 개인화 패션 추천 서비스를 지원하며, 사내에서는 인턴 3명을 리딩하고 기술 세션과 예제로 검증 우선 AI-native 방법론을 전파했습니다.">Mentored AI service projects across Codeit, an AI bootcamp, and SK Networks Family AI Camp cohorts 27 and 28 for roughly one year. Current teams include a traffic-dispute AI service and a personalized fashion-recommendation service. Internally, led three interns and shared verification-first AI-native practices through technical sessions and examples.</p>
-                    </article>
-                    <article>
-                        <h3 data-en="Recognition &amp; selected presentation" data-kr="수상·주요 발표">Recognition &amp; selected presentation</h3>
-                        <p class="lang-en">One of five finalist teams, the AI-native Developer Portal received <span class="cv-metric-nowrap">KRW 3 million</span> in development funding and later won the company-wide excellence award with a <span class="cv-metric-nowrap">KRW 10 million</span> prize. I also received the AI-category Innovation Award encouragement prize for applying AI throughout 2025 to raise organizational productivity and technical competitiveness. Presented AI traffic-safety work at the Korean Society of Intelligent Transport Systems.</p>
-                        <p class="lang-kr" hidden>AI-native Developer Portal은 5개 팀 최종 선정으로 개발비 <span class="cv-metric-nowrap">300만원</span>을 받은 뒤 전사 우수상과 상금 <span class="cv-metric-nowrap">1,000만원</span>을 받았습니다. 또한 2025년 한 해 동안 AI를 업무에 적용해 조직 생산성과 기술 경쟁력을 높인 공로로 혁신상 AI부문 장려상을 받았고, 한국ITS학회에서 AI 교통안전 연구를 발표했습니다.</p>
-                    </article>
+                <div class="cv-skill-ledger">
+                    <div class="cv-skill-row"><strong data-en="Platform &amp; product" data-kr="플랫폼·제품">Platform &amp; product</strong><p>Java · Kotlin · Python · JavaScript/TypeScript · Spring Boot · React · REST · gRPC</p></div>
+                    <div class="cv-skill-row"><strong data-en="AI &amp; evaluation" data-kr="AI·평가">AI &amp; evaluation</strong><p>LLM · MCP · RAG · agent workflows · PyTorch · contract/unit/DOM/UI/CSS/E2E testing</p></div>
+                    <div class="cv-skill-row"><strong data-en="Device &amp; identity" data-kr="장치·신원">Device &amp; identity</strong><p>C/C++ · device SDKs · packet debugging · biometric authentication · user/door/authentication/event flows</p></div>
+                    <div class="cv-skill-row"><strong data-en="Data &amp; infrastructure" data-kr="데이터·인프라">Data &amp; infrastructure</strong><p>MariaDB · Microsoft SQL Server · Apache Ignite · ZooKeeper · AWS Lambda/S3/EC2 · Docker/Linux · Jenkins · GitLab CI/CD</p></div>
                 </div>
             </section>
 
