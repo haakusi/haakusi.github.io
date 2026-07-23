@@ -11,13 +11,13 @@ const pages = Object.fromEntries(await Promise.all(
 
 test('career pages load the shared foundation, with the homepage composition applied last', () => {
     for (const [name, html] of Object.entries(pages)) {
-        const sharedIndex = html.indexOf('href="career-system.css"');
+        const sharedIndex = html.search(/href="career-system\.css(?:\?[^\"]*)?"/);
         assert.ok(sharedIndex > -1, `${name} must load career-system.css`);
         const pageStyleIndex = Math.max(
-            html.indexOf('href="home-style.css"'),
-            html.indexOf('href="portfolio-style.css"'),
-            html.indexOf('href="research-style.css"'),
-            html.indexOf('href="cv-style.css"')
+            html.search(/href="home-style\.css(?:\?[^\"]*)?"/),
+            html.search(/href="portfolio-style\.css(?:\?[^\"]*)?"/),
+            html.search(/href="research-style\.css(?:\?[^\"]*)?"/),
+            html.search(/href="cv-style\.css(?:\?[^\"]*)?"/)
         );
         if (name === 'index.html') {
             assert.ok(pageStyleIndex > sharedIndex, `${name} must apply its measured composition after shared tokens`);

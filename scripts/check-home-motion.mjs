@@ -9,7 +9,7 @@ const css = readFileSync(new URL('home-style.css', root), 'utf8');
 const motionUrl = new URL('home-motion.js', root);
 
 test('home loads one deterministic motion driver and exposes explicit motion hooks', () => {
-    assert.match(index, /<script\s+src="home-motion\.js"\s+defer><\/script>/);
+    assert.match(index, /<script\s+src="home-motion\.js(?:\?[^\"]+)?"\s+defer><\/script>/);
     assert.match(index, /class="visual-scroll-stage"[^>]+data-scroll-stage="media"/);
     assert.match(index, /class="software-ribbon-track"[^>]+data-scroll-track="media"/);
     assert.match(index, /class="capability-section"[^>]+data-scroll-stage="capability"/);
@@ -70,25 +70,25 @@ test('motion progress is clamped and deterministic without DOM geometry guesses'
     assert.equal(api.sceneProgressForRect(62, 720, 720, 124), 0.5);
     assert.equal(api.sceneProgressForRect(-596, 720, 720, 124), 1);
     assert.deepEqual({ ...api.sceneFrameForProgress(0) }, {
-        scale: 1.16,
-        translateY: 48,
-        opacity: 0.42,
-        blur: 8,
-        shade: 0.66,
+        scale: 1.06,
+        translateY: 28,
+        opacity: 0.58,
+        blur: 4,
+        shade: 0.5,
     });
     assert.deepEqual({ ...api.sceneFrameForProgress(0.5) }, {
         scale: 1,
         translateY: 0,
         opacity: 1,
         blur: 0,
-        shade: 0.14,
+        shade: 0.12,
     });
     assert.deepEqual({ ...api.sceneFrameForProgress(1) }, {
-        scale: 0.92,
-        translateY: -42,
-        opacity: 0.46,
-        blur: 6,
-        shade: 0.68,
+        scale: 0.96,
+        translateY: -28,
+        opacity: 0.5,
+        blur: 4,
+        shade: 0.6,
     });
     assert.deepEqual({ ...api.sceneFrameForProgress(-1) }, { ...api.sceneFrameForProgress(0) });
     assert.deepEqual({ ...api.sceneFrameForProgress(2) }, { ...api.sceneFrameForProgress(1) });

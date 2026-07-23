@@ -14,6 +14,17 @@ body.cv-page {
     font-family: var(--cv-sans);
 }
 
+.cv-profile,
+.cv-entry-header,
+.cv-contribution header {
+    text-align: left;
+}
+
+.cv-entry-header,
+.cv-contribution header {
+    padding: 0;
+}
+
 .cv-page .theme-toggle,
 .cv-page .lang-toggle {
     position: absolute !important;
@@ -146,15 +157,15 @@ body.cv-page {
 
 body.cv-page .cv-section {
     margin: 0 !important;
-    padding: 70px 0 !important;
+    padding: 56px 0 !important;
     border-bottom: 1px solid var(--cv-line-strong) !important;
 }
 
 body.cv-page .cv-section-heading {
     display: grid !important;
-    grid-template-columns: 42px minmax(0, 1fr) !important;
+    grid-template-columns: 160px minmax(0, 1fr) !important;
     align-items: start !important;
-    gap: 16px !important;
+    gap: 40px !important;
     margin: 0 0 30px !important;
 }
 
@@ -574,7 +585,7 @@ body.cv-page .cv-closing {
 @media print {
     @page {
         size: A4;
-        margin: 9mm 11mm;
+        margin: 14mm 15mm;
     }
 
     html,
@@ -606,7 +617,7 @@ body.cv-page .cv-closing {
     #site-header,
     #site-nav,
     #site-footer,
-    .cv-closing {
+    body.cv-page .cv-closing {
         display: none !important;
     }
 
@@ -694,10 +705,12 @@ body.cv-page .cv-closing {
     }
 
     body.cv-page .cv-section-heading {
-        grid-template-columns: 8mm minmax(0, 1fr) !important;
-        gap: 2mm !important;
+        grid-template-columns: 29mm minmax(0, 1fr) !important;
+        gap: 5mm !important;
         margin-bottom: 2.5mm !important;
+        break-inside: avoid;
         break-after: avoid;
+        page-break-inside: avoid;
     }
 
     body.cv-page .cv-section-heading h2 {
@@ -720,6 +733,13 @@ body.cv-page .cv-closing {
         grid-template-columns: 29mm minmax(0, 1fr);
         gap: 5mm;
         padding: 3mm 0;
+    }
+
+    .cv-entry-header,
+    .cv-contribution header {
+        padding: 0 !important;
+        text-align: left !important;
+        border: 0 !important;
     }
 
     .cv-entry-header h3 {

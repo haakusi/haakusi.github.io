@@ -77,9 +77,9 @@ test('hero depth values are deterministic, bounded, and exported for verificatio
 
     const depth = context.HomeMotion?.heroDepthForProgress;
     assert.equal(typeof depth, 'function');
-    assert.deepEqual({ ...depth(0) }, { scale: 0.76, translateY: 64, opacity: 0.58, briefY: 28, shade: 0.58 });
+    assert.deepEqual({ ...depth(0) }, { scale: 0.88, translateY: 40, opacity: 0.84, briefY: 18, shade: 0.36 });
     assert.deepEqual({ ...depth(0.65) }, { scale: 1, translateY: 0, opacity: 1, briefY: 0, shade: 0.12 });
-    assert.deepEqual({ ...depth(1) }, { scale: 1.14, translateY: -36, opacity: 0.44, briefY: -18, shade: 0.62 });
+    assert.deepEqual({ ...depth(1) }, { scale: 1.08, translateY: -28, opacity: 0.62, briefY: -14, shade: 0.46 });
     assert.deepEqual({ ...depth(-1) }, { ...depth(0) });
     assert.deepEqual({ ...depth(2) }, { ...depth(1) });
 });

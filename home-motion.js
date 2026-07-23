@@ -38,11 +38,11 @@
         const precise = (number) => Number(number.toFixed(4));
 
         return {
-            scale: precise(0.76 + (0.24 * enter) + (0.14 * exit)),
-            translateY: precise((64 * (1 - enter)) - (36 * exit)),
-            opacity: precise(0.58 + (0.42 * enter) - (0.56 * exit)),
-            briefY: precise((28 * (1 - enter)) - (18 * exit)),
-            shade: precise(0.58 - (0.46 * enter) + (0.5 * exit)),
+            scale: precise(0.88 + (0.12 * enter) + (0.08 * exit)),
+            translateY: precise((40 * (1 - enter)) - (28 * exit)),
+            opacity: precise(0.84 + (0.16 * enter) - (0.38 * exit)),
+            briefY: precise((18 * (1 - enter)) - (14 * exit)),
+            shade: precise(0.36 - (0.24 * enter) + (0.34 * exit)),
         };
     }
 
@@ -53,11 +53,11 @@
         const precise = (number) => Number(number.toFixed(4));
 
         return {
-            scale: precise(1.16 - (0.16 * enter) - (0.08 * exit)),
-            translateY: precise((48 * (1 - enter)) - (42 * exit)),
-            opacity: precise(0.42 + (0.58 * enter) - (0.54 * exit)),
-            blur: precise((8 * (1 - enter)) + (6 * exit)),
-            shade: precise(0.66 - (0.52 * enter) + (0.54 * exit)),
+            scale: precise(1.06 - (0.06 * enter) - (0.04 * exit)),
+            translateY: precise((28 * (1 - enter)) - (28 * exit)),
+            opacity: precise(0.58 + (0.42 * enter) - (0.5 * exit)),
+            blur: precise((4 * (1 - enter)) + (4 * exit)),
+            shade: precise(0.5 - (0.38 * enter) + (0.48 * exit)),
         };
     }
 

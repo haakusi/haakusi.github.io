@@ -29,7 +29,7 @@ test('all seven root surfaces use the shared bilingual career shell', () => {
         assert.match(html, /<html\s+lang="en"\s+data-theme=/, `${name} needs an initial document language`);
         assert.match(html, /class="[^"]*\bcareer-skip\b[^"]*"/, `${name} needs a skip link`);
         assert.match(html, /<main\s+id="[^"]+"/, `${name} needs a named main landmark`);
-        const sharedIndex = html.indexOf('href="career-system.css"');
+        const sharedIndex = html.search(/href="career-system\.css(?:\?[^\"]*)?"/);
         assert.ok(sharedIndex > -1, `${name} must load career-system.css`);
         assert.ok(sharedIndex > html.lastIndexOf('rel="stylesheet"', sharedIndex - 1), `${name} must load shared styles last`);
 
@@ -153,7 +153,7 @@ test('crawl, recovery, and repository documentation are present', () => {
     }
     assert.match(robots, /Sitemap:\s*https:\/\/haakusi\.github\.io\/sitemap\.xml/);
     assert.match(notFound, /<main\s+id="not-found-main"/);
-    assert.match(notFound, /href="career-system\.css"/);
+    assert.match(notFound, /href="career-system\.css(?:\?[^\"]*)?"/);
     assert.match(readme, /Developer career site/i);
     assert.match(readme, /Privacy and evidence boundary/i);
 });

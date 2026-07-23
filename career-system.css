@@ -20,6 +20,7 @@
     --career-accent-strong: #d2e0e8;
     --career-accent-soft: rgba(169, 192, 207, 0.11);
     --career-content: 1320px;
+    --career-gutter: clamp(24px, 4.1667vw, 60px);
     --career-reading: 720px;
     --career-radius: 10px;
     --career-shell-primary: 70px;
@@ -39,7 +40,7 @@
 @media screen {
     :where(body.career-home, body.portfolio-page, body.research-page, body.cv-page, body.archive-page, body.knowledge-page) #site-header,
     :where(body.career-home, body.portfolio-page, body.research-page, body.cv-page, body.archive-page, body.knowledge-page) #site-nav {
-        width: min(calc(100vw - 48px), var(--career-content)) !important;
+        width: min(calc(100% - (2 * var(--career-gutter))), var(--career-content)) !important;
         max-width: var(--career-content) !important;
         margin-right: auto !important;
         margin-left: auto !important;
@@ -531,6 +532,147 @@
     @media (max-width: 420px) {
         body.knowledge-page > .container {
             width: calc(100% - 24px) !important;
+        }
+    }
+}
+
+/* Product alignment layer: high-specificity contracts that legacy rules cannot drift. */
+@media screen {
+    :where(body.career-home, body.portfolio-page, body.research-page, body.cv-page, body.archive-page, body.knowledge-page) #site-header,
+    :where(body.career-home, body.portfolio-page, body.research-page, body.cv-page, body.archive-page, body.knowledge-page) #site-nav,
+    :where(body.portfolio-page, body.research-page, body.cv-page, body.archive-page, body.knowledge-page) > .container,
+    body.portfolio-page .portfolio-container,
+    body.research-page .research-container,
+    body.cv-page .cv-container,
+    body.archive-page .archive-container,
+    body.knowledge-page > .container {
+        width: min(calc(100% - (2 * var(--career-gutter))), var(--career-content)) !important;
+        max-width: var(--career-content) !important;
+        margin-right: auto !important;
+        margin-left: auto !important;
+    }
+
+    :where(body.portfolio-page, body.research-page, body.cv-page, body.archive-page, body.knowledge-page) :is(#site-header, #site-nav) {
+        width: 100% !important;
+        max-width: none !important;
+    }
+
+    body.portfolio-page .portfolio-hero {
+        grid-template-columns: minmax(0, 1.05fr) minmax(420px, 0.95fr) !important;
+        gap: 64px !important;
+        min-height: 560px !important;
+        padding: 64px 0 72px !important;
+    }
+
+    body.portfolio-page .hero-system {
+        display: grid !important;
+        grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+        min-height: 0 !important;
+        padding: 0 !important;
+        border: solid var(--career-line) !important;
+        border-width: 1px 0 !important;
+        border-radius: 0 !important;
+        background: transparent !important;
+        overflow: visible !important;
+    }
+
+    body.portfolio-page .system-node {
+        min-height: 150px !important;
+        padding: 26px !important;
+        border: solid var(--career-line) !important;
+        border-width: 0 1px 1px 0 !important;
+    }
+
+    body.portfolio-page :is(.node-domain, .node-proof) {
+        border-right: 0 !important;
+    }
+
+    body.portfolio-page :is(.node-platform, .node-proof) {
+        border-bottom: 0 !important;
+    }
+
+    body.portfolio-page .system-line {
+        display: none !important;
+    }
+
+    body.portfolio-page .proof-strip {
+        overflow: visible !important;
+        border-width: 1px 0 !important;
+        border-radius: 0 !important;
+        background: transparent !important;
+    }
+
+    body.portfolio-page .proof-item {
+        min-height: 168px !important;
+        padding: 30px 28px !important;
+    }
+
+    body.portfolio-page .proof-item:first-child {
+        padding-left: 28px !important;
+    }
+
+    body.portfolio-page .proof-item strong {
+        font-size: clamp(42px, 4.2vw, 56px) !important;
+        line-height: 0.95 !important;
+    }
+
+    body.portfolio-page .proof-item span {
+        margin-top: 16px !important;
+        font-size: 15px !important;
+        line-height: 1.55 !important;
+    }
+
+    body.cv-page .cv-section-heading {
+        grid-template-columns: 160px minmax(0, 1fr) !important;
+        gap: 40px !important;
+    }
+
+    body.cv-page :is(.cv-profile, .cv-entry-header, .cv-contribution header) {
+        text-align: left !important;
+    }
+
+    body.cv-page :is(.cv-entry-header, .cv-contribution header) {
+        padding: 0 !important;
+        border: 0 !important;
+    }
+
+    @media (max-width: 1180px) {
+        body.portfolio-page .portfolio-hero {
+            grid-template-columns: 1fr !important;
+            min-height: 0 !important;
+        }
+    }
+
+    @media (max-width: 900px) {
+        body.cv-page .cv-section-heading {
+            grid-template-columns: 132px minmax(0, 1fr) !important;
+            gap: 28px !important;
+        }
+    }
+
+    @media (max-width: 680px) {
+        :root {
+            --career-gutter: 16px;
+        }
+
+        body.portfolio-page .hero-system {
+            grid-template-columns: 1fr !important;
+        }
+
+        body.portfolio-page .system-node {
+            min-height: 120px !important;
+            padding: 20px 0 !important;
+            border-right: 0 !important;
+            border-bottom: 1px solid var(--career-line) !important;
+        }
+
+        body.portfolio-page .system-node:last-of-type {
+            border-bottom: 0 !important;
+        }
+
+        body.cv-page .cv-section-heading {
+            grid-template-columns: 1fr !important;
+            gap: 10px !important;
         }
     }
 }

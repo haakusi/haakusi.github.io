@@ -16,10 +16,10 @@
     }
 
     function ensureSharedCareerSystem() {
-        if (!document.querySelector('link[href$="career-system.css"]')) {
+        if (!document.querySelector('link[href*="career-system.css"]')) {
             const stylesheet = document.createElement('link');
             stylesheet.rel = 'stylesheet';
-            stylesheet.href = prefix + 'career-system.css';
+            stylesheet.href = prefix + 'career-system.css?v=20260723-align2';
             stylesheet.dataset.sharedCareerSystem = 'true';
             document.head.appendChild(stylesheet);
         }
