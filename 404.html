@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark" data-lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="robots" content="noindex">
+    <meta name="description" content="The requested page could not be found on Sewon Park's public career site.">
+    <title>Page not found — Sewon Park</title>
+    <link rel="icon" href="favicon.svg" type="image/svg+xml">
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="career-system.css">
+</head>
+<body class="error-page archive-page">
+    <a class="career-skip" href="#not-found-main" data-en="Skip to message" data-kr="안내로 이동">Skip to message</a>
+    <button class="theme-toggle" onclick="toggleTheme()" aria-label="Toggle dark mode">☀️</button>
+    <button class="lang-toggle" onclick="toggleLanguage()" aria-label="Toggle language">EN</button>
+
+    <div class="container archive-container">
+        <div id="site-header"></div>
+        <div id="site-nav"></div>
+
+        <main id="not-found-main">
+            <section class="archive-hero not-found" aria-labelledby="not-found-title">
+                <p class="archive-kicker">404 · ROUTE NOT FOUND</p>
+                <h1 id="not-found-title" data-en="This path ends here. The work does not." data-kr="이 경로는 여기서 끝나지만, 작업 기록은 계속됩니다.">This path ends here. The work does not.</h1>
+                <p data-en="The page may have moved. Continue with the selected work, public CV, or the home overview." data-kr="페이지가 이동했을 수 있습니다. 대표 프로젝트, 공개 이력서 또는 홈에서 계속 살펴보세요.">The page may have moved. Continue with the selected work, public CV, or the home overview.</p>
+                <div class="not-found-actions">
+                    <a href="index.html" data-en="Go home" data-kr="홈으로">Go home</a>
+                    <a href="portfolio.html" data-en="Selected work" data-kr="대표 프로젝트">Selected work</a>
+                    <a href="cv.html" data-en="Public CV" data-kr="공개 이력서">Public CV</a>
+                </div>
+            </section>
+        </main>
+
+        <div id="site-footer"></div>
+    </div>
+    <script src="common.js"></script>
+</body>
+</html>

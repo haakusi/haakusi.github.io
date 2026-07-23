@@ -11,14 +11,16 @@ const cv = await read('cv.html');
 const common = await read('common.js');
 const research = await read('research.html').catch(() => '');
 const careerPages = { 'index.html': index, 'portfolio.html': portfolio, 'cv.html': cv, 'research.html': research };
+const indexText = index.replace(/<[^>]+>/g, ' ').replace(/\s+/g, ' ');
+const decodeEntities = (value) => value.replaceAll('&amp;', '&');
 
 test('homepage is a focused career hub with direct paths to evidence and archives', () => {
     assert.match(index, /<body class="career-home">/);
     for (const phrase of ['Selected evidence', '선별된 근거']) {
         assert.ok(index.includes(phrase), `missing homepage phrase: ${phrase}`);
     }
-    assert.match(index, /From device packets to\s*<em>AI evaluation gates\.<\/em>/);
-    assert.match(index, /장치 패킷부터\s*<em>AI 검증 게이트까지\.<\/em>/);
+    assert.match(indexText, /From device packets to reliable AI products\./);
+    assert.match(indexText, /장치 패킷부터 신뢰 가능한 AI 제품까지\./);
     for (const href of ['portfolio.html', 'cv.html', 'research.html', 'blog.html', 'reading.html', 'lectures.html']) {
         assert.ok(index.includes(`href="${href}`), `missing homepage path: ${href}`);
     }
@@ -35,15 +37,16 @@ test('public CV is current, impact-led, bilingual, and fact constrained', () => 
     for (const phrase of [
         'AI-native Platform & Product Engineering Lead',
         'AI-native 플랫폼·제품 엔지니어링 리드',
-        'Technical Support chatbot',
-        'Developer platform',
-        'Legacy modernization',
+        'BioStar Developer Portal',
+        '~200K LOC modernization',
+        'Gateway, device, and distributed-event platform',
+        'special promotion 19 months',
         'MariaDB',
         'Microsoft SQL Server',
     ]) {
-        assert.ok(cv.includes(phrase), `missing CV phrase: ${phrase}`);
+        assert.ok(decodeEntities(cv).includes(phrase), `missing CV phrase: ${phrase}`);
     }
-    assert.doesNotMatch(cv, /RabbitMQ|Redis|Freshdesk|Jira|7M\+|80\+ API|WhatsApp|1,?300|7,000만원|010-\d|구미동|1991년|GI\b/);
+    assert.doesNotMatch(cv, /Technical Support chatbot|Global Technical Support|\bSolis\b|RabbitMQ|Redis|Freshdesk|Jira|7M\+|80\+ API|WhatsApp|1,?300|7,000만원|010-\d|구미동|1991년|GI\b/);
 });
 
 test('research page separates active work, foundations, and research notes', () => {
@@ -55,7 +58,7 @@ test('research page separates active work, foundations, and research notes', () 
         'Research in progress',
         '진행 중인 연구',
     ]) {
-        assert.ok(research.includes(phrase), `missing research phrase: ${phrase}`);
+        assert.ok(decodeEntities(research).includes(phrase), `missing research phrase: ${phrase}`);
     }
     assert.match(research, /classical baselines/i);
     assert.match(research, /same data splits, budgets, and evaluation gates/i);

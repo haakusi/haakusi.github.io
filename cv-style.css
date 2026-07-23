@@ -187,6 +187,10 @@ body.cv-page {
     border-color: var(--cv-accent);
 }
 
+.cv-metric-nowrap {
+    white-space: nowrap;
+}
+
 .cv-snapshot {
     display: grid;
     grid-template-columns: repeat(3, minmax(0, 1fr));
@@ -612,13 +616,29 @@ body.cv-page {
 @media print {
     @page {
         size: A4;
-        margin: 13mm 14mm;
+        margin: 11mm 12mm;
+        background: #fff;
     }
 
+    html,
     body.cv-page {
         color: #172221;
         background: #fff !important;
-        font-size: 9.4pt;
+        background-image: none !important;
+        background-attachment: scroll !important;
+    }
+
+    body.cv-page::before,
+    body.cv-page::after,
+    .cv-container::before,
+    .cv-container::after {
+        display: none !important;
+        content: none !important;
+    }
+
+    body.cv-page {
+        font-size: 8.8pt;
+        min-height: 0 !important;
     }
 
     .theme-toggle,
@@ -637,11 +657,13 @@ body.cv-page {
         min-height: auto;
         padding: 0;
         background: #fff !important;
-        box-shadow: none;
+        box-shadow: none !important;
+        backdrop-filter: none !important;
+        filter: none !important;
     }
 
     .cv-hero {
-        padding: 0 0 6mm;
+        padding: 0 0 5mm;
         border-top: 0;
         border-color: #c9d3d1;
     }
@@ -651,8 +673,12 @@ body.cv-page {
         font-size: 32pt;
     }
 
-    .cv-hero .cv-role { margin-top: 5mm; }
-    .cv-hero .cv-summary { margin-top: 4mm; font-size: 9pt; line-height: 1.65; }
+    .cv-name-korean {
+        margin-left: 0.24em;
+    }
+
+    .cv-hero .cv-role { margin-top: 4mm; }
+    .cv-hero .cv-summary { margin-top: 3mm; font-size: 8.5pt; line-height: 1.52; }
 
     .cv-role,
     .cv-section-heading > span,
@@ -675,12 +701,12 @@ body.cv-page {
 
     .cv-snapshot {
         grid-template-columns: repeat(3, minmax(0, 1fr));
-        margin-bottom: 9mm;
+        margin-bottom: 6mm;
         border-radius: 0 0 4mm 4mm;
     }
 
-    .cv-snapshot div { min-height: 27mm; padding: 4mm; }
-    .cv-snapshot strong { margin-top: 3mm; font-size: 7.7pt; }
+    .cv-snapshot div { min-height: 22mm; padding: 3mm; }
+    .cv-snapshot strong { margin-top: 2mm; font-size: 7.3pt; }
 
     .cv-snapshot div,
     .cv-project,
@@ -704,34 +730,34 @@ body.cv-page {
     }
 
     .cv-section {
-        padding-bottom: 9mm;
+        padding-bottom: 4mm;
     }
 
     .cv-section-heading {
-        margin-bottom: 5mm;
+        margin-bottom: 3mm;
         break-after: avoid;
     }
 
     .cv-section-heading h2 {
-        font-size: 22pt;
+        font-size: 18.5pt;
     }
 
     .cv-project,
     .cv-project-featured,
     .cv-research-grid > article,
     .cv-final-grid article {
-        padding: 5mm;
+        padding: 3.5mm;
         border-color: #ccd7d5;
     }
 
     .cv-project > p,
-    .cv-final-grid p { margin-top: 3mm; line-height: 1.62; }
+    .cv-final-grid p { margin-top: 2mm; line-height: 1.48; }
     .cv-project ul,
     .cv-experience ul,
-    .cv-research-grid ul { margin-top: 3mm; }
+    .cv-research-grid ul { margin-top: 2mm; }
     .cv-project li,
     .cv-experience li,
-    .cv-research-grid li { margin-bottom: 1.4mm; line-height: 1.55; }
+    .cv-research-grid li { margin-bottom: 1mm; line-height: 1.43; }
 
     .cv-project-grid {
         grid-template-columns: 1fr 1fr;
@@ -740,7 +766,7 @@ body.cv-page {
     .cv-experience {
         grid-template-columns: 32mm 1fr;
         gap: 5mm;
-        padding: 4mm 0;
+        padding: 2.8mm 0;
         break-inside: avoid;
     }
 
@@ -750,8 +776,12 @@ body.cv-page {
         grid-template-columns: 1fr 1fr;
     }
 
-    .cv-skills > div { min-height: auto; padding: 4.5mm; }
-    .cv-skills p { margin-top: 2.5mm; line-height: 1.55; }
-    .cv-final-grid article { min-height: auto; }
-    .cv-final { break-inside: avoid; }
+    .cv-skills > div { min-height: auto; padding: 3.5mm; }
+    .cv-skills p { margin-top: 2mm; line-height: 1.45; }
+    .cv-final-grid article { min-height: auto; padding: 3.5mm; }
+    .cv-final-grid,
+    .cv-final-grid article { box-shadow: none !important; filter: none !important; }
+    .cv-final-grid p { margin-top: 1.5mm; line-height: 1.42; }
+    .cv-final .cv-section-heading { margin-bottom: 2mm; }
+    .cv-final { padding-bottom: 0; break-inside: auto; }
 }

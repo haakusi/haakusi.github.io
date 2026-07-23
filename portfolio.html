@@ -1,21 +1,23 @@
 <!DOCTYPE html>
-<html data-theme="dark" data-lang="en">
+<html lang="en" data-theme="dark" data-lang="en">
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta property="og:title" content="Sewon Park — AI-native Platform & Product Engineering">
+    <meta property="og:title" content="Sewon Park — AI-native Platform &amp; Product Engineering">
     <meta property="og:description" content="Device-to-cloud platforms, developer experience, AI-native modernization, and verification-first engineering.">
     <meta property="og:type" content="profile">
     <meta property="og:url" content="https://haakusi.github.io/portfolio.html">
     <meta property="og:image" content="https://haakusi.github.io/og-banner.png?v=20260723">
     <link rel="icon" href="favicon.svg" type="image/svg+xml">
     <meta name="description" content="Portfolio of Sewon Park, an AI-native platform and product engineering lead connecting devices, developer tools, and production-grade verification.">
+    <link rel="canonical" href="https://haakusi.github.io/portfolio.html">
     <title>Portfolio — Sewon Park</title>
     <link rel="stylesheet" type="text/css" href="style.css">
     <link rel="stylesheet" type="text/css" href="portfolio-style.css">
+    <link rel="stylesheet" type="text/css" href="career-system.css">
 </head>
 <body class="portfolio-page">
-    <a class="portfolio-skip" href="#portfolio-main" data-en="Skip to work" data-kr="프로젝트로 이동">Skip to work</a>
+    <a class="portfolio-skip career-skip" href="#portfolio-main" data-en="Skip to work" data-kr="프로젝트로 이동">Skip to work</a>
     <button class="theme-toggle" onclick="toggleTheme()" aria-label="Toggle dark mode">☀️</button>
     <button class="lang-toggle" onclick="toggleLanguage()" aria-label="Toggle language">EN</button>
 
@@ -28,8 +30,8 @@
                 <div class="hero-copy">
                     <p class="eyebrow" data-en="AI-NATIVE · DEVEX · INDUSTRIAL SOFTWARE" data-kr="AI-NATIVE · 개발자 경험 · 산업용 소프트웨어">AI-NATIVE · DEVEX · INDUSTRIAL SOFTWARE</p>
                     <h1 id="portfolio-title">
-                        <span class="lang-en">From device packets<br>to <em>AI evaluation gates.</em></span>
-                        <span class="lang-kr" hidden>장치 패킷부터<br><em>AI 검증 게이트까지.</em></span>
+                        <span class="lang-en"><span class="career-line">From device packets</span><em class="career-line">to AI evaluation gates.</em></span>
+                        <span class="lang-kr" hidden><span class="career-line">장치 패킷부터</span><em class="career-line">AI 검증 게이트까지.</em></span>
                     </h1>
                     <p class="hero-lede lang-en">I build platforms that let developers work across devices, APIs, agents, and production systems—without treating AI output as trusted by default.</p>
                     <p class="hero-lede lang-kr" hidden>장치, API, 에이전트와 운영 제품을 개발자가 하나의 흐름으로 다룰 수 있는 플랫폼을 만듭니다. AI가 만든 결과는 기본적으로 신뢰하지 않고, 검증 가능한 시스템으로 바꿉니다.</p>
@@ -41,7 +43,7 @@
                 <div class="hero-system" aria-label="Device to AI platform capability map">
                     <div class="system-node node-device">
                         <span>01</span>
-                        <strong data-en="Device & SDK" data-kr="장치 · SDK">Device & SDK</strong>
+                        <strong data-en="Device &amp; SDK" data-kr="장치 · SDK">Device &amp; SDK</strong>
                         <small data-en="Packet · sensor · capability" data-kr="패킷 · 센서 · 캐퍼빌리티">Packet · sensor · capability</small>
                     </div>
                     <div class="system-line" aria-hidden="true"></div>
@@ -53,7 +55,7 @@
                     <div class="system-line" aria-hidden="true"></div>
                     <div class="system-node node-platform">
                         <span>03</span>
-                        <strong data-en="API & Agent Platform" data-kr="API · 에이전트 플랫폼">API & Agent Platform</strong>
+                        <strong data-en="API &amp; Agent Platform" data-kr="API · 에이전트 플랫폼">API &amp; Agent Platform</strong>
                         <small data-en="MCP · browser · sandbox" data-kr="MCP · 브라우저 · 샌드박스">MCP · browser · sandbox</small>
                     </div>
                     <div class="system-line" aria-hidden="true"></div>
@@ -75,12 +77,12 @@
                     <span data-en="person × weeks for an award-winning developer portal" data-kr="1인 × 8주, 수상한 개발자 포털">person × weeks for an award-winning developer portal</span>
                 </div>
                 <div class="proof-item">
-                    <strong>6</strong>
-                    <span data-en="connected product surfaces, from docs to evaluations" data-kr="문서부터 평가까지 연결한 제품 표면">connected product surfaces, from docs to evaluations</span>
+                    <strong>~200K</strong>
+                    <span data-en="LOC in an AI-native Angular-to-React modernization led with verification gates" data-kr="검증 게이트와 함께 리딩하는 AI-native Angular→React 전환 규모">LOC in an AI-native Angular-to-React modernization led with verification gates</span>
                 </div>
                 <div class="proof-item">
-                    <strong>2026</strong>
-                    <span data-en="team lead for cross-functional AI-native missions" data-kr="부서 횡단 AI-native 미션 팀장">team lead for cross-functional AI-native missions</span>
+                    <strong>40%+</strong>
+                    <span data-en="distributed-event processing performance improvement" data-kr="분산 이벤트 처리 성능 개선">distributed-event processing performance improvement</span>
                 </div>
             </section>
 
@@ -95,6 +97,17 @@
                 </div>
             </section>
 
+            <nav class="case-index" aria-label="Flagship case studies">
+                <a href="#case-developer-platform"><span>01</span><strong data-en="Developer platform" data-kr="개발자 플랫폼">Developer platform</strong><small data-en="Award · productizing" data-kr="우수상 · 제품화 중">Award · productizing</small></a>
+                <a href="#case-modernization"><span>02</span><strong data-en="AI-native modernization" data-kr="AI-native 현대화">AI-native modernization</strong><small data-en="In progress" data-kr="진행 중">In progress</small></a>
+                <a href="#case-device-cloud"><span>03</span><strong data-en="Device-to-cloud systems" data-kr="장치–클라우드 시스템">Device-to-cloud systems</strong><small data-en="Career foundation" data-kr="경력 기반">Career foundation</small></a>
+            </nav>
+
+            <aside class="portfolio-disclosure" aria-label="Public evidence boundary">
+                <strong data-en="Public evidence boundary" data-kr="공개 근거의 범위">Public evidence boundary</strong>
+                <p data-en="Proprietary work is described through problem boundaries, engineering decisions, outcomes, and current status—without internal code, customer data, or confidential metrics." data-kr="사내 프로젝트는 문제 경계·엔지니어링 판단·결과·현재 상태를 중심으로 설명하며, 내부 코드·고객 정보·기밀 수치 없이 공개합니다.">Proprietary work is described through problem boundaries, engineering decisions, outcomes, and current status—without internal code, customer data, or confidential metrics.</p>
+            </aside>
+
             <section id="flagship-work" class="flagship-section" aria-labelledby="flagship-title">
                 <div class="section-heading">
                     <p class="section-index">01 / FLAGSHIP WORK</p>
@@ -102,7 +115,7 @@
                     <p data-en="Define the boundary, establish a source of truth, and make failures visible before release." data-kr="경계를 정의하고 단일 기준을 세우며 실패가 릴리스 전에 드러나게 합니다.">Define the boundary, establish a source of truth, and make failures visible before release.</p>
                 </div>
 
-                <article class="case-study case-featured">
+                <article id="case-developer-platform" class="case-study case-featured">
                     <header class="case-header">
                         <div>
                             <p class="case-number">CASE 01</p>
@@ -130,8 +143,8 @@
                             </div>
                             <div class="case-block">
                                 <span data-en="Current state" data-kr="현재 상태">Current state</span>
-                                <p class="lang-en">Built solo in eight weeks with an AI-native workflow, recognized with a company-wide excellence award, and now being hardened toward a September 2026 release target.</p>
-                                <p class="lang-kr" hidden>AI-native workflow로 1인 8주 동안 구축해 전사 우수상을 받았고, 현재 2026년 9월 목표 릴리스를 위해 보안·운영·지원 기준을 제품 수준으로 강화하고 있습니다.</p>
+                                <p class="lang-en">Selected as one of five finalist teams with KRW 3 million in development funding, then built solo in eight weeks with an AI-native workflow and won the company-wide excellence award with a KRW 10 million prize. It is now being hardened toward a September 2026 release target.</p>
+                                <p class="lang-kr" hidden>5개 팀 최종 선정으로 개발비 300만원을 받은 뒤 AI-native workflow로 1인 8주 동안 구축해 전사 우수상과 상금 1,000만원을 받았습니다. 현재 2026년 9월 목표 릴리스를 위해 보안·운영·지원 기준을 제품 수준으로 강화하고 있습니다.</p>
                             </div>
                         </div>
 
@@ -156,7 +169,7 @@
                 </article>
 
                 <div class="case-pair">
-                    <article class="case-study">
+                    <article id="case-modernization" class="case-study">
                         <header class="case-header">
                             <div>
                                 <p class="case-number">CASE 02</p>
@@ -166,8 +179,8 @@
                         </header>
                         <div class="case-block">
                             <span data-en="Problem" data-kr="문제">Problem</span>
-                            <p class="lang-en">A large Angular frontend embedded in an iframe had evolved into a mixed Angular/React architecture with tangled routing, back navigation, and state boundaries.</p>
-                            <p class="lang-kr" hidden>iframe 안의 대규모 Angular 프론트엔드가 Angular/React 혼합 구조로 발전하면서 routing, 뒤로가기와 상태 경계가 얽힌 기술 부채가 누적됐습니다.</p>
+                            <p class="lang-en">About 200K LOC of Angular embedded in an iframe had evolved into a mixed Angular/React architecture with tangled routing, back navigation, and state boundaries.</p>
+                            <p class="lang-kr" hidden>iframe 안의 약 20만 LOC Angular가 Angular/React 혼합 구조로 발전하면서 routing, 뒤로가기와 상태 경계가 얽힌 기술 부채가 누적됐습니다.</p>
                         </div>
                         <div class="case-block">
                             <span data-en="Approach" data-kr="접근">Approach</span>
@@ -180,7 +193,7 @@
                         </div>
                     </article>
 
-                    <article class="case-study">
+                    <article id="case-device-cloud" class="case-study">
                         <header class="case-header">
                             <div>
                                 <p class="case-number">CASE 03</p>
@@ -203,6 +216,11 @@
                         <div class="case-principle">
                             <span>DIFFERENTIATOR</span>
                             <p data-en="I can debug the device boundary and still design the developer abstraction above it." data-kr="장치 경계를 직접 디버깅하면서도 그 위의 개발자 추상화를 설계할 수 있습니다.">I can debug the device boundary and still design the developer abstraction above it.</p>
+                        </div>
+                        <div class="case-block">
+                            <span data-en="Measured outcomes" data-kr="정량 성과">Measured outcomes</span>
+                            <p class="lang-en">Redesigned C++/Java WebSocket/Apache Ignite event processing for a 40%+ performance gain, reduced CPU processing by about 50% through a data-structure change, and shortened bulk deletion from the 30-second range to about three seconds.</p>
+                            <p class="lang-kr" hidden>C++·Java WebSocket·Apache Ignite 이벤트 처리를 재설계해 성능을 40%+ 개선하고, 자료구조 변경으로 CPU 처리를 약 50% 줄였으며, 대량 삭제를 30초대에서 약 3초로 단축했습니다.</p>
                         </div>
                     </article>
                 </div>
@@ -246,15 +264,15 @@
                     <li>
                         <time>2018—2020</time>
                         <div>
-                            <h3 data-en="Network management & enterprise web" data-kr="네트워크 관리 · 엔터프라이즈 웹">Network management & enterprise web</h3>
+                            <h3 data-en="Network management &amp; enterprise web" data-kr="네트워크 관리 · 엔터프라이즈 웹">Network management &amp; enterprise web</h3>
                             <p data-en="SK Telecom TANGO: IP configuration, transmission network views, raw data, and Jenkins deployment." data-kr="SK Telecom TANGO에서 IP 설정, 전송망 화면, raw data 처리와 Jenkins 배포를 담당했습니다.">SK Telecom TANGO: IP configuration, transmission network views, raw data, and Jenkins deployment.</p>
                         </div>
                     </li>
                     <li>
                         <time>2020—2021</time>
                         <div>
-                            <h3 data-en="Sensor software & physical constraints" data-kr="센서 소프트웨어 · 물리 제약">Sensor software & physical constraints</h3>
-                            <p data-en="Radar, camera, FPGA IoT, Windows/C++ visualization, and public R&D protocols." data-kr="Radar, camera, FPGA IoT, Windows/C++ 시각화와 공공 R&D 프로토콜을 경험했습니다.">Radar, camera, FPGA IoT, Windows/C++ visualization, and public R&D protocols.</p>
+                            <h3 data-en="Sensor software &amp; physical constraints" data-kr="센서 소프트웨어 · 물리 제약">Sensor software &amp; physical constraints</h3>
+                            <p data-en="Radar, camera, FPGA IoT, Windows/C++ visualization, and public R&amp;D protocols." data-kr="Radar, camera, FPGA IoT, Windows/C++ 시각화와 공공 R&amp;D 프로토콜을 경험했습니다.">Radar, camera, FPGA IoT, Windows/C++ visualization, and public R&amp;D protocols.</p>
                         </div>
                     </li>
                     <li>
@@ -267,8 +285,8 @@
                     <li>
                         <time>2025—NOW</time>
                         <div>
-                            <h3 data-en="AI-native product & platform leadership" data-kr="AI-native 제품 · 플랫폼 리더십">AI-native product & platform leadership</h3>
-                            <p data-en="Built a frontend/backend Technical Support chatbot for overseas offices and internal employees and deployed it on AWS EC2. Now leading agent platforms, developer tooling, modernization harnesses, product-wide E2E, mentoring, and cross-team adoption." data-kr="해외지사와 사내 임직원이 사용하는 Technical Support 챗봇의 프론트엔드·백엔드를 개발해 AWS EC2에 배포했습니다. 현재는 에이전트 플랫폼, 개발자 도구, 현대화 하니스, 제품군 E2E, 멘토링과 부서 확산을 리딩합니다.">Built a frontend/backend Technical Support chatbot for overseas offices and internal employees and deployed it on AWS EC2. Now leading agent platforms, developer tooling, modernization harnesses, product-wide E2E, mentoring, and cross-team adoption.</p>
+                            <h3 data-en="AI-native product &amp; platform leadership" data-kr="AI-native 제품 · 플랫폼 리더십">AI-native product &amp; platform leadership</h3>
+                            <p data-en="Leading Developer Portal productization, a ~200K LOC modernization harness, product/version-aware E2E, and cross-team AI-native adoption. Mentoring has continued across Codeit, an AI bootcamp, and SK Networks Family AI Camp cohorts 27 and 28." data-kr="Developer Portal 제품화, 약 20만 LOC 현대화 하니스, 제품·버전별 E2E와 부서 횡단 AI-native 전환을 리딩합니다. Codeit·AI 부트캠프·SK Networks Family AI Camp 27기·28기 멘토링도 이어가고 있습니다.">Leading Developer Portal productization, a ~200K LOC modernization harness, product/version-aware E2E, and cross-team AI-native adoption. Mentoring has continued across Codeit, an AI bootcamp, and SK Networks Family AI Camp cohorts 27 and 28.</p>
                         </div>
                     </li>
                 </ol>
@@ -276,13 +294,13 @@
 
             <section class="research-section" aria-labelledby="research-title">
                 <div>
-                    <p class="section-index">04 / RESEARCH & WRITING</p>
+                    <p class="section-index">04 / RESEARCH &amp; WRITING</p>
                     <h2 id="research-title" data-en="Practice informed by research" data-kr="연구로 깊어지는 실무">Practice informed by research</h2>
                     <p class="lang-en">I am pursuing a Ph.D. in AI Convergence at Sungkyunkwan University while working full-time. My active work spans explainable traditional-dance search and recommendation with expert knowledge and VLMs, and a hybrid quantum–classical ML framework that compares classical baselines and QML candidates under the same split, budget, and evaluation gates.</p>
                     <p class="lang-kr" hidden>재직과 함께 성균관대학교 인공지능융합 박사과정을 밟고 있습니다. 전문가 도메인지식과 VLM을 결합한 설명 가능한 전통무용 검색·추천, 그리고 동일한 데이터 분할·예산·평가 게이트에서 고전 ML과 QML 후보를 비교하는 양자–고전 하이브리드 ML 프레임워크를 연구하고 있습니다.</p>
                 </div>
                 <div class="research-links">
-                    <a href="research.html"><span>01</span><strong data-en="Active Research & Evaluation" data-kr="진행 연구 · 평가 방법">Active Research & Evaluation</strong><small data-en="VLM · QML · research foundations" data-kr="VLM · QML · 연구 기반">VLM · QML · research foundations</small></a>
+                    <a href="research.html"><span>01</span><strong data-en="Active Research &amp; Evaluation" data-kr="진행 연구 · 평가 방법">Active Research &amp; Evaluation</strong><small data-en="VLM · QML · research foundations" data-kr="VLM · QML · 연구 기반">VLM · QML · research foundations</small></a>
                     <a href="blog1.html"><span>02</span><strong data-en="MCP Agent Architecture" data-kr="MCP 에이전트 아키텍처">MCP Agent Architecture</strong><small data-en="Architecture note" data-kr="아키텍처 노트">Architecture note</small></a>
                     <a href="blog5.html"><span>03</span><strong data-en="Notes on Hinton's AI Lecture" data-kr="Hinton AI 연설 노트">Notes on Hinton's AI Lecture</strong><small data-en="AI foundations" data-kr="AI 기반 지식">AI foundations</small></a>
                 </div>

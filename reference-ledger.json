@@ -1,0 +1,156 @@
+{
+  "version": 1,
+  "project": "haakusi-career-site",
+  "references": [
+    {
+      "source": "https://kimbom.dev/#hero",
+      "category": "landing",
+      "summary": "A long-form personal portfolio that uses a compact anchor navigation, oversized identity typography, an activity-image ribbon, principle-led capability sections, a restrained project navigator, and a direct contact close.",
+      "priority": "critical",
+      "extraction_method": "chrome-dom-and-computed-style",
+      "captured_at": "2026-07-23T00:00:00+09:00",
+      "asset_reuse_notes": "Pattern only. No brand assets, copy, illustrations, source code, or full layout are reused.",
+      "strengths_to_adopt": [
+        "A short anchor navigation makes a long page understandable before scrolling.",
+        "One oversized identity statement creates a clear first-screen position.",
+        "Life and activity imagery makes the person visible beyond a project list.",
+        "Capability sections explain operating principles before presenting project links.",
+        "A contact section and social links provide a decisive end to the narrative."
+      ],
+      "weaknesses_to_avoid": [
+        "A 23,000-pixel page and repeated image loops create unnecessary scroll cost.",
+        "Motion and decorative repetition can overshadow evidence and accessibility.",
+        "A full visual or information-architecture clone would erase the target person's identity."
+      ],
+      "target_area": "Home narrative, shared shell, activity gallery, capability explanation, archive navigator, and contact close",
+      "patterns": [
+        {
+          "name": "Measured asymmetric opening stage",
+          "type": "layout",
+          "description": "A 1320px content axis and 96px fixed header frame a viewport-height hero whose desktop composition uses a 320px narrative rail, a 64px gap, and a flexible right-aligned identity field.",
+          "applicability": "Recreate the spatial relationship with original Home markup and CSS, then collapse at 1180, 900, 640, and 430px without horizontal overflow."
+        },
+        {
+          "name": "Large but bounded identity type",
+          "type": "typography",
+          "description": "The primary statement uses a 62-88px responsive range at approximately 0.92 line height while supporting copy stays small and quiet.",
+          "applicability": "Use explicit bilingual phrase lines and a narrower 32-58px mobile range so Korean and English retain semantic breaks."
+        },
+        {
+          "name": "Narrative anchor rail",
+          "type": "navigation",
+          "description": "A small set of in-page destinations previews the story and supports quick jumps.",
+          "applicability": "Home sections for identity, proof, journey, mentoring, research, archives, and contact."
+        },
+        {
+          "name": "Identity-scale hero",
+          "type": "layout",
+          "description": "A single large role statement is paired with compact editorial metadata and one supporting paragraph.",
+          "applicability": "A bilingual AI-native platform lead statement with current role and public links."
+        },
+        {
+          "name": "Human evidence ribbon",
+          "type": "content-structure",
+          "description": "A horizontal sequence of images and captions shows learning, community, recognition, and making as one life narrative.",
+          "applicability": "Use selected awards now and replace text-led mentoring, PhD, and community tiles with user-supplied photos later."
+        },
+        {
+          "name": "Principles before projects",
+          "type": "content-structure",
+          "description": "The site explains how the person thinks before asking visitors to inspect work samples.",
+          "applicability": "Position device-to-cloud context, AI-native verification, and product ownership before selected evidence."
+        },
+        {
+          "name": "Monochrome editorial rhythm",
+          "type": "visual-design",
+          "description": "Black, white, and muted grey rely on typography, borders, and spacing rather than decorative gradients.",
+          "applicability": "Unify Home, CV, Portfolio, Research, Blog, Reading, and Lectures with one sans-serif token system."
+        }
+      ]
+    },
+    {
+      "source": "local-ref://resume-career/01-07",
+      "notes": "Private career-document screenshots reviewed locally; no source asset or wording is copied into the public site.",
+      "patterns": [
+        {
+          "category": "information_hierarchy",
+          "observation": "A viewer should understand role identity and the strongest differentiator within the first screen.",
+          "adaptation": "Use one concise identity statement, a restrained evidence summary, and direct paths to portfolio and CV.",
+          "avoid": "Competing oversized headings, decorative slogans, or several equally loud calls to action."
+        },
+        {
+          "category": "layout",
+          "observation": "Consistent card widths, a stable left edge, and generous whitespace make dense career evidence easier to scan.",
+          "adaptation": "Use one shared content width, an 8-point spacing rhythm, and equal-height grids only where the content is comparable.",
+          "avoid": "Independent page widths, floating controls that cover content, and ornamental two-tone panels."
+        },
+        {
+          "category": "typography",
+          "observation": "Short headings and controlled line lengths preserve meaning better than very large display type.",
+          "adaptation": "Use a Korean-capable system sans stack, balanced English headings, keep-all Korean headings, and explicit phrase-level hero lines.",
+          "avoid": "Forced breaks inside Korean words, aggressive English hyphenation, and serif display type that changes character by page."
+        },
+        {
+          "category": "case_study_structure",
+          "observation": "Strong career documents expose the judgment process, not only the final screen or technology list.",
+          "adaptation": "Keep problem, decision, implementation, evidence, and current status visibly separated in representative work.",
+          "avoid": "Tool inventories presented as impact or unqualified claims without status and evidence."
+        },
+        {
+          "category": "visual_system",
+          "observation": "A narrow neutral palette leaves emphasis for evidence and state rather than decoration.",
+          "adaptation": "Use graphite, paper white, muted text, and one steel accent with borders instead of gradients and heavy shadows.",
+          "avoid": "Warm and cool accent colors competing within the same page or different palettes for each navigation tab."
+        }
+      ]
+    },
+    {
+      "source": "https://docs.github.com/en/account-and-profile/tutorials/using-your-github-profile-to-enhance-your-resume",
+      "notes": "GitHub's official guidance for presenting a developer profile alongside a resume.",
+      "patterns": [
+        {
+          "category": "proof_selection",
+          "observation": "A concise bio, relevant skills and experience, and a small set of strongest projects are easier to evaluate than an undifferentiated activity archive.",
+          "adaptation": "Keep career-first navigation and route the first screen to three representative work systems, the public CV, and GitHub evidence.",
+          "avoid": "Treating every repository or artifact as equally important."
+        }
+      ]
+    },
+    {
+      "source": "https://www.themuse.com/advice/9-key-things-the-hiring-manager-is-looking-for-on-your-developer-resume/",
+      "notes": "Current hiring-manager-oriented resume guidance used only to validate scan order and trajectory framing.",
+      "patterns": [
+        {
+          "category": "career_trajectory",
+          "observation": "Experience becomes more persuasive when the reader can see increasing scope, ownership, and relevance to the target role.",
+          "adaptation": "Use reverse chronology and explicitly connect device integration, platform ownership, AI-native delivery, and technical leadership.",
+          "avoid": "A long skill inventory with no relationship to decisions, outcomes, or target roles."
+        }
+      ]
+    },
+    {
+      "source": "https://developers.google.com/search/docs/appearance/structured-data/profile-page?hl=en",
+      "notes": "Google Search Central requirements for ProfilePage structured data and discoverability.",
+      "patterns": [
+        {
+          "category": "discoverability",
+          "observation": "A public profile page should identify one main person, use valid Person data, and be discoverable through normal crawl paths and a sitemap.",
+          "adaptation": "Add conservative ProfilePage/Person JSON-LD to Home, canonical URLs to roots, and public sitemap and robots files.",
+          "avoid": "Structured-data claims that are not visible or verifiable on the page."
+        }
+      ]
+    },
+    {
+      "source": "https://www.w3.org/TR/WCAG22/",
+      "notes": "WCAG 2.2 used as the accessibility baseline for the shared career interface.",
+      "patterns": [
+        {
+          "category": "accessibility",
+          "observation": "Reflow, contrast, meaningful sequence, visible focus, and adequate interaction targets are baseline product quality rather than optional polish.",
+          "adaptation": "Keep semantic source order, visible skip links and focus rings, 44-pixel controls, readable line lengths, and horizontal-overflow checks at mobile widths.",
+          "avoid": "Color-only states, clipped navigation, hidden focus, and layout-dependent reading order."
+        }
+      ]
+    }
+  ]
+}

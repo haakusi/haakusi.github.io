@@ -1,23 +1,35 @@
 ﻿<!DOCTYPE html>
-<html data-theme="dark" data-lang="en">
+<html lang="en" data-theme="dark" data-lang="en">
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Reading - Sewon Park</title>
+    <meta name="description" content="Reading notes by Sewon Park on software, technology, philosophy, science, and the ideas that shape engineering judgment.">
+    <meta property="og:title" content="Reading Notes — Sewon Park">
+    <meta property="og:description" content="Books, durable ideas, and personal reflections that inform engineering and research judgment.">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://haakusi.github.io/reading.html">
+    <meta property="og:image" content="https://haakusi.github.io/og-banner.png?v=20260723">
+    <link rel="canonical" href="https://haakusi.github.io/reading.html">
+    <link rel="icon" href="favicon.svg" type="image/svg+xml">
+    <title>Reading Notes — Sewon Park</title>
     <link rel="stylesheet" type="text/css" href="style.css">
+    <link rel="stylesheet" type="text/css" href="career-system.css">
 </head>
-<body>
+<body class="reading-page archive-page">
+    <a class="career-skip" href="#reading-main" data-en="Skip to reading notes" data-kr="독서 노트로 이동">Skip to reading notes</a>
     <button class="theme-toggle" onclick="toggleTheme()" aria-label="Toggle dark mode"></button>
     <button class="lang-toggle" onclick="toggleLanguage()" aria-label="Toggle language">EN</button>
 
-    <div class="container">
+    <div class="container archive-container">
         <div id="site-header"></div>
         <div id="site-nav"></div>
 
-        <section class="reading-intro">
-            <h2 data-en="Reading Log" data-kr="독서 기록">Reading Log</h2>
-            <p data-en="Books I've read and key takeaways. Personal reflections and points that resonated with me."
-               data-kr="읽은 책과 핵심 포인트. 개인적인 생각과 인상 깊었던 점을 기록합니다.">Books I've read and key takeaways. Personal reflections and points that resonated with me.</p>
+        <main id="reading-main">
+        <section class="reading-intro archive-hero" aria-labelledby="reading-title">
+            <p class="archive-kicker">BOOKS · IDEAS · JUDGMENT</p>
+            <h1 id="reading-title" data-en="Reading notes for better technical judgment." data-kr="더 나은 기술적 판단을 위한 독서 노트">Reading notes for better technical judgment.</h1>
+            <p data-en="Books, durable ideas, and personal reflections that influence how I design systems, evaluate claims, and work with people."
+               data-kr="시스템 설계, 주장 검증과 협업 방식에 영향을 준 책·오래 남는 아이디어·개인적인 생각을 기록합니다.">Books, durable ideas, and personal reflections that influence how I design systems, evaluate claims, and work with people.</p>
         </section>
 
         <section class="reading-stats">
@@ -222,6 +234,7 @@
            data-en="No books match this filter yet."
            data-kr="아직 이 필터에 맞는 책이 없습니다."
            hidden>No books match this filter yet.</p>
+        </main>
 
         <div id="site-footer"></div>
     </div>

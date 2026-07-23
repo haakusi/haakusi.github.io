@@ -26,17 +26,21 @@ test('portfolio controls stay at the document top instead of covering anchored w
     assert.match(css, /\.portfolio-page\s+\.lang-toggle[\s\S]*?position:\s*absolute\s*!important/);
 });
 
-test('public portfolio includes the current platform, support, and research evidence', () => {
+test('public portfolio includes the current platform, modernization, core, and research evidence', () => {
     for (const phrase of [
         'scenario history',
-        'Technical Support chatbot',
+        'About 200K LOC',
+        '40%+ performance gain',
+        'SK Networks Family AI Camp',
         'hybrid quantum–classical',
         '시나리오 이력',
-        'Technical Support 챗봇',
+        '약 20만 LOC',
+        '성능을 40%+ 개선',
         '양자–고전 하이브리드',
     ]) {
         assert.ok(html.includes(phrase), `missing public portfolio phrase: ${phrase}`);
     }
+    assert.doesNotMatch(html, /Technical Support chatbot|Global Technical Support|\bSolis\b|RabbitMQ/i);
 });
 
 test('private no_read artifacts are excluded from Git', () => {
