@@ -501,8 +501,9 @@
 
     body.career-home .home-hero-depth-frame {
         top: var(--skin-shell) !important;
-        grid-template-columns: 260px minmax(0, 1fr) !important;
-        column-gap: clamp(38px, 5vw, 72px) !important;
+        grid-template-columns: clamp(280px, 27vw, 320px) minmax(0, 1fr) !important;
+        align-items: stretch !important;
+        column-gap: clamp(44px, 4vw, 64px) !important;
         min-height: calc(100svh - var(--skin-shell)) !important;
         padding: clamp(46px, 7vh, 72px) 0 !important;
     }
@@ -513,8 +514,8 @@
     }
 
     body.career-home .home-hero .home-lede {
-        max-width: 250px !important;
-        font-size: 15px !important;
+        max-width: 300px !important;
+        font-size: 16px !important;
         line-height: 1.58 !important;
     }
 
@@ -524,9 +525,15 @@
     }
 
     body.career-home .home-hero-statement {
+        align-self: stretch !important;
         align-items: flex-start !important;
-        justify-content: center;
+        justify-content: flex-start;
+        min-height: 0 !important;
         text-align: left !important;
+    }
+
+    body.home-motion-enhanced .home-hero [data-hero-depth-content] {
+        transform-origin: 0% 42% !important;
     }
 
     body.career-home .home-kicker {
@@ -907,6 +914,27 @@
         padding: 30px 0 !important;
     }
 
+    body.archive-page .blog-index .blog-post {
+        grid-template-columns: minmax(0, 1fr) auto !important;
+    }
+
+    body.archive-page .blog-index .blog-post h3 {
+        grid-column: 1;
+        min-width: 0;
+        margin: 0 !important;
+    }
+
+    body.archive-page .blog-index .blog-date {
+        grid-column: 2;
+        grid-row: 1;
+        align-self: start;
+        width: max-content;
+    }
+
+    body.archive-page .blog-index .blog-excerpt {
+        grid-column: 1 / -1;
+    }
+
     body.archive-page :is(.blog-post h3, .book-card h3, .course-card h3) {
         color: var(--skin-ink) !important;
         font-size: clamp(22px, 2.4vw, 30px) !important;
@@ -1145,6 +1173,16 @@
     body.archive-page .blog-post {
         grid-template-columns: 1fr !important;
         gap: 18px !important;
+    }
+
+    body.archive-page .blog-index .blog-post {
+        grid-template-columns: 1fr !important;
+    }
+
+    body.archive-page .blog-index .blog-date {
+        grid-column: 1;
+        grid-row: auto;
+        margin-top: 8px;
     }
 
     body.cv-page .cv-entry-rail {

@@ -27,7 +27,7 @@
         if (!document.querySelector('link[href*="career-skin.css"]')) {
             const skin = document.createElement('link');
             skin.rel = 'stylesheet';
-            skin.href = prefix + 'career-skin.css?v=20260724-skin3';
+            skin.href = prefix + 'career-skin.css?v=20260724-skin5';
             skin.dataset.sharedCareerSkin = 'true';
             document.head.appendChild(skin);
         }

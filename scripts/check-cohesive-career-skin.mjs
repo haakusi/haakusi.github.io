@@ -14,7 +14,7 @@ test('one final career skin is loaded last on every public root', () => {
     assert.equal(skinExists, true, 'career-skin.css must exist');
     for (const page of roots) {
         const html = read(page);
-        assert.match(html, /career-skin\.css\?v=20260724-skin3/);
+        assert.match(html, /career-skin\.css\?v=20260724-skin5/);
         assert.ok(
             html.lastIndexOf('career-skin.css') > html.lastIndexOf('career-system.css'),
             `${page} must load the final skin after the compatibility system`,
@@ -60,4 +60,20 @@ test('portfolio, CV, research, and archive roots share the same readable page fr
 test('utility rows stay compact and the mobile identity bar follows the skin token', () => {
     assert.match(skin, /#reading-main > section:is\(\.reading-stats,\s*\.reading-filter\)\s*\{[^}]*padding:\s*26px 0\s*!important/);
     assert.match(skin, /@media screen and \(max-width:\s*900px\)[\s\S]*?body[^}]*#site-header header\s*\{[^}]*height:\s*var\(--skin-header\)\s*!important/);
+});
+
+test('desktop hero keeps one left axis and balances both content columns', () => {
+    assert.match(skin, /body\.career-home \.home-hero-depth-frame\s*\{[^}]*grid-template-columns:\s*clamp\(280px,\s*27vw,\s*320px\)\s+minmax\(0,\s*1fr\)[^}]*align-items:\s*stretch\s*!important/);
+    assert.match(skin, /body\.career-home \.home-hero-statement\s*\{[^}]*align-self:\s*stretch\s*!important[^}]*justify-content:\s*flex-start/);
+    assert.match(skin, /body\.career-home \.home-hero-meta\s*\{[^}]*margin-top:\s*auto\s*!important/);
+    assert.match(skin, /body\.home-motion-enhanced \.home-hero \[data-hero-depth-content\]\s*\{[^}]*transform-origin:\s*0% 42%\s*!important/);
+});
+
+test('blog titles own the flexible article track instead of the 150px generic rail', () => {
+    assert.match(skin, /body\.archive-page \.blog-index \.blog-post\s*\{[^}]*grid-template-columns:\s*minmax\(0,\s*1fr\)\s+auto\s*!important/);
+    assert.match(skin, /body\.archive-page \.blog-index \.blog-post h3\s*\{[^}]*grid-column:\s*1[^}]*min-width:\s*0/);
+    assert.match(skin, /body\.archive-page \.blog-index \.blog-date\s*\{[^}]*grid-column:\s*2/);
+    assert.match(skin, /body\.archive-page \.blog-index \.blog-excerpt\s*\{[^}]*grid-column:\s*1 \/ -1/);
+    assert.match(skin, /@media screen and \(max-width:\s*680px\)[\s\S]*?body\.archive-page \.blog-index \.blog-post\s*\{[^}]*grid-template-columns:\s*1fr\s*!important/);
+    assert.match(skin, /@media screen and \(max-width:\s*680px\)[\s\S]*?body\.archive-page \.blog-index \.blog-date\s*\{[^}]*grid-column:\s*1[^}]*grid-row:\s*auto/);
 });
