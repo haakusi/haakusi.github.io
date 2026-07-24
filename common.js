@@ -24,6 +24,14 @@
             document.head.appendChild(stylesheet);
         }
 
+        if (!document.querySelector('link[href*="career-skin.css"]')) {
+            const skin = document.createElement('link');
+            skin.rel = 'stylesheet';
+            skin.href = prefix + 'career-skin.css?v=20260724-skin3';
+            skin.dataset.sharedCareerSkin = 'true';
+            document.head.appendChild(skin);
+        }
+
         const isKnowledgeDetail = /^blog\d+\.html$/.test(page)
             || /^reading-book-.*\.html$/.test(page)
             || window.location.pathname.includes('/lectures/');
@@ -65,7 +73,14 @@
                     </svg>
                 </a>
             </div>
+            <div class="site-controls" aria-label="Display controls"></div>
         </header>`;
+
+        const controls = headerEl.querySelector('.site-controls');
+        const themeButton = document.querySelector('body > .theme-toggle');
+        const languageButton = document.querySelector('body > .lang-toggle');
+        if (controls && themeButton) controls.appendChild(themeButton);
+        if (controls && languageButton) controls.appendChild(languageButton);
     }
 
     // ===== NAVIGATION =====
@@ -105,6 +120,24 @@
         navEl.innerHTML = `<nav class="navigation">
             ${links}
         </nav>`;
+    }
+
+    function renderTicker() {
+        const navEl = document.getElementById('site-nav');
+        if (!navEl || document.querySelector('.career-ticker')) return;
+
+        navEl.insertAdjacentHTML('afterend', `<div class="career-ticker" aria-hidden="true">
+        <div class="career-ticker-track" data-career-ticker-track>
+            <span>AI-NATIVE PRODUCT ENGINEERING</span>
+            <span>DEVICE → GATEWAY → API → AGENT</span>
+            <span>VERIFY BEFORE TRUST</span>
+            <span>PLATFORM · PRODUCT · RESEARCH</span>
+            <span>AI-NATIVE PRODUCT ENGINEERING</span>
+            <span>DEVICE → GATEWAY → API → AGENT</span>
+            <span>VERIFY BEFORE TRUST</span>
+            <span>PLATFORM · PRODUCT · RESEARCH</span>
+        </div>
+        </div>`);
     }
 
     // ===== FOOTER =====
@@ -201,6 +234,7 @@
         // Render shared components
         renderHeader();
         renderNav();
+        renderTicker();
         renderFooter();
 
         // Apply saved theme
