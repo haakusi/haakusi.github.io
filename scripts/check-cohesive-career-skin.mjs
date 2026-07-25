@@ -14,7 +14,7 @@ test('one final career skin is loaded last on every public root', () => {
     assert.equal(skinExists, true, 'career-skin.css must exist');
     for (const page of roots) {
         const html = read(page);
-        assert.match(html, /career-skin\.css\?v=20260725-focus4/);
+        assert.match(html, /career-skin\.css\?v=20260725-rail1/);
         assert.ok(
             html.lastIndexOf('career-skin.css') > html.lastIndexOf('career-system.css'),
             `${page} must load the final skin after the compatibility system`,
@@ -42,6 +42,13 @@ test('ticker motion is continuous, clipped, and motion-safe', () => {
     assert.match(skin, /@keyframes career-ticker-flow/);
     assert.match(skin, /\.career-ticker-track\s*\{[^}]*animation:\s*career-ticker-flow/);
     assert.match(skin, /@media \(prefers-reduced-motion:\s*reduce\)[\s\S]*?\.career-ticker-track\s*\{[^}]*animation:\s*none/);
+});
+
+test('ticker shares the same centered content rail as the header and navigation', () => {
+    assert.match(
+        skin,
+        /:is\(#site-header,\s*#site-nav,\s*\.career-ticker,\s*#site-footer\)[\s\S]*?width:\s*min\(calc\(100% - \(2 \* var\(--skin-gutter\)\)\),\s*var\(--skin-content\)\)\s*!important/,
+    );
 });
 
 test('home gives cinematic chapters enough travel while keeping stage lengths bounded', () => {

@@ -121,7 +121,7 @@
         backdrop-filter: none !important;
     }
 
-    :is(#site-header, #site-nav, #site-footer),
+    :is(#site-header, #site-nav, .career-ticker, #site-footer),
     :is(#portfolio-main, #cv-main, #research-main, #blog-main, #lectures-main, #reading-main, #not-found-main) {
         width: min(calc(100% - (2 * var(--skin-gutter))), var(--skin-content)) !important;
         max-width: var(--skin-content) !important;
@@ -328,11 +328,10 @@
         transform: scaleX(1);
     }
 
-    /* Full-width editorial ticker */
+    /* Editorial ticker aligned to the shared content rail */
     .career-ticker {
         position: relative;
         z-index: 2;
-        width: 100%;
         height: var(--skin-ticker);
         overflow: hidden;
         border-bottom: 1px solid var(--skin-line);
