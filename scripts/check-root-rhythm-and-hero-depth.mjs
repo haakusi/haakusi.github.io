@@ -38,13 +38,15 @@ test('home uses bounded type, one content axis, and consistent editorial rhythm'
 });
 
 test('hero falls back to a single readable column at tablet width', () => {
-    assert.match(index, /class="profile-hero"/);
-    assert.match(hybrid, /@media\s*\(max-width:\s*900px\)[\s\S]*?\.profile-hero\s*\{[^}]*grid-template-columns:\s*1fr[^}]*grid-template-areas:\s*"statement" "intro" "now"/);
+    assert.match(index, /class="profile-hero"[^>]*data-profile-stage-frame/);
+    assert.match(hybrid, /@media\s*\(max-width:\s*900px\)[\s\S]*?\.profile-hero\s*\{[^}]*grid-template-columns:\s*1fr/);
+    assert.match(hybrid, /@media\s*\(max-width:\s*900px\)[\s\S]*?\.profile-hero-brief\s*\{[^}]*border-top:\s*1px solid var\(--profile-line\)[^}]*border-left:\s*0/);
     assert.match(hybrid, /@media\s*\(max-width:\s*640px\)[\s\S]*?\.profile-hero-statement h1\s*\{[^}]*font-size:\s*clamp\(42px,\s*13\.2vw,\s*62px\)/);
 });
 
 test('enhancement never blocks content or overrides reduced-motion preferences', () => {
     assert.doesNotMatch(index, /home-motion\.js/);
+    assert.match(index, /profile-motion\.js/);
     assert.match(hybrid, /@supports\s*\(animation-timeline:\s*view\(\)\)/);
     assert.match(hybrid, /@media\s*\(prefers-reduced-motion:\s*reduce\)[\s\S]*?opacity:\s*1\s*!important/);
 });

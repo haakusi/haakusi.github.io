@@ -25,13 +25,14 @@ test('homepage follows an industry-first editorial journey', () => {
     assert.doesNotMatch(index, /id="(?:media|capability|mentoring|archive)"/);
 });
 
-test('homepage opening pairs a readable statement with a concise current ledger', () => {
-    for (const className of ['profile-hero-intro', 'profile-hero-statement', 'profile-now', 'profile-evidence']) {
+test('homepage opening pairs one readable focal statement with a separate current-work band', () => {
+    for (const className of ['profile-hero-statement', 'profile-hero-brief', 'profile-current', 'profile-evidence']) {
         assert.match(index, new RegExp(`class="[^"]*${className}`));
     }
-    assert.equal((index.match(/class="profile-now"/g) ?? []).length, 1);
+    assert.equal((index.match(/data-current-item/g) ?? []).length, 3);
+    assert.equal((index.match(/class="profile-action(?:\s|\")/g) ?? []).length, 2);
     assert.equal((index.match(/<article><strong(?:\s+class="profile-evidence-wide")?>/g) ?? []).length, 4);
-    assert.match(css, /\.profile-hero\s*\{[^}]*grid-template-areas:/);
+    assert.match(css, /\.profile-hero\s*\{[^}]*grid-template-columns:\s*minmax\(0,\s*1\.75fr\)\s+minmax\(260px,\s*0\.65fr\)/);
     assert.match(css, /word-break:\s*keep-all/);
 });
 

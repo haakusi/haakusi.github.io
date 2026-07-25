@@ -7,23 +7,28 @@ const read = (path) => readFileSync(new URL(path, root), 'utf8');
 const index = read('index.html');
 const css = read('hybrid-profile.css');
 
-test('home remains fully readable without a JavaScript motion driver', () => {
+test('home keeps complete semantic content before progressive motion initializes', () => {
     assert.doesNotMatch(index, /home-motion\.js|data-scroll-stage|data-cinematic-scene|data-hero-depth/);
     assert.match(index, /<script src="common\.js\?v=[^"]+"><\/script>/);
-    assert.doesNotMatch(css, /body\.home-motion-enhanced/);
+    assert.match(index, /<script src="profile-motion\.js\?v=[^"]+"><\/script>/);
+    assert.match(index, /data-profile-stage="hero"/);
+    assert.match(index, /data-profile-scene-content/);
+    assert.doesNotMatch(css, /body:not\(\.profile-motion-enhanced\)[^{]*\{[^}]*(?:opacity:\s*0|visibility:\s*hidden)/);
 });
 
-test('progressive motion is CSS-only and honors reduced motion', () => {
+test('progressive motion combines view reveals with a bounded driver and honors reduced motion', () => {
     assert.match(css, /@supports\s*\(animation-timeline:\s*view\(\)\)/);
     assert.match(css, /animation-timeline:\s*view\(\)/);
     assert.match(css, /animation-range:\s*entry 8% cover 28%/);
+    assert.match(css, /body\.profile-motion-enhanced\s+\.profile-cinematic/);
     assert.match(css, /@media\s*\(prefers-reduced-motion:\s*reduce\)[\s\S]*?animation:\s*none\s*!important/);
 });
 
-test('sections use bounded editorial spacing rather than pinned full-screen stages', () => {
+test('only selected chapters use bounded focal stages while the remaining document stays editorial', () => {
     assert.match(css, /--profile-section:\s*clamp\(88px,\s*10vw,\s*148px\)/);
     assert.match(css, /\.profile-section\s*\{[^}]*padding:\s*var\(--profile-section\) 0/);
-    assert.doesNotMatch(css, /position:\s*sticky|min-height:\s*220(?:s?vh)/);
+    assert.match(css, /body\.profile-motion-enhanced\s+\.profile-cinematic\s*\{[^}]*min-height:\s*clamp\(1040px,\s*165svh,\s*1580px\)/);
+    assert.doesNotMatch(css, /min-height:\s*220(?:s?vh)/);
 });
 
 test('dark theme uses quiet side focus rails without obscuring content', () => {

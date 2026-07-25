@@ -16,6 +16,7 @@
     <link rel="stylesheet" type="text/css" href="portfolio-style.css?v=20260723-align2">
     <link rel="stylesheet" type="text/css" href="career-system.css?v=20260723-align2">
     <link rel="stylesheet" type="text/css" href="career-skin.css?v=20260725-rail1">
+    <link rel="stylesheet" type="text/css" href="portfolio-case-details.css?v=20260726-case1">
 </head>
 <body class="portfolio-page">
     <a class="portfolio-skip career-skip" href="#portfolio-main" data-en="Skip to work" data-kr="프로젝트로 이동">Skip to work</a>
@@ -167,6 +168,57 @@
                         <div><span data-en="Role" data-kr="역할">Role</span><strong data-en="Product owner · architect · full-stack implementation" data-kr="제품 책임 · 아키텍처 · 풀스택 구현">Product owner · architect · full-stack implementation</strong></div>
                         <div><span data-en="Focus" data-kr="초점">Focus</span><strong>Developer experience · MCP · API/SDK · sandbox · evaluation</strong></div>
                     </footer>
+
+                    <section class="case-implementation" aria-labelledby="portal-implementation-title">
+                        <header class="case-implementation-header">
+                            <div>
+                                <span>IMPLEMENTATION MAP</span>
+                                <h4 id="portal-implementation-title" data-en="How the platform is implemented" data-kr="플랫폼을 구현한 방식">How the platform is implemented</h4>
+                            </div>
+                            <p data-en="Open a layer to connect the named technologies to a concrete product decision." data-kr="각 계층을 열면 기술이 실제 제품 판단과 어떻게 연결됐는지 확인할 수 있습니다.">Open a layer to connect the named technologies to a concrete product decision.</p>
+                        </header>
+                        <div class="case-stack" aria-label="Developer Portal technology stack">
+                            <span>OpenAPI</span><span>MCP</span><span>Linux/AWS</span><span>Device SDK</span><span>Java/Kotlin</span><span>Browser API Console</span>
+                        </div>
+                        <div class="case-accordion" data-case-accordion>
+                            <details class="case-detail" name="portal-implementation" open>
+                                <summary>
+                                    <span>01</span>
+                                    <strong data-en="Architecture &amp; implementation" data-kr="아키텍처 · 구현">Architecture &amp; implementation</strong>
+                                    <small data-en="One operation model across six product surfaces" data-kr="여섯 제품 표면이 하나의 operation model을 공유">One operation model across six product surfaces</small>
+                                    <i aria-hidden="true"></i>
+                                </summary>
+                                <div class="case-detail-body">
+                                    <p class="lang-en">The API source of truth feeds browser execution, SDK examples, the device emulator, MCP tools, and the Linux/AWS sandbox. Keeping these surfaces on one operation model prevents documentation, examples, and executable behavior from drifting apart.</p>
+                                    <p class="lang-kr" hidden>API 단일 기준을 브라우저 실행, SDK 예제, 장치 에뮬레이터, MCP 도구와 Linux/AWS 샌드박스가 함께 사용합니다. 문서·예제·실행 동작이 서로 달라지지 않도록 하나의 operation model로 묶었습니다.</p>
+                                </div>
+                            </details>
+                            <details class="case-detail" name="portal-implementation">
+                                <summary>
+                                    <span>02</span>
+                                    <strong data-en="Developer workflow" data-kr="개발자 워크플로">Developer workflow</strong>
+                                    <small data-en="First API call to a replayable device scenario" data-kr="첫 API 호출부터 재현 가능한 장치 시나리오까지">First API call to a replayable device scenario</small>
+                                    <i aria-hidden="true"></i>
+                                </summary>
+                                <div class="case-detail-body">
+                                    <p class="lang-en">A developer can call an API in the browser without Postman, reproduce the SDK workflow without a physical device, and then move the same user, door, authentication, and event scenario into a sandbox or real-device gateway.</p>
+                                    <p class="lang-kr" hidden>Postman 없이 브라우저에서 API를 호출하고, 실제 장치 없이 SDK 흐름을 재현한 뒤, 같은 사용자·도어·인증·이벤트 시나리오를 샌드박스나 실제 장치 게이트웨이로 확장할 수 있게 구성했습니다.</p>
+                                </div>
+                            </details>
+                            <details class="case-detail" name="portal-implementation">
+                                <summary>
+                                    <span>03</span>
+                                    <strong data-en="Verification &amp; troubleshooting" data-kr="검증 · 트러블슈팅">Verification &amp; troubleshooting</strong>
+                                    <small data-en="Scenario history makes complex failures replayable" data-kr="시나리오 이력으로 복합 실패를 재현">Scenario history makes complex failures replayable</small>
+                                    <i aria-hidden="true"></i>
+                                </summary>
+                                <div class="case-detail-body">
+                                    <p class="lang-en">When a multi-step flow fails, MCP recalls the scenario history in natural language and replays it inside the sandbox. This separates setup errors, API-contract errors, device-state errors, and scenario errors before the workflow reaches a physical device.</p>
+                                    <p class="lang-kr" hidden>여러 단계의 흐름이 실패하면 MCP가 시나리오 이력을 자연어로 호출해 샌드박스에서 재실행합니다. 실제 장치로 넘어가기 전에 설정 오류·API 계약 오류·장치 상태 오류·시나리오 오류를 구분할 수 있습니다.</p>
+                                </div>
+                            </details>
+                        </div>
+                    </section>
                 </article>
 
                 <div class="case-pair">
@@ -192,6 +244,57 @@
                             <span>PRINCIPLE</span>
                             <p data-en="Generated code is not progress until equivalent behavior is proven." data-kr="생성된 코드가 기존 동작과 같음이 증명되기 전까지는 진척으로 보지 않습니다.">Generated code is not progress until equivalent behavior is proven.</p>
                         </div>
+
+                        <section class="case-implementation" aria-labelledby="modernization-implementation-title">
+                            <header class="case-implementation-header">
+                                <div>
+                                    <span>IMPLEMENTATION MAP</span>
+                                    <h4 id="modernization-implementation-title" data-en="How the rewrite preserves meaning" data-kr="전면 전환에서 의미를 보존하는 방식">How the rewrite preserves meaning</h4>
+                                </div>
+                                <p data-en="The stack is organized around migration boundaries and proof gates." data-kr="기술 스택을 전환 경계와 검증 게이트를 중심으로 구성했습니다.">The stack is organized around migration boundaries and proof gates.</p>
+                            </header>
+                            <div class="case-stack" aria-label="Angular to React modernization technology stack">
+                                <span>TypeScript</span><span>React</span><span>Angular</span><span>Playwright</span><span>REST API</span><span>DOM/UI/CSS/E2E</span>
+                            </div>
+                            <div class="case-accordion" data-case-accordion>
+                                <details class="case-detail" name="modernization-implementation" open>
+                                    <summary>
+                                        <span>01</span>
+                                        <strong data-en="Migration boundary" data-kr="전환 경계">Migration boundary</strong>
+                                        <small data-en="Route, state, and ownership before component conversion" data-kr="컴포넌트 전환 전 route·state·소유권 분리">Route, state, and ownership before component conversion</small>
+                                        <i aria-hidden="true"></i>
+                                    </summary>
+                                    <div class="case-detail-body">
+                                        <p class="lang-en">The rewrite begins by separating routing, back navigation, and state ownership across the iframe boundary. React conversion follows only after each behavior has an explicit owner and a reproducible contract.</p>
+                                        <p class="lang-kr" hidden>iframe 경계에 얽힌 라우팅·뒤로가기·상태 소유권을 먼저 분리합니다. 각 동작의 소유 주체와 재현 가능한 계약을 정한 뒤 React 전환을 진행합니다.</p>
+                                    </div>
+                                </details>
+                                <details class="case-detail" name="modernization-implementation">
+                                    <summary>
+                                        <span>02</span>
+                                        <strong data-en="Verification harness" data-kr="검증 하니스">Verification harness</strong>
+                                        <small data-en="Independent gates reveal different classes of regression" data-kr="회귀 유형별 독립 게이트">Independent gates reveal different classes of regression</small>
+                                        <i aria-hidden="true"></i>
+                                    </summary>
+                                    <div class="case-detail-body">
+                                        <p class="lang-en">Backend payload and response, API contract, unit behavior, React and useEffect semantics, DOM structure, UI/CSS assertions, and E2E journeys fail independently. A green build therefore means more than generated code compiling.</p>
+                                        <p class="lang-kr" hidden>Backend payload/response, API contract, unit 동작, React·useEffect 의미, DOM 구조, UI/CSS assertion과 E2E 여정을 독립적으로 실패하게 구성합니다. 따라서 빌드 성공은 생성 코드의 컴파일 이상을 의미합니다.</p>
+                                    </div>
+                                </details>
+                                <details class="case-detail" name="modernization-implementation">
+                                    <summary>
+                                        <span>03</span>
+                                        <strong data-en="Verification &amp; troubleshooting" data-kr="검증 · 트러블슈팅">Verification &amp; troubleshooting</strong>
+                                        <small data-en="Diagnose routing, back navigation, and state ownership separately" data-kr="라우팅·뒤로가기·상태 소유권을 분리 진단">Diagnose routing, back navigation, and state ownership separately</small>
+                                        <i aria-hidden="true"></i>
+                                    </summary>
+                                    <div class="case-detail-body">
+                                        <p class="lang-en">When equivalent screens diverge, the team can identify whether the failure originated in the API contract, effect timing, DOM meaning, CSS state, or end-to-end navigation instead of treating the entire rewrite as one opaque regression.</p>
+                                        <p class="lang-kr" hidden>동일 화면의 동작이 달라졌을 때 전체 전환을 하나의 불투명한 회귀로 보지 않고 API 계약·effect timing·DOM 의미·CSS 상태·E2E navigation 중 어디서 실패했는지 구분합니다.</p>
+                                    </div>
+                                </details>
+                            </div>
+                        </section>
                     </article>
 
                     <article id="case-device-cloud" class="case-study">
@@ -223,6 +326,57 @@
                             <p class="lang-en">Redesigned C++/Java WebSocket/Apache Ignite event processing for a 40%+ performance gain, reduced CPU processing by about 50% through a data-structure change, and shortened bulk deletion from the 30-second range to about three seconds.</p>
                             <p class="lang-kr" hidden>C++·Java WebSocket·Apache Ignite 이벤트 처리를 재설계해 성능을 40%+ 개선하고, 자료구조 변경으로 CPU 처리를 약 50% 줄였으며, 대량 삭제를 30초대에서 약 3초로 단축했습니다.</p>
                         </div>
+
+                        <section class="case-implementation" aria-labelledby="device-cloud-implementation-title">
+                            <header class="case-implementation-header">
+                                <div>
+                                    <span>IMPLEMENTATION MAP</span>
+                                    <h4 id="device-cloud-implementation-title" data-en="How device state becomes a product workflow" data-kr="장치 상태를 제품 흐름으로 바꾸는 방식">How device state becomes a product workflow</h4>
+                                </div>
+                                <p data-en="The stack follows the failure path from a packet to an operator-facing product." data-kr="패킷에서 운영 제품까지 실패가 이동하는 경로를 따라 스택을 구성했습니다.">The stack follows the failure path from a packet to an operator-facing product.</p>
+                            </header>
+                            <div class="case-stack" aria-label="Device to cloud technology stack">
+                                <span>C++</span><span>Java/Kotlin</span><span>Spring Cloud Gateway</span><span>Apache Ignite</span><span>MariaDB</span><span>Microsoft SQL Server</span><span>gRPC</span><span>ZooKeeper</span>
+                            </div>
+                            <div class="case-accordion" data-case-accordion>
+                                <details class="case-detail" name="device-cloud-implementation" open>
+                                    <summary>
+                                        <span>01</span>
+                                        <strong data-en="Architecture &amp; implementation" data-kr="아키텍처 · 구현">Architecture &amp; implementation</strong>
+                                        <small data-en="Packet, capability, gateway, event, and web product" data-kr="패킷·캐퍼빌리티·게이트웨이·이벤트·웹 제품">Packet, capability, gateway, event, and web product</small>
+                                        <i aria-hidden="true"></i>
+                                    </summary>
+                                    <div class="case-detail-body">
+                                        <p class="lang-en">C++ device packets and capability state feed Java/Kotlin services and domain gateways for users, doors, authentication, and events. The same semantics then reach enterprise web products, installers, enrollment flows, and cloud integrations.</p>
+                                        <p class="lang-kr" hidden>C++ 장치 패킷과 캐퍼빌리티 상태를 Java/Kotlin 서비스 및 사용자·도어·인증·이벤트 도메인 게이트웨이에 연결했습니다. 같은 의미가 엔터프라이즈 웹 제품·인스톨러·등록 흐름·클라우드 연동까지 이어집니다.</p>
+                                    </div>
+                                </details>
+                                <details class="case-detail" name="device-cloud-implementation">
+                                    <summary>
+                                        <span>02</span>
+                                        <strong data-en="Platform decisions" data-kr="플랫폼 판단">Platform decisions</strong>
+                                        <small data-en="Routing, resilience, dynamic configuration, and distributed state" data-kr="라우팅·복원력·동적 설정·분산 상태">Routing, resilience, dynamic configuration, and distributed state</small>
+                                        <i aria-hidden="true"></i>
+                                    </summary>
+                                    <div class="case-detail-body">
+                                        <p class="lang-en">Spring Cloud Gateway replaced the unified Nginx gateway with URL and header routing, rate limiting, circuit breaking, TLS 1.2, and configuration updates without service restart. Apache Ignite and ZooKeeper supported distributed event and state coordination.</p>
+                                        <p class="lang-kr" hidden>Spring Cloud Gateway로 Unified Nginx Gateway를 대체하며 URL·header routing, rate limiter, circuit breaker, TLS 1.2와 무중단 동적 설정 반영을 구현했습니다. Apache Ignite와 ZooKeeper로 분산 이벤트·상태 조정을 지원했습니다.</p>
+                                    </div>
+                                </details>
+                                <details class="case-detail" name="device-cloud-implementation">
+                                    <summary>
+                                        <span>03</span>
+                                        <strong data-en="Verification &amp; troubleshooting" data-kr="검증 · 트러블슈팅">Verification &amp; troubleshooting</strong>
+                                        <small data-en="Measure the bottleneck before changing the abstraction" data-kr="추상화 변경 전 병목을 측정">Measure the bottleneck before changing the abstraction</small>
+                                        <i aria-hidden="true"></i>
+                                    </summary>
+                                    <div class="case-detail-body">
+                                        <p class="lang-en">Distributed-event tracing led to a C++/Java WebSocket/Apache Ignite redesign with a 40%+ gain. Replacing a hot-path vector with a map reduced CPU processing by about 50%, while query and transaction changes shortened bulk deletion from the 30-second range to about three seconds.</p>
+                                        <p class="lang-kr" hidden>분산 이벤트 추적으로 병목을 확인한 뒤 C++·Java WebSocket·Apache Ignite 흐름을 재설계해 40%+ 개선했습니다. hot path의 vector를 map으로 바꿔 CPU 처리를 약 50% 줄이고, query·transaction 변경으로 대량 삭제를 30초대에서 약 3초로 단축했습니다.</p>
+                                    </div>
+                                </details>
+                            </div>
+                        </section>
                     </article>
                 </div>
             </section>
@@ -328,5 +482,6 @@
     </div>
 
     <script src="common.js?v=20260725-profile2"></script>
+    <script src="portfolio-interactions.js?v=20260726-case1"></script>
 </body>
 </html>

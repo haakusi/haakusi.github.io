@@ -9,11 +9,12 @@ const research = read('research.html');
 const skin = read('career-skin.css');
 const hybrid = read('hybrid-profile.css');
 
-test('the Home opening balances an industry statement with a compact current ledger', () => {
-    assert.match(index, /class="profile-hero-intro"[\s\S]*?class="profile-hero-statement"[\s\S]*?class="profile-now"/);
-    assert.match(hybrid, /\.profile-hero\s*\{[^}]*grid-template-columns:[^}]*grid-template-areas:/);
+test('the Home opening gives one statement the focal axis and moves current work into its own band', () => {
+    assert.match(index, /class="profile-hero-statement"[^>]*data-profile-primary[\s\S]*?class="profile-hero-brief"[^>]*data-profile-support/);
+    assert.match(hybrid, /\.profile-hero\s*\{[^}]*grid-template-columns:\s*minmax\(0,\s*1\.75fr\)\s+minmax\(260px,\s*0\.65fr\)/);
     assert.match(hybrid, /\.profile-hero-statement h1\s*\{[^}]*font-size:\s*clamp\(50px,\s*6\.3vw,\s*94px\)/);
-    assert.match(hybrid, /\.profile-now\s*\{[^}]*grid-area:\s*now/);
+    assert.match(index, /class="profile-current"[\s\S]*?<li data-current-item>[\s\S]*?<li data-current-item>[\s\S]*?<li data-current-item>/);
+    assert.equal((index.match(/class="profile-action(?:\s|\")/g) ?? []).length, 2);
     assert.match(index, /class="profile-evidence"/);
 });
 

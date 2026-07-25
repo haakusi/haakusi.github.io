@@ -23,7 +23,7 @@
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="career-system.css?v=20260723-align2">
     <link rel="stylesheet" href="career-skin.css?v=20260725-rail1">
-    <link rel="stylesheet" href="hybrid-profile.css?v=20260725-strength1">
+    <link rel="stylesheet" href="hybrid-profile.css?v=20260725-gaze1">
     <script type="application/ld+json">
     {
         "@context": "https://schema.org",
@@ -69,34 +69,27 @@
         <div id="site-nav"></div>
 
         <main id="home-main">
-            <section id="identity" class="profile-hero" aria-labelledby="home-title">
-                <div class="profile-hero-intro">
-                    <p class="profile-eyebrow" data-en="8 YEARS · DEVICE-TO-PRODUCT ENGINEERING" data-kr="8년 · 장치에서 제품까지">8 YEARS · DEVICE-TO-PRODUCT ENGINEERING</p>
-                    <p class="profile-intro lang-en">I lead AI-native platform and product work with an understanding of the physical-device state, protocol, server semantics, and developer workflow beneath it. Implementation ends with evidence a team can operate.</p>
-                    <p class="profile-intro lang-kr" hidden>장치 상태·프로토콜·서버 의미·개발자 워크플로를 함께 이해하며 AI-native 플랫폼·제품 엔지니어링을 리딩합니다. 구현은 팀이 운영할 수 있는 검증 근거로 마무리합니다.</p>
-                    <div class="profile-actions">
-                        <a class="profile-action profile-action-primary" href="portfolio.html" data-en="Explore selected work" data-kr="대표 프로젝트 보기">Explore selected work</a>
-                        <a class="profile-action" href="cv.html" data-en="Read the public CV" data-kr="공개 이력서 보기">Read the public CV</a>
-                        <a class="profile-text-link" href="research.html" data-en="Research in progress →" data-kr="진행 중인 연구 →">Research in progress →</a>
+            <section id="identity" class="profile-hero-stage" data-profile-stage="hero" aria-labelledby="home-title">
+                <div class="profile-hero" data-profile-stage-frame>
+                    <div class="profile-hero-statement" data-profile-primary>
+                        <p class="profile-eyebrow" data-en="8 YEARS · DEVICE-TO-PRODUCT ENGINEERING" data-kr="8년 · 장치에서 제품까지">8 YEARS · DEVICE-TO-PRODUCT ENGINEERING</p>
+                        <h1 id="home-title">
+                            <span class="lang-en"><span>From device packets</span><span>to products teams</span><em>can trust.</em></span>
+                            <span class="lang-kr" hidden><span>장치 패킷부터</span><span>팀이 신뢰할</span><em>제품 시스템까지.</em></span>
+                        </h1>
+                        <p data-en="Eight years turning physical-product boundaries into platform contracts, developer experiences, and release gates." data-kr="물리 제품의 복잡한 경계를 플랫폼 계약·개발자 경험·릴리스 검증 게이트로 바꿔 온 8년의 경험입니다.">Eight years turning physical-product boundaries into platform contracts, developer experiences, and release gates.</p>
+                    </div>
+
+                    <div class="profile-hero-brief" data-profile-support>
+                        <p class="profile-intro lang-en">I lead AI-native platform and product work by reading the physical-device state, protocol, server semantics, and developer workflow as one system. Implementation ends with evidence a team can operate.</p>
+                        <p class="profile-intro lang-kr" hidden>장치 상태·프로토콜·서버 의미·개발자 워크플로를 하나의 시스템으로 읽으며 AI-native 플랫폼·제품 엔지니어링을 리딩합니다. 구현은 팀이 운영할 수 있는 검증 근거로 마무리합니다.</p>
+                        <div class="profile-actions">
+                            <a class="profile-action profile-action-primary" href="portfolio.html" data-en="Explore selected work" data-kr="대표 프로젝트 보기">Explore selected work</a>
+                            <a class="profile-action" href="cv.html" data-en="Read the public CV" data-kr="공개 이력서 보기">Read the public CV</a>
+                        </div>
+                        <p class="profile-scroll-cue" aria-hidden="true"><span>SCROLL</span><i></i></p>
                     </div>
                 </div>
-
-                <div class="profile-hero-statement">
-                    <h1 id="home-title">
-                        <span class="lang-en"><span>From device packets</span><span>to products teams</span><em>can trust.</em></span>
-                        <span class="lang-kr" hidden><span>장치 패킷부터</span><span>팀이 신뢰할</span><em>제품 시스템까지.</em></span>
-                    </h1>
-                    <p data-en="Eight years turning physical-product boundaries into platform contracts, developer experiences, and release gates." data-kr="물리 제품의 복잡한 경계를 플랫폼 계약·개발자 경험·릴리스 검증 게이트로 바꿔 온 8년의 경험입니다.">Eight years turning physical-product boundaries into platform contracts, developer experiences, and release gates.</p>
-                </div>
-
-                <aside class="profile-now" aria-label="Current work and research">
-                    <div class="profile-now-title"><span>NOW</span><strong>2026</strong></div>
-                    <ol>
-                        <li><span>01 · PRODUCT</span><strong>Developer Portal</strong><small data-en="Productizing for a September release" data-kr="9월 릴리스를 목표로 제품화 중">Productizing for a September release</small></li>
-                        <li><span>02 · MODERNIZATION</span><strong>Angular → React</strong><small data-en="Frontend team lead · 2026.07—PRESENT" data-kr="프론트팀 리딩 · 2026.07~현재">Frontend team lead · 2026.07—PRESENT</small></li>
-                        <li><span>03 · ACTIVE RESEARCH</span><strong>VLM · QML</strong><small data-en="Questions and evaluation design in progress" data-kr="연구 질문과 평가 설계 진행 중">Questions and evaluation design in progress</small></li>
-                    </ol>
-                </aside>
             </section>
 
             <section class="profile-evidence" aria-label="Profile evidence">
@@ -106,12 +99,23 @@
                 <article><strong>40%+</strong><span data-en="measured distributed-event processing improvement" data-kr="분산 이벤트 처리 성능 개선">measured distributed-event processing improvement</span></article>
             </section>
 
-            <section id="work" class="profile-section" aria-labelledby="work-title">
-                <header class="profile-section-header">
-                    <div><p>01 / SELECTED WORK</p><h2 id="work-title" data-en="Systems I am building—and the foundations beneath them." data-kr="지금 만드는 시스템과 그 아래의 기반.">Systems I am building—and the foundations beneath them.</h2></div>
-                    <a href="portfolio.html" data-en="Full case studies →" data-kr="전체 프로젝트 →">Full case studies →</a>
-                </header>
-                <div class="profile-work-list">
+            <section class="profile-current" aria-label="Current work and research">
+                <header><span>NOW / 2026</span><strong data-en="Current focus" data-kr="현재 집중 영역">Current focus</strong></header>
+                <ol>
+                    <li data-current-item><span>01 · PRODUCT</span><strong>Developer Portal</strong><small data-en="Productizing for a September release" data-kr="9월 릴리스를 목표로 제품화 중">Productizing for a September release</small></li>
+                    <li data-current-item><span>02 · MODERNIZATION</span><strong>Angular → React</strong><small data-en="Frontend team lead · 2026.07—PRESENT" data-kr="프론트팀 리딩 · 2026.07~현재">Frontend team lead · 2026.07—PRESENT</small></li>
+                    <li data-current-item><span>03 · ACTIVE RESEARCH</span><strong>VLM · QML</strong><small data-en="Questions and evaluation design in progress" data-kr="연구 질문과 평가 설계 진행 중">Questions and evaluation design in progress</small></li>
+                </ol>
+            </section>
+
+            <section id="work" class="profile-section profile-cinematic" data-profile-scene aria-labelledby="work-title">
+                <div class="profile-cinematic-frame" data-profile-scene-frame>
+                    <div class="profile-cinematic-content" data-profile-scene-content>
+                        <header class="profile-section-header">
+                            <div><p>01 / SELECTED WORK</p><h2 id="work-title" data-en="Systems I am building—and the foundations beneath them." data-kr="지금 만드는 시스템과 그 아래의 기반.">Systems I am building—and the foundations beneath them.</h2></div>
+                            <a href="portfolio.html" data-en="Full case studies →" data-kr="전체 프로젝트 →">Full case studies →</a>
+                        </header>
+                        <div class="profile-work-list">
                     <a href="portfolio.html#case-developer-platform" class="profile-work-row">
                         <span class="profile-index">01</span>
                         <div><p>2026 · PRODUCTIZING</p><h3>BioStar Developer Portal</h3><p data-en="A browser API console, device SDK emulator, MCP scenario history, and Linux/AWS sandbox combined into one developer journey." data-kr="브라우저 API 콘솔·장치 SDK 에뮬레이터·MCP 시나리오 이력·Linux/AWS 샌드박스를 하나의 개발자 여정으로 통합했습니다.">A browser API console, device SDK emulator, MCP scenario history, and Linux/AWS sandbox combined into one developer journey.</p></div>
@@ -127,14 +131,18 @@
                         <div><p>2021—2024 · PLATFORM CORE</p><h3 data-en="Device, gateway, and distributed-event systems" data-kr="장치·게이트웨이·분산 이벤트 시스템">Device, gateway, and distributed-event systems</h3><p data-en="C++ device packets and identity events connected to Java/Kotlin services, Spring Cloud Gateway, and enterprise web products." data-kr="C++ 장치 패킷·인증 이벤트를 Java/Kotlin 서비스·Spring Cloud Gateway·엔터프라이즈 웹 제품과 연결했습니다.">C++ device packets and identity events connected to Java/Kotlin services, Spring Cloud Gateway, and enterprise web products.</p></div>
                         <strong>40%+</strong>
                     </a>
+                        </div>
+                    </div>
                 </div>
             </section>
 
-            <section id="method" class="profile-section profile-method" aria-labelledby="method-title">
-                <header class="profile-section-header">
-                    <div><p>02 / OPERATING MODEL</p><h2 id="method-title" data-en="I turn complex boundaries into systems teams can trust." data-kr="복잡한 경계를 팀이 신뢰할 시스템으로 바꿉니다.">I turn complex boundaries into systems teams can trust.</h2></div>
-                </header>
-                <div class="profile-method-layout">
+            <section id="method" class="profile-section profile-method profile-cinematic" data-profile-scene aria-labelledby="method-title">
+                <div class="profile-cinematic-frame" data-profile-scene-frame>
+                    <div class="profile-cinematic-content" data-profile-scene-content>
+                        <header class="profile-section-header">
+                            <div><p>02 / OPERATING MODEL</p><h2 id="method-title" data-en="I turn complex boundaries into systems teams can trust." data-kr="복잡한 경계를 팀이 신뢰할 시스템으로 바꿉니다.">I turn complex boundaries into systems teams can trust.</h2></div>
+                        </header>
+                        <div class="profile-method-layout">
                     <ol class="profile-method-loop">
                         <li class="profile-method-step" data-method-step>
                             <span>01</span>
@@ -163,6 +171,8 @@
                         <p class="profile-method-proof lang-en">I apply the same loop while leading frontend modernization and supporting problem framing, technology choices, implementation, and verification across Codeit, an AI bootcamp, and SK Networks Family AI Camp 27 and 28.</p>
                         <p class="profile-method-proof lang-kr" hidden>프론트엔드 현대화를 리딩하고 Codeit·AI 부트캠프·SK Networks Family AI Camp 27기·28기에서 문제 정의·기술 선택·구현·검증을 지원할 때도 같은 작업법을 사용합니다.</p>
                     </aside>
+                        </div>
+                    </div>
                 </div>
             </section>
 
@@ -222,5 +232,6 @@
     </div>
 
     <script src="common.js?v=20260725-strength1"></script>
+    <script src="profile-motion.js?v=20260725-gaze1"></script>
 </body>
 </html>

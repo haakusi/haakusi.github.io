@@ -97,6 +97,12 @@
           "applicability": "At selected Home boundaries, fade and lift the outgoing heading while the next section resolves from depth. Keep body copy readable and never animate navigation or links out of reach."
         },
         {
+          "name": "Live single-owner scene sampling",
+          "type": "motion-and-information-hierarchy",
+          "description": "A fresh 1728×997 sample measured the current reference at 24,681px with a roughly 7,178px hero stage. At scrollY≈3,351 the opening support rail is lifted about 90px and fully faded while the About state owns the viewport; the capability title moves from scale 3.8 and opacity 0 near scrollY≈7,422 to approximately scale 1 and full opacity near scrollY≈8,632.",
+          "applicability": "Give haakusi one dominant semantic group per scene: keep the opening identity and two actions together, move current-work detail to the following band, and use milder bounded entry/hold/release curves only for selected Work and Method chapters. Captured 2026-07-26; pattern only."
+        },
+        {
           "name": "Black-stage clipping frame",
           "type": "visual-design",
           "description": "The reference keeps a full-viewport black sticky surface with overflow hidden so oversized layers disappear beyond the scene instead of producing layout overflow.",
