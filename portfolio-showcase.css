@@ -1,0 +1,724 @@
+/*
+ * Cinematic project showcase — the final portfolio-only screen layer.
+ * It loads after the shared career skin so this file owns the showcase and
+ * the editorial closing section without leaking into the other archives.
+ */
+
+body.portfolio-page #portfolio-main > .project-showcase {
+    --showcase-stage: #070a09;
+    --showcase-stage-soft: #101513;
+    --showcase-ink: #f4f7f3;
+    --showcase-muted: rgba(244, 247, 243, 0.68);
+    --showcase-line: rgba(244, 247, 243, 0.18);
+    position: relative;
+    min-height: 560svh !important;
+    margin: clamp(88px, 11vw, 168px) 0 !important;
+    padding: 0 !important;
+    border-top: 1px solid var(--skin-line);
+    border-bottom: 1px solid var(--skin-line);
+}
+
+.showcase-sticky {
+    position: sticky;
+    top: 20px;
+    display: grid;
+    grid-template-columns: minmax(250px, 0.38fr) minmax(0, 1fr);
+    gap: clamp(28px, 4vw, 64px);
+    height: calc(100svh - 40px);
+    min-height: 620px;
+    align-items: stretch;
+    padding: clamp(28px, 4vw, 56px) 0;
+    overflow: clip;
+}
+
+.showcase-rail {
+    display: flex;
+    min-width: 0;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.showcase-heading {
+    max-width: 390px;
+}
+
+.showcase-heading .section-index {
+    margin-bottom: 18px !important;
+}
+
+.showcase-heading h2 {
+    margin: 0;
+    color: var(--skin-ink);
+    font-size: clamp(32px, 3.15vw, 52px);
+    font-weight: 740;
+    letter-spacing: -0.055em;
+    line-height: 1.04;
+    word-break: keep-all;
+}
+
+.showcase-heading > p:not(.section-index) {
+    margin: 20px 0 0;
+    color: var(--skin-muted);
+    font-size: 14px;
+    line-height: 1.7;
+}
+
+.showcase-heading > small {
+    display: block;
+    margin-top: 18px;
+    color: var(--skin-faint);
+    font-family: var(--career-mono);
+    font-size: 10px;
+    letter-spacing: 0.055em;
+    line-height: 1.6;
+}
+
+.showcase-tabs {
+    display: grid;
+    margin-top: clamp(24px, 3vh, 38px);
+    border-top: 1px solid var(--skin-line);
+}
+
+.showcase-tab {
+    display: grid;
+    grid-template-columns: 30px minmax(0, 1fr);
+    gap: 1px 12px;
+    width: 100%;
+    min-width: 0;
+    padding: 11px 8px;
+    border: 0;
+    border-bottom: 1px solid var(--skin-line);
+    border-radius: 0;
+    background: transparent;
+    color: var(--skin-faint);
+    font: inherit;
+    text-align: left;
+    cursor: pointer;
+    transition: color 220ms ease, background-color 220ms ease, padding 220ms ease;
+}
+
+.showcase-tab > span {
+    grid-row: 1 / 3;
+    color: var(--skin-faint);
+    font-family: var(--career-mono);
+    font-size: 10px;
+    letter-spacing: 0.08em;
+}
+
+.showcase-tab > strong {
+    min-width: 0;
+    color: currentColor;
+    font-size: 13px;
+    font-weight: 760;
+    letter-spacing: -0.025em;
+    line-height: 1.3;
+}
+
+.showcase-tab > small {
+    color: var(--skin-faint);
+    font-family: var(--career-mono);
+    font-size: 9px;
+    letter-spacing: 0.015em;
+    line-height: 1.4;
+}
+
+.showcase-tab:hover,
+.showcase-tab[aria-selected="true"] {
+    padding-right: 14px;
+    padding-left: 14px;
+    background: var(--skin-panel-soft);
+    color: var(--skin-ink);
+}
+
+.showcase-tab[aria-selected="true"] > span,
+.showcase-tab[aria-selected="true"] > small {
+    color: var(--skin-accent);
+}
+
+.showcase-tab:focus-visible,
+.showcase-open:focus-visible,
+.showcase-dialog-close:focus-visible {
+    outline: 2px solid var(--skin-accent);
+    outline-offset: 3px;
+}
+
+.showcase-progress {
+    display: grid;
+    grid-template-columns: auto minmax(40px, 1fr) auto;
+    gap: 12px;
+    align-items: center;
+    margin-top: 18px;
+    color: var(--skin-faint);
+    font-family: var(--career-mono);
+    font-size: 10px;
+    letter-spacing: 0.12em;
+}
+
+.showcase-progress > i {
+    position: relative;
+    display: block;
+    height: 1px;
+    overflow: hidden;
+    background: var(--skin-line);
+}
+
+.showcase-progress > i > b {
+    position: absolute;
+    inset: 0 auto 0 0;
+    width: calc(var(--showcase-progress, 0) * 100%);
+    background: var(--skin-accent);
+    transition: width 360ms cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.showcase-stage {
+    position: relative;
+    min-width: 0;
+    min-height: 0;
+    overflow: hidden;
+    border: 1px solid var(--showcase-line);
+    border-radius: 18px;
+    background: var(--showcase-stage);
+    box-shadow: 0 32px 90px rgba(0, 0, 0, 0.28);
+    color: var(--showcase-ink);
+}
+
+.showcase-stage::before,
+.showcase-stage::after {
+    position: absolute;
+    z-index: 5;
+    top: 0;
+    bottom: 0;
+    width: 10%;
+    pointer-events: none;
+    content: "";
+}
+
+.showcase-stage::before {
+    left: 0;
+    background: linear-gradient(90deg, rgba(0, 0, 0, 0.52), transparent);
+}
+
+.showcase-stage::after {
+    right: 0;
+    background: linear-gradient(-90deg, rgba(0, 0, 0, 0.52), transparent);
+}
+
+.showcase-scene {
+    display: grid;
+    min-width: 0;
+    margin: 0;
+    background: var(--showcase-stage);
+}
+
+.portfolio-showcase-enhanced .showcase-scene {
+    position: absolute;
+    inset: 0;
+    grid-template-rows: minmax(0, 1fr) auto;
+    visibility: hidden;
+    opacity: 0;
+    transform: scale(1.045) translate3d(0, 22px, 0);
+    filter: saturate(0.72) blur(4px);
+    pointer-events: none;
+    transition: opacity 560ms ease, transform 760ms cubic-bezier(0.22, 1, 0.36, 1), filter 560ms ease, visibility 0s linear 760ms;
+}
+
+.portfolio-showcase-enhanced .showcase-scene.is-active {
+    z-index: 2;
+    visibility: visible;
+    opacity: 1;
+    transform: scale(1) translate3d(0, 0, 0);
+    filter: none;
+    pointer-events: auto;
+    transition-delay: 0s;
+}
+
+.showcase-open {
+    position: relative;
+    display: block;
+    width: 100%;
+    min-width: 0;
+    min-height: 0;
+    padding: 0;
+    overflow: hidden;
+    border: 0;
+    background: #050706;
+    color: var(--showcase-ink);
+    cursor: zoom-in;
+}
+
+.showcase-open::after {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(180deg, transparent 45%, rgba(0, 0, 0, 0.58) 100%);
+    content: "";
+    pointer-events: none;
+}
+
+.showcase-open img {
+    display: block;
+    width: 100%;
+    height: 100%;
+    min-height: 0;
+    object-fit: cover;
+    transition: transform 900ms cubic-bezier(0.22, 1, 0.36, 1), filter 420ms ease;
+}
+
+.showcase-scene.is-active .showcase-open:hover img {
+    transform: scale(1.025);
+    filter: brightness(1.07);
+}
+
+.showcase-open > span {
+    position: absolute;
+    z-index: 2;
+    right: 22px;
+    bottom: 18px;
+    padding: 8px 11px;
+    border: 1px solid rgba(255, 255, 255, 0.34);
+    border-radius: 999px;
+    background: rgba(4, 7, 6, 0.7);
+    color: #fff;
+    font-family: var(--career-mono);
+    font-size: 9px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    backdrop-filter: blur(12px);
+}
+
+.showcase-scene figcaption {
+    display: grid;
+    grid-template-columns: minmax(0, 1.15fr) minmax(200px, 0.85fr);
+    gap: 6px clamp(20px, 3vw, 46px);
+    padding: clamp(22px, 2.6vw, 38px);
+    border-top: 1px solid var(--showcase-line);
+    background: var(--showcase-stage-soft);
+}
+
+.showcase-scene figcaption > span {
+    grid-column: 1 / -1;
+    color: #8ed8cb;
+    font-family: var(--career-mono);
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 0.12em;
+}
+
+.showcase-scene figcaption h3 {
+    margin: 5px 0 0;
+    color: var(--showcase-ink);
+    font-size: clamp(23px, 2.4vw, 40px);
+    font-weight: 760;
+    letter-spacing: -0.045em;
+    line-height: 1.08;
+    word-break: keep-all;
+}
+
+.showcase-scene figcaption p {
+    align-self: end;
+    margin: 5px 0 0;
+    color: var(--showcase-muted);
+    font-size: 13px;
+    line-height: 1.65;
+}
+
+html:not(.portfolio-showcase-enhanced) body.portfolio-page #portfolio-main > .project-showcase {
+    min-height: 0 !important;
+}
+
+html:not(.portfolio-showcase-enhanced) .showcase-sticky {
+    position: static;
+    height: auto;
+}
+
+html:not(.portfolio-showcase-enhanced) .showcase-stage {
+    display: grid;
+    gap: 24px;
+    overflow: visible;
+    border: 0;
+    background: transparent;
+    box-shadow: none;
+}
+
+html:not(.portfolio-showcase-enhanced) .showcase-scene {
+    overflow: hidden;
+    border: 1px solid var(--showcase-line);
+    border-radius: 18px;
+}
+
+.showcase-dialog {
+    width: min(1480px, calc(100vw - 40px));
+    max-width: none;
+    max-height: calc(100svh - 40px);
+    padding: 0;
+    overflow: hidden;
+    border: 1px solid rgba(255, 255, 255, 0.24);
+    border-radius: 18px;
+    background: #070a09;
+    color: #f4f7f3;
+    box-shadow: 0 40px 140px rgba(0, 0, 0, 0.7);
+}
+
+.showcase-dialog[open] {
+    display: grid;
+    grid-template-columns: minmax(0, 1.55fr) minmax(300px, 0.45fr);
+}
+
+.showcase-dialog::backdrop {
+    background: rgba(0, 0, 0, 0.82);
+    backdrop-filter: blur(12px);
+}
+
+.showcase-dialog-close {
+    position: absolute;
+    z-index: 4;
+    top: 16px;
+    right: 16px;
+    display: grid;
+    width: 42px;
+    height: 42px;
+    place-items: center;
+    padding: 0;
+    border: 1px solid rgba(255, 255, 255, 0.32);
+    border-radius: 50%;
+    background: rgba(5, 7, 6, 0.75);
+    color: #fff;
+    font-size: 26px;
+    line-height: 1;
+    cursor: pointer;
+    backdrop-filter: blur(12px);
+}
+
+.showcase-dialog-visual {
+    min-height: 0;
+    background: #030504;
+}
+
+.showcase-dialog-visual img {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+}
+
+.showcase-dialog-copy {
+    display: flex;
+    min-width: 0;
+    flex-direction: column;
+    justify-content: flex-end;
+    padding: clamp(30px, 4vw, 62px);
+    border-left: 1px solid rgba(255, 255, 255, 0.16);
+}
+
+.showcase-dialog-copy > span,
+.showcase-dialog-copy > small,
+.showcase-dialog-copy > em {
+    font-family: var(--career-mono);
+    font-style: normal;
+}
+
+.showcase-dialog-copy > span {
+    color: #8ed8cb;
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 0.12em;
+}
+
+.showcase-dialog-copy h2 {
+    margin: 18px 0 0;
+    color: #f4f7f3;
+    font-size: clamp(30px, 3.5vw, 58px);
+    font-weight: 760;
+    letter-spacing: -0.055em;
+    line-height: 1.03;
+    word-break: keep-all;
+}
+
+.showcase-dialog-copy > p {
+    margin: 24px 0 0;
+    color: rgba(244, 247, 243, 0.72);
+    font-size: 14px;
+    line-height: 1.72;
+}
+
+.showcase-dialog-copy > small {
+    margin-top: 24px;
+    color: #8ed8cb;
+    font-size: 10px;
+    line-height: 1.6;
+}
+
+.showcase-dialog-copy > em {
+    margin-top: 12px;
+    color: rgba(244, 247, 243, 0.46);
+    font-size: 9px;
+    line-height: 1.5;
+}
+
+/* The shared career layer previously replaced the mint CTA background while
+ * leaving dark page-specific copy in place. This final owner removes the
+ * oversized card and defines every color from the active skin tokens. */
+body.portfolio-page .portfolio-cta {
+    display: grid !important;
+    grid-template-columns: minmax(0, 1fr) minmax(360px, 0.72fr) !important;
+    gap: clamp(42px, 8vw, 112px) !important;
+    align-items: end !important;
+    margin: clamp(96px, 12vw, 168px) 0 0 !important;
+    padding: clamp(48px, 6vw, 82px) 0 !important;
+    background: transparent !important;
+    border: 0 !important;
+    border-top: 1px solid var(--skin-line) !important;
+    border-bottom: 1px solid var(--skin-line) !important;
+    border-radius: 0 !important;
+    min-height: 0 !important;
+    box-shadow: none !important;
+    color: var(--skin-ink) !important;
+}
+
+body.portfolio-page .portfolio-cta-heading {
+    min-width: 0;
+}
+
+body.portfolio-page .portfolio-cta .section-index {
+    margin: 0 0 22px !important;
+    color: var(--skin-accent) !important;
+}
+
+body.portfolio-page .portfolio-cta h2 {
+    max-width: 760px !important;
+    margin: 0 !important;
+    color: var(--skin-ink) !important;
+    font-size: clamp(38px, 5vw, 72px) !important;
+    font-weight: 760 !important;
+    letter-spacing: -0.06em !important;
+    line-height: 1.04 !important;
+    word-break: keep-all;
+}
+
+body.portfolio-page .portfolio-cta-copy {
+    min-width: 0;
+}
+
+body.portfolio-page .portfolio-cta-copy > p {
+    max-width: 580px;
+    margin: 0 !important;
+    color: var(--skin-muted) !important;
+    font-size: clamp(15px, 1.15vw, 17px) !important;
+    line-height: 1.75 !important;
+}
+
+body.portfolio-page .portfolio-cta .cta-links {
+    display: flex !important;
+    flex-wrap: wrap !important;
+    gap: 9px !important;
+    margin: 30px 0 0 !important;
+}
+
+body.portfolio-page .portfolio-cta .cta-links a {
+    display: inline-flex !important;
+    min-height: 44px !important;
+    align-items: center !important;
+    justify-content: center !important;
+    padding: 10px 15px !important;
+    border: 1px solid var(--skin-line-strong) !important;
+    border-radius: 999px !important;
+    background: transparent !important;
+    color: var(--skin-ink) !important;
+    font-size: 12px !important;
+    font-weight: 760 !important;
+    text-decoration: none !important;
+    transition: border-color 180ms ease, background-color 180ms ease, color 180ms ease, transform 180ms ease !important;
+}
+
+body.portfolio-page .portfolio-cta .cta-links a:first-child {
+    border-color: var(--skin-accent) !important;
+    background: var(--skin-accent) !important;
+    color: var(--skin-accent-ink) !important;
+}
+
+body.portfolio-page .portfolio-cta .cta-links a:hover {
+    border-color: var(--skin-accent) !important;
+    background: var(--skin-panel-soft) !important;
+    color: var(--skin-ink) !important;
+    transform: translateY(-2px) !important;
+}
+
+body.portfolio-page .portfolio-cta .cta-links a:first-child:hover {
+    background: var(--skin-ink) !important;
+    color: var(--skin-bg) !important;
+}
+
+@media (max-width: 1100px) {
+    .showcase-sticky {
+        grid-template-columns: minmax(220px, 0.34fr) minmax(0, 1fr);
+        gap: 28px;
+    }
+
+    .showcase-heading > p:not(.section-index),
+    .showcase-heading > small {
+        display: none;
+    }
+
+    .showcase-scene figcaption {
+        grid-template-columns: 1fr;
+    }
+}
+
+@media (max-width: 900px) {
+    body.portfolio-page #portfolio-main > .project-showcase {
+        min-height: 0 !important;
+        margin: 88px 0 !important;
+        padding: 66px 0 !important;
+    }
+
+    .showcase-sticky {
+        position: static;
+        display: block;
+        height: auto;
+        min-height: 0;
+        padding: 0;
+        overflow: visible;
+    }
+
+    .showcase-heading {
+        max-width: 680px;
+    }
+
+    .showcase-heading > p:not(.section-index),
+    .showcase-heading > small {
+        display: block;
+    }
+
+    .showcase-tabs {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        margin: 34px 0 24px;
+        border: 1px solid var(--skin-line);
+        border-bottom: 0;
+    }
+
+    .showcase-tab:nth-child(odd) {
+        border-right: 1px solid var(--skin-line);
+    }
+
+    .showcase-progress {
+        margin: 0 0 22px;
+    }
+
+    .showcase-stage {
+        min-height: clamp(620px, 105vw, 860px);
+    }
+
+    .showcase-scene figcaption {
+        grid-template-columns: 1fr;
+    }
+
+    .showcase-dialog[open] {
+        grid-template-columns: 1fr;
+        grid-template-rows: minmax(0, 1fr) auto;
+    }
+
+    .showcase-dialog-copy {
+        padding: 28px;
+        border-top: 1px solid rgba(255, 255, 255, 0.16);
+        border-left: 0;
+    }
+
+    .showcase-dialog-copy h2 {
+        font-size: clamp(28px, 6vw, 46px);
+    }
+
+    body.portfolio-page .portfolio-cta {
+        grid-template-columns: 1fr !important;
+        gap: 34px !important;
+    }
+
+    body.portfolio-page .portfolio-cta-copy > p {
+        max-width: 680px;
+    }
+}
+
+@media (max-width: 640px) {
+    body.portfolio-page #portfolio-main > .project-showcase {
+        padding: 54px 0 !important;
+    }
+
+    .showcase-heading h2 {
+        font-size: clamp(31px, 10.5vw, 44px);
+    }
+
+    .showcase-tabs {
+        grid-template-columns: 1fr;
+    }
+
+    .showcase-tab:nth-child(odd) {
+        border-right: 0;
+    }
+
+    .showcase-stage {
+        min-height: 660px;
+        border-radius: 12px;
+    }
+
+    .showcase-open {
+        min-height: 310px;
+    }
+
+    .showcase-scene figcaption {
+        padding: 22px;
+    }
+
+    .showcase-scene figcaption h3 {
+        font-size: 27px;
+    }
+
+    .showcase-dialog {
+        width: calc(100vw - 20px);
+        max-height: calc(100svh - 20px);
+        border-radius: 12px;
+    }
+
+    .showcase-dialog-copy > p {
+        font-size: 13px;
+    }
+
+    body.portfolio-page .portfolio-cta {
+        margin-top: 84px !important;
+        padding: 46px 0 !important;
+    }
+
+    body.portfolio-page .portfolio-cta h2 {
+        font-size: clamp(34px, 11vw, 50px) !important;
+    }
+
+    body.portfolio-page .portfolio-cta .cta-links {
+        align-items: stretch !important;
+    }
+
+    body.portfolio-page .portfolio-cta .cta-links a {
+        flex: 1 1 calc(50% - 9px) !important;
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    body.portfolio-page #portfolio-main > .project-showcase {
+        min-height: 0 !important;
+    }
+
+    .showcase-sticky {
+        position: static;
+        height: auto;
+        min-height: 0;
+    }
+
+    .showcase-scene,
+    .showcase-open img,
+    .showcase-progress > i > b,
+    .showcase-tab,
+    body.portfolio-page .portfolio-cta .cta-links a {
+        scroll-behavior: auto !important;
+        transition: none !important;
+    }
+
+    body.portfolio-page .portfolio-cta .cta-links a:hover {
+        transform: none !important;
+    }
+}

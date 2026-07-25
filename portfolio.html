@@ -17,6 +17,7 @@
     <link rel="stylesheet" type="text/css" href="career-system.css?v=20260723-align2">
     <link rel="stylesheet" type="text/css" href="career-skin.css?v=20260725-rail1">
     <link rel="stylesheet" type="text/css" href="portfolio-case-details.css?v=20260726-case1">
+    <link rel="stylesheet" type="text/css" href="portfolio-showcase.css?v=20260726-cinema2">
 </head>
 <body class="portfolio-page">
     <a class="portfolio-skip career-skip" href="#portfolio-main" data-en="Skip to work" data-kr="프로젝트로 이동">Skip to work</a>
@@ -110,9 +111,116 @@
                 <p data-en="Proprietary work is described through problem boundaries, engineering decisions, outcomes, and current status—without internal code, customer data, or confidential metrics." data-kr="사내 프로젝트는 문제 경계·엔지니어링 판단·결과·현재 상태를 중심으로 설명하며, 내부 코드·고객 정보·기밀 수치 없이 공개합니다.">Proprietary work is described through problem boundaries, engineering decisions, outcomes, and current status—without internal code, customer data, or confidential metrics.</p>
             </aside>
 
+            <section class="project-showcase" data-project-showcase aria-labelledby="showcase-title">
+                <div class="showcase-sticky">
+                    <div class="showcase-rail">
+                        <header class="showcase-heading">
+                            <p class="section-index">01 / SELECTED SYSTEMS</p>
+                            <h2 id="showcase-title" data-en="Six scenes across one engineering career." data-kr="하나의 엔지니어링 경력을 관통하는 여섯 장면.">Six scenes across one engineering career.</h2>
+                            <p class="lang-en">Select a system or keep scrolling. Each scene connects a product boundary to the engineering decisions that made it operable.</p>
+                            <p class="lang-kr" hidden>시스템을 선택하거나 그대로 스크롤하세요. 각 장면은 제품의 경계와 이를 운영 가능하게 만든 엔지니어링 판단을 연결합니다.</p>
+                            <small>
+                                <span class="lang-en">Concept visualization · not a product screenshot · composed from public system boundaries</span>
+                                <span class="lang-kr" hidden>콘셉트 시각화 · 실제 제품 스크린샷이 아닙니다 · 공개 가능한 시스템 경계를 바탕으로 구성</span>
+                            </small>
+                        </header>
+
+                        <div class="showcase-tabs" role="tablist" aria-label="Career system scenes">
+                            <button class="showcase-tab" type="button" role="tab" id="showcase-tab-developer-portal" aria-controls="showcase-scene-developer-portal" aria-selected="true" tabindex="0" data-showcase-key="developer-portal">
+                                <span>01</span><strong>Developer Portal</strong><small data-en="AI-native product · 2026" data-kr="AI-native 제품 · 2026">AI-native product · 2026</small>
+                            </button>
+                            <button class="showcase-tab" type="button" role="tab" id="showcase-tab-access-modernization" aria-controls="showcase-scene-access-modernization" aria-selected="false" tabindex="-1" data-showcase-key="access-modernization">
+                                <span>02</span><strong data-en="Access UI rewrite" data-kr="출입통제 UI 전환">Access UI rewrite</strong><small data-en="Angular → React · 2026.07—" data-kr="Angular → React · 2026.07~">Angular → React · 2026.07—</small>
+                            </button>
+                            <button class="showcase-tab" type="button" role="tab" id="showcase-tab-version-e2e" aria-controls="showcase-scene-version-e2e" aria-selected="false" tabindex="-1" data-showcase-key="version-e2e">
+                                <span>03</span><strong>Version-aware E2E</strong><small data-en="Release confidence · 2026.07—" data-kr="릴리스 신뢰도 · 2026.07~">Release confidence · 2026.07—</small>
+                            </button>
+                            <button class="showcase-tab" type="button" role="tab" id="showcase-tab-device-event-core" aria-controls="showcase-scene-device-event-core" aria-selected="false" tabindex="-1" data-showcase-key="device-event-core">
+                                <span>04</span><strong data-en="Device &amp; event core" data-kr="장치 · 이벤트 코어">Device &amp; event core</strong><small data-en="Access platform · 2021—2024" data-kr="출입통제 플랫폼 · 2021~2024">Access platform · 2021—2024</small>
+                            </button>
+                            <button class="showcase-tab" type="button" role="tab" id="showcase-tab-road-safety" aria-controls="showcase-scene-road-safety" aria-selected="false" tabindex="-1" data-showcase-key="road-safety">
+                                <span>05</span><strong data-en="Road-safety sensing" data-kr="교통안전 센싱">Road-safety sensing</strong><small>HBrain · 2020—2021</small>
+                            </button>
+                            <button class="showcase-tab" type="button" role="tab" id="showcase-tab-network-ops" aria-controls="showcase-scene-network-ops" aria-selected="false" tabindex="-1" data-showcase-key="network-ops">
+                                <span>06</span><strong data-en="Telecom network ops" data-kr="통신망 운영">Telecom network ops</strong><small>SK Telecom TANGO · 2018—2020</small>
+                            </button>
+                        </div>
+
+                        <div class="showcase-progress" aria-live="polite">
+                            <span data-showcase-current>01</span><i aria-hidden="true"><b data-showcase-progress></b></i><span>06</span>
+                        </div>
+                    </div>
+
+                    <div class="showcase-stage" aria-live="polite">
+                        <figure class="showcase-scene" id="showcase-scene-developer-portal" role="tabpanel" aria-labelledby="showcase-tab-developer-portal" data-showcase-key="developer-portal">
+                            <button class="showcase-open" type="button" aria-haspopup="dialog" data-showcase-open="developer-portal" data-showcase-title-en="Developer Portal — executable developer journey" data-showcase-title-kr="Developer Portal — 실행 가능한 개발자 여정" data-showcase-copy-en="A single journey connects browser API execution, a device SDK emulator, MCP scenario history, and a Linux/AWS sandbox before the workflow reaches physical hardware." data-showcase-copy-kr="브라우저 API 실행, 장치 SDK 에뮬레이터, MCP 시나리오 이력과 Linux/AWS 샌드박스를 하나의 여정으로 연결해 실제 장치에 도달하기 전에 검증합니다." data-showcase-meta="OpenAPI · MCP · Java/Kotlin · Linux/AWS">
+                                <img src="images/career/showcase/developer-portal-console.webp" width="1536" height="1024" loading="eager" decoding="async" alt="Conceptual developer portal console combining API exploration, device emulation, event history, and an AI agent">
+                                <span data-en="Open visual" data-kr="이미지 크게 보기">Open visual</span>
+                            </button>
+                            <figcaption><span>AI-NATIVE PRODUCT · 2026</span><h3 data-en="From first API call to a replayable device scenario." data-kr="첫 API 호출부터 재현 가능한 장치 시나리오까지.">From first API call to a replayable device scenario.</h3><p class="lang-en">Designed and implemented across competitive analysis, product architecture, full-stack delivery, and verification in one eight-week AI-native cycle.</p><p class="lang-kr" hidden>경쟁사 분석, 제품 아키텍처, 풀스택 구현과 검증까지 8주 AI-native 사이클로 설계·구현했습니다.</p></figcaption>
+                        </figure>
+
+                        <figure class="showcase-scene" id="showcase-scene-access-modernization" role="tabpanel" aria-labelledby="showcase-tab-access-modernization" data-showcase-key="access-modernization">
+                            <button class="showcase-open" type="button" aria-haspopup="dialog" data-showcase-open="access-modernization" data-showcase-title-en="BioStar 2 / BioStar X boundary — Angular to React" data-showcase-title-kr="BioStar 2 / BioStar X 경계 — Angular에서 React로" data-showcase-copy-en="A meaning-preserving rewrite separates routing, back navigation, and state ownership before converting the UI, then proves behavior through API, unit, DOM, UI, CSS, and E2E gates." data-showcase-copy-kr="UI 전환 전에 routing, 뒤로가기와 상태 소유권을 분리하고 API·unit·DOM·UI·CSS·E2E 게이트로 동작 보존을 증명합니다." data-showcase-meta="TypeScript · React · Angular · Playwright">
+                                <img src="images/career/showcase/access-ui-modernization.webp" width="1536" height="1024" loading="lazy" decoding="async" alt="Conceptual before-and-after workspace for migrating an enterprise access-control interface from Angular to React">
+                                <span data-en="Open visual" data-kr="이미지 크게 보기">Open visual</span>
+                            </button>
+                            <figcaption><span>MODERNIZATION · 2026.07—</span><h3 data-en="Rewrite the architecture, preserve the meaning." data-kr="아키텍처는 다시 쓰고, 의미는 보존합니다.">Rewrite the architecture, preserve the meaning.</h3><p class="lang-en">Leading a roughly 200K LOC frontend modernization with independent proof gates for every class of regression.</p><p class="lang-kr" hidden>약 20만 LOC 프론트엔드 현대화를 리딩하며 회귀 유형마다 독립된 증명 게이트를 둡니다.</p></figcaption>
+                        </figure>
+
+                        <figure class="showcase-scene" id="showcase-scene-version-e2e" role="tabpanel" aria-labelledby="showcase-tab-version-e2e" data-showcase-key="version-e2e">
+                            <button class="showcase-open" type="button" aria-haspopup="dialog" data-showcase-open="version-e2e" data-showcase-title-en="Version-aware E2E — release confidence as a shared asset" data-showcase-title-kr="Version-aware E2E — 릴리스 신뢰도를 공통 자산으로" data-showcase-copy-en="Critical journeys run against product and version fixtures so API, DOM, visual state, CSS assertions, and end-to-end behavior fail independently before release." data-showcase-copy-kr="제품·버전 fixture에서 critical journey를 반복해 API, DOM, 시각 상태, CSS assertion과 E2E 동작의 실패를 릴리스 전에 분리해 냅니다." data-showcase-meta="TypeScript · Playwright · REST API · E2E">
+                                <img src="images/career/showcase/version-aware-e2e.webp" width="1536" height="1024" loading="lazy" decoding="async" alt="Conceptual multi-device test lab with a version validation matrix for an access-control product">
+                                <span data-en="Open visual" data-kr="이미지 크게 보기">Open visual</span>
+                            </button>
+                            <figcaption><span>RELEASE SYSTEM · 2026.07—</span><h3 data-en="One journey, proven across product versions." data-kr="하나의 여정을 제품 버전마다 증명합니다.">One journey, proven across product versions.</h3><p class="lang-en">Turns scattered regression checks into replayable fixtures and gates that product teams can share.</p><p class="lang-kr" hidden>흩어진 회귀 검증을 제품팀이 공유할 수 있는 재현 가능한 fixture와 게이트로 바꿉니다.</p></figcaption>
+                        </figure>
+
+                        <figure class="showcase-scene" id="showcase-scene-device-event-core" role="tabpanel" aria-labelledby="showcase-tab-device-event-core" data-showcase-key="device-event-core">
+                            <button class="showcase-open" type="button" aria-haspopup="dialog" data-showcase-open="device-event-core" data-showcase-title-en="Device packet to distributed event core" data-showcase-title-kr="장치 패킷에서 분산 이벤트 코어까지" data-showcase-copy-en="C++ device servers, Java WebSocket services, Apache Ignite, and Spring Cloud Gateway connect device capability, authentication, and events to enterprise product flows." data-showcase-copy-kr="C++ 장치 서버, Java WebSocket 서비스, Apache Ignite와 Spring Cloud Gateway를 연결해 장치 capability·인증·이벤트를 엔터프라이즈 제품 흐름으로 전달합니다." data-showcase-meta="C++ · Java/Kotlin · Spring Boot · Apache Ignite">
+                                <img src="images/career/showcase/device-event-core.webp" width="1536" height="1024" loading="lazy" decoding="async" alt="Conceptual device-to-cloud architecture with biometric terminal, gateway, distributed event servers, and operations console">
+                                <span data-en="Open visual" data-kr="이미지 크게 보기">Open visual</span>
+                            </button>
+                            <figcaption><span>PLATFORM CORE · 2021—2024</span><h3 data-en="Read the packet. Own the product consequence." data-kr="패킷을 읽고 제품의 결과까지 책임집니다.">Read the packet. Own the product consequence.</h3><p class="lang-en">The distributed event pipeline improved processing performance by more than 40% while keeping device and web product behavior connected.</p><p class="lang-kr" hidden>장치와 웹 제품 동작의 연결을 유지하면서 분산 이벤트 처리 성능을 40% 이상 개선했습니다.</p></figcaption>
+                        </figure>
+
+                        <figure class="showcase-scene" id="showcase-scene-road-safety" role="tabpanel" aria-labelledby="showcase-tab-road-safety" data-showcase-key="road-safety">
+                            <button class="showcase-open" type="button" aria-haspopup="dialog" data-showcase-open="road-safety" data-showcase-title-en="HBrain — radar, camera, and FPGA road-safety software" data-showcase-title-kr="HBrain — Radar·Camera·FPGA 교통안전 소프트웨어" data-showcase-copy-en="A Windows/C++ operator application fused radar, camera, and FPGA device signals into road-safety scenarios, visualization, and public R&amp;D protocol documentation." data-showcase-copy-kr="Windows/C++ 운영 애플리케이션에서 Radar·Camera·FPGA 장치 신호를 교통안전 시나리오, 시각화와 공공 R&amp;D 프로토콜 문서로 연결했습니다." data-showcase-meta="C/C++ · MFC · OpenGL · Windows API · Device SDK">
+                                <img src="images/career/showcase/road-safety-radar.webp" width="1536" height="1024" loading="lazy" decoding="async" alt="Conceptual road-safety sensing system combining radar, camera, FPGA telemetry, and an intersection visualization">
+                                <span data-en="Open visual" data-kr="이미지 크게 보기">Open visual</span>
+                            </button>
+                            <figcaption><span>SENSOR R&amp;D · 2020—2021</span><h3 data-en="Turn physical signals into an operator decision." data-kr="물리 신호를 운영자의 판단으로 바꿉니다.">Turn physical signals into an operator decision.</h3><p class="lang-en">This role established the hardware–software debugging instincts that later became a differentiator in access platforms.</p><p class="lang-kr" hidden>이 경험에서 만든 하드웨어–소프트웨어 디버깅 감각은 이후 출입통제 플랫폼의 차별화된 기반이 됐습니다.</p></figcaption>
+                        </figure>
+
+                        <figure class="showcase-scene" id="showcase-scene-network-ops" role="tabpanel" aria-labelledby="showcase-tab-network-ops" data-showcase-key="network-ops">
+                            <button class="showcase-open" type="button" aria-haspopup="dialog" data-showcase-open="network-ops" data-showcase-title-en="SK Telecom TANGO — network operations workflow" data-showcase-title-kr="SK Telecom TANGO — 통신망 운영 워크플로" data-showcase-copy-en="IP configuration, transmission-network visualization, raw-data handling, server setup, and Jenkins delivery formed the first enterprise operations foundation of the career." data-showcase-copy-kr="IP 설정, 전송망 시각화, raw data 처리, 신규 서버 구축과 Jenkins 배포 자동화가 엔터프라이즈 운영 경력의 첫 기반을 만들었습니다." data-showcase-meta="Java · Web · Network topology · Jenkins">
+                                <img src="images/career/showcase/telecom-network-ops.webp" width="1536" height="1024" loading="lazy" decoding="async" alt="Conceptual telecom network operations console with topology, configuration changes, alarms, and deployment pipeline">
+                                <span data-en="Open visual" data-kr="이미지 크게 보기">Open visual</span>
+                            </button>
+                            <figcaption><span>TELECOM NMS · 2018—2020</span><h3 data-en="Make a complex network legible and operable." data-kr="복잡한 네트워크를 읽고 운영할 수 있게 만듭니다.">Make a complex network legible and operable.</h3><p class="lang-en">The earliest chapter: enterprise web delivery grounded in real operational data and deployment constraints.</p><p class="lang-kr" hidden>실제 운영 데이터와 배포 제약 위에서 엔터프라이즈 웹을 구현한 경력의 첫 장입니다.</p></figcaption>
+                        </figure>
+                    </div>
+                </div>
+            </section>
+
+            <dialog class="showcase-dialog" data-showcase-dialog aria-labelledby="showcase-dialog-title">
+                <button type="button" class="showcase-dialog-close" data-showcase-close aria-label="Close visual">×</button>
+                <div class="showcase-dialog-visual"><img data-showcase-dialog-image src="" alt=""></div>
+                <div class="showcase-dialog-copy">
+                    <span data-showcase-dialog-index>01 / 06</span>
+                    <h2 id="showcase-dialog-title" data-showcase-dialog-title>Project visual</h2>
+                    <p data-showcase-dialog-copy></p>
+                    <small data-showcase-dialog-meta></small>
+                    <em>
+                        <span class="lang-en">Concept visualization · not a product screenshot</span>
+                        <span class="lang-kr" hidden>콘셉트 시각화 · 실제 제품 스크린샷이 아닙니다</span>
+                    </em>
+                </div>
+            </dialog>
+
             <section id="flagship-work" class="flagship-section" aria-labelledby="flagship-title">
                 <div class="section-heading">
-                    <p class="section-index">01 / FLAGSHIP WORK</p>
+                    <p class="section-index">02 / FLAGSHIP WORK</p>
                     <h2 id="flagship-title" data-en="Three systems. One operating principle." data-kr="세 개의 시스템, 하나의 작업 원칙.">Three systems. One operating principle.</h2>
                     <p data-en="Define the boundary, establish a source of truth, and make failures visible before release." data-kr="경계를 정의하고 단일 기준을 세우며 실패가 릴리스 전에 드러나게 합니다.">Define the boundary, establish a source of truth, and make failures visible before release.</p>
                 </div>
@@ -461,19 +569,23 @@
                 </div>
             </section>
 
-            <section class="portfolio-cta" aria-labelledby="cta-title">
-                <p class="section-index">05 / NEXT</p>
-                <h2 id="cta-title">
-                    <span class="lang-en">Building an AI platform, developer experience, or device-connected product?</span>
-                    <span class="lang-kr" hidden>AI 플랫폼, 개발자 경험, 장치 연결 제품을 만들고 계신가요?</span>
-                </h2>
-                <p class="lang-en">I am interested in platform and technical leadership roles where architecture decisions turn into tools that multiple teams can use.</p>
-                <p class="lang-kr" hidden>아키텍처 결정이 여러 팀이 실제로 사용하는 도구와 제품으로 이어지는 플랫폼·테크 리드 역할에 관심이 있습니다.</p>
-                <div class="cta-links">
-                    <a href="mailto:haakusi@gmail.com">haakusi@gmail.com</a>
-                    <a href="cv.html" data-en="Public CV" data-kr="공개 이력서">Public CV</a>
-                    <a href="https://github.com/haakusi" target="_blank" rel="noreferrer">GitHub</a>
-                    <a href="https://www.linkedin.com/in/sewon-p-38009a1a7/" target="_blank" rel="noreferrer">LinkedIn</a>
+            <section class="portfolio-cta editorial-close" aria-labelledby="cta-title">
+                <div class="portfolio-cta-heading">
+                    <p class="section-index">05 / NEXT</p>
+                    <h2 id="cta-title">
+                        <span class="lang-en">A difficult boundary is usually where I am most useful.</span>
+                        <span class="lang-kr" hidden>어려운 경계일수록 제가 가장 잘 기여할 수 있습니다.</span>
+                    </h2>
+                </div>
+                <div class="portfolio-cta-copy">
+                    <p class="lang-en">If your next product must connect devices, enterprise software, developer experience, and AI without trading away release confidence, let us compare the boundary you have with the systems I have built.</p>
+                    <p class="lang-kr" hidden>다음 제품이 장치, 엔터프라이즈 소프트웨어, 개발자 경험과 AI를 연결하면서도 릴리스 신뢰도를 놓치지 않아야 한다면, 해결해야 할 경계와 제가 구축해 온 시스템을 함께 비교해 보겠습니다.</p>
+                    <div class="cta-links">
+                        <a href="mailto:haakusi@gmail.com">haakusi@gmail.com</a>
+                        <a href="cv.html" data-en="Public CV" data-kr="공개 이력서">Public CV</a>
+                        <a href="https://github.com/haakusi" target="_blank" rel="noreferrer">GitHub</a>
+                        <a href="https://www.linkedin.com/in/sewon-p-38009a1a7/" target="_blank" rel="noreferrer">LinkedIn</a>
+                    </div>
                 </div>
             </section>
         </main>
@@ -482,6 +594,6 @@
     </div>
 
     <script src="common.js?v=20260725-profile2"></script>
-    <script src="portfolio-interactions.js?v=20260726-case1"></script>
+    <script src="portfolio-interactions.js?v=20260726-cinema1"></script>
 </body>
 </html>

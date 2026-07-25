@@ -833,6 +833,54 @@
         "description": "A hybrid profile can be research-ready without pretending to be publication-rich.",
         "applicability": "Home now leads with eight years of work; Research uses Active question, Experiment, Manuscript, Preprint, and Published states; Notes owns writing, reading, and coursework."
       }]
+    },
+    {
+      "source": "https://kimbom.dev/capability/washer",
+      "category": "project-detail-interaction",
+      "summary": "A project-detail view keeps compact project metadata beside a sequence of large visuals and lets each visual open into a focused inspection surface.",
+      "priority": "high",
+      "extraction_method": "live-browser-dom-and-visual-review",
+      "captured_at": "2026-07-26T00:32:00+09:00",
+      "asset_reuse_notes": "Interaction pattern only. No screenshot, source code, copy, illustration, exact geometry, or brand treatment is reused.",
+      "strengths_to_adopt": [
+        "Selection, visual evidence, and expanded inspection form one continuous project-reading flow.",
+        "Project role and stack remain adjacent to imagery instead of becoming decorative captions."
+      ],
+      "weaknesses_to_avoid": [
+        "Do not clone the reference's layout proportions or make visuals outrank engineering evidence.",
+        "Do not require pointer input for selection or enlargement."
+      ],
+      "target_area": "Portfolio career-scene navigator and project visual dialog",
+      "patterns": [{
+        "name": "Selected visual evidence with focused expansion",
+        "type": "interaction",
+        "description": "One selected scene owns the main visual stage, while a native dialog supports close inspection without removing the surrounding narrative.",
+        "applicability": "Use six original career visuals with semantic tabs, keyboard navigation, scroll-linked selection, and a bilingual native dialog."
+      }]
+    },
+    {
+      "source": "reference-set://official-suprema-biostar-public-surfaces-2026-07-26",
+      "category": "public-product-boundary",
+      "summary": "Official BioStar 2 and BioStar X materials expose safe product-level concepts such as customizable dashboards, real-time events, facility monitoring, event-driven response, JSON APIs, logs, and multi-server operation.",
+      "priority": "critical",
+      "extraction_method": "official-product-page-and-guide-review",
+      "captured_at": "2026-07-26T00:28:00+09:00",
+      "asset_reuse_notes": "Information architecture only. No official UI screenshot, logo, customer data, facility map, device likeness, internal URL, or source asset is reused.",
+      "strengths_to_adopt": [
+        "Anchor conceptual visuals in publicly documented product capabilities.",
+        "Keep monitoring, events, API execution, devices, and verification legible as distinct system boundaries."
+      ],
+      "weaknesses_to_avoid": [
+        "Never present an AI-generated composition as a shipped product screenshot.",
+        "Never invent customer, facility, account, or operational data."
+      ],
+      "target_area": "Developer Portal, access UI modernization, version-aware E2E, and device-event conceptual visuals",
+      "patterns": [{
+        "name": "Public boundary, original composition",
+        "type": "evidence-safety",
+        "description": "Publicly documented capabilities define what may be visualized, while the composition, labels, devices, and data remain original and generic.",
+        "applicability": "Label all six generated scenes as concept visualizations and keep factual project evidence in accessible HTML beside the image."
+      }]
     }
   ]
 }

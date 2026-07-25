@@ -45,12 +45,13 @@ test('implementation evidence covers architecture, verification, and troubleshoo
 
 test('case interaction is progressively enhanced and scoped to one project', async () => {
     assert.match(html, /portfolio-case-details\.css\?v=20260726-case1/);
-    assert.match(html, /portfolio-interactions\.js\?v=20260726-case1/);
+    assert.match(html, /portfolio-interactions\.js\?v=20260726-cinema1/);
     assert.match(script, /closest\('\[data-case-accordion\]'\)/);
     assert.match(script, /if\s*\(!current\.open\)\s*return/);
     assert.match(script, /detail\.open\s*=\s*false/);
     assert.match(script, /portfolio-details-enhanced/);
-    assert.doesNotMatch(script, /preventDefault\(\)/);
+    const caseEnhancement = script.match(/function enhanceCaseDetails[\s\S]*?\n    }/)?.[0] ?? '';
+    assert.doesNotMatch(caseEnhancement, /preventDefault\(\)/);
 });
 
 test('detail styling uses the career tokens and keeps focus, open state, mobile, and reduced motion explicit', () => {
