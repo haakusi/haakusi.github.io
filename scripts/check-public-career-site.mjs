@@ -15,13 +15,13 @@ const indexText = index.replace(/<[^>]+>/g, ' ').replace(/\s+/g, ' ');
 const decodeEntities = (value) => value.replaceAll('&amp;', '&');
 
 test('homepage is a focused career hub with direct paths to evidence and archives', () => {
-    assert.match(index, /<body class="career-home">/);
-    for (const phrase of ['The newest work comes first.', '가장 최근의 작업을 먼저 보여드립니다.']) {
+    assert.match(index, /<body class="career-home hybrid-home">/);
+    for (const phrase of ['Eight years building', '장치에서 플랫폼까지 쌓은 8년.']) {
         assert.ok(index.includes(phrase), `missing homepage phrase: ${phrase}`);
     }
-    assert.match(indexText, /From device packets to reliable AI products\./);
-    assert.match(indexText, /장치 패킷부터 신뢰 가능한 AI 제품까지\./);
-    for (const href of ['portfolio.html', 'cv.html', 'research.html', 'blog.html', 'reading.html', 'lectures.html']) {
+    assert.match(indexText, /Now extending that practice into research\./);
+    assert.match(indexText, /이제 그 경험을 연구로 확장합니다\./);
+    for (const href of ['portfolio.html', 'research.html', 'cv.html', 'notes.html']) {
         assert.ok(index.includes(`href="${href}`), `missing homepage path: ${href}`);
     }
     assert.doesNotMatch(index, /Leaflet|visitor-count|initializeVisitorTracking|ipinfo\.io|script\.google\.com/);

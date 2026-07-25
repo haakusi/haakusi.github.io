@@ -10,6 +10,7 @@ const rootPages = [
     'portfolio.html',
     'cv.html',
     'research.html',
+    'notes.html',
     'blog.html',
     'lectures.html',
     'reading.html',
@@ -24,7 +25,7 @@ const robots = await readOptional('robots.txt');
 const notFound = await readOptional('404.html');
 const readme = await readOptional('README.md');
 
-test('all seven root surfaces use the shared bilingual career shell', () => {
+test('all eight root surfaces use the shared bilingual career shell', () => {
     for (const [name, html] of Object.entries(pages)) {
         assert.match(html, /<html\s+lang="en"\s+data-theme=/, `${name} needs an initial document language`);
         assert.match(html, /class="[^"]*\bcareer-skip\b[^"]*"/, `${name} needs a skip link`);
@@ -39,22 +40,20 @@ test('all seven root surfaces use the shared bilingual career shell', () => {
             assert.match(tag, /\bdata-kr="[^"]*"/, `${name} has an unpaired bilingual element`);
         }
     }
-    for (const name of ['blog.html', 'lectures.html', 'reading.html']) {
+    for (const name of ['notes.html', 'blog.html', 'lectures.html', 'reading.html']) {
         assert.match(pages[name], /<body class="[^"]*archive-page[^"]*"/, `${name} needs archive-page styling`);
     }
 });
 
-test('navigation prioritizes career evidence before the public archives', () => {
+test('navigation presents a compact industry-research information architecture', () => {
     const order = [
         "href: 'index.html'",
         "href: 'portfolio.html'",
-        "href: 'cv.html'",
         "href: 'research.html'",
-        "href: 'blog.html'",
-        "href: 'lectures.html'",
-        "href: 'reading.html'",
+        "href: 'cv.html'",
+        "href: 'notes.html'",
     ].map((needle) => common.indexOf(needle));
-    assert.ok(order.every((position) => position > -1), 'all seven navigation items must exist');
+    assert.ok(order.every((position) => position > -1), 'all five navigation items must exist');
     assert.deepEqual(order, [...order].sort((a, b) => a - b), 'career navigation order is incorrect');
     assert.match(common, /rel="me noreferrer"/, 'professional social links need identity and referrer semantics');
     assert.match(common, /updateToggleLabels/, 'theme and language controls need state-aware labels');
@@ -63,16 +62,16 @@ test('navigation prioritizes career evidence before the public archives', () => 
 test('home communicates identity, evidence, and conservative profile structured data', () => {
     const home = pages['index.html'];
     const decodedHome = home.replaceAll('&amp;', '&');
-    for (const id of ['identity', 'media', 'work', 'capability', 'journey', 'mentoring', 'research', 'archive', 'contact']) {
+    for (const id of ['identity', 'work', 'research', 'career', 'notes', 'contact']) {
         assert.match(home, new RegExp(`id="${id}"`));
     }
     for (const phrase of [
-        'platform and product engineering',
-        'Engineering the full loop beneath and beyond the API.',
-        'One engineer, eight weeks',
-        '장치 패킷부터',
-        'API 아래의 장치부터 그 너머의 제품 경험까지 설계합니다.',
-        '1인 8주',
+        'eight years of industry experience',
+        'Eight years building',
+        'active research tracks',
+        '장치에서 플랫폼까지 쌓은 8년.',
+        '진행 중인 연구',
+        '2026.07—PRESENT',
     ]) {
         assert.ok(decodedHome.includes(phrase), `missing identity/evidence phrase: ${phrase}`);
     }
@@ -101,6 +100,7 @@ test('root pages provide canonical and sharing metadata', () => {
         'portfolio.html': 'https://haakusi.github.io/portfolio.html',
         'cv.html': 'https://haakusi.github.io/cv.html',
         'research.html': 'https://haakusi.github.io/research.html',
+        'notes.html': 'https://haakusi.github.io/notes.html',
         'blog.html': 'https://haakusi.github.io/blog.html',
         'lectures.html': 'https://haakusi.github.io/lectures.html',
         'reading.html': 'https://haakusi.github.io/reading.html',
@@ -145,6 +145,7 @@ test('crawl, recovery, and repository documentation are present', () => {
         'https://haakusi.github.io/portfolio.html',
         'https://haakusi.github.io/cv.html',
         'https://haakusi.github.io/research.html',
+        'https://haakusi.github.io/notes.html',
         'https://haakusi.github.io/blog.html',
         'https://haakusi.github.io/lectures.html',
         'https://haakusi.github.io/reading.html',

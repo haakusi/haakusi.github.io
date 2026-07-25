@@ -7,22 +7,21 @@ const read = (path) => readFileSync(new URL(path, root), 'utf8');
 const index = read('index.html');
 const research = read('research.html');
 const skin = read('career-skin.css');
-const motion = read('home-motion.js');
+const hybrid = read('hybrid-profile.css');
 
-test('the Home opening moves one visual statement and closes on a shared evidence ledger', () => {
-    assert.match(index, /class="home-hero-statement"[^>]+data-hero-depth-content/);
-    assert.doesNotMatch(index, /<h1[^>]+data-hero-depth-content/);
-    assert.match(index, /class="home-hero-statement"[\s\S]*?class="identity-card"/);
-    assert.doesNotMatch(index, /class="home-hero-meta"/);
-    assert.match(skin, /body\.career-home \.home-hero-depth-frame\s*\{[^}]*grid-template-areas:\s*"brief statement"\s*"ledger ledger"/);
-    assert.match(skin, /body\.career-home \.home-hero-statement\s*\{[^}]*align-items:\s*flex-end[^}]*text-align:\s*right/);
-    assert.match(skin, /body\.career-home \.identity-card\s*\{[^}]*grid-area:\s*ledger[^}]*grid-template-columns:/);
+test('the Home opening balances an industry statement with a compact current ledger', () => {
+    assert.match(index, /class="profile-hero-intro"[\s\S]*?class="profile-hero-statement"[\s\S]*?class="profile-now"/);
+    assert.match(hybrid, /\.profile-hero\s*\{[^}]*grid-template-columns:[^}]*grid-template-areas:/);
+    assert.match(hybrid, /\.profile-hero-statement h1\s*\{[^}]*font-size:\s*clamp\(50px,\s*6\.3vw,\s*94px\)/);
+    assert.match(hybrid, /\.profile-now\s*\{[^}]*grid-area:\s*now/);
+    assert.match(index, /class="profile-evidence"/);
 });
 
-test('the final motion stage is crisp at rest and exits as one grouped scene', () => {
-    assert.match(motion, /briefOpacity:/);
-    assert.match(motion, /--hero-depth-brief-opacity/);
-    assert.match(skin, /body\.home-motion-enhanced \[data-hero-depth-brief\]\s*\{[^}]*opacity:\s*var\(--hero-depth-brief-opacity,\s*1\)/);
+test('the hybrid profile uses progressive CSS motion without hiding baseline content', () => {
+    assert.doesNotMatch(index, /home-motion\.js|data-cinematic-scene|data-hero-depth/);
+    assert.match(hybrid, /@supports\s*\(animation-timeline:\s*view\(\)\)/);
+    assert.match(hybrid, /@media\s*\(prefers-reduced-motion:\s*reduce\)/);
+    assert.match(hybrid, /opacity:\s*1\s*!important/);
 });
 
 test('Research public notes never orphan the third item and the close is a flat editorial row', () => {

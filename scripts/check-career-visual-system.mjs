@@ -9,18 +9,19 @@ const pages = Object.fromEntries(await Promise.all(
     ['index.html', 'portfolio.html', 'research.html', 'cv.html'].map(async (path) => [path, await read(path)])
 ));
 
-test('career pages load the shared foundation, with the homepage composition applied last', () => {
+test('career pages load the shared foundation, with the hybrid homepage layer applied last', () => {
     for (const [name, html] of Object.entries(pages)) {
         const sharedIndex = html.search(/href="career-system\.css(?:\?[^\"]*)?"/);
         assert.ok(sharedIndex > -1, `${name} must load career-system.css`);
         const pageStyleIndex = Math.max(
-            html.search(/href="home-style\.css(?:\?[^\"]*)?"/),
+            html.search(/href="hybrid-profile\.css(?:\?[^\"]*)?"/),
             html.search(/href="portfolio-style\.css(?:\?[^\"]*)?"/),
             html.search(/href="research-style\.css(?:\?[^\"]*)?"/),
             html.search(/href="cv-style\.css(?:\?[^\"]*)?"/)
         );
         if (name === 'index.html') {
             assert.ok(pageStyleIndex > sharedIndex, `${name} must apply its measured composition after shared tokens`);
+            assert.ok(pageStyleIndex > html.search(/href="career-skin\.css(?:\?[^\"]*)?"/), `${name} hybrid layer must be final`);
         } else {
             assert.ok(sharedIndex > pageStyleIndex, `${name} must load shared styles last`);
         }
@@ -57,7 +58,8 @@ test('author display rules never override bilingual hidden state', () => {
 });
 
 test('hero statements use explicit phrase-level lines and the CV name is separable', () => {
-    for (const name of ['index.html', 'portfolio.html', 'research.html']) {
+    assert.match(pages['index.html'], /class="profile-hero-statement"[\s\S]*?<span>Eight years building<\/span>/);
+    for (const name of ['portfolio.html', 'research.html']) {
         const lineCount = (pages[name].match(/class="career-line/g) ?? []).length;
         assert.ok(lineCount >= 4, `${name} needs explicit English and Korean hero lines`);
     }

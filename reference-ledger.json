@@ -442,6 +442,391 @@
           "applicability": "Label current productization and active research states explicitly; never imply public endorsement or publication where none exists."
         }
       ]
+    },
+    {
+      "source": "https://www.mit.edu/~drohatgi/",
+      "category": "academic-profile",
+      "summary": "An MIT EECS PhD page that resolves identity and a precise research question in two short paragraphs, then distinguishes current preprints from established publications.",
+      "priority": "critical",
+      "extraction_method": "hybrid-web-structure-and-browser-visual-review",
+      "captured_at": "2026-07-25T22:54:09+09:00",
+      "asset_reuse_notes": "Pattern only. No portrait, publication data, wording, or MIT identity asset is reused.",
+      "strengths_to_adopt": [
+        "The opening paragraph states affiliation, research intersection, and the concrete problem being studied before any chronology.",
+        "Preprints and publications are separated so the maturity of each claim is immediately visible.",
+        "A portrait humanizes an otherwise dense evidence-first page without becoming the main content."
+      ],
+      "weaknesses_to_avoid": [
+        "A single uninterrupted publication column becomes difficult to scan as the list grows.",
+        "The page has too little structure for a profile that must also explain eight years of industry product ownership."
+      ],
+      "target_area": "Home identity, Research status labels, and future publication archive",
+      "patterns": [
+        {
+          "name": "Question-first academic identity",
+          "type": "content-structure",
+          "description": "The introduction explains what problem the researcher is trying to understand rather than leading with a broad list of interests.",
+          "applicability": "Open Sewon Park's Research page with one shared evaluation question connecting explainable VLM retrieval and quantum-classical model selection."
+        },
+        {
+          "name": "Research maturity split",
+          "type": "content-structure",
+          "description": "Current manuscripts are visibly separated from peer-reviewed publications.",
+          "applicability": "Use explicit states such as Active question, Experiment in progress, Manuscript, Preprint, and Published; do not call coursework or a proposal a publication."
+        }
+      ]
+    },
+    {
+      "source": "https://people.csail.mit.edu/pgmikhael/",
+      "category": "academic-profile",
+      "summary": "A compact MIT CSAIL profile that keeps identity, bio, selected publications, all publications, and a full CV in a shallow information architecture.",
+      "priority": "high",
+      "extraction_method": "hybrid-web-structure-and-browser-visual-review",
+      "captured_at": "2026-07-25T22:54:09+09:00",
+      "asset_reuse_notes": "Pattern only. No portrait, publication data, wording, or CSAIL identity asset is reused.",
+      "strengths_to_adopt": [
+        "A compact top profile block resolves name, role, contact, and portrait before the archive.",
+        "Selected and All publication views distinguish a first-time reader's path from the complete academic record.",
+        "Bio, publications, and Vita remain only one click apart."
+      ],
+      "weaknesses_to_avoid": [
+        "Small icon-font controls can fail or become ambiguous when external assets do not load.",
+        "The sparse academic profile does not explain product decisions, leadership, or implementation evidence."
+      ],
+      "target_area": "Shared identity shell, selected/full evidence routes, and CV linkage",
+      "patterns": [
+        {
+          "name": "Selected versus complete evidence",
+          "type": "navigation",
+          "description": "A concise default selection is paired with a route to the complete record.",
+          "applicability": "Keep three flagship systems and two active research tracks on Home; route complete career history to CV and the complete learning corpus to its archives."
+        }
+      ]
+    },
+    {
+      "source": "https://people.csail.mit.edu/yuhengy/",
+      "category": "academic-profile",
+      "summary": "A dense MIT hardware-verification profile that groups outputs by research theme, marks thesis-defining work, and attaches code, slides, posters, and recordings to individual papers.",
+      "priority": "critical",
+      "extraction_method": "hybrid-web-structure-and-browser-visual-review",
+      "captured_at": "2026-07-25T22:54:09+09:00",
+      "asset_reuse_notes": "Pattern only. No publication data, wording, color palette, or MIT identity asset is reused.",
+      "strengths_to_adopt": [
+        "Research outputs are grouped by question rather than presented as one undifferentiated chronology.",
+        "Thesis-defining work is marked so visitors understand the research spine.",
+        "Every output exposes the artifacts needed to inspect it: paper, code, slides, poster, or recording."
+      ],
+      "weaknesses_to_avoid": [
+        "The dense small-type layout is difficult to scan on wide and mobile screens.",
+        "Several visual emphasis devices compete within each publication row."
+      ],
+      "target_area": "Research tracks, artifact links, and future publication metadata",
+      "patterns": [
+        {
+          "name": "Research-theme grouping",
+          "type": "content-structure",
+          "description": "Outputs sit under enduring research questions instead of being organized only by date.",
+          "applicability": "Keep VLM dance retrieval and hybrid QML evaluation as two named tracks, with future notes, datasets, experiments, and papers nested under the appropriate track."
+        },
+        {
+          "name": "Artifact-complete output row",
+          "type": "component",
+          "description": "Each output provides direct routes to the artifacts that substantiate it.",
+          "applicability": "Use a stable metadata row for Paper, Code, Dataset, Slides, Demo, Talk, and BibTeX only when each artifact exists."
+        }
+      ]
+    },
+    {
+      "source": "https://people.eecs.berkeley.edu/~reginaldfrank77/",
+      "category": "academic-profile",
+      "summary": "A Berkeley systems PhD profile that uses a previous software-engineering role to frame the transition into real-world distributed-systems research.",
+      "priority": "high",
+      "extraction_method": "hybrid-web-structure-and-browser-visual-review",
+      "captured_at": "2026-07-25T22:54:09+09:00",
+      "asset_reuse_notes": "Pattern only. No portrait, publication data, game, icons, or Berkeley identity asset is reused.",
+      "strengths_to_adopt": [
+        "The first screen directly connects former industry engineering with the current research direction.",
+        "Scholar, GitHub, LinkedIn, and CV links are visible before the detailed record.",
+        "Selected publications keep the initial academic evidence concise."
+      ],
+      "weaknesses_to_avoid": [
+        "Large repeated cards and shadows fragment a short academic page.",
+        "A novelty interaction can distract from the research and career thesis when it is not part of the person's core work."
+      ],
+      "target_area": "Home career-to-research bridge and primary evidence links",
+      "patterns": [
+        {
+          "name": "Industry-to-research bridge",
+          "type": "content-structure",
+          "description": "The profile treats professional engineering as the foundation for a research question rather than as unrelated pre-PhD history.",
+          "applicability": "Frame device packets, gateways, distributed events, and AI-native product verification as the practical origin of evaluation-first VLM and QML research."
+        }
+      ]
+    },
+    {
+      "source": "https://people.eecs.berkeley.edu/~daryakaviani/",
+      "category": "academic-profile",
+      "summary": "A Berkeley security PhD profile that combines preprints, publications, artifact links, research and industry experience, talks, writing, teaching, community work, and a personal note in one durable record.",
+      "priority": "critical",
+      "extraction_method": "hybrid-web-structure-and-browser-visual-review",
+      "captured_at": "2026-07-25T22:54:09+09:00",
+      "asset_reuse_notes": "Pattern only. No portrait, emoji vocabulary, publication data, wording, or Berkeley identity asset is reused.",
+      "strengths_to_adopt": [
+        "Preprints and peer-reviewed work carry visibly different status labels.",
+        "Paper, full version, code, artifact evaluation, poster, blog, thread, video, and slides form a rich evidence graph.",
+        "Industry work, talks, writing, teaching, and community service support the research identity without being hidden."
+      ],
+      "weaknesses_to_avoid": [
+        "Putting every record on one page creates a very long first-time visitor path.",
+        "Numerous tiny tags and decorative emoji can compete with titles and status."
+      ],
+      "target_area": "Research evidence graph, mentoring/service record, and page-level archive routes",
+      "patterns": [
+        {
+          "name": "Research evidence graph",
+          "type": "content-structure",
+          "description": "A research result links outward to the paper, implementation, evaluation, talk, and explanatory writing instead of ending at a title.",
+          "applicability": "For each future Sewon Park research output, connect the manuscript to code, experiment protocol, data statement, presentation, and explanatory note."
+        },
+        {
+          "name": "Academic service as evidence",
+          "type": "content-structure",
+          "description": "Teaching, talks, and community work demonstrate how expertise is shared and sustained.",
+          "applicability": "Connect AI mentoring, internal seminars, coursework notes, and talks under a compact Teaching and Mentoring route rather than treating them as scattered side activities."
+        }
+      ]
+    },
+    {
+      "source": "https://people.eecs.berkeley.edu/~vmyers/",
+      "category": "academic-profile",
+      "summary": "A Berkeley AI PhD profile that makes each publication scannable with a small visual, title, authors, venue, year, and direct artifact links.",
+      "priority": "high",
+      "extraction_method": "hybrid-web-structure-and-browser-visual-review",
+      "captured_at": "2026-07-25T22:54:09+09:00",
+      "asset_reuse_notes": "Pattern only. No portrait, paper thumbnails, icons, publication data, or Berkeley identity asset is reused.",
+      "strengths_to_adopt": [
+        "Small paper visuals make a long publication archive easier to navigate.",
+        "Year, venue, authorship, and artifact links remain consistently placed.",
+        "The top profile stays compact despite a visually rich evidence list."
+      ],
+      "weaknesses_to_avoid": [
+        "A full publication list on the landing page overwhelms visitors who are evaluating the person rather than a paper corpus.",
+        "Tiny icon links and dense metadata need strong responsive handling."
+      ],
+      "target_area": "Future publication rows and research-project visual summaries",
+      "patterns": [
+        {
+          "name": "Visual research output row",
+          "type": "component",
+          "description": "One small figure helps visitors recognize a research idea while the text remains the primary evidence.",
+          "applicability": "When real figures exist, add one diagram or result plot to each VLM/QML output row; use no generic decorative thumbnail."
+        }
+      ]
+    },
+    {
+      "source": "reference-set://mit-berkeley-phd-sites-2026-07-25",
+      "category": "reference-synthesis",
+      "summary": "Six current MIT and Berkeley researcher sites converge on a narrow identity statement, explicit research maturity, selected evidence, artifact-level links, and a clear bridge between prior experience and present research.",
+      "priority": "critical",
+      "extraction_method": "cross-reference-synthesis",
+      "captured_at": "2026-07-25T22:54:09+09:00",
+      "asset_reuse_notes": "Synthesis only. The target keeps its own information architecture, typography, color system, copy, and assets.",
+      "strengths_to_adopt": [
+        "Resolve name, current role, affiliation, and one specific question within the first screen.",
+        "Show only selected work by default and route to complete CV, portfolio, research, and knowledge archives.",
+        "Label research maturity honestly and attach inspectable artifacts to every substantive result.",
+        "Use industry experience, teaching, mentoring, and writing to explain the research trajectory rather than as disconnected sections."
+      ],
+      "weaknesses_to_avoid": [
+        "Do not imitate publication volume before equivalent outputs exist.",
+        "Do not compress an eight-year industry career into a publication-only academic template.",
+        "Do not reintroduce repeated cards, excessive motion, or full archives on Home."
+      ],
+      "target_area": "Whole-site information architecture and phased content model",
+      "patterns": [
+        {
+          "name": "Engineering-grounded researcher identity",
+          "type": "content-structure",
+          "description": "Proven engineering work remains the primary professional identity while research questions explain how that practice is becoming a durable intellectual agenda.",
+          "applicability": "Position Sewon Park first as an industry platform engineer, then as a PhD researcher studying how AI systems remain inspectable across physical devices, software products, and model evaluation."
+        },
+        {
+          "name": "Selected-home complete-archives",
+          "type": "navigation",
+          "description": "Home carries only current identity, representative evidence, active research, recent writing, and contact; dedicated routes hold the full record.",
+          "applicability": "Reduce Home to Now, Selected Systems, Active Research, Recent Notes, and Contact while preserving full Portfolio, CV, Research, Blog, Reading, and Coursework pages."
+        },
+        {
+          "name": "Stateful research record",
+          "type": "content-structure",
+          "description": "Every research item declares its current maturity and available artifacts.",
+          "applicability": "Define a reusable schema: status, question, method, evidence, artifacts, collaborators, date, and next milestone."
+        }
+      ]
+    },
+    {
+      "source": "https://korkinof.com/",
+      "category": "industry-research-profile",
+      "summary": "A staff machine-learning engineer with a PhD presents current industry role first, then separates experience, publications, and writing into distinct evidence lanes.",
+      "priority": "high",
+      "extraction_method": "web-structure-review",
+      "captured_at": "2026-07-25T23:45:00+09:00",
+      "asset_reuse_notes": "Pattern only. No text, imagery, identity assets, or layout code is reused.",
+      "strengths_to_adopt": [
+        "Lead with current product responsibility and years of practice.",
+        "Keep industry, research outputs, and writing related but independently scannable."
+      ],
+      "weaknesses_to_avoid": [
+        "Do not let academic metrics dominate the profile before the output corpus exists."
+      ],
+      "target_area": "Home identity and primary information architecture",
+      "patterns": [{
+        "name": "Current-role-first hybrid profile",
+        "type": "content-structure",
+        "description": "The landing page resolves industry seniority before exposing academic evidence.",
+        "applicability": "Place Sewon's eight-year engineering record before active VLM and QML research."
+      }]
+    },
+    {
+      "source": "https://suhassuresha.com/",
+      "category": "industry-research-profile",
+      "summary": "A senior machine-learning engineer foregrounds shipped product impact, while books, publications, and patents appear as mature downstream outputs.",
+      "priority": "high",
+      "extraction_method": "web-structure-review",
+      "captured_at": "2026-07-25T23:45:00+09:00",
+      "asset_reuse_notes": "Pattern only. No text, imagery, identity assets, or layout code is reused.",
+      "strengths_to_adopt": [
+        "Use concrete product outcomes as the first credibility layer.",
+        "Add research artifacts only after they reach a real, linkable state."
+      ],
+      "weaknesses_to_avoid": [
+        "Do not create empty publication or patent sections as prestige placeholders."
+      ],
+      "target_area": "Home evidence order and future research outputs",
+      "patterns": [{
+        "name": "Results mature into outputs",
+        "type": "content-structure",
+        "description": "Product outcomes lead; books, papers, and patents join only as completed evidence.",
+        "applicability": "Keep active research status visible now and add manuscript, preprint, and publication links when they actually exist."
+      }]
+    },
+    {
+      "source": "https://dch.xyz/",
+      "category": "industry-research-profile",
+      "summary": "An engineer working at the research-product intersection uses a concise purpose statement, career timeline, projects, and writing rather than a publication-heavy academic template.",
+      "priority": "critical",
+      "extraction_method": "web-structure-review",
+      "captured_at": "2026-07-25T23:45:00+09:00",
+      "asset_reuse_notes": "Pattern only. No text, imagery, identity assets, or layout code is reused.",
+      "strengths_to_adopt": [
+        "State what the site records and why it exists.",
+        "Let career, projects, and writing establish the bridge to research."
+      ],
+      "weaknesses_to_avoid": [
+        "Do not overload the landing page with the full archive."
+      ],
+      "target_area": "Notes hub and career-to-research bridge",
+      "patterns": [{
+        "name": "Research-product intersection without overclaiming",
+        "type": "positioning",
+        "description": "The profile is credible through work and questions even before a large paper record exists.",
+        "applicability": "Describe Sewon as an industry-grounded engineer extending verification practice into research."
+      }]
+    },
+    {
+      "source": "https://sebastianraschka.com/",
+      "category": "research-engineering-profile",
+      "summary": "A research engineer keeps a curated entry point for recent and important writing while routing the full archive separately.",
+      "priority": "medium",
+      "extraction_method": "web-structure-review",
+      "captured_at": "2026-07-25T23:45:00+09:00",
+      "asset_reuse_notes": "Pattern only. No text, imagery, identity assets, or layout code is reused.",
+      "strengths_to_adopt": [
+        "Curate recent notes instead of showing every item on Home.",
+        "Treat writing as a durable professional evidence layer."
+      ],
+      "weaknesses_to_avoid": [
+        "Do not expose too many topical routes before the archive is large enough."
+      ],
+      "target_area": "Recent notes and Notes hub",
+      "patterns": [{
+        "name": "Curated entry, complete archive",
+        "type": "navigation",
+        "description": "The landing page shows a few recent records; the hub owns the complete archive.",
+        "applicability": "Show three recent records on Home and route Writing, Reading, and Coursework through Notes."
+      }]
+    },
+    {
+      "source": "https://sarveshbhatnagar.com/",
+      "category": "industry-research-profile",
+      "summary": "A developer-researcher combines industry, research, projects, and writing on one public profile, revealing both the value and the density risk of a comprehensive landing page.",
+      "priority": "medium",
+      "extraction_method": "web-structure-review",
+      "captured_at": "2026-07-25T23:45:00+09:00",
+      "asset_reuse_notes": "Pattern and anti-pattern only. No text, imagery, identity assets, or layout code is reused.",
+      "strengths_to_adopt": [
+        "Expose the full breadth of a hybrid career through clear routes."
+      ],
+      "weaknesses_to_avoid": [
+        "Do not place every project, publication, skill, and note on one long landing page.",
+        "Avoid novelty interactions that compete with evidence."
+      ],
+      "target_area": "Whole-site scope control",
+      "patterns": [{
+        "name": "Broad archive, restrained Home",
+        "type": "anti-pattern",
+        "description": "Breadth should live in dedicated routes instead of one exhaustive landing page.",
+        "applicability": "Use five primary routes and keep Home selected, not comprehensive."
+      }]
+    },
+    {
+      "source": "https://www.byeongjee.me/",
+      "category": "engineer-to-phd-profile",
+      "summary": "A software-engineer-to-PhD profile uses a compact About, Publications, Education, Experience, Talks, and CV structure to explain the transition without erasing prior work.",
+      "priority": "high",
+      "extraction_method": "web-structure-review",
+      "captured_at": "2026-07-25T23:45:00+09:00",
+      "asset_reuse_notes": "Pattern only. No text, imagery, identity assets, or layout code is reused.",
+      "strengths_to_adopt": [
+        "Keep the industry-to-research transition legible in one chronology.",
+        "Separate experience from publications rather than forcing equivalence."
+      ],
+      "weaknesses_to_avoid": [
+        "Do not introduce a Publications route until it contains meaningful artifacts."
+      ],
+      "target_area": "Career foundation and future publication routing",
+      "patterns": [{
+        "name": "Transition chronology",
+        "type": "content-structure",
+        "description": "Prior engineering experience explains, rather than competes with, the present research path.",
+        "applicability": "Keep Sewon's 2018–present industry timeline visible alongside the 2026–present research direction."
+      }]
+    },
+    {
+      "source": "reference-set://industry-first-research-engineers-2026-07-25",
+      "category": "reference-synthesis",
+      "summary": "Six additional engineer-researcher profiles support an industry-first public identity: product evidence leads, research status is explicit, and publications appear only when real artifacts exist.",
+      "priority": "critical",
+      "extraction_method": "cross-reference-synthesis",
+      "captured_at": "2026-07-25T23:45:00+09:00",
+      "asset_reuse_notes": "Synthesis only. The implementation uses original copy, hierarchy, tokens, and interaction behavior.",
+      "strengths_to_adopt": [
+        "Resolve eight years of engineering credibility before describing research ambition.",
+        "Expose a stable maturity path from active question to published result.",
+        "Use a Notes hub to make intellectual development visible without mislabeling notes as papers.",
+        "Preserve dedicated Work, Research, CV, and Notes archives behind a selected Home."
+      ],
+      "weaknesses_to_avoid": [
+        "No empty publications section, publication count, or implied academic affiliation.",
+        "No exhaustive one-page archive or novelty interaction that hides evidence."
+      ],
+      "target_area": "Implemented whole-site industry-research hybrid model",
+      "patterns": [{
+        "name": "Industry evidence → active research → future artifacts",
+        "type": "content-model",
+        "description": "A hybrid profile can be research-ready without pretending to be publication-rich.",
+        "applicability": "Home now leads with eight years of work; Research uses Active question, Experiment, Manuscript, Preprint, and Published states; Notes owns writing, reading, and coursework."
+      }]
     }
   ]
 }

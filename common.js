@@ -90,22 +90,27 @@
 
         const navItems = [
             { href: 'index.html', en: 'Home', kr: '홈' },
-            { href: 'portfolio.html', en: 'Portfolio', kr: '포트폴리오' },
-            { href: 'cv.html', en: 'CV', kr: '이력서' },
+            { href: 'portfolio.html', en: 'Work', kr: '프로젝트' },
             { href: 'research.html', en: 'Research', kr: '연구' },
-            { href: 'blog.html', en: 'Blog', kr: '블로그' },
-            { href: 'lectures.html', en: 'Lectures', kr: '강의' },
-            { href: 'reading.html', en: 'Reading', kr: '독서' }
+            { href: 'cv.html', en: 'CV', kr: '이력서' },
+            { href: 'notes.html', en: 'Notes', kr: '기록' }
         ];
 
         // Determine active page
         const currentPage = page || 'index.html';
 
         const links = navItems.map(item => {
+            const isNotesPage = item.href === 'notes.html' && (
+                currentPage === 'notes.html'
+                || currentPage.startsWith('blog')
+                || currentPage === 'lectures.html'
+                || window.location.pathname.includes('/lectures/')
+                || currentPage === 'reading.html'
+                || currentPage.startsWith('reading-book-')
+                || window.location.pathname.includes('/reading/')
+            );
             const isActive = currentPage === item.href
-                || (item.href === 'blog.html' && currentPage.startsWith('blog'))
-                || (item.href === 'lectures.html' && (currentPage === 'lectures.html' || window.location.pathname.includes('/lectures/')))
-                || (item.href === 'reading.html' && (currentPage === 'reading.html' || window.location.pathname.includes('/reading/')))
+                || isNotesPage
                 || (item.href === 'portfolio.html' && currentPage.startsWith('portfolio'))
                 || (item.href === 'research.html' && currentPage.startsWith('research'))
                 || (item.href === 'cv.html' && currentPage.startsWith('cv'));

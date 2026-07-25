@@ -26,7 +26,7 @@
     --career-shell-primary: 70px;
     --career-shell-primary-mobile: 85px;
     --career-shell-secondary: 54px;
-    --career-tab-count: 7;
+    --career-tab-count: 5;
     --career-type-body: 17px;
     --career-type-label: 13px;
     --career-space-section: 72px;
@@ -130,8 +130,14 @@
         }
 
         :where(body.career-home, body.portfolio-page, body.research-page, body.cv-page, body.archive-page, body.knowledge-page) #site-nav .navigation {
-            width: 630px !important;
-            min-width: 630px !important;
+            width: 100% !important;
+            min-width: 0 !important;
+        }
+
+        :where(body.career-home, body.portfolio-page, body.research-page, body.cv-page, body.archive-page, body.knowledge-page) #site-nav .nav-link {
+            padding-right: 6px !important;
+            padding-left: 6px !important;
+            font-size: 12px !important;
         }
     }
 }

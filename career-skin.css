@@ -232,7 +232,7 @@
         color: var(--skin-accent) !important;
     }
 
-    /* Stable seven-slot navigation */
+    /* Stable five-slot navigation */
     #site-nav {
         min-height: var(--skin-nav) !important;
         margin-bottom: 0 !important;
@@ -246,9 +246,9 @@
 
     #site-nav .navigation {
         display: grid !important;
-        grid-template-columns: repeat(7, minmax(0, 1fr)) !important;
+        grid-template-columns: repeat(5, minmax(0, 1fr)) !important;
         width: 100% !important;
-        min-width: 700px !important;
+        min-width: 0 !important;
         min-height: var(--skin-nav) !important;
         margin: 0 !important;
         padding: 0 !important;
@@ -1246,8 +1246,8 @@
     }
 
     #site-nav .navigation {
-        grid-template-columns: repeat(7, 92px) !important;
-        min-width: 644px !important;
+        grid-template-columns: repeat(5, minmax(0, 1fr)) !important;
+        min-width: 0 !important;
     }
 
     #site-nav .nav-link {

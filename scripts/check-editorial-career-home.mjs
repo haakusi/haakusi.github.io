@@ -1,138 +1,66 @@
 import assert from 'node:assert/strict';
-import { access, readdir, readFile, stat } from 'node:fs/promises';
+import { readdir, readFile } from 'node:fs/promises';
 import test from 'node:test';
 
 const root = new URL('../', import.meta.url);
 const read = (path) => readFile(new URL(path, root), 'utf8');
-
-const [index, cv, portfolio, common, homeCss, sharedCss] = await Promise.all([
+const [index, common, css, portfolio, cv, research, notes, sharedCss] = await Promise.all([
     read('index.html'),
-    read('cv.html'),
-    read('portfolio.html'),
     read('common.js'),
-    read('home-style.css'),
+    read('hybrid-profile.css'),
+    read('portfolio.html'),
+    read('cv.html'),
+    read('research.html'),
+    read('notes.html'),
     read('career-system.css'),
 ]);
+const publicCareerCopy = [index, portfolio, cv, research, notes].join('\n').replaceAll('&amp;', '&');
 
-const publicCareerCopy = [index, cv, portfolio].join('\n');
-
-test('homepage exposes the site IA and follows a newest-first editorial journey', () => {
-    const anchors = ['identity', 'media', 'work', 'capability', 'journey', 'mentoring', 'research', 'archive', 'contact'];
-    for (const id of anchors) {
-        assert.equal((index.match(new RegExp(`id="${id}"`, 'g')) ?? []).length, 1, `#${id} must be unique`);
-    }
-    assert.match(index, /<div id="site-header"><\/div>/);
-    assert.match(index, /<div id="site-nav"><\/div>/);
-    assert.doesNotMatch(index, /home-local-nav|home-motion-ticker/);
-    for (const path of ['index.html', 'portfolio.html', 'cv.html', 'research.html', 'blog.html', 'lectures.html', 'reading.html']) {
-        assert.match(common, new RegExp(`href: '${path}'`), `missing shared site link ${path}`);
-    }
-    assert.ok(index.indexOf('id="work"') < index.indexOf('id="journey"'), 'current work must precede older chronology');
-    assert.ok(index.indexOf('id="work"') < index.indexOf('id="mentoring"'), 'current work must precede mentoring');
+test('homepage follows an industry-first editorial journey', () => {
+    const anchors = ['identity', 'work', 'research', 'career', 'notes', 'contact'];
+    const positions = anchors.map((id) => index.indexOf(`id="${id}"`));
+    assert.ok(positions.every((position) => position > -1));
+    assert.deepEqual(positions, [...positions].sort((a, b) => a - b));
+    assert.ok(index.indexOf('8 YEARS') < index.indexOf('ACTIVE RESEARCH'));
+    assert.doesNotMatch(index, /id="(?:media|capability|mentoring|archive)"/);
 });
 
-test('homepage uses the shared shell while preserving its media and hero composition', () => {
-    for (const className of ['home-hero-brief', 'home-hero-statement', 'identity-card', 'visual-scroll-stage', 'software-ribbon']) {
-        assert.match(index, new RegExp(`class="[^"]*${className}`), `missing structural class ${className}`);
+test('homepage opening pairs a readable statement with a concise current ledger', () => {
+    for (const className of ['profile-hero-intro', 'profile-hero-statement', 'profile-now', 'profile-evidence']) {
+        assert.match(index, new RegExp(`class="[^"]*${className}`));
     }
-    for (const contract of [
-        /--home-container:\s*1320px/,
-        /--home-header-height:\s*54px/,
-        /@keyframes\s+media-drift/,
-        /\.visual-scroll-stage\s*\{[\s\S]*?min-height:\s*1[45]0vh/,
-        /\.visual-scroll-stage-inner\s*\{[\s\S]*?position:\s*sticky/,
-        /animation-timeline:\s*view\(\)/,
-        /\.home-hero\s*\{[\s\S]*?min-height:\s*135svh/,
-        /\.home-hero-depth-frame\s*\{[\s\S]*?grid-template-columns:\s*var\(--home-rail-column\) minmax\(0,\s*1fr\)/,
-        /\.home-hero-depth-frame\s*\{[\s\S]*?column-gap:\s*var\(--home-grid-gap\)/,
-        /\.home-hero h1\s*\{[\s\S]*?font-size:\s*clamp\(62px,\s*6\.2vw,\s*88px\)/,
-        /\.home-hero h1\s*\{[^}]*width:\s*100%/,
-        /\.home-hero h1\s*\{[\s\S]*?line-height:\s*0?\.92/,
-    ]) {
-        assert.match(homeCss, contract);
-    }
-    for (const width of ['1180px', '900px', '640px', '430px']) {
-        assert.ok(homeCss.includes(`max-width: ${width}`), `missing reference responsive tier ${width}`);
-    }
-    for (const selector of ['home-kicker', 'home-hero-role', 'identity-links']) {
-        assert.match(homeCss, new RegExp(`\\.${selector}\\s*\\{[^}]*width:\\s*100%`), `${selector} must stay within the hero column`);
-    }
-    assert.match(index, /lang-kr" hidden><span class="career-line">장치 패킷부터<\/span><em class="career-line">신뢰 가능한<\/em><em class="career-line">AI 제품까지\.<\/em>/);
+    assert.equal((index.match(/class="profile-now"/g) ?? []).length, 1);
+    assert.equal((index.match(/<article><strong>/g) ?? []).length, 4);
+    assert.match(css, /\.profile-hero\s*\{[^}]*grid-template-areas:/);
+    assert.match(css, /word-break:\s*keep-all/);
 });
 
-test('homepage leads with current, public-safe evidence and removes the incorrect promotion framing', () => {
-    for (const evidence of ['1인 8주', '약 20만 LOC', '40%+', 'DEVICE→CLOUD']) {
-        assert.ok(index.includes(evidence), `missing public evidence: ${evidence}`);
+test('home leads with current public-safe evidence and exact project status', () => {
+    for (const phrase of ['1 / 8', '~200K LOC', '40%+', '2026.07—PRESENT', 'Developer Portal']) {
+        assert.ok(index.includes(phrase), `missing public evidence: ${phrase}`);
     }
-    assert.match(index, /AI-native/);
-    assert.match(index, /02 \/ 2026\.07—NOW · IN PROGRESS/);
-    assert.match(index, /02 \/ 2026\.07~현재 · 진행 중/);
-    assert.match(index, /device packet|장치 패킷/i);
-    assert.doesNotMatch(publicCareerCopy, /특별승진|입사\s*19개월|special promotion|promotion\s*19 months|19 months after joining/i);
+    assert.match(index, /ACTIVE RESEARCH · TRACK 01/);
+    assert.match(index, /ACTIVE RESEARCH · TRACK 02/);
+    assert.doesNotMatch(index, /특별승진|special promotion|19 months after joining|입사\s*19개월/i);
 });
 
-test('award evidence stays in the detailed CV and portfolio while Home hides the temporary award gallery', () => {
-    for (const page of [cv, portfolio]) {
-        assert.match(page, /5(?:개 )?팀/);
-        assert.match(page, /300만원/);
-        assert.match(page, /1,000만원/);
-    }
-    assert.match(cv, /data-kr="우수상"/);
-    assert.match(cv, /상금 1,000만원/);
-    assert.doesNotMatch(index, /recognition-section|award-oldboy|award-innovation|혁신상|Innovation award|전사 우수상|company-wide excellence award/i);
-    assert.doesNotMatch(publicCareerCopy, /혁신상[^<]{0,80}50만원|Innovation[^<]{0,80}(?:KRW )?500,000/i);
+test('home avoids temporary award galleries and decorative system atlases', () => {
+    assert.doesNotMatch(index, /award|수상|우수상|혁신상|전사|software-ribbon|SYSTEM ATLAS/i);
+    assert.doesNotMatch(index, /images\/career\/samples/);
 });
 
-test('system atlas uses exactly ten original lightweight SVG assets without public placeholder copy', async () => {
-    const images = [...index.matchAll(/src="(images\/career\/samples\/sw-\d{2}\.svg)"/g)].map((match) => match[1]);
-    assert.equal(new Set(images).size, 10, 'ribbon must reference ten unique software visuals');
-    assert.equal((index.match(/class="software-ribbon-item"/g) ?? []).length, 20, 'ribbon duplicates one ten-item set for a seamless loop');
-    assert.doesNotMatch(index, /temporary|replaceable|임시|교체 가능/i);
-    for (const path of new Set(images)) {
-        await access(new URL(path, root));
-        const metadata = await stat(new URL(path, root));
-        assert.ok(metadata.size < 100_000, `${path} should stay lightweight`);
-        const svg = await read(path);
-        const stack = [];
-        for (const match of svg.matchAll(/<\/?([a-z][\w:-]*)(?:\s[^<>]*?)?\s*\/?>/gi)) {
-            const token = match[0];
-            const tag = match[1];
-            if (token.startsWith('</')) {
-                assert.equal(stack.pop(), tag, `${path} has an unbalanced </${tag}> tag`);
-            } else if (!token.endsWith('/>')) {
-                stack.push(tag);
-            }
-        }
-        assert.deepEqual(stack, [], `${path} has unclosed SVG tags`);
-        const escaped = path.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
-        assert.match(index, new RegExp(`<img[^>]+src="${escaped}"[^>]+alt="[^"]{8,}"[^>]+loading="lazy"`, 'i'));
+test('notes hub routes every public learning format without calling it publication', () => {
+    for (const href of ['blog.html', 'reading.html', 'lectures.html']) {
+        assert.match(notes, new RegExp(`href="${href}"`));
     }
+    assert.match(notes, /knowledge layer behind the CV/);
+    assert.match(notes, /논문과 구분해/);
 });
 
-test('home surfaces a dated public record before routing to the complete archives', () => {
-    assert.equal((index.match(/class="archive-feed"/g) ?? []).length, 1);
-    assert.equal((index.match(/<time datetime="2026-/g) ?? []).length, 3);
-    for (const href of ['blog5.html', 'reading-book-07-software-object-lifecycle.html', 'lectures.html']) {
-        assert.match(index, new RegExp(`class="archive-feed"[\\s\\S]*?href="${href}"`));
-    }
-    assert.match(index, /class="archive-routes"/);
-});
-
-test('capabilities and current projects use geometric visual anchors instead of text-only cards', () => {
-    assert.equal((index.match(/class="capability-orbit-item"/g) ?? []).length, 6);
-    for (const label of ['AI', 'JVM', 'C++', 'TSX', 'MCP', 'AWS']) {
-        assert.match(index, new RegExp(`class="capability-mark"[^>]*>${label.replace('+', '\\+')}`));
-    }
-    assert.equal((index.match(/class="project-geometry"/g) ?? []).length, 3);
-});
-
-test('latest public surfaces keep the strongest ownership story and remove the weak chatbot claim', () => {
+test('latest public surfaces keep the strongest ownership story and omit weak claims', () => {
     assert.doesNotMatch(publicCareerCopy, /Technical Support chatbot|Global Technical Support|\bSolis\b|RabbitMQ/i);
     for (const phrase of ['Developer Portal', '20만 LOC', '40%']) {
         assert.ok(publicCareerCopy.includes(phrase), `missing career evidence: ${phrase}`);
-    }
-    for (const mentoring of ['Codeit', 'SK Networks', '27', '28']) {
-        assert.ok(publicCareerCopy.includes(mentoring), `missing mentoring evidence: ${mentoring}`);
     }
 });
 
@@ -142,12 +70,12 @@ test('shared runtime extends the visual system to knowledge detail pages', () =>
     assert.match(sharedCss, /body\.knowledge-page/);
 });
 
-test('homepage style is monochrome, token-driven, and motion-safe', () => {
-    assert.match(homeCss, /var\(--career-/);
-    assert.doesNotMatch(homeCss, /Georgia|Times New Roman|radial-gradient|--home-warm/i);
-    assert.match(homeCss, /--home-accent:\s*#[0-9a-f]{6}/i);
-    assert.match(homeCss, /prefers-reduced-motion:\s*reduce/);
-    assert.match(homeCss, /\.software-ribbon-track[\s\S]*?animation:\s*none/);
+test('hybrid style is monochrome, token-driven, responsive, and motion-safe', () => {
+    assert.match(css, /var\(--skin-/);
+    assert.doesNotMatch(css, /Georgia|Times New Roman|--home-warm/i);
+    assert.match(css, /--profile-accent:/);
+    assert.match(css, /prefers-reduced-motion:\s*reduce/);
+    assert.match(css, /animation-timeline:\s*view\(\)/);
 });
 
 test('all public knowledge detail pages load the common runtime', async () => {
@@ -165,15 +93,12 @@ test('all public knowledge detail pages load the common runtime', async () => {
     }
 
     const lecturePages = await walkLectureHtml(new URL('lectures/', root));
-    assert.ok(detailPages.length >= 10, 'expected blog and reading detail pages');
-    assert.ok(lecturePages.length >= 20, 'expected lecture detail pages');
-
-    for (const path of detailPages) {
-        assert.match(await read(path), /<script\s+src="common\.js"><\/script>/, `${path} must load common.js`);
-    }
+    assert.ok(detailPages.length >= 10);
+    assert.ok(lecturePages.length >= 20);
+    for (const path of detailPages) assert.match(await read(path), /<script\s+src="common\.js"><\/script>/);
     for (const url of lecturePages) {
         const html = await readFile(url, 'utf8');
         if (/<meta\s+http-equiv="refresh"/i.test(html)) continue;
-        assert.match(html, /<script\s+src="(?:\.\.\/)+common\.js"><\/script>/, `${url.pathname} must load common.js`);
+        assert.match(html, /<script\s+src="(?:\.\.\/)+common\.js"><\/script>/);
     }
 });

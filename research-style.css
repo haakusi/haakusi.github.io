@@ -237,11 +237,60 @@ body.research-page {
 }
 
 .active-research,
+.research-maturity,
 .research-foundations,
 .research-method,
 .research-notes {
     padding: 112px 0;
     border-bottom: 1px solid var(--research-line);
+}
+
+.research-maturity-intro {
+    max-width: 720px;
+    margin: -18px 0 44px 240px;
+    color: var(--research-muted);
+}
+
+.research-maturity-steps {
+    display: grid;
+    grid-template-columns: repeat(5, minmax(0, 1fr));
+    margin: 0;
+    padding: 0;
+    border-top: 1px solid var(--research-line);
+    border-bottom: 1px solid var(--research-line);
+    list-style: none;
+}
+
+.research-maturity-steps li {
+    display: grid;
+    min-width: 0;
+    gap: 10px;
+    padding: 26px 20px;
+    border-right: 1px solid var(--research-line);
+}
+
+.research-maturity-steps li:last-child {
+    border-right: 0;
+}
+
+.research-maturity-steps li span,
+.research-maturity-steps li small {
+    color: var(--research-muted);
+    font-size: 0.7rem;
+}
+
+.research-maturity-steps li strong {
+    color: var(--research-text);
+    font-size: 0.95rem;
+}
+
+.research-maturity-steps li.is-current {
+    background: var(--research-accent-soft);
+}
+
+.research-maturity-steps li.is-current span,
+.research-maturity-steps li.is-current strong {
+    color: var(--research-accent);
 }
 
 .research-section-heading {
@@ -530,6 +579,10 @@ body.research-page {
     .foundation-grid,
     .research-note-grid { grid-template-columns: 1fr; }
     .research-note-grid a { min-height: 180px; }
+    .research-maturity-intro { margin-left: 0; }
+    .research-maturity-steps { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+    .research-maturity-steps li:nth-child(2n) { border-right: 0; }
+    .research-maturity-steps li:nth-child(n+3) { border-top: 1px solid var(--research-line); }
 }
 
 @media (max-width: 680px) {
@@ -566,6 +619,7 @@ body.research-page {
     .research-hero-grid { gap: 30px; margin-top: 38px; }
 
     .active-research,
+    .research-maturity,
     .research-foundations,
     .research-method,
     .research-notes { padding: 74px 0; }
@@ -592,6 +646,9 @@ body.research-page {
 
     .research-method ol { margin-left: 0; }
     .research-method li { grid-template-columns: 42px minmax(0, 1fr); gap: 12px; }
+    .research-maturity-steps { grid-template-columns: 1fr; }
+    .research-maturity-steps li { border-top: 1px solid var(--research-line); border-right: 0; }
+    .research-maturity-steps li:first-child { border-top: 0; }
     .research-cta { padding: 76px 0; }
     .research-cta > div { align-items: stretch; flex-direction: column; }
     .research-cta a { text-align: center; }
