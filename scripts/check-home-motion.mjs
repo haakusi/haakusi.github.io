@@ -70,11 +70,11 @@ test('motion progress is clamped and deterministic without DOM geometry guesses'
     assert.equal(api.sceneProgressForRect(62, 720, 720, 124), 0.5);
     assert.equal(api.sceneProgressForRect(-596, 720, 720, 124), 1);
     assert.deepEqual({ ...api.sceneFrameForProgress(0) }, {
-        scale: 1.06,
-        translateY: 28,
-        opacity: 0.58,
-        blur: 4,
-        shade: 0.5,
+        scale: 1.14,
+        translateY: 38,
+        opacity: 0.24,
+        blur: 8,
+        shade: 0.62,
     });
     assert.deepEqual({ ...api.sceneFrameForProgress(0.5) }, {
         scale: 1,
@@ -84,11 +84,11 @@ test('motion progress is clamped and deterministic without DOM geometry guesses'
         shade: 0.12,
     });
     assert.deepEqual({ ...api.sceneFrameForProgress(1) }, {
-        scale: 0.96,
-        translateY: -28,
-        opacity: 0.5,
-        blur: 4,
-        shade: 0.6,
+        scale: 0.94,
+        translateY: -34,
+        opacity: 0.18,
+        blur: 8,
+        shade: 0.62,
     });
     assert.deepEqual({ ...api.sceneFrameForProgress(-1) }, { ...api.sceneFrameForProgress(0) });
     assert.deepEqual({ ...api.sceneFrameForProgress(2) }, { ...api.sceneFrameForProgress(1) });

@@ -14,7 +14,7 @@ test('one final career skin is loaded last on every public root', () => {
     assert.equal(skinExists, true, 'career-skin.css must exist');
     for (const page of roots) {
         const html = read(page);
-        assert.match(html, /career-skin\.css\?v=20260724-skin5/);
+        assert.match(html, /career-skin\.css\?v=20260725-quality1/);
         assert.ok(
             html.lastIndexOf('career-skin.css') > html.lastIndexOf('career-system.css'),
             `${page} must load the final skin after the compatibility system`,
@@ -44,8 +44,8 @@ test('ticker motion is continuous, clipped, and motion-safe', () => {
     assert.match(skin, /@media \(prefers-reduced-motion:\s*reduce\)[\s\S]*?\.career-ticker-track\s*\{[^}]*animation:\s*none/);
 });
 
-test('home keeps cinematic depth without making content depend on giant stages', () => {
-    assert.match(skin, /body\.career-home \.home-hero\s*\{[^}]*min-height:\s*min\(108svh,\s*920px\)/);
+test('home keeps cinematic depth without making later chapters depend on giant stages', () => {
+    assert.match(skin, /body\.career-home \.home-hero\s*\{[^}]*min-height:\s*min\(150svh,\s*1440px\)/);
     assert.match(skin, /body\.career-home \.visual-scroll-stage\s*\{[^}]*min-height:\s*clamp\(620px,\s*88svh,\s*820px\)/);
     assert.match(skin, /body\.career-home \[data-cinematic-scene\]\s*\{[^}]*min-height:\s*0/);
     assert.doesNotMatch(home, /min-height:\s*[2-9][0-9]{3}px/);
@@ -62,11 +62,11 @@ test('utility rows stay compact and the mobile identity bar follows the skin tok
     assert.match(skin, /@media screen and \(max-width:\s*900px\)[\s\S]*?body[^}]*#site-header header\s*\{[^}]*height:\s*var\(--skin-header\)\s*!important/);
 });
 
-test('desktop hero keeps one left axis and balances both content columns', () => {
+test('desktop hero balances a narrative rail, right-aligned statement, and shared evidence ledger', () => {
     assert.match(skin, /body\.career-home \.home-hero-depth-frame\s*\{[^}]*grid-template-columns:\s*clamp\(280px,\s*27vw,\s*320px\)\s+minmax\(0,\s*1fr\)[^}]*align-items:\s*stretch\s*!important/);
-    assert.match(skin, /body\.career-home \.home-hero-statement\s*\{[^}]*align-self:\s*stretch\s*!important[^}]*justify-content:\s*flex-start/);
-    assert.match(skin, /body\.career-home \.home-hero-meta\s*\{[^}]*margin-top:\s*auto\s*!important/);
-    assert.match(skin, /body\.home-motion-enhanced \.home-hero \[data-hero-depth-content\]\s*\{[^}]*transform-origin:\s*0% 42%\s*!important/);
+    assert.match(skin, /body\.career-home \.home-hero-statement\s*\{[^}]*align-self:\s*stretch\s*!important[^}]*align-items:\s*flex-end\s*!important/);
+    assert.match(skin, /body\.career-home \.identity-card\s*\{[^}]*grid-area:\s*ledger[^}]*grid-template-columns:/);
+    assert.match(skin, /body\.home-motion-enhanced \.home-hero \[data-hero-depth-content\]\s*\{[^}]*transform-origin:\s*100% 42%\s*!important/);
 });
 
 test('blog titles own the flexible article track instead of the 150px generic rail', () => {

@@ -44,15 +44,15 @@ test('home uses the same readable floor and a tighter editorial rhythm', () => {
     assert.doesNotMatch(desktopLayer, /font-size:\s*(?:8|9|10|11)px/);
     assert.match(home, /\.home-section-heading\s*\{[^}]*margin:\s*0 0 48px\s*!important/);
     assert.match(home, /\.journey-list li\s*\{[^}]*padding:\s*30px 0/);
-    assert.match(home, /@media\s*\(max-width:\s*640px\)[\s\S]*?\.home-hero-meta\s*\{[^}]*padding-top:\s*28px/);
+    assert.match(home, /@media\s*\(max-width:\s*640px\)[\s\S]*?\.identity-card\s*\{[^}]*margin-top:\s*44px/);
     assert.match(home, /@media\s*\(max-width:\s*640px\)[\s\S]*?\.home-hero-brief\s*\{[^}]*margin-top:\s*32px/);
 });
 
 test('home hero declares a sticky depth stage with motion-safe fallbacks', () => {
     assert.match(index, /class="home-hero"[^>]+data-hero-depth-stage/);
     assert.match(index, /class="home-hero-depth-frame"[^>]+data-hero-depth-frame/);
-    assert.match(index, /<h1[^>]+id="home-title"[^>]+data-hero-depth-content/);
-    assert.doesNotMatch(index, /class="home-hero-statement"[^>]+data-hero-depth-content/);
+    assert.doesNotMatch(index, /<h1[^>]+data-hero-depth-content/);
+    assert.match(index, /class="home-hero-statement"[^>]+data-hero-depth-content/);
     assert.match(home, /\.home-hero-depth-frame\s*\{[^}]*position:\s*sticky/);
     assert.match(home, /body\.home-motion-enhanced\s+\[data-hero-depth-content\]\s*\{[^}]*transform:/);
     assert.match(home, /@media\s*\(max-width:\s*900px\)[\s\S]*?\.home-hero-depth-frame\s*\{[^}]*position:\s*static/);
@@ -77,9 +77,9 @@ test('hero depth values are deterministic, bounded, and exported for verificatio
 
     const depth = context.HomeMotion?.heroDepthForProgress;
     assert.equal(typeof depth, 'function');
-    assert.deepEqual({ ...depth(0) }, { scale: 0.88, translateY: 40, opacity: 0.84, briefY: 18, shade: 0.36 });
-    assert.deepEqual({ ...depth(0.65) }, { scale: 1, translateY: 0, opacity: 1, briefY: 0, shade: 0.12 });
-    assert.deepEqual({ ...depth(1) }, { scale: 1.08, translateY: -28, opacity: 0.62, briefY: -14, shade: 0.46 });
+    assert.deepEqual({ ...depth(0) }, { scale: 1, translateY: 0, opacity: 1, briefY: 0, briefOpacity: 1, shade: 0.08 });
+    assert.deepEqual({ ...depth(0.58) }, { scale: 1, translateY: 0, opacity: 1, briefY: 0, briefOpacity: 1, shade: 0.08 });
+    assert.deepEqual({ ...depth(1) }, { scale: 1.12, translateY: -46, opacity: 0.08, briefY: -28, briefOpacity: 0.08, shade: 0.62 });
     assert.deepEqual({ ...depth(-1) }, { ...depth(0) });
     assert.deepEqual({ ...depth(2) }, { ...depth(1) });
 });

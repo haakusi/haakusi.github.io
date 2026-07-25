@@ -97,6 +97,18 @@
           "applicability": "Use the same 70-pixel identity rail, 54-pixel navigation rail, 1320-pixel content axis, and readable type floor across Portfolio, CV, Research, Blog, Lectures, and Reading."
         },
         {
+          "name": "Grouped scene exit",
+          "type": "motion",
+          "description": "The reference applies its exit transform to the complete visual statement group, so headline, role, and supporting identity move as one scene instead of drifting independently.",
+          "applicability": "Move the Home statement as one semantic visual group, leave navigation and the evidence ledger stable, and fade the narrative rail in the same timing window."
+        },
+        {
+          "name": "Integrated closing stage",
+          "type": "layout",
+          "description": "The final contact content and footer occupy one continuous full-width stage; the ending is not presented as a detached generic card followed by another empty section gap.",
+          "applicability": "Flatten the Research contact block into a ruled editorial row, place actions on the content column, and let the shared footer follow without an extra section-sized margin."
+        },
+        {
           "name": "Circular capability geometry",
           "type": "motion-and-visual-design",
           "description": "Large circular and wedge forms turn a capability list into memorable visual anchors without relying on copied brand illustrations.",

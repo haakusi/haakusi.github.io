@@ -33,16 +33,16 @@
 
     function heroDepthForProgress(value) {
         const progress = clamp(value, 0, 1);
-        const enter = smoothstep(progress / 0.65);
-        const exit = smoothstep((progress - 0.65) / 0.35);
+        const exit = smoothstep((progress - 0.58) / 0.42);
         const precise = (number) => Number(number.toFixed(4));
 
         return {
-            scale: precise(0.88 + (0.12 * enter) + (0.08 * exit)),
-            translateY: precise((40 * (1 - enter)) - (28 * exit)),
-            opacity: precise(0.84 + (0.16 * enter) - (0.38 * exit)),
-            briefY: precise((18 * (1 - enter)) - (14 * exit)),
-            shade: precise(0.36 - (0.24 * enter) + (0.34 * exit)),
+            scale: precise(1 + (0.12 * exit)),
+            translateY: precise(-46 * exit),
+            opacity: precise(1 - (0.92 * exit)),
+            briefY: precise(-28 * exit),
+            briefOpacity: precise(1 - (0.92 * exit)),
+            shade: precise(0.08 + (0.54 * exit)),
         };
     }
 
@@ -53,11 +53,11 @@
         const precise = (number) => Number(number.toFixed(4));
 
         return {
-            scale: precise(1.06 - (0.06 * enter) - (0.04 * exit)),
-            translateY: precise((28 * (1 - enter)) - (28 * exit)),
-            opacity: precise(0.58 + (0.42 * enter) - (0.5 * exit)),
-            blur: precise((4 * (1 - enter)) + (4 * exit)),
-            shade: precise(0.5 - (0.38 * enter) + (0.48 * exit)),
+            scale: precise(1.14 - (0.14 * enter) - (0.06 * exit)),
+            translateY: precise((38 * (1 - enter)) - (34 * exit)),
+            opacity: precise(0.24 + (0.76 * enter) - (0.82 * exit)),
+            blur: precise((8 * (1 - enter)) + (8 * exit)),
+            shade: precise(0.62 - (0.5 * enter) + (0.5 * exit)),
         };
     }
 
@@ -117,6 +117,7 @@
             '--hero-depth-y',
             '--hero-depth-opacity',
             '--hero-depth-brief-y',
+            '--hero-depth-brief-opacity',
         ]) {
             stage.style.removeProperty(property);
         }
@@ -172,9 +173,10 @@
             stage.style.setProperty('--hero-depth-y', `${depth.translateY}px`);
             stage.style.setProperty('--hero-depth-opacity', String(depth.opacity));
             stage.style.setProperty('--hero-depth-brief-y', `${depth.briefY}px`);
+            stage.style.setProperty('--hero-depth-brief-opacity', String(depth.briefOpacity));
             stage.dataset.motionProgress = progress.toFixed(3);
             if (rect.bottom > sceneTop && rect.top < root.innerHeight) {
-                shadeCandidates.push({ distance: Math.abs(progress - 0.65), shade: depth.shade });
+                shadeCandidates.push({ distance: Math.abs(progress - 0.58), shade: depth.shade });
             }
         }
 

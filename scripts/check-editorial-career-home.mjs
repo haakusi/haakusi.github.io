@@ -32,7 +32,7 @@ test('homepage exposes the site IA and follows a newest-first editorial journey'
 });
 
 test('homepage uses the shared shell while preserving its media and hero composition', () => {
-    for (const className of ['home-hero-brief', 'home-hero-statement', 'home-hero-meta', 'visual-scroll-stage', 'software-ribbon']) {
+    for (const className of ['home-hero-brief', 'home-hero-statement', 'identity-card', 'visual-scroll-stage', 'software-ribbon']) {
         assert.match(index, new RegExp(`class="[^"]*${className}`), `missing structural class ${className}`);
     }
     for (const contract of [
