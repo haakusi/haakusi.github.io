@@ -14,7 +14,7 @@ test('one final career skin is loaded last on every public root', () => {
     assert.equal(skinExists, true, 'career-skin.css must exist');
     for (const page of roots) {
         const html = read(page);
-        assert.match(html, /career-skin\.css\?v=20260725-quality1/);
+        assert.match(html, /career-skin\.css\?v=20260725-focus4/);
         assert.ok(
             html.lastIndexOf('career-skin.css') > html.lastIndexOf('career-system.css'),
             `${page} must load the final skin after the compatibility system`,
@@ -44,10 +44,11 @@ test('ticker motion is continuous, clipped, and motion-safe', () => {
     assert.match(skin, /@media \(prefers-reduced-motion:\s*reduce\)[\s\S]*?\.career-ticker-track\s*\{[^}]*animation:\s*none/);
 });
 
-test('home keeps cinematic depth without making later chapters depend on giant stages', () => {
+test('home gives cinematic chapters enough travel while keeping stage lengths bounded', () => {
     assert.match(skin, /body\.career-home \.home-hero\s*\{[^}]*min-height:\s*min\(150svh,\s*1440px\)/);
-    assert.match(skin, /body\.career-home \.visual-scroll-stage\s*\{[^}]*min-height:\s*clamp\(620px,\s*88svh,\s*820px\)/);
-    assert.match(skin, /body\.career-home \[data-cinematic-scene\]\s*\{[^}]*min-height:\s*0/);
+    assert.match(skin, /body\.career-home \.visual-scroll-stage\s*\{[^}]*min-height:\s*180svh/);
+    assert.match(skin, /body\.career-home \[data-cinematic-scene\]:not\(\.visual-scroll-stage\):not\(\.capability-section\)\s*\{[^}]*min-height:\s*clamp\(820px,\s*122svh,\s*1320px\)/);
+    assert.match(skin, /body\.career-home\.home-motion-enhanced \.capability-section\s*\{[^}]*min-height:\s*220svh/);
     assert.doesNotMatch(home, /min-height:\s*[2-9][0-9]{3}px/);
 });
 

@@ -34,6 +34,8 @@ test('experience is reverse chronological with a stable date rail and nested evi
         '1 person · 8 weeks',
         '1인 · 8주',
         '~200K LOC',
+        '2026.07—PRESENT',
+        '2026.07~현재',
         'Version-aware E2E',
         '40%+',
         '30 sec → 3 sec',

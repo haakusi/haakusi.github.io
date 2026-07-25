@@ -65,6 +65,8 @@ test('homepage leads with current, public-safe evidence and removes the incorrec
         assert.ok(index.includes(evidence), `missing public evidence: ${evidence}`);
     }
     assert.match(index, /AI-native/);
+    assert.match(index, /02 \/ 2026\.07—NOW · IN PROGRESS/);
+    assert.match(index, /02 \/ 2026\.07~현재 · 진행 중/);
     assert.match(index, /device packet|장치 패킷/i);
     assert.doesNotMatch(publicCareerCopy, /특별승진|입사\s*19개월|special promotion|promotion\s*19 months|19 months after joining/i);
 });
@@ -81,10 +83,11 @@ test('award evidence stays in the detailed CV and portfolio while Home hides the
     assert.doesNotMatch(publicCareerCopy, /혁신상[^<]{0,80}50만원|Innovation[^<]{0,80}(?:KRW )?500,000/i);
 });
 
-test('temporary software ribbon uses exactly ten replaceable original SVG assets', async () => {
+test('system atlas uses exactly ten original lightweight SVG assets without public placeholder copy', async () => {
     const images = [...index.matchAll(/src="(images\/career\/samples\/sw-\d{2}\.svg)"/g)].map((match) => match[1]);
     assert.equal(new Set(images).size, 10, 'ribbon must reference ten unique software visuals');
     assert.equal((index.match(/class="software-ribbon-item"/g) ?? []).length, 20, 'ribbon duplicates one ten-item set for a seamless loop');
+    assert.doesNotMatch(index, /temporary|replaceable|임시|교체 가능/i);
     for (const path of new Set(images)) {
         await access(new URL(path, root));
         const metadata = await stat(new URL(path, root));
@@ -104,6 +107,15 @@ test('temporary software ribbon uses exactly ten replaceable original SVG assets
         const escaped = path.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
         assert.match(index, new RegExp(`<img[^>]+src="${escaped}"[^>]+alt="[^"]{8,}"[^>]+loading="lazy"`, 'i'));
     }
+});
+
+test('home surfaces a dated public record before routing to the complete archives', () => {
+    assert.equal((index.match(/class="archive-feed"/g) ?? []).length, 1);
+    assert.equal((index.match(/<time datetime="2026-/g) ?? []).length, 3);
+    for (const href of ['blog5.html', 'reading-book-07-software-object-lifecycle.html', 'lectures.html']) {
+        assert.match(index, new RegExp(`class="archive-feed"[\\s\\S]*?href="${href}"`));
+    }
+    assert.match(index, /class="archive-routes"/);
 });
 
 test('capabilities and current projects use geometric visual anchors instead of text-only cards', () => {

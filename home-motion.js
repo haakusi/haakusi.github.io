@@ -37,27 +37,27 @@
         const precise = (number) => Number(number.toFixed(4));
 
         return {
-            scale: precise(1 + (0.12 * exit)),
-            translateY: precise(-46 * exit),
-            opacity: precise(1 - (0.92 * exit)),
-            briefY: precise(-28 * exit),
-            briefOpacity: precise(1 - (0.92 * exit)),
-            shade: precise(0.08 + (0.54 * exit)),
+            scale: precise(1 + (0.08 * exit)),
+            translateY: precise(-32 * exit),
+            opacity: precise(1 - (0.82 * exit)),
+            briefY: precise(-22 * exit),
+            briefOpacity: precise(1 - (0.82 * exit)),
+            shade: precise(0.06 + (0.4 * exit)),
         };
     }
 
     function sceneFrameForProgress(value) {
         const progress = clamp(value, 0, 1);
-        const enter = smoothstep(progress / 0.5);
-        const exit = smoothstep((progress - 0.5) / 0.5);
+        const enter = smoothstep(progress / 0.38);
+        const exit = smoothstep((progress - 0.62) / 0.38);
         const precise = (number) => Number(number.toFixed(4));
 
         return {
-            scale: precise(1.14 - (0.14 * enter) - (0.06 * exit)),
-            translateY: precise((38 * (1 - enter)) - (34 * exit)),
-            opacity: precise(0.24 + (0.76 * enter) - (0.82 * exit)),
-            blur: precise((8 * (1 - enter)) + (8 * exit)),
-            shade: precise(0.62 - (0.5 * enter) + (0.5 * exit)),
+            scale: precise(1.08 - (0.08 * enter) - (0.04 * exit)),
+            translateY: precise((36 * (1 - enter)) - (30 * exit)),
+            opacity: precise(0.32 + (0.68 * enter) - (0.68 * exit)),
+            blur: precise((4 * (1 - enter)) + (4 * exit)),
+            shade: precise(0.68 - (0.38 * enter) + (0.38 * exit)),
         };
     }
 

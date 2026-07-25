@@ -67,11 +67,11 @@ test('home communicates identity, evidence, and conservative profile structured 
         assert.match(home, new RegExp(`id="${id}"`));
     }
     for (const phrase of [
-        'AI-native platform and product engineering',
-        'Platform engineer who understands the device beneath the API.',
+        'platform and product engineering',
+        'Engineering the full loop beneath and beyond the API.',
         'One engineer, eight weeks',
         '장치 패킷부터',
-        'API 아래의 장치까지 이해하는 플랫폼 엔지니어.',
+        'API 아래의 장치부터 그 너머의 제품 경험까지 설계합니다.',
         '1인 8주',
     ]) {
         assert.ok(decodedHome.includes(phrase), `missing identity/evidence phrase: ${phrase}`);

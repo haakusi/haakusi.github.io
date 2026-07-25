@@ -30,6 +30,8 @@ test('public portfolio includes the current platform, modernization, core, and r
     for (const phrase of [
         'scenario history',
         'About 200K LOC',
+        '2026.07—NOW',
+        '2026.07~현재',
         '40%+ performance gain',
         'SK Networks Family AI Camp',
         'hybrid quantum–classical',

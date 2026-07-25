@@ -27,7 +27,7 @@
         if (!document.querySelector('link[href*="career-skin.css"]')) {
             const skin = document.createElement('link');
             skin.rel = 'stylesheet';
-            skin.href = prefix + 'career-skin.css?v=20260725-quality1';
+            skin.href = prefix + 'career-skin.css?v=20260725-focus4';
             skin.dataset.sharedCareerSkin = 'true';
             document.head.appendChild(skin);
         }
@@ -49,7 +49,7 @@
         headerEl.innerHTML = `
         <header>
             <h1 data-en="Sewon Park" data-kr="박세원">Sewon Park</h1>
-            <p class="subtitle" data-en="AI-native Platform & Product Engineering Lead" data-kr="AI-native 플랫폼·제품 엔지니어링 리드">AI-native Platform & Product Engineering Lead</p>
+            <p class="subtitle" data-en="Platform & Product Engineering Lead · Device-to-Cloud" data-kr="플랫폼·제품 엔지니어링 리드 · 장치–클라우드">Platform & Product Engineering Lead · Device-to-Cloud</p>
             <div class="social-links">
                 <a href="mailto:haakusi@gmail.com" aria-label="Email">
                     <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
@@ -128,11 +128,11 @@
 
         navEl.insertAdjacentHTML('afterend', `<div class="career-ticker" aria-hidden="true">
         <div class="career-ticker-track" data-career-ticker-track>
-            <span>AI-NATIVE PRODUCT ENGINEERING</span>
+            <span>PLATFORM &amp; PRODUCT ENGINEERING</span>
             <span>DEVICE → GATEWAY → API → AGENT</span>
             <span>VERIFY BEFORE TRUST</span>
             <span>PLATFORM · PRODUCT · RESEARCH</span>
-            <span>AI-NATIVE PRODUCT ENGINEERING</span>
+            <span>PLATFORM &amp; PRODUCT ENGINEERING</span>
             <span>DEVICE → GATEWAY → API → AGENT</span>
             <span>VERIFY BEFORE TRUST</span>
             <span>PLATFORM · PRODUCT · RESEARCH</span>

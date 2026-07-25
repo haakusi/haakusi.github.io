@@ -7,8 +7,8 @@
       "category": "landing",
       "summary": "A long-form personal portfolio that uses a compact anchor navigation, oversized identity typography, an activity-image ribbon, principle-led capability sections, a restrained project navigator, and a direct contact close.",
       "priority": "critical",
-      "extraction_method": "playwright-scroll-sampling-and-computed-style",
-      "captured_at": "2026-07-23T00:00:00+09:00",
+      "extraction_method": "playwright-scroll-sampling-computed-style-and-ancestor-geometry",
+      "captured_at": "2026-07-25T22:18:00+09:00",
       "asset_reuse_notes": "Pattern only. No brand assets, copy, illustrations, source code, or full layout are reused.",
       "strengths_to_adopt": [
         "A short anchor navigation makes a long page understandable before scrolling.",
@@ -77,6 +77,18 @@
           "type": "motion",
           "description": "Playwright sampling measured the capability title at scale 3.8 with opacity 0 before entry, scale 2.1626 with opacity 1 during convergence, and scale 1 at the reading position. A black viewport-sized sticky frame clips the oversized edges while the text settles inward.",
           "applicability": "Use a milder original range for haakusi: stage-wide content begins slightly oversized and dim, settles at scale 1, then releases smaller and softer toward the next section. Pair it with subtle side shades rather than copying the reference composition."
+        },
+        {
+          "name": "Long stage with a focal hold",
+          "type": "motion",
+          "description": "At 1440×900, the reference Capability intro measures about 4,500px with a 3,240px sticky range, giving entry, a stable reading hold, and exit separate scroll intervals.",
+          "applicability": "Use a restrained 122svh minimum for compact haakusi chapters and preserve the existing 180-220svh media and Capability stages. Hold the focal frame between 38% and 62% progress instead of switching immediately from entry to exit."
+        },
+        {
+          "name": "Theme-aware aperture rail",
+          "type": "visual-design",
+          "description": "The reference’s black clipped stage creates focus through strong edge-to-center contrast. A literal black overlay loses that contrast on an already black page.",
+          "applicability": "Keep black edge mass in both themes and add a faint theme-aware inner rail so the aperture remains perceptible on dark surfaces without covering content."
         },
         {
           "name": "Outgoing-incoming scene handoff",
@@ -275,6 +287,159 @@
           "observation": "Reflow, contrast, meaningful sequence, visible focus, and adequate interaction targets are baseline product quality rather than optional polish.",
           "adaptation": "Keep semantic source order, visible skip links and focus rings, 44-pixel controls, readable line lengths, and horizontal-overflow checks at mobile widths.",
           "avoid": "Color-only states, clipped navigation, hidden focus, and layout-dependent reading order."
+        }
+      ]
+    },
+    {
+      "source": "https://people.eecs.berkeley.edu/~ericqu/",
+      "category": "academic-profile",
+      "summary": "A Berkeley PhD profile that resolves identity, affiliation, research direction, recent news, and publication proof in a conventional one-page academic sequence.",
+      "priority": "high",
+      "extraction_method": "web-structure-review",
+      "captured_at": "2026-07-25T21:20:00+09:00",
+      "asset_reuse_notes": "Pattern only. No portrait, publication thumbnail, copy, or institutional branding is reused.",
+      "strengths_to_adopt": [
+        "The first screen states role, institution, research direction, CV, and contact without decorative competition.",
+        "A dated news list proves that the profile is current before the visitor reaches the full publication archive.",
+        "Publication entries keep title, venue, contribution links, and supporting assets together."
+      ],
+      "weaknesses_to_avoid": [
+        "A long news feed can push the strongest research evidence too far down the page.",
+        "Academic chronology alone does not explain industry product ownership or leadership."
+      ],
+      "target_area": "Research preview, current-status strip, publication-ready information architecture",
+      "patterns": [
+        {
+          "name": "Research identity in one paragraph",
+          "type": "content-structure",
+          "description": "Affiliation, advisor, research field, and present work are resolved before the detailed archive.",
+          "applicability": "Use one compact Home research paragraph that labels VLM and QML as active work rather than finished publication claims."
+        },
+        {
+          "name": "News as freshness evidence",
+          "type": "content-structure",
+          "description": "A short dated list signals current momentum without redesigning the whole site for every update.",
+          "applicability": "Use a restrained Now rail for current role, Portal productization, PhD work, and mentoring."
+        }
+      ]
+    },
+    {
+      "source": "https://www.mit.edu/~agupte/",
+      "category": "academic-profile",
+      "summary": "An MIT theory PhD page that treats a concise research statement and a publication list as sufficient proof, using almost no decorative interface.",
+      "priority": "high",
+      "extraction_method": "web-structure-review",
+      "captured_at": "2026-07-25T21:20:00+09:00",
+      "asset_reuse_notes": "Pattern only. No wording, publication data, or MIT branding is reused.",
+      "strengths_to_adopt": [
+        "Research interests are explicit in the opening paragraph.",
+        "Publication titles, authors, venues, slides, and talks are grouped as verifiable evidence.",
+        "Teaching and mentoring appear as service evidence after research output."
+      ],
+      "weaknesses_to_avoid": [
+        "Extreme minimalism provides too little hierarchy for an eight-year industry and product career.",
+        "A publication-first page would overstate Park Sewon's current research maturity."
+      ],
+      "target_area": "Research page evidence order and future publication rows",
+      "patterns": [
+        {
+          "name": "Claim-light research profile",
+          "type": "content-structure",
+          "description": "The page makes a narrow research claim and lets publications and talks carry the proof.",
+          "applicability": "Keep current research language cautious and add publication metadata only when a manuscript or venue actually exists."
+        }
+      ]
+    },
+    {
+      "source": "https://karpathy.github.io/",
+      "category": "engineering-blog",
+      "summary": "A durable GitHub Pages writing index that gives every post a date, a precise title, and a one-sentence reason to read it.",
+      "priority": "high",
+      "extraction_method": "web-structure-review",
+      "captured_at": "2026-07-25T21:20:00+09:00",
+      "asset_reuse_notes": "Pattern only. No post titles, descriptions, or visual styling are reused.",
+      "strengths_to_adopt": [
+        "Reverse chronology makes the archive self-explanatory.",
+        "One-sentence summaries expose the technical question before a click.",
+        "The design remains readable and maintainable over a long period."
+      ],
+      "weaknesses_to_avoid": [
+        "A pure post index does not establish a current professional role or representative product work.",
+        "Sparse navigation offers limited cross-paths between career, research, and learning archives."
+      ],
+      "target_area": "Blog index, reading archive, durable editorial rows",
+      "patterns": [
+        {
+          "name": "Dated editorial row",
+          "type": "component",
+          "description": "A stable date rail, title, and short abstract make dense archives scannable without cards.",
+          "applicability": "Use the same row grammar for Blog, Reading, Lectures, and future Publications."
+        }
+      ]
+    },
+    {
+      "source": "https://lilianweng.github.io/",
+      "category": "research-blog",
+      "summary": "A research-learning archive that supports long-form technical writing with search, tags, archive navigation, dates, and estimated reading time.",
+      "priority": "critical",
+      "extraction_method": "web-structure-review",
+      "captured_at": "2026-07-25T21:20:00+09:00",
+      "asset_reuse_notes": "Pattern only. No article content, theme assets, or brand identity are reused.",
+      "strengths_to_adopt": [
+        "The site clearly identifies itself as an ongoing learning log rather than a finished research canon.",
+        "Search, tags, and archive routes help a growing technical corpus remain usable.",
+        "Dates and reading time set expectations for substantial posts."
+      ],
+      "weaknesses_to_avoid": [
+        "Long article excerpts make the homepage heavy and slow to scan.",
+        "Research-blog framing alone would hide product leadership and device-domain depth."
+      ],
+      "target_area": "Blog metadata, archive taxonomy, research/learning positioning",
+      "patterns": [
+        {
+          "name": "Living learning log",
+          "type": "content-structure",
+          "description": "The site frames writing as cumulative learning with navigable metadata rather than isolated marketing posts.",
+          "applicability": "Present Blog, Reading, and Lectures as one public knowledge system while preserving their dedicated routes."
+        },
+        {
+          "name": "Progressive archive navigation",
+          "type": "navigation",
+          "description": "Posts, archive, search, and tags provide multiple retrieval paths as the corpus grows.",
+          "applicability": "Add compact archive cross-links now and reserve search/tags for the point where the post count justifies them."
+        }
+      ]
+    },
+    {
+      "source": "https://simonwillison.net/",
+      "category": "engineering-publication",
+      "summary": "A long-running engineer publication that combines current notes, substantial essays, projects, tags, feeds, and transparent disclosures as one living professional record.",
+      "priority": "high",
+      "extraction_method": "web-structure-review",
+      "captured_at": "2026-07-25T21:20:00+09:00",
+      "asset_reuse_notes": "Pattern only. No feed structure, copy, branding, or article content is reused.",
+      "strengths_to_adopt": [
+        "Frequent dated entries make expertise observable through continuous practice.",
+        "Tags and dedicated series connect individual notes into reusable bodies of work.",
+        "About and disclosure pages explain role, projects, and evidence boundaries."
+      ],
+      "weaknesses_to_avoid": [
+        "A mixed high-volume feed can overwhelm a first-time recruiter looking for a concise career thesis.",
+        "Dense link metadata requires a mature archive and should not be imitated prematurely."
+      ],
+      "target_area": "Knowledge archive strategy, transparent evidence policy, future series",
+      "patterns": [
+        {
+          "name": "Professional record through publishing",
+          "type": "content-structure",
+          "description": "Projects and technical judgment remain visible because notes are dated, linked, and accumulated over time.",
+          "applicability": "Use Home to surface only selected recent writing, then send readers to the complete Blog and Lectures archive."
+        },
+        {
+          "name": "Evidence boundary disclosure",
+          "type": "content-structure",
+          "description": "A public profile explains affiliations and disclosure boundaries instead of letting readers infer them.",
+          "applicability": "Label current productization and active research states explicitly; never imply public endorsement or publication where none exists."
         }
       ]
     }

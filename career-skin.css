@@ -600,17 +600,18 @@
 
     body.career-home .visual-scroll-stage {
         width: 100% !important;
-        min-height: clamp(620px, 88svh, 820px) !important;
+        min-height: 180svh !important;
         margin: 0 !important;
         padding: 0 !important;
         border-bottom: 1px solid var(--skin-line) !important;
     }
 
     body.career-home .visual-scroll-stage-inner {
-        position: relative !important;
-        top: auto !important;
-        min-height: inherit !important;
+        position: sticky !important;
+        top: var(--skin-shell) !important;
+        min-height: calc(100svh - var(--skin-shell)) !important;
         padding: clamp(58px, 7vw, 92px) 0 !important;
+        overflow: hidden !important;
     }
 
     body.career-home .visual-scroll-heading,
@@ -670,9 +671,9 @@
         font-size: clamp(30px, 3.3vw, 44px) !important;
     }
 
-    body.career-home [data-cinematic-scene] {
-        min-height: 0 !important;
-        padding: var(--skin-section) 0 !important;
+    body.career-home [data-cinematic-scene]:not(.visual-scroll-stage):not(.capability-section) {
+        min-height: clamp(820px, 122svh, 1320px) !important;
+        padding: clamp(104px, 13vh, 156px) 0 !important;
     }
 
     body.career-home .home-section-heading {
@@ -709,6 +710,23 @@
         min-height: 0 !important;
     }
 
+    body.career-home.home-motion-enhanced .capability-section {
+        min-height: 220svh !important;
+        padding: 0 !important;
+        overflow: clip !important;
+    }
+
+    body.career-home.home-motion-enhanced .capability-scroll-inner {
+        position: sticky !important;
+        top: var(--skin-shell) !important;
+        display: flex !important;
+        flex-direction: column;
+        justify-content: center;
+        min-height: calc(100svh - var(--skin-shell)) !important;
+        padding: clamp(52px, 7vh, 84px) 0 !important;
+        overflow: hidden !important;
+    }
+
     body.career-home .capability-scroll-inner > div:first-child {
         position: relative !important;
         top: auto !important;
@@ -723,12 +741,15 @@
     }
 
     body.career-home .capability-orbit {
-        display: grid !important;
-        grid-template-columns: repeat(3, minmax(0, 1fr)) !important;
-        gap: 0 !important;
+        display: flex !important;
+        gap: 28px !important;
         width: 100% !important;
-        transform: none !important;
         opacity: 1 !important;
+    }
+
+    body.career-home.home-motion-enhanced .capability-orbit {
+        width: max-content !important;
+        overflow: visible !important;
     }
 
     body.career-home .capability-orbit-item {
@@ -760,10 +781,29 @@
     }
 
     body.career-home .home-position,
-    body.career-home .mentoring-layout,
-    body.career-home .research-preview {
+    body.career-home .mentoring-layout {
         grid-template-columns: 210px minmax(0, 1fr) !important;
         gap: clamp(32px, 5vw, 64px) !important;
+    }
+
+    body.career-home .research-preview {
+        grid-template-columns: minmax(420px, .88fr) minmax(0, 1.12fr) !important;
+        align-items: center !important;
+        gap: clamp(44px, 5vw, 72px) !important;
+    }
+
+    body.career-home .research-preview > div:first-child {
+        max-width: 560px;
+    }
+
+    body.career-home .research-principles {
+        align-self: center !important;
+    }
+
+    body.career-home .research-preview h2 {
+        word-break: keep-all !important;
+        overflow-wrap: normal !important;
+        text-wrap: balance;
     }
 
     body.career-home .mentoring-list article {
@@ -1099,6 +1139,12 @@
         gap: 34px !important;
     }
 
+    body.career-home .home-hero-brief {
+        display: flex !important;
+        flex-direction: column;
+        width: 100%;
+    }
+
     body.career-home .home-hero h1 {
         font-size: clamp(48px, 7vw, 66px) !important;
     }
@@ -1111,6 +1157,32 @@
     body.career-home .identity-card dl > div {
         padding-right: 16px;
         padding-left: 16px;
+    }
+
+    body.career-home [data-cinematic-scene]:not(.visual-scroll-stage):not(.capability-section) {
+        min-height: 0 !important;
+        padding: var(--skin-section) 0 !important;
+    }
+
+    body.career-home .visual-scroll-stage {
+        min-height: 0 !important;
+    }
+
+    body.career-home .visual-scroll-stage-inner {
+        position: relative !important;
+        top: auto !important;
+        min-height: 0 !important;
+        overflow: visible !important;
+    }
+
+    body.career-home .research-preview {
+        grid-template-columns: 1fr !important;
+        align-items: start !important;
+        gap: 46px !important;
+    }
+
+    body.career-home .research-principles {
+        align-self: stretch !important;
     }
 
     body.research-page .research-note-grid {
@@ -1360,5 +1432,19 @@
         opacity: 1 !important;
         transform: none !important;
         filter: none !important;
+    }
+
+    body.career-home [data-cinematic-scene]:not(.visual-scroll-stage):not(.capability-section),
+    body.career-home .visual-scroll-stage,
+    body.career-home .capability-section {
+        min-height: 0 !important;
+    }
+
+    body.career-home .visual-scroll-stage-inner,
+    body.career-home .capability-scroll-inner {
+        position: static !important;
+        top: auto !important;
+        min-height: 0 !important;
+        overflow: visible !important;
     }
 }
