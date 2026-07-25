@@ -68,7 +68,8 @@ test('home communicates identity, evidence, and conservative profile structured 
     for (const phrase of [
         'eight years of industry experience',
         'From device packets',
-        'DEVICE→CLOUD',
+        'From physical signals to verified intelligence.',
+        'IDENTITY PLATFORM',
         '장치 패킷부터',
         '진행 중인 연구',
         '2026.07—PRESENT',

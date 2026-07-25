@@ -21,10 +21,11 @@ test('hero owns one dominant gaze axis and only two primary actions', () => {
 
 test('current work follows the focal hero as a separate compact band', () => {
     const heroEnd = index.indexOf('</section>', index.indexOf('<section id="identity"'));
-    const evidenceStart = index.indexOf('<section class="profile-evidence"');
+    const domainMapStart = index.indexOf('<section class="profile-domain-map"');
     const currentStart = index.indexOf('<section class="profile-current"');
     const workStart = index.indexOf('<section id="work"');
-    assert.ok(heroEnd < evidenceStart && evidenceStart < currentStart && currentStart < workStart);
+    assert.ok(heroEnd < domainMapStart && domainMapStart < currentStart && currentStart < workStart);
+    assert.equal((index.match(/data-domain-node/g) ?? []).length, 6);
     assert.equal((index.match(/data-current-item/g) ?? []).length, 3);
 });
 

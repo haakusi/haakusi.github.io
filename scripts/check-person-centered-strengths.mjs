@@ -4,9 +4,10 @@ import test from 'node:test';
 
 const root = new URL('../', import.meta.url);
 const read = (path) => readFile(new URL(path, root), 'utf8');
-const [home, css] = await Promise.all([
+const [home, css, domainCss] = await Promise.all([
     read('index.html'),
     read('hybrid-profile.css'),
+    read('home-domain-map.css'),
 ]);
 const decodedHome = home.replaceAll('&amp;', '&');
 
@@ -71,7 +72,10 @@ test('operating model is editorial, responsive, focus-visible, and motion-safe',
     assert.match(css, /@media\s*\(prefers-reduced-motion:\s*reduce\)[\s\S]*?\.profile-method-step/);
 });
 
-test('device-to-cloud evidence stays as one semantic unit', () => {
-    assert.match(home, /<strong class="profile-evidence-wide">DEVICE→CLOUD<\/strong>/);
-    assert.match(css, /\.profile-evidence-wide\s*\{[^}]*white-space:\s*nowrap/);
+test('device-to-cloud identity becomes one connected domain path', () => {
+    for (const phrase of ['NETWORK OPERATIONS', 'SENSORS &amp; DEVICES', 'IDENTITY PLATFORM', 'PRODUCT &amp; DEVEX', 'AI-NATIVE VERIFICATION', 'APPLIED RESEARCH']) {
+        assert.ok(home.includes(phrase), `missing accumulated domain: ${phrase}`);
+    }
+    assert.equal((home.match(/data-domain-node/g) ?? []).length, 6);
+    assert.match(domainCss, /\.profile-domain-axis\s*\{[^}]*grid-template-columns:\s*repeat\(6,/);
 });

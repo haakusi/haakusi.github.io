@@ -15,7 +15,8 @@ test('the Home opening gives one statement the focal axis and moves current work
     assert.match(hybrid, /\.profile-hero-statement h1\s*\{[^}]*font-size:\s*clamp\(50px,\s*6\.3vw,\s*94px\)/);
     assert.match(index, /class="profile-current"[\s\S]*?<li data-current-item>[\s\S]*?<li data-current-item>[\s\S]*?<li data-current-item>/);
     assert.equal((index.match(/class="profile-action(?:\s|\")/g) ?? []).length, 2);
-    assert.match(index, /class="profile-evidence"/);
+    assert.match(index, /class="profile-domain-map"[^>]*data-profile-domain-map/);
+    assert.equal((index.match(/data-domain-node/g) ?? []).length, 6);
 });
 
 test('the hybrid profile uses progressive CSS motion without hiding baseline content', () => {
