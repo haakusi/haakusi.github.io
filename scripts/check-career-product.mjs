@@ -62,14 +62,14 @@ test('navigation presents a compact industry-research information architecture',
 test('home communicates identity, evidence, and conservative profile structured data', () => {
     const home = pages['index.html'];
     const decodedHome = home.replaceAll('&amp;', '&');
-    for (const id of ['identity', 'work', 'research', 'career', 'notes', 'contact']) {
+    for (const id of ['identity', 'work', 'method', 'research', 'career', 'notes', 'contact']) {
         assert.match(home, new RegExp(`id="${id}"`));
     }
     for (const phrase of [
         'eight years of industry experience',
-        'Eight years building',
-        'active research tracks',
-        '장치에서 플랫폼까지 쌓은 8년.',
+        'From device packets',
+        'DEVICE→CLOUD',
+        '장치 패킷부터',
         '진행 중인 연구',
         '2026.07—PRESENT',
     ]) {

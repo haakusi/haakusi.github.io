@@ -58,7 +58,7 @@ test('author display rules never override bilingual hidden state', () => {
 });
 
 test('hero statements use explicit phrase-level lines and the CV name is separable', () => {
-    assert.match(pages['index.html'], /class="profile-hero-statement"[\s\S]*?<span>Eight years building<\/span>/);
+    assert.match(pages['index.html'], /class="profile-hero-statement"[\s\S]*?<span>From device packets<\/span>/);
     for (const name of ['portfolio.html', 'research.html']) {
         const lineCount = (pages[name].match(/class="career-line/g) ?? []).length;
         assert.ok(lineCount >= 4, `${name} needs explicit English and Korean hero lines`);

@@ -34,7 +34,7 @@ test('primary navigation is a five-route industry and research profile', () => {
 });
 
 test('home presents eight years of engineering before active research', () => {
-    const order = ['identity', 'work', 'research', 'career', 'notes', 'contact'];
+    const order = ['identity', 'work', 'method', 'research', 'career', 'notes', 'contact'];
     const positions = order.map((id) => {
         const at = home.indexOf(`id="${id}"`);
         assert.ok(at > -1, `missing #${id}`);
@@ -43,8 +43,8 @@ test('home presents eight years of engineering before active research', () => {
     assert.deepEqual(positions, [...positions].sort((a, b) => a - b));
     assert.ok(home.indexOf('8 YEARS') < home.indexOf('ACTIVE RESEARCH'));
     for (const phrase of [
-        'Eight years building from device to platform.',
-        '장치에서 플랫폼까지 쌓은 8년.',
+        'From device packets',
+        '장치 패킷부터',
         'ACTIVE RESEARCH',
         '진행 중인 연구',
         '2026.07—PRESENT',

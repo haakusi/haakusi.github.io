@@ -17,7 +17,7 @@ const [index, common, css, portfolio, cv, research, notes, sharedCss] = await Pr
 const publicCareerCopy = [index, portfolio, cv, research, notes].join('\n').replaceAll('&amp;', '&');
 
 test('homepage follows an industry-first editorial journey', () => {
-    const anchors = ['identity', 'work', 'research', 'career', 'notes', 'contact'];
+    const anchors = ['identity', 'work', 'method', 'research', 'career', 'notes', 'contact'];
     const positions = anchors.map((id) => index.indexOf(`id="${id}"`));
     assert.ok(positions.every((position) => position > -1));
     assert.deepEqual(positions, [...positions].sort((a, b) => a - b));
@@ -30,7 +30,7 @@ test('homepage opening pairs a readable statement with a concise current ledger'
         assert.match(index, new RegExp(`class="[^"]*${className}`));
     }
     assert.equal((index.match(/class="profile-now"/g) ?? []).length, 1);
-    assert.equal((index.match(/<article><strong>/g) ?? []).length, 4);
+    assert.equal((index.match(/<article><strong(?:\s+class="profile-evidence-wide")?>/g) ?? []).length, 4);
     assert.match(css, /\.profile-hero\s*\{[^}]*grid-template-areas:/);
     assert.match(css, /word-break:\s*keep-all/);
 });

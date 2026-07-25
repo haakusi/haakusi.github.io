@@ -134,13 +134,13 @@
         navEl.insertAdjacentHTML('afterend', `<div class="career-ticker" aria-hidden="true">
         <div class="career-ticker-track" data-career-ticker-track>
             <span>PLATFORM &amp; PRODUCT ENGINEERING</span>
-            <span>DEVICE → GATEWAY → API → AGENT</span>
+            <span>DEVICE STATE → PLATFORM CONTRACT → VERIFIED PRODUCT</span>
             <span>VERIFY BEFORE TRUST</span>
-            <span>PLATFORM · PRODUCT · RESEARCH</span>
+            <span>DEVEX · DEVICE-TO-CLOUD · ENGINEERING PRODUCTIVITY</span>
             <span>PLATFORM &amp; PRODUCT ENGINEERING</span>
-            <span>DEVICE → GATEWAY → API → AGENT</span>
+            <span>DEVICE STATE → PLATFORM CONTRACT → VERIFIED PRODUCT</span>
             <span>VERIFY BEFORE TRUST</span>
-            <span>PLATFORM · PRODUCT · RESEARCH</span>
+            <span>DEVEX · DEVICE-TO-CLOUD · ENGINEERING PRODUCTIVITY</span>
         </div>
         </div>`);
     }

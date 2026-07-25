@@ -16,11 +16,11 @@ const decodeEntities = (value) => value.replaceAll('&amp;', '&');
 
 test('homepage is a focused career hub with direct paths to evidence and archives', () => {
     assert.match(index, /<body class="career-home hybrid-home">/);
-    for (const phrase of ['Eight years building', '장치에서 플랫폼까지 쌓은 8년.']) {
+    for (const phrase of ['From device packets', '장치 패킷부터']) {
         assert.ok(index.includes(phrase), `missing homepage phrase: ${phrase}`);
     }
-    assert.match(indexText, /Now extending that practice into research\./);
-    assert.match(indexText, /이제 그 경험을 연구로 확장합니다\./);
+    assert.match(indexText, /Eight years turning physical-product boundaries into platform contracts, developer experiences, and release gates\./);
+    assert.match(index, /물리 제품의 복잡한 경계를 플랫폼 계약·개발자 경험·릴리스 검증 게이트로 바꿔 온 8년의 경험입니다\./);
     for (const href of ['portfolio.html', 'research.html', 'cv.html', 'notes.html']) {
         assert.ok(index.includes(`href="${href}`), `missing homepage path: ${href}`);
     }
