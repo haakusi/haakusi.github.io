@@ -34,9 +34,10 @@ test('section 02 maps five core strengths one-to-one to career evidence', () => 
 
 test('active research exposes architecture boundaries without paper internals', () => {
     assert.equal((home.match(/data-public-research-flow/g) ?? []).length, 2);
-    assert.equal((home.match(/data-research-node/g) ?? []).length, 8);
+    assert.equal((home.match(/data-research-node/g) ?? []).length, 10);
     for (const phrase of [
         'Domain knowledge',
+        'Research question',
         'Candidate retrieval',
         'Multimodal evidence',
         'Explanation &amp; evaluation',
@@ -65,7 +66,7 @@ test('strength map and research flows retain readable responsive and reduced-mot
     assert.match(css, /\.profile-strength-row\s*\{[^}]*grid-template-columns:/);
     assert.match(css, /\.profile-strength-link::after/);
     assert.match(css, /\.profile-strength-evidence\s*\{[^}]*background:/);
-    assert.match(css, /\.profile-research-flow\s*\{[^}]*grid-template-columns:\s*repeat\(4,/);
+    assert.match(css, /\.profile-research-flow\s*\{[^}]*grid-template-columns:\s*repeat\(5,/);
     assert.match(css, /@media\s*\(max-width:\s*900px\)[\s\S]*?\.profile-strength-row[\s\S]*?grid-template-columns:\s*1fr/);
     assert.match(css, /@media\s*\(max-width:\s*640px\)[\s\S]*?\.profile-research-flow[\s\S]*?grid-template-columns:\s*1fr/);
     assert.match(css, /@media\s*\(prefers-reduced-motion:\s*reduce\)[\s\S]*?\.profile-strength-row/);

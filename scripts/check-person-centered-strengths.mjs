@@ -74,10 +74,11 @@ test('strength evidence map is editorial, responsive, focus-visible, and motion-
     assert.match(css, /@media\s*\(prefers-reduced-motion:\s*reduce\)[\s\S]*?\.profile-strength-row/);
 });
 
-test('device-to-cloud identity becomes one connected domain path', () => {
-    for (const phrase of ['NETWORK OPERATIONS', 'SENSORS &amp; DEVICES', 'IDENTITY PLATFORM', 'PRODUCT &amp; DEVEX', 'AI-NATIVE VERIFICATION', 'APPLIED RESEARCH']) {
+test('device-to-cloud identity becomes five career domains plus one learning path', () => {
+    for (const phrase of ['NETWORK OPERATIONS', 'SENSORS &amp; DEVICES', 'IDENTITY PLATFORM', 'PRODUCT &amp; DEVEX', 'AI-NATIVE VERIFICATION', 'RESEARCH + LEARNING']) {
         assert.ok(home.includes(phrase), `missing accumulated domain: ${phrase}`);
     }
-    assert.equal((home.match(/data-domain-node/g) ?? []).length, 6);
+    assert.equal((home.match(/data-domain-node(?:\s|>)/g) ?? []).length, 5);
+    assert.equal((home.match(/data-domain-exploration(?:\s|>)/g) ?? []).length, 1);
     assert.match(domainCss, /\.profile-domain-axis\s*\{[^}]*grid-template-columns:\s*repeat\(6,/);
 });

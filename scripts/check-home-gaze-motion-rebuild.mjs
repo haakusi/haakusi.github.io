@@ -25,7 +25,8 @@ test('current work follows the focal hero as a separate compact band', () => {
     const currentStart = index.indexOf('<section class="profile-current"');
     const workStart = index.indexOf('<section id="work"');
     assert.ok(heroEnd < domainMapStart && domainMapStart < currentStart && currentStart < workStart);
-    assert.equal((index.match(/data-domain-node/g) ?? []).length, 6);
+    assert.equal((index.match(/data-domain-node(?:\s|>)/g) ?? []).length, 5);
+    assert.equal((index.match(/data-domain-exploration(?:\s|>)/g) ?? []).length, 1);
     assert.equal((index.match(/data-current-item/g) ?? []).length, 3);
 });
 

@@ -6,6 +6,9 @@ const root = new URL('../', import.meta.url);
 const read = (path) => readFile(new URL(path, root), 'utf8');
 const html = await read('index.html');
 const css = await read('home-work-media.css').catch(() => '');
+const workStart = html.indexOf('<section id="work"');
+const workEnd = html.indexOf('<section id="method"');
+const work = html.slice(workStart, workEnd);
 
 const visuals = [
     'developer-portal-console.webp',
@@ -30,10 +33,10 @@ test('the home selected-work rows contain six persisted project visuals', async 
 });
 
 test('every work row keeps one destination and two accessible media cells', () => {
-    assert.equal((html.match(/class="profile-work-row"/g) ?? []).length, 3);
-    assert.equal((html.match(/<figure class="profile-work-media"/g) ?? []).length, 3);
-    assert.equal((html.match(/<img[^>]+loading="lazy"[^>]+decoding="async"/g) ?? []).length, 6);
-    assert.equal((html.match(/<figcaption[^>]*data-en=/g) ?? []).length, 6);
+    assert.equal((work.match(/class="profile-work-row"/g) ?? []).length, 3);
+    assert.equal((work.match(/<figure class="profile-work-media"/g) ?? []).length, 3);
+    assert.equal((work.match(/<img[^>]+loading="lazy"[^>]+decoding="async"/g) ?? []).length, 6);
+    assert.equal((work.match(/<figcaption[^>]*data-en=/g) ?? []).length, 6);
     assert.match(html, /Original concept visualizations · not product screenshots/);
     assert.match(html, /직접 제작한 콘셉트 시각화 · 실제 제품 스크린샷이 아닙니다/);
 });

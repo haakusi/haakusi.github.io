@@ -175,6 +175,30 @@ body.career-home .profile-domain-map-frame a {
     border-right: 0;
 }
 
+.profile-domain-node-plus {
+    border-left: 1px dashed color-mix(in srgb, var(--profile-accent) 62%, transparent);
+    background: color-mix(in srgb, var(--profile-accent) 6%, transparent);
+}
+
+.profile-domain-axis .profile-domain-node-plus::before {
+    top: -7px;
+    width: 13px;
+    height: 13px;
+    border: 1px solid var(--profile-accent);
+    background: var(--profile-panel);
+    box-shadow: 0 0 22px color-mix(in srgb, var(--profile-accent) 52%, transparent);
+}
+
+.profile-domain-node-plus .profile-domain-node-meta > span {
+    font-size: 17px;
+    font-weight: 680;
+    line-height: 1;
+}
+
+.profile-domain-node-plus strong {
+    color: color-mix(in srgb, var(--profile-ink) 84%, var(--profile-accent));
+}
+
 .profile-domain-axis li::before {
     position: absolute;
     top: -3px;
@@ -246,6 +270,10 @@ body.career-home .profile-domain-map-frame a {
 
     .profile-domain-axis li:nth-child(n + 4) {
         border-top: 1px solid var(--profile-line);
+    }
+
+    .profile-domain-node-plus {
+        border-left: 1px dashed color-mix(in srgb, var(--profile-accent) 62%, transparent);
     }
 }
 
@@ -375,6 +403,10 @@ body.career-home .profile-domain-map-frame a {
 
     .profile-domain-axis li:nth-child(even) {
         border-right: 0;
+    }
+
+    .profile-domain-axis .profile-domain-node-plus {
+        border-left: 1px dashed color-mix(in srgb, var(--profile-accent) 62%, transparent);
     }
 
     .profile-domain-axis strong {

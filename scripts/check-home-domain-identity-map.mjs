@@ -16,7 +16,7 @@ const domains = [
     ['IDENTITY PLATFORM', '인증·출입 플랫폼'],
     ['PRODUCT &amp; DEVEX', '제품·개발자 경험'],
     ['AI-NATIVE VERIFICATION', 'AI-native 검증'],
-    ['APPLIED RESEARCH', '응용 연구'],
+    ['RESEARCH + LEARNING', '연구 + 학습'],
 ];
 
 const phases = [
@@ -25,14 +25,14 @@ const phases = [
     ['2021—2024', 'Biometric Access Platform', '생체인증 출입 플랫폼'],
     ['2025—PRESENT', 'AI Products &amp; Developer Platform', 'AI 제품·개발자 플랫폼'],
     ['2025—PRESENT', 'AI-native Transformation &amp; Verification', 'AI-native 전환·검증'],
-    ['2026—PRESENT', 'Applied AI &amp; Quantum Research', '응용 AI·양자 연구'],
+    ['2026—PRESENT', 'Doctoral research &amp; exploration', '박사과정 연구·탐구'],
 ];
 
 test('the first scroll replaces KPI tiles with one 16:9 engineering identity map', async () => {
     assert.match(opening, /class="profile-domain-map"[^>]*data-profile-domain-map/);
     assert.doesNotMatch(opening, /class="profile-evidence"/);
     assert.doesNotMatch(opening, /~200K LOC|40%\+|commit|push|KPI/i);
-    assert.match(html, /home-domain-map\.css\?v=20260726-map3/);
+    assert.match(html, /home-domain-map\.css\?v=20260726-map4/);
     assert.match(opening, /images\/career\/identity\/sewon-park-domain-map\.webp/);
     assert.match(opening, /width="1536" height="864"/);
 
@@ -40,8 +40,9 @@ test('the first scroll replaces KPI tiles with one 16:9 engineering identity map
     assert.ok(info.size > 80_000, 'identity map must be a substantive generated visual');
 });
 
-test('the map names six accumulated domains in both languages without activity metrics', () => {
-    assert.equal((opening.match(/data-domain-node/g) ?? []).length, 6);
+test('the map names five career domains and one exploration path in both languages', () => {
+    assert.equal((opening.match(/data-domain-node(?:\s|>)/g) ?? []).length, 5);
+    assert.equal((opening.match(/data-domain-exploration(?:\s|>)/g) ?? []).length, 1);
     for (const [english, korean] of domains) {
         assert.ok(opening.includes(english), `missing English domain: ${english}`);
         assert.ok(opening.includes(korean), `missing Korean domain: ${korean}`);
@@ -51,9 +52,9 @@ test('the map names six accumulated domains in both languages without activity m
     assert.match(opening, /Concept visualization · not a product screenshot/);
 });
 
-test('the illustration is anchored by an eight-year title and six dated career chapters', () => {
-    assert.match(opening, /Eight years across six connected engineering domains\./);
-    assert.match(opening, /8년, 여섯 개의 연결된 엔지니어링 도메인\./);
+test('the illustration separates five dated career domains from doctoral exploration', () => {
+    assert.match(opening, /Five career domains—and one growing research path\./);
+    assert.match(opening, /다섯 개의 경력 도메인, 그리고 하나의 확장 중인 연구 경로\./);
     assert.equal((opening.match(/<time[^>]*>/g) ?? []).length, 6);
     for (const [years, english, korean] of phases) {
         assert.ok(opening.includes(years), `missing career years: ${years}`);

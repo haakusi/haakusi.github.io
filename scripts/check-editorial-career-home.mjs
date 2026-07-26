@@ -31,7 +31,8 @@ test('homepage opening pairs one readable focal statement with a separate curren
     }
     assert.equal((index.match(/data-current-item/g) ?? []).length, 3);
     assert.equal((index.match(/class="profile-action(?:\s|\")/g) ?? []).length, 2);
-    assert.equal((index.match(/data-domain-node/g) ?? []).length, 6);
+    assert.equal((index.match(/data-domain-node(?:\s|>)/g) ?? []).length, 5);
+    assert.equal((index.match(/data-domain-exploration(?:\s|>)/g) ?? []).length, 1);
     assert.match(css, /\.profile-hero\s*\{[^}]*grid-template-columns:\s*minmax\(0,\s*1\.75fr\)\s+minmax\(260px,\s*0\.65fr\)/);
     assert.match(css, /word-break:\s*keep-all/);
 });
