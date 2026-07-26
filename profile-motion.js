@@ -32,6 +32,58 @@
         };
     }
 
+    function knowledgeSceneState(value) {
+        const progress = clamp(value);
+        if (progress < 0.18) {
+            const eased = easeOutCubic(progress / 0.18);
+            return {
+                scale: lerp(1.03, 1, eased),
+                y: lerp(28, 0, eased),
+                opacity: lerp(0.2, 1, eased),
+            };
+        }
+        if (progress <= 0.9) return { scale: 1, y: 0, opacity: 1 };
+
+        const eased = easeInOutCubic((progress - 0.9) / 0.1);
+        return {
+            scale: lerp(1, 0.96, eased),
+            y: lerp(0, -36, eased),
+            opacity: lerp(1, 0.2, eased),
+        };
+    }
+
+    function knowledgeState(value) {
+        const progress = clamp(value);
+        if (progress <= 0.34) {
+            const eased = easeOutCubic(progress / 0.34);
+            return {
+                railA: lerp(-520, -30, eased),
+                railB: lerp(520, 30, eased),
+                scale: lerp(0.86, 1, eased),
+                railOpacity: lerp(0.25, 1, eased),
+                boardOpacity: 0,
+                boardY: 48,
+                phase: 'motion',
+            };
+        }
+        if (progress <= 0.46) {
+            return { railA: -30, railB: 30, scale: 1, railOpacity: 1, boardOpacity: 0, boardY: 48, phase: 'motion' };
+        }
+        if (progress <= 0.62) {
+            const eased = easeInOutCubic((progress - 0.46) / 0.16);
+            return {
+                railA: lerp(-30, 120, eased),
+                railB: lerp(30, -120, eased),
+                scale: lerp(1, 1.05, eased),
+                railOpacity: lerp(1, 0, eased),
+                boardOpacity: lerp(0, 1, eased),
+                boardY: lerp(48, 0, eased),
+                phase: progress < 0.52 ? 'motion' : 'archive',
+            };
+        }
+        return { railA: 120, railB: -120, scale: 1.05, railOpacity: 0, boardOpacity: 1, boardY: 0, phase: 'archive' };
+    }
+
     function heroState(value) {
         const progress = clamp(value);
         if (progress <= 0.48) {
@@ -67,6 +119,8 @@
             frame: 0,
             hero: null,
             scenes: [],
+            knowledge: null,
+            knowledgeScene: null,
             desktop: root.matchMedia('(min-width: 1101px)'),
             reduced: root.matchMedia('(prefers-reduced-motion: reduce)'),
         };
@@ -74,6 +128,8 @@
         function collect() {
             state.hero = root.document.querySelector('[data-profile-stage="hero"]');
             state.scenes = [...root.document.querySelectorAll('[data-profile-scene]')];
+            state.knowledge = root.document.querySelector('[data-knowledge-motion-stage]');
+            state.knowledgeScene = state.knowledge?.closest('[data-profile-scene]') ?? null;
         }
 
         function reset() {
@@ -87,6 +143,13 @@
             for (const scene of state.scenes) {
                 for (const name of ['--scene-scale', '--scene-y', '--scene-opacity']) scene.style.removeProperty(name);
                 scene.removeAttribute('data-motion-progress');
+            }
+            if (state.knowledge) {
+                for (const name of ['--knowledge-rail-a-x', '--knowledge-rail-b-x', '--knowledge-scale', '--knowledge-rail-opacity', '--knowledge-board-opacity', '--knowledge-board-y']) {
+                    state.knowledge.style.removeProperty(name);
+                }
+                state.knowledge.removeAttribute('data-knowledge-phase');
+                state.knowledge.removeAttribute('data-knowledge-progress');
             }
         }
 
@@ -117,11 +180,24 @@
 
             for (const scene of state.scenes) {
                 const progress = stageProgress(scene, viewportHeight);
-                const visual = sceneState(progress);
+                const visual = scene === state.knowledgeScene ? knowledgeSceneState(progress) : sceneState(progress);
                 setNumber(scene, '--scene-scale', visual.scale);
                 setLength(scene, '--scene-y', visual.y);
                 setNumber(scene, '--scene-opacity', visual.opacity);
                 scene.dataset.motionProgress = progress.toFixed(3);
+            }
+
+            if (state.knowledge && state.knowledgeScene) {
+                const progress = stageProgress(state.knowledgeScene, viewportHeight);
+                const visual = knowledgeState(progress);
+                setLength(state.knowledge, '--knowledge-rail-a-x', visual.railA);
+                setLength(state.knowledge, '--knowledge-rail-b-x', visual.railB);
+                setNumber(state.knowledge, '--knowledge-scale', visual.scale);
+                setNumber(state.knowledge, '--knowledge-rail-opacity', visual.railOpacity);
+                setNumber(state.knowledge, '--knowledge-board-opacity', visual.boardOpacity);
+                setLength(state.knowledge, '--knowledge-board-y', visual.boardY);
+                state.knowledge.dataset.knowledgePhase = visual.phase;
+                state.knowledge.dataset.knowledgeProgress = progress.toFixed(3);
             }
         }
 
@@ -148,5 +224,5 @@
         else runtime.start();
     }
 
-    return { clamp, heroState, sceneState, stageProgress };
+    return { clamp, heroState, knowledgeSceneState, knowledgeState, sceneState, stageProgress };
 });

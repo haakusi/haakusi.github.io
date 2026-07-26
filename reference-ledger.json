@@ -143,6 +143,12 @@
           "type": "visual-design",
           "description": "Black, white, and muted grey rely on typography, borders, and spacing rather than decorative gradients.",
           "applicability": "Unify Home, CV, Portfolio, Research, Blog, Reading, and Lectures with one sans-serif token system."
+        },
+        {
+          "name": "Counter-moving knowledge rails",
+          "type": "motion-and-content-structure",
+          "description": "A 1728×997 live sample showed two full-bleed image rows inside a sticky scene. Near scrollY 415 the upper row began around x=-460 while the lower row began around x=519; by the focal interval the rows moved toward the same content axis while cards grew from roughly 283px to 346px wide.",
+          "applicability": "Precede Home section 05's readable archive board with a shorter original two-rail scene: writing, reading, and coursework visuals enter from opposing sides, scale slightly toward focus, and collapse to a static grid below 1101px or when reduced motion is requested. Captured 2026-07-26; pattern and measured rhythm only."
         }
       ]
     },

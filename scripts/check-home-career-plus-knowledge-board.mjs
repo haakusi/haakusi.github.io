@@ -24,13 +24,15 @@ test('career map distinguishes five career domains from one doctoral exploration
 });
 
 test('public notes use concrete accumulation language and preview multiple knowledge sources', () => {
+    const board = home.match(/<div class="profile-knowledge-board"[\s\S]*?<\/div>\s*<\/div>\s*<\/div>\s*<\/section>/)?.[0] ?? '';
+
     assert.match(home, /Knowledge, accumulated one note at a time\./);
     assert.match(home, /읽고 배우며, 지식을 차곡차곡 쌓습니다\./);
     assert.equal((home.match(/data-knowledge-preview(?:\s|>)/g) ?? []).length, 4);
     for (const route of ['blog5.html', 'blog4.html', 'reading.html', 'lectures.html']) {
         assert.ok(home.includes(`href="${route}"`), `missing knowledge route: ${route}`);
     }
-    assert.equal((home.match(/images\/books\//g) ?? []).length, 3);
+    assert.equal((board.match(/images\/books\//g) ?? []).length, 3);
     assert.match(profileCss, /\.profile-knowledge-board\s*\{/);
     assert.match(profileCss, /\.profile-reading-stack\s*\{/);
 });
