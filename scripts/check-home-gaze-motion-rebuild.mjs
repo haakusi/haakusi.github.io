@@ -29,10 +29,13 @@ test('current work follows the focal hero as a separate compact band', () => {
     assert.equal((index.match(/data-current-item/g) ?? []).length, 3);
 });
 
-test('selected narrative chapters expose bounded sticky-scene hooks', () => {
+test('five narrative chapters expose bounded sticky-scene hooks', () => {
     assert.match(index, /id="work" class="profile-section profile-cinematic" data-profile-scene/);
     assert.match(index, /id="method" class="profile-section profile-method profile-cinematic" data-profile-scene/);
-    assert.equal((index.match(/data-profile-scene-frame/g) ?? []).length, 2);
+    for (const id of ['research', 'career', 'notes']) {
+        assert.match(index, new RegExp(`id="${id}" class="[^"]*profile-cinematic-secondary[^"]*" data-profile-scene`));
+    }
+    assert.equal((index.match(/data-profile-scene-frame/g) ?? []).length, 5);
     assert.match(index, /<script src="profile-motion\.js\?v=[^"]+"><\/script>/);
 });
 

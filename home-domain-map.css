@@ -5,11 +5,11 @@
 }
 
 .profile-domain-map-header {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    gap: 24px;
-    margin-bottom: 18px;
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) auto;
+    align-items: end;
+    gap: 32px;
+    margin-bottom: 30px;
 }
 
 .profile-domain-map-header p,
@@ -21,6 +21,17 @@
     font-weight: 760;
     letter-spacing: 0.14em;
     line-height: 1.45;
+}
+
+.profile-domain-map-header h2 {
+    max-width: 780px;
+    margin: 16px 0 0;
+    color: var(--profile-ink);
+    font-size: clamp(31px, 4vw, 58px);
+    font-weight: 660;
+    letter-spacing: -0.055em;
+    line-height: 1.04;
+    text-wrap: balance;
 }
 
 .profile-domain-map-header span {
@@ -85,7 +96,7 @@
     letter-spacing: 0.14em;
 }
 
-.profile-domain-map-copy h2 {
+.profile-domain-map-copy h3 {
     margin: 0;
     color: #f4f6f2;
     font-size: clamp(30px, 3.3vw, 50px);
@@ -119,7 +130,7 @@
 }
 
 /* This frame remains dark in both themes; isolate its contrast from global light-theme type rules. */
-body.career-home .profile-domain-map-frame h2 {
+body.career-home .profile-domain-map-frame h3 {
     color: #f4f6f2 !important;
 }
 
@@ -154,7 +165,7 @@ body.career-home .profile-domain-map-frame a {
     position: relative;
     display: grid;
     min-width: 0;
-    min-height: 132px;
+    min-height: 208px;
     align-content: start;
     padding: 22px 16px 20px;
     border-right: 1px solid var(--profile-line);
@@ -176,19 +187,44 @@ body.career-home .profile-domain-map-frame a {
     content: "";
 }
 
-.profile-domain-axis span {
+.profile-domain-node-meta {
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+    gap: 8px;
+}
+
+.profile-domain-axis span,
+.profile-domain-axis time {
     color: var(--profile-accent);
     font-family: var(--career-mono, ui-monospace, monospace);
     font-size: 9px;
     letter-spacing: 0.08em;
 }
 
+.profile-domain-axis time {
+    color: var(--profile-faint);
+    font-weight: 680;
+    white-space: nowrap;
+}
+
 .profile-domain-axis strong {
-    margin-top: 13px;
+    margin-top: 20px;
     color: var(--profile-ink);
-    font-size: 11px;
+    font-size: clamp(14px, 1.15vw, 18px);
+    font-weight: 680;
+    letter-spacing: -0.025em;
+    line-height: 1.25;
+    text-wrap: balance;
+}
+
+.profile-domain-axis b {
+    margin-top: 12px;
+    color: var(--profile-accent);
+    font-family: var(--career-mono, ui-monospace, monospace);
+    font-size: 9px;
     font-weight: 760;
-    letter-spacing: 0.045em;
+    letter-spacing: 0.09em;
     line-height: 1.45;
 }
 
@@ -197,6 +233,20 @@ body.career-home .profile-domain-map-frame a {
     color: var(--profile-faint);
     font-size: 10px;
     line-height: 1.5;
+}
+
+@media (max-width: 1100px) {
+    .profile-domain-axis {
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+    }
+
+    .profile-domain-axis li:nth-child(3) {
+        border-right: 0;
+    }
+
+    .profile-domain-axis li:nth-child(n + 4) {
+        border-top: 1px solid var(--profile-line);
+    }
 }
 
 @supports (animation-timeline: view()) {
@@ -236,20 +286,8 @@ body.career-home .profile-domain-map-frame a {
         width: min(38%, 320px);
     }
 
-    .profile-domain-map-copy h2 {
+    .profile-domain-map-copy h3 {
         font-size: clamp(28px, 5vw, 42px);
-    }
-
-    .profile-domain-axis {
-        grid-template-columns: repeat(3, minmax(0, 1fr));
-    }
-
-    .profile-domain-axis li:nth-child(3) {
-        border-right: 0;
-    }
-
-    .profile-domain-axis li:nth-child(n + 4) {
-        border-top: 1px solid var(--profile-line);
     }
 }
 
@@ -260,8 +298,14 @@ body.career-home .profile-domain-map-frame a {
 
     .profile-domain-map-header {
         display: grid;
-        gap: 7px;
-        margin-bottom: 14px;
+        grid-template-columns: 1fr;
+        gap: 14px;
+        margin-bottom: 22px;
+    }
+
+    .profile-domain-map-header h2 {
+        margin-top: 11px;
+        font-size: clamp(28px, 9vw, 38px);
     }
 
     .profile-domain-map-header span {
@@ -298,7 +342,7 @@ body.career-home .profile-domain-map-frame a {
         font-size: 8px;
     }
 
-    .profile-domain-map-copy h2 {
+    .profile-domain-map-copy h3 {
         max-width: 310px;
         font-size: clamp(32px, 10.6vw, 44px);
     }
@@ -323,7 +367,7 @@ body.career-home .profile-domain-map-frame a {
 
     .profile-domain-axis li,
     .profile-domain-axis li:nth-child(3) {
-        min-height: 122px;
+        min-height: 194px;
         padding: 20px 12px 18px;
         border-top: 1px solid var(--profile-line);
         border-right: 1px solid var(--profile-line);
@@ -331,6 +375,10 @@ body.career-home .profile-domain-map-frame a {
 
     .profile-domain-axis li:nth-child(even) {
         border-right: 0;
+    }
+
+    .profile-domain-axis strong {
+        font-size: 15px;
     }
 }
 
