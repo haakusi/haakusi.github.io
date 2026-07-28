@@ -54,34 +54,37 @@
 
     function knowledgeState(value) {
         const progress = clamp(value);
-        if (progress <= 0.34) {
-            const eased = easeOutCubic(progress / 0.34);
+        if (progress <= 0.4) {
+            const eased = easeOutCubic(progress / 0.4);
+            const opacityProgress = easeOutCubic(clamp(progress / 0.2));
             return {
-                railA: lerp(-520, -30, eased),
-                railB: lerp(520, 30, eased),
-                scale: lerp(0.86, 1, eased),
-                railOpacity: lerp(0.25, 1, eased),
+                railA: lerp(-1040, -60, eased),
+                railB: lerp(980, 40, eased),
+                railC: lerp(-780, -120, eased),
+                scale: lerp(0.82, 1, eased),
+                railOpacity: lerp(0.2, 1, opacityProgress),
                 boardOpacity: 0,
                 boardY: 48,
                 phase: 'motion',
             };
         }
-        if (progress <= 0.46) {
-            return { railA: -30, railB: 30, scale: 1, railOpacity: 1, boardOpacity: 0, boardY: 48, phase: 'motion' };
+        if (progress <= 0.52) {
+            return { railA: -60, railB: 40, railC: -120, scale: 1, railOpacity: 1, boardOpacity: 0, boardY: 48, phase: 'motion' };
         }
-        if (progress <= 0.62) {
-            const eased = easeInOutCubic((progress - 0.46) / 0.16);
+        if (progress <= 0.7) {
+            const eased = easeInOutCubic((progress - 0.52) / 0.18);
             return {
-                railA: lerp(-30, 120, eased),
-                railB: lerp(30, -120, eased),
+                railA: lerp(-60, 180, eased),
+                railB: lerp(40, -180, eased),
+                railC: lerp(-120, 140, eased),
                 scale: lerp(1, 1.05, eased),
                 railOpacity: lerp(1, 0, eased),
                 boardOpacity: lerp(0, 1, eased),
                 boardY: lerp(48, 0, eased),
-                phase: progress < 0.52 ? 'motion' : 'archive',
+                phase: progress < 0.59 ? 'motion' : 'archive',
             };
         }
-        return { railA: 120, railB: -120, scale: 1.05, railOpacity: 0, boardOpacity: 1, boardY: 0, phase: 'archive' };
+        return { railA: 180, railB: -180, railC: 140, scale: 1.05, railOpacity: 0, boardOpacity: 1, boardY: 0, phase: 'archive' };
     }
 
     function heroState(value) {
@@ -145,7 +148,7 @@
                 scene.removeAttribute('data-motion-progress');
             }
             if (state.knowledge) {
-                for (const name of ['--knowledge-rail-a-x', '--knowledge-rail-b-x', '--knowledge-scale', '--knowledge-rail-opacity', '--knowledge-board-opacity', '--knowledge-board-y']) {
+                for (const name of ['--knowledge-rail-a-x', '--knowledge-rail-b-x', '--knowledge-rail-c-x', '--knowledge-scale', '--knowledge-rail-opacity', '--knowledge-board-opacity', '--knowledge-board-y']) {
                     state.knowledge.style.removeProperty(name);
                 }
                 state.knowledge.removeAttribute('data-knowledge-phase');
@@ -192,6 +195,7 @@
                 const visual = knowledgeState(progress);
                 setLength(state.knowledge, '--knowledge-rail-a-x', visual.railA);
                 setLength(state.knowledge, '--knowledge-rail-b-x', visual.railB);
+                setLength(state.knowledge, '--knowledge-rail-c-x', visual.railC);
                 setNumber(state.knowledge, '--knowledge-scale', visual.scale);
                 setNumber(state.knowledge, '--knowledge-rail-opacity', visual.railOpacity);
                 setNumber(state.knowledge, '--knowledge-board-opacity', visual.boardOpacity);

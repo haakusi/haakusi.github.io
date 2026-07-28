@@ -332,7 +332,7 @@ body.profile-motion-enhanced .profile-cinematic-secondary {
 }
 
 body.profile-motion-enhanced .profile-notes {
-    min-height: clamp(1360px, 205svh, 1980px);
+    min-height: clamp(1580px, 245svh, 2320px);
 }
 
 body.profile-motion-enhanced .profile-cinematic-frame {
@@ -428,7 +428,7 @@ body.profile-motion-enhanced [data-profile-scene-content] {
 body.profile-motion-enhanced .profile-knowledge-motion {
     position: relative;
     display: grid;
-    gap: 12px;
+    gap: 10px;
     align-content: center;
     min-width: 0;
     min-height: 472px;
@@ -470,23 +470,31 @@ body.profile-motion-enhanced .profile-knowledge-motion::after {
 }
 
 .profile-knowledge-rail-forward {
-    transform: translate3d(var(--knowledge-rail-a-x, -520px), 0, 0) scale(var(--knowledge-scale, 0.86));
+    transform: translate3d(var(--knowledge-rail-a-x, -1040px), 0, 0) scale(var(--knowledge-scale, 0.82));
 }
 
 .profile-knowledge-rail-reverse {
-    transform: translate3d(var(--knowledge-rail-b-x, 520px), 0, 0) scale(var(--knowledge-scale, 0.86));
+    transform: translate3d(var(--knowledge-rail-b-x, 980px), 0, 0) scale(var(--knowledge-scale, 0.82));
+}
+
+.profile-knowledge-rail-drift {
+    transform: translate3d(var(--knowledge-rail-c-x, -780px), 0, 0) scale(var(--knowledge-scale, 0.82));
 }
 
 .profile-knowledge-motion-item {
     position: relative;
-    flex: 0 0 clamp(198px, 18vw, 276px);
-    height: clamp(170px, 18vh, 202px);
+    flex: 0 0 clamp(176px, 15vw, 236px);
+    height: clamp(118px, 13.5vh, 148px);
     margin: 0;
     overflow: hidden;
     border: 1px solid rgba(244, 246, 242, 0.16);
     border-radius: 7px;
     background: #0b0f0e;
     box-shadow: 0 18px 38px rgba(0, 0, 0, 0.32);
+}
+
+.profile-knowledge-motion-item-wide {
+    flex-basis: clamp(252px, 23vw, 360px);
 }
 
 .profile-knowledge-motion-item img {
