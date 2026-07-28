@@ -42,9 +42,9 @@
                 opacity: lerp(0.2, 1, eased),
             };
         }
-        if (progress <= 0.9) return { scale: 1, y: 0, opacity: 1 };
+        if (progress <= 0.98) return { scale: 1, y: 0, opacity: 1 };
 
-        const eased = easeInOutCubic((progress - 0.9) / 0.1);
+        const eased = easeInOutCubic((progress - 0.98) / 0.02);
         return {
             scale: lerp(1, 0.96, eased),
             y: lerp(0, -36, eased),
@@ -54,37 +54,35 @@
 
     function knowledgeState(value) {
         const progress = clamp(value);
-        if (progress <= 0.4) {
-            const eased = easeOutCubic(progress / 0.4);
+        if (progress <= 0.7) {
+            const eased = easeInOutCubic(progress / 0.7);
             const opacityProgress = easeOutCubic(clamp(progress / 0.2));
             return {
-                railA: lerp(-1040, -60, eased),
-                railB: lerp(980, 40, eased),
-                railC: lerp(-780, -120, eased),
-                scale: lerp(0.82, 1, eased),
+                railA: lerp(-2200, -80, eased),
+                railB: lerp(120, -2100, eased),
+                scale: lerp(0.86, 1, eased),
                 railOpacity: lerp(0.2, 1, opacityProgress),
                 boardOpacity: 0,
-                boardY: 48,
+                boardY: 64,
                 phase: 'motion',
             };
         }
-        if (progress <= 0.52) {
-            return { railA: -60, railB: 40, railC: -120, scale: 1, railOpacity: 1, boardOpacity: 0, boardY: 48, phase: 'motion' };
+        if (progress <= 0.8) {
+            return { railA: -80, railB: -2100, scale: 1, railOpacity: 1, boardOpacity: 0, boardY: 64, phase: 'motion' };
         }
-        if (progress <= 0.7) {
-            const eased = easeInOutCubic((progress - 0.52) / 0.18);
+        if (progress <= 0.94) {
+            const eased = easeInOutCubic((progress - 0.8) / 0.14);
             return {
-                railA: lerp(-60, 180, eased),
-                railB: lerp(40, -180, eased),
-                railC: lerp(-120, 140, eased),
-                scale: lerp(1, 1.05, eased),
+                railA: lerp(-80, 460, eased),
+                railB: lerp(-2100, -2640, eased),
+                scale: lerp(1, 1.04, eased),
                 railOpacity: lerp(1, 0, eased),
                 boardOpacity: lerp(0, 1, eased),
-                boardY: lerp(48, 0, eased),
-                phase: progress < 0.59 ? 'motion' : 'archive',
+                boardY: lerp(64, 0, eased),
+                phase: progress < 0.81 ? 'motion' : 'archive',
             };
         }
-        return { railA: 180, railB: -180, railC: 140, scale: 1.05, railOpacity: 0, boardOpacity: 1, boardY: 0, phase: 'archive' };
+        return { railA: 460, railB: -2640, scale: 1.04, railOpacity: 0, boardOpacity: 1, boardY: 0, phase: 'archive' };
     }
 
     function heroState(value) {
@@ -148,7 +146,7 @@
                 scene.removeAttribute('data-motion-progress');
             }
             if (state.knowledge) {
-                for (const name of ['--knowledge-rail-a-x', '--knowledge-rail-b-x', '--knowledge-rail-c-x', '--knowledge-scale', '--knowledge-rail-opacity', '--knowledge-board-opacity', '--knowledge-board-y']) {
+                for (const name of ['--knowledge-rail-a-x', '--knowledge-rail-b-x', '--knowledge-scale', '--knowledge-rail-opacity', '--knowledge-board-opacity', '--knowledge-board-y']) {
                     state.knowledge.style.removeProperty(name);
                 }
                 state.knowledge.removeAttribute('data-knowledge-phase');
@@ -195,7 +193,6 @@
                 const visual = knowledgeState(progress);
                 setLength(state.knowledge, '--knowledge-rail-a-x', visual.railA);
                 setLength(state.knowledge, '--knowledge-rail-b-x', visual.railB);
-                setLength(state.knowledge, '--knowledge-rail-c-x', visual.railC);
                 setNumber(state.knowledge, '--knowledge-scale', visual.scale);
                 setNumber(state.knowledge, '--knowledge-rail-opacity', visual.railOpacity);
                 setNumber(state.knowledge, '--knowledge-board-opacity', visual.boardOpacity);

@@ -21,7 +21,7 @@ test('research flows use one dotted rail with a visible node ball per step', () 
 });
 
 test('knowledge archive declares random image slots and a progressive enhancement script', () => {
-    assert.match(home, /hybrid-profile\.css\?v=20260728-visual5/);
+    assert.match(home, /hybrid-profile\.css\?v=20260728-visual6/);
     assert.equal((home.match(/data-random-knowledge="writing"/g) ?? []).length, 2);
     assert.equal((home.match(/data-random-knowledge="reading"/g) ?? []).length, 3);
     assert.equal((home.match(/data-random-knowledge="coursework"/g) ?? []).length, 2);
