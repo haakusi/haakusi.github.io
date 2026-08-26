@@ -1,16 +1,16 @@
 # Sewon Park — Developer career site
 
-[haakusi.github.io](https://haakusi.github.io/) is a bilingual public career site for an AI-native platform and product engineer working across device boundaries, developer experience, industrial software, and verification-first delivery.
+[haakusi.github.io](https://haakusi.github.io/) is a bilingual public career site for a platform and product engineer working across device boundaries, developer experience, industrial software, applied AI, and verification-first delivery. The visual direction intentionally returns to the site's original quiet, single-column format.
 
 ## Information architecture
 
-- `index.html` — 30-second positioning, best-fit roles, selected evidence, and direct contact paths
+- `index.html` — concise profile, selected work, active research, and recent notes
 - `portfolio.html` — three judgment-led case studies with explicit project status
 - `cv.html` — reverse-chronological public CV with Korean and English PDFs
 - `research.html` — active questions, baselines, methods, and public notes
 - `blog.html`, `lectures.html`, `reading.html` — long-term evidence of writing, graduate study, and learning
 
-The root pages use `common.js` for bilingual navigation and controls, and `career-system.css` for a shared responsive visual system. Page-specific styles remain as structural fallbacks for older archive content.
+The root pages use `common.js` for the original five-route bilingual navigation and controls. `style.css` is the historical 850px single-column foundation; `simple-site.css` is a small compatibility layer that keeps the newer Portfolio, Research, Notes, and CV content readable without the retired cinematic skins or motion runtime.
 
 ## Privacy and evidence boundary
 
@@ -21,7 +21,7 @@ Public work is described through the problem, engineering judgment, implementati
 ```bash
 node scripts/check-career-product.mjs
 node scripts/check-public-career-site.mjs
-node scripts/check-career-visual-system.mjs
+node scripts/check-simple-site.mjs
 node scripts/check-career-pdfs.mjs
 node --check common.js
 git diff --check

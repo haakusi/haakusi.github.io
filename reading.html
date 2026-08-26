@@ -13,8 +13,7 @@
     <link rel="icon" href="favicon.svg" type="image/svg+xml">
     <title>Reading Notes — Sewon Park</title>
     <link rel="stylesheet" type="text/css" href="style.css">
-    <link rel="stylesheet" type="text/css" href="career-system.css?v=20260723-align2">
-    <link rel="stylesheet" type="text/css" href="career-skin.css?v=20260725-rail1">
+    <link rel="stylesheet" type="text/css" href="simple-site.css?v=2026082603">
 </head>
 <body class="reading-page archive-page">
     <a class="career-skip" href="#reading-main" data-en="Skip to reading notes" data-kr="독서 노트로 이동">Skip to reading notes</a>
@@ -242,7 +241,7 @@
 
     <div id="bookModal" class="book-modal" onclick="closeBookModal()">
         <span class="book-modal-close">&times;</span>
-        <img class="book-modal-content" id="bookModalImg">
+        <img class="book-modal-content" id="bookModalImg" alt="">
     </div>
 
     <script>
@@ -279,6 +278,7 @@
             var modalImg = document.getElementById('bookModalImg');
             modal.style.display = 'flex';
             modalImg.src = img.src;
+            modalImg.alt = img.alt;
         }
 
         function closeBookModal() {
@@ -298,7 +298,7 @@
             }
         }
     </script>
-    <script src="common.js?v=20260725-profile2"></script>
+    <script src="common.js?v=2026082603"></script>
 </body>
 </html>
 

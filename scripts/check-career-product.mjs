@@ -19,19 +19,19 @@ const pages = Object.fromEntries(await Promise.all(
     rootPages.map(async (path) => [path, await read(path)])
 ));
 const common = await read('common.js');
-const css = await readOptional('career-system.css');
+const css = await readOptional('simple-site.css');
 const sitemap = await readOptional('sitemap.xml');
 const robots = await readOptional('robots.txt');
 const notFound = await readOptional('404.html');
 const readme = await readOptional('README.md');
 
-test('all eight root surfaces use the shared bilingual career shell', () => {
+test('all eight root surfaces use the shared bilingual simple shell', () => {
     for (const [name, html] of Object.entries(pages)) {
         assert.match(html, /<html\s+lang="en"\s+data-theme=/, `${name} needs an initial document language`);
-        assert.match(html, /class="[^"]*\bcareer-skip\b[^"]*"/, `${name} needs a skip link`);
+        assert.match(html, /class="[^"]*\b(?:career-skip|skip-link)\b[^"]*"/, `${name} needs a skip link`);
         assert.match(html, /<main\s+id="[^"]+"/, `${name} needs a named main landmark`);
-        const sharedIndex = html.search(/href="career-system\.css(?:\?[^\"]*)?"/);
-        assert.ok(sharedIndex > -1, `${name} must load career-system.css`);
+        const sharedIndex = html.search(/href="simple-site\.css(?:\?[^\"]*)?"/);
+        assert.ok(sharedIndex > -1, `${name} must load simple-site.css`);
         assert.ok(sharedIndex > html.lastIndexOf('rel="stylesheet"', sharedIndex - 1), `${name} must load shared styles last`);
 
         const localizedTags = html.match(/<[^>]*\bdata-en="[^"]*"[^>]*>/g) ?? [];
@@ -45,13 +45,13 @@ test('all eight root surfaces use the shared bilingual career shell', () => {
     }
 });
 
-test('navigation presents a compact industry-research information architecture', () => {
+test('navigation restores the compact five-route archive information architecture', () => {
     const order = [
         "href: 'index.html'",
-        "href: 'portfolio.html'",
-        "href: 'research.html'",
+        "href: 'blog.html'",
+        "href: 'lectures.html'",
+        "href: 'reading.html'",
         "href: 'cv.html'",
-        "href: 'notes.html'",
     ].map((needle) => common.indexOf(needle));
     assert.ok(order.every((position) => position > -1), 'all five navigation items must exist');
     assert.deepEqual(order, [...order].sort((a, b) => a - b), 'career navigation order is incorrect');
@@ -62,16 +62,15 @@ test('navigation presents a compact industry-research information architecture',
 test('home communicates identity, evidence, and conservative profile structured data', () => {
     const home = pages['index.html'];
     const decodedHome = home.replaceAll('&amp;', '&');
-    for (const id of ['identity', 'work', 'method', 'research', 'career', 'notes', 'contact']) {
+    for (const id of ['about-title', 'work-title', 'research-title', 'notes-title']) {
         assert.match(home, new RegExp(`id="${id}"`));
     }
     for (const phrase of [
-        'eight years of industry experience',
-        'From device packets',
-        'From physical signals to verified intelligence.',
-        'IDENTITY PLATFORM',
-        '장치 패킷부터',
-        '진행 중인 연구',
+        'eight years of experience',
+        'BioStar Developer Portal',
+        'AI-native Angular-to-React modernization',
+        'Explainable Traditional-Dance Retrieval',
+        '대표 프로젝트',
         '2026.07—PRESENT',
     ]) {
         assert.ok(decodedHome.includes(phrase), `missing identity/evidence phrase: ${phrase}`);
@@ -124,20 +123,18 @@ test('HTML-facing copy escapes ambiguous ampersands', () => {
     }
 });
 
-test('archive roots use a neutral, responsive product system', () => {
+test('archive roots use the restrained simple compatibility layer', () => {
     for (const selector of [
-        'body.archive-page',
-        '.archive-container',
         '.archive-hero',
-        '.blog-index',
-        '.lectures-page .lecture-card',
-        '.reading-page .book-card',
+        '.case-study',
+        '.notes-route',
+        'body.cv-page',
     ]) {
         assert.ok(css.includes(selector), `missing archive selector ${selector}`);
     }
-    assert.match(css, /\.reading-page\s+\.bookshelf-year::after\s*\{[\s\S]*?display:\s*none\s*!important/);
-    assert.match(css, /@media\s*\(max-width:\s*680px\)[\s\S]*?\.archive-container/);
-    assert.match(css, /:focus-visible/);
+    assert.doesNotMatch(pages['portfolio.html'], /data-project-showcase|images\/career\/showcase\//);
+    assert.match(css, /@media\s*\(max-width:\s*680px\)/);
+    assert.match(css, /\.skip-link:focus/);
 });
 
 test('crawl, recovery, and repository documentation are present', () => {
@@ -155,9 +152,10 @@ test('crawl, recovery, and repository documentation are present', () => {
     }
     assert.match(robots, /Sitemap:\s*https:\/\/haakusi\.github\.io\/sitemap\.xml/);
     assert.match(notFound, /<main\s+id="not-found-main"/);
-    assert.match(notFound, /href="career-system\.css(?:\?[^\"]*)?"/);
+    assert.match(notFound, /href="simple-site\.css(?:\?[^\"]*)?"/);
     assert.match(readme, /Developer career site/i);
     assert.match(readme, /Privacy and evidence boundary/i);
+    assert.match(readme, /simple-site\.css/);
 });
 
 test('new public surfaces contain no private paths or sensitive profile data', () => {

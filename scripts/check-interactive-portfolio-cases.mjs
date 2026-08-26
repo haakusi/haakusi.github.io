@@ -6,8 +6,7 @@ const root = new URL('../', import.meta.url);
 const read = (path) => readFile(new URL(path, root), 'utf8');
 
 const html = await read('portfolio.html');
-const css = await read('portfolio-case-details.css').catch(() => '');
-const script = await read('portfolio-interactions.js').catch(() => '');
+const css = await read('simple-site.css').catch(() => '');
 
 test('all three flagship cases expose implementation evidence as native details', () => {
     assert.equal((html.match(/class="case-implementation"/g) ?? []).length, 3);
@@ -43,23 +42,15 @@ test('implementation evidence covers architecture, verification, and troubleshoo
     for (const tag of localizedTags) assert.match(tag, /\bdata-kr="[^"]*"/);
 });
 
-test('case interaction is progressively enhanced and scoped to one project', async () => {
-    assert.match(html, /portfolio-case-details\.css\?v=20260726-case1/);
-    assert.match(html, /portfolio-interactions\.js\?v=20260726-cinema1/);
-    assert.match(script, /closest\('\[data-case-accordion\]'\)/);
-    assert.match(script, /if\s*\(!current\.open\)\s*return/);
-    assert.match(script, /detail\.open\s*=\s*false/);
-    assert.match(script, /portfolio-details-enhanced/);
-    const caseEnhancement = script.match(/function enhanceCaseDetails[\s\S]*?\n    }/)?.[0] ?? '';
-    assert.doesNotMatch(caseEnhancement, /preventDefault\(\)/);
+test('case details stay native and require no cinematic interaction runtime', () => {
+    assert.doesNotMatch(html, /portfolio-interactions\.js|portfolio-case-details\.css/);
+    assert.equal((html.match(/<details\s+class="case-detail"/g) ?? []).length, 9);
 });
 
-test('detail styling uses the career tokens and keeps focus, open state, mobile, and reduced motion explicit', () => {
-    assert.match(css, /var\(--skin-/);
-    assert.match(css, /body\.portfolio-page \.case-pair\s*\{[^}]*grid-template-columns:\s*minmax\(0,\s*1fr\)\s*!important[^}]*gap:\s*0\s*!important/);
-    assert.match(css, /\.case-detail\s*>\s*summary:focus-visible/);
-    assert.match(css, /\.case-detail\[open\]/);
+test('detail styling is a simple readable disclosure with a mobile fallback', () => {
+    assert.match(css, /\.case-accordion\s*\{/);
+    assert.match(css, /\.case-accordion summary\s*\{/);
+    assert.match(css, /\.case-detail-body/);
     assert.match(css, /@media\s*\(max-width:\s*680px\)/);
-    assert.match(css, /@media\s*\(prefers-reduced-motion:\s*reduce\)/);
     assert.doesNotMatch(css, /overflow-wrap:\s*anywhere/);
 });

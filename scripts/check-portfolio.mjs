@@ -2,28 +2,29 @@ import assert from 'node:assert/strict';
 import { access, readFile } from 'node:fs/promises';
 import test from 'node:test';
 
-const css = await readFile(new URL('../portfolio-style.css', import.meta.url), 'utf8');
+const historicalCss = await readFile(new URL('../style.css', import.meta.url), 'utf8');
+const simpleCss = await readFile(new URL('../simple-site.css', import.meta.url), 'utf8');
+const shippedCss = `${historicalCss}\n${simpleCss}`;
 const html = await readFile(new URL('../portfolio.html', import.meta.url), 'utf8');
 const cv = await readFile(new URL('../cv.html', import.meta.url), 'utf8');
 const gitignore = await readFile(new URL('../.gitignore', import.meta.url), 'utf8').catch(() => '');
 
 test('mobile portfolio text keeps natural word boundaries', () => {
-    assert.doesNotMatch(
-        css,
-        /\.portfolio-container \.subtitle,[\s\S]*?\.hero-copy,[\s\S]*?overflow-wrap:\s*anywhere/,
-        'overflow-wrap:anywhere must not be inherited by the full hero copy'
-    );
+    assert.doesNotMatch(shippedCss, /overflow-wrap:\s*anywhere/);
+    assert.match(simpleCss, /overflow-wrap:\s*break-word/);
 });
 
-test('portfolio uses a cross-platform Korean-capable system font stack', () => {
-    assert.match(css, /font-family:[^;]*-apple-system[^;]*"Segoe UI"[^;]*"Noto Sans KR"[^;]*"Malgun Gothic"/);
-    assert.match(css, /\[data-lang="kr"\][\s\S]*font-family:\s*var\(--pf-sans\)/);
+test('portfolio uses the shipped historical serif foundation', () => {
+    assert.match(historicalCss, /body\s*\{[^}]*font-family:\s*'Georgia',\s*serif/);
+    assert.match(html, /href="style\.css"/);
+    assert.match(html, /href="simple-site\.css\?v=2026082603"/);
+    assert.doesNotMatch(html, /portfolio-style\.css/);
 });
 
-test('portfolio controls stay at the document top instead of covering anchored work', () => {
+test('portfolio controls use the shipped shared fixed-position rules', () => {
     assert.match(html, /<body\s+class="portfolio-page">/);
-    assert.match(css, /\.portfolio-page\s+\.theme-toggle[\s\S]*?position:\s*absolute\s*!important/);
-    assert.match(css, /\.portfolio-page\s+\.lang-toggle[\s\S]*?position:\s*absolute\s*!important/);
+    assert.match(historicalCss, /\.theme-toggle\s*\{[^}]*position:\s*fixed/);
+    assert.match(historicalCss, /\.lang-toggle\s*\{[^}]*position:\s*fixed/);
 });
 
 test('public portfolio includes the current platform, modernization, core, and research evidence', () => {

@@ -15,20 +15,22 @@ const indexText = index.replace(/<[^>]+>/g, ' ').replace(/\s+/g, ' ');
 const decodeEntities = (value) => value.replaceAll('&amp;', '&');
 
 test('homepage is a focused career hub with direct paths to evidence and archives', () => {
-    assert.match(index, /<body class="career-home hybrid-home">/);
-    for (const phrase of ['From device packets', '장치 패킷부터']) {
+    assert.match(index, /<body>/);
+    for (const phrase of ['Selected Work', '대표 프로젝트', 'Active Research', '진행 연구']) {
         assert.ok(index.includes(phrase), `missing homepage phrase: ${phrase}`);
     }
-    assert.match(indexText, /Eight years turning physical-product boundaries into platform contracts, developer experiences, and release gates\./);
-    assert.match(index, /물리 제품의 복잡한 경계를 플랫폼 계약·개발자 경험·릴리스 검증 게이트로 바꿔 온 8년의 경험입니다\./);
-    for (const href of ['portfolio.html', 'research.html', 'cv.html', 'notes.html']) {
+    assert.match(indexText, /I connect physical-device state, protocols, server semantics, developer workflows, and verification as one product system\./);
+    assert.match(index, /물리 장치의 상태·프로토콜·서버 의미·개발자 워크플로·검증을 하나의 제품 시스템으로 연결합니다\./);
+    for (const href of ['portfolio.html', 'research.html', 'notes.html']) {
         assert.ok(index.includes(`href="${href}`), `missing homepage path: ${href}`);
     }
     assert.doesNotMatch(index, /Leaflet|visitor-count|initializeVisitorTracking|ipinfo\.io|script\.google\.com/);
 });
 
-test('shared navigation exposes Research and updates document language', () => {
-    assert.match(common, /href:\s*'research\.html'/);
+test('shared navigation restores the simple archive routes and updates document language', () => {
+    for (const href of ['blog.html', 'lectures.html', 'reading.html', 'cv.html']) {
+        assert.match(common, new RegExp(`href:\\s*'${href.replace('.', '\\.')}'`));
+    }
     assert.match(common, /document\.documentElement\.lang\s*=/);
     assert.match(common, /aria-current="page"/);
 });
