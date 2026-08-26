@@ -1,4 +1,0 @@
-User-agent: *
-Allow: /
-
-Sitemap: https://haakusi.github.io/sitemap.xml
