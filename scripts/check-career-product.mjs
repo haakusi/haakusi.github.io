@@ -94,6 +94,49 @@ test('portfolio cases are scan-ready and declare their public evidence boundary'
     assert.match(portfolio, /내부 코드·고객 정보·기밀 수치 없이/);
 });
 
+test('frontend modernization is described as team collaboration rather than team leadership', () => {
+    const modernizationPages = {
+        home: pages['index.html'],
+        portfolio: pages['portfolio.html'],
+        cv: pages['cv.html'],
+    };
+    for (const [name, html] of Object.entries(modernizationPages)) {
+        assert.match(html, /Frontend team collaboration/i, `${name} needs the English collaboration framing`);
+        assert.match(html, /프론트팀 협업/, `${name} needs the Korean collaboration framing`);
+    }
+
+    const combined = Object.values(modernizationPages).join('\n');
+    assert.doesNotMatch(
+        combined,
+        /Frontend team lead|Lead the frontend team|I lead the frontend team|프론트팀(?:을)?\s*리딩/i,
+        'frontend modernization must not claim frontend-team leadership'
+    );
+
+    assert.match(pages['cv.html'], /Integration Development Team Lead/);
+    assert.match(pages['cv.html'], /Integration개발팀 팀장/);
+    assert.match(pages['cv.html'], /led three interns/i);
+});
+
+test('award narrative frames AI-native productization as a challenge rather than a completed product', () => {
+    for (const [name, html] of Object.entries({
+        portfolio: pages['portfolio.html'],
+        cv: pages['cv.html'],
+    })) {
+        assert.match(html, /pursued AI-native productization/i, `${name} needs the English challenge framing`);
+        assert.match(html, /AI-native 기반 제품화에 도전/, `${name} needs the Korean challenge framing`);
+        assert.match(html, /KRW 3 million/);
+        assert.match(html, /KRW 10 million/);
+        assert.match(html, /개발비 300만원/);
+        assert.match(html, /상금 1,000만원/);
+    }
+
+    const combined = pages['portfolio.html'] + '\n' + pages['cv.html'];
+    assert.doesNotMatch(
+        combined,
+        /completed AI-native product|AI-native 제품을 완성|AI-native workflow로 1인 8주 동안 구축해/i
+    );
+});
+
 test('root pages provide canonical and sharing metadata', () => {
     const canonicalByPage = {
         'index.html': 'https://haakusi.github.io/',

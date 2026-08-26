@@ -42,6 +42,7 @@ test('PDF content carries the same career evidence as the web CV', () => {
         'DEVICE BOUNDARY TO AI PLATFORM',
         'BioStar Developer Portal · 1 person · 8 weeks',
         '~200K LOC modernization',
+        'frontend team collaboration',
         '2026.07—PRESENT',
         'Version-aware E2E',
         'Gateway, device, and distributed-event platform',
@@ -50,6 +51,7 @@ test('PDF content carries the same career evidence as the web CV', () => {
         'MariaDB',
         'Microsoft SQL Server',
         'KRW 3 million',
+        'pursued AI-native productization',
         'KRW 10 million',
     ]) {
         assert.ok(hasEvidence(documents.en, phrase), `English PDF missing ${phrase}`);
@@ -59,16 +61,31 @@ test('PDF content carries the same career evidence as the web CV', () => {
         '장치 경계부터 AI 플랫폼까지',
         'BioStar Developer Portal · 1인 · 8주',
         '약 20만 LOC 현대화',
+        '프론트팀 협업',
         '2026.07~현재',
         'Version-aware E2E',
         '게이트웨이·장치·분산 이벤트 플랫폼',
         '4개 AI 교육과정',
         '주요 기술',
         '개발비 300만원',
+        'AI-native 기반 제품화에 도전',
         '상금 1,000만원',
     ]) {
         assert.ok(hasEvidence(documents.ko, phrase), `Korean PDF missing ${phrase}`);
     }
+});
+
+test('PDFs do not describe frontend modernization as frontend-team leadership', () => {
+    const combined = documents.en.text + '\n' + documents.ko.text;
+    assert.doesNotMatch(
+        combined,
+        /Frontend team lead|Lead the frontend team|I lead the frontend team|프론트팀(?:을)?\s*리딩/i
+    );
+});
+
+test('PDFs do not frame the award as proof of a completed AI-native product', () => {
+    const combined = documents.en.text + '\n' + documents.ko.text;
+    assert.doesNotMatch(combined, /completed AI-native product|AI-native 제품을 완성/i);
 });
 
 test('PDFs omit private and unsupported profile details', () => {
