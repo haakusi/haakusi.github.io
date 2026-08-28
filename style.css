@@ -193,6 +193,52 @@ section {
     margin-bottom: 50px;
 }
 
+.profile-section {
+    padding-top: 8px;
+}
+
+.profile-section + .profile-section {
+    padding-top: 34px;
+    border-top: 1px solid rgba(60, 60, 60, 0.12);
+}
+
+.profile-section p {
+    margin: 0 0 18px;
+    line-height: 1.9;
+    word-break: keep-all;
+    overflow-wrap: break-word;
+}
+
+.profile-lead {
+    font-size: 1.08em;
+    color: #333;
+}
+
+.profile-copy {
+    margin-top: 24px;
+}
+
+.interest-stream {
+    padding: 22px 0 8px;
+    border-top: 1px solid rgba(60, 60, 60, 0.1);
+}
+
+.interest-stream h3 {
+    margin: 0 0 12px;
+    color: #333;
+    font-size: 0.98em;
+    font-weight: 600;
+    letter-spacing: 0.02em;
+    text-transform: none;
+}
+
+.profile-closing {
+    margin-top: 18px !important;
+    padding-left: 16px;
+    border-left: 2px solid rgba(90, 130, 120, 0.55);
+    color: #333;
+}
+
 h2 {
     font-size: 1.2em;
     color: #333;
@@ -641,6 +687,21 @@ footer {
 [data-theme="dark"] section p,
 [data-theme="dark"] .description {
     color: #a0a0a0;
+}
+
+[data-theme="dark"] .profile-section + .profile-section,
+[data-theme="dark"] .interest-stream {
+    border-color: rgba(255, 255, 255, 0.11);
+}
+
+[data-theme="dark"] .profile-lead,
+[data-theme="dark"] .interest-stream h3,
+[data-theme="dark"] .profile-closing {
+    color: #d0d0d0;
+}
+
+[data-theme="dark"] .profile-closing {
+    border-left-color: rgba(145, 205, 190, 0.58);
 }
 
 [data-theme="dark"] .position {

@@ -28,7 +28,7 @@
         headerEl.innerHTML = `
         <header>
             <h1 data-en="Sewon Park" data-kr="박세원">Sewon Park</h1>
-            <p class="subtitle" data-en="Research Engineer | AI & Full-Stack Development" data-kr="선임 연구원 | AI 및 풀스택 개발">Research Engineer | AI & Full-Stack Development</p>
+            <p class="subtitle" data-en="AI Engineer & Full-Stack Developer" data-kr="AI 엔지니어 · 풀스택 개발자">AI Engineer & Full-Stack Developer</p>
             <div class="social-links">
                 <a href="mailto:haakusi@gmail.com" aria-label="Email">
                     <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
@@ -94,7 +94,7 @@
         if (!footerEl) return;
 
         footerEl.innerHTML = `<footer>
-            <p>Last updated: March 2026</p>
+            <p>Last updated: August 2026</p>
         </footer>`;
     }
 
