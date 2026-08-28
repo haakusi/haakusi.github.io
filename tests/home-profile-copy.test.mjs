@@ -21,6 +21,8 @@ assert.match(about, /복수의 유료 프론티어 모델/);
 
 assert.match(interests, /AI-native 엔터프라이즈 엔지니어링/);
 assert.match(interests, /고전–양자 하이브리드 연구/);
+assert.doesNotMatch(interests, /근거 우선/);
+assert.doesNotMatch(interests, /Evidence-first/i);
 assert.match(interests, /강한 고전 기준선/);
 assert.match(interests, /인코딩·측정·노이즈·QPU 대기·비용/);
 assert.match(interests, /고전 방식을 유지/);
@@ -36,6 +38,6 @@ for (const unsafePhrase of ['$200', '계정 3-4개', '현장배치엔지니어',
 }
 
 assert.match(common, /AI Engineer & Full-Stack Developer/);
-assert.match(html, /AI-native enterprise systems, frontier AI agents, and evidence-first classical–quantum hybrid research\./);
+assert.match(html, /AI-native enterprise systems, frontier AI agents, and classical–quantum hybrid research\./);
 
 console.log('PASS home profile copy contract');

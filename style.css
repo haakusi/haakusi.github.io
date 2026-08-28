@@ -1000,6 +1000,14 @@ footer {
     font-weight: 300;
 }
 
+.visitor-method {
+    display: block;
+    margin: -0.4rem 0 1rem;
+    color: var(--text-secondary);
+    font-size: 0.78rem;
+    line-height: 1.5;
+}
+
 .country-item {
     display: flex;
     align-items: center;
