@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html data-theme="dark" data-lang="en">
+<head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>AI-Based Strategic Decision-Making - Week 5 - Sewon Park</title><link rel="stylesheet" type="text/css" href="../../../style.css"><link rel="stylesheet" type="text/css" href="../../../assets/css/lectures.css"></head>
+<body><button class="theme-toggle" onclick="toggleTheme()" aria-label="Toggle dark mode"></button><button class="lang-toggle" onclick="toggleLanguage()" aria-label="Toggle language">EN</button><div class="container"><div id="site-header"></div><div id="site-nav"></div><article class="course-page">
+<div class="course-header"><h1 data-en="AI-Based Strategic Decision-Making" data-kr="AI기반전략적의사결정">AI-Based Strategic Decision-Making</h1><p class="course-meta" data-en="2026 Challenge Semester | Weekly learning notes" data-kr="2026 도전학기 | 주차별 학습 노트">2026 Challenge Semester | Weekly learning notes</p></div>
+<div class="course-nav"><a href="../../../lectures.html" class="back-to-lectures" data-en="Back to Lectures" data-kr="강의 목록으로">Back to Lectures</a><span class="nav-separator">/</span><a href="./index.html" class="back-to-course" data-en="Course Home" data-kr="과목 홈">Course Home</a></div>
+<div class="week-nav"><span data-en="Weeks:" data-kr="주차:">Weeks:</span><a href="week-01.html" class="week-link">W1</a><a href="week-02.html" class="week-link">W2</a><a href="week-03.html" class="week-link">W3</a><a href="week-04.html" class="week-link">W4</a><a href="week-05.html" class="week-link current">W5</a><a href="week-06.html" class="week-link">W6</a></div>
+<section class="week-section" id="week-05"><h2 data-en="Week 5 — Problem Redefinition and Algorithmic Limits" data-kr="5주차 — 문제 재정의와 알고리즘 한계">Week 5 — Problem Redefinition and Algorithmic Limits</h2><p class="week-date" data-en="August 10–16 · Chapters 11–12" data-kr="8월 10–16일 · 11–12장">August 10–16 · Chapters 11–12</p><div class="week-content">
+<div class="lang-kr" hidden>
+    <p class="week-references"><em>정리 범위: 11장 전략 도출을 위한 문제 이해 · 12장 AI 의사결정의 한계 및 대응 전략 · W5 실습</em></p>
+    <h3>11장. 문제와 증상, 원인을 나누기</h3>
+    <p>전략은 문제 정의에서 시작한다. 겉으로 드러난 결과는 <strong>증상</strong>이고 전략이 겨냥해야 하는 것은 그 아래의 문제와 원인이다. 매출 하락이 증상이라면 고객 신뢰 하락이 문제일 수 있다. AI는 표면 패턴을 정밀하게 보여줄 수 있지만 어떤 원인이 중요한지와 누구를 위한 문제인지는 사용자가 정해야 한다.</p>
+    <table class="stat-table"><tr><th>좋은 문제 정의</th><th>확인 질문</th></tr><tr><td>명확성</td><td>중복과 모호함 없이 한 문장으로 말할 수 있는가?</td></tr><tr><td>맥락성</td><td>왜 지금 이 조직·현장에서 중요한가?</td></tr><tr><td>실행 가능성</td><td>실제 개입 경로와 측정 가능한 변화가 있는가?</td></tr><tr><td>이해관계자 동의</td><td>영향받는 주체가 문제의 의미를 공유하는가?</td></tr></table>
+    <p><strong>Fishbone</strong>은 사람·과정·기술·환경 같은 원인 범주를 넓게 구조화하고, <strong>5 Whys</strong>는 “왜?”를 반복해 증상 아래의 근본 원인으로 내려간다. AI는 원인 후보와 다른 관점을 넓히는 렌즈이지 인과를 입증하는 주체가 아니다.</p>
+
+    <h3>12장. AI 의사결정 알고리즘과 한계</h3>
+    <table class="stat-table">
+        <tr><th>알고리즘</th><th>판단 방식</th><th>강점</th><th>한계와 대응</th></tr>
+        <tr><td>Rule-based</td><td>사람이 조건 명시</td><td>투명·단순</td><td>예외·변화 취약, 규칙 충돌·누락 점검</td></tr>
+        <tr><td>Decision Tree</td><td>데이터에서 분기 학습</td><td>설명 가능</td><td>과적합·불안정, 깊이 제한·검증·앙상블</td></tr>
+        <tr><td>Neural Network / CNN</td><td>다층 특징 학습</td><td>이미지·비정형 데이터</td><td>블랙박스·편향, XAI·대표성·강건성 검토</td></tr>
+        <tr><td>Transformer</td><td>Self-Attention으로 문맥 처리</td><td>긴 텍스트·요약·생성</td><td>사실 오류·프롬프트 민감, 출처 병기·원문 대조</td></tr>
+        <tr><td>Reinforcement Learning</td><td>행동–보상–피드백</td><td>순차 최적화·적응</td><td>보상 오설계·탐색 위험, 안전제약·오프라인 평가</td></tr>
+    </table>
+    <p>알고리즘은 설계자의 목표·데이터·보상·임계값을 반영한다. “어떤 모델이 정확한가?”와 함께 “어떤 방식으로 판단하며 무엇을 놓치는가?”를 물어야 한다. 알고리즘별 실패 양상, 인간 개입 지점, 대체 경로를 전략에 포함한다.</p>
+
+    <h3>실습 연결 — 문제 정의에서 AI 전략까지</h3>
+    <p>기존 Stablecoin·Reddit QML은 고전적으로 정의된 라벨·점수 문제에 양자 모델을 삽입했다. 5 Whys를 적용하자 근본 원인은 모델 부족이 아니라 문제 선택 게이트에 “입력이 양자 객체인가?”가 없었던 것으로 재정의되었다.</p>
+    <div class="stat-formula">상태·채널 → 측정 카운트 → 고전 추정·기권 → held-out 분포·오차·자원</div>
+    <table class="stat-table"><tr><th>설계 요소</th><th>첫 연구 인스턴스</th></tr><tr><td>입력</td><td>상태·시뮬레이터 채널에서 나온 측정 카운트</td></tr><tr><td>고전 백본</td><td>평균 분포, 단일 파라미터 피팅, CPTP 제약 모델, 불확실성·기권</td></tr><tr><td>독립 단위</td><td>샷이 아니라 보지 않은 채널 인스턴스·날</td></tr><tr><td>지표</td><td>TV distance, NLL, calibration error, 기권 커버리지, 자원</td></tr><tr><td>기준선</td><td>identity, 평균 histogram, simple depolarizing model</td></tr><tr><td>주장 한계</td><td>6큐빗 두 세션으로 장비 일반화·양자 우위를 주장하지 않음</td></tr></table>
+    <p>Transformer는 양자-중심 정의와 단순 Q-encoding을 가르고 문제 카드·허용/금지 주장 초안을 만든다. 순차 설계는 문제 동결 → 고전 기준선 → held-out 검증 → 기권 → 선택적 QPU sanity 순서다. 최종 S2 연구 본체, 첫 인스턴스, claim ceiling은 인간이 확정한다.</p>
+    <div class="lecture-note"><p><strong>핵심 인사이트.</strong> 모델 성능을 고치기 전에 문제 정의가 잘못되었는지 본다. “양자를 어디에 넣을까?”에서 “입력과 과업이 본질적으로 양자적인가?”로 질문을 바꾸자 연구전략이 달라졌다. 한계를 명시하는 것은 비용을 조기에 끊는 적극적 설계다.</p></div>
+</div>
+
+<div class="lang-en">
+    <p class="week-references"><em>Scope: Chapter 11, Understanding Problems for Strategy · Chapter 12, Limits of AI Decisions and Responses · W5 practice</em></p>
+    <h3>Chapter 11. Separate Symptoms, Problems, and Causes</h3>
+    <p>Strategy begins with problem definition. A visible outcome is a <strong>symptom</strong>; strategy should target the problem and its causes beneath it. Falling sales may be a symptom of declining customer trust. AI can reveal surface patterns, but users must determine which cause matters and whose problem is being solved.</p>
+    <table class="stat-table"><tr><th>Quality</th><th>Question</th></tr><tr><td>Clarity</td><td>Can it be stated in one unambiguous sentence?</td></tr><tr><td>Context</td><td>Why does it matter here and now?</td></tr><tr><td>Actionability</td><td>Is there an intervention path and measurable change?</td></tr><tr><td>Stakeholder agreement</td><td>Do affected parties share the problem meaning?</td></tr></table>
+    <p>A <strong>Fishbone</strong> diagram organizes broad cause categories; <strong>5 Whys</strong> repeatedly asks why to move beneath the symptom. AI can widen candidate causes and viewpoints, but it does not establish causality.</p>
+
+    <h3>Chapter 12. Decision Algorithms and Their Limits</h3>
+    <table class="stat-table"><tr><th>Algorithm</th><th>Logic</th><th>Strength</th><th>Limit and response</th></tr><tr><td>Rule-based</td><td>Human-written conditions</td><td>Transparent and simple</td><td>Brittle exceptions; audit conflicts and omissions</td></tr><tr><td>Decision Tree</td><td>Learned branches</td><td>Interpretable</td><td>Overfit and instability; limit depth and validate</td></tr><tr><td>Neural Network / CNN</td><td>Layered feature learning</td><td>Images and unstructured data</td><td>Opacity and bias; use XAI, representation, and robustness checks</td></tr><tr><td>Transformer</td><td>Context through self-attention</td><td>Long text, summary, generation</td><td>Factual error and prompt sensitivity; cite and check originals</td></tr><tr><td>Reinforcement Learning</td><td>Action–reward feedback</td><td>Sequential adaptation</td><td>Reward misspecification and exploration risk; constrain and evaluate offline</td></tr></table>
+    <p>Algorithms reflect the designer's objectives, data, reward, and thresholds. Ask not only which model is accurate, but how it decides and what it systematically misses.</p>
+
+    <h3>Practice Connection — From Problem Definition to AI Strategy</h3>
+    <p>Earlier Stablecoin and Reddit QML inserted quantum models into classically defined label-and-score tasks. The 5 Whys analysis identified a deeper issue: the project-selection gate never asked whether the input itself was a quantum object.</p>
+    <div class="stat-formula">State and channel → measurement counts → classical estimation/abstention → held-out distribution, error, and resource</div>
+    <table class="stat-table"><tr><th>Contract</th><th>First instance</th></tr><tr><td>Input</td><td>Measurement counts from states and simulated channel families</td></tr><tr><td>Classical backbone</td><td>Mean distribution, one-parameter fit, CPTP-constrained model, uncertainty and abstention</td></tr><tr><td>Independent unit</td><td>Unseen channel instance/day—not the shot</td></tr><tr><td>Metrics</td><td>TV distance, NLL, calibration error, abstention coverage, resources</td></tr><tr><td>Baselines</td><td>Identity, mean histogram, simple depolarizing model</td></tr><tr><td>Claim ceiling</td><td>Two six-qubit sessions cannot establish device generalization or quantum advantage</td></tr></table>
+    <p>A Transformer helps distinguish quantum-native definitions from simple quantum encoding and drafts problem/claim cards. Sequential design freezes the contract, builds classical baselines, tests held-out instances, adds abstention, and only then permits a QPU sanity check. The researcher owns the final study, first instance, and claim ceiling.</p>
+    <div class="lecture-note"><p><strong>Strategic Insight.</strong> Before improving the model, test whether the problem itself is misframed. Changing the question from “where can I insert quantum?” to “are the input and task intrinsically quantum?” changed the research strategy. Explicit limits are an active way to stop waste early.</p></div>
+</div>
+</div></section></article><div id="site-footer"></div></div><script src="../../../common.js"></script></body></html>

@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html data-theme="dark" data-lang="en">
+<head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>AI-Based Strategic Decision-Making - Week 2 - Sewon Park</title><link rel="stylesheet" type="text/css" href="../../../style.css"><link rel="stylesheet" type="text/css" href="../../../assets/css/lectures.css"></head>
+<body>
+    <button class="theme-toggle" onclick="toggleTheme()" aria-label="Toggle dark mode"></button><button class="lang-toggle" onclick="toggleLanguage()" aria-label="Toggle language">EN</button>
+    <div class="container"><div id="site-header"></div><div id="site-nav"></div>
+        <article class="course-page">
+            <div class="course-header"><h1 data-en="AI-Based Strategic Decision-Making" data-kr="AI기반전략적의사결정">AI-Based Strategic Decision-Making</h1><p class="course-meta" data-en="2026 Challenge Semester | Weekly learning notes" data-kr="2026 도전학기 | 주차별 학습 노트">2026 Challenge Semester | Weekly learning notes</p></div>
+            <div class="course-nav"><a href="../../../lectures.html" class="back-to-lectures" data-en="Back to Lectures" data-kr="강의 목록으로">Back to Lectures</a><span class="nav-separator">/</span><a href="./index.html" class="back-to-course" data-en="Course Home" data-kr="과목 홈">Course Home</a></div>
+            <div class="week-nav"><span data-en="Weeks:" data-kr="주차:">Weeks:</span><a href="week-01.html" class="week-link">W1</a><a href="week-02.html" class="week-link current">W2</a><a href="week-03.html" class="week-link">W3</a><a href="week-04.html" class="week-link">W4</a><a href="week-05.html" class="week-link">W5</a><a href="week-06.html" class="week-link">W6</a></div>
+            <section class="week-section" id="week-02">
+                <h2 data-en="Week 2 — Reliability and AI Intervention Points" data-kr="2주차 — 신뢰성과 AI 개입 지점">Week 2 — Reliability and AI Intervention Points</h2>
+                <p class="week-date" data-en="July 20–26 · Chapters 4–5" data-kr="7월 20–26일 · 4–5장">July 20–26 · Chapters 4–5</p>
+                <div class="week-content">
+                    <div class="lang-kr" hidden>
+                        <p class="week-references"><em>정리 범위: 4장 AI 정보의 신뢰성 검토 · 5장 전략적 의사결정과 AI의 결합 · W2 실습</em></p>
+
+                        <h3>4장. 할루시네이션과 신뢰성 검토</h3>
+                        <p><strong>할루시네이션</strong>은 AI가 현실에 없는 정보를 그럴듯하게 생성하는 현상이다. 언어모델은 사실 데이터베이스를 그대로 조회하기보다 다음 토큰의 가능성을 계산하므로, 유창성과 진실성은 분리된다. 이는 예외적 결함이라기보다 생성 원리에서 계속 관리해야 할 위험이다.</p>
+                        <p>오류는 사실·인용·논리·시점·편향·맥락 누락·요약 왜곡·과도한 단정·정보 누락과 중복 등으로 나타난다. 신뢰성 검토는 다음 다섯 질문을 고정한다.</p>
+                        <ol>
+                            <li>출처가 실제로 존재하고 원문과 일치하는가?</li>
+                            <li>주장과 결론 사이의 논리 구조가 타당한가?</li>
+                            <li>자료의 시점과 적용 대상이 현재 문제와 맞는가?</li>
+                            <li>사실·추론·의견·가정을 구분했는가?</li>
+                            <li>현재 자원과 제약에서 실제로 쓸 수 있는가?</li>
+                        </ol>
+                        <p>출처 요구, 원문 대조, 반대 입장 생성, 교차질문, 복수 모델 비교, 전문가 검토를 결합한다. 여러 모델의 합의도 원문과 실행 검증을 대체하지 못한다.</p>
+
+                        <h3>5장. 전략적 의사결정의 순환과 AI 개입 지점</h3>
+                        <div class="stat-formula">문제 정의 → 정보 수집 → 대안 생성 → 선택 → 실행 → 결과 검토·피드백</div>
+                        <table class="stat-table">
+                            <tr><th>단계</th><th>AI의 역할</th><th>사람의 역할</th></tr>
+                            <tr><td>문제 정의</td><td>신호·패턴·관점 후보</td><td>진짜 문제, 영향 대상, 범위 확정</td></tr>
+                            <tr><td>정보 수집</td><td>탐색·요약·분류</td><td>출처·권리·대표성 검증</td></tr>
+                            <tr><td>대안 생성</td><td>시나리오·반례·예상 결과</td><td>가능한 대안과 금지 조건 선택</td></tr>
+                            <tr><td>평가·선택</td><td>기준별 비교·민감도 분석</td><td>가중치·위험 허용도·최종 결정</td></tr>
+                            <tr><td>실행·피드백</td><td>자동화·모니터링·변화 탐지</td><td>승인·책임·롤백·목표 재검토</td></tr>
+                        </table>
+                        <p>AI 도입 효과는 정확도 외에 시간, 비용, 사용성, 책임, 오류 영향, 이해관계자 수용성으로 평가한다. 각 개입 지점에는 기대효과, 실패 신호, 인간 검토, 복구 경로가 필요하다.</p>
+
+                        <h3>실습 연결 — AI, 믿을 수 있을까?</h3>
+                        <p>장기기밀 데이터, 24시간 운영, 제한 예산, 암호자산 파악 부족을 가진 디지털 금융사의 3년 양자내성보안 전환을 같은 프롬프트로 세 AI에 물었다. 투명성·정확성·왜곡 위험·해석 다양성·결과 수용성을 각 10점으로 평가했다.</p>
+                        <table class="stat-table"><tr><th>AI</th><th>점수</th><th>판단</th></tr><tr><td>Gemini</td><td>37/50</td><td>방향은 유용했지만 직접 근거·조건·롤백이 약하고 일부 단정이 과함</td></tr><tr><td>Codex</td><td>45/50</td><td>사실·불확실성 분리, 공식 근거, CBOM·hybrid·롤백·공급자 검증이 구체적</td></tr><tr><td>Claude</td><td>44/50</td><td>구체적이지만 일부 일정이 확정 의무처럼 읽히지 않도록 주의 필요</td></tr></table>
+
+                        <h3>위험 기반 단계 전환 선택</h3>
+                        <p>전사 즉시 전환 54점, <strong>위험 기반 단계 전환 88점</strong>, 관찰·최소 투자 61점이었다. 미래 위협의 정확한 시점을 맞히기보다 후회 비용이 낮고 되돌릴 수 있는 순서로 자원을 배분했다.</p>
+                        <ol>
+                            <li>0–6개월: CBOM, 데이터 보호수명, 소유자, 알고리즘 인벤토리.</li>
+                            <li>6–18개월: 장기기밀 외부통신에 기존 암호+ML-KEM hybrid를 성능·장애·롤백 조건과 함께 시험.</li>
+                            <li>18–36개월: PKI·코드서명·HSM·SaaS를 검증된 표준과 상호운용 조건에 맞춰 단계 전환.</li>
+                        </ol>
+                        <div class="lecture-note"><p><strong>핵심 인사이트.</strong> 복수 AI 비교의 가치는 다수결이 아니라 서로 다른 누락·단정·실행 위험을 드러내는 데 있다. 불확실성이 클수록 예측보다 crypto agility, 단계적 투자, 중단·롤백 조건이 전략을 강하게 만든다.</p></div>
+                    </div>
+
+                    <div class="lang-en">
+                        <p class="week-references"><em>Scope: Chapter 4, Reliability Review of AI Information · Chapter 5, Combining AI with Strategic Decisions · W2 practice</em></p>
+                        <h3>Chapter 4. Hallucination and Reliability Review</h3>
+                        <p><strong>Hallucination</strong> is the generation of plausible information that does not correspond to reality. Because a language model predicts likely continuations rather than consulting a guaranteed fact store, fluency and truth are separate. This is a recurring risk to manage, not a rare exception.</p>
+                        <p>Failures include factual and citation errors, invalid inference, stale timing, bias, omitted context, distorted summaries, overclaiming, and missing or repeated information. A fixed review asks:</p>
+                        <ol><li>Does the source exist and match the original?</li><li>Is the logic from evidence to conclusion valid?</li><li>Are timing and target population appropriate?</li><li>Are facts, inferences, opinions, and assumptions separated?</li><li>Is the recommendation usable under real constraints?</li></ol>
+                        <p>Source requests, original-document checks, opposing views, cross-questions, model comparison, and expert review work together. Model agreement cannot replace primary evidence and execution.</p>
+
+                        <h3>Chapter 5. The Decision Cycle and AI Intervention Points</h3>
+                        <div class="stat-formula">Frame → collect → generate alternatives → choose → execute → review and feed back</div>
+                        <table class="stat-table"><tr><th>Stage</th><th>AI role</th><th>Human role</th></tr><tr><td>Framing</td><td>Signals, patterns, candidate viewpoints</td><td>Define the real problem, affected parties, and scope</td></tr><tr><td>Evidence</td><td>Search, summarize, classify</td><td>Verify sources, rights, and representativeness</td></tr><tr><td>Alternatives</td><td>Scenarios, counterexamples, consequences</td><td>Select feasible options and prohibited moves</td></tr><tr><td>Evaluation</td><td>Criterion comparison and sensitivity analysis</td><td>Set weights, risk tolerance, and final choice</td></tr><tr><td>Execution</td><td>Automation, monitoring, change detection</td><td>Approve, own, roll back, and revisit goals</td></tr></table>
+                        <p>Evaluate AI interventions through time, cost, usability, accountability, error impact, and stakeholder acceptance—not accuracy alone.</p>
+
+                        <h3>Practice Connection — Can We Trust AI?</h3>
+                        <p>Three AI systems received the same three-year post-quantum migration problem for a digital finance firm with long-lived secrets, 24/7 operations, limited budget, and an incomplete cryptographic inventory. I scored transparency, accuracy, distortion risk, interpretive range, and acceptability.</p>
+                        <table class="stat-table"><tr><th>System</th><th>Score</th><th>Assessment</th></tr><tr><td>Gemini</td><td>37/50</td><td>Useful direction, but weaker direct evidence, conditions, and rollback</td></tr><tr><td>Codex</td><td>45/50</td><td>Separated facts and uncertainty; specified CBOM, hybrid testing, rollback, and vendor checks</td></tr><tr><td>Claude</td><td>44/50</td><td>Concrete, with care needed not to present draft timelines as binding obligations</td></tr></table>
+
+                        <h3>Choosing Risk-Based Staged Migration</h3>
+                        <p>The weighted results were 54 for immediate migration, <strong>88 for risk-based staged migration</strong>, and 61 for minimal investment. The strategy reduced regret without pretending to predict the exact threat date.</p>
+                        <ol><li>Months 0–6: inventory cryptographic assets, owners, algorithms, and data lifetimes.</li><li>Months 6–18: test classical+ML-KEM hybrid paths with performance, failure, and rollback criteria.</li><li>Months 18–36: migrate PKI, code signing, HSM, and SaaS contracts under validated standards and interoperability conditions.</li></ol>
+                        <div class="lecture-note"><p><strong>Strategic Insight.</strong> Multiple models are useful not for majority voting but for revealing different omissions, assumptions, and operational hazards. Under uncertainty, agility, staged investment, and explicit stop/rollback rules are stronger than false precision.</p></div>
+                    </div>
+                </div>
+            </section>
+        </article><div id="site-footer"></div>
+    </div><script src="../../../common.js"></script>
+</body></html>
