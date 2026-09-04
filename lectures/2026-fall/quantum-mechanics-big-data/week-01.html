@@ -107,6 +107,59 @@
                         <p>스핀 1/2의 z축 기저를 |+z⟩ = (1, 0)<sup>T</sup>, |−z⟩ = (0, 1)<sup>T</sup>로 둔다. 이 두 켓 자체에 ℏ/2를 곱하지 않는다. ℏ/2는 스핀 연산자의 고윳값에 나타난다.</p>
                         <p>정규화된 한 큐비트의 순수상태는 전체 위상을 제외하면 단위 반지름의 <strong>Bloch 구면</strong> 위 한 점으로 나타낼 수 있다.</p>
                         <div class="stat-formula">|ψ⟩ = cos(θ/2)|+z⟩ + e<sup>iφ</sup>sin(θ/2)|−z⟩</div>
+                        <p>이 점의 위치를 원점에서 잇는 화살표를 <strong>Bloch 벡터 r</strong>이라고 한다. 여기서 r은 입자의 실제 위치를 뜻하지 않고, 한 큐비트의 <strong>양자 상태 방향</strong>을 나타내는 좌표다.</p>
+                        <div class="stat-formula">r = (sinθ cosφ, sinθ sinφ, cosθ) &nbsp;·&nbsp; |r| = 1</div>
+                        <figure class="stat-chart bloch-spatial" id="bloch-spatial-kr">
+                            <svg class="bloch-sphere-diagram" viewBox="0 0 560 410" role="img" aria-labelledby="bloch-title-kr bloch-desc-kr">
+                                <title id="bloch-title-kr">Bloch 구면의 세타와 파이</title>
+                                <desc id="bloch-desc-kr">삼차원 x, y, z축과 Bloch 벡터 r, xy평면 투영, z축에서 잰 세타와 x축에서 투영 방향까지 잰 파이를 나타낸 그림</desc>
+                                <defs>
+                                    <marker id="bloch-arrow-kr" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+                                        <path d="M 0 0 L 10 5 L 0 10 z" fill="#8B4513"></path>
+                                    </marker>
+                                    <marker id="axis-arrow-kr" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="5" markerHeight="5" orient="auto-start-reverse">
+                                        <path d="M 0 0 L 10 5 L 0 10 z" fill="currentColor"></path>
+                                    </marker>
+                                </defs>
+                                <circle class="sphere-fill" cx="280" cy="210" r="160"></circle>
+                                <circle class="sphere-outline" cx="280" cy="210" r="160"></circle>
+                                <ellipse class="sphere-grid grid-line" cx="280" cy="210" rx="160" ry="58"></ellipse>
+                                <ellipse class="sphere-grid grid-line" cx="280" cy="210" rx="58" ry="160"></ellipse>
+                                <line class="axis-line" x1="100" y1="210" x2="470" y2="210" marker-end="url(#axis-arrow-kr)"></line>
+                                <line class="axis-line" x1="395" y1="308" x2="154" y2="103" marker-end="url(#axis-arrow-kr)"></line>
+                                <line class="axis-line" x1="280" y1="388" x2="280" y2="30" marker-end="url(#axis-arrow-kr)"></line>
+                                <line class="projection-line" x1="280" y1="210" x2="330" y2="155"></line>
+                                <line class="projection-line" x1="330" y1="80" x2="330" y2="155"></line>
+                                <line class="state-vector" x1="280" y1="210" x2="330" y2="80" marker-end="url(#bloch-arrow-kr)"></line>
+                                <circle class="state-point" cx="330" cy="80" r="5"></circle>
+                                <path class="angle-arc" d="M 280 154 A 56 56 0 0 1 300 158"></path>
+                                <path class="angle-arc" d="M 326 210 A 46 46 0 0 0 311 176"></path>
+                                <text x="480" y="215">x</text>
+                                <text x="143" y="96">y</text>
+                                <text x="288" y="25">z</text>
+                                <text class="accent-label" x="342" y="78">r</text>
+                                <text class="accent-label" x="294" y="145">θ</text>
+                                <text class="accent-label" x="330" y="185">φ</text>
+                                <text x="338" y="151">xy 투영</text>
+                                <text x="288" y="220">O</text>
+                            </svg>
+                            <figcaption class="stat-chart-caption">먼저 +z축에서 r까지 내려온 각이 θ다. 이어서 r을 xy평면에 투영하고, +x축에서 그 투영 방향까지 돌아간 각이 φ다.</figcaption>
+                        </figure>
+                        <ol>
+                            <li><strong>θ 정하기:</strong> +z축에서 아래로 θ만큼 기울인다. θ = 0이면 북극 |+z⟩, θ = π이면 남극 |−z⟩다.</li>
+                            <li><strong>φ 정하기:</strong> r을 xy평면에 투영한 뒤, +x축에서 그 투영선을 향해 φ만큼 회전한다. φ가 바뀌면 z 높이는 그대로이고 구면 둘레 방향만 바뀐다.</li>
+                            <li><strong>점 찍기:</strong> 두 각이 만나는 단위구면의 점이 r이며, 좌표는 (sinθ cosφ, sinθ sinφ, cosθ)다.</li>
+                        </ol>
+                        <div class="bloch-spatial-table">
+                        <table class="stat-table">
+                            <tr><th>각도</th><th>Bloch 구면의 위치</th><th>상태</th></tr>
+                            <tr><td>θ = 0</td><td>북극, +z</td><td>|+z⟩</td></tr>
+                            <tr><td>θ = π</td><td>남극, −z</td><td>|−z⟩</td></tr>
+                            <tr><td>θ = π/2, φ = 0</td><td>적도, +x</td><td>(|+z⟩ + |−z⟩)/√2 = |+x⟩</td></tr>
+                            <tr><td>θ = π/2, φ = π/2</td><td>적도, +y</td><td>(|+z⟩ + i|−z⟩)/√2 = |+y⟩</td></tr>
+                        </table>
+                        </div>
+                        <div class="lecture-note"><p><strong>수치 예제 — θ = 60°, φ = 45°.</strong> r = (√6/4, √6/4, 1/2) ≈ (0.612, 0.612, 0.500)이고, |ψ⟩ = (√3/2)|+z⟩ + e<sup>iπ/4</sup>(1/2)|−z⟩다. 따라서 z축 측정 확률은 P(+z) = cos<sup>2</sup>30° = 75%, P(−z) = sin<sup>2</sup>30° = 25%다. φ는 xy방향과 상대위상을 바꾸지만 이 z축 확률에는 영향을 주지 않는다.</p></div>
                         <ul>
                             <li>θ는 +z축에서 잰 극각, φ는 xy평면에서 잰 방위각이다. 구좌표의 r, θ, φ 중 순수상태의 반지름 r은 1이다.</li>
                             <li>수업 메모의 cos(θ/2)|+z⟩ + sin(θ/2)|−z⟩는 φ = 0인 특별한 경우다.</li>
@@ -213,6 +266,59 @@
                         <p>Choose the z-spin basis |+z⟩ = (1, 0)<sup>T</sup> and |−z⟩ = (0, 1)<sup>T</sup>. The kets themselves do not carry a factor of ℏ/2; that factor appears in the eigenvalues of the spin operator.</p>
                         <p>Up to an unobservable global phase, every normalized pure one-qubit state corresponds to a point on the unit-radius <strong>Bloch sphere</strong>.</p>
                         <div class="stat-formula">|ψ⟩ = cos(θ/2)|+z⟩ + e<sup>iφ</sup>sin(θ/2)|−z⟩</div>
+                        <p>The arrow from the origin to that point is the <strong>Bloch vector r</strong>. Here r is not the particle's physical position; it is a coordinate for the <strong>direction of a one-qubit quantum state</strong>.</p>
+                        <div class="stat-formula">r = (sinθ cosφ, sinθ sinφ, cosθ) &nbsp;·&nbsp; |r| = 1</div>
+                        <figure class="stat-chart bloch-spatial" id="bloch-spatial-en">
+                            <svg class="bloch-sphere-diagram" viewBox="0 0 560 410" role="img" aria-labelledby="bloch-title-en bloch-desc-en">
+                                <title id="bloch-title-en">Theta and phi on the Bloch sphere</title>
+                                <desc id="bloch-desc-en">Three-dimensional x, y, and z axes with Bloch vector r, its projection on the xy-plane, theta from the z-axis, and phi from the x-axis to the projected direction</desc>
+                                <defs>
+                                    <marker id="bloch-arrow-en" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+                                        <path d="M 0 0 L 10 5 L 0 10 z" fill="#8B4513"></path>
+                                    </marker>
+                                    <marker id="axis-arrow-en" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="5" markerHeight="5" orient="auto-start-reverse">
+                                        <path d="M 0 0 L 10 5 L 0 10 z" fill="currentColor"></path>
+                                    </marker>
+                                </defs>
+                                <circle class="sphere-fill" cx="280" cy="210" r="160"></circle>
+                                <circle class="sphere-outline" cx="280" cy="210" r="160"></circle>
+                                <ellipse class="sphere-grid grid-line" cx="280" cy="210" rx="160" ry="58"></ellipse>
+                                <ellipse class="sphere-grid grid-line" cx="280" cy="210" rx="58" ry="160"></ellipse>
+                                <line class="axis-line" x1="100" y1="210" x2="470" y2="210" marker-end="url(#axis-arrow-en)"></line>
+                                <line class="axis-line" x1="395" y1="308" x2="154" y2="103" marker-end="url(#axis-arrow-en)"></line>
+                                <line class="axis-line" x1="280" y1="388" x2="280" y2="30" marker-end="url(#axis-arrow-en)"></line>
+                                <line class="projection-line" x1="280" y1="210" x2="330" y2="155"></line>
+                                <line class="projection-line" x1="330" y1="80" x2="330" y2="155"></line>
+                                <line class="state-vector" x1="280" y1="210" x2="330" y2="80" marker-end="url(#bloch-arrow-en)"></line>
+                                <circle class="state-point" cx="330" cy="80" r="5"></circle>
+                                <path class="angle-arc" d="M 280 154 A 56 56 0 0 1 300 158"></path>
+                                <path class="angle-arc" d="M 326 210 A 46 46 0 0 0 311 176"></path>
+                                <text x="480" y="215">x</text>
+                                <text x="143" y="96">y</text>
+                                <text x="288" y="25">z</text>
+                                <text class="accent-label" x="342" y="78">r</text>
+                                <text class="accent-label" x="294" y="145">θ</text>
+                                <text class="accent-label" x="330" y="185">φ</text>
+                                <text x="338" y="151">xy projection</text>
+                                <text x="288" y="220">O</text>
+                            </svg>
+                            <figcaption class="stat-chart-caption">First move away from +z by the polar angle θ. Then project r onto the xy-plane and rotate from +x to that projected direction by the azimuth φ.</figcaption>
+                        </figure>
+                        <ol>
+                            <li><strong>Choose θ:</strong> tilt down from +z by θ. θ = 0 is the north pole |+z⟩, while θ = π is the south pole |−z⟩.</li>
+                            <li><strong>Choose φ:</strong> project r onto the xy-plane, then rotate from +x toward that projection by φ. Changing φ preserves the z height and moves the point around the sphere.</li>
+                            <li><strong>Mark the point:</strong> the intersection of those two angles on the unit sphere is r, with coordinates (sinθ cosφ, sinθ sinφ, cosθ).</li>
+                        </ol>
+                        <div class="bloch-spatial-table">
+                        <table class="stat-table">
+                            <tr><th>Angles</th><th>Location on the Bloch sphere</th><th>State</th></tr>
+                            <tr><td>θ = 0</td><td>north pole, +z</td><td>|+z⟩</td></tr>
+                            <tr><td>θ = π</td><td>south pole, −z</td><td>|−z⟩</td></tr>
+                            <tr><td>θ = π/2, φ = 0</td><td>equator, +x</td><td>(|+z⟩ + |−z⟩)/√2 = |+x⟩</td></tr>
+                            <tr><td>θ = π/2, φ = π/2</td><td>equator, +y</td><td>(|+z⟩ + i|−z⟩)/√2 = |+y⟩</td></tr>
+                        </table>
+                        </div>
+                        <div class="lecture-note"><p><strong>Worked example — θ = 60°, φ = 45°.</strong> r = (√6/4, √6/4, 1/2) ≈ (0.612, 0.612, 0.500), and |ψ⟩ = (√3/2)|+z⟩ + e<sup>iπ/4</sup>(1/2)|−z⟩. Thus a z measurement gives P(+z) = cos<sup>2</sup>30° = 75% and P(−z) = sin<sup>2</sup>30° = 25%. The angle φ changes the xy direction and relative phase but not these z-axis probabilities.</p></div>
                         <ul>
                             <li>θ is the polar angle from +z, and φ is the azimuth in the xy-plane. Of the spherical coordinates r, θ, and φ, the pure-state radius r is fixed at 1.</li>
                             <li>The class memo's cos(θ/2)|+z⟩ + sin(θ/2)|−z⟩ is the special case φ = 0.</li>

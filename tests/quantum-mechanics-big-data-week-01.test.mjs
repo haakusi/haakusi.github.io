@@ -9,6 +9,7 @@ const courseRoot = resolve(repoRoot, 'lectures/2026-fall/quantum-mechanics-big-d
 const indexPath = resolve(courseRoot, 'index.html');
 const weekPath = resolve(courseRoot, 'week-01.html');
 const legacyPath = resolve(repoRoot, 'lectures/2026-fall/quantum-mechanics-big-data.html');
+const lectureCssPath = resolve(repoRoot, 'assets/css/lectures.css');
 
 for (const path of [indexPath, weekPath, legacyPath]) {
   assert.ok(existsSync(path), `expected course surface to exist: ${path}`);
@@ -18,6 +19,7 @@ const catalog = readFileSync(catalogPath, 'utf8');
 const index = readFileSync(indexPath, 'utf8');
 const week = readFileSync(weekPath, 'utf8');
 const legacy = readFileSync(legacyPath, 'utf8');
+const lectureCss = readFileSync(lectureCssPath, 'utf8');
 
 assert.match(catalog, /<section class="semester-section" id="2026-fall">/);
 assert.match(catalog, /data-en="2026 Fall" data-kr="2026년 가을학기"/);
@@ -114,6 +116,29 @@ assert.match(week, /S<sub>z<\/sub>\|\+z⟩ = \+ℏ\/2 \|\+z⟩/);
 assert.match(week, /S<sub>z<\/sub>\|−z⟩ = −ℏ\/2 \|−z⟩/);
 assert.match(week, /1\/√2 \(1, 0\)<sup>T<\/sup>.*norm.*1\/2/s);
 assert.match(week, /1\/√2 \(1, 1\)<sup>T<\/sup>.*norm.*1/s);
+
+assert.match(koreanBlock, /Bloch 벡터.*입자의 실제 위치/s);
+assert.match(englishBlock, /Bloch vector.*physical position/s);
+for (const block of [koreanBlock, englishBlock]) {
+  assert.match(block, /r = \(sinθ cosφ, sinθ sinφ, cosθ\)/);
+  assert.match(block, /θ = 60°.*φ = 45°/s);
+  assert.match(block, /√6\/4.*√6\/4.*1\/2/s);
+  assert.match(block, /75%.*25%/s);
+}
+
+const blochDiagrams = week.match(/<svg class="bloch-sphere-diagram"[\s\S]*?<\/svg>/g) ?? [];
+assert.equal(blochDiagrams.length, 2, 'both language blocks should include a Bloch-sphere spatial diagram');
+for (const diagram of blochDiagrams) {
+  assert.match(diagram, /role="img"/);
+  assert.match(diagram, /aria-labelledby="[^"]+"/);
+  for (const label of ['x', 'y', 'z', 'r', 'θ', 'φ']) {
+    assert.ok(diagram.includes(`>${label}<`), `Bloch diagram should label ${label}`);
+  }
+}
+assert.equal((week.match(/class="stat-chart bloch-spatial"/g) ?? []).length, 2);
+assert.equal((week.match(/class="bloch-spatial-table"/g) ?? []).length, 2);
+assert.match(lectureCss, /\.bloch-spatial\s*{[\s\S]*?100vw/);
+assert.match(lectureCss, /\.bloch-spatial-table\s*{[\s\S]*?overflow-x:\s*auto/);
 
 const pairedNodes = week.match(/data-en="[^"]+"\s+data-kr="[^"]+"/g) ?? [];
 assert.ok(pairedNodes.length >= 7, 'Week 1 should expose bilingual structural labels');
