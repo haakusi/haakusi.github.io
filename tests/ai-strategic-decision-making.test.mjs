@@ -30,6 +30,14 @@ assert.ok(quantumCardPosition >= 0, '2026 Fall should keep the quantum mechanics
 assert.ok(aiCardPosition < quantumCardPosition, 'AI strategic decision-making should be the first 2026 Fall course');
 
 assert.match(index, /data-en="AI-Based Strategic Decision-Making" data-kr="AI기반전략적의사결정"/);
+assert.ok(
+  !index.includes('이 페이지는 14개 교안과 주차별 실습을 대조하여 다시 쓴 개인 학습 노트입니다.'),
+  'course home should not show the Korean personal-notes disclaimer',
+);
+assert.ok(
+  !index.includes('These pages are personal study notes synthesized from fourteen course chapters'),
+  'course home should not show the English personal-notes disclaimer',
+);
 for (let week = 1; week <= 6; week += 1) {
   const padded = String(week).padStart(2, '0');
   assert.match(index, new RegExp(`href="week-${padded}\\.html"`));
