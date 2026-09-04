@@ -1,0 +1,262 @@
+<!DOCTYPE html>
+<html data-theme="dark" data-lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>The World of Quantum Mechanics and Big Data - Week 1 - Sewon Park</title>
+    <link rel="stylesheet" type="text/css" href="../../../style.css">
+    <link rel="stylesheet" type="text/css" href="../../../assets/css/lectures.css">
+</head>
+<body>
+    <button class="theme-toggle" onclick="toggleTheme()" aria-label="Toggle dark mode"></button>
+    <button class="lang-toggle" onclick="toggleLanguage()" aria-label="Toggle language">EN</button>
+
+    <div class="container">
+        <div id="site-header"></div>
+        <div id="site-nav"></div>
+
+        <article class="course-page">
+            <div class="course-header">
+                <h1 data-en="The World of Quantum Mechanics and Big Data" data-kr="양자역학의세계와빅데이터">The World of Quantum Mechanics and Big Data</h1>
+                <p class="course-meta" data-en="2026 Fall | Weekly learning notes" data-kr="2026 가을학기 | 주차별 학습 노트">2026 Fall | Weekly learning notes</p>
+            </div>
+
+            <div class="course-nav">
+                <a href="../../../lectures.html" class="back-to-lectures" data-en="Back to Lectures" data-kr="강의 목록으로">Back to Lectures</a>
+                <span class="nav-separator">/</span>
+                <a href="./index.html" class="back-to-course" data-en="Course Home" data-kr="과목 홈">Course Home</a>
+            </div>
+
+            <div class="week-nav">
+                <span data-en="Weeks:" data-kr="주차:">Weeks:</span>
+                <a href="week-01.html" class="week-link current">W1</a>
+            </div>
+
+            <section class="week-section" id="week-01">
+                <h2 data-en="Week 1" data-kr="1주차">Week 1</h2>
+                <p class="week-date" data-en="2026 Fall · From classical intuition to quantum states" data-kr="2026 가을학기 · 고전적 직관에서 양자 상태로">2026 Fall · From classical intuition to quantum states</p>
+
+                <div class="week-content">
+                    <span class="assignment-chip" data-en="Quantization · State · Measurement" data-kr="양자화 · 상태 · 측정">Quantization · State · Measurement</span>
+
+                    <div class="lang-kr" hidden>
+                        <p class="week-references"><em>정리 기준: 1주차 수업 메모 전체 · 메모의 구어체와 임시 표기를 표준 기호로 다듬고, 계산상 혼동이 생기는 부분은 보정 설명을 덧붙였다.</em></p>
+                        <p>첫 주의 목표는 공식을 한꺼번에 외우는 것이 아니라 <strong>고전역학의 결정론적 궤적에서 양자역학의 상태·확률·측정 언어로 사고방식을 전환하는 다리</strong>를 놓는 것이다. 이를 위해 에너지 양자화, 테일러 전개, 복소수 벡터공간, 스핀, 연산자를 한 흐름으로 연결한다.</p>
+
+                        <h3>1. 고전역학에서 양자역학으로</h3>
+                        <p>고전역학과 양자역학 사이의 개념적 빈틈이 이 과목에서 가장 어려운 지점이다. 열·통계물리, 전자기학, 특수상대성이론에서 얻은 직관과 계산법은 사라지는 것이 아니라 2학기 양자 문제를 해석하는 바탕으로 다시 쓰인다.</p>
+                        <table class="stat-table">
+                            <tr><th>수업 메모</th><th>정리와 보정</th></tr>
+                            <tr><td>전자기장의 세기와 빛의 속도</td><td>진공의 평면 전자기파에서는 전기장 진폭과 자기장 진폭이 <strong>E<sub>0</sub>/B<sub>0</sub> = c</strong>, c = 3.00 × 10<sup>8</sup> m/s를 만족한다. E와 B는 SI 단위가 다르므로 단순히 “전기장이 c배 빠르다”는 뜻은 아니다.</td></tr>
+                            <tr><td>Stark effect</td><td>외부 전기장 때문에 원자·분자의 에너지 준위가 갈라지거나 이동하는 현상이다. 수업 메모에는 <strong>9/21–9/23, 시간 자율</strong>로 관련 학습 일정이 표시되어 있다.</td></tr>
+                            <tr><td>양자 얽힘</td><td>복합계의 상태를 각 부분의 독립 상태 곱으로 분해할 수 없는 상관 구조다. 첫 주에는 이후 학습할 핵심 주제로 예고되었다.</td></tr>
+                        </table>
+                        <div class="lecture-note"><p><strong>학습 관점.</strong> 고전 공식이 틀려서 양자역학으로 교체되는 것이 아니다. 적용 규모와 관측 조건이 달라지면서, 궤적 대신 상태벡터와 측정 확률이 중심 언어가 된다.</p></div>
+
+                        <h3>2. Planck 상수와 에너지 양자화</h3>
+                        <p>흑체복사 문제에서 Planck는 에너지 교환이 임의의 연속값이 아니라 진동수에 비례하는 묶음으로 일어난다고 두었다. 빛 한 양자, 즉 광자 하나의 에너지는 진동수 f와 연결된다.</p>
+                        <div class="stat-formula">E = hf = ℏω &nbsp;·&nbsp; f: 1초당 진동 횟수 &nbsp;·&nbsp; ω = 2πf</div>
+                        <table class="stat-table">
+                            <tr><th>상수</th><th>값</th><th>주요 쓰임</th></tr>
+                            <tr><td>Planck 상수 h</td><td>6.62607015 × 10<sup>−34</sup> J·s</td><td>E = hf처럼 보통 진동수 f로 표현한 양자화</td></tr>
+                            <tr><td>reduced Planck 상수 ℏ = h/2π</td><td>1.054571817 × 10<sup>−34</sup> J·s</td><td>E = ℏω, 각운동량, 스핀, 불확정성 관계</td></tr>
+                        </table>
+                        <p>수업 메모의 “h는 직선, ℏ는 회전”이라는 구분은 기억을 위한 비유로 이해할 수 있다. 더 정확히는 h는 보통 진동수 f와, ℏ는 각진동수 ω 및 각운동량과 자주 짝을 이룬다. 두 상수의 차이는 2π이며 둘의 물리 단위는 모두 작용(action)의 단위 J·s이다.</p>
+
+                        <h3>3. 임의의 함수를 다항식으로 읽는 테일러 전개</h3>
+                        <p>다항식은 a<sub>0</sub> + a<sub>1</sub>x + a<sub>2</sub>x<sup>2</sup> + ···처럼 차수가 다른 항의 합이다. 충분히 여러 번 미분 가능한 함수 f(x)는 기준점 a 근처에서 유한한 (x − a)의 다항식과 <strong>잔여항</strong>으로 근사할 수 있다.</p>
+                        <div class="stat-formula">f(x) = a<sub>0</sub> + a<sub>1</sub>(x − a) + a<sub>2</sub>(x − a)<sup>2</sup> + a<sub>3</sub>(x − a)<sup>3</sup> + ···</div>
+                        <p>x = a를 대입하고 차례로 미분하면 계수가 드러난다: f(a) = a<sub>0</sub>, f′(a) = a<sub>1</sub>, f″(a) = 2!a<sub>2</sub>, f‴(a) = 3!a<sub>3</sub>. 여기서 n! = 1 × 2 × ··· × n이며 <strong>0! = 1</strong>로 정의한다.</p>
+                        <div class="stat-formula">f(x) = ∑<sub>n=0</sub><sup>N</sup> [f<sup>(n)</sup>(a)/n!] (x − a)<sup>n</sup> + R<sub>N</sub>(x)</div>
+                        <p>f가 a 주변에서 <strong>해석함수</strong>이고 N → ∞일 때 잔여항 R<sub>N</sub>(x)이 0으로 수렴하는 범위에서만 무한 Taylor 급수 f(x) = ∑<sub>n=0</sub><sup>∞</sup> f<sup>(n)</sup>(a)(x − a)<sup>n</sup>/n!와 함수가 일치한다.</p>
+                        <ul>
+                            <li>a = 0이면 f(x) = ∑ f<sup>(n)</sup>(0)x<sup>n</sup>/n!인 Maclaurin 전개가 된다.</li>
+                            <li>d(x − a)<sup>n</sup>/dx = n(x − a)<sup>n−1</sup>은 계수 유도의 기본 미분식이다.</li>
+                            <li>미분은 순간 변화율을, 적분은 미소량의 누적을 구한다. 예를 들어 dx/dt = v, d<sup>2</sup>x/dt<sup>2</sup> = dv/dt = acceleration이다.</li>
+                            <li>양자역학에서는 지수함수, 삼각함수, 시간발전 연산자 등을 다루기 때문에 테일러 전개를 반복해서 사용한다.</li>
+                        </ul>
+
+                        <h3>4. 고유 스핀과 브라-켓 표기</h3>
+                        <p>스핀은 작은 공이 실제로 자전한다는 고전적 그림이 아니라, 전하처럼 입자가 지닌 <strong>고유(intrinsic) 양자 자유도</strong>다. 양자 상태는 Dirac의 브라-켓 표기로 |ψ⟩처럼 쓰며 이를 켓(ket) 또는 상태벡터·파동함수라고 부른다.</p>
+                        <div class="stat-comparison">
+                            <div class="stat-comparison-item"><h4>Ket |ψ⟩</h4><p>복소수 성분을 가진 열벡터로 상태를 표현한다.</p></div>
+                            <div class="stat-comparison-item"><h4>Bra ⟨ψ|</h4><p>켓을 복소켤레한 뒤 전치한 행벡터, 즉 |ψ⟩<sup>†</sup>이다.</p></div>
+                        </div>
+                        <p>복소수 z = a + ib의 복소켤레는 z* = a − ib다. 따라서 |ψ⟩의 성분에 i가 있으면 ⟨ψ|로 바꿀 때 i의 부호를 뒤집고 열과 행을 바꾼다. 예를 들어 (1 − 3i)(1 + 3i) = 10처럼 켤레와의 곱은 실수인 |z|<sup>2</sup>을 만든다. 측정 결과와 확률이 실수가 되도록 하는 데 이 구조가 핵심이다.</p>
+
+                        <h3>5. 내적과 외적, 직교정규성, 완전성 관계</h3>
+                        <p>벡터는 크기와 방향을, 스칼라는 크기만 가진다. 두 벡터의 내적은 스칼라를, 외적은 두 벡터에 수직인 방향을 가진 벡터를 만든다.</p>
+                        <div class="stat-formula">a · b = |a||b|cosθ &nbsp;&nbsp;·&nbsp;&nbsp; |a × b| = |a||b|sinθ</div>
+                        <p>직교좌표의 단위벡터 î, ĵ, k̂는 각각 길이가 1이다. 같은 축끼리의 내적은 1이고 서로 다른 축끼리는 0이다. sin과 cos는 0, π/2, π, 3π/2, 2π에서 −1과 1 사이를 주기적으로 움직이며 벡터의 투영과 각도를 연결한다.</p>
+                        <table class="stat-table">
+                            <tr><th>공간의 조건</th><th>의미</th><th>표준식</th></tr>
+                            <tr><td>직교정규성</td><td>서로 다른 기저는 직교하고 각 기저의 길이는 1</td><td>⟨i|j⟩ = δ<sub>ij</sub></td></tr>
+                            <tr><td>정규화</td><td>상태 전체의 확률 합이 1</td><td>⟨ψ|ψ⟩ = 1</td></tr>
+                            <tr><td>완전성 관계</td><td>기저들이 상태공간 전체를 펼침</td><td>∑<sub>i</sub>|i⟩⟨i| = I</td></tr>
+                        </table>
+                        <p>“같으면 1, 다르면 0”은 모든 벡터에 자동 적용되는 규칙이 아니라 <strong>직교정규 기저</strong>에서 성립한다. 이 조건과 완전성을 함께 확인해야 어떤 상태도 기저의 선형결합으로 표현할 수 있다.</p>
+
+                        <h3>6. 불확정성 원리와 Born 규칙</h3>
+                        <p>원자의 전형적 길이 척도는 약 10<sup>−10</sup> m지만, 양자계가 확률적으로 기술되는 이유를 단순히 “너무 작아서 보이지 않기 때문”으로 설명할 수는 없다. 상태가 위치와 운동량에 대해 허용하는 분산에는 근본적인 하한이 있다.</p>
+                        <div class="stat-formula">∆x∆p ≥ ℏ/2 &nbsp;·&nbsp; p = mv는 비상대론적 운동량 관계</div>
+                        <p>불확정성 원리는 측정 기구의 부족이 아니라 위치와 운동량 연산자의 비가환성에서 나온다. 파동성과 입자성은 서로 배타적인 두 물체가 아니라 같은 양자 상태가 실험 배치에 따라 드러내는 상보적 양상이다.</p>
+                        <p>상태 |ψ⟩에서 기저 상태 |a⟩를 얻을 확률 진폭은 ⟨a|ψ⟩이고, 실제 확률은 <strong>Born 규칙</strong>으로 구한다.</p>
+                        <div class="stat-formula">P(a) = |⟨a|ψ⟩|<sup>2</sup> &nbsp;·&nbsp; |1 + 2i| = √5</div>
+
+                        <h3>7. 중첩과 Bloch 구면</h3>
+                        <p>스핀 1/2의 z축 기저를 |+z⟩ = (1, 0)<sup>T</sup>, |−z⟩ = (0, 1)<sup>T</sup>로 둔다. 이 두 켓 자체에 ℏ/2를 곱하지 않는다. ℏ/2는 스핀 연산자의 고윳값에 나타난다.</p>
+                        <p>정규화된 한 큐비트의 순수상태는 전체 위상을 제외하면 단위 반지름의 <strong>Bloch 구면</strong> 위 한 점으로 나타낼 수 있다.</p>
+                        <div class="stat-formula">|ψ⟩ = cos(θ/2)|+z⟩ + e<sup>iφ</sup>sin(θ/2)|−z⟩</div>
+                        <ul>
+                            <li>θ는 +z축에서 잰 극각, φ는 xy평면에서 잰 방위각이다. 구좌표의 r, θ, φ 중 순수상태의 반지름 r은 1이다.</li>
+                            <li>수업 메모의 cos(θ/2)|+z⟩ + sin(θ/2)|−z⟩는 φ = 0인 특별한 경우다.</li>
+                            <li>두 기저가 더해졌다는 것은 중첩(superposition)이다. 얽힘(entanglement)은 두 개 이상의 부분계를 곱상태로 분해할 수 없을 때 쓰는 더 강한 개념이므로 둘을 구분한다.</li>
+                        </ul>
+
+                        <h3>8. Pauli 행렬, 입자 분류, 연산자</h3>
+                        <p>양자역학에서 물리량을 계산하거나 측정한다는 것은 상태벡터에 해당 <strong>연산자(operator)</strong>를 작용시키는 것이다. 미분도 연산자이며, 스핀 1/2의 각 축 성분은 Pauli 행렬로 표현한다.</p>
+                        <table class="stat-table">
+                            <tr><th>Pauli 행렬</th><th>행렬</th><th>스핀 연산자</th></tr>
+                            <tr><td>σ<sub>x</sub></td><td>[[0, 1], [1, 0]]</td><td>S<sub>x</sub> = (ℏ/2)σ<sub>x</sub></td></tr>
+                            <tr><td>σ<sub>y</sub></td><td>[[0, −i], [i, 0]]</td><td>S<sub>y</sub> = (ℏ/2)σ<sub>y</sub></td></tr>
+                            <tr><td>σ<sub>z</sub></td><td>[[1, 0], [0, −1]]</td><td>S<sub>z</sub> = (ℏ/2)σ<sub>z</sub></td></tr>
+                        </table>
+                        <p>입자는 스핀 양자수에 따라 크게 <strong>페르미온</strong>과 <strong>보손</strong>으로 구분한다. 페르미온은 1/2, 3/2, … 같은 반정수 스핀을, 보손은 0, 1, 2, … 같은 정수 스핀을 가진다. 전자는 스핀 1/2 페르미온이며, 이 때문에 전자의 스핀 연산자에 ℏ/2가 나타난다. 행렬을 상태에 작용시켜 얻는 배수가 고윳값(eigenvalue), 그 상태가 고유상태(eigenstate)다.</p>
+
+                        <h3>9. z축 스핀 측정과 정규화 점검</h3>
+                        <div class="stat-formula">S<sub>z</sub>|+z⟩ = +ℏ/2 |+z⟩ &nbsp;&nbsp;·&nbsp;&nbsp; S<sub>z</sub>|−z⟩ = −ℏ/2 |−z⟩</div>
+                        <p>따라서 z축 스핀을 측정하면 가능한 값은 +ℏ/2와 −ℏ/2다. 일반 상태 |ψ⟩에서 두 결과의 확률은 각각 |⟨+z|ψ⟩|<sup>2</sup>과 |⟨−z|ψ⟩|<sup>2</sup>이며 정규화된 상태에서는 합이 1이다.</p>
+                        <div class="lecture-note"><p><strong>정규화 보정.</strong> 메모에 적힌 1/√2 (1, 0)<sup>T</sup>의 노름 제곱은 1/2이므로 정규화된 상태가 아니다. 같은 확률의 중첩을 뜻했다면 1/√2 (1, 1)<sup>T</sup>로 써야 하며, 이 벡터의 노름 제곱은 1이다. 켓에서 브라로 바꿀 때는 단순 전치가 아니라 복소켤레 전치를 사용한다.</p></div>
+
+                        <h3>핵심 정리</h3>
+                        <ul>
+                            <li>h와 ℏ는 에너지 양자화, 각진동수, 각운동량을 잇는 기본 상수이며 단위와 2π 관계를 함께 기억한다.</li>
+                            <li>테일러 전개는 복잡한 함수를 기준점 근처의 다항식으로 바꾸는 반복 도구다.</li>
+                            <li>양자 상태는 복소수 켓, 브라는 그 켤레전치이며 내적과 Born 규칙이 측정 확률을 만든다.</li>
+                            <li>스핀 1/2 상태는 Bloch 구면 위 점으로, 측정량은 Pauli 행렬을 포함한 연산자로 표현한다.</li>
+                        </ul>
+                        <h3>복습 순서</h3>
+                        <ol>
+                            <li>h, ℏ, E = hf = ℏω를 단위까지 쓰고 차이를 말한다.</li>
+                            <li>f(x)를 기준점 a에서 세 번 미분해 3차 테일러 다항식의 계수를 직접 유도한다.</li>
+                            <li>복소 열벡터 하나를 정하고 브라, 노름, 정규화된 상태를 계산한다.</li>
+                            <li>Bloch 구면의 θ와 φ를 바꿔 |+z⟩, |−z⟩의 측정 확률이 어떻게 달라지는지 확인한다.</li>
+                            <li>세 Pauli 행렬을 |+z⟩과 |−z⟩에 곱해 고윳값과 고유상태를 구분한다.</li>
+                        </ol>
+                    </div>
+
+                    <div class="lang-en">
+                        <p class="week-references"><em>Basis: complete Week 1 class memo · Informal shorthand is converted to standard notation, with correction notes where the scratch calculations could mislead.</em></p>
+                        <p>The first week builds a bridge from the deterministic trajectories of classical mechanics to the <strong>quantum language of states, probabilities, and measurements</strong>. Energy quantization, Taylor expansion, complex vector spaces, spin, and operators are treated as parts of one connected framework.</p>
+
+                        <h3>1. From Classical Mechanics to Quantum Mechanics</h3>
+                        <p>The conceptual gap between classical and quantum mechanics is one of the course's main challenges. Intuition from thermal and statistical physics, electromagnetism, and special relativity remains useful; it becomes prior knowledge for interpreting the quantum problems studied in the second semester.</p>
+                        <table class="stat-table">
+                            <tr><th>Class memo</th><th>Organized interpretation</th></tr>
+                            <tr><td>Electric and magnetic field strengths</td><td>For a plane electromagnetic wave in vacuum, the amplitudes obey <strong>E<sub>0</sub>/B<sub>0</sub> = c</strong>, where c = 3.00 × 10<sup>8</sup> m/s. Because E and B use different SI units, this does not mean that the electric field is simply “c times faster.”</td></tr>
+                            <tr><td>Stark effect</td><td>An external electric field shifts or splits atomic or molecular energy levels. The class memo marks <strong>9/21–9/23, flexible time</strong> for the related study activity.</td></tr>
+                            <tr><td>Quantum entanglement</td><td>A correlation structure in which a composite state cannot be factored into independent states of its parts. It was previewed as an important later topic.</td></tr>
+                        </table>
+                        <div class="lecture-note"><p><strong>Learning lens.</strong> Quantum theory does not replace classical equations merely because the latter are wrong. At different scales and under different measurement conditions, state vectors and outcome probabilities become the more useful language.</p></div>
+
+                        <h3>2. Planck's Constant and Quantized Energy</h3>
+                        <p>In resolving blackbody radiation, Planck modeled energy exchange as occurring in packets proportional to frequency rather than in arbitrary continuous amounts. The energy of one light quantum—a photon—is tied to its frequency f.</p>
+                        <div class="stat-formula">E = hf = ℏω &nbsp;·&nbsp; f: cycles per second &nbsp;·&nbsp; ω = 2πf</div>
+                        <table class="stat-table">
+                            <tr><th>Constant</th><th>Value</th><th>Typical role</th></tr>
+                            <tr><td>Planck constant h</td><td>6.62607015 × 10<sup>−34</sup> J·s</td><td>Quantization written with ordinary frequency f, as in E = hf</td></tr>
+                            <tr><td>reduced Planck constant ℏ = h/2π</td><td>1.054571817 × 10<sup>−34</sup> J·s</td><td>E = ℏω, angular momentum, spin, and uncertainty relations</td></tr>
+                        </table>
+                        <p>The memo's “h for straight motion, ℏ for rotation” is best treated as a mnemonic. More precisely, h commonly accompanies ordinary frequency f, while ℏ accompanies angular frequency ω and angular momentum. Both have the unit of action, J·s, and differ by 2π.</p>
+
+                        <h3>3. Taylor Expansion Turns a Function into a Polynomial</h3>
+                        <p>A polynomial is a sum such as a<sub>0</sub> + a<sub>1</sub>x + a<sub>2</sub>x<sup>2</sup> + ···. If f(x) has enough derivatives, it can be approximated near a by a finite polynomial in (x − a) plus a <strong>remainder</strong>.</p>
+                        <div class="stat-formula">f(x) = a<sub>0</sub> + a<sub>1</sub>(x − a) + a<sub>2</sub>(x − a)<sup>2</sup> + a<sub>3</sub>(x − a)<sup>3</sup> + ···</div>
+                        <p>Substituting x = a and differentiating repeatedly reveals the coefficients: f(a) = a<sub>0</sub>, f′(a) = a<sub>1</sub>, f″(a) = 2!a<sub>2</sub>, and f‴(a) = 3!a<sub>3</sub>. Here n! = 1 × 2 × ··· × n and <strong>0! = 1</strong>.</p>
+                        <div class="stat-formula">f(x) = ∑<sub>n=0</sub><sup>N</sup> [f<sup>(n)</sup>(a)/n!] (x − a)<sup>n</sup> + R<sub>N</sub>(x)</div>
+                        <p>The infinite Taylor series equals f only where f is <strong>analytic</strong> around a and the remainder R<sub>N</sub>(x) tends to zero as N → ∞: f(x) = ∑<sub>n=0</sub><sup>∞</sup> f<sup>(n)</sup>(a)(x − a)<sup>n</sup>/n!.</p>
+                        <ul>
+                            <li>Setting a = 0 gives the Maclaurin series f(x) = ∑ f<sup>(n)</sup>(0)x<sup>n</sup>/n!.</li>
+                            <li>The derivative d(x − a)<sup>n</sup>/dx = n(x − a)<sup>n−1</sup> drives the coefficient derivation.</li>
+                            <li>Differentiation measures instantaneous change; integration accumulates infinitesimal contributions. For motion, dx/dt = v and d<sup>2</sup>x/dt<sup>2</sup> = dv/dt = acceleration.</li>
+                            <li>Quantum mechanics repeatedly applies Taylor expansions to exponentials, trigonometric functions, and time-evolution operators.</li>
+                        </ul>
+
+                        <h3>4. Intrinsic Spin and Bra-ket Notation</h3>
+                        <p>Spin is not the classical rotation of a tiny sphere. Like electric charge, it is an <strong>intrinsic quantum degree of freedom</strong>. Dirac notation writes a quantum state as the ket |ψ⟩, which may also be described as a state vector or wavefunction.</p>
+                        <div class="stat-comparison">
+                            <div class="stat-comparison-item"><h4>Ket |ψ⟩</h4><p>A column vector with complex components representing a state.</p></div>
+                            <div class="stat-comparison-item"><h4>Bra ⟨ψ|</h4><p>The conjugate transpose row vector |ψ⟩<sup>†</sup>.</p></div>
+                        </div>
+                        <p>For z = a + ib, the complex conjugate is z* = a − ib. Converting a ket to a bra therefore reverses the sign of i and transposes the vector. The product (1 − 3i)(1 + 3i) = 10 illustrates how multiplying by a conjugate produces the real quantity |z|<sup>2</sup>. This structure is essential for real-valued observations and probabilities.</p>
+
+                        <h3>5. Dot and Cross Products, Orthonormality, and Completeness</h3>
+                        <p>A vector has magnitude and direction; a scalar has magnitude only. A dot product returns a scalar, while a cross product returns a vector perpendicular to both inputs.</p>
+                        <div class="stat-formula">a · b = |a||b|cosθ &nbsp;&nbsp;·&nbsp;&nbsp; |a × b| = |a||b|sinθ</div>
+                        <p>The Cartesian unit vectors î, ĵ, and k̂ have unit length. A basis vector dotted with itself gives 1, while distinct Cartesian basis vectors give 0. Sine and cosine cycle between −1 and 1 at 0, π/2, π, 3π/2, and 2π, tying angular coordinates to vector projections.</p>
+                        <table class="stat-table">
+                            <tr><th>Space condition</th><th>Meaning</th><th>Standard form</th></tr>
+                            <tr><td>Orthonormality</td><td>Different basis states are orthogonal and each has unit norm</td><td>⟨i|j⟩ = δ<sub>ij</sub></td></tr>
+                            <tr><td>Normalization</td><td>The total probability of the state is one</td><td>⟨ψ|ψ⟩ = 1</td></tr>
+                            <tr><td>Completeness relation</td><td>The basis spans the whole state space</td><td>∑<sub>i</sub>|i⟩⟨i| = I</td></tr>
+                        </table>
+                        <p>The rule “same gives 1, different gives 0” applies specifically to an <strong>orthonormal basis</strong>, not to arbitrary vectors. Together, orthonormality and completeness let every state be expressed as a linear combination of basis states.</p>
+
+                        <h3>6. The Uncertainty Principle and the Born Rule</h3>
+                        <p>A typical atomic length scale is around 10<sup>−10</sup> m, but quantum probability is not merely a consequence of objects being too small to see. A quantum state has a fundamental lower bound on the joint spread of position and momentum.</p>
+                        <div class="stat-formula">∆x∆p ≥ ℏ/2 &nbsp;·&nbsp; p = mv is the nonrelativistic momentum relation</div>
+                        <p>The uncertainty principle follows from the noncommuting position and momentum operators, not simply from inadequate instruments. Wave-like and particle-like behavior are complementary manifestations of the same state under different experimental arrangements.</p>
+                        <p>For a state |ψ⟩, the probability amplitude of obtaining basis outcome |a⟩ is ⟨a|ψ⟩. The <strong>Born rule</strong> turns that amplitude into a probability.</p>
+                        <div class="stat-formula">P(a) = |⟨a|ψ⟩|<sup>2</sup> &nbsp;·&nbsp; |1 + 2i| = √5</div>
+
+                        <h3>7. Superposition and the Bloch Sphere</h3>
+                        <p>Choose the z-spin basis |+z⟩ = (1, 0)<sup>T</sup> and |−z⟩ = (0, 1)<sup>T</sup>. The kets themselves do not carry a factor of ℏ/2; that factor appears in the eigenvalues of the spin operator.</p>
+                        <p>Up to an unobservable global phase, every normalized pure one-qubit state corresponds to a point on the unit-radius <strong>Bloch sphere</strong>.</p>
+                        <div class="stat-formula">|ψ⟩ = cos(θ/2)|+z⟩ + e<sup>iφ</sup>sin(θ/2)|−z⟩</div>
+                        <ul>
+                            <li>θ is the polar angle from +z, and φ is the azimuth in the xy-plane. Of the spherical coordinates r, θ, and φ, the pure-state radius r is fixed at 1.</li>
+                            <li>The class memo's cos(θ/2)|+z⟩ + sin(θ/2)|−z⟩ is the special case φ = 0.</li>
+                            <li>Adding basis states creates a superposition. Entanglement is a stronger, multipartite property: a composite state cannot be factored into states of its subsystems.</li>
+                        </ul>
+
+                        <h3>8. Pauli Matrices, Particle Classes, and Operators</h3>
+                        <p>To calculate or measure a physical quantity in quantum mechanics, one applies the corresponding <strong>operator</strong> to a state vector. Differentiation is an operator, and the spin-1/2 components are built from the Pauli matrices.</p>
+                        <table class="stat-table">
+                            <tr><th>Pauli matrix</th><th>Matrix</th><th>Spin operator</th></tr>
+                            <tr><td>σ<sub>x</sub></td><td>[[0, 1], [1, 0]]</td><td>S<sub>x</sub> = (ℏ/2)σ<sub>x</sub></td></tr>
+                            <tr><td>σ<sub>y</sub></td><td>[[0, −i], [i, 0]]</td><td>S<sub>y</sub> = (ℏ/2)σ<sub>y</sub></td></tr>
+                            <tr><td>σ<sub>z</sub></td><td>[[1, 0], [0, −1]]</td><td>S<sub>z</sub> = (ℏ/2)σ<sub>z</sub></td></tr>
+                        </table>
+                        <p>Particles are broadly classified by spin quantum number. <strong>Fermions</strong> have half-integer spin such as 1/2 or 3/2, while <strong>bosons</strong> have integer spin such as 0, 1, or 2. The electron is a spin-1/2 fermion, which is why ℏ/2 appears in its spin operators. When an operator acting on a state returns a scalar multiple of that state, the scalar is an eigenvalue and the state is an eigenstate.</p>
+
+                        <h3>9. Measuring Spin along z</h3>
+                        <div class="stat-formula">S<sub>z</sub>|+z⟩ = +ℏ/2 |+z⟩ &nbsp;&nbsp;·&nbsp;&nbsp; S<sub>z</sub>|−z⟩ = −ℏ/2 |−z⟩</div>
+                        <p>A z-spin measurement therefore has two possible values, +ℏ/2 and −ℏ/2. For a general state |ψ⟩, their probabilities are |⟨+z|ψ⟩|<sup>2</sup> and |⟨−z|ψ⟩|<sup>2</sup>, which sum to 1 for a normalized state.</p>
+                        <div class="lecture-note"><p><strong>Normalization check.</strong> For the memo's vector 1/√2 (1, 0)<sup>T</sup>, the squared norm is 1/2, so it is not normalized. If the intended state was an equal superposition, it should be 1/√2 (1, 1)<sup>T</sup>, whose squared norm is 1. Converting either ket to a bra requires a conjugate transpose, not only a transpose.</p></div>
+
+                        <h3>Key Takeaways</h3>
+                        <ul>
+                            <li>h and ℏ connect energy quantization, angular frequency, and angular momentum; remember their units and factor of 2π.</li>
+                            <li>Taylor expansion is a recurring tool for replacing a complicated function with a polynomial near a chosen point.</li>
+                            <li>A quantum state is a complex ket, its bra is the conjugate transpose, and inner products plus the Born rule generate measurement probabilities.</li>
+                            <li>A spin-1/2 state maps to the Bloch sphere, while measurable quantities are represented by operators such as the Pauli matrices.</li>
+                        </ul>
+                        <h3>Review Sequence</h3>
+                        <ol>
+                            <li>Write h, ℏ, and E = hf = ℏω with units and explain the factor of 2π.</li>
+                            <li>Differentiate f(x) three times at a to derive its third-order Taylor polynomial.</li>
+                            <li>Choose a complex column vector and compute its bra, norm, and normalized state.</li>
+                            <li>Vary θ and φ on the Bloch sphere and calculate the probabilities of the +z and −z outcomes.</li>
+                            <li>Apply each Pauli matrix to |+z⟩ and |−z⟩ and distinguish eigenvalues from eigenstates.</li>
+                        </ol>
+                    </div>
+                </div>
+            </section>
+        </article>
+
+        <div id="site-footer"></div>
+    </div>
+
+    <script src="../../../common.js"></script>
+</body>
+</html>
