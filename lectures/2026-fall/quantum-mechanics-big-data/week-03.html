@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html data-theme="dark" data-lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>The World of Quantum Mechanics and Big Data - Week 3 - Sewon Park</title>
+    <link rel="stylesheet" type="text/css" href="../../../style.css">
+    <link rel="stylesheet" type="text/css" href="../../../assets/css/lectures.css">
+</head>
+<body>
+    <button class="theme-toggle" onclick="toggleTheme()" aria-label="Toggle dark mode"></button>
+    <button class="lang-toggle" onclick="toggleLanguage()" aria-label="Toggle language">EN</button>
+
+    <div class="container">
+        <div id="site-header"></div>
+        <div id="site-nav"></div>
+
+        <article class="course-page">
+            <div class="course-header">
+                <h1 data-en="The World of Quantum Mechanics and Big Data" data-kr="양자역학의세계와빅데이터">The World of Quantum Mechanics and Big Data</h1>
+                <p class="course-meta" data-en="2026 Fall | Weekly learning notes" data-kr="2026 가을학기 | 주차별 학습 노트">2026 Fall | Weekly learning notes</p>
+            </div>
+
+            <div class="course-nav">
+                <a href="../../../lectures.html" class="back-to-lectures" data-en="Back to Lectures" data-kr="강의 목록으로">Back to Lectures</a>
+                <span class="nav-separator">/</span>
+                <a href="./index.html" class="back-to-course" data-en="Course Home" data-kr="과목 홈">Course Home</a>
+            </div>
+
+            <div class="week-nav">
+                <span data-en="Weeks:" data-kr="주차:">Weeks:</span>
+                <a href="week-01.html" class="week-link">W1</a>
+                <a href="week-02.html" class="week-link">W2</a>
+                <a href="week-03.html" class="week-link current">W3</a>
+            </div>
+
+            <section class="week-section" id="week-03">
+                <h2 data-en="Week 3 — Eigenvalue Geometry, PCA, and Quantum Dynamics" data-kr="3주차 — 고윳값의 기하학, PCA, 양자 시간발전">Week 3 — Eigenvalue Geometry, PCA, and Quantum Dynamics</h2>
+                <p class="week-date" data-en="2026 Fall · From matrix directions to stationary states" data-kr="2026 가을학기 · 행렬의 방향에서 정상상태까지">2026 Fall · From matrix directions to stationary states</p>
+
+                <div class="week-content">
+                    <span class="assignment-chip" data-en="Eigenproblems · PCA · Schrödinger Dynamics" data-kr="고유문제 · PCA · 슈뢰딩거 시간발전">Eigenproblems · PCA · Schrödinger Dynamics</span>
+
+                    <div class="lang-kr" lang="ko" hidden>
+                        <p>3주차는 선형대수의 고유문제를 데이터 분석과 양자역학에 동시에 연결한다. 행렬에서 변환 방향을 보존하는 고유벡터는 PCA의 주성분이 되고, Hamiltonian의 고유함수는 에너지 정상상태가 된다. 같은 수학 구조가 <strong>데이터의 주요 변동 방향</strong>과 <strong>양자계의 허용 상태</strong>를 찾아낸다.</p>
+
+                        <h3>1. 고윳값과 고유벡터</h3>
+                        <div class="stat-formula">A v = λv</div>
+                        <p>0이 아닌 벡터 v에 행렬 A를 적용했을 때 결과가 v의 스칼라배이면 v는 고유벡터, λ는 고윳값이다. 여기서 <strong>좌표 성분 자체가 고정되는 것이 아니라 방향이 유지</strong>된다. λ의 절댓값은 확대·축소 비율이고, 부호는 방향 반전 여부를 나타낸다.</p>
+                        <table class="stat-table">
+                            <tr><th>고윳값 λ</th><th>기하학적 작용</th></tr>
+                            <tr><td>λ &gt; 1</td><td>같은 방향으로 늘어남</td></tr>
+                            <tr><td>0 &lt; λ &lt; 1</td><td>같은 방향으로 줄어듦</td></tr>
+                            <tr><td>λ &lt; 0</td><td>방향이 뒤집히며 크기가 변함</td></tr>
+                            <tr><td>λ = 0</td><td>그 방향이 영벡터로 눌림</td></tr>
+                        </table>
+                        <div class="lecture-note"><p><strong>표현의 구분.</strong> 고유상태는 추상 Hilbert 공간의 벡터이고, <strong>고유함수는 고유상태를 좌표 기저로 나타낸 표현</strong>이다. 둘은 같은 물리 상태를 가리킬 수 있지만 용어의 층위는 다르다.</p></div>
+
+                        <h3>2. 2×2 행렬의 빠른 계산</h3>
+                        <p>A = [[a,b],[c,d]]이면 특성방정식 det(A − λI) = 0은 λ<sup>2</sup> − tr(A)λ + det(A) = 0이다. 따라서 다음 공식을 바로 사용할 수 있다.</p>
+                        <div class="stat-formula">λ<sub>±</sub> = [tr(A) ± √(tr(A)<sup>2</sup> − 4det(A))]/2</div>
+                        <p>예를 들어 A = [[2,1],[1,2]]는 tr(A)=4, det(A)=3이므로 λ=3,1이다. λ=3의 방향은 (1,1)<sup>T</sup>, λ=1의 방향은 (1,−1)<sup>T</sup>다. 실수 대칭행렬에서는 서로 다른 고윳값의 고유벡터를 서로 직교하도록 정규화할 수 있다.</p>
+
+                        <h3>3. 기하학적 의미</h3>
+                        <p>일반 벡터는 선형변환 뒤 방향과 크기가 모두 바뀌지만 고유벡터 방향은 그 직선 위에 남는다. 이것이 좌표계가 변해도 시스템의 고유한 변형 축을 찾을 수 있는 이유다. 양자역학에서는 관측 연산자의 고유방향이 가능한 측정 상태를, 데이터 분석에서는 공분산의 고유방향이 주요 변동 축을 제공한다.</p>
+
+                        <h3>4. 라그랑주 승수법으로 보는 PCA</h3>
+                        <p>중심화한 데이터의 공분산 행렬을 S라 하자. 단위벡터 w 방향으로 투영한 데이터의 분산은 w<sup>T</sup>Sw다. PCA의 첫 번째 주성분은 이 값을 w<sup>T</sup>w=1 제약 아래 최대화한다.</p>
+                        <div class="stat-formula">L(w,λ) = w<sup>T</sup>Sw − λ(w<sup>T</sup>w − 1) &nbsp;·&nbsp; ∂L/∂w = 0 ⇒ S w = λw</div>
+                        <p>따라서 공분산 행렬의 고유벡터가 주성분 방향이고, 고윳값은 그 방향이 설명하는 분산이다. S는 실수 대칭행렬이므로 주성분들은 직교하며, 큰 고윳값부터 선택하면 정보 손실을 통제하면서 차원을 줄일 수 있다.</p>
+
+                        <h3>5. 채권시장의 PCA</h3>
+                        <p>여러 만기의 채권 수익률 변화를 하나의 벡터로 보고 공분산 행렬에 PCA를 적용하면 수익률곡선의 공통 움직임을 적은 수의 요인으로 압축할 수 있다.</p>
+                        <table class="stat-table">
+                            <tr><th>경험적 주성분</th><th>전형적 loading 모양</th><th>흔한 해석</th></tr>
+                            <tr><td>PC1</td><td>만기 전반이 같은 방향</td><td>수준(level) 이동</td></tr>
+                            <tr><td>PC2</td><td>단기와 장기가 반대 방향</td><td>기울기(slope) 변화</td></tr>
+                            <tr><td>PC3</td><td>중기와 양 끝 만기가 다른 방향</td><td>곡률(curvature) 변화</td></tr>
+                        </table>
+                        <p>level·slope·curvature는 자주 관찰되는 경험적 패턴이지 모든 시장에 고정된 법칙은 아니다. 고유벡터의 <strong>부호는 임의적이며 데이터와 기간에 따라 해석이 달라질 수 있다</strong>. 설명분산 비율과 loading 모양을 함께 확인해야 한다.</p>
+
+                        <h3>6. 자연지수와 극한</h3>
+                        <div class="stat-formula">e<sup>x</sup> = lim<sub>N→∞</sub>(1 + x/N)<sup>N</sup></div>
+                        <p>양변에 자연로그를 취하고 t=x/N으로 두면 ln(1+t)의 0 근처 변화율이 1이라는 사실로 ln y=x를 얻는다. 그래서 y=e<sup>x</sup>다. 지수함수는 자신의 미분과 같고, 복소 지수 e<sup>−iEt/ℏ</sup>는 크기를 바꾸지 않으면서 위상을 회전시키므로 시간발전과 회전 연산자에 자연스럽게 등장한다.</p>
+
+                        <h3>7. 시간 의존 슈뢰딩거 방정식</h3>
+                        <div class="stat-formula">iℏ∂Ψ(x,t)/∂t = ĤΨ(x,t)</div>
+                        <p>1차원 비상대론적 입자에서 potential V가 시간에 명시적으로 의존하지 않을 때 Hamiltonian은 다음과 같다.</p>
+                        <div class="stat-formula">Ĥ = −(ℏ<sup>2</sup>/2m)∂<sup>2</sup>/∂x<sup>2</sup> + V(x) &nbsp;·&nbsp; p̂ = −iℏ∂/∂x</div>
+                        <p>첫 항은 p̂<sup>2</sup>/2m인 운동에너지, 두 번째 항은 위치에 따른 퍼텐셜 에너지다. Hamiltonian이 시간 독립이라는 말은 <strong>V가 시간에 명시적으로 의존하지 않을 때</strong>에만 성립한다.</p>
+
+                        <h3>8. 변수분리와 시간 독립 방정식</h3>
+                        <p>Ψ(x,t) = ψ(x)T(t)를 시간 의존 방정식에 대입하고 ψT로 나누면 위치만의 항과 시간만의 항이 같아야 한다. 서로 독립인 두 변수가 항상 같으려면 공통 분리상수 E가 필요하다.</p>
+                        <div class="stat-formula">Ψ(x,t) = ψ(x)T(t) &nbsp;·&nbsp; Ĥψ<sub>n</sub>(x) = E<sub>n</sub>ψ<sub>n</sub>(x)</div>
+                        <div class="stat-formula">iℏ(dT<sub>n</sub>/dt) = E<sub>n</sub>T<sub>n</sub> &nbsp;·&nbsp; T<sub>n</sub>(t) = e<sup>−iE<sub>n</sub>t/ℏ</sup></div>
+                        <p>따라서 Ψ<sub>n</sub>(x,t)=ψ<sub>n</sub>(x)e<sup>−iE<sub>n</sub>t/ℏ</sup>다. E<sub>n</sub>은 허용 에너지, ψ<sub>n</sub>은 그 에너지의 공간 고유함수다. 계에 따라 <strong>이산·연속·혼합 스펙트럼</strong>이 가능하므로 항상 E<sub>1</sub>,E<sub>2</sub>,…만 존재하는 것은 아니다.</p>
+
+                        <h3>9. 정상상태와 중첩상태</h3>
+                        <p>정상상태(stationary state)는 입자가 공간에서 멈춰 있다는 뜻이 아니라 <strong>확률밀도가 시간에 따라 변하지 않는다는 뜻</strong>이다. 시간 인자는 절댓값이 1인 전체 위상이라 사라진다.</p>
+                        <div class="stat-formula">|Ψ<sub>n</sub>(x,t)|<sup>2</sup> = |ψ<sub>n</sub>(x)|<sup>2</sup></div>
+                        <p>일반 상태는 에너지 고유상태의 중첩으로 전개된다.</p>
+                        <div class="stat-formula">Ψ(x,t) = ∑<sub>n</sub>c<sub>n</sub>ψ<sub>n</sub>(x)e<sup>−iE<sub>n</sub>t/ℏ</sup></div>
+                        <p><strong>에너지가 다른 상태의 중첩은 일반적으로 간섭항</strong> e<sup>−i(E<sub>n</sub>−E<sub>m</sub>)t/ℏ</sup>을 만들어 확률밀도가 시간에 따라 변한다. 같은 에너지의 축퇴 상태들만 섞은 경우처럼 예외도 있으므로 “모든 중첩은 반드시 움직인다”고 단정하지 않는다.</p>
+
+                        <h3>10. 직교성과 완전성</h3>
+                        <div class="stat-formula">⟨ψ<sub>m</sub>|ψ<sub>n</sub>⟩ = δ<sub>mn</sub> &nbsp;·&nbsp; ∑<sub>n</sub>|ψ<sub>n</sub>⟩⟨ψ<sub>n</sub>| = I</div>
+                        <p>서로 다른 고윳값에 대응하는 Hermitian Hamiltonian의 고유상태는 직교하고, 완전한 기저라면 모든 허용 상태를 전개할 수 있다. 2차원에서 |0⟩⟨0|+|1⟩⟨1|=I인 구조가 함수공간으로 확장된 것이다. 축퇴된 부분공간에서도 서로 직교하는 기저를 선택할 수 있다.</p>
+
+                        <h3>11. 자유입자와 상자 속 입자</h3>
+                        <p>자유입자는 V(x)=0이고 에너지 고유함수는 평면파 e<sup>ikx</sup>다. <strong>평면파는 상수 진폭이지만 전체 실선에서 제곱적분 가능하지 않다</strong>. 물리적으로 국소화된 상태는 여러 파수의 평면파를 중첩한 파동묶음으로 만든다. <strong>상자 정규화와 델타 정규화는 비국소화 고유상태를 다루는 규약</strong>이지, 그 자체로 입자를 국소화하는 방법은 아니다.</p>
+                        <p>무한 퍼텐셜 우물 0&lt;x&lt;L에서는 ψ(0)=ψ(L)=0 경계조건이 허용 파수와 에너지를 이산화한다.</p>
+                        <div class="stat-formula">ψ<sub>n</sub>(x) = √(2/L)sin(nπx/L) &nbsp;·&nbsp; E<sub>n</sub> = n<sup>2</sup>π<sup>2</sup>ℏ<sup>2</sup>/(2mL<sup>2</sup>)</div>
+                        <p>무한우물의 <strong>에너지 간격은 일정하지 않고 n이 커질수록 증가</strong>한다: E<sub>n+1</sub>−E<sub>n</sub>∝2n+1. 일정한 ℏω 간격은 조화진동자의 스펙트럼에서 나타나는 별개의 결과다.</p>
+
+                        <h3>12. 원하는 상태의 계수 뽑기</h3>
+                        <p>초기 상태 Ψ(x,0)=∑c<sub>n</sub>ψ<sub>n</sub>(x)에서 특정 k번째 성분만 찾으려면 직교성을 이용해 ψ<sub>k</sub><sup>*</sup>를 곱해 적분한다.</p>
+                        <div class="stat-formula">c<sub>k</sub> = ⟨ψ<sub>k</sub>|Ψ⟩ = ∫ψ<sub>k</sub><sup>*</sup>(x)Ψ(x,0)dx</div>
+                        <p>비축퇴 이산 에너지라면 |c<sub>k</sub>|<sup>2</sup>은 E<sub>k</sub>를 측정할 확률이다. <strong>축퇴 준위의 확률은 같은 에너지 고유공간에 속한 성분들을 합산</strong>해야 한다. 따라서 특정 비축퇴 E<sub>100</sub> 성분은 전체 무한합을 다시 풀지 않고 c<sub>100</sub> 투영으로 추출할 수 있다. 정규화된 상태에서는 ∑|c<sub>n</sub>|<sup>2</sup>=1이다.</p>
+
+                        <h3>핵심 정리</h3>
+                        <ul>
+                            <li>고유벡터는 변환 뒤 방향을 보존하며, 2×2에서는 trace와 determinant로 고윳값을 빠르게 구한다.</li>
+                            <li>PCA와 에너지 고유문제는 모두 대칭·Hermitian 연산자의 중요한 방향을 찾는 문제다.</li>
+                            <li>시간 독립 Hamiltonian의 고유상태는 전체 위상만 변하는 정상상태를 만든다.</li>
+                            <li>직교성과 완전성은 중첩에서 원하는 계수와 측정 확률을 꺼내는 계산 도구다.</li>
+                        </ul>
+
+                        <h3>손으로 확인할 계산</h3>
+                        <ol>
+                            <li>A=[[2,1],[1,2]]의 고윳값과 정규화된 고유벡터를 구한다.</li>
+                            <li>w<sup>T</sup>Sw를 단위길이 제약 아래 최대화해 S w = λw를 유도한다.</li>
+                            <li>Ψ=ψT를 시간 의존 슈뢰딩거 방정식에 넣어 공간식과 시간식을 분리한다.</li>
+                            <li>무한우물에서 E<sub>2</sub>−E<sub>1</sub>과 E<sub>3</sub>−E<sub>2</sub>를 비교해 간격이 일정하지 않음을 확인한다.</li>
+                        </ol>
+                    </div>
+
+                    <div class="lang-en" lang="en">
+                        <p>Week 3 connects the eigenproblem to both data analysis and quantum mechanics. Eigenvectors of a covariance matrix become principal components, while eigenfunctions of the Hamiltonian become stationary energy states. The same mathematics identifies the dominant directions of data and the allowed states of a quantum system.</p>
+
+                        <h3>1. Eigenvalues and Eigenvectors</h3>
+                        <div class="stat-formula">A v = λv</div>
+                        <p>For a nonzero vector v, if A maps v to a scalar multiple of itself, v is an eigenvector and λ is its eigenvalue. The <strong>coordinates need not stay fixed; the direction is preserved</strong>. The magnitude of λ sets the stretch or compression, while a negative sign reverses orientation.</p>
+                        <div class="lecture-note"><p><strong>Representation.</strong> An eigenstate is an abstract Hilbert-space vector. An <strong>eigenfunction is the coordinate representation of an eigenstate</strong>; the terms can refer to the same physical state but at different descriptive levels.</p></div>
+
+                        <h3>2. 2×2 Matrix Shortcut</h3>
+                        <p>For A=[[a,b],[c,d]], det(A−λI)=0 becomes λ<sup>2</sup>−tr(A)λ+det(A)=0.</p>
+                        <div class="stat-formula">λ<sub>±</sub> = [tr(A) ± √(tr(A)<sup>2</sup> − 4det(A))]/2</div>
+                        <p>For A=[[2,1],[1,2]], tr(A)=4 and det(A)=3, giving λ=3,1 with directions (1,1)<sup>T</sup> and (1,−1)<sup>T</sup>. A real symmetric matrix admits an orthonormal eigenbasis.</p>
+
+                        <h3>3. Geometric Meaning</h3>
+                        <p>A generic vector changes both direction and length under a linear map. An eigenvector remains on its original line. These invariant directions describe natural deformation axes, measurement states of an observable, or dominant variation axes in data.</p>
+
+                        <h3>4. PCA through Lagrange Multipliers</h3>
+                        <p>For centered data with covariance matrix S, the variance along a unit direction w is w<sup>T</sup>Sw. Maximizing it under w<sup>T</sup>w=1 gives</p>
+                        <div class="stat-formula">L(w,λ) = w<sup>T</sup>Sw − λ(w<sup>T</sup>w − 1) &nbsp;·&nbsp; ∂L/∂w = 0 ⇒ S w = λw</div>
+                        <p>The covariance eigenvectors are principal-component directions and their eigenvalues are explained variances. Because S is real symmetric, principal components are orthogonal. Retaining the largest eigenvalues reduces dimension while preserving the most variation.</p>
+
+                        <h3>5. PCA in Bond Markets</h3>
+                        <p>Treat yield changes at several maturities as a vector. PCA compresses their covariance into a few common yield-curve movements.</p>
+                        <table class="stat-table">
+                            <tr><th>Empirical component</th><th>Typical loading</th><th>Common interpretation</th></tr>
+                            <tr><td>PC1</td><td>same sign across maturities</td><td>level</td></tr>
+                            <tr><td>PC2</td><td>short and long ends oppose</td><td>slope</td></tr>
+                            <tr><td>PC3</td><td>middle opposes the ends</td><td>curvature</td></tr>
+                        </table>
+                        <p>Level, slope, and curvature are empirical patterns rather than universal labels. An eigenvector's <strong>sign is arbitrary and the interpretation can vary with the dataset and window</strong>; inspect both loadings and explained variance.</p>
+
+                        <h3>6. Natural Exponential and Limits</h3>
+                        <div class="stat-formula">e<sup>x</sup> = lim<sub>N→∞</sub>(1 + x/N)<sup>N</sup></div>
+                        <p>Taking logarithms and writing t=x/N reduces the limit to the derivative of ln(1+t) at zero, which gives ln y=x and hence y=e<sup>x</sup>. Complex exponentials such as e<sup>−iEt/ℏ</sup> rotate phase without changing magnitude, so they naturally describe time evolution.</p>
+
+                        <h3>7. Time-Dependent Schrödinger Equation</h3>
+                        <div class="stat-formula">iℏ∂Ψ(x,t)/∂t = ĤΨ(x,t)</div>
+                        <p>For a one-dimensional nonrelativistic particle, <strong>when V has no explicit time dependence</strong>,</p>
+                        <div class="stat-formula">Ĥ = −(ℏ<sup>2</sup>/2m)∂<sup>2</sup>/∂x<sup>2</sup> + V(x) &nbsp;·&nbsp; p̂ = −iℏ∂/∂x</div>
+                        <p>The first term is p̂<sup>2</sup>/2m, and the second is the potential energy. A time-independent Hamiltonian is an assumption about the system, not a universal property of every potential.</p>
+
+                        <h3>8. Separation of Variables and the TISE</h3>
+                        <p>Insert Ψ(x,t)=ψ(x)T(t) into the time-dependent equation. A function only of x and a function only of t can remain equal for all x,t only if both equal a separation constant E.</p>
+                        <div class="stat-formula">Ψ(x,t) = ψ(x)T(t) &nbsp;·&nbsp; Ĥψ<sub>n</sub>(x) = E<sub>n</sub>ψ<sub>n</sub>(x)</div>
+                        <div class="stat-formula">iℏ(dT<sub>n</sub>/dt) = E<sub>n</sub>T<sub>n</sub> &nbsp;·&nbsp; T<sub>n</sub>(t) = e<sup>−iE<sub>n</sub>t/ℏ</sup></div>
+                        <p>Thus Ψ<sub>n</sub>(x,t)=ψ<sub>n</sub>(x)e<sup>−iE<sub>n</sub>t/ℏ</sup>. Depending on the system, the Hamiltonian can have a <strong>discrete, continuous, or mixed spectrum</strong>, rather than only a numbered ladder.</p>
+
+                        <h3>9. Stationary States and Superpositions</h3>
+                        <p>Stationary does not mean spatially motionless. It means the <strong>probability density is independent of time</strong>, because the global phase has unit magnitude.</p>
+                        <div class="stat-formula">|Ψ<sub>n</sub>(x,t)|<sup>2</sup> = |ψ<sub>n</sub>(x)|<sup>2</sup></div>
+                        <div class="stat-formula">Ψ(x,t) = ∑<sub>n</sub>c<sub>n</sub>ψ<sub>n</sub>(x)e<sup>−iE<sub>n</sub>t/ℏ</sup></div>
+                        <p>A superposition of states with <strong>different energies generally produces interference terms</strong> e<sup>−i(E<sub>n</sub>−E<sub>m</sub>)t/ℏ</sup> and a time-dependent density. Degenerate states with the same energy are an important exception.</p>
+
+                        <h3>10. Orthogonality and Completeness</h3>
+                        <div class="stat-formula">⟨ψ<sub>m</sub>|ψ<sub>n</sub>⟩ = δ<sub>mn</sub> &nbsp;·&nbsp; ∑<sub>n</sub>|ψ<sub>n</sub>⟩⟨ψ<sub>n</sub>| = I</div>
+                        <p>Eigenstates of a Hermitian Hamiltonian with distinct eigenvalues are orthogonal. A complete eigenbasis expands every allowed state. This is the function-space extension of |0⟩⟨0|+|1⟩⟨1|=I.</p>
+
+                        <h3>11. Free Particle and Particle in a Box</h3>
+                        <p>For V(x)=0, energy eigenfunctions are plane waves e<sup>ikx</sup>. A <strong>plane wave has constant amplitude but is not square-integrable over the whole line</strong>. A physical localized state is built as a wave packet that superposes many wave numbers. <strong>Box and delta normalization are conventions for delocalized eigenstates</strong>, not localization methods by themselves.</p>
+                        <p>For an infinite well on 0&lt;x&lt;L, the boundary conditions ψ(0)=ψ(L)=0 quantize the wave number and energy.</p>
+                        <div class="stat-formula">ψ<sub>n</sub>(x) = √(2/L)sin(nπx/L) &nbsp;·&nbsp; E<sub>n</sub> = n<sup>2</sup>π<sup>2</sup>ℏ<sup>2</sup>/(2mL<sup>2</sup>)</div>
+                        <p>The energy <strong>spacing is not uniform and grows with n</strong>: E<sub>n+1</sub>−E<sub>n</sub>∝2n+1. Equal ℏω spacing belongs to the harmonic oscillator, not the infinite box.</p>
+
+                        <h3>12. Extracting One State Coefficient</h3>
+                        <p>For Ψ(x,0)=∑c<sub>n</sub>ψ<sub>n</sub>(x), multiply by ψ<sub>k</sub><sup>*</sup> and integrate. Orthonormality removes every term except k.</p>
+                        <div class="stat-formula">c<sub>k</sub> = ⟨ψ<sub>k</sub>|Ψ⟩ = ∫ψ<sub>k</sub><sup>*</sup>(x)Ψ(x,0)dx</div>
+                        <p>For a nondegenerate discrete energy, |c<sub>k</sub>|<sup>2</sup> is the probability of measuring E<sub>k</sub>. For a degenerate level, <strong>sum the probabilities across the whole energy eigenspace</strong>. To isolate one nondegenerate E<sub>100</sub> component, project once onto ψ<sub>100</sub> rather than recomputing the full expansion. A normalized state satisfies ∑|c<sub>n</sub>|<sup>2</sup>=1.</p>
+
+                        <h3>Key Takeaways</h3>
+                        <ul>
+                            <li>Eigenvectors preserve direction under a linear transformation; trace and determinant give a fast 2×2 eigenvalue formula.</li>
+                            <li>PCA and quantum energy problems both extract significant directions of symmetric or Hermitian operators.</li>
+                            <li>An energy eigenstate of a time-independent Hamiltonian changes only by a global phase and is therefore stationary.</li>
+                            <li>Orthogonality and completeness let us extract one coefficient and turn its magnitude squared into a probability.</li>
+                        </ul>
+
+                        <h3>Calculations to Reproduce by Hand</h3>
+                        <ol>
+                            <li>Find and normalize the eigenvectors of A=[[2,1],[1,2]].</li>
+                            <li>Derive S w = λw by maximizing w<sup>T</sup>Sw under w<sup>T</sup>w=1.</li>
+                            <li>Separate Ψ=ψT in the time-dependent Schrödinger equation.</li>
+                            <li>Compare E<sub>2</sub>−E<sub>1</sub> with E<sub>3</sub>−E<sub>2</sub> for the infinite well.</li>
+                        </ol>
+                    </div>
+                </div>
+            </section>
+        </article>
+
+        <div id="site-footer"></div>
+    </div>
+
+    <script src="../../../common.js?v=20261002-w3"></script>
+</body>
+</html>

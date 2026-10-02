@@ -118,6 +118,7 @@
         const newLang = currentLang === 'en' ? 'kr' : 'en';
 
         html.setAttribute('data-lang', newLang);
+        html.lang = newLang === 'kr' ? 'ko' : 'en';
         localStorage.setItem('language', newLang);
 
         const button = document.querySelector('.lang-toggle');
@@ -162,6 +163,7 @@
         // Apply saved language
         var savedLang = localStorage.getItem('language') || 'en';
         document.documentElement.setAttribute('data-lang', savedLang);
+        document.documentElement.lang = savedLang === 'kr' ? 'ko' : 'en';
         var langButton = document.querySelector('.lang-toggle');
         if (langButton) langButton.textContent = savedLang === 'en' ? 'EN' : '\uD55C';
 
