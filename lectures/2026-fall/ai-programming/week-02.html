@@ -1,0 +1,311 @@
+<!DOCTYPE html>
+<html data-theme="dark" data-lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>AI Programming - Week 2 - Sewon Park</title>
+    <link rel="stylesheet" type="text/css" href="../../../style.css">
+    <link rel="stylesheet" type="text/css" href="../../../assets/css/lectures.css">
+</head>
+<body>
+    <button class="theme-toggle" onclick="toggleTheme()" aria-label="Toggle dark mode"></button>
+    <button class="lang-toggle" onclick="toggleLanguage()" aria-label="Toggle language">EN</button>
+
+    <div class="container">
+        <div id="site-header"></div>
+        <div id="site-nav"></div>
+
+        <article class="course-page">
+            <div class="course-header">
+                <h1 data-en="AI Programming" data-kr="인공지능프로그래밍">AI Programming</h1>
+                <p class="course-meta" data-en="2026 Fall | Weekly learning notes" data-kr="2026 가을학기 | 주차별 학습 노트">2026 Fall | Weekly learning notes</p>
+            </div>
+
+            <div class="course-nav">
+                <a href="../../../lectures.html" class="back-to-lectures" data-en="Back to Lectures" data-kr="강의 목록으로">Back to Lectures</a>
+                <span class="nav-separator">/</span>
+                <a href="./index.html" class="back-to-course" data-en="Course Home" data-kr="과목 홈">Course Home</a>
+            </div>
+
+            <div class="week-nav">
+                <span data-en="Weeks:" data-kr="주차:">Weeks:</span>
+                <a href="week-01.html" class="week-link">W1</a>
+                <a href="week-02.html" class="week-link current">W2</a>
+            </div>
+
+            <section class="week-section" id="week-02">
+                <h2 data-en="Week 2 — Functions, Operators, and Computational Trade-offs" data-kr="2주차 — 함수·연산자와 계산의 트레이드오프">Week 2 — Functions, Operators, and Computational Trade-offs</h2>
+                <p class="week-date" data-en="Python foundations · From mathematical definition to implementation" data-kr="파이썬 기초 · 수학적 정의에서 구현까지">Python foundations · From mathematical definition to implementation</p>
+
+                <div class="week-content">
+                    <div class="lang-kr" lang="ko" hidden>
+                        <p>이번 주는 “입력을 출력으로 바꾸는 규칙”이라는 함수의 관점에서 파이썬 기초를 정리한다. 사인값을 표로 저장할지 실행 중 계산할지 비교하고, 연산자·오차·비트 표현·하드웨어 경계를 살펴보며 <strong>정답뿐 아니라 비용과 가정을 설명하는 코드</strong>를 목표로 한다.</p>
+
+                        <h3>1. 파이썬 실행 모델과 개발환경</h3>
+                        <p>파이썬을 단순히 “한 줄씩 바로 실행되는 언어”라고만 설명하면 중요한 중간 단계가 빠진다. 대표 구현인 CPython에서 <strong>소스 코드는 보통 바이트코드로 컴파일된 뒤</strong> 파이썬 가상머신에서 실행된다. 대화형 셸은 입력 직후 결과를 보여주지만 내부에 컴파일 단계가 없다는 뜻은 아니다.</p>
+                        <table class="stat-table">
+                            <tr><th>도구·단계</th><th>역할</th></tr>
+                            <tr><td>소스 파일·노트북</td><td>사람이 읽고 수정하는 코드</td></tr>
+                            <tr><td>바이트코드와 가상머신</td><td>파이썬 구현이 코드를 실행하는 대표 경로</td></tr>
+                            <tr><td>REPL</td><td>작은 식을 즉시 실행하며 가설을 확인하는 대화형 환경</td></tr>
+                            <tr><td>IDE</td><td>편집, 자동완성, 실행, 디버깅, 테스트를 묶은 작업환경</td></tr>
+                        </table>
+                        <p><strong>SyntaxError</strong>는 문법을 해석하지 못한 경우, 런타임 오류는 실행 중 잘못된 연산을 만난 경우, 논리 오류는 실행되지만 의도와 다른 결과가 나온 경우다. 경고는 대개 실행을 계속하며 위험 가능성을 알리지만 설정에 따라 오류로 승격될 수도 있다.</p>
+
+                        <h3>2. 변수·자료형·주석</h3>
+                        <p>변수는 값에 붙이는 이름이다. 파이썬은 실행 중 객체의 자료형을 관리하므로 같은 변수명에 다른 종류의 값을 다시 넣을 수 있지만, 읽기 쉬운 코드는 변수의 의미가 갑자기 바뀌지 않게 한다. 숫자로 보이는 우편번호·전화번호·식별자는 계산 대상이 아니면 문자열이 더 적합하다.</p>
+                        <pre class="lecture-code"><code>age = 31                  # 정수
+weight_kg = 72.5          # 실수
+postal_code = "03063"     # 앞자리 0을 보존할 문자열
+is_active = True          # 불리언
+
+# 주석은 '무엇'보다 '왜'를 설명한다.
+bmi = weight_kg / (1.75 ** 2)</code></pre>
+                        <p>파이썬 한 줄 주석은 <code>#</code>으로 시작한다. <code>//</code>, <code>/* ... */</code>, <code>%</code>는 다른 언어나 문맥에서 주석 기호로 쓰이지만 파이썬 주석 문법과 같지 않다.</p>
+
+                        <h3>3. 연산자는 언어의 규칙이다</h3>
+                        <p>같은 기호라도 언어마다 뜻이 다를 수 있다. 파이썬에서는 <strong>^는 거듭제곱이 아니라 비트 XOR</strong>이고, 거듭제곱은 <code>**</code>다.</p>
+                        <table class="stat-table">
+                            <tr><th>표현</th><th>파이썬 의미</th><th>결과 예</th></tr>
+                            <tr><td><code>10 / 4</code></td><td>참 나눗셈</td><td>2.5</td></tr>
+                            <tr><td><code>10 // 4</code></td><td>내림 나눗셈</td><td>2</td></tr>
+                            <tr><td><code>10 % 4</code></td><td>나머지</td><td>2</td></tr>
+                            <tr><td><code>5 ** 2</code></td><td>거듭제곱</td><td>25</td></tr>
+                            <tr><td><code>100 ^ 200</code></td><td>비트 XOR</td><td>172</td></tr>
+                        </table>
+                        <pre class="lecture-code"><code>print(10 / 4)      # 2.5
+print(10 // 4)     # 2
+print(5 ** 2)      # 25
+print(100 ^ 200)   # 172</code></pre>
+                        <p>100의 8비트 표현은 <code>01100100</code>이고, <strong>200의 8비트 표현은 11001000</strong>이다. 서로 다른 비트만 1로 만드는 XOR 결과가 <code>10101100</code>, 즉 172다. 제곱근은 <code>math.sqrt(5)</code> 또는 양수에 대해 <code>5 ** 0.5</code>로 쓸 수 있고, 실수 세제곱근은 부호까지 처리하는 <code>math.cbrt</code>가 명확하다.</p>
+
+                        <h3>4. 미리 계산할 것인가, 실행 중 계산할 것인가</h3>
+                        <p>사인값을 0°부터 360°까지 표로 저장하면 조회는 빠르지만 표에 없는 각도에는 보간이나 더 촘촘한 표가 필요하다. 1° 간격은 361개, 0.1° 간격은 3,601개 값이 필요하므로 정밀도를 올릴수록 메모리와 생성 비용이 커진다. 반대로 실행 중 계산은 메모리를 아끼지만 계산 비용이 든다.</p>
+                        <table class="stat-table">
+                            <tr><th>전략</th><th>장점</th><th>비용·주의점</th></tr>
+                            <tr><td>lookup table</td><td>제한된 입력에서 일정하고 빠른 조회</td><td>메모리, 해상도, 보간 오차</td></tr>
+                            <tr><td>실행 중 계산</td><td>연속적인 입력과 유연한 정밀도</td><td>연산 시간, 근사 알고리즘의 오차</td></tr>
+                            <tr><td>혼합 방식</td><td>작은 표와 근사를 결합</td><td>구현 복잡도와 검증 부담</td></tr>
+                        </table>
+                        <p>어느 방식이 항상 빠르다고 단정할 수 없다. 입력 범위, 호출 빈도, 캐시, 메모리 제한, 프로세서 명령과 허용 오차를 실제로 측정해 선택한다.</p>
+
+                        <h3>5. 사인함수와 테일러 급수</h3>
+                        <p>파이썬 표준 라이브러리의 <strong>math.sin은 라디안</strong>을 입력으로 받는다. 각도를 도 단위로 받았다면 먼저 변환해야 한다.</p>
+                        <pre class="lecture-code"><code>import math
+
+angle_deg = 30.0
+angle_rad = math.radians(angle_deg)
+value = math.sin(angle_rad)
+print(value)  # 약 0.5</code></pre>
+                        <p>직접 구현을 통해 근사의 구조를 보고 싶다면 다음 급수를 사용한다.</p>
+                        <div class="stat-formula">sin(x) = x − x<sup>3</sup>/3! + x<sup>5</sup>/5! − x<sup>7</sup>/7! + ···</div>
+                        <p>여기서는 <strong>|x| ≤ 2π인 학습용 범위</strong>를 가정하고 입력을 <code>[−π, π)</code>로 줄인다. 7항을 사용하면 아래 대표 입력에서 절대 오차 <code>3e-5</code> 이하를 목표로 할 수 있다. 아주 큰 <code>|x|</code>에서는 단순 나머지 연산 자체가 부동소수점 정밀도를 잃을 수 있으므로 표준 <code>math.sin</code>을 사용해야 한다. 다음 구현은 앞 항에서 다음 항을 재사용해 거듭제곱과 팩토리얼을 매번 다시 계산하지 않는다.</p>
+                        <pre class="lecture-code"><code>import math
+
+def sin_taylor(x, terms=7):
+    x = (x + math.pi) % (2 * math.pi) - math.pi
+    total = 0.0
+    term = x
+    for n in range(terms):
+        if n &gt; 0:
+            term *= -x * x / ((2 * n) * (2 * n + 1))
+        total += term
+    return total
+
+angle_rad = math.radians(30.0)
+approx = sin_taylor(angle_rad)
+exact = math.sin(angle_rad)
+error = abs(approx - exact)
+print(approx, exact, error)</code></pre>
+                        <div class="lecture-note"><p><strong>구현의 목적.</strong> 표준 <code>math.sin</code>을 대신 만들겠다는 뜻이 아니다. 항의 수, 입력 범위 축소, 부동소수점 오차가 결과에 어떤 영향을 주는지 이해하고 검증하는 실습이다.</p></div>
+
+                        <h3>6. 정확도·시간·메모리의 균형</h3>
+                        <p>π를 3, 3.14, 더 긴 값 중 어디까지 사용할지는 목적에 따라 달라진다. 화면 애니메이션, 센서 제어, 의료 계산은 실패 비용이 서로 다르다. 따라서 구현 전에 <strong>허용 오차를 먼저 정해야</strong> 정밀도와 비용을 판단할 수 있다.</p>
+                        <div class="stat-formula">주요 오차 원인: 모델링 · 근사/절단 · 부동소수점 반올림 · 측정</div>
+                        <p>이 오차들은 언제나 그대로 더할 수 있는 값이 아니다. 결과에 미치는 영향을 비교하려면 각 기여분을 <strong>출력과 같은 단위로 환산</strong>하고, 비선형 변환을 거칠 때 오차가 어떻게 전파되는지까지 고려한다.</p>
+                        <ul>
+                            <li><strong>정확도:</strong> 기준값과 절대·상대 오차를 비교한다.</li>
+                            <li><strong>시간:</strong> 대표 입력 분포에서 반복 측정하고 평균과 변동을 본다.</li>
+                            <li><strong>메모리:</strong> 표 크기뿐 아니라 객체·배열 표현의 실제 사용량을 본다.</li>
+                            <li><strong>안전성:</strong> 범위 밖 입력, 0으로 나눔, overflow와 NaN을 시험한다.</li>
+                        </ul>
+
+                        <h3>7. 비트 시프트와 순환 회전</h3>
+                        <p><strong>시프트와 회전은 서로 다른 연산</strong>이다. 시프트는 비트를 이동시키며 밀려난 비트를 버리고 빈자리를 채운다. 회전은 한쪽에서 밀려난 비트를 반대쪽으로 되돌린다. 또한 <strong>파이썬 정수는 고정 비트폭에서 자동으로 순환하지 않는다</strong>. 고정 폭 회전을 흉내 내려면 폭과 마스크를 직접 정해야 한다.</p>
+                        <pre class="lecture-code"><code>def rotate_right(value, shift, width=8):
+    mask = (1 &lt;&lt; width) - 1
+    shift %= width
+    value &amp;= mask
+    return (value &gt;&gt; shift) | ((value &lt;&lt; (width - shift)) &amp; mask)
+
+bits = 0b11010001
+print(f"{bits &gt;&gt; 1:08b}")                  # 01101000: 오른쪽 시프트
+print(f"{rotate_right(bits, 1):08b}")         # 11101000: 오른쪽 회전</code></pre>
+
+                        <h3>8. 하드웨어와 소프트웨어의 경계</h3>
+                        <p>비트 연산은 프로세서 명령으로 매우 빠르게 수행될 수 있지만, 실제 성능은 데이터 이동·메모리 계층·분기·병렬성까지 포함해 봐야 한다. 로봇이나 드론에서는 센서 읽기와 긴급 제어를 제한된 하드웨어가 담당하고, 고수준 판단과 학습을 소프트웨어가 담당할 수 있다. 임베디드 환경에서 C/C++가 자주 쓰이는 이유는 예측 가능한 자원 사용과 하드웨어 접근성이지만, 실험·분석·모델 개발에는 파이썬의 생산성이 강점이다.</p>
+                        <div class="stat-formula">요구사항 → 지연시간·전력·메모리 예산 → 하드웨어/소프트웨어 분할 → 측정 → 재설계</div>
+
+                        <h3>9. 함수로 현실을 모델링하기</h3>
+                        <p>수학적 함수는 정의역의 각 입력을 공역의 정확히 하나의 출력에 대응시킨다. 그러나 <strong>함수는 일대일 대응일 필요가 없다</strong>. 예를 들어 <code>f(x)=x²</code>에서 2와 −2는 모두 4로 간다. 프로그래밍 함수는 외부 상태를 바꾸거나 예외를 낼 수도 있지만, 입력과 출력이 명확한 순수 함수는 테스트와 재사용이 쉽다.</p>
+                        <p>자율 시스템은 카메라·센서 입력을 조건문, 수치 모델, 학습된 모델로 처리해 제어 출력을 만든다. 학습 모델은 데이터에서 관계를 추정하지만, 입력 범위와 최신성, 불확실성, 안전 규칙은 여전히 사람이 정의하고 검증해야 한다.</p>
+
+                        <h3>10. 동료 코드 리뷰</h3>
+                        <p>동료 코드 리뷰는 답을 복사하는 일이 아니라 서로 다른 해결책을 근거와 함께 비교하는 공학 활동이다. 다음 질문을 중심으로 피드백한다.</p>
+                        <ul>
+                            <li>입력 단위와 범위가 명시되어 있는가?</li>
+                            <li>기준 구현과 비교해 수치 오차를 측정했는가?</li>
+                            <li>경계값·잘못된 입력·예외 상황을 테스트했는가?</li>
+                            <li>lookup, 급수, 라이브러리 호출 중 선택 이유가 설명되는가?</li>
+                            <li>대안 코드의 출처를 밝히고 자신의 말로 동작을 설명할 수 있는가?</li>
+                        </ul>
+
+                        <h3>핵심 정리</h3>
+                        <ul>
+                            <li>파이썬 문법은 수학 기호와 항상 같지 않으므로 연산자의 의미를 실행으로 확인한다.</li>
+                            <li>근사 알고리즘은 입력 범위 축소, 항의 수, 오차 측정을 함께 설계한다.</li>
+                            <li>속도·정밀도·메모리 중 무엇을 우선할지는 시스템의 오차·자원 예산이 결정한다.</li>
+                            <li>함수와 코드는 현실의 입력을 출력으로 바꾸는 모델이며, 설명과 검증이 구현의 일부다.</li>
+                        </ul>
+                    </div>
+
+                    <div class="lang-en" lang="en">
+                        <p>This week organizes Python foundations around a function: a rule that turns input into output. We compare storing sine values with computing them at runtime, then connect operators, error, bit representation, and hardware boundaries. The goal is code that explains not only an answer, but also its assumptions and cost.</p>
+
+                        <h3>1. Python Execution Model and Environment</h3>
+                        <p>Calling Python “a language that executes one line at a time” omits an important layer. In CPython, <strong>source is normally compiled to bytecode before</strong> the Python virtual machine executes it. A REPL returns results immediately, but that does not mean compilation is absent internally.</p>
+                        <table class="stat-table">
+                            <tr><th>Tool or stage</th><th>Role</th></tr>
+                            <tr><td>Source file or notebook</td><td>Code a person reads and edits</td></tr>
+                            <tr><td>Bytecode and virtual machine</td><td>A common execution path used by Python implementations</td></tr>
+                            <tr><td>REPL</td><td>An interactive environment for testing small expressions</td></tr>
+                            <tr><td>IDE</td><td>An environment combining editing, completion, execution, debugging, and tests</td></tr>
+                        </table>
+                        <p>A <strong>SyntaxError</strong> means the program cannot be parsed, a runtime error occurs during execution, and a logic error produces a result that differs from the intention. A warning often allows execution to continue while reporting risk, although configuration can promote warnings to errors.</p>
+
+                        <h3>2. Variables, Data Types, and Comments</h3>
+                        <p>A variable is a name bound to a value. Python manages object types at runtime, but readable code avoids changing a name's meaning unexpectedly. Postal codes, phone numbers, and identifiers that merely look numeric are often better stored as strings.</p>
+                        <pre class="lecture-code"><code>age = 31                  # integer
+weight_kg = 72.5          # floating-point number
+postal_code = "03063"     # string preserves the leading zero
+is_active = True          # Boolean
+
+# A useful comment explains why, not merely what.
+bmi = weight_kg / (1.75 ** 2)</code></pre>
+                        <p>Python line comments begin with <code>#</code>. Symbols such as <code>//</code>, <code>/* ... */</code>, and <code>%</code> are comments in other languages or contexts, not equivalent Python comment syntax.</p>
+
+                        <h3>3. Operators Follow Language Rules</h3>
+                        <p>The same symbol can mean different things in different languages. In Python, <strong>^ is bitwise XOR, not exponentiation</strong>; exponentiation uses <code>**</code>.</p>
+                        <table class="stat-table">
+                            <tr><th>Expression</th><th>Python meaning</th><th>Example result</th></tr>
+                            <tr><td><code>10 / 4</code></td><td>true division</td><td>2.5</td></tr>
+                            <tr><td><code>10 // 4</code></td><td>floor division</td><td>2</td></tr>
+                            <tr><td><code>10 % 4</code></td><td>remainder</td><td>2</td></tr>
+                            <tr><td><code>5 ** 2</code></td><td>exponentiation</td><td>25</td></tr>
+                            <tr><td><code>100 ^ 200</code></td><td>bitwise XOR</td><td>172</td></tr>
+                        </table>
+                        <pre class="lecture-code"><code>print(10 / 4)      # 2.5
+print(10 // 4)     # 2
+print(5 ** 2)      # 25
+print(100 ^ 200)   # 172</code></pre>
+                        <p>The 8-bit representation of 100 is <code>01100100</code>, and <strong>the 8-bit representation of 200 is 11001000</strong>. XOR keeps positions where the bits differ, producing <code>10101100</code>, or 172. Write a square root as <code>math.sqrt(5)</code> or, for a positive input, <code>5 ** 0.5</code>. For a signed real cube root, <code>math.cbrt</code> states the intent clearly.</p>
+
+                        <h3>4. Precompute or Compute at Runtime</h3>
+                        <p>A table of sine values from 0° through 360° offers fast lookup, but an angle absent from the table requires interpolation or a finer grid. A 1° grid stores 361 values; a 0.1° grid stores 3,601. More precision therefore increases memory and preparation cost. Runtime computation saves table memory but consumes arithmetic work.</p>
+                        <table class="stat-table">
+                            <tr><th>Strategy</th><th>Strength</th><th>Cost or risk</th></tr>
+                            <tr><td>lookup table</td><td>predictable lookup over a bounded input set</td><td>memory, resolution, interpolation error</td></tr>
+                            <tr><td>runtime computation</td><td>continuous inputs and adjustable precision</td><td>execution time and approximation error</td></tr>
+                            <tr><td>hybrid</td><td>combines a small table with approximation</td><td>implementation and validation complexity</td></tr>
+                        </table>
+                        <p>No strategy is universally fastest. Measure with the real input range, call frequency, cache behavior, memory limit, processor instructions, and permitted error.</p>
+
+                        <h3>5. Sine and the Taylor Series</h3>
+                        <p>Python's <strong>math.sin accepts radians</strong>. Convert an angle supplied in degrees before evaluation.</p>
+                        <pre class="lecture-code"><code>import math
+
+angle_deg = 30.0
+angle_rad = math.radians(angle_deg)
+value = math.sin(angle_rad)
+print(value)  # approximately 0.5</code></pre>
+                        <p>To study the structure of an approximation, use the series below.</p>
+                        <div class="stat-formula">sin(x) = x − x<sup>3</sup>/3! + x<sup>5</sup>/5! − x<sup>7</sup>/7! + ···</div>
+                        <p>Assume the <strong>teaching range |x| ≤ 2π</strong> and reduce each input to <code>[−π, π)</code>. With seven terms, the representative inputs below target an absolute error no greater than <code>3e-5</code>. For a very large <code>|x|</code>, simple remainder-based reduction can itself lose floating-point precision, so use the standard <code>math.sin</code>. This implementation reuses the previous term instead of recomputing every power and factorial.</p>
+                        <pre class="lecture-code"><code>import math
+
+def sin_taylor(x, terms=7):
+    x = (x + math.pi) % (2 * math.pi) - math.pi
+    total = 0.0
+    term = x
+    for n in range(terms):
+        if n &gt; 0:
+            term *= -x * x / ((2 * n) * (2 * n + 1))
+        total += term
+    return total
+
+angle_rad = math.radians(30.0)
+approx = sin_taylor(angle_rad)
+exact = math.sin(angle_rad)
+error = abs(approx - exact)
+print(approx, exact, error)</code></pre>
+                        <div class="lecture-note"><p><strong>Purpose.</strong> This exercise does not replace the carefully engineered <code>math.sin</code>. It makes the effects of term count, range reduction, and floating-point error observable and testable.</p></div>
+
+                        <h3>6. Balancing Accuracy, Time, and Memory</h3>
+                        <p>Whether π should be approximated as 3, 3.14, or many more digits depends on the use case. Screen animation, sensor control, and medical calculation have different failure costs. <strong>Define an error budget first</strong>, then choose precision and computational cost.</p>
+                        <div class="stat-formula">Major error sources: modeling · approximation/truncation · floating-point rounding · measurement</div>
+                        <p>These quantities are not unconditionally additive. To compare their effect on a result, each contribution must be <strong>expressed in the output unit</strong>, with error propagation through nonlinear transformations taken into account.</p>
+                        <ul>
+                            <li><strong>Accuracy:</strong> compare absolute and relative error with a reference.</li>
+                            <li><strong>Time:</strong> repeat measurements over representative inputs.</li>
+                            <li><strong>Memory:</strong> measure the actual representation, not only the number of values.</li>
+                            <li><strong>Safety:</strong> test out-of-range inputs, division by zero, overflow, and NaN.</li>
+                        </ul>
+
+                        <h3>7. Bit Shifts and Circular Rotation</h3>
+                        <p><strong>A shift and a rotation are different operations</strong>. A shift moves bits, discards those that leave the width, and fills the vacant side. A rotation returns an ejected bit at the other side. Also, <strong>Python integers do not wrap automatically at a fixed width</strong>. To emulate a fixed-width rotation, define the width and mask explicitly.</p>
+                        <pre class="lecture-code"><code>def rotate_right(value, shift, width=8):
+    mask = (1 &lt;&lt; width) - 1
+    shift %= width
+    value &amp;= mask
+    return (value &gt;&gt; shift) | ((value &lt;&lt; (width - shift)) &amp; mask)
+
+bits = 0b11010001
+print(f"{bits &gt;&gt; 1:08b}")                  # 01101000: right shift
+print(f"{rotate_right(bits, 1):08b}")         # 11101000: right rotation</code></pre>
+
+                        <h3>8. Hardware–Software Boundary</h3>
+                        <p>Processors can execute bit operations very quickly, but system performance also includes data movement, memory hierarchy, branches, and parallelism. In a robot or drone, constrained hardware may handle sensor acquisition and urgent control while software performs higher-level inference and learning. C and C++ are common in embedded systems because they offer predictable resource use and direct hardware access; Python offers productivity for experimentation, analysis, and model development.</p>
+                        <div class="stat-formula">requirements → latency, power, and memory budgets → hardware/software partition → measurement → redesign</div>
+
+                        <h3>9. Modeling Reality with Functions</h3>
+                        <p>A mathematical function maps each input in its domain to exactly one output, but <strong>A function need not be one-to-one</strong>. For <code>f(x)=x²</code>, both 2 and −2 map to 4. A programming function may mutate external state or raise an exception, yet a pure function with explicit inputs and outputs is easier to test and reuse.</p>
+                        <p>An autonomous system maps camera and sensor inputs to control outputs through conditions, numerical models, and learned models. A learned model estimates a relation from data, but people must still define and verify its input scope, freshness, uncertainty, and safety constraints.</p>
+
+                        <h3>10. Peer Code Review</h3>
+                        <p>Peer code review is not answer copying. It is an engineering practice for comparing solutions with evidence. Useful review questions include:</p>
+                        <ul>
+                            <li>Are input units and valid ranges explicit?</li>
+                            <li>Is numerical error measured against a reference implementation?</li>
+                            <li>Are boundaries, invalid inputs, and exceptions tested?</li>
+                            <li>Is the choice among lookup, series approximation, and library calls justified?</li>
+                            <li>Are external ideas attributed, and can the author explain the code independently?</li>
+                        </ul>
+
+                        <h3>Key Takeaways</h3>
+                        <ul>
+                            <li>Python syntax does not always match mathematical notation; verify operator semantics by execution.</li>
+                            <li>An approximation needs range reduction, a term-count decision, and an error measurement.</li>
+                            <li>The system's error and resource budgets decide the trade-off among speed, accuracy, and memory.</li>
+                            <li>Functions and programs model how real inputs become outputs; explanation and validation are part of implementation.</li>
+                        </ul>
+                    </div>
+                </div>
+            </section>
+        </article>
+
+        <div id="site-footer"></div>
+    </div>
+
+    <script src="../../../common.js"></script>
+</body>
+</html>
