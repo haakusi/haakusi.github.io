@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html data-theme="dark" data-lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>The World of Quantum Mechanics and Big Data - Week 2 - Sewon Park</title>
+    <link rel="stylesheet" type="text/css" href="../../../style.css">
+    <link rel="stylesheet" type="text/css" href="../../../assets/css/lectures.css">
+</head>
+<body>
+    <button class="theme-toggle" onclick="toggleTheme()" aria-label="Toggle dark mode"></button>
+    <button class="lang-toggle" onclick="toggleLanguage()" aria-label="Toggle language">EN</button>
+
+    <div class="container">
+        <div id="site-header"></div>
+        <div id="site-nav"></div>
+
+        <article class="course-page">
+            <div class="course-header">
+                <h1 data-en="The World of Quantum Mechanics and Big Data" data-kr="양자역학의세계와빅데이터">The World of Quantum Mechanics and Big Data</h1>
+                <p class="course-meta" data-en="2026 Fall | Weekly learning notes" data-kr="2026 가을학기 | 주차별 학습 노트">2026 Fall | Weekly learning notes</p>
+            </div>
+
+            <div class="course-nav">
+                <a href="../../../lectures.html" class="back-to-lectures" data-en="Back to Lectures" data-kr="강의 목록으로">Back to Lectures</a>
+                <span class="nav-separator">/</span>
+                <a href="./index.html" class="back-to-course" data-en="Course Home" data-kr="과목 홈">Course Home</a>
+            </div>
+
+            <div class="week-nav">
+                <span data-en="Weeks:" data-kr="주차:">Weeks:</span>
+                <a href="week-01.html" class="week-link">W1</a>
+                <a href="week-02.html" class="week-link current">W2</a>
+            </div>
+
+            <section class="week-section" id="week-02">
+                <h2 data-en="Week 2 — Hilbert Space, Measurement, and Quantum Rotations" data-kr="2주차 — 힐베르트 공간, 측정, 양자 회전">Week 2 — Hilbert Space, Measurement, and Quantum Rotations</h2>
+                <p class="week-date" data-en="2026 Fall · From eigenvalue problems to rotation operators" data-kr="2026 가을학기 · 고윳값 문제에서 회전 연산자까지">2026 Fall · From eigenvalue problems to rotation operators</p>
+
+                <div class="week-content">
+                    <span class="assignment-chip" data-en="Eigenvalues · Completeness · Rotations" data-kr="고윳값 · 완비성 · 회전">Eigenvalues · Completeness · Rotations</span>
+
+                    <div class="lang-kr" hidden>
+                        <p>2주차의 중심 질문은 세 가지다. <strong>어떤 상태가 측정 가능한 값과 연결되는가, 그 상태들을 담는 공간은 왜 힐베르트 공간이어야 하는가, 스핀 상태를 회전시키는 연산자는 어떻게 계산하는가?</strong> 선형대수의 고윳값 문제에서 출발해 확률 해석과 Pauli 회전까지 한 흐름으로 연결한다.</p>
+
+                        <h3>1. 고윳값 문제: 상태를 바꾸지 않는 특별한 방향</h3>
+                        <p>연산자 Â가 상태 |a⟩에 작용한 결과가 원래 상태의 스칼라배라면 |a⟩는 <strong>고유상태</strong>, a는 <strong>고윳값</strong>이다.</p>
+                        <div class="stat-formula">Â|a⟩ = a|a⟩</div>
+                        <p>양자역학에서 관측 가능한 물리량은 Hermitian 연산자로 표현한다. Hamiltonian Ĥ의 고윳값 문제 Ĥ|E<sub>n</sub>⟩ = E<sub>n</sub>|E<sub>n</sub>⟩을 풀면 허용되는 에너지 E<sub>n</sub>과 에너지 고유상태를 얻는다. 좌표 표현에서는 이 문제가 미분방정식이 될 수 있다.</p>
+                        <div class="lecture-note"><p><strong>구분.</strong> 고유벡터는 선형대수의 표현이고, 고유상태는 같은 구조를 양자 상태에 적용한 말이다. 고윳값은 연산자의 성질과 측정 가능한 결과를 잇는다.</p></div>
+
+                        <h3>2. 중첩과 선형결합</h3>
+                        <p>스핀 1/2 상태는 두 기저 상태의 선형결합으로 표현할 수 있다. 양자역학에서는 이를 <strong>중첩</strong>이라고 부른다.</p>
+                        <div class="stat-formula">|ψ⟩ = α|↑⟩ + β|↓⟩ = α(1, 0)<sup>T</sup> + β(0, 1)<sup>T</sup> = (α, β)<sup>T</sup></div>
+                        <p>α와 β는 일반적으로 복소수다. 정규화된 상태라면 |α|<sup>2</sup> + |β|<sup>2</sup> = 1이고, 각 절댓값 제곱은 해당 기저로 측정했을 때의 확률이 된다. 중첩은 “두 결과가 이미 동시에 관측되었다”는 뜻이 아니라, 측정 전 상태가 여러 가능한 결과의 확률 진폭을 가진다는 뜻이다.</p>
+
+                        <h3>3. 힐베르트 공간: 내적을 가진 완비 벡터공간</h3>
+                        <p><strong>힐베르트 공간</strong>은 복소수 벡터공간에 내적이 정의되어 있고, 그 내적이 만드는 거리에서 완비인 공간이다. 유한차원 벡터뿐 아니라 파동함수 같은 함수도 벡터로 다룰 수 있어 양자 상태공간의 언어가 된다.</p>
+                        <table class="stat-table">
+                            <tr><th>구조</th><th>하는 일</th><th>양자역학의 의미</th></tr>
+                            <tr><td>벡터공간</td><td>벡터의 덧셈과 스칼라곱</td><td>상태의 선형결합과 중첩</td></tr>
+                            <tr><td>내적 ⟨φ|ψ⟩</td><td>길이, 각도, 투영을 정의</td><td>정규화, 직교성, 확률 진폭</td></tr>
+                            <tr><td>완비성</td><td>수렴해야 할 코시 수열의 극한이 공간 안에 존재</td><td>상태의 극한이 공간 밖으로 빠져나가지 않음</td></tr>
+                        </table>
+                        <p>실수 벡터 a = (3, 4), b = (4, 5)의 내적은 a·b = 3×4 + 4×5 = 32다. |a| = 5, |b| = √41이므로 cosθ = 32/(5√41)이다. 내적 하나로 투영, 각도, 거리 ‖a − b‖를 정의할 수 있다.</p>
+
+                        <h3>4. 코시 수열과 공간의 완비성</h3>
+                        <p><strong>코시 수열</strong>은 뒤쪽 항끼리의 거리가 원하는 만큼 작아지는 수열이다. a<sub>n</sub> = 1/n은 실수 공간에서 0으로 수렴한다. 더 중요한 예는 유리수만으로 시작하는 Newton 수열이다.</p>
+                        <div class="stat-formula">a<sub>1</sub> = 1 &nbsp;·&nbsp; a<sub>n+1</sub> = ½(a<sub>n</sub> + 2/a<sub>n</sub>) &nbsp;·&nbsp; a<sub>n</sub> → √2</div>
+                        <p>각 a<sub>n</sub>은 유리수지만 극한 √2는 무리수다. 따라서 <strong>유리수 공간은 완비가 아니지만 실수 공간은 완비</strong>다. 힐베르트 공간의 완비성은 이와 같은 “극한에서 생기는 구멍”이 없다는 조건이다.</p>
+
+                        <h3>5. 두 종류의 완비성 구분하기</h3>
+                        <p>수업에서 만나는 “완비성”에는 서로 연결되지만 구분해야 할 두 표현이 있다.</p>
+                        <table class="stat-table">
+                            <tr><th>개념</th><th>질문</th><th>표현</th></tr>
+                            <tr><td>공간의 완비성</td><td>코시 수열의 극한이 이 공간 안에 남는가?</td><td>힐베르트 공간의 해석학적 조건</td></tr>
+                            <tr><td>기저의 완전성 관계</td><td>기저가 상태공간 전체를 빠짐없이 펼치는가?</td><td>∑<sub>n</sub>|E<sub>n</sub>⟩⟨E<sub>n</sub>| = I</td></tr>
+                        </table>
+                        <p>기저의 완전성 관계와는 연결되어 있지만 같은 정의는 아니다. 앞의 조건은 극한에 관한 성질이고, 뒤의 식은 모든 상태를 그 기저의 선형결합으로 복원할 수 있음을 뜻한다.</p>
+
+                        <h3>6. 직교정규 기저와 측정</h3>
+                        <p>Hermitian 연산자의 서로 다른 고윳값에 대응하는 고유상태는 직교하도록 잡을 수 있으며, 정규화까지 하면 다음 관계를 만족한다.</p>
+                        <div class="stat-formula">⟨E<sub>m</sub>|E<sub>n</sub>⟩ = δ<sub>mn</sub> &nbsp;·&nbsp; δ<sub>mn</sub> = 1 (m = n), 0 (m ≠ n)</div>
+                        <p>직교성은 두 기저 상태가 독립적인 방향이고 같은 관측량의 서로 구분되는 측정 결과라는 뜻이다. 한 상태가 여러 직교 기저 성분의 중첩인 것은 가능하다. 또한 직교성은 <strong>불확정성 원리와 같은 뜻이 아니다</strong>. 불확정성 관계는 일반적으로 서로 가환하지 않는 두 연산자의 분산 사이에서 나온다.</p>
+
+                        <h3>7. 브라·켓과 외적: 단위연산자 만들기</h3>
+                        <p>켓은 열벡터, 브라는 켓의 켤레전치인 행벡터다. ⟨u|v⟩는 스칼라인 내적이고, |u⟩⟨v|는 행렬인 <strong>외적</strong>이다.</p>
+                        <div class="stat-formula">|0⟩⟨0| = [[1, 0], [0, 0]] &nbsp;·&nbsp; |1⟩⟨1| = [[0, 0], [0, 1]]</div>
+                        <div class="stat-formula">|0⟩⟨0| + |1⟩⟨1| = I</div>
+                        <p>외적 |E<sub>n</sub>⟩⟨E<sub>n</sub>|은 E<sub>n</sub> 방향으로의 투영 연산자다. 모든 기저 방향의 투영 연산자를 더하면 어떤 상태도 그대로 돌려주는 단위연산자 I가 된다.</p>
+
+                        <h3>8. 전개계수, 확률 진폭, Born 규칙</h3>
+                        <div class="stat-formula">|ψ⟩ = ∑<sub>n</sub> c<sub>n</sub>|E<sub>n</sub>⟩ &nbsp;·&nbsp; c<sub>n</sub> = ⟨E<sub>n</sub>|ψ⟩</div>
+                        <p>c<sub>n</sub>은 <strong>확률 진폭</strong>이다. c<sub>n</sub> 자체가 확률은 아니며, Born 규칙에 따라 절댓값 제곱을 취해야 한다.</p>
+                        <div class="stat-formula">P(E<sub>n</sub>) = |c<sub>n</sub>|<sup>2</sup> &nbsp;·&nbsp; ∑<sub>n</sub>|c<sub>n</sub>|<sup>2</sup> = 1</div>
+                        <p>예를 들어 |ψ⟩ = (3/5)|E<sub>1</sub>⟩ + (4/5)|E<sub>2</sub>⟩이면 P(E<sub>1</sub>) = 9/25, P(E<sub>2</sub>) = 16/25다. 연속 위치 기저에서는 합이 적분으로 바뀌어 ∫|ψ(x)|<sup>2</sup>dx = 1이 된다.</p>
+
+                        <h3>9. Pauli 행렬과 회전 연산자</h3>
+                        <p>스핀 1/2 상태를 단위벡터 n̂축으로 θ만큼 회전시키는 연산자는 Pauli 행렬을 지수함수에 넣어 만든다.</p>
+                        <div class="stat-formula">R<sub>n̂</sub>(θ) = exp[−i(θ/2)n̂·σ] = cos(θ/2)I − i sin(θ/2)n̂·σ</div>
+                        <table class="stat-table">
+                            <tr><th>축</th><th>회전 연산자</th><th>행렬</th></tr>
+                            <tr><td>x</td><td>R<sub>x</sub>(θ) = e<sup>−iθσ<sub>x</sub>/2</sup></td><td>[[cos(θ/2), −i sin(θ/2)], [−i sin(θ/2), cos(θ/2)]]</td></tr>
+                            <tr><td>y</td><td>R<sub>y</sub>(θ) = e<sup>−iθσ<sub>y</sub>/2</sup></td><td>[[cos(θ/2), −sin(θ/2)], [sin(θ/2), cos(θ/2)]]</td></tr>
+                            <tr><td>z</td><td>R<sub>z</sub>(θ) = e<sup>−iθσ<sub>z</sub>/2</sup></td><td>[[e<sup>−iθ/2</sup>, 0], [0, e<sup>iθ/2</sup>]]</td></tr>
+                        </table>
+                        <div class="stat-formula">R<sub>y</sub>(θ) = cos(θ/2)I − i sin(θ/2)σ<sub>y</sub></div>
+                        <p>예를 들어 R<sub>y</sub>(θ)|0⟩ = cos(θ/2)|0⟩ + sin(θ/2)|1⟩이다. θ가 Bloch 구면에서 상태 방향을 회전시키며, 절반각 θ/2가 나타나는 것은 스핀 1/2 표현의 특징이다.</p>
+
+                        <h3>10. 테일러 전개로 행렬 지수함수 이해하기</h3>
+                        <div class="stat-formula">e<sup>x</sup> = ∑<sub>n=0</sub><sup>∞</sup>x<sup>n</sup>/n! &nbsp;·&nbsp; cos x = ∑<sub>n=0</sub><sup>∞</sup>(−1)<sup>n</sup>x<sup>2n</sup>/(2n)! &nbsp;·&nbsp; sin x = ∑<sub>n=0</sub><sup>∞</sup>(−1)<sup>n</sup>x<sup>2n+1</sup>/(2n+1)!</div>
+                        <p><strong>테일러 전개</strong>에서 σ<sub>y</sub><sup>2</sup> = I를 사용하면 행렬 지수의 짝수 차수는 I와 cos 급수로, 홀수 차수는 σ<sub>y</sub>와 sin 급수로 모인다. 따라서 e<sup>−iθσ<sub>y</sub>/2</sup> = cos(θ/2)I − i sin(θ/2)σ<sub>y</sub>가 된다. 같은 구조에 Euler 공식 e<sup>±ix</sup> = cos x ± i sin x가 들어 있다.</p>
+
+                        <h3>11. 페르미온과 보손: 입자 분류와 측정값 구분</h3>
+                        <p><strong>페르미온과 보손</strong>은 고유 스핀 양자수로 구분한다. 전자는 s = 1/2인 페르미온이고, 광자는 s = 1인 보손이다. 그러나 “페르미온의 고윳값은 ℏ/2, 보손의 고윳값은 ℏ”이라고 일반화하면 안 된다.</p>
+                        <ul>
+                            <li>전자에서 S<sup>2</sup>의 고윳값은 s(s + 1)ℏ<sup>2</sup> = 3ℏ<sup>2</sup>/4다.</li>
+                            <li>한 축의 <strong>스핀 성분의 측정 고윳값</strong>은 m<sub>s</sub>ℏ이며, 전자는 ±ℏ/2다.</li>
+                            <li>광자는 질량이 없는 스핀 1 입자로 물리적 helicity가 ±ℏ이며, 모든 보손이 같은 측정값을 갖는 것은 아니다.</li>
+                        </ul>
+
+                        <h3>12. 연산자와 양자 게이트</h3>
+                        <p><strong>연산자와 양자 게이트</strong>는 문맥이 다르다. 연산자는 상태를 다른 상태나 값으로 보내는 넓은 수학적 개념이다. <strong>양자 게이트는 유니터리 연산자</strong>를 회로의 계산 단계로 해석한 것이며, 정규화를 보존하고 역연산이 존재한다. 모든 연산자가 게이트인 것은 아니고, 측정 연산은 일반적으로 단순한 유니터리 게이트가 아니다.</p>
+
+                        <h3>핵심 정리</h3>
+                        <ul>
+                            <li>고윳값 방정식은 연산자, 측정값, 고유상태를 연결한다.</li>
+                            <li>힐베르트 공간은 내적과 극한의 완비성을 갖추며, 기저의 완전성 관계는 상태공간 전체를 복원한다.</li>
+                            <li>직교정규 기저에서 전개계수는 내적으로 구하고, 절댓값 제곱이 측정 확률이 된다.</li>
+                            <li>Pauli 행렬의 지수함수는 스핀 회전 연산자를 만들고, Taylor 급수가 cos와 sin으로 묶이는 과정을 설명한다.</li>
+                        </ul>
+
+                        <h3>손으로 확인할 계산</h3>
+                        <ol>
+                            <li>a = (3, 4), b = (4, 5)의 내적과 두 벡터 사이 각도를 다시 계산한다.</li>
+                            <li>|0⟩⟨0| + |1⟩⟨1| = I를 2×2 행렬곱으로 확인한다.</li>
+                            <li>|ψ⟩ = (3/5)|E<sub>1</sub>⟩ + (4/5)|E<sub>2</sub>⟩의 정규화와 두 확률을 구한다.</li>
+                            <li>σ<sub>y</sub><sup>2</sup> = I를 사용해 R<sub>y</sub>(θ)를 짝수항과 홀수항으로 나누어 유도한다.</li>
+                        </ol>
+                    </div>
+
+                    <div class="lang-en">
+                        <p>Week 2 asks three connected questions: <strong>Which states correspond to measurable values? Why is the state space a Hilbert space? How do operators rotate a spin state?</strong> The path runs from the linear-algebra eigenvalue problem to probability amplitudes and Pauli rotations.</p>
+
+                        <h3>1. The Eigenvalue Problem</h3>
+                        <p>If applying an operator Â to |a⟩ returns a scalar multiple of the same state, |a⟩ is an eigenstate and a is its eigenvalue.</p>
+                        <div class="stat-formula">Â|a⟩ = a|a⟩</div>
+                        <p>Observables are represented by Hermitian operators. Solving Ĥ|E<sub>n</sub>⟩ = E<sub>n</sub>|E<sub>n</sub>⟩ gives the allowed energies and energy eigenstates. In a position representation, the same eigenvalue problem may become a differential equation.</p>
+
+                        <h3>2. Superposition and Linear Combinations</h3>
+                        <div class="stat-formula">|ψ⟩ = α|↑⟩ + β|↓⟩ = (α, β)<sup>T</sup> &nbsp;·&nbsp; |α|<sup>2</sup> + |β|<sup>2</sup> = 1</div>
+                        <p>The complex coefficients are probability amplitudes in the chosen basis. Superposition does not mean that two outcomes have already been observed simultaneously; it means the pre-measurement state carries amplitudes for multiple possible outcomes.</p>
+
+                        <h3>3. Hilbert Space and the Inner Product</h3>
+                        <p>A <strong>Hilbert space</strong> is an inner-product vector space that is complete in the distance induced by that inner product. It supports linear combinations, lengths, angles, projections, and limits, and can contain finite vectors or functions such as wavefunctions.</p>
+                        <p>For a = (3, 4) and b = (4, 5), the inner product is a·b = 32. Since |a| = 5 and |b| = √41, cosθ = 32/(5√41). The same inner-product structure later becomes the source of quantum amplitudes.</p>
+
+                        <h3>4. Cauchy Sequences and Metric Completeness</h3>
+                        <p>A <strong>Cauchy sequence</strong> has tail elements that become arbitrarily close to one another. The Newton iteration below contains only rational terms but converges to the irrational number √2.</p>
+                        <div class="stat-formula">a<sub>1</sub> = 1 &nbsp;·&nbsp; a<sub>n+1</sub> = ½(a<sub>n</sub> + 2/a<sub>n</sub>) &nbsp;·&nbsp; a<sub>n</sub> → √2</div>
+                        <p>This shows that the rational numbers are not complete, whereas the real numbers are complete. Hilbert-space completeness similarly prevents a convergent state sequence from falling through a “hole” outside the space.</p>
+
+                        <h3>5. Two Meanings of Completeness</h3>
+                        <table class="stat-table">
+                            <tr><th>Concept</th><th>Question</th><th>Expression</th></tr>
+                            <tr><td>Metric completeness</td><td>Does every Cauchy sequence converge inside the space?</td><td>Analytic condition for a Hilbert space</td></tr>
+                            <tr><td>Completeness relation of a basis</td><td>Does the basis span the entire state space?</td><td>∑<sub>n</sub>|E<sub>n</sub>⟩⟨E<sub>n</sub>| = I</td></tr>
+                        </table>
+                        <p>The two ideas are related through the structure of the state space, but they are not the same definition.</p>
+
+                        <h3>6. Orthonormal Basis and Measurement</h3>
+                        <div class="stat-formula">⟨E<sub>m</sub>|E<sub>n</sub>⟩ = δ<sub>mn</sub></div>
+                        <p>Eigenstates of a Hermitian observable with distinct eigenvalues are orthogonal and can be normalized. Orthogonality marks independent basis directions and distinguishable outcomes of that observable. A state may still be a superposition of those directions. This is not the uncertainty principle, which concerns variances of generally noncommuting operators.</p>
+
+                        <h3>7. Bras, Kets, and Outer Products</h3>
+                        <p>A ket is a column vector and its bra is the conjugate-transposed row vector. The inner product ⟨u|v⟩ is a scalar; the outer product |u⟩⟨v| is a matrix.</p>
+                        <div class="stat-formula">|0⟩⟨0| = [[1, 0], [0, 0]] &nbsp;·&nbsp; |1⟩⟨1| = [[0, 0], [0, 1]]</div>
+                        <div class="stat-formula">|0⟩⟨0| + |1⟩⟨1| = I</div>
+                        <p>Each |E<sub>n</sub>⟩⟨E<sub>n</sub>| projects onto one basis direction. Summing all such projectors reconstructs the identity.</p>
+
+                        <h3>8. Expansion Coefficients, Probability Amplitude, and the Born Rule</h3>
+                        <div class="stat-formula">|ψ⟩ = ∑<sub>n</sub> c<sub>n</sub>|E<sub>n</sub>⟩ &nbsp;·&nbsp; c<sub>n</sub> = ⟨E<sub>n</sub>|ψ⟩</div>
+                        <div class="stat-formula">P(E<sub>n</sub>) = |c<sub>n</sub>|<sup>2</sup> &nbsp;·&nbsp; ∑<sub>n</sub>|c<sub>n</sub>|<sup>2</sup> = 1</div>
+                        <p>The coefficient c<sub>n</sub> is a probability amplitude, not a probability by itself. For |ψ⟩ = (3/5)|E<sub>1</sub>⟩ + (4/5)|E<sub>2</sub>⟩, the probabilities are 9/25 and 16/25. In a continuous position basis, normalization becomes ∫|ψ(x)|<sup>2</sup>dx = 1.</p>
+
+                        <h3>9. Pauli Matrices and Rotation Operators</h3>
+                        <div class="stat-formula">R<sub>n̂</sub>(θ) = exp[−i(θ/2)n̂·σ] = cos(θ/2)I − i sin(θ/2)n̂·σ</div>
+                        <table class="stat-table">
+                            <tr><th>Axis</th><th>Rotation operator</th><th>Matrix</th></tr>
+                            <tr><td>x</td><td>R<sub>x</sub>(θ) = e<sup>−iθσ<sub>x</sub>/2</sup></td><td>[[cos(θ/2), −i sin(θ/2)], [−i sin(θ/2), cos(θ/2)]]</td></tr>
+                            <tr><td>y</td><td>R<sub>y</sub>(θ) = e<sup>−iθσ<sub>y</sub>/2</sup></td><td>[[cos(θ/2), −sin(θ/2)], [sin(θ/2), cos(θ/2)]]</td></tr>
+                            <tr><td>z</td><td>R<sub>z</sub>(θ) = e<sup>−iθσ<sub>z</sub>/2</sup></td><td>[[e<sup>−iθ/2</sup>, 0], [0, e<sup>iθ/2</sup>]]</td></tr>
+                        </table>
+                        <div class="stat-formula">R<sub>y</sub>(θ) = cos(θ/2)I − i sin(θ/2)σ<sub>y</sub></div>
+                        <p>For example, R<sub>y</sub>(θ)|0⟩ = cos(θ/2)|0⟩ + sin(θ/2)|1⟩. The half-angle is characteristic of the spin-1/2 representation.</p>
+
+                        <h3>10. Taylor Expansion of the Matrix Exponential</h3>
+                        <div class="stat-formula">e<sup>x</sup> = ∑<sub>n=0</sub><sup>∞</sup>x<sup>n</sup>/n! &nbsp;·&nbsp; cos x = ∑<sub>n=0</sub><sup>∞</sup>(−1)<sup>n</sup>x<sup>2n</sup>/(2n)! &nbsp;·&nbsp; sin x = ∑<sub>n=0</sub><sup>∞</sup>(−1)<sup>n</sup>x<sup>2n+1</sup>/(2n+1)!</div>
+                        <p>In the <strong>Taylor expansion</strong>, σ<sub>y</sub><sup>2</sup> = I sends the even powers into the cosine series and the odd powers into the sine series. This yields e<sup>−iθσ<sub>y</sub>/2</sup> = cos(θ/2)I − i sin(θ/2)σ<sub>y</sub> and reflects Euler's relation e<sup>±ix</sup> = cos x ± i sin x.</p>
+
+                        <h3>11. Fermions and Bosons</h3>
+                        <p><strong>Fermions and bosons</strong> are classified by intrinsic spin quantum number. An electron is a spin-1/2 fermion and a photon is a spin-1 boson, but that classification is not itself a universal measurement eigenvalue.</p>
+                        <ul>
+                            <li>For an electron, S<sup>2</sup> has eigenvalue s(s + 1)ℏ<sup>2</sup> = 3ℏ<sup>2</sup>/4.</li>
+                            <li>A measured electron spin component has eigenvalues ±ℏ/2.</li>
+                            <li>A photon has physical helicities ±ℏ; not every boson shares one component value.</li>
+                        </ul>
+
+                        <h3>12. Operators and Quantum Gates</h3>
+                        <p><strong>Operators and quantum gates</strong> use the same mathematics in different contexts. An operator is any suitable map on states. A quantum gate is a unitary operator interpreted as a reversible computational step in a circuit. Not every operator is a gate, and measurement is not generally just a unitary gate.</p>
+
+                        <h3>Key Takeaways</h3>
+                        <ul>
+                            <li>The eigenvalue equation connects operators, eigenstates, and measurable outcomes.</li>
+                            <li>Hilbert-space completeness concerns limits; a basis completeness relation concerns spanning the state space.</li>
+                            <li>Inner products extract amplitudes, and the Born rule turns their magnitudes squared into probabilities.</li>
+                            <li>Pauli-matrix exponentials generate spin rotations, with Taylor series explaining the cosine and sine form.</li>
+                        </ul>
+
+                        <h3>Calculations to Reproduce by Hand</h3>
+                        <ol>
+                            <li>Recompute the dot product and angle for a = (3, 4), b = (4, 5).</li>
+                            <li>Verify |0⟩⟨0| + |1⟩⟨1| = I by explicit 2×2 multiplication.</li>
+                            <li>Normalize a two-state superposition and calculate both measurement probabilities.</li>
+                            <li>Use σ<sub>y</sub><sup>2</sup> = I to derive R<sub>y</sub>(θ) by separating even and odd powers.</li>
+                        </ol>
+                    </div>
+                </div>
+            </section>
+        </article>
+
+        <div id="site-footer"></div>
+    </div>
+
+    <script src="../../../common.js"></script>
+</body>
+</html>
