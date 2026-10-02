@@ -1,0 +1,362 @@
+<!DOCTYPE html>
+<html data-theme="dark" data-lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>AI Programming - Week 3 - Sewon Park</title>
+    <link rel="stylesheet" type="text/css" href="../../../style.css">
+    <link rel="stylesheet" type="text/css" href="../../../assets/css/lectures.css">
+</head>
+<body>
+    <button class="theme-toggle" onclick="toggleTheme()" aria-label="Toggle dark mode"></button>
+    <button class="lang-toggle" onclick="toggleLanguage()" aria-label="Toggle language">EN</button>
+
+    <div class="container">
+        <div id="site-header"></div>
+        <div id="site-nav"></div>
+
+        <article class="course-page">
+            <div class="course-header">
+                <h1 data-en="AI Programming" data-kr="인공지능프로그래밍">AI Programming</h1>
+                <p class="course-meta" data-en="2026 Fall | Weekly learning notes" data-kr="2026 가을학기 | 주차별 학습 노트">2026 Fall | Weekly learning notes</p>
+            </div>
+
+            <div class="course-nav">
+                <a href="../../../lectures.html" class="back-to-lectures" data-en="Back to Lectures" data-kr="강의 목록으로">Back to Lectures</a>
+                <span class="nav-separator">/</span>
+                <a href="./index.html" class="back-to-course" data-en="Course Home" data-kr="과목 홈">Course Home</a>
+            </div>
+
+            <div class="week-nav">
+                <span data-en="Weeks:" data-kr="주차:">Weeks:</span>
+                <a href="week-01.html" class="week-link">W1</a>
+                <a href="week-02.html" class="week-link">W2</a>
+                <a href="week-03.html" class="week-link current">W3</a>
+            </div>
+
+            <section class="week-section" id="week-03">
+                <h2 data-en="Week 3 — Data Representation, Numerical Error, and Complex Values" data-kr="3주차 — 데이터 표현·수치 오차와 복소수">Week 3 — Data Representation, Numerical Error, and Complex Values</h2>
+                <p class="week-date" data-en="Python values · Binary representation · Domain-aware verification" data-kr="파이썬 값 · 이진 표현 · 도메인 기반 검증">Python values · Binary representation · Domain-aware verification</p>
+
+                <div class="week-content">
+                    <div class="lang-kr" lang="ko" hidden>
+                        <p>이번 주는 값이 컴퓨터 안에서 어떻게 표현되고 해석되는지를 살펴본다. 같은 수학적 값이라도 객체·메모리·진법·자료형을 어떻게 선택하느냐에 따라 코드의 동작과 오차가 달라진다. 핵심은 화면에 나온 숫자를 그대로 믿는 것이 아니라 <strong>표현 방식, 허용 오차, 경계 조건을 설명하고 검증하는 것</strong>이다.</p>
+
+                        <h3>1. 변수·객체·메모리 주소</h3>
+                        <p><strong>변수 이름은 메모리 주소 그 자체가 아니다.</strong> 파이썬에서 변수는 객체에 바인딩된 이름이고, 실제 메모리 배치와 관리는 인터프리터가 맡는다. <strong>대입은 객체를 복사하지 않고 같은 객체에 이름을 하나 더 연결</strong>한다. 얕은 복사는 바깥 컨테이너만 새로 만들고, 깊은 복사는 내부의 중첩 객체까지 재귀적으로 복제한다.</p>
+                        <pre class="lecture-code"><code>import copy
+
+original = [[1, 2], [3, 4]]
+alias = original
+shallow = original.copy()
+deep = copy.deepcopy(original)
+
+original[0][0] = 99
+print(alias[0][0], shallow[0][0], deep[0][0])</code></pre>
+                        <p>출력은 <code>99 99 1</code>이다. 별칭과 얕은 복사는 첫 번째 내부 리스트를 공유하지만 깊은 복사는 공유하지 않는다. 운영체제의 파일 잘라내기·붙여넣기나 편집기의 클립보드 동작은 별도의 규칙을 따르므로, 이를 파이썬 객체 대입과 같은 메모리 모델로 일반화하면 안 된다.</p>
+
+                        <h3>2. 식별자와 고유 식별자</h3>
+                        <p><strong>식별자</strong>는 코드 안에서 변수·함수·클래스를 가리키는 이름이다. 파이썬 식별자는 숫자로 시작할 수 없고 예약어를 사용할 수 없으며, 읽기 쉬운 <code>snake_case</code>가 보편적이다. 이름 길이를 임의의 64자로 제한하는 규칙은 파이썬 문법의 일반 규칙이 아니다.</p>
+                        <table class="stat-table">
+                            <tr><th>개념</th><th>목적</th><th>예</th></tr>
+                            <tr><td>프로그램 식별자</td><td>코드에서 값을 읽기 쉽게 가리킴</td><td><code>sensor_temperature</code></td></tr>
+                            <tr><td>도메인 키</td><td>업무 규칙 안에서 대상을 구분</td><td>학번, 주문번호, 장치번호</td></tr>
+                            <tr><td>UUID</td><td>분산 환경에서 충돌 가능성을 매우 낮춘 식별자</td><td>128비트 UUID</td></tr>
+                        </table>
+                        <p>고유성은 이름을 길게 쓰는 것만으로 보장되지 않는다. 생성 규칙, 유효 범위, 중복 검사, 저장소 제약조건을 함께 설계해야 한다.</p>
+
+                        <h3>3. 10진 정수를 2진수로</h3>
+                        <p>양의 10진 정수를 2로 반복해서 나누고 나머지를 아래에서 위로 읽으면 이진 표현을 얻는다. 11의 경우 나머지가 1, 1, 0, 1 순서로 나오므로 <strong>11₁₀ = 1011₂</strong>다.</p>
+                        <pre class="lecture-code"><code>def to_binary(n):
+    if n &lt; 0:
+        raise ValueError("use a separate signed representation")
+    if n == 0:
+        return "0"
+    bits = []
+    while n:
+        n, remainder = divmod(n, 2)
+        bits.append(str(remainder))
+    return "".join(reversed(bits))
+
+print(to_binary(11))</code></pre>
+                        <div class="stat-formula">11 = 1×2<sup>3</sup> + 0×2<sup>2</sup> + 1×2<sup>1</sup> + 1×2<sup>0</sup></div>
+
+                        <h3>4. 10진 소수를 2진수로</h3>
+                        <p>소수 부분은 2를 반복해서 곱하고 매 단계의 정수 부분을 차례로 기록한다. <strong>0.2₁₀ = 0.00110011…₂</strong>이며 <code>0011</code>이 무한히 반복된다. 따라서 <code>0.00110011₂</code>은 8자리 근사일 뿐 0.2와 정확히 같지 않다.</p>
+                        <pre class="lecture-code"><code>from fractions import Fraction
+
+value = Fraction(1, 5)
+bits = []
+for _ in range(12):
+    value *= 2
+    bit = value.numerator // value.denominator
+    bits.append(str(bit))
+    value -= bit
+
+print("0." + "".join(bits))</code></pre>
+                        <p><code>Fraction(1, 5)</code>를 사용했기 때문에 각 단계는 유리수로 정확하다. 출력 <code>0.001100110011</code>에서 반복 패턴을 직접 확인할 수 있다.</p>
+
+                        <h3>5. 부동소수점 오차와 허용 오차</h3>
+                        <p>0.2처럼 <strong>기약분수로 줄였을 때 분모</strong>에 2 이외의 소인수가 있는 분수는 이진법의 <strong>유한한 비트로 정확히 표현할 수 없다</strong>. 현대 CPython의 <code>float</code>는 보통 IEEE 754 배정밀도 이진 부동소수점이므로 가장 가까운 표현 가능한 값을 저장한다. 따라서 반복 연산은 작은 표현·반올림 오차를 누적할 수 있다.</p>
+                        <pre class="lecture-code"><code>import math
+from decimal import Decimal
+
+print(0.1 + 0.2 == 0.3)
+print(math.isclose(0.1 + 0.2, 0.3, rel_tol=1e-9, abs_tol=0.0))
+print(Decimal("0.1") + Decimal("0.2"))</code></pre>
+                        <div class="stat-formula">|a−b| ≤ max(rel_tol × max(|a|, |b|), abs_tol)</div>
+                        <p><code>math.isclose</code>의 허용 오차는 문제의 단위와 실패 비용에 맞춰 정한다. 십진 금액처럼 10진 규칙이 중요한 값은 문자열에서 만든 <code>Decimal</code>이 적합할 수 있다. 출력 자릿수를 줄이는 포맷은 표시를 바꿀 뿐 내부 오차를 제거하지 않는다.</p>
+
+                        <h3>6. 나눗셈 연산의 의미</h3>
+                        <table class="stat-table">
+                            <tr><th>표현</th><th>결과</th><th>의미</th></tr>
+                            <tr><td><code>14 / 5</code></td><td>2.8</td><td>참 나눗셈</td></tr>
+                            <tr><td><code>14 // 5</code></td><td>2</td><td>바닥 나눗셈</td></tr>
+                            <tr><td><code>14 % 5</code></td><td>4</td><td>나머지</td></tr>
+                            <tr><td><code>-14 // 5</code></td><td>−3</td><td>음의 무한대 방향으로 내림</td></tr>
+                            <tr><td><code>-14 % 5</code></td><td>1</td><td>제수 5와 같은 부호의 나머지</td></tr>
+                        </table>
+                        <p><strong>//는 0 방향 절삭이 아니라 음의 무한대 방향으로 내림</strong>한다. 정수에서는 항상 <code>a = (a // b) × b + (a % b)</code>가 성립한다.</p>
+                        <pre class="lecture-code"><code>for a in (14, -14):
+    q, r = divmod(a, 5)
+    print(a, q, r, q * 5 + r)</code></pre>
+                        <p>부동소수점 나머지는 입력 자체가 근사값일 수 있으므로 정확한 동등 비교보다 허용 오차나 정수 스케일링이 필요한지 검토한다.</p>
+
+                        <h3>7. 복소수와 복소평면</h3>
+                        <p>실수 범위에서는 <code>x² ≥ 0</code>이지만 복소수까지 확장하면 <code>√−1</code>을 허수 단위로 정의한다. 전기공학에서는 전류 기호 <code>i</code>와 혼동을 피하기 위해 <code>j</code>를 자주 쓰며, <strong>파이썬은 허수 단위에 j를 사용</strong>한다.</p>
+                        <pre class="lecture-code"><code>import cmath
+
+z = 3 + 4j
+print(cmath.sqrt(-1))
+print(z.conjugate())
+print(abs(z))</code></pre>
+                        <div class="stat-formula">z = a + bj &nbsp;·&nbsp; z̄ = a − bj &nbsp;·&nbsp; |z| = √(a²+b²)</div>
+                        <p>복소평면의 가로축은 실수부, 세로축은 허수부다. 복소수는 교류 회로, 파동, 전자기장, 열·신호 해석, 푸리에 변환, 양자역학에서 크기와 위상을 함께 표현한다. 켤레복소수는 내적·에너지·스펙트럼 계산에서 빠뜨리기 쉬운 검증 지점이다.</p>
+
+                        <h3>8. 시프트와 2의 보수</h3>
+                        <p>왼쪽 시프트는 비트를 왼쪽으로, 오른쪽 시프트는 오른쪽으로 이동한다. 그러나 단순 시프트는 밀려난 비트를 되돌리지 않으므로 순환 회전과 다르다. 1의 보수는 모든 비트를 뒤집고, 2의 보수는 그 결과에 1을 더한다. 현대의 고정 폭 부호 정수는 일반적으로 2의 보수를 사용한다.</p>
+                        <p><strong>파이썬 정수는 임의 정밀도</strong>이므로 8비트처럼 자동으로 넘치거나 순환하지 않는다. 음수를 비트 패턴으로 직렬화하려면 <strong>명시적인 비트폭</strong>과 허용 범위를 정해야 한다.</p>
+                        <pre class="lecture-code"><code>def encode_twos(value, width=8):
+    lower = -(1 &lt;&lt; (width - 1))
+    upper = 1 &lt;&lt; (width - 1)
+    if not lower &lt;= value &lt; upper:
+        raise ValueError("value does not fit the signed width")
+    return value &amp; ((1 &lt;&lt; width) - 1)
+
+def decode_twos(bits, width=8):
+    mask = (1 &lt;&lt; width) - 1
+    bits &amp;= mask
+    sign_bit = 1 &lt;&lt; (width - 1)
+    return bits - (1 &lt;&lt; width) if bits &amp; sign_bit else bits
+
+encoded = encode_twos(-5)
+print(f"{encoded:08b}")
+print(decode_twos(encoded))
+print(-5 &gt;&gt; 1)</code></pre>
+                        <p>8비트에서 −5는 <code>11111011</code>이고 다시 해석하면 −5다. 파이썬에서 음수 오른쪽 시프트는 부호를 유지하는 산술 시프트이므로 <code>-5 &gt;&gt; 1</code>은 −3이다.</p>
+
+                        <h3>9. 문맥을 사용하는 AI</h3>
+                        <p>초기의 문자 빈도 분석이나 n-gram은 가까운 문자·단어의 통계를 사용했다. 현대 언어 모델은 더 긴 문맥에서 다음 토큰의 조건부 확률을 계산하고, 사용자 피드백이나 검색 결과 같은 추가 신호를 결합할 수 있다. 즉 AI는 <strong>문맥에 맞는 후보를 확률적으로 순위화</strong>하지만, 이것이 참된 이해나 사실성을 자동으로 보장하지는 않는다.</p>
+                        <table class="stat-table">
+                            <tr><th>문맥</th><th>가능한 해석</th><th>필요한 검증</th></tr>
+                            <tr><td><code>SoC</code></td><td>system on chip, 사회·보안 문맥의 다른 약어</td><td>주변 문장과 도메인</td></tr>
+                            <tr><td>자동완성</td><td>후보 토큰·문장의 확률 순위</td><td>의도·편향·사실성</td></tr>
+                            <tr><td>지능형 영상 분석</td><td>객체·행동·이상 징후의 추정</td><td>오탐·미탐·개인정보·운영 절차</td></tr>
+                        </table>
+                        <p>지능형 CCTV는 탐지와 대응 우선순위 설정을 도울 수 있지만 범죄 <strong>예방을 보장하지 않는다</strong>. 모델 성능뿐 아니라 사람의 판단, 현장 절차, 편향과 사생활 보호를 함께 설계해야 한다.</p>
+
+                        <h3>10. CT·MRI와 계산적 재구성</h3>
+                        <p><strong>CT는 X선 감쇠</strong>를 여러 각도에서 측정해 단면을 재구성한다. 이상적인 평행빔 CT는 라돈 변환과 역변환으로 설명할 수 있고, 실제 장비는 기하 구조·잡음·선량을 고려한 필터드 역투영 또는 반복 재구성 등을 사용한다.</p>
+                        <p><strong>MRI는 강한 자기장과 고주파 신호</strong>, 공간 부호화를 위한 경사자장을 사용하며 수집한 주파수 공간 데이터를 주로 푸리에 기반으로 재구성한다. CT와 MRI는 모두 계산이 중요하지만 측정 물리와 안전 조건이 다르다. 따라서 “영상”이라는 출력만 보고 같은 시스템으로 취급하면 안 된다.</p>
+
+                        <h3>11. 융합 시스템과 협업</h3>
+                        <p>AI 시스템은 수학·소프트웨어만으로 완성되지 않는다. 의료영상은 물리·의학·신호처리, 자율주행은 제어·센서·안전, 반도체 시스템은 회로·컴파일러·운영체제 지식이 함께 필요하다. 비행기는 양력을 만들어야 하지만 자동차는 떠오르지 않아야 하듯, 같은 알고리즘도 도메인의 물리적 제약에 따라 성공 조건이 달라진다.</p>
+                        <div class="stat-formula">도메인 문제 → 측정 모델 → 수학적 표현 → 구현 → 검증 → 전문가 피드백 → 개선</div>
+                        <p>깊은 전문성은 모든 일을 혼자 하는 능력이 아니라 자신의 가정과 결과를 다른 분야 전문가가 검토할 수 있는 언어로 설명하는 능력과 함께 성장한다.</p>
+
+                        <h3>12. 근거 기반 동료 코드 리뷰</h3>
+                        <p>동료 코드 리뷰는 결과를 복사하거나 취향을 평가하는 활동이 아니다. 각자 독립적으로 구현한 뒤 상대 코드의 가정·정확성·경계 조건을 재현 가능한 근거로 분석한다.</p>
+                        <table class="stat-table">
+                            <tr><th>검토 축</th><th>확인 질문</th><th>근거</th></tr>
+                            <tr><td>정확성</td><td>수식과 코드가 같은 계산을 하는가?</td><td>손계산, 기준 구현, 테스트</td></tr>
+                            <tr><td>표현</td><td>자료형과 비트폭이 목적에 맞는가?</td><td>입력 범위, 오버플로 정책</td></tr>
+                            <tr><td>수치 안정성</td><td>허용 오차와 실패 기준이 명시됐는가?</td><td>절대·상대 오차, 경계값</td></tr>
+                            <tr><td>가독성</td><td>이름·함수·주석이 의도를 설명하는가?</td><td>코드만 보고 재현 가능한 설명</td></tr>
+                            <tr><td>도메인 적합성</td><td>현실의 단위·제약·위험을 반영했는가?</td><td>전문가 기준과 운영 시나리오</td></tr>
+                        </table>
+                        <div class="lecture-note"><p><strong>리뷰 원칙.</strong> “틀렸다”에서 끝내지 말고 입력, 예상값, 실제값, 원인 가설, 개선안, 재검증 결과를 한 흐름으로 기록한다. 옳게 보이는 출력도 이론·단위·경계 조건이 맞는지 확인한다.</p></div>
+
+                        <h3>핵심 정리</h3>
+                        <ul>
+                            <li>파이썬 변수는 객체에 바인딩된 이름이며 대입·얕은 복사·깊은 복사는 서로 다르다.</li>
+                            <li>0.2는 이진법에서 무한 반복되므로 부동소수점 비교에는 목적에 맞는 허용 오차가 필요하다.</li>
+                            <li>복소수와 2의 보수는 표현 규칙을 알아야 출력이 수학적·도메인적으로 옳은지 판단할 수 있다.</li>
+                            <li>AI와 공학 시스템은 문맥과 물리적 제약을 함께 고려하고, 독립 구현과 근거 기반 리뷰로 검증한다.</li>
+                        </ul>
+                    </div>
+
+                    <div class="lang-en" lang="en">
+                        <p>This week examines how values are represented and interpreted inside a computer. The same mathematical value can behave differently depending on the object model, number system, and data type. The goal is not to trust a displayed number automatically, but to <strong>explain and verify its representation, tolerance, and boundary conditions</strong>.</p>
+
+                        <h3>1. Variables, Objects, and Memory</h3>
+                        <p><strong>A variable name is not the memory address itself.</strong> In Python, a variable is a name bound to an object; the interpreter manages the object's actual storage. <strong>Assignment does not copy an object; it binds another name to the same object.</strong> A shallow copy creates a new outer container, while a deep copy recursively duplicates nested objects.</p>
+                        <pre class="lecture-code"><code>import copy
+
+original = [[1, 2], [3, 4]]
+alias = original
+shallow = original.copy()
+deep = copy.deepcopy(original)
+
+original[0][0] = 99
+print(alias[0][0], shallow[0][0], deep[0][0])</code></pre>
+                        <p>The output is <code>99 99 1</code>. The alias and shallow copy share the first nested list; the deep copy does not. File cut-and-paste at the operating-system level and editor clipboard operations follow separate rules, so they should not be generalized into Python's object-assignment model.</p>
+
+                        <h3>2. Identifiers and Unique IDs</h3>
+                        <p>An <strong>identifier</strong> names a variable, function, or class in source code. A Python identifier cannot start with a digit or use a reserved keyword; readable <code>snake_case</code> is common. An arbitrary 64-character limit is not a general Python syntax rule.</p>
+                        <table class="stat-table">
+                            <tr><th>Concept</th><th>Purpose</th><th>Example</th></tr>
+                            <tr><td>program identifier</td><td>readably names a value in code</td><td><code>sensor_temperature</code></td></tr>
+                            <tr><td>domain key</td><td>distinguishes an entity under business rules</td><td>student, order, or device ID</td></tr>
+                            <tr><td>UUID</td><td>makes collisions extremely unlikely in distributed systems</td><td>128-bit UUID</td></tr>
+                        </table>
+                        <p>Length alone does not guarantee uniqueness. Design the generation rule, scope, duplicate checks, and storage constraints together.</p>
+
+                        <h3>3. Converting Decimal Integers to Binary</h3>
+                        <p>Repeatedly divide a positive decimal integer by two and read the remainders from bottom to top. For 11, the remainders lead to <strong>11₁₀ = 1011₂</strong>.</p>
+                        <pre class="lecture-code"><code>def to_binary(n):
+    if n &lt; 0:
+        raise ValueError("use a separate signed representation")
+    if n == 0:
+        return "0"
+    bits = []
+    while n:
+        n, remainder = divmod(n, 2)
+        bits.append(str(remainder))
+    return "".join(reversed(bits))
+
+print(to_binary(11))</code></pre>
+                        <div class="stat-formula">11 = 1×2<sup>3</sup> + 0×2<sup>2</sup> + 1×2<sup>1</sup> + 1×2<sup>0</sup></div>
+
+                        <h3>4. Converting Decimal Fractions to Binary</h3>
+                        <p>For a fractional part, repeatedly multiply by two and record the integer part at each step. <strong>0.2₁₀ = 0.00110011…₂</strong>, with <code>0011</code> repeating forever. Therefore <code>0.00110011₂</code> is only an eight-bit approximation, not exactly 0.2.</p>
+                        <pre class="lecture-code"><code>from fractions import Fraction
+
+value = Fraction(1, 5)
+bits = []
+for _ in range(12):
+    value *= 2
+    bit = value.numerator // value.denominator
+    bits.append(str(bit))
+    value -= bit
+
+print("0." + "".join(bits))</code></pre>
+                        <p>Because <code>Fraction(1, 5)</code> is exact, each multiplication step remains rational. The output <code>0.001100110011</code> exposes the repeating pattern directly.</p>
+
+                        <h3>5. Floating-Point Error and Tolerance</h3>
+                        <p>A fraction such as 0.2 whose <strong>denominator in lowest terms</strong> contains a prime factor other than two <strong>cannot represent it exactly with a finite number of bits</strong> in binary. On modern systems, CPython's <code>float</code> is normally IEEE 754 binary64 and stores the nearest representable value. Repeated operations can therefore accumulate small representation and rounding errors.</p>
+                        <pre class="lecture-code"><code>import math
+from decimal import Decimal
+
+print(0.1 + 0.2 == 0.3)
+print(math.isclose(0.1 + 0.2, 0.3, rel_tol=1e-9, abs_tol=0.0))
+print(Decimal("0.1") + Decimal("0.2"))</code></pre>
+                        <div class="stat-formula">|a−b| ≤ max(rel_tol × max(|a|, |b|), abs_tol)</div>
+                        <p>Choose the <code>math.isclose</code> tolerances from the problem's units and failure cost. A <code>Decimal</code> constructed from strings can be appropriate when decimal rules matter, as in currency. Formatting fewer digits changes only the display; it does not remove the internal error.</p>
+
+                        <h3>6. Division Semantics</h3>
+                        <table class="stat-table">
+                            <tr><th>Expression</th><th>Result</th><th>Meaning</th></tr>
+                            <tr><td><code>14 / 5</code></td><td>2.8</td><td>true division</td></tr>
+                            <tr><td><code>14 // 5</code></td><td>2</td><td>floor division</td></tr>
+                            <tr><td><code>14 % 5</code></td><td>4</td><td>remainder</td></tr>
+                            <tr><td><code>-14 // 5</code></td><td>−3</td><td>floors toward negative infinity</td></tr>
+                            <tr><td><code>-14 % 5</code></td><td>1</td><td>remainder with the divisor's sign</td></tr>
+                        </table>
+                        <p><strong>// floors toward negative infinity rather than truncating toward zero.</strong> For integers, <code>a = (a // b) × b + (a % b)</code> always holds.</p>
+                        <pre class="lecture-code"><code>for a in (14, -14):
+    q, r = divmod(a, 5)
+    print(a, q, r, q * 5 + r)</code></pre>
+                        <p>A floating-point remainder begins with approximate inputs, so decide whether the design needs a tolerance or integer scaling instead of exact equality.</p>
+
+                        <h3>7. Complex Numbers and the Complex Plane</h3>
+                        <p>Within the real numbers, <code>x² ≥ 0</code>. Extending the number system defines the imaginary unit as <code>√−1</code>. Electrical engineering often uses <code>j</code> to avoid confusing it with current <code>i</code>, and <strong>Python uses j for the imaginary unit</strong>.</p>
+                        <pre class="lecture-code"><code>import cmath
+
+z = 3 + 4j
+print(cmath.sqrt(-1))
+print(z.conjugate())
+print(abs(z))</code></pre>
+                        <div class="stat-formula">z = a + bj &nbsp;·&nbsp; z̄ = a − bj &nbsp;·&nbsp; |z| = √(a²+b²)</div>
+                        <p>The horizontal axis of the complex plane is the real part and the vertical axis is the imaginary part. Complex numbers represent magnitude and phase in AC circuits, waves, electromagnetism, thermal and signal analysis, Fourier transforms, and quantum mechanics. Conjugation is an easy-to-miss validation point in inner products, energies, and spectra.</p>
+
+                        <h3>8. Shifts and Two's Complement</h3>
+                        <p>A left shift moves bits left and a right shift moves them right. A simple shift discards ejected bits, so it differs from circular rotation. One's complement flips every bit; two's complement adds one to that result. Modern fixed-width signed integers generally use two's-complement representation.</p>
+                        <p><strong>Python integers have arbitrary precision</strong>, so they do not automatically overflow or wrap at eight bits. Serializing a negative integer as a bit pattern requires an <strong>explicit bit width</strong> and range.</p>
+                        <pre class="lecture-code"><code>def encode_twos(value, width=8):
+    lower = -(1 &lt;&lt; (width - 1))
+    upper = 1 &lt;&lt; (width - 1)
+    if not lower &lt;= value &lt; upper:
+        raise ValueError("value does not fit the signed width")
+    return value &amp; ((1 &lt;&lt; width) - 1)
+
+def decode_twos(bits, width=8):
+    mask = (1 &lt;&lt; width) - 1
+    bits &amp;= mask
+    sign_bit = 1 &lt;&lt; (width - 1)
+    return bits - (1 &lt;&lt; width) if bits &amp; sign_bit else bits
+
+encoded = encode_twos(-5)
+print(f"{encoded:08b}")
+print(decode_twos(encoded))
+print(-5 &gt;&gt; 1)</code></pre>
+                        <p>At eight bits, −5 is <code>11111011</code> and decodes back to −5. Python right-shifts negative integers arithmetically, preserving the sign, so <code>-5 &gt;&gt; 1</code> is −3.</p>
+
+                        <h3>9. Context-Aware AI</h3>
+                        <p>Early frequency analysis and n-gram models used statistics over nearby characters or words. Modern language models calculate conditional probabilities for the next token over longer contexts and can combine signals such as user feedback or retrieved information. An AI system therefore <strong>probabilistically ranks candidates that fit the context</strong>; this does not automatically guarantee genuine understanding or factual truth.</p>
+                        <table class="stat-table">
+                            <tr><th>Context</th><th>Possible interpretation</th><th>Required validation</th></tr>
+                            <tr><td><code>SoC</code></td><td>system on chip or another domain-specific acronym</td><td>surrounding text and domain</td></tr>
+                            <tr><td>autocomplete</td><td>probability ranking over tokens or sentences</td><td>intent, bias, and factuality</td></tr>
+                            <tr><td>intelligent video analysis</td><td>estimated objects, actions, or anomalies</td><td>false positives, misses, privacy, and procedure</td></tr>
+                        </table>
+                        <p>Intelligent CCTV can assist detection and response prioritization, but it <strong>does not guarantee prevention</strong>. Human judgment, operating procedures, bias, and privacy must be designed alongside model performance.</p>
+
+                        <h3>10. CT, MRI, and Computational Reconstruction</h3>
+                        <p><strong>CT measures X-ray attenuation</strong> from multiple angles and reconstructs cross-sections. Ideal parallel-beam CT can be described with the Radon transform and its inverse; real systems account for geometry, noise, and dose through methods such as filtered back projection or iterative reconstruction.</p>
+                        <p><strong>MRI uses a strong magnetic field and radio-frequency signals</strong>, with gradient fields for spatial encoding, and commonly reconstructs acquired frequency-space data with Fourier-based methods. Computation matters to both modalities, but their measurement physics and safety constraints differ.</p>
+
+                        <h3>11. Interdisciplinary Systems and Collaboration</h3>
+                        <p>An AI system is not completed by mathematics and software alone. Medical imaging combines physics, medicine, and signal processing; autonomous driving combines control, sensing, and safety; semiconductor systems combine circuits, compilers, and operating systems. An aircraft must generate lift while a car must remain on the road: the same algorithm faces different success conditions under different physical constraints.</p>
+                        <div class="stat-formula">domain problem → measurement model → mathematics → implementation → validation → expert feedback → improvement</div>
+                        <p>Deep expertise is not the ability to do everything alone. It grows together with the ability to explain assumptions and results in a form that specialists from other domains can examine.</p>
+
+                        <h3>12. Evidence-Based Peer Code Review</h3>
+                        <p>Peer code review is not answer copying or a matter of taste. Implement independently, then analyze assumptions, correctness, and boundary behavior with reproducible evidence.</p>
+                        <table class="stat-table">
+                            <tr><th>Review axis</th><th>Question</th><th>Evidence</th></tr>
+                            <tr><td>correctness</td><td>Do the equation and code perform the same calculation?</td><td>hand calculation, reference, tests</td></tr>
+                            <tr><td>representation</td><td>Do the type and bit width fit the purpose?</td><td>input range, overflow policy</td></tr>
+                            <tr><td>numerical stability</td><td>Are tolerance and failure criteria explicit?</td><td>absolute/relative error, boundaries</td></tr>
+                            <tr><td>readability</td><td>Do names, functions, and comments reveal intent?</td><td>reproducible explanation from the code</td></tr>
+                            <tr><td>domain fit</td><td>Are real units, constraints, and risks represented?</td><td>expert criteria and operating scenario</td></tr>
+                        </table>
+                        <div class="lecture-note"><p><strong>Review principle.</strong> Go beyond “wrong.” Record the input, expected and actual results, cause hypothesis, improvement, and verification result as one chain. Even a plausible output needs theoretical, unit, and boundary checks.</p></div>
+
+                        <h3>Key Takeaways</h3>
+                        <ul>
+                            <li>A Python variable is a name bound to an object; assignment, shallow copy, and deep copy have different semantics.</li>
+                            <li>Because 0.2 repeats in binary, floating-point comparisons require a tolerance chosen for the application.</li>
+                            <li>Complex numbers and two's-complement patterns require representation rules before an output can be judged mathematically and operationally correct.</li>
+                            <li>AI and engineering systems combine context with physical constraints and are validated through independent implementation and evidence-based review.</li>
+                        </ul>
+                    </div>
+                </div>
+            </section>
+        </article>
+
+        <div id="site-footer"></div>
+    </div>
+
+    <script src="../../../common.js"></script>
+</body>
+</html>
