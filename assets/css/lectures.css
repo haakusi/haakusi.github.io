@@ -70,6 +70,12 @@
     color: #fff;
 }
 
+.week-link.supplement-link {
+    width: auto;
+    min-width: 30px;
+    padding: 0 8px;
+}
+
 .course-page {
     margin-bottom: 40px;
 }
@@ -383,6 +389,82 @@
     margin: 0;
 }
 
+.quantum-spatial {
+    width: min(100%, 720px, calc(100vw - 40px));
+    box-sizing: border-box;
+    margin: 22px auto;
+    overflow: hidden;
+}
+
+.quantum-spatial-diagram {
+    display: block;
+    width: 100%;
+    height: auto;
+    color: #777;
+}
+
+.quantum-spatial-diagram .diagram-surface {
+    fill: rgba(139, 69, 19, 0.035);
+    stroke: rgba(139, 69, 19, 0.24);
+}
+
+.quantum-spatial-diagram .diagram-axis,
+.quantum-spatial-diagram .diagram-guide {
+    fill: none;
+    stroke: currentColor;
+}
+
+.quantum-spatial-diagram .diagram-axis {
+    stroke-width: 1.35;
+}
+
+.quantum-spatial-diagram .diagram-guide {
+    stroke-width: 1;
+    stroke-dasharray: 5 5;
+    opacity: 0.58;
+}
+
+.quantum-spatial-diagram .diagram-vector,
+.quantum-spatial-diagram .diagram-angle {
+    fill: none;
+    stroke: #8B4513;
+    stroke-width: 2.4;
+}
+
+.quantum-spatial-diagram .diagram-positive {
+    fill: rgba(139, 69, 19, 0.24);
+    stroke: #8B4513;
+    stroke-width: 1.4;
+}
+
+.quantum-spatial-diagram .diagram-negative {
+    fill: rgba(74, 105, 137, 0.18);
+    stroke: #4a6989;
+    stroke-width: 1.4;
+}
+
+.quantum-spatial-diagram .diagram-node {
+    fill: none;
+    stroke: #4a6989;
+    stroke-width: 1.4;
+    stroke-dasharray: 4 4;
+}
+
+.quantum-spatial-diagram .diagram-point {
+    fill: #8B4513;
+}
+
+.stat-chart .quantum-spatial-diagram text {
+    fill: #555;
+    font-family: 'Georgia', serif;
+    font-size: 14px;
+}
+
+.quantum-spatial-diagram .diagram-accent-label {
+    fill: #8B4513;
+    font-weight: 700;
+}
+
 .stat-chart-caption {
     font-size: 0.82em;
     color: #999;
@@ -654,6 +736,47 @@
     fill: #F0E68C;
 }
 
+[data-theme="dark"] .quantum-spatial-diagram {
+    color: #777;
+}
+
+[data-theme="dark"] .quantum-spatial-diagram .diagram-surface {
+    fill: rgba(240, 230, 140, 0.025);
+    stroke: rgba(240, 230, 140, 0.2);
+}
+
+[data-theme="dark"] .quantum-spatial-diagram .diagram-vector,
+[data-theme="dark"] .quantum-spatial-diagram .diagram-angle {
+    stroke: #F0E68C;
+}
+
+[data-theme="dark"] .quantum-spatial-diagram .diagram-positive {
+    fill: rgba(240, 230, 140, 0.16);
+    stroke: #F0E68C;
+}
+
+[data-theme="dark"] .quantum-spatial-diagram .diagram-negative,
+[data-theme="dark"] .quantum-spatial-diagram .diagram-node {
+    stroke: #8ab4d8;
+}
+
+[data-theme="dark"] .quantum-spatial-diagram .diagram-negative {
+    fill: rgba(138, 180, 216, 0.12);
+}
+
+[data-theme="dark"] .quantum-spatial-diagram .diagram-point,
+[data-theme="dark"] .quantum-spatial-diagram marker[id^="quantum-arrow"] path {
+    fill: #F0E68C;
+}
+
+[data-theme="dark"] .quantum-spatial-diagram text {
+    fill: #c0c0c0;
+}
+
+[data-theme="dark"] .quantum-spatial-diagram .diagram-accent-label {
+    fill: #F0E68C;
+}
+
 [data-theme="dark"] .stat-table th {
     background: rgba(240, 230, 140, 0.08);
     color: #e0e0e0;
@@ -714,5 +837,15 @@
 
     .bloch-spatial-table .stat-table {
         font-size: 0.82em;
+    }
+
+    .quantum-spatial {
+        overflow-x: auto;
+        -webkit-overflow-scrolling: touch;
+    }
+
+    .quantum-spatial-diagram {
+        width: 640px;
+        max-width: none;
     }
 }

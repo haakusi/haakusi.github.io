@@ -1,0 +1,278 @@
+<!DOCTYPE html>
+<html data-theme="dark" data-lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>The World of Quantum Mechanics and Big Data - Week 4 - Sewon Park</title>
+    <link rel="stylesheet" type="text/css" href="../../../style.css">
+    <link rel="stylesheet" type="text/css" href="../../../assets/css/lectures.css">
+</head>
+<body>
+    <button class="theme-toggle" onclick="toggleTheme()" aria-label="Toggle dark mode"></button>
+    <button class="lang-toggle" onclick="toggleLanguage()" aria-label="Toggle language">EN</button>
+
+    <div class="container">
+        <div id="site-header"></div>
+        <div id="site-nav"></div>
+
+        <article class="course-page">
+            <div class="course-header">
+                <h1 data-en="The World of Quantum Mechanics and Big Data" data-kr="양자역학의세계와빅데이터">The World of Quantum Mechanics and Big Data</h1>
+                <p class="course-meta" data-en="2026 Fall | Weekly learning notes" data-kr="2026 가을학기 | 주차별 학습 노트">2026 Fall | Weekly learning notes</p>
+            </div>
+
+            <div class="course-nav">
+                <a href="../../../lectures.html" class="back-to-lectures" data-en="Back to Lectures" data-kr="강의 목록으로">Back to Lectures</a>
+                <span class="nav-separator">/</span>
+                <a href="./index.html" class="back-to-course" data-en="Course Home" data-kr="과목 홈">Course Home</a>
+            </div>
+
+            <div class="week-nav">
+                <span data-en="Weeks:" data-kr="주차:">Weeks:</span>
+                <a href="week-01.html" class="week-link">W1</a>
+                <a href="week-02.html" class="week-link">W2</a>
+                <a href="week-03.html" class="week-link">W3</a>
+                <a href="supplement-01.html" class="week-link supplement-link" data-en="SUPP" data-kr="보강">SUPP</a>
+                <a href="week-04.html" class="week-link current">W4</a>
+            </div>
+
+            <section class="week-section" id="week-04">
+                <h2 data-en="Week 4 — Hydrogen, Special Functions, and Quantum Numbers" data-kr="4주차 — 수소 원자, 특수함수, 양자수">Week 4 — Hydrogen, Special Functions, and Quantum Numbers</h2>
+                <p class="week-date" data-en="2026 Fall · From spherical coordinates to orbitals" data-kr="2026 가을학기 · 구면좌표에서 오비탈까지">2026 Fall · From spherical coordinates to orbitals</p>
+
+                <div class="week-content">
+                    <span class="assignment-chip" data-en="Hydrogen · Spherical Harmonics · Orbitals" data-kr="수소 원자 · 구면조화함수 · 오비탈">Hydrogen · Spherical Harmonics · Orbitals</span>
+
+                    <div class="lang-kr" lang="ko" hidden>
+                        <p>4주차의 질문은 “수소 원자핵과 전자 사이의 3차원 관계를 어떤 좌표와 함수로 표현할 것인가?”다. 핵을 원점에 두면 Coulomb 퍼텐셜은 방향이 아니라 거리 r에만 의존한다. 그래서 직교좌표보다 구면좌표가 자연스럽고, 슈뢰딩거 방정식을 반지름과 각도로 분리하면 <strong>결합 Laguerre 함수, 결합 Legendre 함수, 구면조화함수</strong>가 차례로 나타난다.</p>
+
+                        <h3>1. 수소 원자에 구면좌표가 맞는 이유</h3>
+                        <p>수소 원자는 양전하를 띤 핵과 음전하를 띤 전자의 두 입자 문제다. 질량중심 좌표를 분리하면 상대좌표 r에 대한 한 입자 문제처럼 쓸 수 있고, 질량은 전자질량 m<sub>e</sub> 대신 환산질량 μ=m<sub>e</sub>m<sub>p</sub>/(m<sub>e</sub>+m<sub>p</sub>)가 된다. 비상대론적이고 스핀·미세구조를 무시한 Hamiltonian은 다음과 같다.</p>
+                        <div class="stat-formula">Ĥ = −(ℏ<sup>2</sup>/2μ)∇<sup>2</sup> − e<sup>2</sup>/(4πε<sub>0</sub>r)</div>
+                        <div class="stat-formula">Ĥψ(r,θ,φ) = Eψ(r,θ,φ)</div>
+                        <p>여기서 r은 핵에서 전자 위치까지의 <strong>거리 또는 반지름 좌표</strong>이지 원자의 지름이 아니다. 퍼텐셜 V(r)이 같은 r을 가진 모든 방향에서 같으므로 구대칭이며, 이 대칭을 좌표계에 그대로 반영하면 계산이 분리된다.</p>
+
+                        <h3>2. 구면좌표에서 점 r 읽기</h3>
+                        <p>공간의 점 P를 위치벡터 r로 표시하자. θ는 +z축에서 r까지 내려오는 <strong>극각</strong>(0≤θ≤π), φ는 +x축에서 r의 xy평면 투영까지 반시계로 재는 <strong>방위각</strong>(0≤φ&lt;2π)이다. 일부 분야에서는 θ와 φ의 이름을 바꾸기도 하므로, 정의를 먼저 확인해야 한다.</p>
+                        <div class="stat-formula">x = r sinθ cosφ &nbsp;·&nbsp; y = r sinθ sinφ &nbsp;·&nbsp; z = r cosθ</div>
+                        <div class="stat-chart quantum-spatial">
+                            <svg class="quantum-spatial-diagram" data-diagram="spherical-coordinates" viewBox="0 0 720 420" role="img" aria-labelledby="spherical-title-kr spherical-desc-kr">
+                                <title id="spherical-title-kr">구면좌표의 r, θ, φ</title>
+                                <desc id="spherical-desc-kr">원점에서 공간의 점 P로 향하는 벡터 r, 양의 z축과 r 사이의 극각 θ, xy평면에서 양의 x축과 투영선 사이의 방위각 φ를 보여준다.</desc>
+                                <defs><marker id="quantum-arrow-coordinate-kr" markerWidth="8" markerHeight="8" refX="7" refY="4" orient="auto"><path d="M0,0 L8,4 L0,8 Z"></path></marker></defs>
+                                <ellipse class="diagram-surface" cx="330" cy="306" rx="230" ry="76"></ellipse>
+                                <line class="diagram-axis" x1="330" y1="340" x2="330" y2="52" marker-end="url(#quantum-arrow-coordinate-kr)"></line>
+                                <line class="diagram-axis" x1="92" y1="306" x2="622" y2="306" marker-end="url(#quantum-arrow-coordinate-kr)"></line>
+                                <line class="diagram-axis" x1="169" y1="371" x2="535" y2="222" marker-end="url(#quantum-arrow-coordinate-kr)"></line>
+                                <line class="diagram-guide" x1="330" y1="306" x2="494" y2="269"></line>
+                                <line class="diagram-guide" x1="494" y1="269" x2="494" y2="123"></line>
+                                <line class="diagram-vector" x1="330" y1="306" x2="494" y2="123" marker-end="url(#quantum-arrow-coordinate-kr)"></line>
+                                <path class="diagram-angle" d="M330 224 A82 82 0 0 1 385 245"></path>
+                                <path class="diagram-angle" d="M395 291 A72 28 0 0 1 383 278"></path>
+                                <circle class="diagram-point" cx="494" cy="123" r="5"></circle>
+                                <text x="635" y="311">x</text><text x="545" y="218">y</text><text x="341" y="55">z</text>
+                                <text class="diagram-accent-label" x="414" y="204">r</text><text class="diagram-accent-label" x="368" y="225">θ</text><text class="diagram-accent-label" x="397" y="282">φ</text>
+                                <text x="503" y="120">P(r, θ, φ)</text><text x="500" y="286">xy 투영</text><text x="314" y="327">O</text>
+                            </svg>
+                            <p class="stat-chart-caption">먼저 z축에서 θ만큼 내려오고, xy평면에서 φ만큼 회전한 뒤, 원점에서 r만큼 이동하면 점 P에 도달한다.</p>
+                        </div>
+                        <p>부피요소는 d<sup>3</sup>r=r<sup>2</sup>sinθ dr dθ dφ다. 따라서 “어떤 r에서 발견할 확률”을 계산할 때는 |ψ|<sup>2</sup>뿐 아니라 구껍질의 크기 r<sup>2</sup>과 각도 가중치 sinθ도 함께 들어간다.</p>
+
+                        <h3>3. 변수분리</h3>
+                        <p>구대칭 퍼텐셜에서는 파동함수를 반지름 함수와 각도 함수의 곱으로 둔다. 이 가정은 세 변수를 임의로 따로 떼는 요령이 아니라 Hamiltonian의 회전대칭을 이용하는 것이다.</p>
+                        <div class="stat-formula">ψ<sub>nlm</sub>(r,θ,φ) = R<sub>nl</sub>(r)Y<sub>l</sub><sup>m</sup>(θ,φ)</div>
+                        <p>구면 Laplacian을 대입하면 하나의 편미분방정식이 방사방정식과 각도방정식으로 갈라진다. 분리상수는 궤도 각운동량의 고윳값 l(l+1)과 연결된다.</p>
+                        <div class="stat-formula">∇<sup>2</sup> = (1/r<sup>2</sup>)∂/∂r(r<sup>2</sup>∂/∂r) + (1/(r<sup>2</sup>sinθ))∂/∂θ(sinθ∂/∂θ) + (1/(r<sup>2</sup>sin<sup>2</sup>θ))∂<sup>2</sup>/∂φ<sup>2</sup></div>
+
+                        <h3>4. 특수함수가 나타나는 자리</h3>
+                        <p>“수소 원자를 Laguerre 미분방정식으로 푼다”는 말은 전체 세 변수가 모두 Laguerre 함수라는 뜻이 아니다. <strong>방사방정식은 결합 Laguerre 방정식</strong>으로, <strong>θ 방향은 결합 Legendre 방정식</strong>으로 환원되며, φ 방향은 복소 지수함수로 풀린다. 구면조화함수는 θ와 φ의 각도 부분을 합친 함수다.</p>
+                        <table class="stat-table">
+                            <tr><th>부분</th><th>방정식에서 생기는 함수</th><th>담고 있는 정보</th></tr>
+                            <tr><td>r</td><td>결합 Laguerre 다항식이 포함된 R<sub>nl</sub>(r)</td><td>전자구름의 크기와 방사마디</td></tr>
+                            <tr><td>θ</td><td>결합 Legendre 함수 P<sub>l</sub><sup>m</sup>(cosθ)</td><td>극각 방향의 모양</td></tr>
+                            <tr><td>φ</td><td>e<sup>imφ</sup></td><td>z축 주위 위상 변화</td></tr>
+                            <tr><td>θ, φ 결합</td><td>구면조화함수 Y<sub>l</sub><sup>m</sup></td><td>오비탈의 전체 각도 구조</td></tr>
+                        </table>
+                        <div class="stat-formula">Y<sub>l</sub><sup>m</sup>(θ,φ) = N<sub>lm</sub>P<sub>l</sub><sup>m</sup>(cosθ)e<sup>imφ</sup></div>
+                        <p>경계에서 발산하지 않고 정규화 가능한 해만 남긴다는 조건 때문에 급수가 특정 차수에서 끝나고 양자수가 이산값을 갖는다. 특수함수는 이름을 외우는 장식이 아니라 <strong>대칭·경계조건·정규화가 허용한 해의 언어</strong>다.</p>
+
+                        <h3>5. 세 양자수 n, l, m</h3>
+                        <div class="stat-formula">n = 1, 2, 3, … &nbsp;·&nbsp; l = 0, 1, …, n − 1 &nbsp;·&nbsp; m = −l, …, 0, …, +l</div>
+                        <table class="stat-table">
+                            <tr><th>양자수</th><th>연결되는 물리량</th><th>수소 원자에서의 의미</th></tr>
+                            <tr><td>주양자수 n</td><td>에너지와 대표적 크기</td><td>이상적 수소의 에너지는 n에만 의존</td></tr>
+                            <tr><td>궤도 각운동량 양자수 l</td><td>|L|=ℏ√(l(l+1))</td><td>각도 모양과 각마디 수 l</td></tr>
+                            <tr><td>자기양자수 m</td><td>L<sub>z</sub>=mℏ</td><td>선택한 z축에 대한 각도 상태</td></tr>
+                        </table>
+                        <div class="stat-formula">L̂<sup>2</sup>Y<sub>l</sub><sup>m</sup> = ℏ<sup>2</sup>l(l + 1)Y<sub>l</sub><sup>m</sup> &nbsp;·&nbsp; L̂<sub>z</sub>Y<sub>l</sub><sup>m</sup> = ℏmY<sub>l</sub><sup>m</sup></div>
+                        <p><strong>주양자수 n</strong>은 고전적인 원형 궤도 번호가 아니다. 또한 n만으로 정확한 공간 분포가 정해지는 것은 아니다. 같은 n 안에서도 l과 m이 다르면 방사·각도 구조가 달라진다. l=0,1,2,…는 각각 s,p,d,…로 부른다.</p>
+
+                        <h3>6. n = 1 상태: 1s</h3>
+                        <p>n=1이면 허용되는 값은 l=0, m=0뿐이다. Y<sub>0</sub><sup>0</sup>=1/√(4π)는 방향에 무관하므로 1s 확률밀도는 구대칭이다. 방사함수는 R<sub>10</sub>(r)∝e<sup>−r/a<sub>0</sub></sup>로 핵에서 가장 크고 바깥으로 지수적으로 감소한다.</p>
+                        <div class="stat-formula">1s: (n,l,m) = (1,0,0) &nbsp;·&nbsp; 방사마디 0, 각마디 0</div>
+                        <p>구대칭이라는 말은 전자가 구 표면을 따라 돈다는 뜻이 아니다. 같은 r에서 모든 방향의 발견 확률이 같다는 뜻이다.</p>
+
+                        <h3>7. n = 2 상태: 2s와 2p</h3>
+                        <p>n=2이면 l=0 또는 1이다. l=0에는 2s 하나가 있고, l=1에는 m=−1,0,+1인 세 2p 상태가 있다. 방사마디 수 n−l−1에 따라 2s는 방사마디 하나를 갖는다. l=1의 각도 마디 모양은 기저에 따라 달라진다. <strong>실수 p<sub>x</sub>, p<sub>y</sub>, p<sub>z</sub> 오비탈은 각각 마디면 하나</strong>를 갖지만, 복소 m=±1 상태의 확률밀도는 z축에서 0이며 하나의 마디면으로 표현되지 않는다.</p>
+                        <div class="stat-formula">2s: (2,0,0), R<sub>20</sub>(r) ∝ (2 − r/a<sub>0</sub>)e<sup>−r/(2a<sub>0</sub>)</sup></div>
+                        <div class="stat-formula">2p: (2,1,−1), (2,1,0), (2,1,+1), R<sub>21</sub>(r) ∝ re<sup>−r/(2a<sub>0</sub>)</sup></div>
+                        <p>복소 구면조화함수 기저에서 m=0은 흔히 2p<sub>z</sub> 모양으로 그려진다. 익숙한 실수 2p<sub>x</sub>, 2p<sub>y</sub> 오비탈은 m=±1 상태의 선형결합이다. “m이 오비탈이 향하는 고전적 방향을 그대로 지정한다”기보다, 선택한 z축에 대한 L<sub>z</sub> 고윳값을 정한다고 이해하는 편이 정확하다.</p>
+
+                        <div class="stat-chart quantum-spatial">
+                            <svg class="quantum-spatial-diagram" data-diagram="hydrogen-orbitals" viewBox="0 0 720 360" role="img" aria-labelledby="orbitals-title-kr orbitals-desc-kr">
+                                <title id="orbitals-title-kr">n=1과 n=2 수소 오비탈의 공간 모양</title>
+                                <desc id="orbitals-desc-kr">1s는 구대칭, 2s는 방사마디를 둔 동심 구 구조, 실수 2p z 오비탈은 핵을 지나는 xy 마디면 양쪽에 부호가 다른 두 로브를 갖는 모습으로 표시한다.</desc>
+                                <circle class="diagram-positive" cx="115" cy="180" r="62"></circle><circle class="diagram-point" cx="115" cy="180" r="4"></circle>
+                                <text class="diagram-accent-label" x="96" y="278">1s</text><text x="55" y="303">구대칭 · 마디 없음</text>
+                                <circle class="diagram-positive" cx="354" cy="180" r="80"></circle><circle class="diagram-node" cx="354" cy="180" r="42"></circle><circle class="diagram-negative" cx="354" cy="180" r="25"></circle><circle class="diagram-point" cx="354" cy="180" r="4"></circle>
+                                <text class="diagram-accent-label" x="335" y="278">2s</text><text x="281" y="303">방사마디 1개</text>
+                                <ellipse class="diagram-positive" cx="579" cy="109" rx="42" ry="74"></ellipse><ellipse class="diagram-negative" cx="579" cy="251" rx="42" ry="74"></ellipse><line class="diagram-axis" x1="503" y1="180" x2="655" y2="180"></line><line class="diagram-axis" x1="579" y1="31" x2="579" y2="329"></line><circle class="diagram-point" cx="579" cy="180" r="4"></circle>
+                                <text x="660" y="185">x</text><text x="588" y="38">z</text><text class="diagram-accent-label" x="557" y="345">2p<tspan baseline-shift="sub" font-size="10">z</tspan></text><text x="520" y="172">마디면</text><text x="570" y="105">+</text><text x="570" y="258">−</text>
+                            </svg>
+                            <p class="stat-chart-caption">그림은 같은 확률밀도 값을 잇는 등밀도면의 개념도다. +/−는 전하가 아니라 파동함수 진폭의 부호, 즉 상대위상을 나타낸다.</p>
+                        </div>
+
+                        <h3>8. 오비탈은 궤도가 아니다</h3>
+                        <p>고전 궤도(orbit)는 시간에 따라 이어지는 하나의 경로 r(t)다. 양자 오비탈(orbital)은 한 전자의 공간 파동함수로서 공간마다 복소 확률진폭을 준다. 중심 퍼텐셜에서 <strong>ψ<sub>nlm</sub> 기저는 Ĥ, L̂<sup>2</sup>, L̂<sub>z</sub>의 공통 고유함수</strong>로 선택할 수 있지만, 그 선형결합인 <strong>실수 p 오비탈은 L̂<sub>z</sub> 고유함수일 필요가 없다</strong>. 따라서 “전자가 n번째 원을 돈다”가 아니라, 측정 전 상태가 파동함수로 기술되고 작은 부피 d<sup>3</sup>r에서 발견될 확률이 |ψ|<sup>2</sup>d<sup>3</sup>r라고 말해야 한다.</p>
+                        <div class="stat-formula">∫|ψ|<sup>2</sup>d<sup>3</sup>r = 1</div>
+                        <p>등밀도면 그림은 전자가 그 표면에만 존재한다는 뜻도 아니다. 선택한 확률밀도 임계값 또는 누적확률을 시각화한 것이다. 전자가 정해진 원이나 타원을 따라 돈다는 뜻이 아니다.</p>
+
+                        <h3>9. 에너지, 스펙트럼과 Zeeman 효과</h3>
+                        <p>이상적인 비상대론적 수소 원자에서는 에너지가 n에만 의존하므로 같은 n을 가진 서로 다른 l,m 상태가 축퇴되어 있다.</p>
+                        <div class="stat-formula">E<sub>n</sub> = −13.6 eV/n<sup>2</sup></div>
+                        <p>상태 사이 전이가 일어나면 에너지 차이와 광자의 진동수가 ∆E = hν로 연결되어 선 스펙트럼이 나타난다. 외부 자기장을 가하면 궤도 자기모멘트가 장과 상호작용해 m에 따른 축퇴가 갈라질 수 있는데, 이것이 Zeeman 효과의 기본 그림이다. 실제 원자에서는 스핀, 미세구조, 비정상 Zeeman 효과까지 포함해야 더 정확하다.</p>
+
+                        <h3>10. 보강수업과의 연결</h3>
+                        <p>보강수업에서 L̂<sub>z</sub>=−iℏ∂/∂φ를 얻었다. φ 방향 해 e<sup>imφ</sup>에 작용시키면 즉시 mℏ가 나온다. 또한 [L̂<sup>2</sup>,L̂<sub>z</sub>]=0이므로 Y<sub>l</sub><sup>m</sup>는 두 연산자의 공통 고유함수가 된다. 회전대칭, 교환관계, 특수함수, 양자수는 따로 외울 네 주제가 아니라 하나의 논리다.</p>
+                        <div class="stat-formula">−iℏ∂e<sup>imφ</sup>/∂φ = mℏe<sup>imφ</sup></div>
+
+                        <h3>핵심 정리</h3>
+                        <ul>
+                            <li>중심 퍼텐셜 V(r)은 구면좌표를 선택하게 하고, 파동함수는 R<sub>nl</sub>Y<sub>l</sub><sup>m</sup>로 분리된다.</li>
+                            <li>방사 부분에는 결합 Laguerre, θ 부분에는 결합 Legendre, 전체 각도 부분에는 구면조화함수가 나타난다.</li>
+                            <li>n은 에너지 규모, l은 L<sup>2</sup>, m은 L<sub>z</sub>를 정하며 허용범위가 서로 연결되어 있다.</li>
+                            <li>1s·2s·2p는 전자의 이동 경로가 아니라 확률진폭과 마디 구조가 다른 정상상태다.</li>
+                        </ul>
+                    </div>
+
+                    <div class="lang-en" lang="en">
+                        <p>Week 4 asks: “Which coordinates and functions best describe the three-dimensional relation between a hydrogen nucleus and its electron?” With the nucleus at the origin, the Coulomb potential depends only on the distance r, not direction. Spherical coordinates match this symmetry, and separating the Schrödinger equation into radial and angular parts produces <strong>associated Laguerre functions, associated Legendre functions, and spherical harmonics</strong>.</p>
+
+                        <h3>1. Why Spherical Coordinates Fit Hydrogen</h3>
+                        <p>Hydrogen is a two-body system containing a positively charged nucleus and a negatively charged electron. After separating the center of mass, the relative coordinate r behaves like a one-particle problem with reduced mass μ=m<sub>e</sub>m<sub>p</sub>/(m<sub>e</sub>+m<sub>p</sub>). Ignoring spin, relativity, and fine structure,</p>
+                        <div class="stat-formula">Ĥ = −(ℏ<sup>2</sup>/2μ)∇<sup>2</sup> − e<sup>2</sup>/(4πε<sub>0</sub>r)</div>
+                        <div class="stat-formula">Ĥψ(r,θ,φ) = Eψ(r,θ,φ)</div>
+                        <p>Here r is the <strong>radial distance</strong> from the nucleus to the electron's position, not an atomic diameter. Since V(r) is the same in every direction at fixed r, the problem is spherically symmetric and separates naturally in spherical coordinates.</p>
+
+                        <h3>2. Reading a Point r in Spherical Coordinates</h3>
+                        <p>Let P be represented by the position vector r. The polar angle θ is measured down from +z (0≤θ≤π), while the azimuth φ is measured counterclockwise in the xy plane from +x to the projection of r (0≤φ&lt;2π). Some fields swap the symbols θ and φ, so definitions must be stated first.</p>
+                        <div class="stat-formula">x = r sinθ cosφ &nbsp;·&nbsp; y = r sinθ sinφ &nbsp;·&nbsp; z = r cosθ</div>
+                        <div class="stat-chart quantum-spatial">
+                            <svg class="quantum-spatial-diagram" data-diagram="spherical-coordinates" viewBox="0 0 720 420" role="img" aria-labelledby="spherical-title-en spherical-desc-en">
+                                <title id="spherical-title-en">r, θ, and φ in spherical coordinates</title>
+                                <desc id="spherical-desc-en">A vector r from the origin to a spatial point P, polar angle θ from the positive z axis, and azimuth φ from the positive x axis to the projection in the xy plane.</desc>
+                                <defs><marker id="quantum-arrow-coordinate-en" markerWidth="8" markerHeight="8" refX="7" refY="4" orient="auto"><path d="M0,0 L8,4 L0,8 Z"></path></marker></defs>
+                                <ellipse class="diagram-surface" cx="330" cy="306" rx="230" ry="76"></ellipse>
+                                <line class="diagram-axis" x1="330" y1="340" x2="330" y2="52" marker-end="url(#quantum-arrow-coordinate-en)"></line>
+                                <line class="diagram-axis" x1="92" y1="306" x2="622" y2="306" marker-end="url(#quantum-arrow-coordinate-en)"></line>
+                                <line class="diagram-axis" x1="169" y1="371" x2="535" y2="222" marker-end="url(#quantum-arrow-coordinate-en)"></line>
+                                <line class="diagram-guide" x1="330" y1="306" x2="494" y2="269"></line>
+                                <line class="diagram-guide" x1="494" y1="269" x2="494" y2="123"></line>
+                                <line class="diagram-vector" x1="330" y1="306" x2="494" y2="123" marker-end="url(#quantum-arrow-coordinate-en)"></line>
+                                <path class="diagram-angle" d="M330 224 A82 82 0 0 1 385 245"></path>
+                                <path class="diagram-angle" d="M395 291 A72 28 0 0 1 383 278"></path>
+                                <circle class="diagram-point" cx="494" cy="123" r="5"></circle>
+                                <text x="635" y="311">x</text><text x="545" y="218">y</text><text x="341" y="55">z</text>
+                                <text class="diagram-accent-label" x="414" y="204">r</text><text class="diagram-accent-label" x="368" y="225">θ</text><text class="diagram-accent-label" x="397" y="282">φ</text>
+                                <text x="503" y="120">P(r, θ, φ)</text><text x="500" y="286">xy projection</text><text x="314" y="327">O</text>
+                            </svg>
+                            <p class="stat-chart-caption">Move down by θ from the z axis, rotate by φ in the xy plane, and travel a radial distance r from the origin to reach P.</p>
+                        </div>
+                        <p>The volume element is d<sup>3</sup>r=r<sup>2</sup>sinθ dr dθ dφ. A radial probability therefore includes not only |ψ|<sup>2</sup> but also the spherical-shell factor r<sup>2</sup> and angular weight sinθ.</p>
+
+                        <h3>3. Separation of Variables</h3>
+                        <p>For a central potential, write the wavefunction as a radial factor times an angular factor. This is not an arbitrary trick: it exploits the rotational symmetry of the Hamiltonian.</p>
+                        <div class="stat-formula">ψ<sub>nlm</sub>(r,θ,φ) = R<sub>nl</sub>(r)Y<sub>l</sub><sup>m</sup>(θ,φ)</div>
+                        <p>Substituting the spherical Laplacian separates one partial differential equation into radial and angular equations. The separation constant becomes the orbital-angular-momentum eigenvalue l(l+1).</p>
+                        <div class="stat-formula">∇<sup>2</sup> = (1/r<sup>2</sup>)∂/∂r(r<sup>2</sup>∂/∂r) + (1/(r<sup>2</sup>sinθ))∂/∂θ(sinθ∂/∂θ) + (1/(r<sup>2</sup>sin<sup>2</sup>θ))∂<sup>2</sup>/∂φ<sup>2</sup></div>
+
+                        <h3>4. Where the Special Functions Appear</h3>
+                        <p>Saying “hydrogen is solved by a Laguerre equation” does not mean every coordinate is a Laguerre function. The <strong>radial equation reduces to an associated Laguerre equation</strong>; the <strong>θ equation reduces to an associated Legendre equation</strong>; and the φ equation gives a complex exponential. The spherical harmonic combines the θ and φ factors.</p>
+                        <table class="stat-table">
+                            <tr><th>Part</th><th>Function produced</th><th>Information carried</th></tr>
+                            <tr><td>r</td><td>R<sub>nl</sub>(r) containing an associated Laguerre polynomial</td><td>Cloud scale and radial nodes</td></tr>
+                            <tr><td>θ</td><td>Associated Legendre function P<sub>l</sub><sup>m</sup>(cosθ)</td><td>Polar-angle shape</td></tr>
+                            <tr><td>φ</td><td>e<sup>imφ</sup></td><td>Phase change about z</td></tr>
+                            <tr><td>θ and φ</td><td>Spherical harmonic Y<sub>l</sub><sup>m</sup></td><td>Complete angular structure</td></tr>
+                        </table>
+                        <div class="stat-formula">Y<sub>l</sub><sup>m</sup>(θ,φ) = N<sub>lm</sub>P<sub>l</sub><sup>m</sup>(cosθ)e<sup>imφ</sup></div>
+                        <p>Regularity at the boundaries and square-integrability force the relevant series to terminate and the quantum numbers to take discrete values. Special functions are not ornamental names; they encode the solutions allowed by symmetry, boundary conditions, and normalization.</p>
+
+                        <h3>5. The Three Quantum Numbers n, l, and m</h3>
+                        <div class="stat-formula">n = 1, 2, 3, … &nbsp;·&nbsp; l = 0, 1, …, n − 1 &nbsp;·&nbsp; m = −l, …, 0, …, +l</div>
+                        <table class="stat-table">
+                            <tr><th>Quantum number</th><th>Physical quantity</th><th>Hydrogen interpretation</th></tr>
+                            <tr><td>Principal Quantum Number n</td><td>Energy and characteristic scale</td><td>Ideal hydrogen energy depends only on n</td></tr>
+                            <tr><td>Orbital Angular-Momentum Quantum Number l</td><td>|L|=ℏ√(l(l+1))</td><td>Angular shape and l angular nodes</td></tr>
+                            <tr><td>Magnetic Quantum Number m</td><td>L<sub>z</sub>=mℏ</td><td>Angular state relative to the chosen z axis</td></tr>
+                        </table>
+                        <div class="stat-formula">L̂<sup>2</sup>Y<sub>l</sub><sup>m</sup> = ℏ<sup>2</sup>l(l + 1)Y<sub>l</sub><sup>m</sup> &nbsp;·&nbsp; L̂<sub>z</sub>Y<sub>l</sub><sup>m</sup> = ℏmY<sub>l</sub><sup>m</sup></div>
+                        <p>The <strong>principal quantum number n</strong> is not the number of a classical circular path, and n alone does not determine the full spatial distribution. Different l and m values within one n shell have different radial and angular structures. The values l=0,1,2,… are labeled s,p,d,….</p>
+
+                        <h3>6. The n = 1 State: 1s</h3>
+                        <p>For n=1, only l=0 and m=0 are allowed. Because Y<sub>0</sub><sup>0</sup>=1/√(4π) is direction-independent, the 1s probability density is spherical. Its radial factor R<sub>10</sub>(r)∝e<sup>−r/a<sub>0</sub></sup> is largest at the nucleus and decays exponentially outward.</p>
+                        <div class="stat-formula">1s: (n,l,m) = (1,0,0) &nbsp;·&nbsp; zero radial nodes, zero angular nodes</div>
+                        <p>Spherical symmetry does not mean that the electron moves along a spherical surface. It means every direction has the same probability at a fixed radius.</p>
+
+                        <h3>7. The n = 2 States: 2s and 2p</h3>
+                        <p>For n=2, l can be 0 or 1. The l=0 sector contains one 2s state; l=1 contains three 2p states with m=−1,0,+1. The radial-node count n−l−1 gives 2s one radial node. Angular nodal geometry depends on the basis: the real p<sub>x</sub>, p<sub>y</sub>, and p<sub>z</sub> orbitals each have one nodal plane, whereas the probability density of a complex m=±1 state vanishes along the z axis and is not described by one nodal plane.</p>
+                        <div class="stat-formula">2s: (2,0,0), R<sub>20</sub>(r) ∝ (2 − r/a<sub>0</sub>)e<sup>−r/(2a<sub>0</sub>)</sup></div>
+                        <div class="stat-formula">2p: (2,1,−1), (2,1,0), (2,1,+1), R<sub>21</sub>(r) ∝ re<sup>−r/(2a<sub>0</sub>)</sup></div>
+                        <p>In the complex spherical-harmonic basis, m=0 has the familiar 2p<sub>z</sub> shape. The familiar real 2p<sub>x</sub> and 2p<sub>y</sub> orbitals are linear combinations of the m=±1 states. More precisely, m fixes the L<sub>z</sub> eigenvalue relative to the selected z axis; it is not simply a classical arrow pointing along the orbital.</p>
+
+                        <div class="stat-chart quantum-spatial">
+                            <svg class="quantum-spatial-diagram" data-diagram="hydrogen-orbitals" viewBox="0 0 720 360" role="img" aria-labelledby="orbitals-title-en orbitals-desc-en">
+                                <title id="orbitals-title-en">Spatial forms of n=1 and n=2 hydrogen orbitals</title>
+                                <desc id="orbitals-desc-en">The 1s state is spherical, the 2s state has concentric regions separated by a radial node, and the real 2p z orbital has opposite-sign lobes separated by the xy nodal plane through the nucleus.</desc>
+                                <circle class="diagram-positive" cx="115" cy="180" r="62"></circle><circle class="diagram-point" cx="115" cy="180" r="4"></circle>
+                                <text class="diagram-accent-label" x="96" y="278">1s</text><text x="49" y="303">spherical · no node</text>
+                                <circle class="diagram-positive" cx="354" cy="180" r="80"></circle><circle class="diagram-node" cx="354" cy="180" r="42"></circle><circle class="diagram-negative" cx="354" cy="180" r="25"></circle><circle class="diagram-point" cx="354" cy="180" r="4"></circle>
+                                <text class="diagram-accent-label" x="335" y="278">2s</text><text x="295" y="303">one radial node</text>
+                                <ellipse class="diagram-positive" cx="579" cy="109" rx="42" ry="74"></ellipse><ellipse class="diagram-negative" cx="579" cy="251" rx="42" ry="74"></ellipse><line class="diagram-axis" x1="503" y1="180" x2="655" y2="180"></line><line class="diagram-axis" x1="579" y1="31" x2="579" y2="329"></line><circle class="diagram-point" cx="579" cy="180" r="4"></circle>
+                                <text x="660" y="185">x</text><text x="588" y="38">z</text><text class="diagram-accent-label" x="557" y="345">2p<tspan baseline-shift="sub" font-size="10">z</tspan></text><text x="520" y="172">nodal plane</text><text x="570" y="105">+</text><text x="570" y="258">−</text>
+                            </svg>
+                            <p class="stat-chart-caption">These are schematic isodensity surfaces. The +/− marks are signs of the wavefunction amplitude—relative phase—not electric charge.</p>
+                        </div>
+
+                        <h3>8. An Orbital Is Not an Orbit</h3>
+                        <p>A classical orbit is one continuous trajectory r(t). A quantum orbital is a one-electron spatial wavefunction that assigns a complex probability amplitude to each point. For a central potential, the ψ<sub>nlm</sub> basis can be chosen as simultaneous eigenfunctions of Ĥ, L̂<sup>2</sup>, and L̂<sub>z</sub>, but their real p-orbital combinations need not be L̂<sub>z</sub> eigenfunctions. Before measurement, a wavefunction describes the state, and the probability of finding the electron in d<sup>3</sup>r is |ψ|<sup>2</sup>d<sup>3</sup>r.</p>
+                        <div class="stat-formula">∫|ψ|<sup>2</sup>d<sup>3</sup>r = 1</div>
+                        <p>An isodensity picture does not mean the electron exists only on the displayed surface. It visualizes a selected probability-density threshold or enclosed probability. An orbital does not mean that an electron follows a fixed circle or ellipse.</p>
+
+                        <h3>9. Energy, Spectra and the Zeeman Effect</h3>
+                        <p>In ideal nonrelativistic hydrogen, energy depends only on n, so states with different l and m but the same n are degenerate.</p>
+                        <div class="stat-formula">E<sub>n</sub> = −13.6 eV/n<sup>2</sup></div>
+                        <p>A transition between states produces a photon whose frequency obeys ∆E = hν, giving a line spectrum. An external magnetic field couples to the orbital magnetic moment and can split the m degeneracy—the basic orbital picture of the Zeeman effect. Real atoms require spin, fine structure, and the anomalous Zeeman effect for greater accuracy.</p>
+
+                        <h3>10. Connection to the Supplement</h3>
+                        <p>The supplementary lesson obtained L̂<sub>z</sub>=−iℏ∂/∂φ. Acting on the azimuthal solution e<sup>imφ</sup> immediately returns mℏ. Because [L̂<sup>2</sup>,L̂<sub>z</sub>]=0, Y<sub>l</sub><sup>m</sup> is a simultaneous eigenfunction of both operators. Rotational symmetry, commutators, special functions, and quantum numbers are one chain of reasoning, not four disconnected facts.</p>
+                        <div class="stat-formula">−iℏ∂e<sup>imφ</sup>/∂φ = mℏe<sup>imφ</sup></div>
+
+                        <h3>Key Takeaways</h3>
+                        <ul>
+                            <li>A central potential V(r) selects spherical coordinates and separates the wavefunction into R<sub>nl</sub>Y<sub>l</sub><sup>m</sup>.</li>
+                            <li>The radial part uses associated Laguerre functions, the θ part uses associated Legendre functions, and the complete angular part is a spherical harmonic.</li>
+                            <li>n controls the energy scale, l labels L<sup>2</sup>, and m labels L<sub>z</sub>, with linked allowed ranges.</li>
+                            <li>1s, 2s, and 2p are stationary states with different probability amplitudes and node structures, not electron trajectories.</li>
+                        </ul>
+                    </div>
+                </div>
+            </section>
+        </article>
+
+        <div id="site-footer"></div>
+    </div>
+
+    <script src="../../../common.js?v=20261007-qm-w4"></script>
+</body>
+</html>
